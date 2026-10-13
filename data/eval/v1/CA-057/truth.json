@@ -1,0 +1,373 @@
+{
+  "id": "CA-057",
+  "seed": 660776955,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CER2607214",
+      "invoiceDate": "2026-06-23",
+      "poNumber": "PO-46964",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-06-29",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "La Spezia",
+          "unLocode": "ITSPE",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "La Spezia"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 230,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5",
+          "description": "Extra virgin olive oil, 5 L tins",
+          "quantity": {
+            "value": "880",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.82",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "20081.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "400",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "11.03",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "4412.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "12896.00",
+        "raw": {
+          "value": "12896.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "12448.00",
+        "raw": {
+          "value": "12448.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "24493.60",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-CER2607214",
+      "invoiceRef": "CER2607214",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-220",
+          "count": 220,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/PO-46964/C/NO. 1-230",
+          "contents": [
+            {
+              "sku": "OO-EV-5",
+              "description": "EV olive oil 5 L",
+              "quantity": {
+                "value": "880",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4048.00",
+            "raw": {
+              "value": "4048.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4246.00",
+            "raw": {
+              "value": "4246.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "221-230",
+          "count": 10,
+          "type": "PLT",
+          "marks": "QUINCAILLERIE/PO-46964/C/NO. 1-230",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "400",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "8400.00",
+            "raw": {
+              "value": "8400.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "8650.00",
+            "raw": {
+              "value": "8650.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 230,
+        "netWeight": {
+          "kg": "12448.00",
+          "raw": {
+            "value": "12448.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "12896.00",
+          "raw": {
+            "value": "12896.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "17.88"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLSPE9386713",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "138596314",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "096S",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "La Spezia",
+        "unLocode": "ITSPE",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCRU9672912",
+          "seal": "PC3917692",
+          "type": "20GP",
+          "packages": 230,
+          "grossWeight": {
+            "kg": "12896.00",
+            "raw": {
+              "value": "12896.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "17.88"
+        }
+      ],
+      "totalPackages": 230,
+      "totalGrossWeight": {
+        "kg": "12896.00",
+        "raw": {
+          "value": "12896.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/PO-46964/C/NO. 1-230",
+      "cargoDescription": "SAID TO CONTAIN 230 PKGS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "La Spezia",
+      "dateOfIssue": "2026-07-01",
+      "shippedOnBoardDate": "2026-07-01",
+      "references": [
+        "CER2607214",
+        "PO-46964"
+      ]
+    }
+  }
+}

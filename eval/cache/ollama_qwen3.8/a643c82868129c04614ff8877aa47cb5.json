@@ -1,0 +1,101 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 745,
+    "outputTokens": 961
+  },
+  "output": {
+    "invoiceNumber": "CER2607214",
+    "invoiceDate": "Jun 23, 2026",
+    "poNumber": "PO-46964",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "Jun 29, 2026",
+    "transportMode": "Via SEA",
+    "placeOfShipment": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "La Spezia",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "OO-EV-5",
+        "description": "Extra virgin olive oil, 5 L tins",
+        "quantity": "880",
+        "unit": "PCS",
+        "unitPrice": "22.82",
+        "unitPriceCurrency": null,
+        "lineTotal": "20,081.60",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "2",
+        "sku": "CT-6060",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm",
+        "quantity": "400",
+        "unit": "M2",
+        "unitPrice": "11.03",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,412.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "230",
+    "grossWeight": {
+      "value": "12,896.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "12,448.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "24,493.60",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

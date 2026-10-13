@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 635,
+    "outputTokens": 759
+  },
+  "output": {
+    "packingListNumber": "PL-CER2603622",
+    "invoiceRef": "CER2603622",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/PO-74713/C/NO. 1-208",
+    "packages": [
+      {
+        "range": "1-16",
+        "count": "16 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "PORCELAIN TILE 60X60",
+        "quantity": "640 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "13440.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "13840.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "17-208",
+        "count": "192 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "EV OLIVE OIL 5 L",
+        "quantity": "768 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3532.80",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3705.60",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "208 PKGS",
+    "totalNetWeight": {
+      "value": "16972.80",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "17545.60",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "21.89"
+  }
+}

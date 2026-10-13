@@ -1,0 +1,27 @@
+{
+  "id": "CA-021",
+  "errors": [
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[1].contents[0].quantity.value",
+      "before": "11400",
+      "after": "11395",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 116,
+      "after": 118,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 118 packages instead of 116."
+    }
+  ]
+}

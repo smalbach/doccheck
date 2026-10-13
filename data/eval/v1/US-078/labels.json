@@ -1,0 +1,39 @@
+{
+  "id": "US-078",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "2233.40",
+      "after": "2456.74",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.10 against the packing list."
+    },
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "1943.00",
+      "after": "2233.40",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[2].quantity.value",
+      "before": "7600",
+      "after": "7590",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 3 quantity changed without updating the line total."
+    }
+  ]
+}

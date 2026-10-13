@@ -1,0 +1,318 @@
+{
+  "id": "CA-059",
+  "seed": 2107756983,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": true
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-8763",
+      "invoiceDate": "2026-03-28",
+      "poNumber": "QU368009",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-04-09",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Nhava Sheva"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "CAD",
+      "packageCount": 96,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "1920",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.59",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "31852.80",
+            "currency": "CAD"
+          },
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2697.60",
+        "raw": {
+          "value": "2697.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2592.00",
+        "raw": {
+          "value": "2592.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "31852.80",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "fr"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-8763",
+      "invoiceRef": "INV-2026-8763",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-96",
+          "count": 96,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU368009/C/NO. 1-96",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "1920",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2592.00",
+            "raw": {
+              "value": "2592.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2697.60",
+            "raw": {
+              "value": "2697.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 96,
+        "netWeight": {
+          "kg": "2592.00",
+          "raw": {
+            "value": "2592.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2697.60",
+          "raw": {
+            "value": "2697.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.54"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVNSA695374",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "993492771",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "012N",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU6686730",
+          "seal": "TW5697344",
+          "type": "20GP",
+          "packages": 96,
+          "grossWeight": {
+            "kg": "2697.60",
+            "raw": {
+              "value": "2697.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.54"
+        }
+      ],
+      "totalPackages": 96,
+      "totalGrossWeight": {
+        "kg": "2697.60",
+        "raw": {
+          "value": "2697.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/QU368009/C/NO. 1-96",
+      "cargoDescription": "SAID TO CONTAIN 96 CTNS BRASS BALL VALVE 2\"",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-04-09",
+      "shippedOnBoardDate": "2026-04-09",
+      "references": [
+        "INV-2026-8763",
+        "QU368009"
+      ]
+    }
+  }
+}

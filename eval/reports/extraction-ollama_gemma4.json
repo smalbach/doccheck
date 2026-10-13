@@ -1,0 +1,2010 @@
+{
+  "provider": "ollama:gemma4",
+  "promptVersion": "extract-v2",
+  "shipments": 6,
+  "documents": 18,
+  "failedDocuments": 0,
+  "cachedDocuments": 0,
+  "classificationAccuracy": 1,
+  "overall": {
+    "total": 356,
+    "correct": 202,
+    "wrong": 5,
+    "missing": 149,
+    "spurious": 0,
+    "accuracy": 0.5674
+  },
+  "byType": [
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "total": 152,
+      "correct": 123,
+      "wrong": 1,
+      "missing": 28,
+      "spurious": 0,
+      "accuracy": 0.8092
+    },
+    {
+      "type": "PACKING_LIST",
+      "total": 84,
+      "correct": 61,
+      "wrong": 4,
+      "missing": 19,
+      "spurious": 0,
+      "accuracy": 0.7262
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "total": 120,
+      "correct": 18,
+      "wrong": 0,
+      "missing": 102,
+      "spurious": 0,
+      "accuracy": 0.15
+    }
+  ],
+  "byTemplate": [
+    {
+      "template": "BILL_OF_LADING · classic",
+      "total": 20,
+      "correct": 18,
+      "wrong": 0,
+      "missing": 2,
+      "spurious": 0,
+      "accuracy": 0.9
+    },
+    {
+      "template": "BILL_OF_LADING · legacy",
+      "total": 40,
+      "correct": 0,
+      "wrong": 0,
+      "missing": 40,
+      "spurious": 0,
+      "accuracy": 0
+    },
+    {
+      "template": "BILL_OF_LADING · modern",
+      "total": 60,
+      "correct": 0,
+      "wrong": 0,
+      "missing": 60,
+      "spurious": 0,
+      "accuracy": 0
+    },
+    {
+      "template": "COMMERCIAL_INVOICE · legacy",
+      "total": 96,
+      "correct": 68,
+      "wrong": 0,
+      "missing": 28,
+      "spurious": 0,
+      "accuracy": 0.7083
+    },
+    {
+      "template": "COMMERCIAL_INVOICE · modern",
+      "total": 56,
+      "correct": 55,
+      "wrong": 1,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9821
+    },
+    {
+      "template": "PACKING_LIST · classic",
+      "total": 19,
+      "correct": 10,
+      "wrong": 3,
+      "missing": 6,
+      "spurious": 0,
+      "accuracy": 0.5263
+    },
+    {
+      "template": "PACKING_LIST · legacy",
+      "total": 26,
+      "correct": 21,
+      "wrong": 1,
+      "missing": 4,
+      "spurious": 0,
+      "accuracy": 0.8077
+    },
+    {
+      "template": "PACKING_LIST · modern",
+      "total": 39,
+      "correct": 30,
+      "wrong": 0,
+      "missing": 9,
+      "spurious": 0,
+      "accuracy": 0.7692
+    }
+  ],
+  "byField": [
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "charges.freight.amount",
+      "total": 1,
+      "correct": 0,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "charges.freight.currency",
+      "total": 1,
+      "correct": 0,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "carrier.scac",
+      "total": 6,
+      "correct": 0,
+      "wrong": 0,
+      "missing": 6,
+      "spurious": 0,
+      "accuracy": 0
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].grossWeight.kg",
+      "total": 6,
+      "correct": 0,
+      "wrong": 0,
+      "missing": 6,
+      "spurious": 0,
+      "accuracy": 0
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].netWeight.kg",
+      "total": 7,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 6,
+      "spurious": 0,
+      "accuracy": 0.1429
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].grossWeight.kg",
+      "total": 7,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 6,
+      "spurious": 0,
+      "accuracy": 0.1429
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "blNumber",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "bookingNumber",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "shipper.name",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "consignee.name",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "consignee.address.lines[0]",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "notifyParty.name",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "vessel",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "voyage",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "portOfLoading.name",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "portOfDischarge.name",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "placeOfDelivery.name",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "totalPackages",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "totalGrossWeight.kg",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "totalGrossWeight.raw.unit",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "shippedOnBoardDate",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].number",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].seal",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].packages",
+      "total": 6,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.1667
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].countryOfOrigin",
+      "total": 7,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 4,
+      "spurious": 0,
+      "accuracy": 0.4286
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "totals.netWeight.kg",
+      "total": 6,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 3,
+      "spurious": 0,
+      "accuracy": 0.5
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "totals.grossWeight.kg",
+      "total": 6,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 3,
+      "spurious": 0,
+      "accuracy": 0.5
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].type",
+      "total": 7,
+      "correct": 4,
+      "wrong": 3,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.5714
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "poNumber",
+      "total": 6,
+      "correct": 4,
+      "wrong": 1,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.6667
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "consignee.name",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceNumber",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceDate",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "shipmentDate",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "seller.name",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "buyer.name",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "currency",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "incoterm.code",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "packageCount",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "grossWeight.kg",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "netWeight.kg",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceTotal.amount",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceTotal.currency",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "seller.name",
+      "total": 6,
+      "correct": 5,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].description",
+      "total": 7,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8571
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].quantity.value",
+      "total": 7,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8571
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].quantity.unit",
+      "total": 7,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8571
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].unitPrice.amount",
+      "total": 7,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8571
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].unitPrice.currency",
+      "total": 7,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8571
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].lineTotal.amount",
+      "total": 7,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8571
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].lineTotal.currency",
+      "total": 7,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8571
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].hsCode",
+      "total": 7,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.8571
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].contents[0].quantity.value",
+      "total": 7,
+      "correct": 6,
+      "wrong": 1,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.8571
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "portOfEntry.name",
+      "total": 3,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "consignee.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packingListNumber",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "invoiceRef",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "totals.packageCount",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].range",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].count",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    }
+  ],
+  "rules": {
+    "shipmentsWithAllDocuments": 1,
+    "table": [
+      {
+        "rule": "X10",
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "recall": null,
+        "precision": null
+      },
+      {
+        "rule": "X2",
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "recall": null,
+        "precision": null
+      },
+      {
+        "rule": "X3",
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "recall": null,
+        "precision": null
+      },
+      {
+        "rule": "X6",
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "recall": null,
+        "precision": null
+      }
+    ]
+  },
+  "usage": {
+    "inputTokens": 12155,
+    "outputTokens": 12323,
+    "seconds": 223
+  },
+  "documentsDetail": [
+    {
+      "shipment": "CA-001",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [
+        {
+          "field": "blNumber",
+          "pattern": "blNumber",
+          "outcome": "missing",
+          "expected": "SILVNSA613169"
+        },
+        {
+          "field": "bookingNumber",
+          "pattern": "bookingNumber",
+          "outcome": "missing",
+          "expected": "897607922"
+        },
+        {
+          "field": "carrier.scac",
+          "pattern": "carrier.scac",
+          "outcome": "missing",
+          "expected": "MRDN"
+        },
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "missing",
+          "expected": "Pune Precision Engineering Pvt. Ltd."
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Quincaillerie Saint-Laurent Ltée"
+        },
+        {
+          "field": "consignee.address.lines[0]",
+          "pattern": "consignee.address.lines[0]",
+          "outcome": "missing",
+          "expected": "1450 boul. Industriel"
+        },
+        {
+          "field": "notifyParty.name",
+          "pattern": "notifyParty.name",
+          "outcome": "missing",
+          "expected": "Quincaillerie Saint-Laurent Ltée"
+        },
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "missing",
+          "expected": "PACIFIC CREST HARMONY"
+        },
+        {
+          "field": "voyage",
+          "pattern": "voyage",
+          "outcome": "missing",
+          "expected": "069S"
+        },
+        {
+          "field": "portOfLoading.name",
+          "pattern": "portOfLoading.name",
+          "outcome": "missing",
+          "expected": "Nhava Sheva"
+        },
+        {
+          "field": "portOfDischarge.name",
+          "pattern": "portOfDischarge.name",
+          "outcome": "missing",
+          "expected": "Montreal"
+        },
+        {
+          "field": "placeOfDelivery.name",
+          "pattern": "placeOfDelivery.name",
+          "outcome": "missing",
+          "expected": "Montreal"
+        },
+        {
+          "field": "totalPackages",
+          "pattern": "totalPackages",
+          "outcome": "missing",
+          "expected": 60
+        },
+        {
+          "field": "totalGrossWeight.kg",
+          "pattern": "totalGrossWeight.kg",
+          "outcome": "missing",
+          "expected": "969.00"
+        },
+        {
+          "field": "totalGrossWeight.raw.unit",
+          "pattern": "totalGrossWeight.raw.unit",
+          "outcome": "missing",
+          "expected": "KG"
+        },
+        {
+          "field": "shippedOnBoardDate",
+          "pattern": "shippedOnBoardDate",
+          "outcome": "missing",
+          "expected": "2026-03-22"
+        },
+        {
+          "field": "containers[0].number",
+          "pattern": "containers[*].number",
+          "outcome": "missing",
+          "expected": "MDOU1619406"
+        },
+        {
+          "field": "containers[0].seal",
+          "pattern": "containers[*].seal",
+          "outcome": "missing",
+          "expected": "MD1087924"
+        },
+        {
+          "field": "containers[0].packages",
+          "pattern": "containers[*].packages",
+          "outcome": "missing",
+          "expected": 60
+        },
+        {
+          "field": "containers[0].grossWeight.kg",
+          "pattern": "containers[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "1140.00"
+        }
+      ],
+      "issues": [
+        "totalGrossWeight: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 771,
+        "outputTokens": 830
+      }
+    },
+    {
+      "shipment": "CA-001",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [
+        {
+          "field": "invoiceNumber",
+          "pattern": "invoiceNumber",
+          "outcome": "missing",
+          "expected": "CI/26/0887"
+        },
+        {
+          "field": "invoiceDate",
+          "pattern": "invoiceDate",
+          "outcome": "missing",
+          "expected": "2026-03-14"
+        },
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "missing",
+          "expected": "PO-55859"
+        },
+        {
+          "field": "shipmentDate",
+          "pattern": "shipmentDate",
+          "outcome": "missing",
+          "expected": "2026-03-22"
+        },
+        {
+          "field": "seller.name",
+          "pattern": "seller.name",
+          "outcome": "missing",
+          "expected": "Pune Precision Engineering Pvt. Ltd."
+        },
+        {
+          "field": "buyer.name",
+          "pattern": "buyer.name",
+          "outcome": "missing",
+          "expected": "Quincaillerie Saint-Laurent Ltée"
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Quincaillerie Saint-Laurent Ltée"
+        },
+        {
+          "field": "currency",
+          "pattern": "currency",
+          "outcome": "missing",
+          "expected": "CAD"
+        },
+        {
+          "field": "incoterm.code",
+          "pattern": "incoterm.code",
+          "outcome": "missing",
+          "expected": "CIF"
+        },
+        {
+          "field": "packageCount",
+          "pattern": "packageCount",
+          "outcome": "missing",
+          "expected": 60
+        },
+        {
+          "field": "grossWeight.kg",
+          "pattern": "grossWeight.kg",
+          "outcome": "missing",
+          "expected": "1140.00"
+        },
+        {
+          "field": "netWeight.kg",
+          "pattern": "netWeight.kg",
+          "outcome": "missing",
+          "expected": "870.00"
+        },
+        {
+          "field": "invoiceTotal.amount",
+          "pattern": "invoiceTotal.amount",
+          "outcome": "missing",
+          "expected": "5227.20"
+        },
+        {
+          "field": "invoiceTotal.currency",
+          "pattern": "invoiceTotal.currency",
+          "outcome": "missing",
+          "expected": "CAD"
+        },
+        {
+          "field": "charges.freight.amount",
+          "pattern": "charges.freight.amount",
+          "outcome": "missing",
+          "expected": "2079.00"
+        },
+        {
+          "field": "charges.freight.currency",
+          "pattern": "charges.freight.currency",
+          "outcome": "missing",
+          "expected": "INR"
+        },
+        {
+          "field": "lines[0].description",
+          "pattern": "lines[*].description",
+          "outcome": "missing",
+          "expected": "Centrifugal water pump 0.75 kW, cast iron body"
+        },
+        {
+          "field": "lines[0].quantity.value",
+          "pattern": "lines[*].quantity.value",
+          "outcome": "missing",
+          "expected": "60"
+        },
+        {
+          "field": "lines[0].quantity.unit",
+          "pattern": "lines[*].quantity.unit",
+          "outcome": "missing",
+          "expected": "PCS"
+        },
+        {
+          "field": "lines[0].unitPrice.amount",
+          "pattern": "lines[*].unitPrice.amount",
+          "outcome": "missing",
+          "expected": "87.12"
+        },
+        {
+          "field": "lines[0].unitPrice.currency",
+          "pattern": "lines[*].unitPrice.currency",
+          "outcome": "missing",
+          "expected": "CAD"
+        },
+        {
+          "field": "lines[0].lineTotal.amount",
+          "pattern": "lines[*].lineTotal.amount",
+          "outcome": "missing",
+          "expected": "5227.20"
+        },
+        {
+          "field": "lines[0].lineTotal.currency",
+          "pattern": "lines[*].lineTotal.currency",
+          "outcome": "missing",
+          "expected": "CAD"
+        },
+        {
+          "field": "lines[0].countryOfOrigin",
+          "pattern": "lines[*].countryOfOrigin",
+          "outcome": "missing",
+          "expected": "IN"
+        },
+        {
+          "field": "lines[0].hsCode",
+          "pattern": "lines[*].hsCode",
+          "outcome": "missing",
+          "expected": "8413.70"
+        }
+      ],
+      "issues": [
+        "seller: could not normalize {\"name\":\"PUNE PRECISION ENGINEERING PVT. LTD.\",\"address\":{\"lines\":[\"PLOT 41, MIDC BHOSARI\"],\"city\":\"PUNE\",\"region\":\"MAHARASHTRA\",\"postalCode\":\"411026\",\"country\":\"\"},\"taxId\":\"27AABCP1234F1Z5\"}",
+        "portOfEntry: could not normalize {\"name\":\"MONTREAL\",\"country\":\"\"}",
+        "seller: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 713,
+        "outputTokens": 829
+      }
+    },
+    {
+      "shipment": "CA-001",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "scores": [
+        {
+          "field": "seller.name",
+          "pattern": "seller.name",
+          "outcome": "missing",
+          "expected": "Pune Precision Engineering Pvt. Ltd."
+        }
+      ],
+      "issues": [
+        "seller: could not normalize {\"name\":\"Pune Precision Engineering Pvt. Ltd.\",\"address\":{\"lines\":[\"Plot 41, MIDC Bhosari\"],\"city\":\"Pune\",\"region\":\"Maharashtra\",\"postalCode\":\"411026\",\"country\":\"\"},\"taxId\":\"27AABCP1234F1Z5\"}"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 530,
+        "outputTokens": 547
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [
+        {
+          "field": "blNumber",
+          "pattern": "blNumber",
+          "outcome": "missing",
+          "expected": "COMPNGB187541"
+        },
+        {
+          "field": "bookingNumber",
+          "pattern": "bookingNumber",
+          "outcome": "missing",
+          "expected": "202835130"
+        },
+        {
+          "field": "carrier.scac",
+          "pattern": "carrier.scac",
+          "outcome": "missing",
+          "expected": "AGLX"
+        },
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "missing",
+          "expected": "Ningbo Everbright Appliance Co., Ltd."
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Northern Lantern Retail Inc."
+        },
+        {
+          "field": "consignee.address.lines[0]",
+          "pattern": "consignee.address.lines[0]",
+          "outcome": "missing",
+          "expected": "250 Front St W, Suite 1400"
+        },
+        {
+          "field": "notifyParty.name",
+          "pattern": "notifyParty.name",
+          "outcome": "missing",
+          "expected": "Northern Lantern Retail Inc."
+        },
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "missing",
+          "expected": "AURORA BOREAS"
+        },
+        {
+          "field": "voyage",
+          "pattern": "voyage",
+          "outcome": "missing",
+          "expected": "056N"
+        },
+        {
+          "field": "portOfLoading.name",
+          "pattern": "portOfLoading.name",
+          "outcome": "missing",
+          "expected": "Ningbo"
+        },
+        {
+          "field": "portOfDischarge.name",
+          "pattern": "portOfDischarge.name",
+          "outcome": "missing",
+          "expected": "Prince Rupert"
+        },
+        {
+          "field": "placeOfDelivery.name",
+          "pattern": "placeOfDelivery.name",
+          "outcome": "missing",
+          "expected": "Toronto"
+        },
+        {
+          "field": "totalPackages",
+          "pattern": "totalPackages",
+          "outcome": "missing",
+          "expected": 184
+        },
+        {
+          "field": "totalGrossWeight.kg",
+          "pattern": "totalGrossWeight.kg",
+          "outcome": "missing",
+          "expected": "1729.00"
+        },
+        {
+          "field": "totalGrossWeight.raw.unit",
+          "pattern": "totalGrossWeight.raw.unit",
+          "outcome": "missing",
+          "expected": "KG"
+        },
+        {
+          "field": "shippedOnBoardDate",
+          "pattern": "shippedOnBoardDate",
+          "outcome": "missing",
+          "expected": "2026-10-02"
+        },
+        {
+          "field": "containers[0].number",
+          "pattern": "containers[*].number",
+          "outcome": "missing",
+          "expected": "AGXU1930725"
+        },
+        {
+          "field": "containers[0].seal",
+          "pattern": "containers[*].seal",
+          "outcome": "missing",
+          "expected": "AG8104531"
+        },
+        {
+          "field": "containers[0].packages",
+          "pattern": "containers[*].packages",
+          "outcome": "missing",
+          "expected": 182
+        },
+        {
+          "field": "containers[0].grossWeight.kg",
+          "pattern": "containers[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "1729.00"
+        }
+      ],
+      "issues": [
+        "totalGrossWeight: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 756,
+        "outputTokens": 786
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [
+        {
+          "field": "lines[0].countryOfOrigin",
+          "pattern": "lines[*].countryOfOrigin",
+          "outcome": "missing",
+          "expected": "CN"
+        }
+      ],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 713,
+        "outputTokens": 786
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "scores": [
+        {
+          "field": "totals.netWeight.kg",
+          "pattern": "totals.netWeight.kg",
+          "outcome": "missing",
+          "expected": "1528.80"
+        },
+        {
+          "field": "totals.grossWeight.kg",
+          "pattern": "totals.grossWeight.kg",
+          "outcome": "missing",
+          "expected": "1729.00"
+        },
+        {
+          "field": "packages[0].netWeight.kg",
+          "pattern": "packages[*].netWeight.kg",
+          "outcome": "missing",
+          "expected": "1528.80"
+        },
+        {
+          "field": "packages[0].grossWeight.kg",
+          "pattern": "packages[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "1729.00"
+        }
+      ],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 527,
+        "outputTokens": 445
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [
+        {
+          "field": "blNumber",
+          "pattern": "blNumber",
+          "outcome": "missing",
+          "expected": "TDWEGOA8506270"
+        },
+        {
+          "field": "bookingNumber",
+          "pattern": "bookingNumber",
+          "outcome": "missing",
+          "expected": "414853742"
+        },
+        {
+          "field": "carrier.scac",
+          "pattern": "carrier.scac",
+          "outcome": "missing",
+          "expected": "TDWE"
+        },
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "missing",
+          "expected": "Ceramiche Valle Secchia S.p.A."
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Quincaillerie Saint-Laurent Ltée"
+        },
+        {
+          "field": "consignee.address.lines[0]",
+          "pattern": "consignee.address.lines[0]",
+          "outcome": "missing",
+          "expected": "1450 boul. Industriel"
+        },
+        {
+          "field": "notifyParty.name",
+          "pattern": "notifyParty.name",
+          "outcome": "missing",
+          "expected": "Quincaillerie Saint-Laurent Ltée"
+        },
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "missing",
+          "expected": "TIDEWATER SPIRIT"
+        },
+        {
+          "field": "voyage",
+          "pattern": "voyage",
+          "outcome": "missing",
+          "expected": "058N"
+        },
+        {
+          "field": "portOfLoading.name",
+          "pattern": "portOfLoading.name",
+          "outcome": "missing",
+          "expected": "Genoa"
+        },
+        {
+          "field": "portOfDischarge.name",
+          "pattern": "portOfDischarge.name",
+          "outcome": "missing",
+          "expected": "Halifax"
+        },
+        {
+          "field": "placeOfDelivery.name",
+          "pattern": "placeOfDelivery.name",
+          "outcome": "missing",
+          "expected": "Montreal"
+        },
+        {
+          "field": "totalPackages",
+          "pattern": "totalPackages",
+          "outcome": "missing",
+          "expected": 160
+        },
+        {
+          "field": "totalGrossWeight.kg",
+          "pattern": "totalGrossWeight.kg",
+          "outcome": "missing",
+          "expected": "11051.26"
+        },
+        {
+          "field": "totalGrossWeight.raw.unit",
+          "pattern": "totalGrossWeight.raw.unit",
+          "outcome": "missing",
+          "expected": "KG"
+        },
+        {
+          "field": "shippedOnBoardDate",
+          "pattern": "shippedOnBoardDate",
+          "outcome": "missing",
+          "expected": "2026-05-31"
+        },
+        {
+          "field": "containers[0].number",
+          "pattern": "containers[*].number",
+          "outcome": "missing",
+          "expected": "TWEU3834618"
+        },
+        {
+          "field": "containers[0].seal",
+          "pattern": "containers[*].seal",
+          "outcome": "missing",
+          "expected": "TW9863238"
+        },
+        {
+          "field": "containers[0].packages",
+          "pattern": "containers[*].packages",
+          "outcome": "missing",
+          "expected": 170
+        },
+        {
+          "field": "containers[0].grossWeight.kg",
+          "pattern": "containers[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "10046.60"
+        }
+      ],
+      "issues": [
+        "totalGrossWeight: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 811,
+        "outputTokens": 864
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "wrong",
+          "expected": "QU137456",
+          "got": "PO QU137456"
+        }
+      ],
+      "issues": [
+        "portOfEntry: could not normalize {\"name\":\"Halifax\",\"country\":\"\"}"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 800,
+        "outputTokens": 704
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "scores": [
+        {
+          "field": "totals.netWeight.kg",
+          "pattern": "totals.netWeight.kg",
+          "outcome": "missing",
+          "expected": "9700.80"
+        },
+        {
+          "field": "totals.grossWeight.kg",
+          "pattern": "totals.grossWeight.kg",
+          "outcome": "missing",
+          "expected": "10046.60"
+        },
+        {
+          "field": "packages[0].type",
+          "pattern": "packages[*].type",
+          "outcome": "wrong",
+          "expected": "PLT",
+          "got": "OTHER"
+        },
+        {
+          "field": "packages[1].type",
+          "pattern": "packages[*].type",
+          "outcome": "wrong",
+          "expected": "CTN",
+          "got": "OTHER"
+        },
+        {
+          "field": "packages[0].contents[0].quantity.value",
+          "pattern": "packages[*].contents[0].quantity.value",
+          "outcome": "wrong",
+          "expected": "320",
+          "got": "3202"
+        },
+        {
+          "field": "packages[0].netWeight.kg",
+          "pattern": "packages[*].netWeight.kg",
+          "outcome": "missing",
+          "expected": "6720.00"
+        },
+        {
+          "field": "packages[1].netWeight.kg",
+          "pattern": "packages[*].netWeight.kg",
+          "outcome": "missing",
+          "expected": "2980.80"
+        },
+        {
+          "field": "packages[0].grossWeight.kg",
+          "pattern": "packages[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "6920.00"
+        },
+        {
+          "field": "packages[1].grossWeight.kg",
+          "pattern": "packages[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "3126.60"
+        }
+      ],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 603,
+        "outputTokens": 558
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [
+        {
+          "field": "carrier.scac",
+          "pattern": "carrier.scac",
+          "outcome": "missing",
+          "expected": "PCCL"
+        },
+        {
+          "field": "containers[0].grossWeight.kg",
+          "pattern": "containers[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "4018.30"
+        }
+      ],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 719,
+        "outputTokens": 799
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 659,
+        "outputTokens": 725
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "scores": [
+        {
+          "field": "totals.netWeight.kg",
+          "pattern": "totals.netWeight.kg",
+          "outcome": "missing",
+          "expected": "3861.00"
+        },
+        {
+          "field": "totals.grossWeight.kg",
+          "pattern": "totals.grossWeight.kg",
+          "outcome": "missing",
+          "expected": "4018.30"
+        },
+        {
+          "field": "packages[0].netWeight.kg",
+          "pattern": "packages[*].netWeight.kg",
+          "outcome": "missing",
+          "expected": "3861.00"
+        },
+        {
+          "field": "packages[0].grossWeight.kg",
+          "pattern": "packages[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "4018.30"
+        }
+      ],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 521,
+        "outputTokens": 446
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [
+        {
+          "field": "blNumber",
+          "pattern": "blNumber",
+          "outcome": "missing",
+          "expected": "SILVYTN821455"
+        },
+        {
+          "field": "bookingNumber",
+          "pattern": "bookingNumber",
+          "outcome": "missing",
+          "expected": "908348108"
+        },
+        {
+          "field": "carrier.scac",
+          "pattern": "carrier.scac",
+          "outcome": "missing",
+          "expected": "AGLX"
+        },
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "missing",
+          "expected": "Brightstar Toys Manufacturing Co., Ltd."
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Bluebonnet Home Goods LLC"
+        },
+        {
+          "field": "consignee.address.lines[0]",
+          "pattern": "consignee.address.lines[0]",
+          "outcome": "missing",
+          "expected": "4248 Ambassador Caffery Pkwy"
+        },
+        {
+          "field": "notifyParty.name",
+          "pattern": "notifyParty.name",
+          "outcome": "missing",
+          "expected": "Bluebonnet Home Goods LLC"
+        },
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "missing",
+          "expected": "AURORA BOREAS"
+        },
+        {
+          "field": "voyage",
+          "pattern": "voyage",
+          "outcome": "missing",
+          "expected": "048N"
+        },
+        {
+          "field": "portOfLoading.name",
+          "pattern": "portOfLoading.name",
+          "outcome": "missing",
+          "expected": "Yantian"
+        },
+        {
+          "field": "portOfDischarge.name",
+          "pattern": "portOfDischarge.name",
+          "outcome": "missing",
+          "expected": "Houston"
+        },
+        {
+          "field": "placeOfDelivery.name",
+          "pattern": "placeOfDelivery.name",
+          "outcome": "missing",
+          "expected": "Houston"
+        },
+        {
+          "field": "totalPackages",
+          "pattern": "totalPackages",
+          "outcome": "missing",
+          "expected": 20
+        },
+        {
+          "field": "totalGrossWeight.kg",
+          "pattern": "totalGrossWeight.kg",
+          "outcome": "missing",
+          "expected": "204.00"
+        },
+        {
+          "field": "totalGrossWeight.raw.unit",
+          "pattern": "totalGrossWeight.raw.unit",
+          "outcome": "missing",
+          "expected": "LB"
+        },
+        {
+          "field": "shippedOnBoardDate",
+          "pattern": "shippedOnBoardDate",
+          "outcome": "missing",
+          "expected": "2026-07-29"
+        },
+        {
+          "field": "containers[0].number",
+          "pattern": "containers[*].number",
+          "outcome": "missing",
+          "expected": "AGXU3687086"
+        },
+        {
+          "field": "containers[0].seal",
+          "pattern": "containers[*].seal",
+          "outcome": "missing",
+          "expected": "AG7985748"
+        },
+        {
+          "field": "containers[0].packages",
+          "pattern": "containers[*].packages",
+          "outcome": "missing",
+          "expected": 20
+        },
+        {
+          "field": "containers[0].grossWeight.kg",
+          "pattern": "containers[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "204.00"
+        }
+      ],
+      "issues": [
+        "totalGrossWeight: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 750,
+        "outputTokens": 807
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [
+        {
+          "field": "lines[0].countryOfOrigin",
+          "pattern": "lines[*].countryOfOrigin",
+          "outcome": "missing",
+          "expected": "CN"
+        }
+      ],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 697,
+        "outputTokens": 757
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "scores": [
+        {
+          "field": "packages[0].type",
+          "pattern": "packages[*].type",
+          "outcome": "wrong",
+          "expected": "CTN",
+          "got": "OTHER"
+        },
+        {
+          "field": "packages[0].netWeight.kg",
+          "pattern": "packages[*].netWeight.kg",
+          "outcome": "missing",
+          "expected": "180.00"
+        },
+        {
+          "field": "packages[0].grossWeight.kg",
+          "pattern": "packages[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "204.00"
+        }
+      ],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 548,
+        "outputTokens": 493
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [
+        {
+          "field": "blNumber",
+          "pattern": "blNumber",
+          "outcome": "missing",
+          "expected": "MRDNCTG6468203"
+        },
+        {
+          "field": "bookingNumber",
+          "pattern": "bookingNumber",
+          "outcome": "missing",
+          "expected": "577662182"
+        },
+        {
+          "field": "carrier.scac",
+          "pattern": "carrier.scac",
+          "outcome": "missing",
+          "expected": "MRDN"
+        },
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "missing",
+          "expected": "Cafe Alto Huila Exportadores S.A.S."
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Pacific Trail Outfitters Corp."
+        },
+        {
+          "field": "consignee.address.lines[0]",
+          "pattern": "consignee.address.lines[0]",
+          "outcome": "missing",
+          "expected": "2150 E 37th St"
+        },
+        {
+          "field": "notifyParty.name",
+          "pattern": "notifyParty.name",
+          "outcome": "missing",
+          "expected": "Pacific Trail Outfitters Corp."
+        },
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "missing",
+          "expected": "AURORA BOREAS"
+        },
+        {
+          "field": "voyage",
+          "pattern": "voyage",
+          "outcome": "missing",
+          "expected": "003W"
+        },
+        {
+          "field": "portOfLoading.name",
+          "pattern": "portOfLoading.name",
+          "outcome": "missing",
+          "expected": "Cartagena"
+        },
+        {
+          "field": "portOfDischarge.name",
+          "pattern": "portOfDischarge.name",
+          "outcome": "missing",
+          "expected": "Los Angeles"
+        },
+        {
+          "field": "placeOfDelivery.name",
+          "pattern": "placeOfDelivery.name",
+          "outcome": "missing",
+          "expected": "Fontana"
+        },
+        {
+          "field": "totalPackages",
+          "pattern": "totalPackages",
+          "outcome": "missing",
+          "expected": 218
+        },
+        {
+          "field": "totalGrossWeight.kg",
+          "pattern": "totalGrossWeight.kg",
+          "outcome": "missing",
+          "expected": "13254.40"
+        },
+        {
+          "field": "totalGrossWeight.raw.unit",
+          "pattern": "totalGrossWeight.raw.unit",
+          "outcome": "missing",
+          "expected": "KG"
+        },
+        {
+          "field": "shippedOnBoardDate",
+          "pattern": "shippedOnBoardDate",
+          "outcome": "missing",
+          "expected": "2026-07-14"
+        },
+        {
+          "field": "containers[0].number",
+          "pattern": "containers[*].number",
+          "outcome": "missing",
+          "expected": "MDOU6737638"
+        },
+        {
+          "field": "containers[0].seal",
+          "pattern": "containers[*].seal",
+          "outcome": "missing",
+          "expected": "MD9497289"
+        },
+        {
+          "field": "containers[0].packages",
+          "pattern": "containers[*].packages",
+          "outcome": "missing",
+          "expected": 218
+        },
+        {
+          "field": "containers[0].grossWeight.kg",
+          "pattern": "containers[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "13254.40"
+        }
+      ],
+      "issues": [
+        "totalGrossWeight: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 755,
+        "outputTokens": 636
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [
+        {
+          "field": "lines[0].countryOfOrigin",
+          "pattern": "lines[*].countryOfOrigin",
+          "outcome": "missing",
+          "expected": "CO"
+        }
+      ],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 711,
+        "outputTokens": 800
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "scores": [
+        {
+          "field": "packages[0].netWeight.kg",
+          "pattern": "packages[*].netWeight.kg",
+          "outcome": "missing",
+          "expected": "13080.00"
+        },
+        {
+          "field": "packages[0].grossWeight.kg",
+          "pattern": "packages[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "13254.40"
+        }
+      ],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 571,
+        "outputTokens": 511
+      }
+    }
+  ],
+  "shipmentsDetail": [
+    {
+      "id": "CA-001",
+      "expectedRules": [
+        "X10",
+        "X3",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X3",
+        "X6"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "CA-002",
+      "expectedRules": [
+        "X2"
+      ],
+      "rulesOnTruth": [
+        "X2"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "CA-003",
+      "expectedRules": [
+        "X2",
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "X2",
+        "X3"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "US-001",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-002",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "US-003",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": null
+    }
+  ]
+}

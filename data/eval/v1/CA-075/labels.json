@@ -1,0 +1,41 @@
+{
+  "id": "CA-075",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "3900 North Fraser Way",
+      "after": "3968 North Fraser Way",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "incoterm",
+      "before": {
+        "code": "FOB",
+        "place": "Yantian"
+      },
+      "after": null,
+      "expectedRuleIds": [
+        "C1"
+      ],
+      "description": "Terms of sale (Incoterm) missing from the invoice."
+    },
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "3852.12",
+      "after": "4231.32",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    }
+  ]
+}

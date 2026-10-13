@@ -1,0 +1,59 @@
+{
+  "provider": "ollama:gemma4",
+  "promptVersion": "extract-v2",
+  "usage": {
+    "inputTokens": 571,
+    "outputTokens": 511
+  },
+  "output": {
+    "packingListNumber": "PL-2026-9927",
+    "invoiceRef": "INV-2026-9927",
+    "seller": {
+      "name": "CAFE ALTO HUILA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40"
+      ],
+      "city": "NEIVA",
+      "region": "HUILA",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "marks": "PACIFIC/PA191253/C/NO. 1-218",
+    "packages": [
+      {
+        "range": "1-218",
+        "count": "218 BAG",
+        "packageType": "BAG",
+        "sku": "GREEN COFFEE ARABICA",
+        "description": "GREEN COFFEE ARABICA",
+        "quantity": "13080",
+        "unit": "KG",
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "218 PKGS",
+    "totalNetWeight": {
+      "value": "13080.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "13254.40",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "31.07 CBM"
+  }
+}

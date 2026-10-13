@@ -1,0 +1,1250 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "agent-v2",
+  "summary": [
+    {
+      "kind": "party",
+      "cases": 40,
+      "accuracy": 0.875,
+      "answered": 35,
+      "accuracyWhenAnswered": 1,
+      "wrong": 0,
+      "unsure": 5,
+      "effectAccuracy": 1
+    },
+    {
+      "kind": "description",
+      "cases": 40,
+      "accuracy": 1,
+      "answered": 40,
+      "accuracyWhenAnswered": 1,
+      "wrong": 0,
+      "unsure": 0,
+      "effectAccuracy": 1
+    }
+  ],
+  "results": [
+    {
+      "id": "CA-001:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Quincaillerie Saint-Laurent Ltée",
+        "Quiincaillerie Saint-Laurent Ltée"
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by a single transposed letter ('Quincaillerie' vs 'Quiincaillerie'), while the address, legal suffix ('Ltée'), and location are identical, indicating a typographical error rather than a distinct entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-001:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Centrifugal water pump 0.75 kW, cast iron body (60 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"60 CRTS CENTRIFUGAL PUMP 0.75 KW\" matches the invoice goods \"Centrifugal water pump 0.75 kW... (60 PCS)\" in item type, quantity, and power rating.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-005:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Quincaillerie Saint-Laurent Ltée",
+        "Coastal Mountain Hardware Ltd."
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Quincaillerie Saint-Laurent Ltée' and 'Coastal Mountain Hardware Ltd.' are distinct legal entities with different corporate suffixes (Ltée vs. Ltd.) and different addresses in different provinces (Laval, QC vs. Burnaby, BC), indicating they are not the same party.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-005:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V (1912 PCS)",
+          "Countertop blender 600 W with glass jar (624 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP 0.75 KW\", which is a different type of machinery than the \"Electric kettle\" and \"Countertop blender\" listed on the commercial invoice.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-009:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Northern Lantern DC Brampton",
+        "Norrthern Lantern DC Brampton"
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by a single extra 'r' in 'Norrthern' vs 'Northern', which is a clear typo; all other details (address, city, province, postal code, country) are identical, indicating the same legal entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-009:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 219 BAGS GREEN COFFEE ARABICA",
+        [
+          "Green coffee beans, arabica, not roasted, in 60 kg jute bags (13140 KG)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"219 BAGS GREEN COFFEE ARABICA\" matches the invoice goods \"Green coffee beans, arabica\" in type and variety, and the quantity (219 bags) aligns with the invoice's 13,140 kg in 60 kg bags (13,140 / 60 = 219).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-013:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Coastal Mountain Hardware Ltd.",
+        "Prairie Roasters Co-operative"
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Coastal Mountain Hardware Ltd.' and 'Prairie Roasters Co-operative' are distinct legal entities with different business descriptions (hardware vs. roasters) and different addresses (Burnaby, BC vs. Winnipeg, MB), indicating they are not the same party.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-013:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Glazed porcelain floor tiles 60 x 60 cm (710 M2)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.98,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" while the invoice lists \"Glazed porcelain floor tiles\"; these are completely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-018:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Quincaillerie Saint-Laurent Ltée",
+        "Quincaillerie Saint-Laurent (Import Dept.)"
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by the addition of \"(Import Dept.)\" and the abbreviation \"Ltée\" vs. no suffix, but share the identical core name \"Quincaillerie Saint-Laurent\" and the exact same address \"1450 boul. Industriel, Laval QC H7S 1P6, CA\", indicating the same legal entity with a departmental qualifier on the bill of lading.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-018:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 211 CTNS MEN'S COTTON T-SHIRT",
+        [
+          "Men's T-shirt, knitted, 100% cotton, assorted sizes (21100 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"MEN'S COTTON T-SHIRT\" accurately reflects the commercial invoice item \"Men's T-shirt, knitted, 100% cotton\"; the quantity discrepancy (211 CTNS vs 21100 PCS) is consistent as cartons typically contain multiple units, and the core goods description matches.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-022:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Coastal Mountain Hardware Ltd.",
+        "Bluebonnet Home Goods LLC"
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Coastal Mountain Hardware Ltd.' and 'Bluebonnet Home Goods LLC' are distinct legal entities with different corporate suffixes (Ltd. vs. LLC) and different addresses (Burnaby, CA vs. Houston, US), indicating they are not the same party.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-022:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Wool blend socks, knitted, 3-pair pack (52560 PRS)",
+          "Men's T-shirt, knitted, 100% cotton, assorted sizes (10890 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" (industrial machinery), while the Commercial Invoice lists \"Wool blend socks\" and \"Men's T-shirt\" (textiles/apparel); these are completely different categories of goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-026:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Northern Lantern DC Brampton",
+        "NORTHERN LANTERN DC BRAMPTON"
+      ],
+      "verdict": "yes",
+      "confidence": 0.98,
+      "rationale": "The names are identical except for capitalization ('Northern' vs 'NORTHERN'), and the address, city, province, postal code, and country are exactly the same in both documents.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-026:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 34 CTNS PLUSH TEDDY BEAR 30 CM",
+        [
+          "Plush teddy bear 30 cm, polyester filling (1700 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"PLUSH TEDDY BEAR 30 CM\" explicitly matches the specific goods listed on the commercial invoice, \"Plush teddy bear 30 cm\".",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-030:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Coastal Mountain Hardware Ltd.",
+        "Bluebonnet Home Goods DC"
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Coastal Mountain Hardware Ltd.' and 'Bluebonnet Home Goods DC' are completely distinct, and the addresses indicate different countries (Canada vs. USA), confirming they are different legal entities.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-030:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Glazed porcelain floor tiles 60 x 60 cm (320 M2)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.98,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" while the invoice lists \"Glazed porcelain floor tiles\"; these are completely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-034:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Coastal Mountain Hardware Ltd.",
+        "Coaastal Mountain Hardware Ltd."
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by a single extra 'a' in 'Coaastal' vs 'Coastal', which is a clear typo; all other details (address, city, province, postal code, country) are identical, indicating the same legal entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-034:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 205 CTNS MEN'S COTTON T-SHIRT",
+        [
+          "Men's T-shirt, knitted, 100% cotton, assorted sizes (20500 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"MEN'S COTTON T-SHIRT\" accurately reflects the commercial invoice item \"Men's T-shirt, knitted, 100% cotton\"; the quantity discrepancy (205 CTNS vs 20500 PCS) is consistent as cartons typically contain multiple units, and the core goods description matches.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-038:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Northern Lantern Retail Inc.",
+        "Pacific Trail Fulfillment Center"
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Northern Lantern Retail Inc.' and 'Pacific Trail Fulfillment Center' are distinct legal entities with no shared words, and the addresses are in different countries (Canada vs. USA), indicating they are not the same party.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-038:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Green coffee beans, arabica, not roasted, in 60 kg jute bags (15120 KG)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.98,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" (machinery), while the Commercial Invoice lists \"Green coffee beans\" (agricultural product); these are entirely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-042:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Northern Lantern DC Brampton",
+        "Norrthern Lantern DC Brampton"
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by a single extra 'r' in 'Norrthern' vs 'Northern', which is a clear typo; all other details (address, city, province, postal code, country) are identical, indicating the same legal entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-042:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 67 BAGS GREEN COFFEE ARABICA",
+        [
+          "Green coffee beans, arabica, not roasted, in 60 kg jute bags (4020 KG)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"67 BAGS GREEN COFFEE ARABICA\" accurately reflects the commercial invoice item \"Green coffee beans, arabica... in 60 kg jute bags\" as both identify the same specific commodity (green arabica coffee) and packaging type (bags), with the BL providing the specific count (67 bags) which aligns with the total weight (4020 KG / 60 KG per bag = 67 bags).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-046:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Quincaillerie Saint-Laurent Ltée",
+        "Coastal Mountain Hardware Ltd."
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Quincaillerie Saint-Laurent Ltée' and 'Coastal Mountain Hardware Ltd.' are distinct legal entities with different corporate suffixes (Ltée vs. Ltd.) and different addresses in different provinces (Laval, QC vs. Burnaby, BC), indicating they are not the same party.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-046:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Men's T-shirt, knitted, 100% cotton, assorted sizes (13700 PCS)",
+          "Women's padded jacket, woven polyester shell (220 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.98,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" (industrial machinery), while the invoice lists \"Men's T-shirt\" and \"Women's padded jacket\" (apparel); these are completely different categories of goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-050:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Quincaillerie Saint-Laurent Ltée",
+        "Quincaillerie Saint-Laurent (Import Dept.)"
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by the addition of \"(Import Dept.)\" and the abbreviation \"Ltée\" vs. no suffix, but share the identical core name \"Quincaillerie Saint-Laurent\" and the exact same address \"1450 boul. Industriel, Laval QC H7S 1P6, CA\", indicating the same legal entity with a departmental qualifier on the bill of lading.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-050:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 9 PLTS HEX BOLT M12X60",
+        [
+          "Hex bolts M12 x 60, carbon steel, zinc plated (4500 KG)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"HEX BOLT M12X60\" matches the invoice item \"Hex bolts M12 x 60\" in type and dimensions, representing a consistent, albeit abbreviated, description of the same goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-054:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Prairie Roasters Co-operative",
+        "Northern Lantern DC Brampton"
+      ],
+      "verdict": "unsure",
+      "confidence": 0,
+      "rationale": "The documents list two distinct names ('Prairie Roasters Co-operative' vs. 'Northern Lantern DC Brampton') and different cities (Winnipeg vs. Brampton) with no shared identifiers or evidence of a trade name relationship.",
+      "correct": false,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-054:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Jigsaw puzzle 1000 pieces, cardboard, boxed (5736 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" (industrial machinery), while the invoice lists \"Jigsaw puzzle\" (toys); these are completely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-059:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Quincaillerie Saint-Laurent Ltée",
+        "QUINCAILLERIE SAINT-LAURENT LTÉE"
+      ],
+      "verdict": "yes",
+      "confidence": 0.98,
+      "rationale": "The names are identical except for capitalization (\"Quincaillerie\" vs \"QUINCAILLERIE\") and the address details match exactly (\"1450 boul. Industriel, Laval QC H7S 1P6, CA\").",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-059:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 96 CTNS BRASS BALL VALVE 2\"",
+        [
+          "Brass ball valves 2 inch, threaded (1920 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"BRASS BALL VALVE 2\"\" matches the invoice item \"Brass ball valves 2 inch\" in product type and specification, despite the difference in unit of measure (cartons vs. pieces).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-063:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Coastal Mountain Hardware Ltd.",
+        "Bluebonnet Home Goods LLC"
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Coastal Mountain Hardware Ltd.' and 'Bluebonnet Home Goods LLC' are distinct legal entities with different corporate suffixes (Ltd. vs. LLC) and different addresses (Burnaby, CA vs. Houston, US), indicating they are not the same party.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-063:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Extra virgin olive oil, 5 L tins (792 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.98,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" (industrial machinery), while the Commercial Invoice lists \"Extra virgin olive oil\" (food product); these are completely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-067:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Coastal Mountain Hardware Ltd.",
+        "Coaastal Mountain Hardware Ltd."
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by a single extra 'a' in 'Coaastal' vs 'Coastal', which is a clear typo; all other details (address, city, province, postal code, country) are identical, indicating the same legal entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-067:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 180 CTNS BALL BEARING 6204-2RS",
+        [
+          "Ball bearings 6204-2RS, 20 x 47 x 14 mm (36000 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"BALL BEARING 6204-2RS\" matches the commercial invoice item \"Ball bearings 6204-2RS\" exactly in product type and model number, confirming they are the same goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-071:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Northern Lantern DC Brampton",
+        "Bluebonnet Home Goods DC"
+      ],
+      "verdict": "unsure",
+      "confidence": 0,
+      "rationale": "The documents list two distinct company names ('Northern Lantern DC Brampton' vs. 'Bluebonnet Home Goods DC') and two different physical locations (Brampton, CA vs. Houston, US). Without additional corporate registry data or a link establishing that these are trade names for the same legal entity, the documents do not provide sufficient evidence to confirm they are the same party.",
+      "correct": false,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-071:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 182 CTNS ELECTRIC KETTLE 1.7 L",
+        [
+          "Ball bearings 6204-2RS, 20 x 47 x 14 mm (2200 PCS)",
+          "Centrifugal water pump 0.75 kW, cast iron body (60 PCS)",
+          "Brass ball valves 2 inch, threaded (1700 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading describes \"ELECTRIC KETTLE 1.7 L\", while the commercial invoice lists \"Ball bearings\", \"Centrifugal water pump\", and \"Brass ball valves\"; these are completely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-075:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Coastal Mountain Hardware Ltd.",
+        "Coaastal Mountain Hardware Ltd."
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by a single extra 'a' in 'Coaastal' vs 'Coastal', which is a clear typo; all other details (address, city, province, postal code, country) are identical, indicating the same legal entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-075:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 347 CTNS PLUSH TEDDY BEAR 30 CM AND OTHER GOODS AS PER INVOICE",
+        [
+          "Plush teddy bear 30 cm, polyester filling (11150 PCS)",
+          "Jigsaw puzzle 1000 pieces, cardboard, boxed (2976 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The BL description explicitly lists \"PLUSH TEDDY BEAR 30 CM\" which matches the invoice item, and includes the phrase \"AND OTHER GOODS AS PER INVOICE\" which covers the jigsaw puzzles.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-079:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Quincaillerie Saint-Laurent Ltée",
+        "Pacific Trail Fulfillment Center"
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Quincaillerie Saint-Laurent Ltée' and 'Pacific Trail Fulfillment Center' are completely distinct, and the addresses are in different countries (Canada vs. USA), indicating they are different legal entities.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-079:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Jigsaw puzzle 1000 pieces, cardboard, boxed (2376 PCS)",
+          "Plush teddy bear 30 cm, polyester filling (2900 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" (industrial machinery), while the invoice lists \"Jigsaw puzzle\" and \"Plush teddy bear\" (toys); these are completely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-083:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Prairie Roasters Co-operative",
+        "Prairie Roasters (Import Dept.)"
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by the addition of \"(Import Dept.)\" in the bill of lading, which is a standard departmental designation rather than a distinct legal entity, and all other identifying details (address, city, province, postal code, and country) are identical.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-083:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 59 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+        [
+          "Centrifugal water pump 0.75 kW, cast iron body (30 PCS)",
+          "Brass ball valves 2 inch, threaded (580 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading explicitly lists \"CENTRIFUGAL PUMP 0.75 KW\" which matches the invoice item \"Centrifugal water pump 0.75 kW\", and includes the phrase \"AND OTHER GOODS AS PER INVOICE\" which covers the \"Brass ball valves\" listed on the invoice.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-087:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Quincaillerie Saint-Laurent Ltée",
+        "Coastal Mountain Hardware Ltd."
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Quincaillerie Saint-Laurent Ltée' and 'Coastal Mountain Hardware Ltd.' are distinct legal entities with different corporate suffixes (Ltée vs. Ltd.) and different addresses in different provinces (Laval, QC vs. Burnaby, BC), indicating they are not the same party.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-087:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Countertop blender 600 W with glass jar (132 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP 0.75 KW\" (60 CRTS), while the invoice lists \"Countertop blender 600 W\" (132 PCS); these are different types of goods (pumps vs. blenders) with different quantities and power ratings, so the descriptions are not consistent.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-091:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Northern Lantern DC Brampton",
+        "NORTHERN LANTERN DC BRAMPTON"
+      ],
+      "verdict": "yes",
+      "confidence": 0.98,
+      "rationale": "The names are identical except for capitalization ('Northern' vs 'NORTHERN'), and the address, city, province, postal code, and country are exactly the same in both documents.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-091:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 50 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+        [
+          "Centrifugal water pump 0.75 kW, cast iron body (36 PCS)",
+          "Brass ball valves 2 inch, threaded (280 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading explicitly lists \"CENTRIFUGAL PUMP 0.75 KW\" which matches the invoice item \"Centrifugal water pump 0.75 kW\", and includes the phrase \"AND OTHER GOODS AS PER INVOICE\" which covers the \"Brass ball valves\" listed on the invoice.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-095:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Quincaillerie Saint-Laurent Ltée",
+        "Prairie Roasters Co-operative"
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Quincaillerie Saint-Laurent Ltée' and 'Prairie Roasters Co-operative' are completely distinct, as are their locations (Laval, QC vs. Winnipeg, MB) and business types (hardware vs. food co-op), indicating they are different legal entities.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-095:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 182 CTNS ELECTRIC KETTLE 1.7 L",
+        [
+          "Centrifugal water pump 0.75 kW, cast iron body (34 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading describes \"ELECTRIC KETTLE 1.7 L\" while the commercial invoice lists \"Centrifugal water pump 0.75 kW\", which are different types of goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-100:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Coastal Mountain Hardware Ltd.",
+        "Coaastal Mountain Hardware Ltd."
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by a single extra 'a' in 'Coaastal' vs 'Coastal', which is a clear typo; all other details (address, city, province, postal code, country) are identical, indicating the same legal entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "CA-100:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 250 PKGS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+        [
+          "Extra virgin olive oil, 5 L tins (940 PCS)",
+          "Glazed porcelain floor tiles 60 x 60 cm (601 M2)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading explicitly lists \"EV OLIVE OIL 5 L\" which matches the invoice's \"Extra virgin olive oil, 5 L tins\", and includes the phrase \"AND OTHER GOODS AS PER INVOICE\" which covers the \"Glazed porcelain floor tiles\" listed on the invoice.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-004:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Pacific Trail Outfitters Corp.",
+        "Lakeshore Coffee Importers LLC"
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Pacific Trail Outfitters Corp.' and 'Lakeshore Coffee Importers LLC' are distinct legal entities with different names, addresses (Vernon, CA vs. Chicago, IL), and business descriptions, indicating they are not the same party.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-004:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 182 CTNS ELECTRIC KETTLE 1.7 L",
+        [
+          "Centrifugal water pump 0.75 kW, cast iron body (5 PCS)",
+          "Brass ball valves 2 inch, threaded (1980 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading describes \"ELECTRIC KETTLE 1.7 L\", while the commercial invoice lists \"Centrifugal water pump\" and \"Brass ball valves\"; these are different types of goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-009:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Bluebonnet Home Goods LLC",
+        "Blueebonnet Home Goods LLC"
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by a single transposed letter ('Bluebonnet' vs 'Blueebonnet'), while the address (4200 Ambassador Caffery Pkwy, Houston TX 77041) and suffix (LLC) are identical, indicating a typo rather than a distinct legal entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-009:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 393 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+        [
+          "Ball bearings 6204-2RS, 20 x 47 x 14 mm (41400 PCS)",
+          "Brass ball valves 2 inch, threaded (3400 PCS)",
+          "Centrifugal water pump 0.75 kW, cast iron body (16 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading explicitly lists \"BALL BEARING 6204-2RS\" which matches the first item on the invoice, and includes the phrase \"AND OTHER GOODS AS PER INVOICE\" which covers the remaining items (brass ball valves and centrifugal water pump) as permitted by the prompt's definition of consistency.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-013:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Harborline Industrial Supply Inc.",
+        "Pacific Trail Outfitters Corp."
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Harborline Industrial Supply Inc.' and 'Pacific Trail Outfitters Corp.' are distinct legal entities with different addresses (Elizabeth, NJ vs. Vernon, CA) and no shared trade name or abbreviation indicators.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-013:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Green coffee beans, arabica, not roasted, in 60 kg jute bags (15180 KG)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.98,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" (machinery), while the Commercial Invoice lists \"Green coffee beans\" (agricultural product); these are entirely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-017:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Harborline Industrial Supply Inc.",
+        "Harborline Industrial Supply (Import Dept.)"
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by the parenthetical addition \"(Import Dept.)\" on the bill of lading, which indicates a department rather than a distinct legal entity, while the core name \"Harborline Industrial Supply\" and the address \"1200 Port Ave, Elizabeth NJ 07201\" are identical in both documents.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-017:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 137 BAGS GREEN COFFEE ARABICA",
+        [
+          "Green coffee beans, arabica, not roasted, in 60 kg jute bags (8220 KG)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"137 BAGS GREEN COFFEE ARABICA\" matches the invoice goods \"Green coffee beans, arabica\" in type and variety, and the quantity (137 bags) aligns with the invoice's 8220 KG in 60 kg bags (8220/60 = 137).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-021:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Lakeshore Coffee Importers LLC",
+        "Pacific Trail Fulfillment Center"
+      ],
+      "verdict": "unsure",
+      "confidence": 0,
+      "rationale": "The documents list two distinct legal names ('Lakeshore Coffee Importers LLC' vs. 'Pacific Trail Fulfillment Center') and different addresses (Chicago, IL vs. Fontana, CA). Without additional documents (such as a corporate registry or a letter of authorization) linking these entities, it is impossible to determine if they are the same legal entity or different parties.",
+      "correct": false,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-021:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Green coffee beans, arabica, not roasted, in 60 kg jute bags (10740 KG)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.98,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" (machinery), while the Commercial Invoice lists \"Green coffee beans\" (agricultural product); these are entirely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-025:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Lakeshore Coffee Importers LLC",
+        "LAKESHORE COFFEE IMPORTERS LLC"
+      ],
+      "verdict": "yes",
+      "confidence": 0.98,
+      "rationale": "The names are identical except for capitalization (\"Lakeshore\" vs \"LAKESHORE\"), and the addresses (\"640 W Lake St, Chicago IL 60661\") are exactly the same.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-025:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 277 CTNS JIGSAW PUZZLE 1000 PCS AND OTHER GOODS AS PER INVOICE",
+        [
+          "Jigsaw puzzle 1000 pieces, cardboard, boxed (3024 PCS)",
+          "Plush teddy bear 30 cm, polyester filling (7550 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading explicitly lists \"JIGSAW PUZZLE 1000 PCS\" which matches the invoice item \"Jigsaw puzzle 1000 pieces\", and includes the phrase \"AND OTHER GOODS AS PER INVOICE\" which covers the \"Plush teddy bear\" listed on the invoice.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-030:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Lakeshore Coffee Importers LLC",
+        "Northern Lantern Retail Inc."
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Lakeshore Coffee Importers LLC' and 'Northern Lantern Retail Inc.' are completely distinct, with no shared words, abbreviations, or trade name variations, and they are located in different countries (US vs. CA).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-030:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Plush teddy bear 30 cm, polyester filling (7300 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.98,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" (industrial machinery), while the invoice lists \"Plush teddy bear\" (toys); these are fundamentally different goods, not a generic description of the same item.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-034:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Pacific Trail Fulfillment Center",
+        "Paccific Trail Fulfillment Center"
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by a single transposed letter ('Paccific' vs 'Pacific'), while the address (13500 Valley Blvd, Fontana CA 92335) and context are identical, indicating a typo rather than a distinct legal entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-034:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 168 CTNS PLUSH TEDDY BEAR 30 CM",
+        [
+          "Plush teddy bear 30 cm, polyester filling (8400 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"PLUSH TEDDY BEAR 30 CM\" matches the specific goods listed on the commercial invoice \"Plush teddy bear 30 cm\". Although the quantities differ (168 CTNS vs 8400 PCS), the question asks about the consistency of the goods description, not the quantity, and the item identity is identical.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-038:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Harborline Industrial Supply Inc.",
+        "Northern Lantern DC Brampton"
+      ],
+      "verdict": "unsure",
+      "confidence": 0,
+      "rationale": "The documents list two completely different names ('Harborline Industrial Supply Inc.' vs. 'Northern Lantern DC Brampton') and different locations (Elizabeth, NJ, US vs. Brampton, ON, CA). There is no evidence in the provided text to suggest these are trade names, abbreviations, or related entities of the same legal person.",
+      "correct": false,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-038:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 182 CTNS ELECTRIC KETTLE 1.7 L",
+        [
+          "Centrifugal water pump 0.75 kW, cast iron body (53 PCS)",
+          "Brass ball valves 2 inch, threaded (520 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading describes \"ELECTRIC KETTLE 1.7 L\", while the commercial invoice lists \"Centrifugal water pump\" and \"Brass ball valves\"; these are different types of goods, not a generic description of the same items.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-042:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Harborline Industrial Supply Inc.",
+        "Harrborline Industrial Supply Inc."
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by a single transposed letter ('Harborline' vs 'Harrborline'), while the address (1200 Port Ave, Elizabeth NJ 07201) and country (US) are identical, indicating a typo rather than a distinct legal entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-042:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 231 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+        [
+          "Brass ball valves 2 inch, threaded (2780 PCS)",
+          "Ball bearings 6204-2RS, 20 x 47 x 14 mm (16200 PCS)",
+          "Centrifugal water pump 0.75 kW, cast iron body (11 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading explicitly lists \"BRASS BALL VALVE 2\" which matches the invoice item \"Brass ball valves 2 inch\", and the phrase \"AND OTHER GOODS AS PER INVOICE\" covers the remaining items (ball bearings and water pump) as permitted by the prompt's definition of consistency.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-046:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Pacific Trail Outfitters Corp.",
+        "Lakeshore Coffee Importers LLC"
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Pacific Trail Outfitters Corp.' and 'Lakeshore Coffee Importers LLC' are distinct legal entities with different names, addresses (Vernon, CA vs. Chicago, IL), and business descriptions, indicating they are not the same party.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-046:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 182 CTNS ELECTRIC KETTLE 1.7 L",
+        [
+          "Brass ball valves 2 inch, threaded (4800 PCS)",
+          "Centrifugal water pump 0.75 kW, cast iron body (47 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.98,
+      "rationale": "The Bill of Lading describes \"ELECTRIC KETTLE 1.7 L\" while the invoice lists \"Brass ball valves\" and \"Centrifugal water pump\", which are completely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-050:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Bluebonnet Home Goods LLC",
+        "Bluebonnet Home Goods (Import Dept.)"
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The names differ only by the addition of \"(Import Dept.)\" and the legal suffix \"LLC\"; the core trade name \"Bluebonnet Home Goods\" and the identical address \"4200 Ambassador Caffery Pkwy, Houston TX 77041\" indicate the same legal entity.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-050:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 73 BAGS GREEN COFFEE ARABICA",
+        [
+          "Green coffee beans, arabica, not roasted, in 60 kg jute bags (4380 KG)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"73 BAGS GREEN COFFEE ARABICA\" matches the invoice goods \"Green coffee beans, arabica\" in product type and variety, despite the BL omitting the specific weight and bag material details.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-054:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Pacific Trail Outfitters Corp.",
+        "Bluebonnet Home Goods DC"
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The names 'Pacific Trail Outfitters Corp.' and 'Bluebonnet Home Goods DC' are completely distinct with no shared words, and the addresses (Vernon, CA vs. Houston, TX) indicate different locations, ruling out a simple typo or trade name variation.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-054:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 182 CTNS ELECTRIC KETTLE 1.7 L",
+        [
+          "Brass ball valves 2 inch, threaded (520 PCS)",
+          "Centrifugal water pump 0.75 kW, cast iron body (38 PCS)",
+          "Ball bearings 6204-2RS, 20 x 47 x 14 mm (29000 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.98,
+      "rationale": "The Bill of Lading describes \"ELECTRIC KETTLE 1.7 L\", whereas the commercial invoice lists \"Brass ball valves\", \"Centrifugal water pump\", and \"Ball bearings\"; these are completely different goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-059:party:same",
+      "kind": "party",
+      "expected": "yes",
+      "input": [
+        "Bluebonnet Home Goods LLC",
+        "BLUEBONNET HOME GOODS LLC"
+      ],
+      "verdict": "yes",
+      "confidence": 0.98,
+      "rationale": "The names are identical except for capitalization ('Bluebonnet' vs 'BLUEBONNET'), and the addresses match exactly ('4200 Ambassador Caffery Pkwy, Houston TX 77041, US').",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-059:description:same",
+      "kind": "description",
+      "expected": "yes",
+      "input": [
+        "SAID TO CONTAIN 210 CTNS BLENDER 600 W",
+        [
+          "Countertop blender 600 W with glass jar (840 PCS)"
+        ]
+      ],
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading description \"BLENDER 600 W\" accurately identifies the specific goods listed on the invoice as \"Countertop blender 600 W\", confirming they are the same item despite the quantity discrepancy (210 CTNS vs 840 PCS) which likely refers to packaging units vs individual units.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-064:party:different",
+      "kind": "party",
+      "expected": "no",
+      "input": [
+        "Lakeshore Coffee Importers LLC",
+        "Pacific Trail Fulfillment Center"
+      ],
+      "verdict": "unsure",
+      "confidence": 0,
+      "rationale": "The documents list two distinct legal names ('Lakeshore Coffee Importers LLC' vs. 'Pacific Trail Fulfillment Center') and different addresses (Chicago, IL vs. Fontana, CA). Without additional documents (such as a corporate registry or a letter of authorization) linking these entities, it is impossible to determine if they are the same legal entity or different parties.",
+      "correct": false,
+      "effectCorrect": true
+    },
+    {
+      "id": "US-064:description:different",
+      "kind": "description",
+      "expected": "no",
+      "input": [
+        "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+        [
+          "Ball bearings 6204-2RS, 20 x 47 x 14 mm (6200 PCS)",
+          "Brass ball valves 2 inch, threaded (1500 PCS)"
+        ]
+      ],
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The Bill of Lading describes \"CENTRIFUGAL PUMP\" (60 CRTS), whereas the Commercial Invoice lists \"Ball bearings\" and \"Brass ball valves\"; these are different types of goods.",
+      "correct": true,
+      "effectCorrect": true
+    }
+  ]
+}

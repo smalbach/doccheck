@@ -1,0 +1,28 @@
+{
+  "id": "CA-022",
+  "errors": [
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "6013.00",
+      "after": "6253.50",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[1].quantity.value",
+      "before": "10900",
+      "after": "10890",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 2 quantity changed without updating the line total."
+    }
+  ]
+}

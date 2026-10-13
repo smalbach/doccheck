@@ -1,0 +1,19 @@
+{
+  "name": "@doccheck/extraction",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PDF -> text with positions -> LLM extraction (Zod structured output) -> normalized documents with provenance.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@doccheck/rules": "0.1.0",
+    "@doccheck/schemas": "0.1.0",
+    "pdfjs-dist": "^6.4.299",
+    "zod": "^4.6.7"
+  }
+}

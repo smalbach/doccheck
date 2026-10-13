@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 527,
+    "outputTokens": 590
+  },
+  "output": {
+    "packingListNumber": "PL-NIN2609542",
+    "invoiceRef": "NIN2609542",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/CO172314/C/NO. 1-133",
+    "packages": [
+      {
+        "range": "1-133",
+        "count": "133 CTN",
+        "packageType": "CTN",
+        "sku": "EK-17",
+        "description": "Electric kettle 1.7 L",
+        "quantity": "1,064 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,117.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,263.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 45 × 42"
+      }
+    ],
+    "totalPackages": "133",
+    "totalNetWeight": {
+      "value": "1,117.20",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,263.50",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "13.83"
+  }
+}

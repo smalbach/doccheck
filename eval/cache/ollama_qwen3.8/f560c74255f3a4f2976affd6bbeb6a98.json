@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 837,
+    "outputTokens": 929
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-2423",
+    "invoiceDate": "2026-08-05",
+    "poNumber": "PO-69991",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "2026-08-14",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Ho Chi Minh City",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "13,700",
+        "unit": "PCS",
+        "unitPrice": "3.77",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "51,649.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Women's padded jacket, woven polyester shell",
+        "quantity": "220",
+        "unit": "PCS",
+        "unitPrice": "16.54",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "3,638.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6202.40"
+      }
+    ],
+    "totalPackages": "148",
+    "grossWeight": {
+      "value": "2,910.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,790.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "55,287.80",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

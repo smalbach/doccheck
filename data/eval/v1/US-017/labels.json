@@ -1,0 +1,28 @@
+{
+  "id": "US-017",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "lines[*].countryOfOrigin",
+      "before": [
+        "CO"
+      ],
+      "after": null,
+      "expectedRuleIds": [
+        "U1"
+      ],
+      "description": "Country of origin missing on every invoice line."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "INR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 3384.00 INR on an invoice in USD."
+    }
+  ]
+}

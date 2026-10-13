@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v2",
+  "usage": {
+    "inputTokens": 792,
+    "outputTokens": 955
+  },
+  "output": {
+    "invoiceNumber": "CI/26/8361",
+    "invoiceDate": "May 23, 2026",
+    "poNumber": "QU137456",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "May 31, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Genoa",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "Halifax",
+      "country": null
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": null,
+    "paymentTerms": "Net 60",
+    "currency": "EUR",
+    "packageCount": "net 60. Sales Director.",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CT-6060",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm",
+        "quantity": "320",
+        "unit": "M2",
+        "unitPrice": "8.17",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,614.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "2",
+        "sku": "OO-EV-5",
+        "description": "Extra virgin olive oil, 5 L tins",
+        "quantity": "648",
+        "unit": "PCS",
+        "unitPrice": "28.18",
+        "unitPriceCurrency": null,
+        "lineTotal": "18,260.64",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      }
+    ],
+    "grossWeight": {
+      "value": "10,046.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "9,700.80",
+      "unit": "KG"
+    },
+    "invoiceTotal": "20,875.04",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

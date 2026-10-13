@@ -1,0 +1,28 @@
+{
+  "id": "CA-053",
+  "errors": [
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[1].quantity.value",
+      "before": "4848",
+      "after": "4849",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 2 quantity changed without updating the line total."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 413,
+      "after": 418,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 418 packages instead of 413."
+    }
+  ]
+}

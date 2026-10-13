@@ -1,0 +1,66 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 569,
+    "outputTokens": 578
+  },
+  "output": {
+    "packingListNumber": "PL-PUN2609332",
+    "invoiceRef": "PUN2609332",
+    "seller": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/QU375164/C/NO. 1-28",
+    "packages": [
+      {
+        "range": "1-28",
+        "count": "28 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BRASS BALL VALVE 2\"",
+        "quantity": "560 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "756.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "786.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "28 PKGS",
+    "totalNetWeight": {
+      "value": "756.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "786.80",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "1.32 CBM"
+  }
+}

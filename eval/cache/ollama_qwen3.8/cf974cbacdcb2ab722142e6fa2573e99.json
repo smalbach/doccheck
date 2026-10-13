@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 661,
+    "outputTokens": 902
+  },
+  "output": {
+    "packingListNumber": "PL/26/5168",
+    "invoiceRef": "CI/26/5168",
+    "seller": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN DC BRAMPTON",
+      "addressLines": [
+        "8 STEINWAY BLVD",
+        "BRAMPTON ON L6T 4X7"
+      ],
+      "city": "BRAMPTON",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/NO380901/C/NO. 1-477",
+    "packages": [
+      {
+        "range": "1-218",
+        "count": "218 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "WOOL SOCKS 3-PACK",
+        "quantity": "52320 PRS",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "3924.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "4076.60",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "219-254",
+        "count": "36 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "MEN'S COTTON T-SHIRT",
+        "quantity": "3600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "684.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "712.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "255-477",
+        "count": "223 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "WOMEN'S PADDED JACKET",
+        "quantity": "4460 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3791.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "4014.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "477",
+    "totalNetWeight": {
+      "value": "8399.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "8803.40",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "47.75"
+  }
+}

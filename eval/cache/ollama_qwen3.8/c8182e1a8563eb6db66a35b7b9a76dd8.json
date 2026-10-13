@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 734,
+    "outputTokens": 926
+  },
+  "output": {
+    "invoiceNumber": "CI/26/6753",
+    "invoiceDate": "Sep 15, 2026",
+    "poNumber": "NO230717",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "shipmentDate": "Sep 26, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": null,
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Cai Mep",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "TS-CTN-M",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "1,200",
+        "unit": "PCS",
+        "unitPrice": "2.93",
+        "unitPriceCurrency": null,
+        "lineTotal": "5,316.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket, woven polyester shell",
+        "quantity": "1,400",
+        "unit": "PCS",
+        "unitPrice": "21.05",
+        "unitPriceCurrency": null,
+        "lineTotal": "29,470.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6202.40"
+      }
+    ],
+    "totalPackages": "82",
+    "grossWeight": {
+      "value": "1,497.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,418.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "32,986.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,315 @@
+{
+  "id": "CA-040",
+  "seed": 1812692625,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/6642",
+      "invoiceDate": "2026-09-10",
+      "poNumber": "PR396723",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-09-19",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Qingdao"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 44,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "54",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "85.46",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4614.84",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1026.00",
+        "raw": {
+          "value": "1026.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "783.00",
+        "raw": {
+          "value": "783.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "4614.84",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/6642",
+      "invoiceRef": "CI/26/6642",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-54",
+          "count": 54,
+          "type": "CRT",
+          "marks": "PRAIRIE/PR396723/C/NO. 1-54",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "54",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "783.00",
+            "raw": {
+              "value": "783.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1026.00",
+            "raw": {
+              "value": "1026.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 54,
+        "netWeight": {
+          "kg": "783.00",
+          "raw": {
+            "value": "783.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1026.00",
+          "raw": {
+            "value": "1026.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.75"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSTAO225519",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "145072933",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "notifyParty": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "042S",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Winnipeg",
+        "unLocode": "CAWNP",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU4983252",
+          "seal": "MD3418180",
+          "type": "20GP",
+          "packages": 54,
+          "grossWeight": {
+            "kg": "1026.00",
+            "raw": {
+              "value": "1026.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.75"
+        }
+      ],
+      "totalPackages": 54,
+      "totalGrossWeight": {
+        "kg": "1128.60",
+        "raw": {
+          "value": "1128.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PRAIRIE/PR396723/C/NO. 1-54",
+      "cargoDescription": "SAID TO CONTAIN 54 CRTS CENTRIFUGAL PUMP 0.75 KW",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-09-21",
+      "shippedOnBoardDate": "2026-09-21",
+      "references": [
+        "CI/26/6642",
+        "PR396723"
+      ]
+    }
+  }
+}

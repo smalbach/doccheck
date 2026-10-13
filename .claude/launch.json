@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "doccheck",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["apps/api/dist/main.js"],
+      "env": { "PORT": "3000", "LLM_CACHE_DIR": "eval/cache/ollama_qwen3.8" },
+      "port": 3000
+    }
+  ]
+}

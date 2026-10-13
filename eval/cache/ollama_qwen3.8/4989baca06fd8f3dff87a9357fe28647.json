@@ -1,0 +1,113 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 798,
+    "outputTokens": 1099
+  },
+  "output": {
+    "invoiceNumber": "CI/26/7898",
+    "invoiceDate": "08-APR-2026",
+    "poNumber": "CO463845",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "13-APR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "QINGDAO",
+    "paymentTerms": "L/C AT SIGHT",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "HB-M12",
+        "description": "HEX BOLTS M12 X 60, CARBON STEEL, ZINC PLATED HS 7318.15",
+        "quantity": "7000",
+        "unit": "KG",
+        "unitPrice": "1.98",
+        "unitPriceCurrency": null,
+        "lineTotal": "31860.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": null,
+        "sku": "BB-6204",
+        "description": "BALL BEARINGS 6204-2RS, 20 X 47 X 14 MM HS 8482.10",
+        "quantity": "9800",
+        "unit": "PCS",
+        "unitPrice": "1.22",
+        "unitPriceCurrency": null,
+        "lineTotal": "11956.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "15",
+        "unit": "PCS",
+        "unitPrice": "69.21",
+        "unitPriceCurrency": null,
+        "lineTotal": "1038.15",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "78 PKGS",
+    "grossWeight": {
+      "value": "8715.10",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "8295.50",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "26854.15",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

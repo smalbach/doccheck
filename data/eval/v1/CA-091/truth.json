@@ -1,0 +1,366 @@
+{
+  "id": "CA-091",
+  "seed": 1960140196,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NOR2602969",
+      "invoiceDate": "2026-05-23",
+      "poNumber": "NO290848",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-05-26",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Bremerhaven",
+          "unLocode": "DEBRV",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Bremerhaven"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 50,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "36",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "79.07",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "2846.52",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "280",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.89",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "3609.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1077.40",
+        "raw": {
+          "value": "1077.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "900.00",
+        "raw": {
+          "value": "900.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "6455.72",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-NOR2602969",
+      "invoiceRef": "NOR2602969",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-36",
+          "count": 36,
+          "type": "CRT",
+          "marks": "NORTHERN/NO290848/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "36",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "522.00",
+            "raw": {
+              "value": "522.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "684.00",
+            "raw": {
+              "value": "684.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "37-50",
+          "count": 14,
+          "type": "CTN",
+          "marks": "NORTHERN/NO290848/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "280",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "378.00",
+            "raw": {
+              "value": "378.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "393.40",
+            "raw": {
+              "value": "393.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 50,
+        "netWeight": {
+          "kg": "900.00",
+          "raw": {
+            "value": "900.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1077.40",
+          "raw": {
+            "value": "1077.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "3.83"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLBRV8294943",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "222005006",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "018N",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Bremerhaven",
+        "unLocode": "DEBRV",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Prince Rupert",
+        "unLocode": "CAPRR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCLU4949371",
+          "seal": "PC6542709",
+          "type": "20GP",
+          "packages": 50,
+          "grossWeight": {
+            "kg": "1077.40",
+            "raw": {
+              "value": "1077.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "3.83"
+        }
+      ],
+      "totalPackages": 50,
+      "totalGrossWeight": {
+        "kg": "1077.40",
+        "raw": {
+          "value": "1077.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/NO290848/C/NO. 1-50",
+      "cargoDescription": "SAID TO CONTAIN 50 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Bremerhaven",
+      "dateOfIssue": "2026-05-29",
+      "shippedOnBoardDate": "2026-05-29",
+      "references": [
+        "NOR2602969",
+        "NO290848"
+      ]
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 660,
+    "outputTokens": 811
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0934",
+    "invoiceDate": "Jan 14, 2026",
+    "poNumber": "PO-28600",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "Jan 24, 2026",
+    "transportMode": "Via SEA",
+    "placeOfShipment": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CFR",
+    "incotermPlace": "Vancouver",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL. Shipping Supervisor.",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "OO-EV-5",
+        "description": "Extra virgin olive oil, 5 L tins",
+        "quantity": "452",
+        "unit": "PCS",
+        "unitPrice": "24.13",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,906.76",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "113",
+    "grossWeight": {
+      "value": "2,180.90",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,079.20",
+      "unit": "KG"
+    },
+    "invoiceTotal": "10,906.76",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

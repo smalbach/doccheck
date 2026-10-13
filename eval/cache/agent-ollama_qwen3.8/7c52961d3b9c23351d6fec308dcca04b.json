@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "agent-v2",
+  "usage": {
+    "inputTokens": 256,
+    "outputTokens": 80
+  },
+  "output": {
+    "sameParty": "yes",
+    "confidence": 0.95,
+    "rationale": "The names differ only by a single transposed letter ('Paccific' vs 'Pacific'), while the address (13500 Valley Blvd, Fontana CA 92335) and context are identical, indicating a typo rather than a distinct legal entity."
+  }
+}

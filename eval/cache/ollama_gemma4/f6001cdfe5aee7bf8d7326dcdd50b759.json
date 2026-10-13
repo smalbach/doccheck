@@ -1,0 +1,88 @@
+{
+  "provider": "ollama:gemma4",
+  "promptVersion": "extract-v2",
+  "usage": {
+    "inputTokens": 811,
+    "outputTokens": 864
+  },
+  "output": {
+    "blNumber": "TDWEGOA8506270",
+    "documentTitle": "BILL OF LADING",
+    "issuer": null,
+    "bookingNumber": "414853742",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": null,
+    "shipper": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "058N",
+    "placeOfReceipt": {
+      "name": "SASSUOLO",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "GENOA",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "HALIFAX",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU3834618",
+        "seal": "TW9863238",
+        "type": "20GP",
+        "packages": "170",
+        "grossWeight": null,
+        "volumeM3": null
+      }
+    ],
+    "totalPackages": "170",
+    "totalGrossWeight": null,
+    "marksAndNumbers": "QUINCAILLERIE/QU137456/C/NO. 1-170",
+    "cargoDescription": "SAID TO CONTAIN 170 PKGS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE REF: CI/26/8361 / QU137456",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "CI/26/8361 / QU137456"
+    ],
+    "placeOfIssue": "GENOA",
+    "dateOfIssue": "31-MAY-2026",
+    "shippedOnBoardDate": "31-MAY-2026"
+  }
+}

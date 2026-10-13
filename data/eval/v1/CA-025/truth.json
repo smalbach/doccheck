@@ -1,0 +1,315 @@
+{
+  "id": "CA-025",
+  "seed": 1706720302,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": true
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/7845",
+      "invoiceDate": "2026-06-25",
+      "poNumber": "PO-92244",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-07-07",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cartagena",
+          "unLocode": "COCTG",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Cartagena"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 244,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "14640",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.45",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "79788.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "14835.20",
+        "raw": {
+          "value": "14835.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "14640.00",
+        "raw": {
+          "value": "14640.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "79788.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "fr"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/7845",
+      "invoiceRef": "CI/26/7845",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-244",
+          "count": 244,
+          "type": "BAG",
+          "marks": "QUINCAILLERIE/PO-92244/C/NO. 1-244",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "14640",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14640.00",
+            "raw": {
+              "value": "14640.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "14835.20",
+            "raw": {
+              "value": "14835.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 244,
+        "netWeight": {
+          "kg": "14640.00",
+          "raw": {
+            "value": "14640.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "14835.20",
+          "raw": {
+            "value": "14835.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "34.77"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVCTG240391",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "337197666",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "091N",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Cartagena",
+        "unLocode": "COCTG",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU2936945",
+          "seal": "MD8731011",
+          "type": "40GP",
+          "packages": 244,
+          "grossWeight": {
+            "kg": "14835.20",
+            "raw": {
+              "value": "14835.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "34.77"
+        }
+      ],
+      "totalPackages": 244,
+      "totalGrossWeight": {
+        "kg": "14835.20",
+        "raw": {
+          "value": "14835.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/PO-92244/C/NO. 1-244",
+      "cargoDescription": "SAID TO CONTAIN 244 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cartagena",
+      "dateOfIssue": "2026-07-07",
+      "shippedOnBoardDate": "2026-07-07",
+      "references": [
+        "CI/26/7845",
+        "PO-92244"
+      ]
+    }
+  }
+}

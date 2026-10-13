@@ -1,0 +1,316 @@
+{
+  "id": "CA-078",
+  "seed": 279067412,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-4927",
+      "invoiceDate": "2026-03-22",
+      "poNumber": "PO-12984",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-03-30",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Cai Mep"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "CAD",
+      "packageCount": 154,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "3080",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "20.32",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "62585.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2772.00",
+        "raw": {
+          "value": "2772.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2618.00",
+        "raw": {
+          "value": "2618.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "62585.60",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-4927",
+      "invoiceRef": "INV-2026-4927",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-154",
+          "count": 154,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-12984/C/NO. 1-154",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "3080",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2618.00",
+            "raw": {
+              "value": "2618.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2772.00",
+            "raw": {
+              "value": "2772.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 154,
+        "netWeight": {
+          "kg": "2618.00",
+          "raw": {
+            "value": "2618.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2772.00",
+          "raw": {
+            "value": "2772.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "20.27"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSCMT625843",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "597826569",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "019N",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Prince Rupert",
+        "unLocode": "CAPRR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGLU9279510",
+          "seal": "AG3261843",
+          "type": "20GP",
+          "packages": 154,
+          "grossWeight": {
+            "kg": "2772.00",
+            "raw": {
+              "value": "2772.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "20.27"
+        }
+      ],
+      "totalPackages": 154,
+      "totalGrossWeight": {
+        "kg": "2772.00",
+        "raw": {
+          "value": "2772.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/PO-12984/C/NO. 1-154",
+      "cargoDescription": "SAID TO CONTAIN 154 CTNS WOMEN'S PADDED JACKET",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-04-01",
+      "shippedOnBoardDate": "2026-04-01",
+      "references": [
+        "INV-2026-4927",
+        "PO-12984"
+      ]
+    }
+  }
+}

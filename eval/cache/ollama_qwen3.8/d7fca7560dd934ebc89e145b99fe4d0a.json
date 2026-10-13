@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 497,
+    "outputTokens": 560
+  },
+  "output": {
+    "packingListNumber": "PL/26/9058",
+    "invoiceRef": "CI/26/9058",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/PO-18336/C/NO. 1-34",
+    "packages": [
+      {
+        "range": "1-34",
+        "count": "34 CTN",
+        "packageType": "CTN",
+        "sku": "TB-200",
+        "description": "Plush teddy bear 30 cm",
+        "quantity": "1,700 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "306.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "346.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 40"
+      }
+    ],
+    "totalPackages": "34",
+    "totalNetWeight": {
+      "value": "306.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "346.80",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "3.26"
+  }
+}

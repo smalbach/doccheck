@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 686,
+    "outputTokens": 919
+  },
+  "output": {
+    "packingListNumber": "PL-SAI2601998",
+    "invoiceRef": "SAI2601998",
+    "seller": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/QU969565/C/NO. 1-425",
+    "packages": [
+      {
+        "range": "1-210",
+        "count": "210 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "WOMEN'S PADDED JACKET",
+        "quantity": "4200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3570.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3780.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "211-411",
+        "count": "201 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "MEN'S COTTON T-SHIRT",
+        "quantity": "20100 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3819.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3979.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "412-425",
+        "count": "14 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "WOOL SOCKS 3-PACK",
+        "quantity": "3360 PRS",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "252.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "261.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "425",
+    "totalNetWeight": {
+      "value": "7641.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "8021.60",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "45.51"
+  }
+}

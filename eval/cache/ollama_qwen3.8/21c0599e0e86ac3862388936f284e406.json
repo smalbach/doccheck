@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 630,
+    "outputTokens": 783
+  },
+  "output": {
+    "packingListNumber": "PL-2026-7138",
+    "invoiceRef": "INV-2026-7138",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/QU170684/C/NO. 1-260",
+    "packages": [
+      {
+        "range": "1-105",
+        "count": "105 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "2,100 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,835.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,950.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      },
+      {
+        "range": "106-260",
+        "count": "155 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "31,000 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3,410.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,549.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      }
+    ],
+    "totalPackages": "260",
+    "totalNetWeight": {
+      "value": "6,245.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "6,500.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "9.61"
+  }
+}

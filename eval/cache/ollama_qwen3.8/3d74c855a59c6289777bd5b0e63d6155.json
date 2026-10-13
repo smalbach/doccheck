@@ -1,0 +1,83 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 621,
+    "outputTokens": 744
+  },
+  "output": {
+    "packingListNumber": "PL-CER2608895",
+    "invoiceRef": "CER2608895",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "marks": "NORTHERN/PO-46651/C/NO. 1-200",
+    "packages": [
+      {
+        "range": "1-15",
+        "count": "15 PLT",
+        "packageType": "PLT",
+        "sku": "CT-6060",
+        "description": "Porcelain tile 60x60",
+        "quantity": "600 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "12,600.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "12,975.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 80 × 90"
+      },
+      {
+        "range": "16-200",
+        "count": "185 CTN",
+        "packageType": "CTN",
+        "sku": "OO-EV-5",
+        "description": "EV olive oil 5 L",
+        "quantity": "740 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3,404.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,570.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 35"
+      }
+    ],
+    "totalPackages": "200",
+    "totalNetWeight": {
+      "value": "16,004.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "16,545.50",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "20.73"
+  }
+}

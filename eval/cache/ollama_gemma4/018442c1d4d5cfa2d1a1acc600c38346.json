@@ -1,0 +1,84 @@
+{
+  "provider": "ollama:gemma4",
+  "promptVersion": "extract-v2",
+  "usage": {
+    "inputTokens": 697,
+    "outputTokens": 757
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-6880",
+    "invoiceDate": "25-JUL-2026",
+    "poNumber": "BL821850",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "29-JUL-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": null,
+    "portOfEntry": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "HOUSTON",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "USD",
+    "packageCount": "20 PKGS",
+    "lines": [
+      {
+        "lineNo": ",",
+        "sku": "TB-200",
+        "description": "PLUSH TEDDY BEAR 30 CM, POLYESTER FILLING HS 9503.00",
+        "quantity": "1000",
+        "unit": "PCS",
+        "unitPrice": "9.66",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "9660.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "grossWeight": {
+      "value": "204.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "180.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "9660.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

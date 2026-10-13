@@ -1,0 +1,50 @@
+{
+  "id": "CA-096",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 97,
+      "after": 95,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 95 packages instead of 97."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "PCLU1336479",
+      "after": "PCLU1336476",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: PCLU1336479 -> PCLU1336476."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "after": null,
+      "expectedRuleIds": [
+        "C1"
+      ],
+      "description": "Consignee missing from the invoice."
+    }
+  ]
+}

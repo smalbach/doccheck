@@ -1,0 +1,509 @@
+{
+  "id": "US-082",
+  "seed": 206473507,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/7012",
+      "invoiceDate": "2026-03-07",
+      "poNumber": "LA666876",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-03-13",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ho Chi Minh City",
+          "unLocode": "VNSGN",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "New York"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 404,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "7600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "23788.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "4120",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "18.68",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "76961.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        },
+        {
+          "lineNo": 3,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "29280",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "2.78",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "81398.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        }
+      ],
+      "grossWeight": {
+        "kg": "7494.20",
+        "raw": {
+          "value": "7494.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7142.00",
+        "raw": {
+          "value": "7142.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "182148.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/7012",
+      "invoiceRef": "CI/26/7012",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "packages": [
+        {
+          "range": "1-76",
+          "count": 76,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA666876/C/NO. 1-404",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "7600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1444.00",
+            "raw": {
+              "value": "1444.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1504.80",
+            "raw": {
+              "value": "1504.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "77-282",
+          "count": 206,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA666876/C/NO. 1-404",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "4070",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3502.00",
+            "raw": {
+              "value": "3502.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3708.00",
+            "raw": {
+              "value": "3708.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        },
+        {
+          "range": "283-404",
+          "count": 122,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA666876/C/NO. 1-404",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "29280",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2196.00",
+            "raw": {
+              "value": "2196.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2281.40",
+            "raw": {
+              "value": "2281.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 404,
+        "netWeight": {
+          "kg": "7142.00",
+          "raw": {
+            "value": "7142.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "7494.20",
+          "raw": {
+            "value": "7494.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "42.10"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPSGN612288",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "527884801",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "notifyParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "085N",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Ho Chi Minh City",
+        "unLocode": "VNSGN",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Chicago",
+        "unLocode": "USCHI",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGXU8919585",
+          "seal": "AG9778368",
+          "type": "40GP",
+          "packages": 404,
+          "grossWeight": {
+            "kg": "7494.20",
+            "raw": {
+              "value": "7494.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "42.10"
+        }
+      ],
+      "totalPackages": 404,
+      "totalGrossWeight": {
+        "kg": "7494.20",
+        "raw": {
+          "value": "7494.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "LAKESHORE/LA666876/C/NO. 1-404",
+      "cargoDescription": "SAID TO CONTAIN 404 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Ho Chi Minh City",
+      "dateOfIssue": "2026-03-15",
+      "shippedOnBoardDate": "2026-03-15",
+      "references": [
+        "CI/26/7012",
+        "LA666876"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "importerOfRecordNumber": "36-412876500",
+      "consigneeNumber": "36-412876500",
+      "manufacturer": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipToParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "countryOfOrigin": "VN",
+      "htsCode": "610910",
+      "containerStuffingLocation": {
+        "lines": [
+          "Lot B4, Tan Thuan Export Processing Zone",
+          "District 7"
+        ],
+        "city": "Ho Chi Minh City",
+        "postalCode": "700000",
+        "country": "VN"
+      },
+      "consolidator": {
+        "name": "Compass Freight Forwarding Co.",
+        "address": {
+          "lines": [
+            "18 Changjiang Rd"
+          ],
+          "city": "Shanghai",
+          "country": "CN"
+        }
+      }
+    }
+  }
+}

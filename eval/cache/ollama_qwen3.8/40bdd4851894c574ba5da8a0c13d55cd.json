@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 760,
+    "outputTokens": 919
+  },
+  "output": {
+    "blNumber": "COMPNGB187541",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "202835130",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "056N",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Prince Rupert",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU1930725",
+        "seal": "AG8104531",
+        "type": "20GP",
+        "packages": "182",
+        "grossWeight": {
+          "value": "1,729.00",
+          "unit": "KG"
+        },
+        "volumeM3": "18.92"
+      }
+    ],
+    "totalPackages": "184",
+    "totalGrossWeight": {
+      "value": "1,729.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/PO-88984/C/NO. 1-182",
+    "cargoDescription": "SAID TO CONTAIN 182 CTNS ELECTRIC KETTLE 1.7 L",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "NIN2601955",
+      "PO-88984"
+    ],
+    "placeOfIssue": "Ningbo",
+    "dateOfIssue": "Oct 2, 2026",
+    "shippedOnBoardDate": "Oct 2, 2026"
+  }
+}

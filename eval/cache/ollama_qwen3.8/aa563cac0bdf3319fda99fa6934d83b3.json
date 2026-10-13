@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 542,
+    "outputTokens": 598
+  },
+  "output": {
+    "packingListNumber": "PL/26/6557",
+    "invoiceRef": "CI/26/6557",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/CO348078/C/NO. 1-219",
+    "packages": [
+      {
+        "range": "1-219",
+        "count": "219 CTN",
+        "packageType": "CTN",
+        "sku": "SK-WL-3",
+        "description": "Wool socks 3-pack",
+        "quantity": "52,536 PRS",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "3,942.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,095.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": "58 × 38 × 32"
+      }
+    ],
+    "totalPackages": "219",
+    "totalNetWeight": {
+      "value": "3,942.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "4,095.30",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "15.45"
+  }
+}

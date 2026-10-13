@@ -1,0 +1,88 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 698,
+    "outputTokens": 812
+  },
+  "output": {
+    "invoiceNumber": "CAF2608106",
+    "invoiceDate": "2026-04-24",
+    "poNumber": "PO-88198",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "2026-04-26",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "Cartagena",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "CAD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+        "quantity": "17,820 KG",
+        "unit": "KG",
+        "unitPrice": "5.93",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "105,672.60",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "296",
+    "grossWeight": {
+      "value": "18,057.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "17,820.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "105,672.60",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

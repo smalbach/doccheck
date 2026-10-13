@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 781,
+    "outputTokens": 977
+  },
+  "output": {
+    "blNumber": "MRDNNSA8193464",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "395461285",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "018S",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "NHAVA SHEVA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "HALIFAX",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU7986208",
+        "seal": "MD4440417",
+        "type": "20GP",
+        "packages": "28",
+        "grossWeight": {
+          "value": "786.80",
+          "unit": "KGS"
+        },
+        "volumeM3": "1.32"
+      }
+    ],
+    "totalPackages": "28",
+    "totalGrossWeight": {
+      "value": "786.80",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/QU375164/C/NO. 1-28",
+    "cargoDescription": "SAID TO CONTAIN 28 CTNS BRASS BALL VALVE 2\" REF: PUN2609332 / QU375164 FREIGHT PREPAID",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "PUN2609332",
+      "QU375164"
+    ],
+    "placeOfIssue": "NHAVA SHEVA",
+    "dateOfIssue": "05-AUG-2026",
+    "shippedOnBoardDate": "05-AUG-2026"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 853,
+    "outputTokens": 1006
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-7138",
+    "invoiceDate": "2026-08-24",
+    "poNumber": "QU170684",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "2026-09-02",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Nhava Sheva",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "CAD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "2,100",
+        "unit": "PCS",
+        "unitPrice": "16.19",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "39,399.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "31,000",
+        "unit": "PCS",
+        "unitPrice": "0.94",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "29,140.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      }
+    ],
+    "totalPackages": "260",
+    "grossWeight": {
+      "value": "6,500.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "6,245.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "63,139.00",
+    "invoiceTotalCurrency": "CAD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "4,168.00",
+        "currency": "EUR"
+      }
+    ]
+  }
+}

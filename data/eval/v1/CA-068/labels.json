@@ -1,0 +1,39 @@
+{
+  "id": "CA-068",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 94,
+      "after": 95,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 95 packages instead of 94."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "TWEU1321529",
+      "after": "TWEU1321528",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: TWEU1321529 -> TWEU1321528."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[1].quantity.value",
+      "before": "1040",
+      "after": "104",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 2 quantity changed without updating the line total."
+    }
+  ]
+}

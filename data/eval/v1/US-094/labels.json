@@ -1,0 +1,48 @@
+{
+  "id": "US-094",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "AGLU3429818",
+      "after": "AGLU3429817",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: AGLU3429818 -> AGLU3429817."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 85,
+      "after": 83,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 83 packages instead of 85."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Consignee missing from the invoice."
+    }
+  ]
+}

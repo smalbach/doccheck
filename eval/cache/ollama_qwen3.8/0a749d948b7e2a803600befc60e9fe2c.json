@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 748,
+    "outputTokens": 922
+  },
+  "output": {
+    "blNumber": "MRDNNGB8129472",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "192358492",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "079S",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU3277257",
+        "seal": "MD7479624",
+        "type": "40HC",
+        "packages": "317",
+        "grossWeight": {
+          "value": "3,103.90",
+          "unit": "KG"
+        },
+        "volumeM3": "33.67"
+      }
+    ],
+    "totalPackages": "317",
+    "totalGrossWeight": {
+      "value": "3,103.90",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PO-47083/C/NO. 1-317",
+    "cargoDescription": "SAID TO CONTAIN 317 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "NIN2607782",
+      "PO-47083"
+    ],
+    "placeOfIssue": "Ningbo",
+    "dateOfIssue": "Feb 2, 2026",
+    "shippedOnBoardDate": "Feb 2, 2026"
+  }
+}

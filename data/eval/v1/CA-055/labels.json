@@ -1,0 +1,27 @@
+{
+  "id": "CA-055",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "PCRU3372630",
+      "after": "PCRU3372639",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: PCRU3372630 -> PCRU3372639."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "3516.00",
+      "after": "5316.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (3516.00 -> 5316.00)."
+    }
+  ]
+}

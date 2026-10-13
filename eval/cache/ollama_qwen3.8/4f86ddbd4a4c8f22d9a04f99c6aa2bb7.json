@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 659,
+    "outputTokens": 782
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-7046",
+    "invoiceDate": "2026-05-18",
+    "poNumber": "NO902339",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "2026-05-27",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shanghai",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "Shanghai",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar",
+        "quantity": "754",
+        "unit": "PCS",
+        "unitPrice": "21.26",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "16,242.64",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      }
+    ],
+    "totalPackages": "191",
+    "grossWeight": {
+      "value": "2,024.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,757.20",
+      "unit": "KG"
+    },
+    "invoiceTotal": "16,242.64",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

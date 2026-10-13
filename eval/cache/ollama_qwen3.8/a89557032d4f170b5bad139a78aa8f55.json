@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 513,
+    "outputTokens": 582
+  },
+  "output": {
+    "packingListNumber": "PL-2026-7656",
+    "invoiceRef": "INV-2026-7656",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/PO-64686/C/NO. 1-198",
+    "packages": [
+      {
+        "range": "1-198",
+        "count": "198 CTN",
+        "packageType": "CTN",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pcs",
+        "quantity": "4,752 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,946.24",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,124.44",
+          "unit": "KG"
+        },
+        "dimensionsCm": "52 × 38 × 30"
+      }
+    ],
+    "totalPackages": "198",
+    "totalNetWeight": {
+      "value": "2,946.24",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,124.44",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "11.74"
+  }
+}

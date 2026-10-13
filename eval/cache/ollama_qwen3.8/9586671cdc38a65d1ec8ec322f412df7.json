@@ -1,0 +1,87 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 686,
+    "outputTokens": 794
+  },
+  "output": {
+    "invoiceNumber": "QIN2603195",
+    "invoiceDate": "07-MAR-2026",
+    "poNumber": "PO-77294",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "15-MAR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "QINGDAO",
+    "paymentTerms": "L/C AT SIGHT",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "HB-M12",
+        "description": "HEX BOLTS M12 X 60, CARBON STEEL, ZINC PLATED HS 7318.15",
+        "quantity": "4500",
+        "unit": "KG",
+        "unitPrice": "2.12",
+        "unitPriceCurrency": null,
+        "lineTotal": "5940.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "7318.15"
+      }
+    ],
+    "totalPackages": "9 PKGS",
+    "grossWeight": {
+      "value": "4698.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "4500.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "9540.00",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

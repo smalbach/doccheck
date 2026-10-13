@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 757,
+    "outputTokens": 937
+  },
+  "output": {
+    "blNumber": "PCCLSGN8111733",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "425676404",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000",
+        "VN"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2",
+        "CA"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2",
+        "CA"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "090S",
+    "placeOfReceipt": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU9232640",
+        "seal": "PC6799625",
+        "type": "20GP",
+        "packages": "167",
+        "grossWeight": {
+          "value": "3,306.60",
+          "unit": "KG"
+        },
+        "volumeM3": "14.03"
+      }
+    ],
+    "totalPackages": "167",
+    "totalGrossWeight": {
+      "value": "3,306.60",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PO-20086/C/NO. 1-167",
+    "cargoDescription": "SAID TO CONTAIN 167 CTNS MEN'S COTTON T-SHIRT",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/7198",
+      "PO-20086"
+    ],
+    "placeOfIssue": "Ho Chi Minh City",
+    "dateOfIssue": "Mar 4, 2026",
+    "shippedOnBoardDate": "Mar 4, 2026"
+  }
+}

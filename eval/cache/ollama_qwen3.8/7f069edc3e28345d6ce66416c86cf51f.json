@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v2",
+  "usage": {
+    "inputTokens": 615,
+    "outputTokens": 773
+  },
+  "output": {
+    "packingListNumber": "PL/26/8361",
+    "invoiceRef": "CI/26/8361",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/QU137456/C/NO. 1-170",
+    "packages": [
+      {
+        "range": "1-8",
+        "count": "8 PLT",
+        "packageType": "PLT",
+        "sku": "CT-6060",
+        "description": "Porcelain tile 60x60",
+        "quantity": "320 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "6,720.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "6,920.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 80 × 90"
+      },
+      {
+        "range": "9-170",
+        "count": "162 CTN",
+        "packageType": "CTN",
+        "sku": "OO-EV-5",
+        "description": "EV olive oil 5 L",
+        "quantity": "648 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,980.80",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,126.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 35"
+      }
+    ],
+    "totalPackages": "170",
+    "totalNetWeight": {
+      "value": "9,700.80",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "10,046.60",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "13.72"
+  }
+}

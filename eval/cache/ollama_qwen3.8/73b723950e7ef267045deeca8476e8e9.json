@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 615,
+    "outputTokens": 759
+  },
+  "output": {
+    "packingListNumber": "PL-2026-2423",
+    "invoiceRef": "INV-2026-2423",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/PO-69991/C/NO. 1-148",
+    "packages": [
+      {
+        "range": "1-137",
+        "count": "137 CTN",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M",
+        "description": "Men's cotton T-shirt",
+        "quantity": "13,700 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,603.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,712.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      },
+      {
+        "range": "138-148",
+        "count": "11 CTN",
+        "packageType": "CTN",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket",
+        "quantity": "220 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "187.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "198.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "65 × 45 × 45"
+      }
+    ],
+    "totalPackages": "148",
+    "totalNetWeight": {
+      "value": "2,790.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,910.60",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "12.96"
+  }
+}

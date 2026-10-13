@@ -1,0 +1,20 @@
+{
+  "name": "@doccheck/agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Second pass over rule findings: regulation citations from the corpus and local-model decisions on ambiguous cases.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@doccheck/extraction": "0.1.0",
+    "@doccheck/regulations": "0.1.0",
+    "@doccheck/rules": "0.1.0",
+    "@doccheck/schemas": "0.1.0",
+    "zod": "^4.0.0"
+  }
+}

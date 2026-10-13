@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 757,
+    "outputTokens": 876
+  },
+  "output": {
+    "blNumber": "COMPTAO120420",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines",
+    "bookingNumber": "573138362",
+    "carrierName": "Tidewater Express Lines",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "012N",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Prince Rupert",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU3496660",
+        "seal": "TW6893413",
+        "type": "20GP",
+        "packages": "73",
+        "grossWeight": {
+          "value": "5,520.20",
+          "unit": "KG"
+        },
+        "volumeM3": "9.86"
+      }
+    ],
+    "totalPackages": "73",
+    "totalGrossWeight": {
+      "value": "5,520.20",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/PO-15976/C/NO. 1-73",
+    "cargoDescription": "SAID TO CONTAIN 73 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "QIN2604613",
+      "PO-15976"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "Sep 23, 2026",
+    "shippedOnBoardDate": "Sep 23, 2026"
+  }
+}

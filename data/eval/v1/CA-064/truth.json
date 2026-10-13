@@ -1,0 +1,369 @@
+{
+  "id": "CA-064",
+  "seed": 720002034,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/3935",
+      "invoiceDate": "2026-04-13",
+      "poNumber": "PO-82501",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-04-18",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hamburg",
+          "unLocode": "DEHAM",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Halifax"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 66,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "560",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.50",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "7000.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "38",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "78.91",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "2998.58",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1508.80",
+        "raw": {
+          "value": "1508.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1307.00",
+        "raw": {
+          "value": "1307.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "9998.58",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/3935",
+      "invoiceRef": "CI/26/3935",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-28",
+          "count": 28,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/PO-82501/C/NO. 1-66",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "560",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "756.00",
+            "raw": {
+              "value": "756.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "786.80",
+            "raw": {
+              "value": "786.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "29-66",
+          "count": 38,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/PO-82501/C/NO. 1-66",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "38",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "551.00",
+            "raw": {
+              "value": "551.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "722.00",
+            "raw": {
+              "value": "722.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 66,
+        "netWeight": {
+          "kg": "1307.00",
+          "raw": {
+            "value": "1307.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1508.80",
+          "raw": {
+            "value": "1508.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.67"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSHAM551417",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "523847524",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "083S",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Hamburg",
+        "unLocode": "DEHAM",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU4339115",
+          "seal": "TW1530525",
+          "type": "20GP",
+          "packages": 66,
+          "grossWeight": {
+            "kg": "1508.80",
+            "raw": {
+              "value": "1508.80",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.67"
+        }
+      ],
+      "totalPackages": 66,
+      "totalGrossWeight": {
+        "kg": "1508.80",
+        "raw": {
+          "value": "1508.80",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/PO-82501/C/NO. 1-66",
+      "cargoDescription": "SAID TO CONTAIN 66 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Hamburg",
+      "dateOfIssue": "2026-04-20",
+      "shippedOnBoardDate": "2026-04-20",
+      "references": [
+        "CI/26/3935",
+        "PO-82501"
+      ]
+    }
+  }
+}

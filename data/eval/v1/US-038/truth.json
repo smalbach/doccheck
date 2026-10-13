@@ -1,0 +1,455 @@
+{
+  "id": "US-038",
+  "seed": 1390136938,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-2124",
+      "invoiceDate": "2026-02-19",
+      "poNumber": "PO-75449",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-02-24",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Bremerhaven",
+          "unLocode": "DEBRV",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Bremerhaven"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 79,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "53",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "73.22",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "3880.66",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "520",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.59",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "6546.80",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1737.60",
+        "raw": {
+          "value": "1737.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1470.50",
+        "raw": {
+          "value": "1470.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "10427.46",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "charges": {
+        "freight": {
+          "amount": "4260.00",
+          "currency": "USD"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-2124",
+      "invoiceRef": "INV-2026-2124",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-53",
+          "count": 53,
+          "type": "CRT",
+          "marks": "HARBORLINE/PO-75449/C/NO. 1-79",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "53",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "768.50",
+            "raw": {
+              "value": "768.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1007.00",
+            "raw": {
+              "value": "1007.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "54-79",
+          "count": 26,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-75449/C/NO. 1-79",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "520",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "702.00",
+            "raw": {
+              "value": "702.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "730.60",
+            "raw": {
+              "value": "730.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 79,
+        "netWeight": {
+          "kg": "1470.50",
+          "raw": {
+            "value": "1470.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1737.60",
+          "raw": {
+            "value": "1737.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "5.89"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNBRV4781759",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "922058160",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "088N",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Bremerhaven",
+        "unLocode": "DEBRV",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "MDOU4289051",
+          "seal": "MD6976216",
+          "type": "20GP",
+          "packages": 79,
+          "grossWeight": {
+            "kg": "1737.60",
+            "raw": {
+              "value": "1737.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "5.89"
+        }
+      ],
+      "totalPackages": 79,
+      "totalGrossWeight": {
+        "kg": "1737.60",
+        "raw": {
+          "value": "1737.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/PO-75449/C/NO. 1-79",
+      "cargoDescription": "SAID TO CONTAIN 79 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Bremerhaven",
+      "dateOfIssue": "2026-02-26",
+      "shippedOnBoardDate": "2026-02-26",
+      "references": [
+        "INV-2026-2124",
+        "PO-75449"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "DE",
+      "htsCode": "841370",
+      "containerStuffingLocation": {
+        "lines": [
+          "Industriestrasse 9"
+        ],
+        "city": "Bremen",
+        "postalCode": "28197",
+        "country": "DE"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

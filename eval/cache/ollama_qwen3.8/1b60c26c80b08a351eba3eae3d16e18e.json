@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 545,
+    "outputTokens": 562
+  },
+  "output": {
+    "packingListNumber": "PL-2026-9613",
+    "invoiceRef": "INV-2026-9613",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/PO-13564/C/NO. 1-176",
+    "packages": [
+      {
+        "range": "1-176",
+        "count": "176",
+        "packageType": "BAG",
+        "sku": "CF-GRN-60",
+        "description": "Green coffee arabica",
+        "quantity": "10,560 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "10,560.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "10,700.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "95 × 60 × 25"
+      }
+    ],
+    "totalPackages": "176",
+    "totalNetWeight": {
+      "value": "10,560.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "10,700.80",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "25.08"
+  }
+}

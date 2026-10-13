@@ -1,0 +1,110 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 740,
+    "outputTokens": 987
+  },
+  "output": {
+    "invoiceNumber": "CI/26/5123",
+    "invoiceDate": "2026-02-11",
+    "poNumber": "NO311970",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "2026-02-13",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Montreal",
+      "country": null
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "Montreal",
+    "paymentTerms": "L/C at sight",
+    "currency": "CAD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "28,000",
+        "unit": "PCS",
+        "unitPrice": "1.07",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "29,960.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "3,100",
+        "unit": "PCS",
+        "unitPrice": "14.71",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "45,601.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "295",
+    "grossWeight": {
+      "value": "7,265.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "7,561.50",
+      "unit": "KG"
+    },
+    "invoiceTotal": "75,561.00",
+    "invoiceTotalCurrency": "CAD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "824.00",
+        "currency": "INR"
+      }
+    ]
+  }
+}

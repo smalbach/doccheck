@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 715,
+    "outputTokens": 895
+  },
+  "output": {
+    "blNumber": "COMPCTG968623",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "364918472",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "051S",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU7990086",
+        "seal": "MD1718847",
+        "type": "20GP",
+        "packages": "132",
+        "grossWeight": {
+          "value": "8,025.60",
+          "unit": "KG"
+        },
+        "volumeM3": "18.81"
+      }
+    ],
+    "totalPackages": "132",
+    "totalGrossWeight": {
+      "value": "8,025.60",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/PO-64959/C/NO. 1-132",
+    "cargoDescription": "SAID TO CONTAIN 132 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CAF2602092",
+      "PO-64959"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "2026-03-09",
+    "shippedOnBoardDate": "2026-03-09"
+  }
+}

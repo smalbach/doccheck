@@ -1,0 +1,26 @@
+{
+  "id": "CA-085",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "MDOU6496206",
+      "after": "MDOU6496205",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: MDOU6496206 -> MDOU6496205."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CAD",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 2423.00 CAD on an invoice in USD."
+    }
+  ]
+}

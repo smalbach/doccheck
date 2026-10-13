@@ -1,0 +1,25 @@
+{
+  "id": "CA-037",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "invoiceDate",
+      "before": "2026-06-02",
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Invoice date missing."
+    },
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "3900 North Fraser Way",
+      "after": "3950 North Fraser Way",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 510,
+    "outputTokens": 576
+  },
+  "output": {
+    "packingListNumber": "PL-2026-7046",
+    "invoiceRef": "INV-2026-7046",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/NO902339/C/NO. 1-191",
+    "packages": [
+      {
+        "range": "1-191",
+        "count": "191 CTN",
+        "packageType": "CTN",
+        "sku": "BL-600",
+        "description": "Blender 600 W",
+        "quantity": "763 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,757.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,024.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "50 × 50 × 45"
+      }
+    ],
+    "totalPackages": "191",
+    "totalNetWeight": {
+      "value": "1,757.20",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,024.60",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "21.49"
+  }
+}

@@ -1,0 +1,455 @@
+{
+  "id": "US-041",
+  "seed": 1609666913,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-9491",
+      "invoiceDate": "2026-04-14",
+      "poNumber": "PO-47474",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-04-23",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Genoa",
+          "unLocode": "ITGOA",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Genoa"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 131,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5",
+          "description": "Extra virgin olive oil, 5 L tins",
+          "quantity": {
+            "value": "468",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.41",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "14123.88",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "560",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "8.89",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4978.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "14368.10",
+        "raw": {
+          "value": "14368.10",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "13912.80",
+        "raw": {
+          "value": "13912.80",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "16402.28",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-9491",
+      "invoiceRef": "INV-2026-9491",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-117",
+          "count": 117,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-47474/C/NO. 1-131",
+          "contents": [
+            {
+              "sku": "OO-EV-5",
+              "description": "EV olive oil 5 L",
+              "quantity": {
+                "value": "468",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2152.80",
+            "raw": {
+              "value": "2152.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2258.10",
+            "raw": {
+              "value": "2258.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "118-131",
+          "count": 14,
+          "type": "PLT",
+          "marks": "HARBORLINE/PO-47474/C/NO. 1-131",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "560",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "11760.00",
+            "raw": {
+              "value": "11760.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "12110.00",
+            "raw": {
+              "value": "12110.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 131,
+        "netWeight": {
+          "kg": "13912.80",
+          "raw": {
+            "value": "13912.80",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "14368.10",
+          "raw": {
+            "value": "14368.10",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "17.01"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPGOA755449",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "958842299",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "059E",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "Genoa",
+        "unLocode": "ITGOA",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "TWEU9370140",
+          "seal": "TW9601028",
+          "type": "20GP",
+          "packages": 131,
+          "grossWeight": {
+            "kg": "14368.10",
+            "raw": {
+              "value": "14368.10",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "17.01"
+        }
+      ],
+      "totalPackages": 131,
+      "totalGrossWeight": {
+        "kg": "14368.10",
+        "raw": {
+          "value": "14368.10",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/PO-47474/C/NO. 1-131",
+      "cargoDescription": "SAID TO CONTAIN 131 PKGS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Genoa",
+      "dateOfIssue": "2026-04-24",
+      "shippedOnBoardDate": "2026-04-24",
+      "references": [
+        "INV-2026-9491",
+        "PO-47474"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "IT",
+      "htsCode": "150920",
+      "containerStuffingLocation": {
+        "lines": [
+          "Via Radici in Piano 112"
+        ],
+        "city": "Sassuolo",
+        "region": "MO",
+        "postalCode": "41049",
+        "country": "IT"
+      },
+      "consolidator": {
+        "name": "Compass Freight Forwarding Co.",
+        "address": {
+          "lines": [
+            "18 Changjiang Rd"
+          ],
+          "city": "Shanghai",
+          "country": "CN"
+        }
+      }
+    }
+  }
+}

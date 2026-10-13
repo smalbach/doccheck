@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 735,
+    "outputTokens": 951
+  },
+  "output": {
+    "invoiceNumber": "NIN2606267",
+    "invoiceDate": "12-JUN-2026",
+    "poNumber": "PO-12513",
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "15-JUN-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "NINGBO",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "NINGBO",
+    "paymentTerms": "L/C AT SIGHT",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "BL-600",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR HS 8509.40",
+        "quantity": "44",
+        "unit": "PCS",
+        "unitPrice": "21.15",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "930.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V HS 8516.71",
+        "quantity": "936",
+        "unit": "PCS",
+        "unitPrice": "15.25",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "14274.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      }
+    ],
+    "totalPackages": "128",
+    "grossWeight": {
+      "value": "1228.10",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1084.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "15204.60",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

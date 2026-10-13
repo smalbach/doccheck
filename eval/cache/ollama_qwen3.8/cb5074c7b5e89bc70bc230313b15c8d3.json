@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 541,
+    "outputTokens": 531
+  },
+  "output": {
+    "packingListNumber": "PL/26/0964",
+    "invoiceRef": "CI/26/0964",
+    "seller": {
+      "name": "CAFE ALTO HUILA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40"
+      ],
+      "city": "NEIVA HUILA",
+      "region": null,
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN DC BRAMPTON",
+      "addressLines": [
+        "8 STEINWAY BLVD"
+      ],
+      "city": "BRAMPTON",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/NO760216/C/NO. 1-67",
+    "packages": [
+      {
+        "range": "1-67",
+        "count": "67",
+        "packageType": "BAG",
+        "sku": null,
+        "description": "GREEN COFFEE ARABICA",
+        "quantity": "4020 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "4020.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "4073.60",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "67",
+    "totalNetWeight": {
+      "value": "4020.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "4073.60",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "9.55"
+  }
+}

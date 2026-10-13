@@ -1,0 +1,427 @@
+{
+  "id": "CA-060",
+  "seed": 971544221,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/3751",
+      "invoiceDate": "2026-04-03",
+      "poNumber": "PR856979",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-04-06",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Cai Mep"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "CAD",
+      "packageCount": 443,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "48000",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.35",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "12180.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "3240",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.42",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "75880.80",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        },
+        {
+          "lineNo": 3,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "55920",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "2.39",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "133648.80",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        }
+      ],
+      "grossWeight": {
+        "kg": "8223.50",
+        "raw": {
+          "value": "8223.50",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7860.00",
+        "raw": {
+          "value": "7860.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "220809.60",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/3751",
+      "invoiceRef": "CI/26/3751",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-48",
+          "count": 48,
+          "type": "CTN",
+          "marks": "PRAIRIE/PR856979/C/NO. 1-443",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "4800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "912.00",
+            "raw": {
+              "value": "912.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "950.40",
+            "raw": {
+              "value": "950.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "49-210",
+          "count": 162,
+          "type": "CTN",
+          "marks": "PRAIRIE/PR856979/C/NO. 1-443",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "3240",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2754.00",
+            "raw": {
+              "value": "2754.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2916.00",
+            "raw": {
+              "value": "2916.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        },
+        {
+          "range": "211-443",
+          "count": 233,
+          "type": "CTN",
+          "marks": "PRAIRIE/PR856979/C/NO. 1-443",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "55920",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4194.00",
+            "raw": {
+              "value": "4194.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4357.10",
+            "raw": {
+              "value": "4357.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 443,
+        "netWeight": {
+          "kg": "7860.00",
+          "raw": {
+            "value": "7860.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "8223.50",
+          "raw": {
+            "value": "8223.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "41.79"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPCMT311001",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "753113211",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "notifyParty": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "086N",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Winnipeg",
+        "unLocode": "CAWNP",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU2826357",
+          "seal": "MD1109779",
+          "type": "40GP",
+          "packages": 443,
+          "grossWeight": {
+            "kg": "8223.50",
+            "raw": {
+              "value": "8223.50",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "41.79"
+        }
+      ],
+      "totalPackages": 443,
+      "totalGrossWeight": {
+        "kg": "8223.50",
+        "raw": {
+          "value": "8223.50",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PRAIRIE/PR856979/C/NO. 1-443",
+      "cargoDescription": "SAID TO CONTAIN 443 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-04-08",
+      "shippedOnBoardDate": "2026-04-08",
+      "references": [
+        "CI/26/3751",
+        "PR856979"
+      ]
+    }
+  }
+}

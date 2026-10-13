@@ -1,0 +1,319 @@
+{
+  "id": "CA-043",
+  "seed": 1036564545,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/4710",
+      "invoiceDate": "2026-01-30",
+      "poNumber": "NO405598",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-02-03",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Prince Rupert"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "CAD",
+      "packageCount": 86,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "1720",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.26",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "27967.20",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2416.60",
+        "raw": {
+          "value": "2416.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2322.00",
+        "raw": {
+          "value": "2322.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "27967.20",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/4710",
+      "invoiceRef": "CI/26/4710",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-86",
+          "count": 86,
+          "type": "CTN",
+          "marks": "NORTHERN/NO405598/C/NO. 1-86",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "1720",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2322.00",
+            "raw": {
+              "value": "2322.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2416.60",
+            "raw": {
+              "value": "2416.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 86,
+        "netWeight": {
+          "kg": "2322.00",
+          "raw": {
+            "value": "2322.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2416.60",
+          "raw": {
+            "value": "2416.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.06"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXNSA9126455",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "887712525",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "007N",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Prince Rupert",
+        "unLocode": "CAPRR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGXU8804550",
+          "seal": "AG7201679",
+          "type": "20GP",
+          "packages": 86,
+          "grossWeight": {
+            "kg": "2416.60",
+            "raw": {
+              "value": "2416.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.06"
+        }
+      ],
+      "totalPackages": 86,
+      "totalGrossWeight": {
+        "kg": "2416.60",
+        "raw": {
+          "value": "2416.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/NO405598/C/NO. 1-86",
+      "cargoDescription": "SAID TO CONTAIN 86 CTNS BRASS BALL VALVE 2\"",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-02-04",
+      "shippedOnBoardDate": "2026-02-04",
+      "references": [
+        "CI/26/4710",
+        "NO405598"
+      ]
+    }
+  }
+}

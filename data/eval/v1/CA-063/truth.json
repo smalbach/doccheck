@@ -1,0 +1,319 @@
+{
+  "id": "CA-063",
+  "seed": 1314109305,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5095",
+      "invoiceDate": "2026-03-29",
+      "poNumber": "CO146982",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-04-03",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "La Spezia",
+          "unLocode": "ITSPE",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "La Spezia"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "CAD",
+      "packageCount": 198,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5",
+          "description": "Extra virgin olive oil, 5 L tins",
+          "quantity": {
+            "value": "792",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "28.01",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "22183.92",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3821.40",
+        "raw": {
+          "value": "3821.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3643.20",
+        "raw": {
+          "value": "3643.20",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "22183.92",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5095",
+      "invoiceRef": "CI/26/5095",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-198",
+          "count": 198,
+          "type": "CTN",
+          "marks": "COASTAL/CO146982/C/NO. 1-198",
+          "contents": [
+            {
+              "sku": "OO-EV-5",
+              "description": "EV olive oil 5 L",
+              "quantity": {
+                "value": "782",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3643.20",
+            "raw": {
+              "value": "3643.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3821.40",
+            "raw": {
+              "value": "3821.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 198,
+        "netWeight": {
+          "kg": "3643.20",
+          "raw": {
+            "value": "3643.20",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3821.40",
+          "raw": {
+            "value": "3821.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "8.32"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVSPE388398",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "571293897",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "047N",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "La Spezia",
+        "unLocode": "ITSPE",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU8134124",
+          "seal": "MD6840739",
+          "type": "20GP",
+          "packages": 198,
+          "grossWeight": {
+            "kg": "3821.40",
+            "raw": {
+              "value": "3821.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "8.32"
+        }
+      ],
+      "totalPackages": 198,
+      "totalGrossWeight": {
+        "kg": "3821.40",
+        "raw": {
+          "value": "3821.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/CO146982/C/NO. 1-198",
+      "cargoDescription": "SAID TO CONTAIN 198 CTNS EV OLIVE OIL 5 L",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "La Spezia",
+      "dateOfIssue": "2026-04-05",
+      "shippedOnBoardDate": "2026-04-05",
+      "references": [
+        "CI/26/5095",
+        "CO146982"
+      ]
+    }
+  }
+}

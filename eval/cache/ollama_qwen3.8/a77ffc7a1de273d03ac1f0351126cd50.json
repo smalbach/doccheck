@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 693,
+    "outputTokens": 838
+  },
+  "output": {
+    "invoiceNumber": "CI/26/6557",
+    "invoiceDate": "13-SEP-2026",
+    "poNumber": "CO348078",
+    "seller": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "18-SEP-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "HO CHI MINH CITY",
+      "country": "VN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "HO CHI MINH CITY",
+    "paymentTerms": "NET 60",
+    "currency": "CAD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "SK-WL-3",
+        "description": "WOOL BLEND SOCKS, KNITTED, 3-PAIR PACK HS 6115.94",
+        "quantity": "52560",
+        "unit": "PRS",
+        "unitPrice": "1.80",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "94608.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "6115.94"
+      }
+    ],
+    "totalPackages": "219",
+    "grossWeight": {
+      "value": "4095.30",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "3942.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "94608.00",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

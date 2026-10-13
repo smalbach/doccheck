@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 784,
+    "outputTokens": 989
+  },
+  "output": {
+    "blNumber": "SILVNGB953283",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "208130513",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "064E",
+    "placeOfReceipt": {
+      "name": "NINGBO, CN",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "NINGBO, CN",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "MONTREAL, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU9682359",
+        "seal": "TW6280247",
+        "type": "40HC",
+        "packages": "395",
+        "grossWeight": {
+          "value": "3924.10",
+          "unit": "KGS"
+        },
+        "volumeM3": "42.39"
+      }
+    ],
+    "totalPackages": "395",
+    "totalGrossWeight": {
+      "value": "3924.10",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-64700/C/NO. 1-395",
+    "cargoDescription": "SAID TO CONTAIN 395 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE REF: INV-2026-9061 / PO-64700",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-9061",
+      "PO-64700"
+    ],
+    "placeOfIssue": "NINGBO",
+    "dateOfIssue": "04-MAR-2026",
+    "shippedOnBoardDate": "04-MAR-2026"
+  }
+}

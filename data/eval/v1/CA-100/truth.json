@@ -1,0 +1,379 @@
+{
+  "id": "CA-100",
+  "seed": 1378754425,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5285",
+      "invoiceDate": "2026-09-05",
+      "poNumber": "CO355281",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-09-09",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "La Spezia",
+          "unLocode": "ITSPE",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "La Spezia"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 250,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5",
+          "description": "Extra virgin olive oil, 5 L tins",
+          "quantity": {
+            "value": "940",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.63",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "21272.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "601",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.96",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "5976.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "17510.50",
+        "raw": {
+          "value": "17510.50",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "16924.00",
+        "raw": {
+          "value": "16924.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "27248.20",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "3668.00",
+          "currency": "CNY"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5285",
+      "invoiceRef": "CI/26/5285",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-235",
+          "count": 235,
+          "type": "CTN",
+          "marks": "COASTAL/CO355281/C/NO. 1-250",
+          "contents": [
+            {
+              "sku": "OO-EV-5",
+              "description": "EV olive oil 5 L",
+              "quantity": {
+                "value": "940",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4324.00",
+            "raw": {
+              "value": "4324.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4535.50",
+            "raw": {
+              "value": "4535.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "236-250",
+          "count": 15,
+          "type": "PLT",
+          "marks": "COASTAL/CO355281/C/NO. 1-250",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "600",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "12600.00",
+            "raw": {
+              "value": "12600.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "12975.00",
+            "raw": {
+              "value": "12975.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 250,
+        "netWeight": {
+          "kg": "16924.00",
+          "raw": {
+            "value": "16924.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "17510.50",
+          "raw": {
+            "value": "17510.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "22.83"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPSPE438903",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "904583676",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "053W",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "La Spezia",
+        "unLocode": "ITSPE",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCRU8708203",
+          "seal": "PC1576125",
+          "type": "20GP",
+          "packages": 250,
+          "grossWeight": {
+            "kg": "17510.50",
+            "raw": {
+              "value": "17510.50",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "22.83"
+        }
+      ],
+      "totalPackages": 250,
+      "totalGrossWeight": {
+        "kg": "19261.55",
+        "raw": {
+          "value": "19261.55",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/CO355281/C/NO. 1-250",
+      "cargoDescription": "SAID TO CONTAIN 250 PKGS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "La Spezia",
+      "dateOfIssue": "2026-09-09",
+      "shippedOnBoardDate": "2026-09-09",
+      "references": [
+        "CI/26/5285",
+        "CO355281"
+      ]
+    }
+  }
+}

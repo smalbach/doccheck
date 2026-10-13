@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 605,
+    "outputTokens": 763
+  },
+  "output": {
+    "packingListNumber": "PL/26/6753",
+    "invoiceRef": "CI/26/6753",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "marks": "NORTHERN/NO230717/C/NO. 1-82",
+    "packages": [
+      {
+        "range": "1-12",
+        "count": "12 CTN",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M",
+        "description": "Men's cotton T-shirt",
+        "quantity": "1,200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "228.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "237.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      },
+      {
+        "range": "13-82",
+        "count": "70 CTN",
+        "packageType": "CTN",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket",
+        "quantity": "1,400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,190.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,260.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "65 × 45 × 45"
+      }
+    ],
+    "totalPackages": "82",
+    "totalNetWeight": {
+      "value": "1,418.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,497.60",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "10.22"
+  }
+}

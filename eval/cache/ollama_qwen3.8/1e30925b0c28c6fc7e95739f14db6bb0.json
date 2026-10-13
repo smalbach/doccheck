@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 746,
+    "outputTokens": 941
+  },
+  "output": {
+    "invoiceNumber": "CER2602005",
+    "invoiceDate": null,
+    "poNumber": "PO-65122",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "01-JUL-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "LA SPEZIA",
+      "country": "IT"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CIF",
+    "incotermPlace": "VANCOUVER",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "CAD",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS HS 1509.20",
+        "quantity": "936",
+        "unit": "PCS",
+        "unitPrice": "24.91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "23315.76",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "CT-6060",
+        "description": "GLAZED PORCELAIN FLOOR TILES 60 X 60 CM HS 6907.21",
+        "quantity": "360",
+        "unit": "M2",
+        "unitPrice": "8.27",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "2977.20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "243 PKGS",
+    "grossWeight": {
+      "value": "12301.20",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "11865.60",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "26292.96",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

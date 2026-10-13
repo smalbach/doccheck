@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 776,
+    "outputTokens": 905
+  },
+  "output": {
+    "blNumber": "KEYSYTN767732",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "605099449",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "042W",
+    "placeOfReceipt": {
+      "name": "SHENZHEN",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "YANTIAN",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "WINNIPEG",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU2792112",
+        "seal": "PC9050929",
+        "type": "20GP",
+        "packages": "137",
+        "grossWeight": {
+          "value": "1894.02",
+          "unit": "KGS"
+        },
+        "volumeM3": "9.88"
+      }
+    ],
+    "totalPackages": "137",
+    "totalGrossWeight": {
+      "value": "1894.02",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "PRAIRIE/PR437027/C/NO. 1-137",
+    "cargoDescription": "SAID TO CONTAIN 137 CTNS PLUSH TEDDY BEAR 30 CM AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "CI/26/6870",
+      "PR437027"
+    ],
+    "placeOfIssue": "YANTIAN",
+    "dateOfIssue": "22-JUL-2026",
+    "shippedOnBoardDate": "22-JUL-2026"
+  }
+}

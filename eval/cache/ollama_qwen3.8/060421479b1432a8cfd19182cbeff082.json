@@ -1,0 +1,83 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 614,
+    "outputTokens": 739
+  },
+  "output": {
+    "packingListNumber": "PL-CER2602005",
+    "invoiceRef": "CER2602005",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/PO-65122/C/NO. 1-243",
+    "packages": [
+      {
+        "range": "1-234",
+        "count": "234 CTN",
+        "packageType": "CTN",
+        "sku": "OO-EV-5",
+        "description": "EV olive oil 5 L",
+        "quantity": "936 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4,305.60",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,516.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 35"
+      },
+      {
+        "range": "235-243",
+        "count": "9 PLT",
+        "packageType": "PLT",
+        "sku": "CT-6060",
+        "description": "Porcelain tile 60x60",
+        "quantity": "360 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "7,560.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "7,785.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 80 × 90"
+      }
+    ],
+    "totalPackages": "243",
+    "totalNetWeight": {
+      "value": "11,865.60",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "12,301.20",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "17.60"
+  }
+}

@@ -1,0 +1,1072 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "shipments": 6,
+  "documents": 18,
+  "failedDocuments": 0,
+  "cachedDocuments": 18,
+  "classificationAccuracy": 1,
+  "overall": {
+    "total": 357,
+    "correct": 355,
+    "wrong": 1,
+    "missing": 0,
+    "spurious": 1,
+    "accuracy": 0.9944
+  },
+  "byType": [
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "total": 153,
+      "correct": 152,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 1,
+      "accuracy": 0.9935
+    },
+    {
+      "type": "PACKING_LIST",
+      "total": 84,
+      "correct": 84,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "total": 120,
+      "correct": 119,
+      "wrong": 1,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9917
+    }
+  ],
+  "byTemplate": [
+    {
+      "template": "BILL_OF_LADING · classic",
+      "total": 20,
+      "correct": 20,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "template": "BILL_OF_LADING · legacy",
+      "total": 40,
+      "correct": 40,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "template": "BILL_OF_LADING · modern",
+      "total": 60,
+      "correct": 59,
+      "wrong": 1,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9833
+    },
+    {
+      "template": "COMMERCIAL_INVOICE · legacy",
+      "total": 97,
+      "correct": 96,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 1,
+      "accuracy": 0.9897
+    },
+    {
+      "template": "COMMERCIAL_INVOICE · modern",
+      "total": 56,
+      "correct": 56,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "template": "PACKING_LIST · classic",
+      "total": 19,
+      "correct": 19,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "template": "PACKING_LIST · legacy",
+      "total": 26,
+      "correct": 26,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "template": "PACKING_LIST · modern",
+      "total": 39,
+      "correct": 39,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    }
+  ],
+  "byField": [
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "portOfEntry.name",
+      "total": 4,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 1,
+      "accuracy": 0.75
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "vessel",
+      "total": 6,
+      "correct": 5,
+      "wrong": 1,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.8333
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "consignee.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceNumber",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceDate",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "poNumber",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "shipmentDate",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "seller.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "buyer.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "currency",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "incoterm.code",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "packageCount",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "grossWeight.kg",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "netWeight.kg",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceTotal.amount",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceTotal.currency",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "charges.freight.amount",
+      "total": 1,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "charges.freight.currency",
+      "total": 1,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].description",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].quantity.value",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].quantity.unit",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].unitPrice.amount",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].unitPrice.currency",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].lineTotal.amount",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].lineTotal.currency",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].countryOfOrigin",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].hsCode",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "consignee.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "seller.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packingListNumber",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "invoiceRef",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "totals.packageCount",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "totals.netWeight.kg",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "totals.grossWeight.kg",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].range",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].count",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].type",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].contents[0].quantity.value",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].netWeight.kg",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].grossWeight.kg",
+      "total": 7,
+      "correct": 7,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "blNumber",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "bookingNumber",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "carrier.scac",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "shipper.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "consignee.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "consignee.address.lines[0]",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "notifyParty.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "voyage",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "portOfLoading.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "portOfDischarge.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "placeOfDelivery.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "totalPackages",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "totalGrossWeight.kg",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "totalGrossWeight.raw.unit",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "shippedOnBoardDate",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].number",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].seal",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].packages",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].grossWeight.kg",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    }
+  ],
+  "rules": {
+    "shipmentsWithAllDocuments": 6,
+    "table": [
+      {
+        "rule": "X10",
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X2",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X3",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X6",
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      }
+    ]
+  },
+  "usage": {
+    "inputTokens": 12146,
+    "outputTokens": 14308,
+    "seconds": 0
+  },
+  "documentsDetail": [
+    {
+      "shipment": "CA-001",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "wrong",
+          "expected": "PACIFIC CREST HARMONY",
+          "got": "PACIFIC CREST"
+        }
+      ],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 775,
+        "outputTokens": 933
+      }
+    },
+    {
+      "shipment": "CA-001",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [
+        {
+          "field": "portOfEntry.name",
+          "pattern": "portOfEntry.name",
+          "outcome": "spurious",
+          "got": "MONTREAL"
+        }
+      ],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 704,
+        "outputTokens": 916
+      }
+    },
+    {
+      "shipment": "CA-001",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 542,
+        "outputTokens": 590
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 760,
+        "outputTokens": 919
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 712,
+        "outputTokens": 835
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 536,
+        "outputTokens": 561
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 801,
+        "outputTokens": 965
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [],
+      "issues": [
+        "portOfEntry: could not normalize {\"name\":\"Halifax\",\"country\":\"\"}"
+      ],
+      "cached": true,
+      "usage": {
+        "inputTokens": 792,
+        "outputTokens": 961
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 615,
+        "outputTokens": 773
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 711,
+        "outputTokens": 887
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 642,
+        "outputTokens": 790
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 527,
+        "outputTokens": 548
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 751,
+        "outputTokens": 941
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 693,
+        "outputTokens": 858
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 556,
+        "outputTokens": 570
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 756,
+        "outputTokens": 864
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 700,
+        "outputTokens": 844
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 573,
+        "outputTokens": 553
+      }
+    }
+  ],
+  "shipmentsDetail": [
+    {
+      "id": "CA-001",
+      "expectedRules": [
+        "X10",
+        "X3",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X3",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X3",
+        "X6"
+      ]
+    },
+    {
+      "id": "CA-002",
+      "expectedRules": [
+        "X2"
+      ],
+      "rulesOnTruth": [
+        "X2"
+      ],
+      "rulesOnExtracted": [
+        "X2"
+      ]
+    },
+    {
+      "id": "CA-003",
+      "expectedRules": [
+        "X2",
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "X2",
+        "X3"
+      ],
+      "rulesOnExtracted": [
+        "X2",
+        "X3"
+      ]
+    },
+    {
+      "id": "US-001",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-002",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-003",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    }
+  ]
+}

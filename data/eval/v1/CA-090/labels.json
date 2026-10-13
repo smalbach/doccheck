@@ -1,0 +1,16 @@
+{
+  "id": "CA-090",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 274,
+      "after": 279,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 279 packages instead of 274."
+    }
+  ]
+}

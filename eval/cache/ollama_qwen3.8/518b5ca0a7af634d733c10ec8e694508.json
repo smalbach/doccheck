@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 516,
+    "outputTokens": 569
+  },
+  "output": {
+    "packingListNumber": "PL/26/1944",
+    "invoiceRef": "CI/26/1944",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/PO-55019/C/NO. 1-219",
+    "packages": [
+      {
+        "range": "1-219",
+        "count": "219 BAG",
+        "packageType": "BAG",
+        "sku": "CF-GRN-60",
+        "description": "Green coffee arabica",
+        "quantity": "13,140 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "13,140.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "13,315.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": "95 × 60 × 25"
+      }
+    ],
+    "totalPackages": "219",
+    "totalNetWeight": {
+      "value": "13,140.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "13,315.20",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "31.21"
+  }
+}

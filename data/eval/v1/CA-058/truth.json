@@ -1,0 +1,414 @@
+{
+  "id": "CA-058",
+  "seed": 1521158372,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": true
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/9185",
+      "invoiceDate": "2026-03-28",
+      "poNumber": "PO-46114",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-03-31",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ho Chi Minh City",
+          "unLocode": "VNSGN",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ho Chi Minh City"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "CAD",
+      "packageCount": 389,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "17200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.30",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "56760.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "12720",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "3.12",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "39686.40",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        },
+        {
+          "lineNo": 3,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "3280",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "15.07",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "49429.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "7348.70",
+        "raw": {
+          "value": "7348.70",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7010.00",
+        "raw": {
+          "value": "7010.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "145876.00",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "fr"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/9185",
+      "invoiceRef": "CI/26/9185",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-172",
+          "count": 172,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/PO-46114/C/NO. 1-389",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "17200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3268.00",
+            "raw": {
+              "value": "3268.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3405.60",
+            "raw": {
+              "value": "3405.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "173-225",
+          "count": 53,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/PO-46114/C/NO. 1-389",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "12720",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "954.00",
+            "raw": {
+              "value": "954.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "991.10",
+            "raw": {
+              "value": "991.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        },
+        {
+          "range": "226-389",
+          "count": 164,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/PO-46114/C/NO. 1-389",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "3230",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2788.00",
+            "raw": {
+              "value": "2788.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2952.00",
+            "raw": {
+              "value": "2952.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 389,
+        "netWeight": {
+          "kg": "7010.00",
+          "raw": {
+            "value": "7010.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "7348.70",
+          "raw": {
+            "value": "7348.70",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "39.77"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVSGN635774",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "279819860",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "053E",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Ho Chi Minh City",
+        "unLocode": "VNSGN",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU9163857",
+          "seal": "TW8274303",
+          "type": "40GP",
+          "packages": 389,
+          "grossWeight": {
+            "kg": "7348.70",
+            "raw": {
+              "value": "7348.70",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "39.77"
+        }
+      ],
+      "totalPackages": 389,
+      "totalGrossWeight": {
+        "kg": "7716.14",
+        "raw": {
+          "value": "7716.14",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/PO-46114/C/NO. 1-389",
+      "cargoDescription": "SAID TO CONTAIN 389 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ho Chi Minh City",
+      "dateOfIssue": "2026-04-02",
+      "shippedOnBoardDate": "2026-04-02",
+      "references": [
+        "CI/26/9185",
+        "PO-46114"
+      ]
+    }
+  }
+}

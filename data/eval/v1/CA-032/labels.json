@@ -1,0 +1,25 @@
+{
+  "id": "CA-032",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "invoiceDate",
+      "before": "2026-06-20",
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Invoice date missing."
+    },
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "12301.20",
+      "after": "11317.10",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 0.92 against the packing list."
+    }
+  ]
+}

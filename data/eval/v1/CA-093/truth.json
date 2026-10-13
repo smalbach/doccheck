@@ -1,0 +1,319 @@
+{
+  "id": "CA-093",
+  "seed": 499607423,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CER2608658",
+      "invoiceDate": "2026-03-04",
+      "poNumber": "PO-63202",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-03-14",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Genoa",
+          "unLocode": "ITGOA",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Genoa"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 7,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "280",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "11.30",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "3164.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6055.00",
+        "raw": {
+          "value": "6055.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5880.00",
+        "raw": {
+          "value": "5880.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "3164.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-CER2608658",
+      "invoiceRef": "CER2608658",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-7",
+          "count": 7,
+          "type": "PLT",
+          "marks": "COASTAL/PO-63202/C/NO. 1-7",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "275",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "5880.00",
+            "raw": {
+              "value": "5880.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "6055.00",
+            "raw": {
+              "value": "6055.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 7,
+        "netWeight": {
+          "kg": "5880.00",
+          "raw": {
+            "value": "5880.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6055.00",
+          "raw": {
+            "value": "6055.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "6.05"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSGOA674580",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "576480939",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "058S",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "Genoa",
+        "unLocode": "ITGOA",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU7672381",
+          "seal": "TW3794498",
+          "type": "20GP",
+          "packages": 7,
+          "grossWeight": {
+            "kg": "6055.00",
+            "raw": {
+              "value": "6055.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "6.05"
+        }
+      ],
+      "totalPackages": 7,
+      "totalGrossWeight": {
+        "kg": "6055.00",
+        "raw": {
+          "value": "6055.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/PO-63202/C/NO. 1-7",
+      "cargoDescription": "SAID TO CONTAIN 7 PLTS PORCELAIN TILE 60X60",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Genoa",
+      "dateOfIssue": "2026-03-15",
+      "shippedOnBoardDate": "2026-03-15",
+      "references": [
+        "CER2608658",
+        "PO-63202"
+      ]
+    }
+  }
+}

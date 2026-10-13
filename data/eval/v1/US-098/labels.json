@@ -1,0 +1,28 @@
+{
+  "id": "US-098",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "incoterm",
+      "before": {
+        "code": "FOB",
+        "place": "Ho Chi Minh City"
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Terms of sale (Incoterm) missing from the invoice."
+    },
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "4009.00",
+      "after": "4177.80",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    }
+  ]
+}

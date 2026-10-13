@@ -1,0 +1,427 @@
+{
+  "id": "CA-090",
+  "seed": 945769212,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SAI2604858",
+      "invoiceDate": "2026-05-29",
+      "poNumber": "PO-88927",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-06-09",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ho Chi Minh City",
+          "unLocode": "VNSGN",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Ho Chi Minh City"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "CAD",
+      "packageCount": 274,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "4300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.47",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "10621.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "3140",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "14.76",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "46346.40",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        },
+        {
+          "lineNo": 3,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "17760",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "2.37",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "42091.20",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        }
+      ],
+      "grossWeight": {
+        "kg": "5061.20",
+        "raw": {
+          "value": "5061.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4818.00",
+        "raw": {
+          "value": "4818.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "99058.60",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-SAI2604858",
+      "invoiceRef": "SAI2604858",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-43",
+          "count": 43,
+          "type": "CTN",
+          "marks": "COASTAL/PO-88927/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "4300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "817.00",
+            "raw": {
+              "value": "817.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "851.40",
+            "raw": {
+              "value": "851.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "44-200",
+          "count": 157,
+          "type": "CTN",
+          "marks": "COASTAL/PO-88927/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "3140",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2669.00",
+            "raw": {
+              "value": "2669.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2826.00",
+            "raw": {
+              "value": "2826.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        },
+        {
+          "range": "201-274",
+          "count": 74,
+          "type": "CTN",
+          "marks": "COASTAL/PO-88927/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "17760",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1332.00",
+            "raw": {
+              "value": "1332.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1383.80",
+            "raw": {
+              "value": "1383.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 274,
+        "netWeight": {
+          "kg": "4818.00",
+          "raw": {
+            "value": "4818.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5061.20",
+          "raw": {
+            "value": "5061.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "29.50"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLSGN5720653",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "701776813",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "007N",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Ho Chi Minh City",
+        "unLocode": "VNSGN",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCLU4423406",
+          "seal": "PC9056762",
+          "type": "40GP",
+          "packages": 274,
+          "grossWeight": {
+            "kg": "5061.20",
+            "raw": {
+              "value": "5061.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "29.50"
+        }
+      ],
+      "totalPackages": 279,
+      "totalGrossWeight": {
+        "kg": "5061.20",
+        "raw": {
+          "value": "5061.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/PO-88927/C/NO. 1-274",
+      "cargoDescription": "SAID TO CONTAIN 274 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ho Chi Minh City",
+      "dateOfIssue": "2026-06-11",
+      "shippedOnBoardDate": "2026-06-11",
+      "references": [
+        "SAI2604858",
+        "PO-88927"
+      ]
+    }
+  }
+}

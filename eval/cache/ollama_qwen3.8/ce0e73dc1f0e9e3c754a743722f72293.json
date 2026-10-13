@@ -1,0 +1,105 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 713,
+    "outputTokens": 924
+  },
+  "output": {
+    "invoiceNumber": "CI/26/6870",
+    "invoiceDate": "Jul 8, 2026",
+    "poNumber": "PR437027",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "Jul 19, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CFR",
+    "incotermPlace": "Montreal",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "TB-200",
+        "description": "Plush teddy bear 30 cm, polyester filling",
+        "quantity": "2,400",
+        "unit": "PCS",
+        "unitPrice": "9.13",
+        "unitPriceCurrency": null,
+        "lineTotal": "12,912.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+        "quantity": "2,136",
+        "unit": "PCS",
+        "unitPrice": "3.50",
+        "unitPriceCurrency": null,
+        "lineTotal": "7,476.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "137",
+    "grossWeight": {
+      "value": "1,894.02",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,756.32",
+      "unit": "KG"
+    },
+    "invoiceTotal": "29,388.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "1,601.00",
+        "currency": "CAD"
+      }
+    ]
+  }
+}

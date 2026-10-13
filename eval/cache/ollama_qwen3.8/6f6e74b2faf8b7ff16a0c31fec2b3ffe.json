@@ -1,0 +1,88 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 701,
+    "outputTokens": 836
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-8763",
+    "invoiceDate": "28-MAR-2026",
+    "poNumber": "QU368009",
+    "seller": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "09-APR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "NHAVA SHEVA",
+      "country": "IN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "NHAVA SHEVA",
+    "paymentTerms": "NET 60",
+    "currency": "CAD",
+    "countryOfOrigin": null,
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "BV-2IN",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED HS 8481.80",
+        "quantity": "1920",
+        "unit": "PCS",
+        "unitPrice": "16.59",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "31852.80",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "96 PKGS",
+    "grossWeight": {
+      "value": "2697.60",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "2592.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "31852.80",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 751,
+    "outputTokens": 948
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-4225",
+    "invoiceDate": "2026-09-04",
+    "poNumber": "CO709122",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "2026-09-06",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Cai Mep",
+      "country": "VN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Cai Mep",
+    "paymentTerms": "L/C at sight",
+    "currency": "CAD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Wool blend socks, knitted, 3-pair pack",
+        "quantity": "52,560",
+        "unit": "PRS",
+        "unitPrice": "2.08",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "109,324.80",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6115.94"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "10,890",
+        "unit": "PCS",
+        "unitPrice": "3.02",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "32,918.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      }
+    ],
+    "totalPackages": "328",
+    "grossWeight": {
+      "value": "6,013.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "6,253.50",
+      "unit": "KG"
+    },
+    "invoiceTotal": "142,242.80",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

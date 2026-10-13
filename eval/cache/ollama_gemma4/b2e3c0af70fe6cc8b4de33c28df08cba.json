@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:gemma4",
+  "promptVersion": "extract-v2",
+  "usage": {
+    "inputTokens": 603,
+    "outputTokens": 558
+  },
+  "output": {
+    "packingListNumber": "PL/26/8361",
+    "invoiceRef": "CI/26/8361",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/QU137456/C/NO. 1-170",
+    "packages": [
+      {
+        "range": "1-8",
+        "count": "8 PLT",
+        "packageType": null,
+        "sku": null,
+        "description": "Porcelain tile 60x60",
+        "quantity": "320 M2",
+        "unit": null,
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": "120 × 80 × 90"
+      },
+      {
+        "range": "9-170",
+        "count": "162 CTN",
+        "packageType": null,
+        "sku": null,
+        "description": "EV olive oil 5 L",
+        "quantity": "648 PCS",
+        "unit": null,
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": "40 × 30 × 35"
+      }
+    ],
+    "totalPackages": null,
+    "totalNetWeight": null,
+    "totalGrossWeight": null,
+    "totalVolumeM3": null
+  }
+}

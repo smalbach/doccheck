@@ -1,0 +1,315 @@
+{
+  "id": "CA-088",
+  "seed": 1208728920,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/7543",
+      "invoiceDate": "2026-01-11",
+      "poNumber": "PO-7806",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-01-13",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Prince Rupert"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 12,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "HB-M12",
+          "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+          "quantity": {
+            "value": "6000",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "1.99",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "11940.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "7318.15"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6264.00",
+        "raw": {
+          "value": "6264.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "6000.00",
+        "raw": {
+          "value": "6000.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "11940.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/7543",
+      "invoiceRef": "CI/26/7543",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-12",
+          "count": 12,
+          "type": "PLT",
+          "marks": "NORTHERN/PO-7806/C/NO. 1-12",
+          "contents": [
+            {
+              "sku": "HB-M12",
+              "description": "Hex bolt M12x60",
+              "quantity": {
+                "value": "6000",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "6000.00",
+            "raw": {
+              "value": "6000.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "6264.00",
+            "raw": {
+              "value": "6264.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            100,
+            60
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 12,
+        "netWeight": {
+          "kg": "6000.00",
+          "raw": {
+            "value": "6000.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6264.00",
+          "raw": {
+            "value": "6264.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "8.64"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWETAO9793212",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "110943719",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "051N",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Prince Rupert",
+        "unLocode": "CAPRR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU8327452",
+          "seal": "TW4629123",
+          "type": "20GP",
+          "packages": 12,
+          "grossWeight": {
+            "kg": "6264.00",
+            "raw": {
+              "value": "6264.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "8.64"
+        }
+      ],
+      "totalPackages": 12,
+      "totalGrossWeight": {
+        "kg": "6264.00",
+        "raw": {
+          "value": "6264.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/PO-7806/C/NO. 1-12",
+      "cargoDescription": "SAID TO CONTAIN 12 PLTS HEX BOLT M12X60",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-01-16",
+      "shippedOnBoardDate": "2026-01-16",
+      "references": [
+        "CI/26/7543",
+        "PO-7806"
+      ]
+    }
+  }
+}

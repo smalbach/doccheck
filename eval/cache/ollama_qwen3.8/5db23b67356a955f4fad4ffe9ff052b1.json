@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 800,
+    "outputTokens": 990
+  },
+  "output": {
+    "blNumber": "TDWESPE4398646",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "384690951",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1454 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "092E",
+    "placeOfReceipt": {
+      "name": "SASSUOLO",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "LA SPEZIA",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "HALIFAX",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU4341806",
+        "seal": "TW5611870",
+        "type": "20GP",
+        "packages": "231",
+        "grossWeight": {
+          "value": "18835.20",
+          "unit": "KGS"
+        },
+        "volumeM3": "23.68"
+      }
+    ],
+    "totalPackages": "231",
+    "totalGrossWeight": {
+      "value": "20718.72",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-29524/C/NO. 1-231",
+    "cargoDescription": "SAID TO CONTAIN 231 PKGS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE REF: INV-2026-3187 / PO-29524 FREIGHT COLLECT",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-3187",
+      "PO-29524"
+    ],
+    "placeOfIssue": "LA SPEZIA",
+    "dateOfIssue": "28-SEP-2026",
+    "shippedOnBoardDate": "28-SEP-2026"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 756,
+    "outputTokens": 948
+  },
+  "output": {
+    "invoiceNumber": "CER2608895",
+    "invoiceDate": "2026-09-16",
+    "poNumber": "PO-46651",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "shipmentDate": "2026-09-28",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "Vancouver",
+      "country": null
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "Vancouver",
+    "paymentTerms": "Net 60",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Glazed porcelain floor tiles 60 x 60 cm",
+        "quantity": "600",
+        "unit": "M2",
+        "unitPrice": "7.08",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "4,248.00",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Extra virgin olive oil, 5 L tins",
+        "quantity": "740",
+        "unit": "PCS",
+        "unitPrice": "26.38",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "19,521.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "200",
+    "grossWeight": {
+      "value": "16,545.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "16,004.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "23,769.20",
+    "invoiceTotalCurrency": "EUR",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "3,527.00",
+        "currency": "CAD"
+      }
+    ]
+  }
+}

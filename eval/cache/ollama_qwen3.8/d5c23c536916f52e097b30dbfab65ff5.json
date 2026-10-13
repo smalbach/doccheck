@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 582,
+    "outputTokens": 752
+  },
+  "output": {
+    "packingListNumber": "PL-NIN2606267",
+    "invoiceRef": "NIN2606267",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PO-12513/C/NO. 1-128",
+    "packages": [
+      {
+        "range": "1-11",
+        "count": "11 CTN",
+        "packageType": "CTN",
+        "sku": "BL-600",
+        "description": "Blender 600 W",
+        "quantity": "34 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "101.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "116.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "50 × 50 × 45"
+      },
+      {
+        "range": "12-128",
+        "count": "117 CTN",
+        "packageType": "CTN",
+        "sku": "EK-17",
+        "description": "Electric kettle 1.7 L",
+        "quantity": "936 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "982.80",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,111.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 45 × 42"
+      }
+    ],
+    "totalPackages": "128",
+    "totalNetWeight": {
+      "value": "1,084.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,228.10",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "13.40"
+  }
+}

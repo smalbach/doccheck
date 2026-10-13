@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 779,
+    "outputTokens": 956
+  },
+  "output": {
+    "blNumber": "COMPCMT388466",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "185210746",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN DC BRAMPTON",
+      "addressLines": [
+        "8 STEINWAY BLVD",
+        "BRAMPTON ON L6T 4X7"
+      ],
+      "city": "BRAMPTON",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400",
+        "TORONTO ON M5V 3G5"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "029S",
+    "placeOfReceipt": {
+      "name": "HO CHI MINH CITY, VN",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "CAI MEP, VN",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "VANCOUVER, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "TORONTO, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU8518264",
+        "seal": "PC7755740",
+        "type": "40HC",
+        "packages": "477",
+        "grossWeight": {
+          "value": "8803.40",
+          "unit": "KGS"
+        },
+        "volumeM3": "47.75"
+      }
+    ],
+    "totalPackages": "477",
+    "totalGrossWeight": {
+      "value": "8803.40",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "NORTHERN/NO380901/C/NO. 1-477",
+    "cargoDescription": "SAID TO CONTAIN 477 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "CI/26/5168 / NO380901"
+    ],
+    "placeOfIssue": "CAI MEP",
+    "dateOfIssue": "04-JUL-2026",
+    "shippedOnBoardDate": "04-JUL-2026"
+  }
+}

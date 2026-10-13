@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 739,
+    "outputTokens": 922
+  },
+  "output": {
+    "blNumber": "PCCLMUN4271865",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "428382911",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "055N",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU4690782",
+        "seal": "PC7061416",
+        "type": "20GP",
+        "packages": "295",
+        "grossWeight": {
+          "value": "7,561.50",
+          "unit": "KG"
+        },
+        "volumeM3": "11.52"
+      }
+    ],
+    "totalPackages": "295",
+    "totalGrossWeight": {
+      "value": "7,561.50",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/NO311970/C/NO. 1-295",
+    "cargoDescription": "SAID TO CONTAIN 295 CTNS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CI/26/5123",
+      "NO311970"
+    ],
+    "placeOfIssue": "Mundra",
+    "dateOfIssue": "2026-02-15",
+    "shippedOnBoardDate": "2026-02-15"
+  }
+}

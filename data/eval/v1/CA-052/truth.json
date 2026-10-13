@@ -1,0 +1,379 @@
+{
+  "id": "CA-052",
+  "seed": 537146265,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CER2608895",
+      "invoiceDate": "2026-09-16",
+      "poNumber": "PO-46651",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-09-28",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "La Spezia",
+          "unLocode": "ITSPE",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Vancouver"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 200,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "600",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "7.08",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "4248.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 2,
+          "sku": "OO-EV-5",
+          "description": "Extra virgin olive oil, 5 L tins",
+          "quantity": {
+            "value": "740",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "19521.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        }
+      ],
+      "grossWeight": {
+        "kg": "16545.50",
+        "raw": {
+          "value": "16545.50",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "16004.00",
+        "raw": {
+          "value": "16004.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "23769.20",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "3527.00",
+          "currency": "CAD"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-CER2608895",
+      "invoiceRef": "CER2608895",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-15",
+          "count": 15,
+          "type": "PLT",
+          "marks": "NORTHERN/PO-46651/C/NO. 1-200",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "600",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "12600.00",
+            "raw": {
+              "value": "12600.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "12975.00",
+            "raw": {
+              "value": "12975.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "16-200",
+          "count": 185,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-46651/C/NO. 1-200",
+          "contents": [
+            {
+              "sku": "OO-EV-5",
+              "description": "EV olive oil 5 L",
+              "quantity": {
+                "value": "740",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3404.00",
+            "raw": {
+              "value": "3404.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3570.50",
+            "raw": {
+              "value": "3570.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 200,
+        "netWeight": {
+          "kg": "16004.00",
+          "raw": {
+            "value": "16004.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "16545.50",
+          "raw": {
+            "value": "16545.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "20.73"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSSPE612953",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "375040849",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "017W",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "La Spezia",
+        "unLocode": "ITSPE",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGLU7275829",
+          "seal": "AG6249777",
+          "type": "20GP",
+          "packages": 200,
+          "grossWeight": {
+            "kg": "16545.50",
+            "raw": {
+              "value": "16545.50",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "20.73"
+        }
+      ],
+      "totalPackages": 200,
+      "totalGrossWeight": {
+        "kg": "16545.50",
+        "raw": {
+          "value": "16545.50",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/PO-46651/C/NO. 1-200",
+      "cargoDescription": "SAID TO CONTAIN 200 PKGS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "La Spezia",
+      "dateOfIssue": "2026-10-01",
+      "shippedOnBoardDate": "2026-10-01",
+      "references": [
+        "CER2608895",
+        "PO-46651"
+      ]
+    }
+  }
+}

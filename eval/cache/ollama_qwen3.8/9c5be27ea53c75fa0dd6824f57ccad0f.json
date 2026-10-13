@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 746,
+    "outputTokens": 918
+  },
+  "output": {
+    "blNumber": "TDWECTG8363016",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines (TDWE)",
+    "bookingNumber": "518069879",
+    "carrierName": "Tidewater Express Lines (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "060E",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Prince Rupert",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU5903451",
+        "seal": "TW9861927",
+        "type": "40HC",
+        "packages": "252",
+        "grossWeight": {
+          "value": "15,321.60",
+          "unit": "KG"
+        },
+        "volumeM3": "35.91"
+      }
+    ],
+    "totalPackages": "252",
+    "totalGrossWeight": {
+      "value": "14,861.95",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/NO279652/C/NO. 1-252",
+    "cargoDescription": "SAID TO CONTAIN 252 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CAF2607063",
+      "NO279652"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "2026-05-02",
+    "shippedOnBoardDate": "2026-05-02"
+  }
+}

@@ -1,0 +1,319 @@
+{
+  "id": "CA-080",
+  "seed": 1972357749,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": true
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "PUN2608222",
+      "invoiceDate": "2026-07-31",
+      "poNumber": "PO-71886",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-08-05",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Nhava Sheva"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "CAD",
+      "packageCount": 187,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "37400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "0.97",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "63278.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4282.30",
+        "raw": {
+          "value": "4282.30",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4114.00",
+        "raw": {
+          "value": "4114.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "36278.00",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "fr"
+    },
+    "packingList": {
+      "packingListNumber": "PL-PUN2608222",
+      "invoiceRef": "PUN2608222",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-187",
+          "count": 187,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/PO-71886/C/NO. 1-187",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "37400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4114.00",
+            "raw": {
+              "value": "4114.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4282.30",
+            "raw": {
+              "value": "4282.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 187,
+        "netWeight": {
+          "kg": "4114.00",
+          "raw": {
+            "value": "4114.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4282.30",
+          "raw": {
+            "value": "4282.30",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "5.61"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPNSA193152",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "819929378",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "064W",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCLU1764340",
+          "seal": "PC5679950",
+          "type": "20GP",
+          "packages": 187,
+          "grossWeight": {
+            "kg": "4282.30",
+            "raw": {
+              "value": "4282.30",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "5.61"
+        }
+      ],
+      "totalPackages": 188,
+      "totalGrossWeight": {
+        "kg": "4282.30",
+        "raw": {
+          "value": "4282.30",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/PO-71886/C/NO. 1-187",
+      "cargoDescription": "SAID TO CONTAIN 187 CTNS BALL BEARING 6204-2RS",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-08-07",
+      "shippedOnBoardDate": "2026-08-07",
+      "references": [
+        "PUN2608222",
+        "PO-71886"
+      ]
+    }
+  }
+}

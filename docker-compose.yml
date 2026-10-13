@@ -1,0 +1,58 @@
+# Local infrastructure for DocCheck: Postgres, Redis and MinIO, plus the app itself under the "app" profile.
+# Models are served by Ollama on the host. Model calls are traced in the llm_calls table.
+services:
+  # The app: `docker compose --profile app up -d --build`. Ollama runs on the host (GPU access).
+  app:
+    profiles: [app]
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://doccheck:doccheck@postgres:5432/doccheck
+      REDIS_URL: redis://redis:6379
+      S3_ENDPOINT: http://minio:9000
+      S3_BUCKET: doccheck
+      S3_ACCESS_KEY: doccheck
+      S3_SECRET_KEY: doccheck-secret
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      LLM_MODEL: qwen3.8
+      EMBED_MODEL: bge-m3
+      EVAL_DIR: /app/data/eval/v1
+    volumes:
+      # Optional: the synthetic set, for the "Try a sample" gallery (run npm run synth first).
+      - ./data/eval/v1:/app/data/eval/v1:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on: [postgres, redis, minio]
+
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: doccheck
+      POSTGRES_PASSWORD: doccheck
+      POSTGRES_DB: doccheck
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: doccheck
+      MINIO_ROOT_PASSWORD: doccheck-secret
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - miniodata:/data
+
+volumes:
+  pgdata:
+  miniodata:

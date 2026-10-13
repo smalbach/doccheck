@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 734,
+    "outputTokens": 940
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-3674",
+    "invoiceDate": "2026-04-09",
+    "poNumber": "PO-99349",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "2026-04-12",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Yantian",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+        "quantity": "4,344",
+        "unit": "PCS",
+        "unitPrice": "4.68",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "20,329.92",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Plush teddy bear 30 cm, polyester filling",
+        "quantity": "6,200",
+        "unit": "PCS",
+        "unitPrice": "9.39",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "58,218.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "305",
+    "grossWeight": {
+      "value": "4,120.98",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,809.28",
+      "unit": "KG"
+    },
+    "invoiceTotal": "78,547.92",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

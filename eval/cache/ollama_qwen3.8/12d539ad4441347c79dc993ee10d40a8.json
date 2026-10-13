@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 538,
+    "outputTokens": 591
+  },
+  "output": {
+    "packingListNumber": "PL/26/4710",
+    "invoiceRef": "CI/26/4710",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "marks": "NORTHERN/NO405598/C/NO. 1-86",
+    "packages": [
+      {
+        "range": "1-86",
+        "count": "86 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "1,720 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,322.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,416.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      }
+    ],
+    "totalPackages": "86",
+    "totalNetWeight": {
+      "value": "2,322.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,416.60",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "4.06"
+  }
+}

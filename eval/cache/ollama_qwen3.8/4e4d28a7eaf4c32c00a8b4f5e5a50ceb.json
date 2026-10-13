@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 796,
+    "outputTokens": 973
+  },
+  "output": {
+    "blNumber": "KEYSCMT259569",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "668353698",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "091W",
+    "placeOfReceipt": {
+      "name": "HO CHI MINH CITY, VN",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "CAI MEP, VN",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "VANCOUVER, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "VANCOUVER, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU3075179",
+        "seal": "MD3871068",
+        "type": "40HC",
+        "packages": "328",
+        "grossWeight": {
+          "value": "6253.50",
+          "unit": "KGS"
+        },
+        "volumeM3": "24.60"
+      }
+    ],
+    "totalPackages": "328",
+    "totalGrossWeight": {
+      "value": "6253.50",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "COASTAL/CO709122/C/NO. 1-328",
+    "cargoDescription": "SAID TO CONTAIN 328 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-4225",
+      "CO709122"
+    ],
+    "placeOfIssue": "CAI MEP",
+    "dateOfIssue": "09-SEP-2026",
+    "shippedOnBoardDate": "09-SEP-2026"
+  }
+}

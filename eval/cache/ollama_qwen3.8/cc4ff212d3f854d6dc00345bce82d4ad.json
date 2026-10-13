@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 735,
+    "outputTokens": 960
+  },
+  "output": {
+    "invoiceNumber": "CI/26/6080",
+    "invoiceDate": "07-AUG-2026",
+    "poNumber": "PO-36207",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN DC BRAMPTON",
+      "addressLines": [
+        "8 STEINWAY BLVD"
+      ],
+      "city": "BRAMPTON",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "13-AUG-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "YANTIAN",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "YANTIAN",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "TB-200",
+        "description": "PLUSH TEDDY BEAR 30 CM, POLYESTER FILLING HS 9503.00",
+        "quantity": "10550",
+        "unit": "PCS",
+        "unitPrice": "9.24",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "97482.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": null,
+        "sku": "PZ-1000",
+        "description": "JIGSAW PUZZLE 1000 PIECES, CARDBOARD, BOXED HS 9503.00",
+        "quantity": "4849",
+        "unit": "PCS",
+        "unitPrice": "4.45",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "21573.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "413 PKGS",
+    "grossWeight": {
+      "value": "5339.76",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "4904.76",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "119055.60",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "id": "CA-033",
+  "seed": 129163585,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/6870",
+      "invoiceDate": "2026-07-08",
+      "poNumber": "PR437027",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-07-19",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Yantian",
+          "unLocode": "CNYTN",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Montreal"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 137,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "2400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.13",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "12912.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "PZ-1000",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+          "quantity": {
+            "value": "2136",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.50",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "7476.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1894.02",
+        "raw": {
+          "value": "1894.02",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1756.32",
+        "raw": {
+          "value": "1756.32",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "29388.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "1601.00",
+          "currency": "CAD"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/6870",
+      "invoiceRef": "CI/26/6870",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-48",
+          "count": 48,
+          "type": "CTN",
+          "marks": "PRAIRIE/PR437027/C/NO. 1-137",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "2400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "432.00",
+            "raw": {
+              "value": "432.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "489.60",
+            "raw": {
+              "value": "489.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "49-137",
+          "count": 89,
+          "type": "CTN",
+          "marks": "PRAIRIE/PR437027/C/NO. 1-137",
+          "contents": [
+            {
+              "sku": "PZ-1000",
+              "description": "Jigsaw puzzle 1000 pcs",
+              "quantity": {
+                "value": "2136",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1324.32",
+            "raw": {
+              "value": "1324.32",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1404.42",
+            "raw": {
+              "value": "1404.42",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 137,
+        "netWeight": {
+          "kg": "1756.32",
+          "raw": {
+            "value": "1756.32",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1894.02",
+          "raw": {
+            "value": "1894.02",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "9.88"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSYTN767732",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "605099449",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "notifyParty": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "042W",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Yantian",
+        "unLocode": "CNYTN",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Winnipeg",
+        "unLocode": "CAWNP",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCLU2792112",
+          "seal": "PC9050929",
+          "type": "20GP",
+          "packages": 137,
+          "grossWeight": {
+            "kg": "1894.02",
+            "raw": {
+              "value": "1894.02",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "9.88"
+        }
+      ],
+      "totalPackages": 137,
+      "totalGrossWeight": {
+        "kg": "1894.02",
+        "raw": {
+          "value": "1894.02",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PRAIRIE/PR437027/C/NO. 1-137",
+      "cargoDescription": "SAID TO CONTAIN 137 CTNS PLUSH TEDDY BEAR 30 CM AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Yantian",
+      "dateOfIssue": "2026-07-22",
+      "shippedOnBoardDate": "2026-07-22",
+      "references": [
+        "CI/26/6870",
+        "PR437027"
+      ]
+    }
+  }
+}

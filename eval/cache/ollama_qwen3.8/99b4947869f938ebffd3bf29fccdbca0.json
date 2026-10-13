@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 691,
+    "outputTokens": 850
+  },
+  "output": {
+    "invoiceNumber": "BRI2607699",
+    "invoiceDate": "02-JUL-2026",
+    "poNumber": "PO-61227",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "09-JUL-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "SHEKOU",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "SHEKOU",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "PZ-1000",
+        "description": "JIGSAW PUZZLE 1000 PIECES, CARDBOARD, BOXED HS 9503.00",
+        "quantity": "4382",
+        "unit": "PCS",
+        "unitPrice": "4.81",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "21125.52",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "183 PKGS",
+    "grossWeight": {
+      "value": "2723.04",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "2887.74",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "21125.52",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

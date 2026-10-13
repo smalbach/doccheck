@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 645,
+    "outputTokens": 748
+  },
+  "output": {
+    "invoiceNumber": "CI/26/8989",
+    "invoiceDate": "Feb 10, 2026",
+    "poNumber": "PO-37449",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "Feb 18, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Yantian",
+    "paymentTerms": "Net 60",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+        "quantity": "5,736",
+        "unit": "PCS",
+        "unitPrice": "3.76",
+        "unitPriceCurrency": null,
+        "lineTotal": "21,567.36",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "239",
+    "grossWeight": {
+      "value": "3,771.42",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,556.32",
+      "unit": "KG"
+    },
+    "invoiceTotal": "21,567.36",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

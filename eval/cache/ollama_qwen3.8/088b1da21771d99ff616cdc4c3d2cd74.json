@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 637,
+    "outputTokens": 763
+  },
+  "output": {
+    "packingListNumber": "PL-2026-4225",
+    "invoiceRef": "INV-2026-4225",
+    "seller": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/CO709122/C/NO. 1-328",
+    "packages": [
+      {
+        "range": "1-219",
+        "count": "219 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "WOOL SOCKS 3-PACK",
+        "quantity": "52560 PRS",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "3942.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "4095.30",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "220-328",
+        "count": "109 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "MEN'S COTTON T-SHIRT",
+        "quantity": "10900 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2071.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "2158.20",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "328",
+    "totalNetWeight": {
+      "value": "6013.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "6253.50",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "24.60"
+  }
+}

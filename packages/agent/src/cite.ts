@@ -1,0 +1,78 @@
+import { excerpt, type RegulationIndex } from '@doccheck/regulations';
+import { PROFILES } from '@doccheck/rules';
+import type { Destination, Finding } from '@doccheck/schemas';
+
+/**
+ * What to look up for each rule. Completeness findings search with their own message, which names
+ * the missing field and its CI1 field or 141.86 paragraph. `null` means the corpus has nothing on
+ * it (ISO 6346 is an industry standard, not a customs regulation), so no citation is attached.
+ */
+const QUERIES: Record<string, { CBSA: string | null; CBP: string | null }> = {
+  X1: { CBSA: 'consignee name and address shipped to', CBP: 'person to whom the merchandise is sold or shipped' },
+  X2: { CBSA: 'number of packages', CBP: 'marks and numbers of the packages' },
+  X3: { CBSA: 'net and gross weight', CBP: 'quantities in weights and measures' },
+  X4: { CBSA: 'net and gross weight', CBP: 'quantities in weights and measures' },
+  X5: { CBSA: 'unit price total price paid or payable', CBP: 'purchase price of each item in the currency of the purchase' },
+  X6: { CBSA: 'currency of settlement', CBP: 'kind of currency' },
+  X7: { CBSA: 'quantity of goods description', CBP: 'quantities in weights and measures' },
+  X8: { CBSA: 'other references commercial invoice number', CBP: null },
+  X10: { CBSA: null, CBP: null },
+  X11: { CBSA: null, CBP: 'importer security filing data elements' },
+  C2: { CBSA: 'invoice in English or French translation', CBP: null },
+  A1: { CBSA: 'detailed description of the goods', CBP: 'detailed description of the merchandise' },
+};
+
+export function citationQuery(finding: Finding, destination: Destination): string | null {
+  const authority = PROFILES[destination].authority;
+  if (finding.ruleId === 'C1' || finding.ruleId === 'U1') {
+    // "Country of origin is missing on every invoice line (CBSA CI1 field 7)." -> "Country of origin field 7"
+    const label = finding.message.split(' is missing')[0];
+    const ref = finding.message.match(/\(([^)]*)\)\.?$/)?.[1].replace(/^(CBSA|19 CFR) /, '') ?? '';
+    return `${label} ${ref}`.trim();
+  }
+  if (finding.ruleId === 'X11') {
+    // Cite the ISF data element that disagrees, not the filing requirement in general.
+    const field = finding.evidence[0]?.field ?? '';
+    // Wording of the 19 CFR 149.3(a) data elements, so both retrievers land on the right paragraph.
+    const element: Record<string, string> = {
+      countryOfOrigin: 'Country of origin. Country of manufacture, production, or growth of the article',
+      htsCode: 'Commodity HTSUS number. Duty/statistical reporting number Harmonized Tariff Schedule',
+      'seller.name': 'Seller. Name and address of the last known entity by whom the goods are sold or agreed to be sold',
+      'buyer.name': 'Buyer. Name and address of the last known entity to whom the goods are sold or agreed to be sold',
+    };
+    return element[field] ?? 'importer security filing data elements';
+  }
+  return QUERIES[finding.ruleId]?.[authority] ?? null;
+}
+
+/**
+ * Attaches the best matching passage of the destination's regulations to each finding.
+ * A passage is only used when both retrievers agree it is relevant (it ranks in the keyword top 5),
+ * so an unrelated paragraph is never presented as the legal basis.
+ */
+export async function attachRegulations(findings: Finding[], destination: Destination, index: RegulationIndex): Promise<Finding[]> {
+  const authority = PROFILES[destination].authority;
+  const cache = new Map<string, Finding['regulation'] | null>();
+  for (const finding of findings) {
+    if (finding.regulation) continue;
+    const query = citationQuery(finding, destination);
+    if (!query) continue;
+    if (!cache.has(query)) {
+      const [hit] = (await index.search(query, { authority, language: 'en', limit: 3 })).filter((h) => (h.ranks.keyword ?? 99) <= 5);
+      cache.set(
+        query,
+        hit
+          ? {
+              title: hit.chunk.section ? `${hit.chunk.title} — ${hit.chunk.section.split(' > ').pop()}` : hit.chunk.title,
+              url: hit.chunk.url,
+              effectiveDate: hit.chunk.effectiveDate,
+              excerpt: excerpt(hit.chunk.text, query, 500),
+            }
+          : null,
+      );
+    }
+    const regulation = cache.get(query);
+    if (regulation) finding.regulation = regulation;
+  }
+  return findings;
+}

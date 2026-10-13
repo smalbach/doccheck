@@ -1,0 +1,424 @@
+{
+  "id": "CA-076",
+  "seed": 44275157,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-7399",
+      "invoiceDate": "2026-07-03",
+      "poNumber": "NO251431",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-07-13",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Mundra",
+          "unLocode": "INMUN",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Mundra"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 325,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "440",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "92.73",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4080.12",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "18200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "0.92",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "16744.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 3,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "3800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "61180.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "8258.90",
+        "raw": {
+          "value": "8258.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7770.00",
+        "raw": {
+          "value": "7770.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "82004.12",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-7399",
+      "invoiceRef": "INV-2026-7399",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-44",
+          "count": 44,
+          "type": "CRT",
+          "marks": "NORTHERN/NO251431/C/NO. 1-325",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "44",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "638.00",
+            "raw": {
+              "value": "638.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "836.00",
+            "raw": {
+              "value": "836.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "45-135",
+          "count": 91,
+          "type": "CTN",
+          "marks": "NORTHERN/NO251431/C/NO. 1-325",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "18200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2002.00",
+            "raw": {
+              "value": "2002.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2083.90",
+            "raw": {
+              "value": "2083.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "136-325",
+          "count": 190,
+          "type": "CTN",
+          "marks": "NORTHERN/NO251431/C/NO. 1-325",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "3800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "5130.00",
+            "raw": {
+              "value": "5130.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "5339.00",
+            "raw": {
+              "value": "5339.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 325,
+        "netWeight": {
+          "kg": "7770.00",
+          "raw": {
+            "value": "7770.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "8258.90",
+          "raw": {
+            "value": "8258.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "15.58"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSMUN621489",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "522749563",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "033W",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Mundra",
+        "unLocode": "INMUN",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU9745210",
+          "seal": "TW9260503",
+          "type": "20GP",
+          "packages": 325,
+          "grossWeight": {
+            "kg": "8258.90",
+            "raw": {
+              "value": "8258.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "15.58"
+        }
+      ],
+      "totalPackages": 330,
+      "totalGrossWeight": {
+        "kg": "8258.90",
+        "raw": {
+          "value": "8258.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/NO251431/C/NO. 1-325",
+      "cargoDescription": "SAID TO CONTAIN 325 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Mundra",
+      "dateOfIssue": "2026-07-16",
+      "shippedOnBoardDate": "2026-07-16",
+      "references": [
+        "INV-2026-7399",
+        "NO251431"
+      ]
+    }
+  }
+}

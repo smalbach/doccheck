@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 732,
+    "outputTokens": 900
+  },
+  "output": {
+    "blNumber": "TDWESHA6480241",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines",
+    "bookingNumber": "549613167",
+    "carrierName": "Tidewater Express Lines",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "031N",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Shanghai",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Prince Rupert",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU2379079",
+        "seal": "TW1833055",
+        "type": "20GP",
+        "packages": "191",
+        "grossWeight": {
+          "value": "2,024.60",
+          "unit": "KG"
+        },
+        "volumeM3": "21.49"
+      }
+    ],
+    "totalPackages": "191",
+    "totalGrossWeight": {
+      "value": "2,024.60",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/NO902339/C/NO. 1-191",
+    "cargoDescription": "SAID TO CONTAIN 191 CTNS BLENDER 600 W",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-7046",
+      "NO902339"
+    ],
+    "placeOfIssue": "Shanghai",
+    "dateOfIssue": "May 28, 2026",
+    "shippedOnBoardDate": "May 28, 2026"
+  }
+}

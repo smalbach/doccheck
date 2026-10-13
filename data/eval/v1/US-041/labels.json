@@ -1,0 +1,16 @@
+{
+  "id": "US-041",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "11423.88",
+      "after": "14123.88",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (11423.88 -> 14123.88)."
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 744,
+    "outputTokens": 911
+  },
+  "output": {
+    "blNumber": "COMPSHK721930",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "217263582",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3912 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "011W",
+    "placeOfReceipt": {
+      "name": "Shenzhen",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Shekou",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU6593145",
+        "seal": "PC4169016",
+        "type": "20GP",
+        "packages": "183",
+        "grossWeight": {
+          "value": "2,887.74",
+          "unit": "KG"
+        },
+        "volumeM3": "10.85"
+      }
+    ],
+    "totalPackages": "183",
+    "totalGrossWeight": {
+      "value": "2,887.74",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/PO-61227/C/NO. 1-183",
+    "cargoDescription": "SAID TO CONTAIN 183 CTNS JIGSAW PUZZLE 1000 PCS",
+    "freightTerms": "COLLECT",
+    "references": [
+      "BRI2607699",
+      "PO-61227"
+    ],
+    "placeOfIssue": "Shekou",
+    "dateOfIssue": "Jul 9, 2026",
+    "shippedOnBoardDate": "Jul 9, 2026"
+  }
+}

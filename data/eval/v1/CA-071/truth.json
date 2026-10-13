@@ -1,0 +1,423 @@
+{
+  "id": "CA-071",
+  "seed": 584532921,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-4337",
+      "poNumber": "NO397981",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-09-18",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Nhava Sheva"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 156,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "2200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.07",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2354.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "60",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "74.99",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4949.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 3,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "1700",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "15.69",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "26673.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3780.40",
+        "raw": {
+          "value": "3780.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3407.00",
+        "raw": {
+          "value": "3407.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "33526.40",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-4337",
+      "invoiceRef": "INV-2026-4337",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-11",
+          "count": 11,
+          "type": "CTN",
+          "marks": "NORTHERN/NO397981/C/NO. 1-156",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "2190",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "242.00",
+            "raw": {
+              "value": "242.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "251.90",
+            "raw": {
+              "value": "251.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "12-71",
+          "count": 60,
+          "type": "CRT",
+          "marks": "NORTHERN/NO397981/C/NO. 1-156",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "60",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "870.00",
+            "raw": {
+              "value": "870.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1140.00",
+            "raw": {
+              "value": "1140.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "72-156",
+          "count": 85,
+          "type": "CTN",
+          "marks": "NORTHERN/NO397981/C/NO. 1-156",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "1700",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2295.00",
+            "raw": {
+              "value": "2295.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2388.50",
+            "raw": {
+              "value": "2388.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 156,
+        "netWeight": {
+          "kg": "3407.00",
+          "raw": {
+            "value": "3407.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3780.40",
+          "raw": {
+            "value": "3780.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "9.63"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPNSA458037",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "557775002",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "033N",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGXU1727298",
+          "seal": "AG5801417",
+          "type": "20GP",
+          "packages": 156,
+          "grossWeight": {
+            "kg": "3780.40",
+            "raw": {
+              "value": "3780.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "9.63"
+        }
+      ],
+      "totalPackages": 156,
+      "totalGrossWeight": {
+        "kg": "3780.40",
+        "raw": {
+          "value": "3780.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/NO397981/C/NO. 1-156",
+      "cargoDescription": "SAID TO CONTAIN 156 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-09-20",
+      "shippedOnBoardDate": "2026-09-20",
+      "references": [
+        "INV-2026-4337",
+        "NO397981"
+      ]
+    }
+  }
+}

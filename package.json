@@ -1,0 +1,33 @@
+{
+  "name": "doccheck",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Agent that cross-checks freight documents (commercial invoice, packing list, bill of lading, ISF) before customs entry in Canada and the US.",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/synth -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/agent && npm run build -w @doccheck/api -w @doccheck/web",
+    "test": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations && npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev": "npm run start:dev -w @doccheck/api",
+    "smoke": "node scripts/smoke.mjs",
+    "synth": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/synth && node packages/synth/dist/cli.js",
+    "eval:extraction": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction && node packages/extraction/dist/eval-cli.js",
+    "eval:agent": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/agent && node packages/agent/dist/eval-cli.js",
+    "corpus:fetch": "node scripts/fetch-corpus.mjs",
+    "corpus:index": "npm run build -w @doccheck/regulations && node packages/regulations/dist/cli.js index",
+    "start": "node apps/api/dist/main.js",
+    "dev:web": "npm run dev -w @doccheck/web",
+    "metrics": "node scripts/metrics.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2",
+    "vitest": "^5.0.0",
+    "@types/node": "^22.0.0"
+  }
+}

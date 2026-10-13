@@ -1,0 +1,369 @@
+{
+  "id": "CA-061",
+  "seed": 1338770682,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": true
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-5094",
+      "invoiceDate": "2026-07-21",
+      "poNumber": "PO-81072",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-07-28",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Qingdao"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 21,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "13",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "71.71",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "932.23",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "HB-M12",
+          "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+          "quantity": {
+            "value": "4000",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "2.56",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10240.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "7318.15"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4423.00",
+        "raw": {
+          "value": "4423.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4188.50",
+        "raw": {
+          "value": "4188.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "11172.23",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "fr"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-5094",
+      "invoiceRef": "INV-2026-5094",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-13",
+          "count": 13,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/PO-81072/C/NO. 1-21",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "25",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "188.50",
+            "raw": {
+              "value": "188.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "247.00",
+            "raw": {
+              "value": "247.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "14-21",
+          "count": 8,
+          "type": "PLT",
+          "marks": "QUINCAILLERIE/PO-81072/C/NO. 1-21",
+          "contents": [
+            {
+              "sku": "HB-M12",
+              "description": "Hex bolt M12x60",
+              "quantity": {
+                "value": "4000",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4000.00",
+            "raw": {
+              "value": "4000.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4176.00",
+            "raw": {
+              "value": "4176.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            100,
+            60
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 21,
+        "netWeight": {
+          "kg": "4188.50",
+          "raw": {
+            "value": "4188.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4423.00",
+          "raw": {
+            "value": "4423.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "6.90"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXTAO8817897",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "740277264",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "047N",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGLU4841265",
+          "seal": "AG5509086",
+          "type": "20GP",
+          "packages": 21,
+          "grossWeight": {
+            "kg": "4423.00",
+            "raw": {
+              "value": "4423.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "6.90"
+        }
+      ],
+      "totalPackages": 21,
+      "totalGrossWeight": {
+        "kg": "4423.00",
+        "raw": {
+          "value": "4423.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/PO-81072/C/NO. 1-21",
+      "cargoDescription": "SAID TO CONTAIN 21 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-07-29",
+      "shippedOnBoardDate": "2026-07-29",
+      "references": [
+        "INV-2026-5094",
+        "PO-81072"
+      ]
+    }
+  }
+}

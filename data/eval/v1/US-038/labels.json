@@ -1,0 +1,15 @@
+{
+  "id": "US-038",
+  "errors": [
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "USD",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 4260.00 USD on an invoice in EUR."
+    }
+  ]
+}

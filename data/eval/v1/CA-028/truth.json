@@ -1,0 +1,376 @@
+{
+  "id": "CA-028",
+  "seed": 1639371900,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5123",
+      "invoiceDate": "2026-02-11",
+      "poNumber": "NO311970",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-02-13",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Mundra",
+          "unLocode": "INMUN",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Montreal"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "CAD",
+      "packageCount": 295,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "28000",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.07",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "29960.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "3100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "14.71",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "45601.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "7265.00",
+        "raw": {
+          "value": "7265.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7561.50",
+        "raw": {
+          "value": "7561.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "75561.00",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "824.00",
+          "currency": "INR"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5123",
+      "invoiceRef": "CI/26/5123",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-140",
+          "count": 140,
+          "type": "CTN",
+          "marks": "NORTHERN/NO311970/C/NO. 1-295",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "28000",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3080.00",
+            "raw": {
+              "value": "3080.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3206.00",
+            "raw": {
+              "value": "3206.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "141-295",
+          "count": 155,
+          "type": "CTN",
+          "marks": "NORTHERN/NO311970/C/NO. 1-295",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "3100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4185.00",
+            "raw": {
+              "value": "4185.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4355.50",
+            "raw": {
+              "value": "4355.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 295,
+        "netWeight": {
+          "kg": "7265.00",
+          "raw": {
+            "value": "7265.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "7561.50",
+          "raw": {
+            "value": "7561.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "11.52"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLMUN4271865",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "428382911",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "055N",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Mundra",
+        "unLocode": "INMUN",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCRU4690782",
+          "seal": "PC7061416",
+          "type": "20GP",
+          "packages": 295,
+          "grossWeight": {
+            "kg": "7561.50",
+            "raw": {
+              "value": "7561.50",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "11.52"
+        }
+      ],
+      "totalPackages": 295,
+      "totalGrossWeight": {
+        "kg": "7561.50",
+        "raw": {
+          "value": "7561.50",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/NO311970/C/NO. 1-295",
+      "cargoDescription": "SAID TO CONTAIN 295 CTNS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Mundra",
+      "dateOfIssue": "2026-02-15",
+      "shippedOnBoardDate": "2026-02-15",
+      "references": [
+        "CI/26/5123",
+        "NO311970"
+      ]
+    }
+  }
+}

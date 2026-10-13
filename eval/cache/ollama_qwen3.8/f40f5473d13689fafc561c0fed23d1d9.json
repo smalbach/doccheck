@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 533,
+    "outputTokens": 595
+  },
+  "output": {
+    "packingListNumber": "PL-BRI2607699",
+    "invoiceRef": "BRI2607699",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/PO-61227/C/NO. 1-183",
+    "packages": [
+      {
+        "range": "1-183",
+        "count": "183 CTN",
+        "packageType": "CTN",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pcs",
+        "quantity": "4,392 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,723.04",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,887.74",
+          "unit": "KG"
+        },
+        "dimensionsCm": "52 × 38 × 30"
+      }
+    ],
+    "totalPackages": "183",
+    "totalNetWeight": {
+      "value": "2,723.04",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,887.74",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "10.85"
+  }
+}

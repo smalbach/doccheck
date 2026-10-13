@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: doccheck
+          POSTGRES_PASSWORD: doccheck
+          POSTGRES_DB: doccheck
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U doccheck" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://doccheck:doccheck@localhost:5432/doccheck
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+      - run: npm run smoke
+      - run: npm run test:e2e -w @doccheck/api
+      # Phase 2+: run the evaluation set and publish the metrics diff on the PR.
+      # - run: npm run eval

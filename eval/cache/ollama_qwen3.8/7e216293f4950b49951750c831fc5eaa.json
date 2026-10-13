@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 511,
+    "outputTokens": 550
+  },
+  "output": {
+    "packingListNumber": "PL/26/6642",
+    "invoiceRef": "CI/26/6642",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PR396723/C/NO. 1-54",
+    "packages": [
+      {
+        "range": "1-54",
+        "count": "54 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "54 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "783.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,026.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      }
+    ],
+    "totalPackages": "54",
+    "totalNetWeight": {
+      "value": "783.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,026.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "4.75"
+  }
+}

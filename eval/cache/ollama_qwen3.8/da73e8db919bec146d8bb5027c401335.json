@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 724,
+    "outputTokens": 876
+  },
+  "output": {
+    "blNumber": "KEYSTAO173472",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "174883583",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "083E",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU9830622",
+        "seal": "PC5350328",
+        "type": "20GP",
+        "packages": "9",
+        "grossWeight": {
+          "value": "4,698.00",
+          "unit": "KG"
+        },
+        "volumeM3": "6.48"
+      }
+    ],
+    "totalPackages": "9",
+    "totalGrossWeight": {
+      "value": "4,698.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-77294/C/NO. 1-9",
+    "cargoDescription": "SAID TO CONTAIN 9 PLTS HEX BOLT M12X60",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "Ref: QIN2603195 / PO-77294"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "2026-03-16",
+    "shippedOnBoardDate": "2026-03-16"
+  }
+}

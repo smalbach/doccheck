@@ -1,0 +1,27 @@
+{
+  "id": "CA-067",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 180,
+      "after": 182,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 182 packages instead of 180."
+    },
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "3900 North Fraser Way",
+      "after": "3908 North Fraser Way",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    }
+  ]
+}

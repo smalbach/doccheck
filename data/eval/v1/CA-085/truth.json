@@ -1,0 +1,318 @@
+{
+  "id": "CA-085",
+  "seed": 744861887,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-4523",
+      "invoiceDate": "2026-01-27",
+      "poNumber": "NO553282",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-02-07",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cartagena",
+          "unLocode": "COCTG",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Cartagena"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 110,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "6600",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.91",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "39006.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6688.00",
+        "raw": {
+          "value": "6688.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "6600.00",
+        "raw": {
+          "value": "6600.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "39006.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "2423.00",
+          "currency": "CAD"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-4523",
+      "invoiceRef": "INV-2026-4523",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-110",
+          "count": 110,
+          "type": "BAG",
+          "marks": "NORTHERN/NO553282/C/NO. 1-110",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "6600",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "6600.00",
+            "raw": {
+              "value": "6600.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "6688.00",
+            "raw": {
+              "value": "6688.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 110,
+        "netWeight": {
+          "kg": "6600.00",
+          "raw": {
+            "value": "6600.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6688.00",
+          "raw": {
+            "value": "6688.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "15.68"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVCTG653326",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "304951825",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "047E",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Cartagena",
+        "unLocode": "COCTG",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU6496205",
+          "seal": "MD4270924",
+          "type": "20GP",
+          "packages": 110,
+          "grossWeight": {
+            "kg": "6688.00",
+            "raw": {
+              "value": "6688.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "15.68"
+        }
+      ],
+      "totalPackages": 110,
+      "totalGrossWeight": {
+        "kg": "6688.00",
+        "raw": {
+          "value": "6688.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/NO553282/C/NO. 1-110",
+      "cargoDescription": "SAID TO CONTAIN 110 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cartagena",
+      "dateOfIssue": "2026-02-08",
+      "shippedOnBoardDate": "2026-02-08",
+      "references": [
+        "INV-2026-4523",
+        "NO553282"
+      ]
+    }
+  }
+}

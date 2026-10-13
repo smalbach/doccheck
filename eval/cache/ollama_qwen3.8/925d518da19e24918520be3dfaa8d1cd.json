@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v2",
+  "usage": {
+    "inputTokens": 704,
+    "outputTokens": 902
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0887",
+    "invoiceDate": "14-MAR-2026",
+    "poNumber": "PO-55859",
+    "seller": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026",
+        "IN"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6",
+        "CA"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6",
+        "CA"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "22-MAR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "NHAVA SHEVA",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "MONTREAL",
+    "paymentTerms": "NET 60",
+    "currency": "CAD",
+    "packageCount": null,
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "60",
+        "unit": "PCS",
+        "unitPrice": "87.12",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "5227.20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8413.70"
+      }
+    ],
+    "grossWeight": {
+      "value": "1140.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "870.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "5227.20",
+    "invoiceTotalCurrency": "CAD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "2079.00",
+        "currency": "INR"
+      }
+    ]
+  }
+}

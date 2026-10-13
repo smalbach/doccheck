@@ -1,0 +1,369 @@
+{
+  "id": "CA-074",
+  "seed": 798456737,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-7469",
+      "invoiceDate": "2026-05-02",
+      "poNumber": "PR936301",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-05-05",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Qingdao"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "CAD",
+      "packageCount": 106,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "19600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.39",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "27244.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "HB-M12",
+          "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+          "quantity": {
+            "value": "4000",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "2.02",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "8080.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "7318.15"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6156.00",
+        "raw": {
+          "value": "6156.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "6420.20",
+        "raw": {
+          "value": "6420.20",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "35324.00",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-7469",
+      "invoiceRef": "INV-2026-7469",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-98",
+          "count": 98,
+          "type": "CTN",
+          "marks": "PRAIRIE/PR936301/C/NO. 1-106",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "19600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2156.00",
+            "raw": {
+              "value": "2156.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2244.20",
+            "raw": {
+              "value": "2244.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "99-106",
+          "count": 8,
+          "type": "PLT",
+          "marks": "PRAIRIE/PR936301/C/NO. 1-106",
+          "contents": [
+            {
+              "sku": "HB-M12",
+              "description": "Hex bolt M12x60",
+              "quantity": {
+                "value": "4000",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4000.00",
+            "raw": {
+              "value": "4000.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4176.00",
+            "raw": {
+              "value": "4176.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            100,
+            60
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 106,
+        "netWeight": {
+          "kg": "6156.00",
+          "raw": {
+            "value": "6156.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6420.20",
+          "raw": {
+            "value": "6420.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "8.70"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVTAO616378",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "113141146",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "notifyParty": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "001E",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Winnipeg",
+        "unLocode": "CAWNP",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGXU8949424",
+          "seal": "AG4191302",
+          "type": "20GP",
+          "packages": 106,
+          "grossWeight": {
+            "kg": "6420.20",
+            "raw": {
+              "value": "6420.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "8.70"
+        }
+      ],
+      "totalPackages": 106,
+      "totalGrossWeight": {
+        "kg": "6741.21",
+        "raw": {
+          "value": "6741.21",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PRAIRIE/PR936301/C/NO. 1-106",
+      "cargoDescription": "SAID TO CONTAIN 106 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-05-08",
+      "shippedOnBoardDate": "2026-05-08",
+      "references": [
+        "INV-2026-7469",
+        "PR936301"
+      ]
+    }
+  }
+}

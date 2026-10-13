@@ -1,0 +1,84 @@
+{
+  "provider": "ollama:gemma4",
+  "promptVersion": "extract-v2",
+  "usage": {
+    "inputTokens": 713,
+    "outputTokens": 786
+  },
+  "output": {
+    "invoiceNumber": "NIN2601955",
+    "invoiceDate": "22-SEP-2026",
+    "poNumber": "PO-88984",
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "shipmentDate": "30-SEP-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "NINGBO",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "NINGBO",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "CAD",
+    "packageCount": "182 PKGS",
+    "lines": [
+      {
+        "lineNo": "EK-17",
+        "sku": "EK-17",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V HS 8516.71",
+        "quantity": "1456",
+        "unit": "PCS",
+        "unitPrice": "17.21",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "25057.76",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      }
+    ],
+    "grossWeight": {
+      "value": "1729.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1528.80",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "25057.76",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

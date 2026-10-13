@@ -1,0 +1,373 @@
+{
+  "id": "CA-068",
+  "seed": 2011327761,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/3119",
+      "invoiceDate": "2026-02-03",
+      "poNumber": "CO147714",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-02-15",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Nhava Sheva"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "CAD",
+      "packageCount": 95,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "42",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "92.85",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "3899.70",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "104",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.10",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "16744.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2259.20",
+        "raw": {
+          "value": "2259.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2013.00",
+        "raw": {
+          "value": "2013.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "20643.70",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/3119",
+      "invoiceRef": "CI/26/3119",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-42",
+          "count": 42,
+          "type": "CRT",
+          "marks": "COASTAL/CO147714/C/NO. 1-94",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "42",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "609.00",
+            "raw": {
+              "value": "609.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "798.00",
+            "raw": {
+              "value": "798.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "43-94",
+          "count": 52,
+          "type": "CTN",
+          "marks": "COASTAL/CO147714/C/NO. 1-94",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "1040",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1404.00",
+            "raw": {
+              "value": "1404.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1461.20",
+            "raw": {
+              "value": "1461.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 94,
+        "netWeight": {
+          "kg": "2013.00",
+          "raw": {
+            "value": "2013.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2259.20",
+          "raw": {
+            "value": "2259.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "6.15"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPNSA324729",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "704902111",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "086S",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU1321528",
+          "seal": "TW8369539",
+          "type": "20GP",
+          "packages": 94,
+          "grossWeight": {
+            "kg": "2259.20",
+            "raw": {
+              "value": "2259.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "6.15"
+        }
+      ],
+      "totalPackages": 94,
+      "totalGrossWeight": {
+        "kg": "2259.20",
+        "raw": {
+          "value": "2259.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/CO147714/C/NO. 1-94",
+      "cargoDescription": "SAID TO CONTAIN 94 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-02-15",
+      "shippedOnBoardDate": "2026-02-15",
+      "references": [
+        "CI/26/3119",
+        "CO147714"
+      ]
+    }
+  }
+}

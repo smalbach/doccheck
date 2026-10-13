@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 538,
+    "outputTokens": 592
+  },
+  "output": {
+    "packingListNumber": "PL/26/7198",
+    "invoiceRef": "CI/26/7198",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PO-20086/C/NO. 1-167",
+    "packages": [
+      {
+        "range": "1-167",
+        "count": "167 CTN",
+        "packageType": "TS-CTN-M",
+        "sku": null,
+        "description": "Men's cotton T-shirt",
+        "quantity": "16,700 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3,173.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,306.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      }
+    ],
+    "totalPackages": "167",
+    "totalNetWeight": {
+      "value": "3,173.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,306.60",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "14.03"
+  }
+}

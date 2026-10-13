@@ -1,0 +1,315 @@
+{
+  "id": "CA-031",
+  "seed": 1780327778,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CAF2608106",
+      "invoiceDate": "2026-04-24",
+      "poNumber": "PO-88198",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-04-26",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cartagena",
+          "unLocode": "COCTG",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Cartagena"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "CAD",
+      "packageCount": 296,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "17820",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.93",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "105672.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "18057.60",
+        "raw": {
+          "value": "18057.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "17820.00",
+        "raw": {
+          "value": "17820.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "105672.60",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-CAF2608106",
+      "invoiceRef": "CAF2608106",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-297",
+          "count": 297,
+          "type": "BAG",
+          "marks": "COASTAL/PO-88198/C/NO. 1-297",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "17820",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "17820.00",
+            "raw": {
+              "value": "17820.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "18057.60",
+            "raw": {
+              "value": "18057.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 297,
+        "netWeight": {
+          "kg": "17820.00",
+          "raw": {
+            "value": "17820.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "18057.60",
+          "raw": {
+            "value": "18057.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "42.32"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPCTG377876",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "141189062",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3918 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "023E",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Cartagena",
+        "unLocode": "COCTG",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU4708954",
+          "seal": "TW9715108",
+          "type": "40GP",
+          "packages": 297,
+          "grossWeight": {
+            "kg": "18057.60",
+            "raw": {
+              "value": "18057.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "42.32"
+        }
+      ],
+      "totalPackages": 297,
+      "totalGrossWeight": {
+        "kg": "15348.96",
+        "raw": {
+          "value": "15348.96",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/PO-88198/C/NO. 1-297",
+      "cargoDescription": "SAID TO CONTAIN 297 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cartagena",
+      "dateOfIssue": "2026-04-29",
+      "shippedOnBoardDate": "2026-04-29",
+      "references": [
+        "CAF2608106",
+        "PO-88198"
+      ]
+    }
+  }
+}

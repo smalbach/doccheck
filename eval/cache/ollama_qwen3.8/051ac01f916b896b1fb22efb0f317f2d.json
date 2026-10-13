@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 657,
+    "outputTokens": 920
+  },
+  "output": {
+    "packingListNumber": "PL/26/7898",
+    "invoiceRef": "CI/26/7898",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/CO463845/C/NO. 1-78",
+    "packages": [
+      {
+        "range": "1-14",
+        "count": "14 PLT",
+        "packageType": "PLT",
+        "sku": "HB-M12",
+        "description": "Hex bolt M12x60",
+        "quantity": "7,000 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "7,000.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "7,308.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 100 × 60"
+      },
+      {
+        "range": "15-63",
+        "count": "49 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "9,800 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,078.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,122.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      },
+      {
+        "range": "64-78",
+        "count": "15 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "15 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "217.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "285.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      }
+    ],
+    "totalPackages": "78",
+    "totalNetWeight": {
+      "value": "8,295.50",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "8,715.10",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "12.87"
+  }
+}

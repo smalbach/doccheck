@@ -1,0 +1,16 @@
+{
+  "name": "@doccheck/rules",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pure, deterministic validation rules. No NestJS, no I/O: documents in, findings out.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@doccheck/schemas": "0.1.0"
+  }
+}

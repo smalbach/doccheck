@@ -1,0 +1,38 @@
+{
+  "id": "CA-042",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 67,
+      "after": 57,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 57 packages instead of 67."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "TWEU9371927",
+      "after": "TWEU9371923",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: TWEU9371927 -> TWEU9371923."
+    },
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "4073.60",
+      "after": "4155.07",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.02 against the packing list."
+    }
+  ]
+}

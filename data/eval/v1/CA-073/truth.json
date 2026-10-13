@@ -1,0 +1,315 @@
+{
+  "id": "CA-073",
+  "seed": 502251858,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CAF2601390",
+      "invoiceDate": "2026-06-28",
+      "poNumber": "PO-2903",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-07-08",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Buenaventura",
+          "unLocode": "COBUN",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Buenaventura"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 261,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "15660",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.45",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "85347.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "15868.80",
+        "raw": {
+          "value": "15868.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "15660.00",
+        "raw": {
+          "value": "15660.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "85347.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-CAF2601390",
+      "invoiceRef": "CAF2601390",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-261",
+          "count": 261,
+          "type": "BAG",
+          "marks": "PRAIRIE/PO-2903/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "15655",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "15660.00",
+            "raw": {
+              "value": "15660.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "15868.80",
+            "raw": {
+              "value": "15868.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 261,
+        "netWeight": {
+          "kg": "15660.00",
+          "raw": {
+            "value": "15660.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "15868.80",
+          "raw": {
+            "value": "15868.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "37.19"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNBUN4671590",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "576805035",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "notifyParty": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "064E",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Buenaventura",
+        "unLocode": "COBUN",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Winnipeg",
+        "unLocode": "CAWNP",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU9300620",
+          "seal": "MD5907840",
+          "type": "40HC",
+          "packages": 261,
+          "grossWeight": {
+            "kg": "15868.80",
+            "raw": {
+              "value": "15868.80",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "37.19"
+        }
+      ],
+      "totalPackages": 261,
+      "totalGrossWeight": {
+        "kg": "15868.80",
+        "raw": {
+          "value": "15868.80",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PRAIRIE/PO-2903/C/NO. 1-261",
+      "cargoDescription": "SAID TO CONTAIN 261 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Buenaventura",
+      "dateOfIssue": "2026-07-08",
+      "shippedOnBoardDate": "2026-07-08",
+      "references": [
+        "CAF2601390",
+        "PO-2903"
+      ]
+    }
+  }
+}

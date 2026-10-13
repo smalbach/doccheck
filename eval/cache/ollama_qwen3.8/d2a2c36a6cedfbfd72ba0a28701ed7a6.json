@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 736,
+    "outputTokens": 902
+  },
+  "output": {
+    "blNumber": "COMPYTN649382",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "897136632",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "079N",
+    "placeOfReceipt": {
+      "name": "Shenzhen",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU6071902",
+        "seal": "PC6833799",
+        "type": "20GP",
+        "packages": "198",
+        "grossWeight": {
+          "value": "3,124.44",
+          "unit": "KG"
+        },
+        "volumeM3": "11.74"
+      }
+    ],
+    "totalPackages": "198",
+    "totalGrossWeight": {
+      "value": "3,124.44",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/PO-64686/C/NO. 1-198",
+    "cargoDescription": "SAID TO CONTAIN 198 CTNS JIGSAW PUZZLE 1000 PCS",
+    "freightTerms": "COLLECT",
+    "references": [
+      "INV-2026-7656",
+      "PO-64686"
+    ],
+    "placeOfIssue": "Yantian",
+    "dateOfIssue": "Jan 27, 2026",
+    "shippedOnBoardDate": "Jan 27, 2026"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 724,
+    "outputTokens": 922
+  },
+  "output": {
+    "blNumber": "SILVYTN198295",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "699022975",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "092W",
+    "placeOfReceipt": {
+      "name": "Shenzhen",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU5269229",
+        "seal": "MD1769720",
+        "type": "20GP",
+        "packages": "239",
+        "grossWeight": {
+          "value": "3,771.42",
+          "unit": "KG"
+        },
+        "volumeM3": "14.17"
+      }
+    ],
+    "totalPackages": "239",
+    "totalGrossWeight": {
+      "value": "3,771.42",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PO-37449/C/NO. 1-239",
+    "cargoDescription": "SAID TO CONTAIN 239 CTNS JIGSAW PUZZLE 1000 PCS",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/8989",
+      "PO-37449"
+    ],
+    "placeOfIssue": "Yantian",
+    "dateOfIssue": "2026-02-18",
+    "shippedOnBoardDate": "2026-02-18"
+  }
+}

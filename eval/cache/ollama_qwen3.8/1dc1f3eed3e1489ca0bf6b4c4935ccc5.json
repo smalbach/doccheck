@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 764,
+    "outputTokens": 942
+  },
+  "output": {
+    "blNumber": "KEYSSPE612953",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "375040849",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "017W",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGLU7275829",
+        "seal": "AG6249777",
+        "type": "20GP",
+        "packages": "200",
+        "grossWeight": {
+          "value": "16,545.50",
+          "unit": "KG"
+        },
+        "volumeM3": "20.73"
+      }
+    ],
+    "totalPackages": "200",
+    "totalGrossWeight": {
+      "value": "16,545.50",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/PO-46651/C/NO. 1-200",
+    "cargoDescription": "SAID TO CONTAIN 200 PKGS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CER2608895",
+      "PO-46651"
+    ],
+    "placeOfIssue": "La Spezia",
+    "dateOfIssue": "2026-10-01",
+    "shippedOnBoardDate": "2026-10-01"
+  }
+}

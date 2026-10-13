@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 556,
+    "outputTokens": 570
+  },
+  "output": {
+    "packingListNumber": "PL-2026-6880",
+    "invoiceRef": "INV-2026-6880",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "marks": "BLUEBONNET/BL821850/C/NO. 1-20",
+    "packages": [
+      {
+        "range": "1-20",
+        "count": "20 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "PLUSH TEDDY BEAR 30 CM",
+        "quantity": "950 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "180.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "204.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "20",
+    "totalNetWeight": {
+      "value": "180.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "204.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "1.92"
+  }
+}

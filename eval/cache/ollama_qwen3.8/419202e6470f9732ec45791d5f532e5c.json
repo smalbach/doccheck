@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 617,
+    "outputTokens": 751
+  },
+  "output": {
+    "packingListNumber": "PL/26/6870",
+    "invoiceRef": "CI/26/6870",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR",
+        "WINNIPEG MB R3P 1A2"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PR437027/C/NO. 1-137",
+    "packages": [
+      {
+        "range": "1-48",
+        "count": "48 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "PLUSH TEDDY BEAR 30 CM",
+        "quantity": "2400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "432.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "489.60",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "49-137",
+        "count": "89 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "JIGSAW PUZZLE 1000 PCS",
+        "quantity": "2136 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1324.32",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1404.42",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "137",
+    "totalNetWeight": {
+      "value": "1756.32",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "1894.02",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "9.88"
+  }
+}

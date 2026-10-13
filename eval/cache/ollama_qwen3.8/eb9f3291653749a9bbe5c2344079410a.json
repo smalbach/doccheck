@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 530,
+    "outputTokens": 594
+  },
+  "output": {
+    "packingListNumber": "PL/26/8989",
+    "invoiceRef": "CI/26/8989",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PO-37449/C/NO. 1-239",
+    "packages": [
+      {
+        "range": "1-239",
+        "count": "239 CTN",
+        "packageType": "CTN",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pcs",
+        "quantity": "5,736 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3,556.32",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,771.42",
+          "unit": "KG"
+        },
+        "dimensionsCm": "52 × 38 × 30"
+      }
+    ],
+    "totalPackages": "239",
+    "totalNetWeight": {
+      "value": "3,556.32",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,771.42",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "14.17"
+  }
+}

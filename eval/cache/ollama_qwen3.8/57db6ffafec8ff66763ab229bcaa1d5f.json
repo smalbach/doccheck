@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 578,
+    "outputTokens": 559
+  },
+  "output": {
+    "packingListNumber": "PL/26/7845",
+    "invoiceRef": "CI/26/7845",
+    "seller": {
+      "name": "CAFE ALTO HUILA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40"
+      ],
+      "city": "NEIVA HUILA",
+      "region": null,
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/PO-92244/C/NO. 1-244",
+    "packages": [
+      {
+        "range": "1-244",
+        "count": "244",
+        "packageType": "BAG",
+        "sku": null,
+        "description": "GREEN COFFEE ARABICA",
+        "quantity": "14640 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "14640.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "14835.20",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "244",
+    "totalNetWeight": {
+      "value": "14640.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "14835.20",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "34.77"
+  }
+}

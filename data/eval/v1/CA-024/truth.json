@@ -1,0 +1,429 @@
+{
+  "id": "CA-024",
+  "seed": 403286558,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "QIN2604613",
+      "invoiceDate": "2026-09-10",
+      "poNumber": "PO-15976",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-09-21",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Qingdao"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "CAD",
+      "packageCount": 73,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "HB-M12",
+          "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+          "quantity": {
+            "value": "4000",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "1.93",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "7720.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "7318.15"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "37",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.16",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "3002.92",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 3,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "5600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.14",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "6384.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8482.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "5520.20",
+        "raw": {
+          "value": "5520.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5152.50",
+        "raw": {
+          "value": "5152.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "17106.92",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "4129.00",
+          "currency": "USD"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-QIN2604613",
+      "invoiceRef": "QIN2604613",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-8",
+          "count": 8,
+          "type": "PLT",
+          "marks": "NORTHERN/PO-15976/C/NO. 1-73",
+          "contents": [
+            {
+              "sku": "HB-M12",
+              "description": "Hex bolt M12x60",
+              "quantity": {
+                "value": "4000",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4000.00",
+            "raw": {
+              "value": "4000.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4176.00",
+            "raw": {
+              "value": "4176.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            100,
+            60
+          ]
+        },
+        {
+          "range": "9-45",
+          "count": 37,
+          "type": "CRT",
+          "marks": "NORTHERN/PO-15976/C/NO. 1-73",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "37",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "536.50",
+            "raw": {
+              "value": "536.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "703.00",
+            "raw": {
+              "value": "703.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "46-73",
+          "count": 28,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-15976/C/NO. 1-73",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "5600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "616.00",
+            "raw": {
+              "value": "616.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "641.20",
+            "raw": {
+              "value": "641.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 73,
+        "netWeight": {
+          "kg": "5152.50",
+          "raw": {
+            "value": "5152.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5520.20",
+          "raw": {
+            "value": "5520.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "9.86"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPTAO120420",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "573138362",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "012N",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Prince Rupert",
+        "unLocode": "CAPRR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU3496660",
+          "seal": "TW6893413",
+          "type": "20GP",
+          "packages": 73,
+          "grossWeight": {
+            "kg": "5520.20",
+            "raw": {
+              "value": "5520.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "9.86"
+        }
+      ],
+      "totalPackages": 73,
+      "totalGrossWeight": {
+        "kg": "5520.20",
+        "raw": {
+          "value": "5520.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/PO-15976/C/NO. 1-73",
+      "cargoDescription": "SAID TO CONTAIN 73 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-09-23",
+      "shippedOnBoardDate": "2026-09-23",
+      "references": [
+        "QIN2604613",
+        "PO-15976"
+      ]
+    }
+  }
+}

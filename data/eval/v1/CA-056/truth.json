@@ -1,0 +1,424 @@
+{
+  "id": "CA-056",
+  "seed": 1186603972,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5168",
+      "invoiceDate": "2026-06-29",
+      "poNumber": "NO380901",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-07-01",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Vancouver"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 477,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "52320",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "3.04",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "159052.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "3600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.90",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10440.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 3,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "4460",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "20.44",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "91162.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "8399.00",
+        "raw": {
+          "value": "8399.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "8803.40",
+        "raw": {
+          "value": "8803.40",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "260655.20",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5168",
+      "invoiceRef": "CI/26/5168",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-218",
+          "count": 218,
+          "type": "CTN",
+          "marks": "NORTHERN/NO380901/C/NO. 1-477",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "52320",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3924.00",
+            "raw": {
+              "value": "3924.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4076.60",
+            "raw": {
+              "value": "4076.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        },
+        {
+          "range": "219-254",
+          "count": 36,
+          "type": "CTN",
+          "marks": "NORTHERN/NO380901/C/NO. 1-477",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "3600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "684.00",
+            "raw": {
+              "value": "684.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "712.80",
+            "raw": {
+              "value": "712.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "255-477",
+          "count": 223,
+          "type": "CTN",
+          "marks": "NORTHERN/NO380901/C/NO. 1-477",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "4460",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3791.00",
+            "raw": {
+              "value": "3791.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4014.00",
+            "raw": {
+              "value": "4014.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 477,
+        "netWeight": {
+          "kg": "8399.00",
+          "raw": {
+            "value": "8399.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "8803.40",
+          "raw": {
+            "value": "8803.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "47.75"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPCMT388466",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "185210746",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "029S",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCLU8518264",
+          "seal": "PC7755740",
+          "type": "40HC",
+          "packages": 477,
+          "grossWeight": {
+            "kg": "8803.40",
+            "raw": {
+              "value": "8803.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "47.75"
+        }
+      ],
+      "totalPackages": 477,
+      "totalGrossWeight": {
+        "kg": "8803.40",
+        "raw": {
+          "value": "8803.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/NO380901/C/NO. 1-477",
+      "cargoDescription": "SAID TO CONTAIN 477 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-07-04",
+      "shippedOnBoardDate": "2026-07-04",
+      "references": [
+        "CI/26/5168",
+        "NO380901"
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "US-099",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "3806.00",
+      "after": "3882.12",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.02 against the packing list."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CNY",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 2151.00 CNY on an invoice in USD."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "AGLU2838112",
+      "after": "AGLU2838115",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: AGLU2838112 -> AGLU2838115."
+    }
+  ]
+}

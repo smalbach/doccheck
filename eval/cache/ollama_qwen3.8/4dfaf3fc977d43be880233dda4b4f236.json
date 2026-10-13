@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 753,
+    "outputTokens": 918
+  },
+  "output": {
+    "blNumber": "COMPCTG377876",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines",
+    "bookingNumber": "141189062",
+    "carrierName": "Tidewater Express Lines",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3918 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "023E",
+    "placeOfReceipt": {
+      "name": "Neiva, CO",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena, CO",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU4708954",
+        "seal": "TW9715108",
+        "type": "40GP",
+        "packages": "297",
+        "grossWeight": {
+          "value": "18,057.60",
+          "unit": "KG"
+        },
+        "volumeM3": "42.32"
+      }
+    ],
+    "totalPackages": "297",
+    "totalGrossWeight": {
+      "value": "15,348.96",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/PO-88198/C/NO. 1-297",
+    "cargoDescription": "SAID TO CONTAIN 297 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CAF2608106",
+      "PO-88198"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "Apr 29, 2026",
+    "shippedOnBoardDate": "Apr 29, 2026"
+  }
+}
