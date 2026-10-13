@@ -145,6 +145,8 @@ After the rules run, `/validate` does a second pass:
 | GET | `/rules?destination=CA` | Active rules for a destination |
 | POST | `/shipments` | Create a shipment: `{ reference?, destination: "CA" \| "US", transportMode? }` |
 | GET | `/shipments/:id` | Shipment and status |
+| DELETE | `/shipments/:id` | Delete the shipment with its documents, PDFs, extractions, ISF and findings (409 while extracting) |
+| GET | `/results` | Summary of the evaluation reports in `eval/reports`, for the web app's results page |
 | PUT / GET / DELETE | `/shipments/:id/isf` | The shipment's ISF (10+2) as JSON, used by X11 on US shipments. GET says where it came from (`source`: `upload`, `sample` or `pdf` with `documentId`) |
 | POST | `/shipments/:id/documents` | Upload PDFs (multipart field `files`): invoice, packing list, bill of lading or ISF filing confirmation (stored as the shipment's ISF). Returns 202 with the documents `QUEUED`; `?wait=true` waits for extraction |
 | POST | `/shipments/:id/documents/:documentId/reextract` | Extract again as a given type `{ type }` (including `ISF`) when classification got it wrong |

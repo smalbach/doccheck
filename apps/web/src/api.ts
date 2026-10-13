@@ -85,6 +85,10 @@ export const api = {
   isf: (id: string) => request<IsfFiling>(`/shipments/${id}/isf`),
   saveIsf: (id: string, isf: unknown) => request<IsfFiling>(`/shipments/${id}/isf`, { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify(isf) }),
   deleteIsf: (id: string) => fetch(`/shipments/${id}/isf`, { method: 'DELETE' }),
+  remove: async (id: string) => {
+    const res = await fetch(`/shipments/${id}`, { method: 'DELETE' });
+    if (!res.ok) throw new ApiError(res.status, (await res.json().catch(() => ({}))).message ?? `${res.status}`);
+  },
   samples: () => request<Sample[]>('/demo/samples'),
   loadSample: (sampleId: string) => request<Shipment>(`/demo/samples/${sampleId}`, { method: 'POST' }),
   rules: (destination: 'CA' | 'US') => request<RuleDefinition[]>(`/rules?destination=${destination}`),

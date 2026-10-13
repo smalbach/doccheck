@@ -122,6 +122,21 @@ describe('shipments', () => {
     assert.equal((await call('GET', `/shipments/${s.id}`)).body.status, 'DONE');
   });
 
+  it('deletes a shipment with its validation and findings', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    await call('POST', `/shipments/${s.id}/validate?agent=false`, { invoice: sampleInvoice, packingList: samplePackingList, billOfLading: sampleBillOfLading });
+    assert.equal((await call('DELETE', `/shipments/${s.id}`)).status, 204);
+    assert.equal((await call('GET', `/shipments/${s.id}`)).status, 404);
+    assert.equal((await call('GET', `/shipments/${s.id}/findings`)).status, 404);
+    assert.equal((await call('DELETE', `/shipments/${s.id}`)).status, 404);
+  });
+
+  it('serves evaluation results', async () => {
+    const { status, body } = await call('GET', '/results');
+    assert.equal(status, 200);
+    assert.ok(Array.isArray(body.extraction));
+  });
+
   it('requires a destination before validating', async () => {
     const { body: s } = await call('POST', '/shipments', {});
     assert.equal((await call('POST', `/shipments/${s.id}/validate`)).status, 400);

@@ -22,6 +22,12 @@ export class ShipmentsController {
     return this.shipments.list();
   }
 
+  @Delete(':id')
+  @HttpCode(204)
+  async remove(@Param('id') id: string) {
+    await this.shipments.remove(id);
+  }
+
   @Get(':id')
   get(@Param('id') id: string) {
     return this.shipments.get(id);

@@ -59,6 +59,16 @@ export class ShipmentsService {
     return this.repo.listShipments();
   }
 
+  /** Deletes a shipment with everything attached to it, PDFs included. Refused while documents are extracting. */
+  async remove(id: string): Promise<void> {
+    if (!UUID.test(id)) throw new NotFoundException(`Shipment ${id} not found`);
+    if ((await this.repo.pendingDocuments(id)) > 0) throw new ConflictException('Documents are still being extracted; delete the shipment when they are done');
+    const keys = await this.repo.deleteShipment(id);
+    if (!keys) throw new NotFoundException(`Shipment ${id} not found`);
+    // Database first: a leftover file is harmless, a document row pointing at a deleted file is not.
+    await Promise.all(keys.map((k) => this.storage.delete(k).catch(() => undefined)));
+  }
+
   async get(id: string): Promise<Shipment> {
     const shipment = UUID.test(id) ? await this.repo.findShipment(id) : null;
     if (!shipment) throw new NotFoundException(`Shipment ${id} not found`);

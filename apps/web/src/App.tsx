@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { api, type Sample, type ShipmentSummary } from './api';
+import { ResultsPage } from './ResultsPage';
 import { ShipmentPage } from './ShipmentPage';
 
 /** Hash routes: "#/" home, "#/s/<id>" a shipment. No router dependency needed for two screens. */
@@ -11,7 +12,8 @@ function useRoute() {
     return () => window.removeEventListener('hashchange', on);
   }, []);
   const m = hash.match(/^#\/s\/([0-9a-f-]{36})/i);
-  return m ? { name: 'shipment' as const, id: m[1] } : { name: 'home' as const };
+  if (m) return { name: 'shipment' as const, id: m[1] };
+  return hash.startsWith('#/results') ? { name: 'results' as const } : { name: 'home' as const };
 }
 
 export const go = (path: string) => {
@@ -27,8 +29,12 @@ export function App() {
           <span className="logo" aria-hidden>✓</span> DocCheck
         </a>
         <span className="tagline">Freight documents checked before they reach CBSA or CBP</span>
+        <nav className="nav">
+          <a href="#/" className={route.name === 'results' ? '' : 'on'}>Shipments</a>
+          <a href="#/results" className={route.name === 'results' ? 'on' : ''}>Results</a>
+        </nav>
       </header>
-      <main>{route.name === 'shipment' ? <ShipmentPage id={route.id} /> : <Home />}</main>
+      <main>{route.name === 'shipment' ? <ShipmentPage id={route.id} /> : route.name === 'results' ? <ResultsPage /> : <Home />}</main>
       <footer className="foot">Portfolio project. Not customs advice; nothing is filed with CBSA or CBP. Models run locally.</footer>
     </>
   );

@@ -1,6 +1,6 @@
-import { CreateBucketCommand, GetObjectCommand, HeadBucketCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { CreateBucketCommand, DeleteObjectCommand, GetObjectCommand, HeadBucketCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { Global, Logger, Module } from '@nestjs/common';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 
 /** Where uploaded PDFs live. Keys look like "<shipment id>/<document id>.pdf". */
@@ -8,6 +8,8 @@ export interface ObjectStorage {
   readonly kind: string;
   put(key: string, body: Buffer, contentType: string): Promise<void>;
   get(key: string): Promise<Buffer>;
+  /** Removes the object; a missing key is not an error. */
+  delete(key: string): Promise<void>;
 }
 
 export const STORAGE = Symbol('STORAGE');
@@ -26,6 +28,10 @@ export class DiskStorage implements ObjectStorage {
 
   get(key: string) {
     return readFile(join(this.root, key));
+  }
+
+  async delete(key: string) {
+    await rm(join(this.root, key), { force: true });
   }
 }
 
@@ -59,6 +65,10 @@ export class S3Storage implements ObjectStorage {
   async put(key: string, body: Buffer, contentType: string) {
     await this.ensureBucket();
     await this.client.send(new PutObjectCommand({ Bucket: this.bucket, Key: key, Body: body, ContentType: contentType }));
+  }
+
+  async delete(key: string) {
+    await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: key }));
   }
 
   async get(key: string) {

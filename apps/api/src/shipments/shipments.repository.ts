@@ -147,6 +147,23 @@ export class ShipmentsRepository {
     };
   }
 
+  /** Deletes the shipment and, by cascade, its documents, extractions, ISF, validations and findings. Returns the storage keys to remove. */
+  async deleteShipment(id: string): Promise<string[] | null> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('begin');
+      const docs = await client.query<{ storage_key: string }>('select storage_key from documents where shipment_id = $1', [id]);
+      const res = await client.query('delete from shipments where id = $1', [id]);
+      await client.query('commit');
+      return res.rowCount ? docs.rows.map((r) => r.storage_key) : null;
+    } catch (err) {
+      await client.query('rollback');
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
+
   async deleteIsf(shipmentId: string): Promise<void> {
     await this.pool.query('delete from isf_filings where shipment_id = $1', [shipmentId]);
   }

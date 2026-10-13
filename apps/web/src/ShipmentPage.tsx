@@ -96,6 +96,22 @@ export function ShipmentPage({ id }: { id: string }) {
             <span className={`status ${shipment.status}`}>{shipment.status.replace('_', ' ')}</span>
           </p>
         </div>
+        <button
+          className="danger"
+          disabled={extracting}
+          title={extracting ? 'Wait until extraction finishes' : 'Delete the shipment, its documents and findings'}
+          onClick={async () => {
+            if (!window.confirm('Delete this shipment, its PDFs, extractions and findings? This cannot be undone.')) return;
+            try {
+              await api.remove(id);
+              window.location.hash = '/';
+            } catch (e) {
+              setError((e as Error).message);
+            }
+          }}
+        >
+          Delete
+        </button>
       </div>
       {error && <p className="error banner">{error}</p>}
 
