@@ -48,6 +48,19 @@ export function citationQuery(finding: Finding, destination: Destination): strin
 }
 
 /**
+ * Documents each finding may cite. The invoice rules are about what the invoice must show, which is
+ * defined by D1-4-1 (CI1 fields) and 19 CFR 141.86; X11 compares the ISF, defined by 19 CFR 149.3.
+ * The rest of the corpus (marking, proof of origin, valuation) is searchable but would otherwise
+ * outrank the field definition for words like "country of origin" or "price paid or payable".
+ */
+export const INVOICE_REQUIREMENTS = { CBSA: ['cbsa-d1-4-1'], CBP: ['cfr-19-141-86'] } as const;
+
+export function citationScope(finding: Finding, destination: Destination): string[] {
+  if (finding.ruleId === 'X11') return ['cfr-19-149'];
+  return [...INVOICE_REQUIREMENTS[PROFILES[destination].authority]];
+}
+
+/**
  * Attaches the best matching passage of the destination's regulations to each finding.
  * A passage is only used when both retrievers agree it is relevant (it ranks in the keyword top 5),
  * so an unrelated paragraph is never presented as the legal basis.
@@ -59,16 +72,18 @@ export async function attachRegulations(findings: Finding[], destination: Destin
     if (finding.regulation) continue;
     const query = citationQuery(finding, destination);
     if (!query) continue;
-    if (!cache.has(query)) {
+    const documents = citationScope(finding, destination);
+    const key = `${documents.join(',')}|${query}`;
+    if (!cache.has(key)) {
       // Among relevant passages, quote the one with the sentence closest to the query: a short chunk can
       // outrank the paragraph that actually defines the field.
-      const relevant = (await index.search(query, { authority, language: 'en', limit: 3 })).filter((h) => (h.ranks.keyword ?? 99) <= 5);
+      const relevant = (await index.search(query, { authority, documents, language: 'en', limit: 3 })).filter((h) => (h.ranks.keyword ?? 99) <= 5);
       const hit = relevant.reduce<(typeof relevant)[number] | undefined>(
         (best, h) => (!best || sentenceMatch(h.chunk.text, query) > sentenceMatch(best.chunk.text, query) ? h : best),
         undefined,
       );
       cache.set(
-        query,
+        key,
         hit
           ? {
               title: hit.chunk.section ? `${hit.chunk.title} — ${hit.chunk.section.split(' > ').pop()}` : hit.chunk.title,
@@ -79,7 +94,7 @@ export async function attachRegulations(findings: Finding[], destination: Destin
           : null,
       );
     }
-    const regulation = cache.get(query);
+    const regulation = cache.get(key);
     if (regulation) finding.regulation = regulation;
   }
   return findings;

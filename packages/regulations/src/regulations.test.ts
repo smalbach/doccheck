@@ -50,6 +50,15 @@ describe('search', () => {
     expect(await index.search('currency', { authority: 'CBP' })).toEqual([]);
   });
 
+  it('restricts the search to the given documents', async () => {
+    const other = parseDocument(DOC.replace('id: "test-doc"', 'id: "other-memo"').replace('Test memorandum', 'Other memorandum'));
+    const index = await RegulationIndex.build([parseDocument(DOC), other].flatMap((d) => chunkDocument(d, 120)), fake);
+    const hits = await index.search('currency of settlement', { documents: ['other'] });
+    expect(hits.length).toBeGreaterThan(0);
+    expect(hits.every((h) => h.chunk.documentId === 'other-memo')).toBe(true);
+    expect(await index.search('currency', { documents: ['missing'] })).toEqual([]);
+  });
+
   it('quotes whole sentences around the query terms', () => {
     const text = 'Intro sentence here. The country of origin must be shown for each item. Another unrelated sentence follows.';
     expect(excerpt(text, 'country of origin', 80)).toBe('The country of origin must be shown for each item.');

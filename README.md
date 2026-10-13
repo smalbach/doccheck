@@ -27,7 +27,7 @@ Deterministic rules do most of the work; the agent only decides cases where lite
 | `apps/api` | NestJS API; also serves the web app |
 | `apps/web` | Web app (Vite + React): shipments, PDF upload, findings with citations, PDF viewer with highlights |
 | `data/reference` | UN/LOCODE, ISO 3166, ISO 4217 tables (phase 2) |
-| `data/corpus` | CBSA D1-4-1 (en, fr), 19 CFR 141.86 and Part 149 as Markdown with URL and effective date, plus the embedding index |
+| `data/corpus` | CBSA memoranda (invoices D1-4-1, marking D11-3-1, proof of origin D11-4-2, valuation D13-4-3 and D13-4-7) and 19 CFR (141.83, 141.86, 141.89, Parts 134 and 149, Part 152 subpart E) as Markdown with URL and effective date, plus the embedding index |
 | `data/eval/v1` | Evaluation set: `truth.json` + `labels.json` per shipment (committed), PDFs (generated, git-ignored) |
 | `scripts/smoke.mjs` | End-to-end smoke test against the built API |
 

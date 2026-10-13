@@ -45,6 +45,8 @@ export interface SearchHit {
 
 export interface SearchOptions {
   authority?: 'CBSA' | 'CBP';
+  /** Only chunks of documents whose id starts with one of these prefixes ("cbsa-d1-4-1" matches both languages). */
+  documents?: string[];
   /** Preferred language; other languages are still returned when they rank higher. */
   language?: string;
   limit?: number;
@@ -116,7 +118,9 @@ export class RegulationIndex {
   }
 
   async search(query: string, opts: SearchOptions = {}): Promise<SearchHit[]> {
-    const candidates = this.chunks.map((c, i) => ({ c, i })).filter(({ c }) => !opts.authority || c.authority === opts.authority);
+    const candidates = this.chunks
+      .map((c, i) => ({ c, i }))
+      .filter(({ c }) => (!opts.authority || c.authority === opts.authority) && (!opts.documents || opts.documents.some((d) => c.documentId.startsWith(d))));
     if (candidates.length === 0) return [];
     const [qv] = await this.embedder.embed([query]);
     const qt = tokenize(query);
