@@ -1,0 +1,95 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 744,
+    "outputTokens": 856
+  },
+  "output": {
+    "blNumber": "KEYSCTG140478",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "459511452",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "034E",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Savannah",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Chicago",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU5687790",
+        "seal": "MD3023438",
+        "type": "20GP",
+        "packages": "117",
+        "grossWeight": {
+          "value": "7,113.60",
+          "unit": "KG"
+        },
+        "volumeM3": "16.67"
+      }
+    ],
+    "totalPackages": "117",
+    "totalGrossWeight": {
+      "value": "7,824.96",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "LAKESHORE/LA896632/C/NO. 1-117",
+    "cargoDescription": "SAID TO CONTAIN 117 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-7018",
+      "LA896632"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "Jul 22, 2026",
+    "shippedOnBoardDate": "Jul 22, 2026"
+  }
+}

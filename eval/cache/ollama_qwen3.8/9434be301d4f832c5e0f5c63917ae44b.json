@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 728,
+    "outputTokens": 927
+  },
+  "output": {
+    "invoiceNumber": "SAI2607606",
+    "invoiceDate": "2026-05-24",
+    "poNumber": "CO367969",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5Hé"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5Hé",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "2026-05-28",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Cai Mep",
+      "country": "VN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Cai Mep",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": null,
+        "description": "Wool blend socks, knitted, 3-pair pack",
+        "quantity": "53,280",
+        "unit": "PRS",
+        "unitPrice": null,
+        "unitPriceCurrency": null,
+        "lineTotal": "98,568.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6115.94"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Women's padded jacket, polyester shell woven",
+        "quantity": "4,540",
+        "unit": "PCS",
+        "unitPrice": null,
+        "unitPriceCurrency": null,
+        "lineTotal": "103,920.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6202.40"
+      }
+    ],
+    "totalPackages": "449",
+    "grossWeight": {
+      "value": "8,237.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "7,855.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "202,488.60",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

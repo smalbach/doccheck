@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 507,
+    "outputTokens": 561
+  },
+  "output": {
+    "packingListNumber": "PL-2026-0565",
+    "invoiceRef": "INV-2026-0565",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "marks": "PACIFIC/PA676138/C/NO. 1-9",
+    "packages": [
+      {
+        "range": "1-9",
+        "count": "9 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "9 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "130.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "171.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      }
+    ],
+    "totalPackages": "9",
+    "totalNetWeight": {
+      "value": "130.50",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "171.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "0.79"
+  }
+}

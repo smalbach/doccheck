@@ -1,0 +1,181 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1296,
+    "outputTokens": 1834
+  },
+  "output": {
+    "invoiceNumber": "CAF2609908",
+    "invoiceDate": "24 August 2026",
+    "poNumber": "PO-23575",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "30 August 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Cartagena",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CF-GRN-60-L1",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot A-463",
+        "quantity": "660",
+        "unit": "KG",
+        "unitPrice": "4.55",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,003.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "2",
+        "sku": "CF-GRN-60-L2",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot B-365",
+        "quantity": "300",
+        "unit": "KG",
+        "unitPrice": "4.55",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,365.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "3",
+        "sku": "CF-GRN-60-L3",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot C-955",
+        "quantity": "900",
+        "unit": "KG",
+        "unitPrice": "4.55",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,095.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "4",
+        "sku": "CF-GRN-60-L4",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot D-155",
+        "quantity": "1,020",
+        "unit": "KG",
+        "unitPrice": "4.55",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,641.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "5",
+        "sku": "CF-GRN-60-L5",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot E-227",
+        "quantity": "720",
+        "unit": "KG",
+        "unitPrice": "4.55",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,276.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "6",
+        "sku": "CF-GRN-60-L6",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot F-550",
+        "quantity": "780",
+        "unit": "KG",
+        "unitPrice": "4.55",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,549.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "7",
+        "sku": "CF-GRN-60-L7",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot G-669",
+        "quantity": "1,440",
+        "unit": "KG",
+        "unitPrice": "4.55",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,552.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "8",
+        "sku": "CF-GRN-60-L8",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot H-451",
+        "quantity": "900",
+        "unit": "KG",
+        "unitPrice": "4.55",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,095.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "112",
+    "grossWeight": {
+      "value": "6,809.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "6,720.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "30,576.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

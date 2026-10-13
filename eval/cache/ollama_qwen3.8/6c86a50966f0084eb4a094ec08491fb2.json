@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 791,
+    "outputTokens": 881
+  },
+  "output": {
+    "blNumber": "KEYSCLL695533",
+    "documentTitle": "BILL OF LADING FOR COMBINED TRANSPORT OR PORT TO PORT SHIPMENT",
+    "issuer": "Meridian Ocean Shipping (SCAC MRDN)",
+    "bookingNumber": "923621591",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "addressLines": [
+        "Av. Túpac Amaru 315",
+        "San Martín de Pangoa Junín"
+      ],
+      "city": "San Martín de Pangoa",
+      "region": "Junín",
+      "postalCode": null,
+      "country": "PE",
+      "taxId": "20123456789"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "010N",
+    "placeOfReceipt": {
+      "name": "San Martín de Pangoa",
+      "country": "PE"
+    },
+    "portOfLoading": {
+      "name": "Callao",
+      "country": "PECLL"
+    },
+    "portOfDischarge": {
+      "name": "Prince Rupert",
+      "country": "CAPRR"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CATOR"
+    },
+    "containers": [
+      {
+        "number": "MDOU1916564",
+        "seal": "MD9847059",
+        "type": "20GP",
+        "packages": "53",
+        "grossWeight": {
+          "value": "3,222.40",
+          "unit": "KG"
+        },
+        "volumeM3": "7.55"
+      }
+    ],
+    "totalPackages": "53",
+    "totalGrossWeight": {
+      "value": "3,222.40",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/NO844554/C/NO. 1-53",
+    "cargoDescription": "SAID TO CONTAIN 53 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "PREPAID",
+    "references": [
+      "COO2601551",
+      "NO844554"
+    ],
+    "placeOfIssue": "Callao",
+    "dateOfIssue": "7 April 2026",
+    "shippedOnBoardDate": "7 April 2026"
+  }
+}

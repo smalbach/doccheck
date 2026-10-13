@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 813,
+    "outputTokens": 899
+  },
+  "output": {
+    "blNumber": "PCCLYTN8440582",
+    "documentTitle": "BILL OF LADING FOR COMBINED TRANSPORT OR PORT TO PORT SHIPMENT",
+    "issuer": "Pacific Crest Container Line (SCAC PCCL)",
+    "bookingNumber": "736974996",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "notifyParty": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "046E",
+    "placeOfReceipt": {
+      "name": "Shenzhen",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Moncton",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU6185269",
+        "seal": "PC3349609",
+        "type": "20GP",
+        "packages": "166",
+        "grossWeight": {
+          "value": "2,619.48",
+          "unit": "KG"
+        },
+        "volumeM3": "9.84"
+      }
+    ],
+    "totalPackages": "166",
+    "totalGrossWeight": {
+      "value": "2,619.48",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "ÉPICERIE/PO-29545/C/NO. 1-166",
+    "cargoDescription": "SAID TO CONTAIN 166 CTNS JIGSAW PUZZLE 1000 PCS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "INV-2026-2730",
+      "PO-29545"
+    ],
+    "placeOfIssue": "Yantian",
+    "dateOfIssue": "8 March 2026",
+    "shippedOnBoardDate": "8 March 2026"
+  }
+}

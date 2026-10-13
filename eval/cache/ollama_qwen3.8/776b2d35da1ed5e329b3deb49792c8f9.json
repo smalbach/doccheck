@@ -1,0 +1,101 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 761,
+    "outputTokens": 965
+  },
+  "output": {
+    "blNumber": "AGLXBRV5068467",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "775312085",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Küchentechnik Müller & Söhne GmbH",
+      "addressLines": [
+        "Königstraße 48",
+        "Stuttgart, 70173",
+        "DE"
+      ],
+      "city": "Stuttgart",
+      "region": null,
+      "postalCode": "70173",
+      "country": "DE",
+      "taxId": "DE298765432"
+    },
+    "consignee": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain",
+        "Dieppe, NB, E1A 1N5",
+        "CA"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "notifyParty": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain",
+        "Dieppe, NB, E1A 1N5",
+        "CA"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "088N",
+    "placeOfReceipt": {
+      "name": "Stuttgart, DE",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Bremerhaven, DE",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Halifax, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Moncton, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGLU8867463",
+        "seal": "AG8004546",
+        "type": "40HC",
+        "packages": "274",
+        "grossWeight": {
+          "value": "2,791.10",
+          "unit": "KG"
+        },
+        "volumeM3": "29.94"
+      }
+    ],
+    "totalPackages": "274",
+    "totalGrossWeight": {
+      "value": "2,791.10",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+    "cargoDescription": "SAID TO CONTAIN 274 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-9489 / ÉP423950"
+    ],
+    "placeOfIssue": "Bremerhaven",
+    "dateOfIssue": "2026-09-11",
+    "shippedOnBoardDate": "2026-09-11"
+  }
+}

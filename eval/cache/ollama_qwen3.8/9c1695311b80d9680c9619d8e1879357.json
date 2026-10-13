@@ -1,0 +1,91 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 661,
+    "outputTokens": 808
+  },
+  "output": {
+    "invoiceNumber": "CI/26/8858",
+    "invoiceDate": null,
+    "poNumber": "BL609082",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd",
+        "Houston, TX, 77013"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "Sep 16, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "Nhava Sheva",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BB-6204",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "38,600",
+        "unit": "PCS",
+        "unitPrice": "0.98",
+        "unitPriceCurrency": null,
+        "lineTotal": "73,828.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      }
+    ],
+    "totalPackages": "191",
+    "grossWeight": {
+      "value": "4,419.70",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "4,246.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "37,828.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

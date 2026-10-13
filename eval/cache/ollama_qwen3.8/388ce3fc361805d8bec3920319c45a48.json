@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 737,
+    "outputTokens": 886
+  },
+  "output": {
+    "blNumber": "AGLXTAO2124485",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "897896312",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "084N",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Savannah",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Chicago",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU2838115",
+        "seal": "AG8322108",
+        "type": "20GP",
+        "packages": "15",
+        "grossWeight": {
+          "value": "3,806.00",
+          "unit": "KG"
+        },
+        "volumeM3": "5.74"
+      }
+    ],
+    "totalPackages": "15",
+    "totalGrossWeight": {
+      "value": "3,882.12",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "LAKESHORE/LA790382/C/NO. 1-15",
+    "cargoDescription": "SAID TO CONTAIN 15 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "CI/26/9119",
+      "LA790382"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "Mar 5, 2026",
+    "shippedOnBoardDate": "Mar 5, 2026"
+  }
+}

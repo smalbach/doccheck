@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 623,
+    "outputTokens": 775
+  },
+  "output": {
+    "invoiceNumber": "Cl/26/1944",
+    "invoiceDate": "2026-01-13",
+    "poNumber": "PO-55019",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores SAS.",
+      "addressLines": [
+        "Carrera $ # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 From St W, Suite 1400",
+        "Toronto,ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "NorthernLantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Bivd",
+        "Brampton,ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "2026-01-24",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Buenaventura",
+      "country": "CO"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Buenaventura",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "CAD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": null,
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+        "quantity": null,
+        "unit": null,
+        "unitPrice": null,
+        "unitPriceCurrency": null,
+        "lineTotal": "87,445.80",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": null,
+    "grossWeight": {
+      "value": "13,315.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "13,140.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "87,445.80",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

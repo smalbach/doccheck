@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 851,
+    "outputTokens": 1014
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-3187",
+    "invoiceDate": "22-SEP-2026",
+    "poNumber": "PO-29524",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "25-SEP-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "LA SPEZIA",
+      "country": "IT"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "LA SPEZIA",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "00-EV-5",
+        "sku": "00-EV-5",
+        "description": "EXTRA VIRGIN OLIVE OTL, 5 L TINS HS 1509.20",
+        "quantity": "856",
+        "unit": "PCS",
+        "unitPrice": "23.05",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "19730.80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "CT-6060",
+        "sku": "CT-6060",
+        "description": "GLAZED PORCELAIN FLOOR TILES 60 X 60 CM HS 6907.21",
+        "quantity": "680",
+        "unit": "M2",
+        "unitPrice": "9.50",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "6460.00",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "231",
+    "grossWeight": {
+      "value": "18835.20",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "18217.60",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "26190.80",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

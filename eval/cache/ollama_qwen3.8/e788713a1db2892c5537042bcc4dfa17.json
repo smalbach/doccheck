@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 765,
+    "outputTokens": 944
+  },
+  "output": {
+    "blNumber": "SILVSPE914056",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "452578289",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain",
+        "Dieppe, NB, E1A 1N5"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "notifyParty": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain",
+        "Dieppe, NB, E1A 1N5"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "048E",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Moncton",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGLU4480809",
+        "seal": "AG4394412",
+        "type": "20GP",
+        "packages": "65",
+        "grossWeight": {
+          "value": "13,940.00",
+          "unit": "KG"
+        },
+        "volumeM3": "15.06"
+      }
+    ],
+    "totalPackages": "65",
+    "totalGrossWeight": {
+      "value": "13,940.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+    "cargoDescription": "SAID TO CONTAIN 65 PKGS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CI/26/9436 / ÉP209706"
+    ],
+    "placeOfIssue": "La Spezia",
+    "dateOfIssue": "2026-03-24",
+    "shippedOnBoardDate": "2026-03-24"
+  }
+}

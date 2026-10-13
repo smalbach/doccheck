@@ -1,0 +1,105 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 726,
+    "outputTokens": 959
+  },
+  "output": {
+    "invoiceNumber": "NIN2602127",
+    "invoiceDate": "May 1, 2026",
+    "poNumber": "HA522185",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "May 13, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "Ningbo",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL. Shipping Supervisor.",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "EK-17",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+        "quantity": "1,392",
+        "unit": "PCS",
+        "unitPrice": "15.31",
+        "unitPriceCurrency": null,
+        "lineTotal": "21,311.52",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "2",
+        "sku": "BL-600",
+        "description": "Countertop blender 600 W with glass jar",
+        "quantity": "952",
+        "unit": "PCS",
+        "unitPrice": "25.23",
+        "unitPriceCurrency": null,
+        "lineTotal": "24,018.96",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      }
+    ],
+    "totalPackages": "412",
+    "grossWeight": {
+      "value": "4,175.80",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,651.20",
+      "unit": "KG"
+    },
+    "invoiceTotal": "45,330.48",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

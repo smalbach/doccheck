@@ -1,0 +1,117 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 806,
+    "outputTokens": 1112
+  },
+  "output": {
+    "invoiceNumber": "CI/26/5807",
+    "invoiceDate": "Jun 24, 2026",
+    "poNumber": "PA779152",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "shipmentDate": "Jun 29, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "Long Beach",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BV-2IN",
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "520",
+        "unit": "PCS",
+        "unitPrice": "12.77",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,640.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "2",
+        "sku": "CP-750",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "38",
+        "unit": "PCS",
+        "unitPrice": "92.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,519.18",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "3",
+        "sku": "BB-6204",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "29,000",
+        "unit": "PCS",
+        "unitPrice": "1.19",
+        "unitPriceCurrency": null,
+        "lineTotal": "34,510.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      }
+    ],
+    "totalPackages": "209",
+    "grossWeight": {
+      "value": "4,773.10",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "4,443.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "44,669.58",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

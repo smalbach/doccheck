@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 771,
+    "outputTokens": 938
+  },
+  "output": {
+    "blNumber": "PCCLNSA3423692",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "843259885",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "055W",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "NHAVA SHEVA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "CHICAGO",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU8842779",
+        "seal": "PC2049445",
+        "type": "20GP",
+        "packages": "118",
+        "grossWeight": {
+          "value": "6187",
+          "unit": "LB"
+        },
+        "volumeM3": "3.88"
+      }
+    ],
+    "totalPackages": "108",
+    "totalGrossWeight": {
+      "value": "6187",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "LAKESHORE/LA181720/C/NO. 1-118",
+    "cargoDescription": "SAID TO CONTAIN 118 CTNS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "PUN2609899",
+      "LA181720"
+    ],
+    "placeOfIssue": "NHAVA SHEVA",
+    "dateOfIssue": "22-MAY-2026",
+    "shippedOnBoardDate": "22-MAY-2026"
+  }
+}

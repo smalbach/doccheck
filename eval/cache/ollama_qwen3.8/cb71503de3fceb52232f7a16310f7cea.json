@@ -1,0 +1,90 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 699,
+    "outputTokens": 789
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-8352",
+    "invoiceDate": "2026-08-24",
+    "poNumber": "PA741171",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "shipmentDate": "2026-08-30",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Cai Mep",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "Cai Mep",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Women's padded jacket, woven polyester shell",
+        "quantity": "2,040",
+        "unit": "PCS",
+        "unitPrice": "18.66",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "38,066.40",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6202.40"
+      }
+    ],
+    "totalPackages": "102",
+    "grossWeight": {
+      "value": "1,734.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,836.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "38,066.40",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

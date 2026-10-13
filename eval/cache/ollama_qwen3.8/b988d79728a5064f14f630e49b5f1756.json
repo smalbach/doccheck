@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 680,
+    "outputTokens": 816
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-0719",
+    "invoiceDate": "2026-04-18",
+    "poNumber": "PO-32170",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "2026-04-28",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfEntry": {
+      "name": "Vancouver",
+      "country": null
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "Vancouver",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "CAD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": null,
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+        "quantity": "4,740 KG",
+        "unit": "KG",
+        "unitPrice": "541",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "25,643.40",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": null,
+    "grossWeight": {
+      "value": "4,803.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "4,740.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "25,643.40",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

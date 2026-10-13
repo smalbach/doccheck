@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 731,
+    "outputTokens": 898
+  },
+  "output": {
+    "blNumber": "AGLXCMT6369542",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "741398690",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": "District 7",
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150E 37th St",
+        "Vemon, CA, 90058"
+      ],
+      "city": "Vemon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "us",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "us",
+      "taxId": "95-4783210"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "083N",
+    "placeOfReceipt": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Cai Mep",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU6245683",
+        "seal": "AG3041836",
+        "type": null,
+        "packages": null,
+        "grossWeight": null,
+        "volumeM3": null
+      }
+    ],
+    "totalPackages": "326",
+    "totalGrossWeight": {
+      "value": "6,131.70",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PACIFIC/PA787236/C/NO. 1-326",
+    "cargoDescription": "SAID TO CONTAIN 326 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "INV-2026-0889/ PA787236"
+    ],
+    "placeOfIssue": "Cai Mep",
+    "dateOfIssue": "2026-03-28",
+    "shippedOnBoardDate": "2026-03-28"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 734,
+    "outputTokens": 829
+  },
+  "output": {
+    "invoiceNumber": "CV26/8361",
+    "invoiceDate": null,
+    "poNumber": "QUt37456",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": null,
+      "taxId": "200070002202"
+    },
+    "buyer": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Liée",
+      "addressLines": [
+        "1450 boul industriel"
+      ],
+      "city": "Laval",
+      "region": "OC",
+      "postalCode": "HTS 1P6",
+      "country": "CA",
+      "taxId": "673456789AM0001"
+    },
+    "shipmentDate": "May 31, 2026",
+    "transportMode": "Via SEA",
+    "placeOfShipment": null,
+    "portOfEntry": null,
+    "incotermCode": "CFR",
+    "incotermPlace": null,
+    "paymentTerms": "Net60",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CT-é060",
+        "description": "Glazed porcelain floor les 60 x 60 cm",
+        "quantity": "320",
+        "unit": "M2",
+        "unitPrice": "817",
+        "unitPriceCurrency": null,
+        "lineTotal": null,
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "HE"
+      },
+      {
+        "lineNo": "2",
+        "sku": "00-EV-6",
+        "description": "Extra virgin obve of, 5 L tine",
+        "quantity": "648",
+        "unit": "PCS",
+        "unitPrice": "2818",
+        "unitPriceCurrency": null,
+        "lineTotal": "18.26064",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "1508.20"
+      }
+    ],
+    "totalPackages": null,
+    "grossWeight": {
+      "value": "10.04860",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "9,70080",
+      "unit": "KG"
+    },
+    "invoiceTotal": "20,875.04",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

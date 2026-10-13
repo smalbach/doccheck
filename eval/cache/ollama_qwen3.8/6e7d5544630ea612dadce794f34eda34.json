@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 681,
+    "outputTokens": 836
+  },
+  "output": {
+    "invoiceNumber": "SAI2605984",
+    "invoiceDate": "25-APR-2026",
+    "poNumber": "PO-8121",
+    "seller": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST",
+        "VERNON CA 90058"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL FULFILLMENT CENTER",
+      "addressLines": [
+        "13500 VALLEY BLVD",
+        "FONTANA CA 92335"
+      ],
+      "city": "FONTANA",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "06-MAY-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "CAI MEP",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "LONG BEACH",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "CAI MEP",
+    "paymentTerms": "NET 60",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES HS 6109.10",
+        "quantity": "5900",
+        "unit": "PCS",
+        "unitPrice": "2.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "13983.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      }
+    ],
+    "totalPackages": "59 PKGS",
+    "grossWeight": {
+      "value": "1168.20",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1121.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "13983.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

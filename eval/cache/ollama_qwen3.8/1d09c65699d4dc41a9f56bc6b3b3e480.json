@@ -1,0 +1,87 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 622,
+    "outputTokens": 753
+  },
+  "output": {
+    "packingListNumber": "PL-2026-9107",
+    "invoiceRef": "INV-2026-9107",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049",
+        "IT"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201",
+        "US"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/HA302497/C/NO. 1-52",
+    "packages": [
+      {
+        "range": "1-17",
+        "count": "17 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "PORCELAIN TILE 60X60",
+        "quantity": "630 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "14280.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "14705.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "18-52",
+        "count": "35 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "EV OLIVE OIL 5 L",
+        "quantity": "140 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "644.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "675.50",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "52",
+    "totalNetWeight": {
+      "value": "14924.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "15380.50",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "16.16"
+  }
+}

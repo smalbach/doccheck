@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 779,
+    "outputTokens": 889
+  },
+  "output": {
+    "blNumber": "SILVBUN916639",
+    "documentTitle": "BILL OF LADING FOR COMBINED TRANSPORT OR PORT TO PORT",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "604259966",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva Huila",
+      "region": null,
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby BC",
+      "region": null,
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby BC",
+      "region": null,
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "053N",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Buenaventura",
+      "country": "COBUN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CAVAN"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CAVAN"
+    },
+    "containers": [
+      {
+        "number": "AGXU6803512",
+        "seal": "AG1066650",
+        "type": "40HC",
+        "packages": "176",
+        "grossWeight": {
+          "value": "10 700,80",
+          "unit": "kg"
+        },
+        "volumeM3": "25,08"
+      }
+    ],
+    "totalPackages": "176",
+    "totalGrossWeight": {
+      "value": "10 700,80",
+      "unit": "kg"
+    },
+    "marksAndNumbers": "COASTAL/PO-40468/C/NO. 1-176",
+    "cargoDescription": "SAID TO CONTAIN 176 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-0869",
+      "PO-40468"
+    ],
+    "placeOfIssue": "Buenaventura",
+    "dateOfIssue": "17.02.2026",
+    "shippedOnBoardDate": "17.02.2026"
+  }
+}

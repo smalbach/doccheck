@@ -1,0 +1,66 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 518,
+    "outputTokens": 541
+  },
+  "output": {
+    "packingListNumber": "PL-NOR2601049",
+    "invoiceRef": "NOR2601049",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "Us",
+      "taxId": null
+    },
+    "marks": "PACIFIC/PA128589/C/NO. 1-260",
+    "packages": [
+      {
+        "range": "1-232",
+        "count": "232 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "4,640 PCS",
+        "unit": "PCS",
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": "45 x 35 x 30"
+      },
+      {
+        "range": "233-260",
+        "count": "28 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": null,
+        "unit": null,
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": "55 x 40 x 40"
+      }
+    ],
+    "totalPackages": null,
+    "totalNetWeight": null,
+    "totalGrossWeight": null,
+    "totalVolumeM3": null
+  }
+}

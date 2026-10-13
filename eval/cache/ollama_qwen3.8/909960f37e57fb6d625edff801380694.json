@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 714,
+    "outputTokens": 853
+  },
+  "output": {
+    "blNumber": "AGLXTAO3183408",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "407344958",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co. Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Shandong"
+      ],
+      "city": null,
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "LET 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "MSV 3G5",
+      "country": "CA",
+      "taxId": "812345678AM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "03aN",
+    "placeOfReceipt": {
+      "name": "Qingdao. CN",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao. CN",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "558",
+      "country": null
+    },
+    "placeOfDelivery": {
+      "name": "Toronto,CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU8941444",
+        "seal": "AG7592734",
+        "type": "20GP",
+        "packages": "50",
+        "grossWeight": {
+          "value": "4,139.60",
+          "unit": "KG"
+        },
+        "volumeM3": "5.64"
+      }
+    ],
+    "totalPackages": "50",
+    "totalGrossWeight": {
+      "value": "4,13960",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHEAN/PO-55662/C/NO. 1-50",
+    "cargoDescription": "SAID TO CONTAIN 50 PKGS BALL BEARING 6204-2RS AND OTHER GOODSAS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "Rel: OIN2605408/ PO-55662"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "Mar 4, 2086",
+    "shippedOnBoardDate": "Mar4, 2026"
+  }
+}

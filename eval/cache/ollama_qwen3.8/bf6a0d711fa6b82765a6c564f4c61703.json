@@ -1,0 +1,94 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 669,
+    "outputTokens": 834
+  },
+  "output": {
+    "invoiceNumber": "CI/26/6615",
+    "invoiceDate": "May 17, 2026",
+    "poNumber": "BL425671",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": null,
+    "shipmentDate": "May 21, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shekou",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Shekou",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+        "quantity": "5,184",
+        "unit": "PCS",
+        "unitPrice": "4.53",
+        "unitPriceCurrency": null,
+        "lineTotal": "23,483.52",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": "TB-200",
+        "description": "Plush teddy bear 30 cm, polyester filling",
+        "quantity": "10,000",
+        "unit": "PCS",
+        "unitPrice": "9.25",
+        "unitPriceCurrency": null,
+        "lineTotal": "92,500.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "416",
+    "grossWeight": {
+      "value": "5,448.48",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "5,014.08",
+      "unit": "KG"
+    },
+    "invoiceTotal": "115,983.52",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

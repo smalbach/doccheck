@@ -1,0 +1,216 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1270,
+    "outputTokens": 2197
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-2733",
+    "invoiceDate": "26.02.2026",
+    "poNumber": "CO955063",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": null,
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "04.03.2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CIF",
+    "incotermPlace": "Vancouver",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "OO-EV-5-L1",
+        "description": "Extra virgin olive oil, 5 L tins, lot A-580",
+        "quantity": "12",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "302,76",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "2",
+        "sku": "OO-EV-5-L2",
+        "description": "Extra virgin olive oil, 5 L tins, lot B-943",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "201,84",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "3",
+        "sku": "OO-EV-5-L3",
+        "description": "Extra virgin olive oil, 5 L tins, lot C-686",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "201,84",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "4",
+        "sku": "OO-EV-5-L4",
+        "description": "Extra virgin olive oil, 5 L tins, lot D-878",
+        "quantity": "44",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.110,12",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "5",
+        "sku": "OO-EV-5-L5",
+        "description": "Extra virgin olive oil, 5 L tins, lot E-511",
+        "quantity": "32",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "807,36",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "6",
+        "sku": "OO-EV-5-L6",
+        "description": "Extra virgin olive oil, 5 L tins, lot F-150",
+        "quantity": "36",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "908,28",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "7",
+        "sku": "OO-EV-5-L7",
+        "description": "Extra virgin olive oil, 5 L tins, lot G-337",
+        "quantity": "44",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.110,12",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "8",
+        "sku": "OO-EV-5-L8",
+        "description": "Extra virgin olive oil, 5 L tins, lot H-550",
+        "quantity": "60",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.513,80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "9",
+        "sku": "OO-EV-5-L9",
+        "description": "Extra virgin olive oil, 5 L tins, lot I-632",
+        "quantity": "16",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "403,68",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "10",
+        "sku": "OO-EV-5-L10",
+        "description": "Extra virgin olive oil, 5 L tins, lot J-327",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "201,84",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "11",
+        "sku": "OO-EV-5-L11",
+        "description": "Extra virgin olive oil, 5 L tins, lot K-123",
+        "quantity": "60",
+        "unit": "PCS",
+        "unitPrice": "25,23",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.513,80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "82",
+    "grossWeight": {
+      "value": "1 582,60",
+      "unit": "kg"
+    },
+    "netWeight": {
+      "value": "1 508,80",
+      "unit": "kg"
+    },
+    "invoiceTotal": "8.275,44",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 544,
+    "outputTokens": 550
+  },
+  "output": {
+    "packingListNumber": "PL-QIN2607277",
+    "invoiceRef": "QIN2607277",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-10985/C/NO. 1-7",
+    "packages": [
+      {
+        "range": "1-7",
+        "count": "7 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "HEX BOLT M12X60",
+        "quantity": "3500 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "3500.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3654.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "7",
+    "totalNetWeight": {
+      "value": "3500.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "3654.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "5.04"
+  }
+}

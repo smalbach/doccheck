@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 587,
+    "outputTokens": 731
+  },
+  "output": {
+    "packingListNumber": "PL-QIN2600821",
+    "invoiceRef": "QIN2600821",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "marks": "PACIFIC/PO-34102/C/NO. 1-119",
+    "packages": [
+      {
+        "range": "1-42",
+        "count": "42 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "42 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "609.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "798.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      },
+      {
+        "range": "43-119",
+        "count": "77 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "15,400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,694.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,763.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      }
+    ],
+    "totalPackages": "119",
+    "totalNetWeight": {
+      "value": "2,303.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,561.30",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "6.01"
+  }
+}

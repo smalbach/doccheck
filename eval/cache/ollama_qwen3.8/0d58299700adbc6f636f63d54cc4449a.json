@@ -1,0 +1,69 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 558,
+    "outputTokens": 609
+  },
+  "output": {
+    "packingListNumber": "PL-NIN2607782",
+    "invoiceRef": "NIN2607782",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PO-47083/C/NO. 1-317",
+    "packages": [
+      {
+        "range": "1-233",
+        "count": "233 CTN",
+        "packageType": "CTN",
+        "sku": "EK-17",
+        "description": "Electric kettle 1.7L",
+        "quantity": "1,864 PCS",
+        "unit": "PCS",
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": "55 x 45 x 42"
+      },
+      {
+        "range": "234-317",
+        "count": "84 CTN",
+        "packageType": "CTN",
+        "sku": "BL-600",
+        "description": "Blender 600 W",
+        "quantity": "336 PCS",
+        "unit": "PCS",
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": "50 x 50 x 45"
+      }
+    ],
+    "totalPackages": "317 CTN",
+    "totalNetWeight": null,
+    "totalGrossWeight": null,
+    "totalVolumeM3": null
+  }
+}

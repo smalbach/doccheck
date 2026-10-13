@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 609,
+    "outputTokens": 751
+  },
+  "output": {
+    "invoiceNumber": "NO398514",
+    "invoiceDate": "Feb 25, 2026",
+    "poNumber": "NO398514",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "28197"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": "28197",
+      "country": null,
+      "taxId": "DER12345678"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678AM0001"
+    },
+    "consignee": {
+      "name": null,
+      "addressLines": [],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": null,
+      "taxId": null
+    },
+    "shipmentDate": "Feb 28, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CFR",
+    "incotermPlace": "Vancouver",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BV-2IN",
+        "description": "Brassball valves 2 inch, threaded",
+        "quantity": "880",
+        "unit": "PCS",
+        "unitPrice": "12.54",
+        "unitPriceCurrency": null,
+        "lineTotal": "11,035.20",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481"
+      }
+    ],
+    "totalPackages": "44",
+    "grossWeight": {
+      "value": "1,188.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,236.40",
+      "unit": "KG"
+    },
+    "invoiceTotal": "11,035.20",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "943.00",
+        "currency": "CNY"
+      }
+    ]
+  }
+}

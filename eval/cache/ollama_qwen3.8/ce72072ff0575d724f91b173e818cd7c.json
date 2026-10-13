@@ -1,0 +1,184 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1157,
+    "outputTokens": 1855
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-4583",
+    "invoiceDate": "Jan 26, 2026",
+    "poNumber": "BL362578",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "Jan 29, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shanghai",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "Houston",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "EK-17-OR",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour orange",
+        "quantity": "56",
+        "unit": "PCS",
+        "unitPrice": "11.59",
+        "unitPriceCurrency": null,
+        "lineTotal": "649.04",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "2",
+        "sku": "EK-17-PK",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour pink",
+        "quantity": "136",
+        "unit": "PCS",
+        "unitPrice": "11.59",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,576.24",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "3",
+        "sku": "EK-17-YL",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour yellow",
+        "quantity": "136",
+        "unit": "PCS",
+        "unitPrice": "11.59",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,576.24",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "4",
+        "sku": "EK-17-BL",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour blue",
+        "quantity": "104",
+        "unit": "PCS",
+        "unitPrice": "11.59",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,205.36",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "5",
+        "sku": "EK-17-BE",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour beige",
+        "quantity": "88",
+        "unit": "PCS",
+        "unitPrice": "11.59",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,019.92",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "6",
+        "sku": "EK-17-GN",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour green",
+        "quantity": "136",
+        "unit": "PCS",
+        "unitPrice": "11.59",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,576.24",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "7",
+        "sku": "EK-17-GY",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour grey",
+        "quantity": "128",
+        "unit": "PCS",
+        "unitPrice": "11.59",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,483.52",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "8",
+        "sku": "EK-17-BK",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour black",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "11.59",
+        "unitPriceCurrency": null,
+        "lineTotal": "278.16",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      }
+    ],
+    "totalPackages": "101",
+    "grossWeight": {
+      "value": "959.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "848.40",
+      "unit": "KG"
+    },
+    "invoiceTotal": "9,364.72",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 992,
+    "outputTokens": 1527
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-2730",
+    "invoiceDate": "Feb 26, 2026",
+    "poNumber": "PO-29545",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain",
+        "Dieppe, NB, E1A 1N5"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "consignee": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain",
+        "Dieppe, NB, E1A 1N5"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "shipmentDate": "Mar 5, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Yantian",
+    "paymentTerms": "Net 60",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "PZ-1000-OR",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour orange",
+        "quantity": "648",
+        "unit": "PCS",
+        "unitPrice": "3.32",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,151.36",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": "PZ-1000-GN",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour green",
+        "quantity": "504",
+        "unit": "PCS",
+        "unitPrice": "3.32",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,673.28",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "3",
+        "sku": "PZ-1000-RD",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour red",
+        "quantity": "144",
+        "unit": "PCS",
+        "unitPrice": "3.32",
+        "unitPriceCurrency": null,
+        "lineTotal": "478.08",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "4",
+        "sku": "PZ-1000-WH",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour white",
+        "quantity": "1,152",
+        "unit": "PCS",
+        "unitPrice": "3.32",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,824.64",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "5",
+        "sku": "PZ-1000-NV",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour navy",
+        "quantity": "1,176",
+        "unit": "PCS",
+        "unitPrice": "3.32",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,904.32",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "6",
+        "sku": "PZ-1000-BL",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour blue",
+        "quantity": "360",
+        "unit": "PCS",
+        "unitPrice": "3.32",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,195.20",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "166",
+    "grossWeight": {
+      "value": "2,619.48",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,470.08",
+      "unit": "KG"
+    },
+    "invoiceTotal": "13,226.88",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

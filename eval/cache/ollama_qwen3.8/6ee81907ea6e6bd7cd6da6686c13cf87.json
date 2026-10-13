@@ -1,0 +1,101 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 718,
+    "outputTokens": 880
+  },
+  "output": {
+    "invoiceNumber": "CI/26/6660",
+    "invoiceDate": "2026-05-10",
+    "poNumber": "PO-8587",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "2026-05-14",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Hamburg",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "Savannah",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "Hamburg",
+    "paymentTerms": "L/C at sight",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "2,180",
+        "unit": "PCS",
+        "unitPrice": "17.43",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "37,997.40",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "39",
+        "unit": "PCS",
+        "unitPrice": "73.32",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2,859.48",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "148",
+    "grossWeight": {
+      "value": "3,803.90",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,508.50",
+      "unit": "KG"
+    },
+    "invoiceTotal": "40,856.88",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

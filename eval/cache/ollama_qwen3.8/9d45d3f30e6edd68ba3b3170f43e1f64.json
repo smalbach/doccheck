@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 722,
+    "outputTokens": 900
+  },
+  "output": {
+    "blNumber": "KEYSBRV776561",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines (TDWE)",
+    "bookingNumber": "959236215",
+    "carrierName": "Tidewater Express Lines (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd",
+        "Fontana, CA, 92335"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "058E",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU3187872",
+        "seal": "TW5676409",
+        "type": "20GP",
+        "packages": "110",
+        "grossWeight": {
+          "value": "2,763.40",
+          "unit": "KG"
+        },
+        "volumeM3": "6.66"
+      }
+    ],
+    "totalPackages": "110",
+    "totalGrossWeight": {
+      "value": "2,763.40",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PACIFIC/PA998204/C/NO. 1-110",
+    "cargoDescription": "SAID TO CONTAIN 110 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/8047 / PA998204"
+    ],
+    "placeOfIssue": "Bremerhaven",
+    "dateOfIssue": "2026-03-20",
+    "shippedOnBoardDate": "2026-03-20"
+  }
+}

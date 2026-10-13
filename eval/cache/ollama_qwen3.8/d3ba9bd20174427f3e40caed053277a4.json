@@ -1,0 +1,333 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1867,
+    "outputTokens": 3492
+  },
+  "output": {
+    "invoiceNumber": "CI/26/9436",
+    "invoiceDate": "16.03.2026",
+    "poNumber": "ÉP209706",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": null,
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "consignee": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "shipmentDate": "24.03.2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CIF",
+    "incotermPlace": "Halifax",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CT-6060-GY",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour grey",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "9,87",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "394,80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "2",
+        "sku": "CT-6060-BK",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour black",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "9,87",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "394,80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "3",
+        "sku": "CT-6060-BE",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour beige",
+        "quantity": "160",
+        "unit": "M2",
+        "unitPrice": "9,87",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.579,20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "4",
+        "sku": "CT-6060-PK",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour pink",
+        "quantity": "160",
+        "unit": "M2",
+        "unitPrice": "9,87",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.579,20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "5",
+        "sku": "CT-6060-BL",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour blue",
+        "quantity": "80",
+        "unit": "M2",
+        "unitPrice": "9,87",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "789,60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "6",
+        "sku": "CT-6060-OR",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour orange",
+        "quantity": "120",
+        "unit": "M2",
+        "unitPrice": "9,87",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.184,40",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "7",
+        "sku": "OO-EV-5-L1",
+        "description": "Extra virgin olive oil, 5 L tins, lot A-299",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "642,72",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "8",
+        "sku": "OO-EV-5-L2",
+        "description": "Extra virgin olive oil, 5 L tins, lot B-330",
+        "quantity": "20",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "535,60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "9",
+        "sku": "OO-EV-5-L3",
+        "description": "Extra virgin olive oil, 5 L tins, lot C-516",
+        "quantity": "16",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "428,48",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "10",
+        "sku": "OO-EV-5-L4",
+        "description": "Extra virgin olive oil, 5 L tins, lot D-276",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "214,24",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "11",
+        "sku": "OO-EV-5-L5",
+        "description": "Extra virgin olive oil, 5 L tins, lot E-431",
+        "quantity": "20",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "535,60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "12",
+        "sku": "OO-EV-5-L6",
+        "description": "Extra virgin olive oil, 5 L tins, lot F-862",
+        "quantity": "20",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "535,60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "13",
+        "sku": "OO-EV-5-L7",
+        "description": "Extra virgin olive oil, 5 L tins, lot G-540",
+        "quantity": "12",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "321,36",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "14",
+        "sku": "OO-EV-5-L8",
+        "description": "Extra virgin olive oil, 5 L tins, lot H-178",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "107,12",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "15",
+        "sku": "OO-EV-5-L9",
+        "description": "Extra virgin olive oil, 5 L tins, lot I-208",
+        "quantity": "16",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "428,48",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "16",
+        "sku": "OO-EV-5-L10",
+        "description": "Extra virgin olive oil, 5 L tins, lot J-412",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "642,72",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "17",
+        "sku": "OO-EV-5-L11",
+        "description": "Extra virgin olive oil, 5 L tins, lot K-946",
+        "quantity": "12",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "321,36",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "18",
+        "sku": "OO-EV-5-L12",
+        "description": "Extra virgin olive oil, 5 L tins, lot L-212",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "214,24",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "19",
+        "sku": "OO-EV-5-L13",
+        "description": "Extra virgin olive oil, 5 L tins, lot M-568",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "214,24",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "20",
+        "sku": "OO-EV-5-L14",
+        "description": "Extra virgin olive oil, 5 L tins, lot N-403",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "26,78",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "214,24",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "65",
+    "grossWeight": {
+      "value": "13 940,00",
+      "unit": "kg"
+    },
+    "netWeight": {
+      "value": "13 520,00",
+      "unit": "kg"
+    },
+    "invoiceTotal": "11.278,00",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

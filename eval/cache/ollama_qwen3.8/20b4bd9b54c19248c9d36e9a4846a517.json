@@ -1,0 +1,323 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1796,
+    "outputTokens": 3358
+  },
+  "output": {
+    "invoiceNumber": "KÜC2601966",
+    "invoiceDate": "2026-01-31",
+    "poNumber": "PO-51429",
+    "seller": {
+      "name": "Küchentechnik Müller & Söhne GmbH",
+      "addressLines": [
+        "Königstraße 48",
+        "Stuttgart, 70173"
+      ],
+      "city": "Stuttgart",
+      "region": null,
+      "postalCode": "70173",
+      "country": "DE",
+      "taxId": "DE298765432"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "2026-02-07",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "Bremerhaven",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar, colour yellow",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "25.77",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "618.48",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar, colour brown",
+        "quantity": "44",
+        "unit": "PCS",
+        "unitPrice": "25.77",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1,133.88",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar, colour beige",
+        "quantity": "28",
+        "unit": "PCS",
+        "unitPrice": "25.77",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "721.56",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "4",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar, colour grey",
+        "quantity": "48",
+        "unit": "PCS",
+        "unitPrice": "25.77",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1,236.96",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "5",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar, colour blue",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "25.77",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "103.08",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "6",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar, colour green",
+        "quantity": "36",
+        "unit": "PCS",
+        "unitPrice": "25.77",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "927.72",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "7",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar, colour black",
+        "quantity": "48",
+        "unit": "PCS",
+        "unitPrice": "25.77",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1,236.96",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "8",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar, colour navy",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "25.77",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "206.16",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "9",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour navy",
+        "quantity": "56",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1,006.32",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "10",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour grey",
+        "quantity": "240",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "4,312.80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "11",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour black",
+        "quantity": "144",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2,587.68",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "12",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour beige",
+        "quantity": "232",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "4,169.04",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "13",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour orange",
+        "quantity": "96",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1,725.12",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "14",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour pink",
+        "quantity": "72",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1,293.84",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "15",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour yellow",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "431.28",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "16",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour red",
+        "quantity": "168",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "3,018.96",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "17",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour blue",
+        "quantity": "232",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "4,169.04",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "18",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour brown",
+        "quantity": "224",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "4,025.28",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "19",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour green",
+        "quantity": "80",
+        "unit": "PCS",
+        "unitPrice": "17.97",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1,437.60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8516.71"
+      }
+    ],
+    "totalPackages": "261",
+    "grossWeight": {
+      "value": "2,498.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,198.40",
+      "unit": "KG"
+    },
+    "invoiceTotal": "34,361.76",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

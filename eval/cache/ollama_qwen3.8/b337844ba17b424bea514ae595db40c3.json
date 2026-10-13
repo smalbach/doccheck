@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 649,
+    "outputTokens": 799
+  },
+  "output": {
+    "invoiceNumber": "SAI2608281",
+    "invoiceDate": "Jun 26, 2026",
+    "poNumber": "PO-12040",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd",
+        "Houston, TX, 77013"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "Jul 5, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "Ho Chi Minh City",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "TS-CTN-M",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "1,100",
+        "unit": "PCS",
+        "unitPrice": "3.30",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,630.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      }
+    ],
+    "totalPackages": "12",
+    "grossWeight": {
+      "value": "217.80",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "209.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "3,630.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

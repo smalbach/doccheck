@@ -1,0 +1,120 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 807,
+    "outputTokens": 1162
+  },
+  "output": {
+    "invoiceNumber": "CI/26/5326",
+    "invoiceDate": "26-MAY-2026",
+    "poNumber": "PO-74437",
+    "seller": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026",
+        "IN"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661",
+        "US"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661",
+        "US"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "28-MAY-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "NHAVA SHEVA",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "NHAVA SHEVA",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "71.65",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "573.20",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "BB-6204",
+        "description": "BALL BEARINGS 6204-2RS, 20 X 47 X 14 MM HS 8482.10",
+        "quantity": "11800",
+        "unit": "PCS",
+        "unitPrice": "1.11",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "31098.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED HS 8481.80",
+        "quantity": "4260",
+        "unit": "PCS",
+        "unitPrice": "15.74",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "67052.40",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "280",
+    "grossWeight": {
+      "value": "7488.40",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "7165.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "80723.60",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

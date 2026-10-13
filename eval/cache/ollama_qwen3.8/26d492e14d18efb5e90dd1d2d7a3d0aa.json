@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 756,
+    "outputTokens": 959
+  },
+  "output": {
+    "blNumber": "COMPHAM521182",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "712234674",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Küchentechnik Müller & Söhne GmbH",
+      "addressLines": [
+        "Königstraße 48",
+        "Stuttgart, 70173",
+        "DE"
+      ],
+      "city": "Stuttgart",
+      "region": null,
+      "postalCode": "70173",
+      "country": "DE",
+      "taxId": "DE298765432"
+    },
+    "consignee": {
+      "name": "Les Importations Bélanger & Frères inc.",
+      "addressLines": [
+        "2937 boul. Laurier, bureau 300",
+        "Québec, QC, G1V 2M2",
+        "CA"
+      ],
+      "city": "Québec",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "notifyParty": {
+      "name": "Les Importations Bélanger & Frères inc.",
+      "addressLines": [
+        "2875 boul. Laurier, bureau 300",
+        "Québec, QC, G1V 2M2",
+        "CA"
+      ],
+      "city": "Québec",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "042W",
+    "placeOfReceipt": {
+      "name": "Stuttgart, DE",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Hamburg, DE",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Halifax, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Québec, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU9212900",
+        "seal": "PC7984824",
+        "type": "20GP",
+        "packages": "197",
+        "grossWeight": {
+          "value": "2,054.10",
+          "unit": "KG"
+        },
+        "volumeM3": "21.90"
+      }
+    ],
+    "totalPackages": "207",
+    "totalGrossWeight": {
+      "value": "2,054.10",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "LES/PO-19112/C/NO. 1-197",
+    "cargoDescription": "SAID TO CONTAIN 197 CTNS BLENDER 600 W AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CI/26/8937",
+      "PO-19112"
+    ],
+    "placeOfIssue": "Hamburg",
+    "dateOfIssue": "2026-09-27",
+    "shippedOnBoardDate": "2026-09-27"
+  }
+}

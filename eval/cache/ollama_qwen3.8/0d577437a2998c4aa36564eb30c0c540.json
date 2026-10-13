@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 611,
+    "outputTokens": 703
+  },
+  "output": {
+    "packingListNumber": "PL-NIN2602127",
+    "invoiceRef": "NIN2602127",
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/HA522185/C/NO. 1-412",
+    "packages": [
+      {
+        "range": "1-174",
+        "count": "174 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "ELECTRIC KETTLE 1.7 L",
+        "quantity": "1392 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": null,
+          "unit": null
+        },
+        "grossWeight": {
+          "value": null,
+          "unit": null
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "175-412",
+        "count": "238 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BLENDER 600 W",
+        "quantity": "952 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": null,
+          "unit": null
+        },
+        "grossWeight": {
+          "value": null,
+          "unit": null
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "412",
+    "totalNetWeight": {
+      "value": "3651.20",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "4175.80",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "44.86"
+  }
+}

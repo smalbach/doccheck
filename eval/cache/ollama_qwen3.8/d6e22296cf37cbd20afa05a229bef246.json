@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 718,
+    "outputTokens": 897
+  },
+  "output": {
+    "blNumber": "PCCLTAO2976561",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "307483887",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd",
+        "Houston, TX, 77013"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "094E",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCLU1540712",
+        "seal": "PC8269544",
+        "type": "20GP",
+        "packages": "229",
+        "grossWeight": {
+          "value": "13,728.80",
+          "unit": "KG"
+        },
+        "volumeM3": "18.60"
+      }
+    ],
+    "totalPackages": "229",
+    "totalGrossWeight": {
+      "value": "13,728.80",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "BLUEBONNET/BL966296/C/NO. 1-229",
+    "cargoDescription": "SAID TO CONTAIN 229 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "QIN2604208",
+      "BL966296"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "2026-01-17",
+    "shippedOnBoardDate": "2026-01-17"
+  }
+}

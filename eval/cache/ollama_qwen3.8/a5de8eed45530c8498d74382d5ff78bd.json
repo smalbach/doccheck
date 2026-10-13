@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 741,
+    "outputTokens": 884
+  },
+  "output": {
+    "blNumber": "COMPHP623972",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "853066843",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Công ty Cổ phần May Đông Á",
+      "addressLines": [
+        "Lô C2, KCN Đồng Văn II",
+        "Duy Tiên, Hà Nam"
+      ],
+      "city": "Duy Tiên",
+      "region": "Hà Nam",
+      "postalCode": null,
+      "country": "VN",
+      "taxId": "0700123456"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "054S",
+    "placeOfReceipt": {
+      "name": "Duy Tiên",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Hai Phong",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU6229686",
+        "seal": "PC3180594",
+        "type": "40HC",
+        "packages": "301",
+        "grossWeight": {
+          "value": "5,545.20",
+          "unit": "KG"
+        },
+        "volumeM3": "34.98"
+      }
+    ],
+    "totalPackages": "301",
+    "totalGrossWeight": {
+      "value": "5,545.20",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "HARBORLINE/HA796173/C/NO. 1-301",
+    "cargoDescription": "SAID TO CONTAIN 301 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/8273",
+      "HA796173"
+    ],
+    "placeOfIssue": "Hai Phong",
+    "dateOfIssue": "Jun 8, 2026",
+    "shippedOnBoardDate": "Jun 8, 2026"
+  }
+}

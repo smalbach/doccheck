@@ -1,0 +1,109 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 750,
+    "outputTokens": 970
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-5446",
+    "invoiceDate": "FebB, 2026",
+    "poNumber": "BL373062",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plat 41, MIDC Bhosari",
+        "+ dis Maharashtra, 411026"
+      ],
+      "city": null,
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": null,
+      "taxId": "2TAABCP1234F125"
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caflery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "Feb 10, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Mundra",
+    "paymentTerms": "T/T30 days afterBL date",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "88-6204",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "38,600",
+        "unit": "PCS",
+        "unitPrice": "1.31",
+        "unitPriceCurrency": null,
+        "lineTotal": "50,566.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "848210"
+      },
+      {
+        "lineNo": "2",
+        "sku": "CP-750",
+        "description": "Centrilugalwater pump 0.75 kW, cast iron body",
+        "quantity": "39",
+        "unit": "PCS",
+        "unitPrice": "85.17",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,321.83",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "232",
+    "grossWeight": {
+      "value": "4,811.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "5,160.70",
+      "unit": "KG"
+    },
+    "invoiceTotal": "53,887.63",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "3,729.00",
+        "currency": "EUR"
+      }
+    ]
+  }
+}

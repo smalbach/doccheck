@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 833,
+    "outputTokens": 951
+  },
+  "output": {
+    "blNumber": "SILVSGN597772",
+    "documentTitle": "BILL OF LADING FOR COMBINED TRANSPORT OR PORT TO PORT SHIPMENT",
+    "issuer": "Meridian Ocean Shipping (SCAC MRDN)",
+    "bookingNumber": "494760711",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "700000 Ho Chi Minh City"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "H7S 1P6 Laval QC"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "H7S 1P6 Laval QC"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "018W",
+    "placeOfReceipt": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU2425354",
+        "seal": "MD1992247",
+        "type": "20GP",
+        "packages": "142",
+        "grossWeight": {
+          "value": "2,811.60",
+          "unit": "KG"
+        },
+        "volumeM3": "11.93"
+      }
+    ],
+    "totalPackages": "142",
+    "totalGrossWeight": {
+      "value": "3,092.76",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+    "cargoDescription": "SAID TO CONTAIN 142 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "CI/26/8891",
+      "QU866556"
+    ],
+    "placeOfIssue": "Ho Chi Minh City",
+    "dateOfIssue": "15 May 2026",
+    "shippedOnBoardDate": "15 May 2026"
+  }
+}

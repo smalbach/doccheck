@@ -1,0 +1,74 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 575,
+    "outputTokens": 569
+  },
+  "output": {
+    "packingListNumber": "PL-QIN2605408",
+    "invoiceRef": "QIM2605408",
+    "seller": {
+      "name": "QINGDAO FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "$5 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "cu",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN DC BRAMPTON",
+      "addressLines": [
+        "# STEINMAY BLVD"
+      ],
+      "city": "BRAMPTON",
+      "region": "ON",
+      "postalCode": "LET 4X7",
+      "country": "cA",
+      "taxId": null
+    },
+    "marks": "1-50",
+    "packages": [
+      {
+        "range": "1-44",
+        "count": "44",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BALL BEARING",
+        "quantity": "#800 PCS",
+        "unit": "PCS",
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": null
+      },
+      {
+        "range": "45-30",
+        "count": "§",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "MEX BOLT M12X60",
+        "quantity": "3000 KG",
+        "unit": "KG",
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "50 PRGS",
+    "totalNetWeight": {
+      "value": "3968.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "4139.60",
+      "unit": "NGS"
+    },
+    "totalVolumeM3": "5.64 CBM"
+  }
+}

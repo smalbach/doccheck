@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 637,
+    "outputTokens": 783
+  },
+  "output": {
+    "invoiceNumber": "QIN2607277",
+    "invoiceDate": "Jul 17, 2026",
+    "poNumber": "PO-10985",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "Jul 25, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "New York",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "HB-M12",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+        "quantity": "3,500 KG",
+        "unit": "KG",
+        "unitPrice": "2.01",
+        "unitPriceCurrency": null,
+        "lineTotal": "7,035.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "7318.15"
+      }
+    ],
+    "totalPackages": "7",
+    "grossWeight": {
+      "value": "3,500.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,654.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "7,035.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

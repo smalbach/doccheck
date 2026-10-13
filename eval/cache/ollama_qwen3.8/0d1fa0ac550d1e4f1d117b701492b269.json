@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 727,
+    "outputTokens": 880
+  },
+  "output": {
+    "blNumber": "MRDNTAO1838754",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "860926001",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd",
+        "Houston, TX, 77013"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "085W",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU6068281",
+        "seal": "MD4485383",
+        "type": "20GP",
+        "packages": "122",
+        "grossWeight": {
+          "value": "11,188",
+          "unit": "LB"
+        },
+        "volumeM3": "10.30"
+      }
+    ],
+    "totalPackages": "122",
+    "totalGrossWeight": {
+      "value": "9,510",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "BLUEBONNET/BL657109/C/NO. 1-122",
+    "cargoDescription": "SAID TO CONTAIN 122 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "QIN2608270",
+      "BL657109"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "May 16, 2026",
+    "shippedOnBoardDate": "May 16, 2026"
+  }
+}

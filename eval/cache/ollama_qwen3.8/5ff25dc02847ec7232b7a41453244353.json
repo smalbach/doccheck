@@ -1,0 +1,88 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 690,
+    "outputTokens": 761
+  },
+  "output": {
+    "invoiceNumber": "CI/26/5585",
+    "invoiceDate": "2026-04-13",
+    "poNumber": "PO-35165",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "2026-04-21",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "New York",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Glazed porcelain floor tiles 60 x 60 cm",
+        "quantity": "280",
+        "unit": "M2",
+        "unitPrice": "11.29",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "3,161.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "7",
+    "grossWeight": {
+      "value": "6,055.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "5,880.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "3,161.20",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

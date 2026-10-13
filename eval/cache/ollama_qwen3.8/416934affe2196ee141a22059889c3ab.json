@@ -1,0 +1,203 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1348,
+    "outputTokens": 2031
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-4066",
+    "invoiceDate": "12 August 2026",
+    "poNumber": "PO-19650",
+    "seller": {
+      "name": "Société Lyonnaise de Jouets S.A.R.L.",
+      "addressLines": [
+        "14 rue de l'Industrie",
+        "69007 Lyon"
+      ],
+      "city": "Lyon",
+      "region": null,
+      "postalCode": "69007",
+      "country": "FR",
+      "taxId": "FR40123456789"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "M5V 3G5 Toronto ON"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "M5V 3G5 Toronto ON"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "shipmentDate": "18 August 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": null,
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Le Havre",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "EUR",
+    "countryOfOrigin": "FR",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "TB-200-NV",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour navy",
+        "quantity": "200",
+        "unit": "PCS",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,922.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": "TB-200-BK",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour black",
+        "quantity": "50",
+        "unit": "PCS",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "480.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "3",
+        "sku": "TB-200-WH",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour white",
+        "quantity": "200",
+        "unit": "PCS",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,922.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "4",
+        "sku": "TB-200-PK",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour pink",
+        "quantity": "100",
+        "unit": "PCS",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "961.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "5",
+        "sku": "TB-200-BL",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour blue",
+        "quantity": "550",
+        "unit": "PCS",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "5,285.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "6",
+        "sku": "TB-200-RD",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour red",
+        "quantity": "50",
+        "unit": "PCS",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "480.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "7",
+        "sku": "TB-200-YL",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour yellow",
+        "quantity": "400",
+        "unit": "PCS",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,844.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "8",
+        "sku": "TB-200-BR",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour brown",
+        "quantity": "150",
+        "unit": "PCS",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,441.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "9",
+        "sku": "TB-200-OR",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour orange",
+        "quantity": "650",
+        "unit": "PCS",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,246.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "10",
+        "sku": "TB-200-GY",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour grey",
+        "quantity": "150",
+        "unit": "PCS",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,441.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "50",
+    "grossWeight": {
+      "value": "510.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "450.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "24,025.00",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

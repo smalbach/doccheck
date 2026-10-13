@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 620,
+    "outputTokens": 744
+  },
+  "output": {
+    "packingListNumber": "PL-PUN2609899",
+    "invoiceRef": "PUN2609899",
+    "seller": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "marks": "LAKESHORE/LA181720/C/NO. 1-118",
+    "packages": [
+      {
+        "range": "1-98",
+        "count": "98 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BALL BEARING 6204-2RS",
+        "quantity": "19600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2156.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "2244.20",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "99-118",
+        "count": "20 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BRASS BALL VALVE 2\"",
+        "quantity": "400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "540.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "562.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "118 PKGS",
+    "totalNetWeight": {
+      "value": "2696.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "2806.20",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "3.88"
+  }
+}

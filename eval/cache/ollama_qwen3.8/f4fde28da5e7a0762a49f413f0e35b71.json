@@ -1,0 +1,373 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1985,
+    "outputTokens": 4165
+  },
+  "output": {
+    "invoiceNumber": "NOR2605836",
+    "invoiceDate": "18-MAR-2026",
+    "poNumber": "LE847110",
+    "seller": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "LES IMPORTATIONS BÉLANGER & FRÈRES INC.",
+      "addressLines": [
+        "2875 BOUL. LAURIER, BUREAU 300"
+      ],
+      "city": "QUÉBEC",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "consignee": {
+      "name": "LES IMPORTATIONS BÉLANGER & FRÈRES INC.",
+      "addressLines": [
+        "2875 BOUL. LAURIER, BUREAU 300"
+      ],
+      "city": "QUÉBEC",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "shipmentDate": "27-MAR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "HAMBURG",
+      "country": "DE"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "HAMBURG",
+    "paymentTerms": "NET 60",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-BK",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR BLACK HS 8481.80",
+        "quantity": "180",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2822.40",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-NV",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR NAVY HS 8481.80",
+        "quantity": "140",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2195.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-GN",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR GREEN HS 8481.80",
+        "quantity": "220",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "3449.60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-BR",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR BROWN HS 8481.80",
+        "quantity": "60",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "940.80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-GY",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR GREY HS 8481.80",
+        "quantity": "120",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1881.60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-RD",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR RED HS 8481.80",
+        "quantity": "120",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1881.60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-BE",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR BEIGE HS 8481.80",
+        "quantity": "60",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "940.80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-PK",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR PINK HS 8481.80",
+        "quantity": "160",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2508.80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-WH",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR WHITE HS 8481.80",
+        "quantity": "200",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "3136.00",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-YL",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR YELLOW HS 8481.80",
+        "quantity": "200",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "3136.00",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-BL",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR BLUE HS 8481.80",
+        "quantity": "160",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2508.80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN-OR",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED, COLOUR ORANGE HS 8481.80",
+        "quantity": "140",
+        "unit": "PCS",
+        "unitPrice": "15.68",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2195.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-BL",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR BLUE HS 8413.70",
+        "quantity": "5",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "386.30",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-BK",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR BLACK HS 8413.70",
+        "quantity": "3",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "231.78",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-OR",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR ORANGE HS 8413.70",
+        "quantity": "3",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "231.78",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-NV",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR NAVY HS 8413.70",
+        "quantity": "5",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "386.30",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-BR",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR BROWN HS 8413.70",
+        "quantity": "6",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "463.56",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-RD",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR RED HS 8413.70",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "309.04",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-BE",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR BEIGE HS 8413.70",
+        "quantity": "7",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "540.82",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-WH",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR WHITE HS 8413.70",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "309.04",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-PK",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR PINK HS 8413.70",
+        "quantity": "7",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "540.82",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-GN",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR GREEN HS 8413.70",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "77.26",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-GY",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR GREY HS 8413.70",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "77.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "154.52",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "135",
+    "grossWeight": {
+      "value": "3365.80",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "3057.50",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "31228.02",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

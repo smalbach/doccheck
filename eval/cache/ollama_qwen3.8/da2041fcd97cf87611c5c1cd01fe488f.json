@@ -1,0 +1,57 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 582,
+    "outputTokens": 465
+  },
+  "output": {
+    "packingListNumber": "PL-2026-6880",
+    "invoiceRef": "INV-2026-6880",
+    "seller": {
+      "name": "BSRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "cu",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "7T4-3812456"
+    },
+    "marks": "1-20",
+    "packages": [
+      {
+        "range": "1-20",
+        "count": "20",
+        "packageType": "CTN",
+        "sku": "PLUSH TEDDY BEAR 30",
+        "description": "PLUSH TEDDY BEAR 30",
+        "quantity": "950",
+        "unit": "PCs",
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "20",
+    "totalNetWeight": null,
+    "totalGrossWeight": null,
+    "totalVolumeM3": null
+  }
+}

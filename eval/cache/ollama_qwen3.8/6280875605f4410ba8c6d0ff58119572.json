@@ -1,0 +1,408 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1609,
+    "outputTokens": 3535
+  },
+  "output": {
+    "packingListNumber": "PL/26/9436",
+    "invoiceRef": "CI/26/9436",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": null,
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+    "packages": [
+      {
+        "range": "1-1",
+        "count": "1",
+        "packageType": "PLT",
+        "sku": "CT-6060-GY",
+        "description": "Porcelain tile 60x60 colour grey",
+        "quantity": "40 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "840,00",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "865,00",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "2-2",
+        "count": "1",
+        "packageType": "PLT",
+        "sku": "CT-6060-BK",
+        "description": "Porcelain tile 60x60 colour black",
+        "quantity": "40 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "840,00",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "865,00",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "3-6",
+        "count": "4",
+        "packageType": "PLT",
+        "sku": "CT-6060-BE",
+        "description": "Porcelain tile 60x60 colour beige",
+        "quantity": "160 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "3 360,00",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "3 460,00",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "7-10",
+        "count": "4",
+        "packageType": "PLT",
+        "sku": "CT-6060-PK",
+        "description": "Porcelain tile 60x60 colour pink",
+        "quantity": "160 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "3 360,00",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "3 460,00",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "11-12",
+        "count": "2",
+        "packageType": "PLT",
+        "sku": "CT-6060-BL",
+        "description": "Porcelain tile 60x60 colour blue",
+        "quantity": "80 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "1 680,00",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "1 730,00",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "13-15",
+        "count": "3",
+        "packageType": "PLT",
+        "sku": "CT-6060-OR",
+        "description": "Porcelain tile 60x60 colour orange",
+        "quantity": "120 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "2 520,00",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "2 595,00",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "16-21",
+        "count": "6",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L1",
+        "description": "EV olive oil 5 L lot A-299",
+        "quantity": "24 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "110,40",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "115,80",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "22-26",
+        "count": "5",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L2",
+        "description": "EV olive oil 5 L lot B-330",
+        "quantity": "20 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "92,00",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "96,50",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "27-30",
+        "count": "4",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L3",
+        "description": "EV olive oil 5 L lot C-516",
+        "quantity": "16 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "73,60",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "77,20",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "31-32",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L4",
+        "description": "EV olive oil 5 L lot D-276",
+        "quantity": "8 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "36,80",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "38,60",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "33-37",
+        "count": "5",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L5",
+        "description": "EV olive oil 5 L lot E-431",
+        "quantity": "20 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "92,00",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "96,50",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "38-42",
+        "count": "5",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L6",
+        "description": "EV olive oil 5 L lot F-862",
+        "quantity": "20 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "92,00",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "96,50",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "43-45",
+        "count": "3",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L7",
+        "description": "EV olive oil 5 L lot G-540",
+        "quantity": "12 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "55,20",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "57,90",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "46-46",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L8",
+        "description": "EV olive oil 5 L lot H-178",
+        "quantity": "4 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "18,40",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "19,30",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "47-50",
+        "count": "4",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L9",
+        "description": "EV olive oil 5 L lot I-208",
+        "quantity": "16 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "73,60",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "77,20",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "51-56",
+        "count": "6",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L10",
+        "description": "EV olive oil 5 L lot J-412",
+        "quantity": "24 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "110,40",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "115,80",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "57-59",
+        "count": "3",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L11",
+        "description": "EV olive oil 5 L lot K-946",
+        "quantity": "12 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "55,20",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "57,90",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "60-61",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L12",
+        "description": "EV olive oil 5 L lot L-212",
+        "quantity": "8 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "36,80",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "38,60",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "62-63",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L13",
+        "description": "EV olive oil 5 L lot M-568",
+        "quantity": "8 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "36,80",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "38,60",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "64-65",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "OO-EV-5-L14",
+        "description": "EV olive oil 5 L lot N-403",
+        "quantity": "8 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "36,80",
+          "unit": "kg"
+        },
+        "grossWeight": {
+          "value": "38,60",
+          "unit": "kg"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "65",
+    "totalNetWeight": {
+      "value": "13 520,00",
+      "unit": "kg"
+    },
+    "totalGrossWeight": {
+      "value": "13 940,00",
+      "unit": "kg"
+    },
+    "totalVolumeM3": "15,06"
+  }
+}

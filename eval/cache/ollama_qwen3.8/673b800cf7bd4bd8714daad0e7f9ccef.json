@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 567,
+    "outputTokens": 727
+  },
+  "output": {
+    "packingListNumber": "PL/26/8047",
+    "invoiceRef": "CI/26/8047",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd",
+        "Fontana, CA, 92335"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "PACIFIC/PA998204/C/NO. 1-110",
+    "packages": [
+      {
+        "range": "1-36",
+        "count": "36 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "36 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "522.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "684.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      },
+      {
+        "range": "37-110",
+        "count": "74 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "1,480 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,998.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,079.40",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      }
+    ],
+    "totalPackages": "110",
+    "totalNetWeight": {
+      "value": "2,520.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,763.40",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "6.66"
+  }
+}

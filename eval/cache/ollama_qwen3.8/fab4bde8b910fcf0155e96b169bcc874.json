@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 765,
+    "outputTokens": 929
+  },
+  "output": {
+    "blNumber": "AGLXVLC3921006",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "943254336",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Industrias Cerámicas del Levante, S.L.",
+      "addressLines": [
+        "Camí de la Mar, 23",
+        "Vila-real, Castellón, 12540"
+      ],
+      "city": "Vila-real",
+      "region": "Castellón",
+      "postalCode": "12540",
+      "country": "ES",
+      "taxId": "ESB12345678"
+    },
+    "consignee": {
+      "name": "Entrepôt Bélanger – Lévis",
+      "addressLines": [
+        "1200 rue de l'Église",
+        "Lévis, QC, G6V 6N1"
+      ],
+      "city": "Lévis",
+      "region": "QC",
+      "postalCode": "G6V 6N1",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Les Importations Bélanger & Frères inc.",
+      "addressLines": [
+        "2875 boul. Laurier, bureau 300",
+        "Québec, QC, G1V 2M2"
+      ],
+      "city": "Québec",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "076E",
+    "placeOfReceipt": {
+      "name": "Vila-real",
+      "country": "ES"
+    },
+    "portOfLoading": {
+      "name": "Valencia",
+      "country": "ES"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Québec",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGLU2732964",
+        "seal": "AG5393293",
+        "type": "20GP",
+        "packages": "17",
+        "grossWeight": {
+          "value": "14,705.00",
+          "unit": "KG"
+        },
+        "volumeM3": "14.69"
+      }
+    ],
+    "totalPackages": "17",
+    "totalGrossWeight": {
+      "value": "14,705.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "LES/PO-52527/C/NO. 1-17",
+    "cargoDescription": "SAID TO CONTAIN 17 PLTS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "IND2609016",
+      "PO-52527"
+    ],
+    "placeOfIssue": "Valencia",
+    "dateOfIssue": "Feb 12, 2026",
+    "shippedOnBoardDate": "Feb 12, 2026"
+  }
+}

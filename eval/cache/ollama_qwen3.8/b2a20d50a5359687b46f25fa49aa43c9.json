@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 584,
+    "outputTokens": 731
+  },
+  "output": {
+    "packingListNumber": "PL-QIN2604208",
+    "invoiceRef": "QIN2604208",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "BLUEBONNET/BL966296/C/NO. 1-229",
+    "packages": [
+      {
+        "range": "1-212",
+        "count": "212 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "42,400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4,664.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,854.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      },
+      {
+        "range": "213-229",
+        "count": "17 PLT",
+        "packageType": "PLT",
+        "sku": "HB-M12",
+        "description": "Hex bolt M12x60",
+        "quantity": "8,500 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "8,500.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "8,874.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 100 × 60"
+      }
+    ],
+    "totalPackages": "229",
+    "totalNetWeight": {
+      "value": "13,164.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "13,728.80",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "18.60"
+  }
+}

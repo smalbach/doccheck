@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 513,
+    "outputTokens": 569
+  },
+  "output": {
+    "packingListNumber": "PL-BRI2609835",
+    "invoiceRef": "BRI2609835",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/HA187266/C/NO. 1-62",
+    "packages": [
+      {
+        "range": "1-62",
+        "count": "62 CTN",
+        "packageType": "CTN",
+        "sku": "TB-200",
+        "description": "Plush teddy bear 30 cm",
+        "quantity": "3,100 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "558.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "632.40",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 40"
+      }
+    ],
+    "totalPackages": "62",
+    "totalNetWeight": {
+      "value": "558.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "632.40",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "5.95"
+  }
+}

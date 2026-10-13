@@ -1,0 +1,326 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1899,
+    "outputTokens": 3753
+  },
+  "output": {
+    "invoiceNumber": "CI/26/8937",
+    "invoiceDate": "19-SEP-2026",
+    "poNumber": "PO-19112",
+    "seller": {
+      "name": "KÜCHENTECHNIK MÜLLER & SÖHNE GMBH",
+      "addressLines": [
+        "KÖNIGSTRASSE 48",
+        "STUTTGART 70173"
+      ],
+      "city": "STUTTGART",
+      "region": null,
+      "postalCode": "70173",
+      "country": "DE",
+      "taxId": "DE298765432"
+    },
+    "buyer": {
+      "name": "LES IMPORTATIONS BÉLANGER & FRÈRES INC.",
+      "addressLines": [
+        "2875 BOUL. LAURIER, BUREAU 300",
+        "QUÉBEC QC G1V 2M2"
+      ],
+      "city": "QUÉBEC",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "consignee": {
+      "name": "LES IMPORTATIONS BÉLANGER & FRÈRES INC.",
+      "addressLines": [
+        "2875 BOUL. LAURIER, BUREAU 300",
+        "QUÉBEC QC G1V 2M2"
+      ],
+      "city": "QUÉBEC",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "shipmentDate": "26-SEP-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "HAMBURG",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "HALIFAX",
+      "country": null
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "HALIFAX",
+    "paymentTerms": "L/C AT SIGHT",
+    "currency": "CAD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "BL-600-BR",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR, COLOUR BROWN HS 8509.40",
+        "quantity": "48",
+        "unit": "PCS",
+        "unitPrice": "22.52",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1080.96",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "BL-600-BE",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR, COLOUR BEIGE HS 8509.40",
+        "quantity": "44",
+        "unit": "PCS",
+        "unitPrice": "22.52",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "990.88",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "BL-600-RD",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR, COLOUR RED HS 8509.40",
+        "quantity": "100",
+        "unit": "PCS",
+        "unitPrice": "22.52",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "2252.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "BL-600-GY",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR, COLOUR GREY HS 8509.40",
+        "quantity": "88",
+        "unit": "PCS",
+        "unitPrice": "22.52",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1981.76",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "BL-600-PK",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR, COLOUR PINK HS 8509.40",
+        "quantity": "52",
+        "unit": "PCS",
+        "unitPrice": "22.52",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1171.04",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "BL-600-BL",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR, COLOUR BLUE HS 8509.40",
+        "quantity": "148",
+        "unit": "PCS",
+        "unitPrice": "22.52",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "3332.96",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "BL-600-BK",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR, COLOUR BLACK HS 8509.40",
+        "quantity": "80",
+        "unit": "PCS",
+        "unitPrice": "22.52",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "180.16",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "BL-600-WH",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR, COLOUR WHITE HS 8509.40",
+        "quantity": "104",
+        "unit": "PCS",
+        "unitPrice": "22.52",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "2342.08",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "BL-600-OR",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR, COLOUR ORANGE HS 8509.40",
+        "quantity": "72",
+        "unit": "PCS",
+        "unitPrice": "22.52",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1621.44",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17-PK",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V, COLOUR PINK HS 8516.71",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "16.17",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "388.08",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17-YL",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V, COLOUR YELLOW HS 8516.71",
+        "quantity": "16",
+        "unit": "PCS",
+        "unitPrice": "16.17",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "258.72",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17-NV",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V, COLOUR NAVY HS 8516.71",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "16.17",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "388.08",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17-BK",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V, COLOUR BLACK HS 8516.71",
+        "quantity": "32",
+        "unit": "PCS",
+        "unitPrice": "16.17",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "517.44",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17-BE",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V, COLOUR BEIGE HS 8516.71",
+        "quantity": "16",
+        "unit": "PCS",
+        "unitPrice": "16.17",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "258.72",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17-WH",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V, COLOUR WHITE HS 8516.71",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "16.17",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "129.36",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17-GY",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V, COLOUR GREY HS 8516.71",
+        "quantity": "48",
+        "unit": "PCS",
+        "unitPrice": "16.17",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "776.16",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17-BL",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V, COLOUR BLUE HS 8516.71",
+        "quantity": "16",
+        "unit": "PCS",
+        "unitPrice": "16.17",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "258.72",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17-BR",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V, COLOUR BROWN HS 8516.71",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "16.17",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "388.08",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": null,
+        "sku": "EK-17-GN",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V, COLOUR GREEN HS 8516.71",
+        "quantity": "40",
+        "unit": "PCS",
+        "unitPrice": "16.17",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "646.80",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      }
+    ],
+    "totalPackages": "197",
+    "grossWeight": {
+      "value": "2054.10",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1787.60",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "18963.44",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

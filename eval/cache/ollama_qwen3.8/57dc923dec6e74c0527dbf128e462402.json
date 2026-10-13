@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 534,
+    "outputTokens": 588
+  },
+  "output": {
+    "packingListNumber": "PL-SAI2604496",
+    "invoiceRef": "SAI2604496",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-40833/C/NO. 1-211",
+    "packages": [
+      {
+        "range": "1-211",
+        "count": "211 CTN",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M",
+        "description": "Men's cotton T-shirt",
+        "quantity": "21,100 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4,009.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,177.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      }
+    ],
+    "totalPackages": "211",
+    "totalNetWeight": {
+      "value": "4,009.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "4,177.80",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "17.72"
+  }
+}

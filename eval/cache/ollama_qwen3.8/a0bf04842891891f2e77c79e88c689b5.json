@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 730,
+    "outputTokens": 903
+  },
+  "output": {
+    "blNumber": "PCCLLIS9661362",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "942591150",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Azeites do Alentejo, Lda.",
+      "addressLines": [
+        "Rua da Fábrica, 7",
+        "Beja, 7800-309"
+      ],
+      "city": "Beja",
+      "region": null,
+      "postalCode": "7800-309",
+      "country": "PT",
+      "taxId": "PT509876543"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "082W",
+    "placeOfReceipt": {
+      "name": "Beja",
+      "country": "PT"
+    },
+    "portOfLoading": {
+      "name": "Lisboa",
+      "country": "PT"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCLU1899549",
+        "seal": "PC4291667",
+        "type": "20GP",
+        "packages": "58",
+        "grossWeight": {
+          "value": "1,119.40",
+          "unit": "KG"
+        },
+        "volumeM3": "2.44"
+      }
+    ],
+    "totalPackages": "58",
+    "totalGrossWeight": {
+      "value": "1,119.40",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-3478/C/NO. 1-58",
+    "cargoDescription": "SAID TO CONTAIN 58 CTNS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-5220",
+      "PO-3478"
+    ],
+    "placeOfIssue": "Lisboa",
+    "dateOfIssue": "2026-02-23",
+    "shippedOnBoardDate": "2026-02-23"
+  }
+}

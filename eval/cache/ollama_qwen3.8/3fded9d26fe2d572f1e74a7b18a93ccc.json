@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 749,
+    "outputTokens": 925
+  },
+  "output": {
+    "blNumber": "COMPSGN612288",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "527884801",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "085N",
+    "placeOfReceipt": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Chicago",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGXU8919585",
+        "seal": "AG9778368",
+        "type": "40GP",
+        "packages": "404",
+        "grossWeight": {
+          "value": "7,494.20",
+          "unit": "KG"
+        },
+        "volumeM3": "42.10"
+      }
+    ],
+    "totalPackages": "404",
+    "totalGrossWeight": {
+      "value": "7,494.20",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "LAKESHORE/LA666876/C/NO. 1-404",
+    "cargoDescription": "SAID TO CONTAIN 404 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CI/26/7012 / LA666876"
+    ],
+    "placeOfIssue": "Ho Chi Minh City",
+    "dateOfIssue": "2026-03-15",
+    "shippedOnBoardDate": "2026-03-15"
+  }
+}

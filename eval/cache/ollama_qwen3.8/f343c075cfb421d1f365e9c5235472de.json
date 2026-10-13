@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 746,
+    "outputTokens": 896
+  },
+  "output": {
+    "blNumber": "PCCLBRV3767527",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "214274984",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 8",
+        "28197"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": "28197",
+      "country": null,
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "TR.ON, M5V 3G5"
+      ],
+      "city": null,
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": null,
+      "taxId": "8123456 78RM0001"
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "roa. ON, M5V 3G5"
+      ],
+      "city": null,
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": null,
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "035W",
+    "placeOfReceipt": {
+      "name": "Bremen, DE",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Bremerhaven, DE",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "SCA",
+      "country": null
+    },
+    "placeOfDelivery": {
+      "name": "Toronto, Vancouver, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU6733167",
+        "seal": "PC6134239",
+        "type": "20GP",
+        "packages": "44",
+        "grossWeight": {
+          "value": "1,236.40",
+          "unit": "KG"
+        },
+        "volumeM3": "2.08"
+      }
+    ],
+    "totalPackages": "44",
+    "totalGrossWeight": {
+      "value": "1,236.40",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/NO398514/C/NO, 1-44",
+    "cargoDescription": "SAID TO CONTAIN 44 CTNS BRASS BALL VALVE 2\"",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "NOR2608396",
+      "NO398514"
+    ],
+    "placeOfIssue": "Bremerhaven",
+    "dateOfIssue": "Mar 3, 2026",
+    "shippedOnBoardDate": "Mar3, 2026"
+  }
+}

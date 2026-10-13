@@ -1,0 +1,109 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 750,
+    "outputTokens": 999
+  },
+  "output": {
+    "invoiceNumber": "QIN2608127",
+    "invoiceDate": "23-MAR-2026",
+    "poNumber": "PO-45637",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "03-APR-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "QINGDAO",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "HB-M12",
+        "description": "HEX BOLTS M12 X 60, CARBON STEEL, ZINC PLATED HS 7318.15",
+        "quantity": "3500",
+        "unit": "KG",
+        "unitPrice": "2.06",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "2710.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "56",
+        "unit": "PCS",
+        "unitPrice": "84.80",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "4748.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "63 PKGS",
+    "grossWeight": {
+      "value": "4718.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "4312.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "11958.80",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "1382.00",
+        "currency": "CAD"
+      }
+    ]
+  }
+}

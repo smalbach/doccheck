@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 536,
+    "outputTokens": 525
+  },
+  "output": {
+    "packingListNumber": "PL/26/0129",
+    "invoiceRef": "CI/26/0129",
+    "seller": {
+      "name": "CAFE ALTO HUILA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40"
+      ],
+      "city": "NEIVA HUILA",
+      "region": null,
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS DC",
+      "addressLines": [
+        "9800 WALLISVILLE RD"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "BLUEBONNET/BL640841/C/NO. 1-62",
+    "packages": [
+      {
+        "range": "1-62",
+        "count": "62",
+        "packageType": "BAG",
+        "sku": null,
+        "description": "GREEN COFFEE ARABICA",
+        "quantity": "3720 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "3720.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3769.60",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "62",
+    "totalNetWeight": {
+      "value": "3720.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "3769.60",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "8.84"
+  }
+}

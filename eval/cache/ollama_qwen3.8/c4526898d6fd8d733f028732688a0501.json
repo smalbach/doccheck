@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 542,
+    "outputTokens": 598
+  },
+  "output": {
+    "packingListNumber": "PL-2026-8352",
+    "invoiceRef": "INV-2026-8352",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "marks": "PACIFIC/PA741171/C/NO. 1-102",
+    "packages": [
+      {
+        "range": "1-102",
+        "count": "102 CTN",
+        "packageType": "CTN",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket",
+        "quantity": "2,040 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,734.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,836.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "65 × 45 × 45"
+      }
+    ],
+    "totalPackages": "102",
+    "totalNetWeight": {
+      "value": "1,734.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,836.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "13.43"
+  }
+}

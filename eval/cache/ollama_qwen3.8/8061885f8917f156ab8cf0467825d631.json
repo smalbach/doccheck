@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 584,
+    "outputTokens": 719
+  },
+  "output": {
+    "packingListNumber": "PL-QIN2608127",
+    "invoiceRef": "QIN2608127",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "marks": "BLUEBONNET/PO-45637/C/NO. 1-63",
+    "packages": [
+      {
+        "range": "1-7",
+        "count": "7 PLT",
+        "packageType": "PLT",
+        "sku": "HB-M12",
+        "description": "Hex bolt M12x60",
+        "quantity": "3,500 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "3,500.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,654.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 100 × 60"
+      },
+      {
+        "range": "8-63",
+        "count": "56 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "56 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "812.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,064.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      }
+    ],
+    "totalPackages": "63",
+    "totalNetWeight": {
+      "value": "4,312.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "4,718.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "9.97"
+  }
+}

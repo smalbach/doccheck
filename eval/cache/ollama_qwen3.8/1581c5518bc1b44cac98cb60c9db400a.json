@@ -1,0 +1,94 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 650,
+    "outputTokens": 801
+  },
+  "output": {
+    "invoiceNumber": "NOR2601049",
+    "invoiceDate": "2026-02-18",
+    "poNumber": "PA128589",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "Us",
+      "taxId": "95-4783210"
+    },
+    "consignee": null,
+    "shipmentDate": "2026-02-22",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "Los",
+      "country": "Us"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "Bremerhaven",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "EUR",
+    "countryOfOrigin": null,
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "4,640",
+        "unit": "PCS",
+        "unitPrice": null,
+        "unitPriceCurrency": null,
+        "lineTotal": "70,017.60",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "28",
+        "unit": "PCS",
+        "unitPrice": "87.62",
+        "unitPriceCurrency": null,
+        "lineTotal": null,
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "260",
+    "grossWeight": {
+      "value": "6,670.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "7,051.20",
+      "unit": "KG"
+    },
+    "invoiceTotal": null,
+    "invoiceTotalCurrency": null,
+    "charges": []
+  }
+}

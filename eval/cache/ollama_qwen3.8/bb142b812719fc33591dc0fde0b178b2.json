@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 782,
+    "outputTokens": 965
+  },
+  "output": {
+    "blNumber": "MRDNNSA6434627",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "190802158",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "025N",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "NHAVA SHEVA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "CHICAGO",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU8362614",
+        "seal": "MD3169969",
+        "type": "20GP",
+        "packages": "280",
+        "grossWeight": {
+          "value": "7488.40",
+          "unit": "KGS"
+        },
+        "volumeM3": "12.54"
+      }
+    ],
+    "totalPackages": "280",
+    "totalGrossWeight": {
+      "value": "7638.17",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "LAKESHORE/PO-74437/C/NO. 1-280",
+    "cargoDescription": "SAID TO CONTAIN 280 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE REF: CI/26/5326 / PO-74437",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/5326",
+      "PO-74437"
+    ],
+    "placeOfIssue": "NHAVA SHEVA",
+    "dateOfIssue": "29-MAY-2026",
+    "shippedOnBoardDate": "29-MAY-2026"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 540,
+    "outputTokens": 550
+  },
+  "output": {
+    "packingListNumber": "PL-CER2601595",
+    "invoiceRef": "CER2601595",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS DC",
+      "addressLines": [
+        "9800 WALLISVILLE RD"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "BLUEBONNET/BL613717/C/NO. 1-8",
+    "packages": [
+      {
+        "range": "1-8",
+        "count": "8 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "PORCELAIN TILE 60X60",
+        "quantity": "320 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "6720.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "6920.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "8",
+    "totalNetWeight": {
+      "value": "6720.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "6920.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "6.91"
+  }
+}

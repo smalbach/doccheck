@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 762,
+    "outputTokens": 867
+  },
+  "output": {
+    "blNumber": "KEYSBUN867820",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "438558770",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8250 NW 27th St"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "notifyParty": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8250 NW 27th St"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "023S",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Buenaventura",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Miami",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Miami",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCLU4204537",
+        "seal": "PC2393876",
+        "type": "40HC",
+        "packages": "260",
+        "grossWeight": {
+          "value": "15,808.00",
+          "unit": "KG"
+        },
+        "volumeM3": "37.05"
+      }
+    ],
+    "totalPackages": "260",
+    "totalGrossWeight": {
+      "value": "15,808.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PEÑA/PO-80048/C/NO. 1-260",
+    "cargoDescription": "SAID TO CONTAIN 260 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-6402",
+      "PO-80048"
+    ],
+    "placeOfIssue": "Buenaventura",
+    "dateOfIssue": "Aug 8, 2026",
+    "shippedOnBoardDate": "Aug 8, 2026"
+  }
+}

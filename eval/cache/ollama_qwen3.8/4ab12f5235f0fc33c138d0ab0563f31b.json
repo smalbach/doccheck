@@ -1,0 +1,112 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 861,
+    "outputTokens": 1067
+  },
+  "output": {
+    "invoiceNumber": "CI/26/1364",
+    "invoiceDate": "10-SEP-2026",
+    "poNumber": "PO-30786",
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LID.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "ca",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "ca",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "19-SEP-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "SHANGHAI",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "VANCOUVER",
+      "country": null
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "VANCOUVER",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "EK-17",
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V HS 8516.71",
+        "quantity": "646",
+        "unit": "PCS",
+        "unitPrice": "15.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "10430.40",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": null,
+        "sku": "BL-600",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR HS 8509.40",
+        "quantity": "148",
+        "unit": "PCS",
+        "unitPrice": "22.82",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "3377.36",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      }
+    ],
+    "totalPackages": "119",
+    "grossWeight": {
+      "value": "1171.20",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1029.20",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "13807.76",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "1198.00",
+        "currency": "CNY"
+      }
+    ]
+  }
+}

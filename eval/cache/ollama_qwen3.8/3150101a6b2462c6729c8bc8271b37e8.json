@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 754,
+    "outputTokens": 901
+  },
+  "output": {
+    "blNumber": "KEYSGOA762151",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "325279538",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "048E",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "Genoa",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU7747571",
+        "seal": "PC6430085",
+        "type": "20GP",
+        "packages": "52",
+        "grossWeight": {
+          "value": "15,380.50",
+          "unit": "KG"
+        },
+        "volumeM3": "16.16"
+      }
+    ],
+    "totalPackages": "52",
+    "totalGrossWeight": {
+      "value": "15,380.50",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "HARBORLINE/HA302497/C/NO. 1-52",
+    "cargoDescription": "SAID TO CONTAIN 52 PKGS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-9107",
+      "HA302497"
+    ],
+    "placeOfIssue": "Genoa",
+    "dateOfIssue": "Sep 2, 2026",
+    "shippedOnBoardDate": "Sep 2, 2026"
+  }
+}

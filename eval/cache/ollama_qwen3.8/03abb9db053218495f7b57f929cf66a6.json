@@ -1,0 +1,94 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 684,
+    "outputTokens": 791
+  },
+  "output": {
+    "invoiceNumber": "CER2601595",
+    "invoiceDate": "2026-09-13",
+    "poNumber": "PO BL613717",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "2026-09-21",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "Houston",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Glazed porcelain floor tiles 60 x 60 cm",
+        "quantity": "320 M2",
+        "unit": "M2",
+        "unitPrice": "8.84",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2,828.80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "8",
+    "grossWeight": {
+      "value": "6,720.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "6,920.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "2,828.80",
+    "invoiceTotalCurrency": "EUR",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "4,496.00",
+        "currency": "CAD"
+      }
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 800,
+    "outputTokens": 826
+  },
+  "output": {
+    "blNumber": "3283",
+    "documentTitle": "HOUSE B/L",
+    "issuer": "TIDEMATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "2068130513",
+    "carrierName": "TIDEMATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "MINGBO CO LTD",
+      "addressLines": [
+        "166 JIANGMAN KD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL, INDUSTAIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "1M",
+      "country": "ca",
+      "taxId": "#734567##RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTAIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "NTS 1M",
+      "country": "CA",
+      "taxId": null
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "O64E",
+    "placeOfReceipt": null,
+    "portOfLoading": {
+      "name": "MINCBO",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": null,
+        "seal": null,
+        "type": "42.34",
+        "packages": "393",
+        "grossWeight": {
+          "value": "3924.10",
+          "unit": "KGS"
+        },
+        "volumeM3": null
+      }
+    ],
+    "totalPackages": "393",
+    "totalGrossWeight": {
+      "value": "3924.10",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERT E/ PO-64700/C/W0.",
+    "cargoDescription": "SAID TO CONTAIN 39% CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGNT COLLECT",
+    "references": [
+      "REF: / PO-é4700"
+    ],
+    "placeOfIssue": "NINGRO",
+    "dateOfIssue": "C4-MAR-2026",
+    "shippedOnBoardDate": null
+  }
+}

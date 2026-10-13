@@ -1,0 +1,95 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 662,
+    "outputTokens": 803
+  },
+  "output": {
+    "blNumber": "TOWEBUNS091104",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Tidewater Express Lines",
+    "bookingNumber": "568558591",
+    "carrierName": "Tidewater Express Lines",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores SAS.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": null,
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Home Goods DC",
+      "addressLines": [
+        "9800 Ag"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": null,
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "BluebonnetHome Goods LLC",
+      "addressLines": [
+        "4200 Ambassador"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": null,
+      "taxId": "74-3812456"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "020N",
+    "placeOfReceipt": {
+      "name": "Neiva, CO",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Buenaventura, CO",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Houston,US",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Houston,US",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU1879296",
+        "seal": null,
+        "type": "40GP",
+        "packages": "279",
+        "grossWeight": {
+          "value": "16,963.20",
+          "unit": "KG"
+        },
+        "volumeM3": "30.76"
+      }
+    ],
+    "totalPackages": "279",
+    "totalGrossWeight": {
+      "value": "16,963.20",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "BLUEBONNET/PO-1208/CNO. 1-279",
+    "cargoDescription": "SAID TO CONTAIN 279 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "C/26/0789/ PO-1208"
+    ],
+    "placeOfIssue": null,
+    "dateOfIssue": "Feb15, 2026",
+    "shippedOnBoardDate": "Feb15, 2026"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 750,
+    "outputTokens": 828
+  },
+  "output": {
+    "invoiceNumber": "MIN2601955",
+    "invoiceDate": "22-SEP-2026",
+    "poNumber": null,
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGHAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "cn",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400",
+        "TORONTO ON MSV 3G5"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "MSV 3G5",
+      "country": "ca",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT 57 M, SUITE 1400",
+        "TORONTO ON MSV 3G5"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "MSV 3G5",
+      "country": "cA",
+      "taxId": "812345678RMO001"
+    },
+    "shipmentDate": "30-S5EP-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "NINGBO",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "NINGBO",
+    "paymentTerms": "T/T 304 DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "EX-17",
+        "sku": null,
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V",
+        "quantity": "1456",
+        "unit": "Pca",
+        "unitPrice": "17.21",
+        "unitPriceCurrency": null,
+        "lineTotal": null,
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516,71"
+      }
+    ],
+    "totalPackages": "182 PEGS",
+    "grossWeight": {
+      "value": "1729.00",
+      "unit": "NGS"
+    },
+    "netWeight": {
+      "value": "1528.60",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "25057.76",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 680,
+    "outputTokens": 839
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-7831",
+    "invoiceDate": "10-MAY-2026",
+    "poNumber": "LA801205",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "20-MAY-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "GENOA",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "SAVANNAH",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "SAVANNAH",
+    "paymentTerms": "NET 60",
+    "currency": "USD",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "OO-EV-5",
+        "sku": "OO-EV-5",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS HS 1509.20",
+        "quantity": "500",
+        "unit": "PCS",
+        "unitPrice": "23.45",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "11725.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "125 PKGS",
+    "grossWeight": {
+      "value": "2412.50",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "2300.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "11725.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

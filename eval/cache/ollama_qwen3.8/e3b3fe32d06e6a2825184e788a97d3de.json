@@ -1,0 +1,90 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 684,
+    "outputTokens": 809
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-0565",
+    "invoiceDate": "04-APR-2026",
+    "poNumber": "PA676138",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "shipmentDate": "16-APR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "LONG BEACH",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "LONG BEACH",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "9",
+        "unit": "PCS",
+        "unitPrice": "75.27",
+        "unitPriceCurrency": null,
+        "lineTotal": "677.43",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "9 PKGS",
+    "grossWeight": {
+      "value": "171.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "130.50",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "677.43",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

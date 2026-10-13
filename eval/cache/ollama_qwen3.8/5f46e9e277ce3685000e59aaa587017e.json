@@ -1,0 +1,233 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1373,
+    "outputTokens": 2315
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-5245",
+    "invoiceDate": "27 February 2026",
+    "poNumber": "CO360671",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "411026 Pune Maharashtra"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "2 March 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "Vancouver",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BV-2IN-BL",
+        "description": "Brass ball valves 2 inch, threaded, colour blue",
+        "quantity": "300",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "5,202.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "2",
+        "sku": "BV-2IN-YL",
+        "description": "Brass ball valves 2 inch, threaded, colour yellow",
+        "quantity": "380",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "6,589.20",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "3",
+        "sku": "BV-2IN-NV",
+        "description": "Brass ball valves 2 inch, threaded, colour navy",
+        "quantity": "40",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "693.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "4",
+        "sku": "BV-2IN-GY",
+        "description": "Brass ball valves 2 inch, threaded, colour grey",
+        "quantity": "140",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "2,427.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "5",
+        "sku": "BV-2IN-BE",
+        "description": "Brass ball valves 2 inch, threaded, colour beige",
+        "quantity": "460",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "7,976.40",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "6",
+        "sku": "BV-2IN-GN",
+        "description": "Brass ball valves 2 inch, threaded, colour green",
+        "quantity": "560",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "9,710.40",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "7",
+        "sku": "BV-2IN-OR",
+        "description": "Brass ball valves 2 inch, threaded, colour orange",
+        "quantity": "540",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "9,363.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "8",
+        "sku": "BV-2IN-BR",
+        "description": "Brass ball valves 2 inch, threaded, colour brown",
+        "quantity": "160",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "2,774.40",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "9",
+        "sku": "BV-2IN-BK",
+        "description": "Brass ball valves 2 inch, threaded, colour black",
+        "quantity": "220",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "3,814.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "10",
+        "sku": "BV-2IN-WH",
+        "description": "Brass ball valves 2 inch, threaded, colour white",
+        "quantity": "200",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "3,468.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "11",
+        "sku": "BV-2IN-RD",
+        "description": "Brass ball valves 2 inch, threaded, colour red",
+        "quantity": "300",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "5,202.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "12",
+        "sku": "BV-2IN-PK",
+        "description": "Brass ball valves 2 inch, threaded, colour pink",
+        "quantity": "80",
+        "unit": "PCS",
+        "unitPrice": "17.34",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,387.20",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "169",
+    "grossWeight": {
+      "value": "4,748.90",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "4,563.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "58,609.20",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

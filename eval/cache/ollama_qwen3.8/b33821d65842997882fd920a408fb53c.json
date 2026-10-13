@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 783,
+    "outputTokens": 889
+  },
+  "output": {
+    "blNumber": "KEYSSHA534344",
+    "documentTitle": "BILL OF LADING FOR COMBINED TRANSPORT OR PORT TO PORT SHIPMENT",
+    "issuer": "Pacific Crest Container Line (SCAC PCCL)",
+    "bookingNumber": "250247718",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "315800 Ningbo Zhejiang"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Entrepôt Bélanger – Lévis",
+      "addressLines": [
+        "1200 rue de l'Église"
+      ],
+      "city": "Lévis",
+      "region": "QC",
+      "postalCode": "G6V 6N1",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Les Importations Bélanger & Frères inc.",
+      "addressLines": [
+        "2875 boul. Laurier, bureau 300"
+      ],
+      "city": "Québec",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "047E",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Shanghai",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Québec",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU5819625",
+        "seal": "PC3452722",
+        "type": "40GP",
+        "packages": "229",
+        "grossWeight": {
+          "value": "2,305.30",
+          "unit": "KG"
+        },
+        "volumeM3": "24.81"
+      }
+    ],
+    "totalPackages": "229",
+    "totalGrossWeight": {
+      "value": "2,305.30",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "LES/PO-17625/C/NO. 1-229",
+    "cargoDescription": "SAID TO CONTAIN 229 CTNS BLENDER 600 W AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "INV-2026-0839",
+      "PO-17625"
+    ],
+    "placeOfIssue": "Shanghai",
+    "dateOfIssue": "21 June 2026",
+    "shippedOnBoardDate": "21 June 2026"
+  }
+}

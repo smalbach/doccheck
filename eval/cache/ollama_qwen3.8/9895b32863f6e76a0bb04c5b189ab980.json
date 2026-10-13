@@ -1,0 +1,180 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1245,
+    "outputTokens": 1796
+  },
+  "output": {
+    "invoiceNumber": "SOC2602473",
+    "invoiceDate": "22 January 2026",
+    "poNumber": "QU511530",
+    "seller": {
+      "name": "Société Lyonnaise de Jouets S.A.R.L.",
+      "addressLines": [
+        "14 rue de l'Industrie",
+        "69007 Lyon"
+      ],
+      "city": "Lyon",
+      "region": null,
+      "postalCode": "69007",
+      "country": "FR",
+      "taxId": "FR40123456789"
+    },
+    "buyer": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "H7S 1P6 Laval QC"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "H7S 1P6 Laval QC"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "28 January 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Le Havre",
+      "country": "FR"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Le Havre",
+    "paymentTerms": "L/C at sight",
+    "currency": "EUR",
+    "countryOfOrigin": "FR",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "PZ-1000-GN",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour green",
+        "quantity": "312",
+        "unit": "PCS",
+        "unitPrice": "4.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,297.92",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": "PZ-1000-NV",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour navy",
+        "quantity": "672",
+        "unit": "PCS",
+        "unitPrice": "4.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,795.52",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "3",
+        "sku": "PZ-1000-YL",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour yellow",
+        "quantity": "192",
+        "unit": "PCS",
+        "unitPrice": "4.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "798.72",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "4",
+        "sku": "PZ-1000-BK",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour black",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "4.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "99.84",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "5",
+        "sku": "PZ-1000-RD",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour red",
+        "quantity": "768",
+        "unit": "PCS",
+        "unitPrice": "4.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,194.88",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "6",
+        "sku": "PZ-1000-BL",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour blue",
+        "quantity": "168",
+        "unit": "PCS",
+        "unitPrice": "4.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "698.88",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "7",
+        "sku": "PZ-1000-BR",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour brown",
+        "quantity": "168",
+        "unit": "PCS",
+        "unitPrice": "4.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "698.88",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "8",
+        "sku": "PZ-1000-PK",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour pink",
+        "quantity": "480",
+        "unit": "PCS",
+        "unitPrice": "4.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,996.80",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "116",
+    "grossWeight": {
+      "value": "1,830.48",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,726.08",
+      "unit": "KG"
+    },
+    "invoiceTotal": "11,581.44",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

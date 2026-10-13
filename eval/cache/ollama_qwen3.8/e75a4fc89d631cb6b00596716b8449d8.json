@@ -1,0 +1,281 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1577,
+    "outputTokens": 2877
+  },
+  "output": {
+    "invoiceNumber": "NOR2603412",
+    "invoiceDate": "14.06.2026",
+    "poNumber": "PO-81212",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "shipmentDate": "22.06.2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Bremerhaven",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BV-2IN-BE",
+        "description": "Brass ball valves 2 inch, threaded, colour beige",
+        "quantity": "460",
+        "unit": "PCS",
+        "unitPrice": "17,71",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "8.146,60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "2",
+        "sku": "BV-2IN-GY",
+        "description": "Brass ball valves 2 inch, threaded, colour grey",
+        "quantity": "620",
+        "unit": "PCS",
+        "unitPrice": "17,71",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "10.980,20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "3",
+        "sku": "BV-2IN-BL",
+        "description": "Brass ball valves 2 inch, threaded, colour blue",
+        "quantity": "140",
+        "unit": "PCS",
+        "unitPrice": "17,71",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2.479,40",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "4",
+        "sku": "BV-2IN-BK",
+        "description": "Brass ball valves 2 inch, threaded, colour black",
+        "quantity": "560",
+        "unit": "PCS",
+        "unitPrice": "17,71",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "9.917,60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "5",
+        "sku": "BV-2IN-OR",
+        "description": "Brass ball valves 2 inch, threaded, colour orange",
+        "quantity": "120",
+        "unit": "PCS",
+        "unitPrice": "17,71",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2.125,20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "6",
+        "sku": "BV-2IN-WH",
+        "description": "Brass ball valves 2 inch, threaded, colour white",
+        "quantity": "480",
+        "unit": "PCS",
+        "unitPrice": "17,71",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "8.500,80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "7",
+        "sku": "BV-2IN-YL",
+        "description": "Brass ball valves 2 inch, threaded, colour yellow",
+        "quantity": "220",
+        "unit": "PCS",
+        "unitPrice": "17,71",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "3.896,20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "8",
+        "sku": "BV-2IN-GN",
+        "description": "Brass ball valves 2 inch, threaded, colour green",
+        "quantity": "100",
+        "unit": "PCS",
+        "unitPrice": "17,71",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.771,00",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "9",
+        "sku": "CP-750-GY",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour grey",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "75,90",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "151,80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "10",
+        "sku": "CP-750-OR",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour orange",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "75,90",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "75,90",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "11",
+        "sku": "CP-750-BK",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour black",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "75,90",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "151,80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "12",
+        "sku": "CP-750-WH",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour white",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "75,90",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "75,90",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "13",
+        "sku": "CP-750-BL",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour blue",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "75,90",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "151,80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "14",
+        "sku": "CP-750-NV",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour navy",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "75,90",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "75,90",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "15",
+        "sku": "CP-750-BE",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour beige",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "75,90",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "151,80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "16",
+        "sku": "CP-750-BR",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour brown",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "75,90",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "151,80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "148",
+    "grossWeight": {
+      "value": "4 040,50",
+      "unit": "kg"
+    },
+    "netWeight": {
+      "value": "3 833,50",
+      "unit": "kg"
+    },
+    "invoiceTotal": "48.803,70",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

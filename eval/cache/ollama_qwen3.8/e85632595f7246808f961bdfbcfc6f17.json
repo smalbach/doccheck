@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 899,
+    "outputTokens": 970
+  },
+  "output": {
+    "blNumber": "PCCLCMT8248249",
+    "documentTitle": "B OF LAD",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "791476075",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3962 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "ca",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J S5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J S5H6",
+      "country": "ca",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "013N",
+    "placeOfReceipt": {
+      "name": "HO CHI MINH CITY, VN",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "CAI MEP, VN",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "VANCOUVER, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "VANCOUVER, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU4570520",
+        "seal": "PC8848623",
+        "type": "40HC",
+        "packages": "4439",
+        "grossWeight": {
+          "value": "8237.40",
+          "unit": "KGS"
+        },
+        "volumeM3": "45.54"
+      }
+    ],
+    "totalPackages": "449",
+    "totalGrossWeight": {
+      "value": "8237.40",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "COASTAL/CO367969/C/NO, 449",
+    "cargoDescription": "SAID TO CONTAIN 449 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "SAI2607606 / CO367969"
+    ],
+    "placeOfIssue": "CAI MEP",
+    "dateOfIssue": "28-MAY-2026",
+    "shippedOnBoardDate": "28-MAY-2026"
+  }
+}

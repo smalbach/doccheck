@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 794,
+    "outputTokens": 890
+  },
+  "output": {
+    "blNumber": "MRDNNGB4005762",
+    "documentTitle": "BILL OF LADING FOR COMBINED TRANSPORT OR PORT TO PORT SHIPMENT",
+    "issuer": "Meridian Ocean Shipping (SCAC MRDN)",
+    "bookingNumber": "180998054",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "315800 Ningbo Zhejiang"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8250 NW 27th St"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "notifyParty": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8250 NW 27th St"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "008E",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Miami",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Miami",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU6707968",
+        "seal": "MD4771057",
+        "type": "20GP",
+        "packages": "186",
+        "grossWeight": {
+          "value": "4,264",
+          "unit": "LB"
+        },
+        "volumeM3": "20.63"
+      }
+    ],
+    "totalPackages": "186",
+    "totalGrossWeight": {
+      "value": "4,264",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "PEÑA/PO-32338/C/NO. 1-186",
+    "cargoDescription": "SAID TO CONTAIN 186 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "PREPAID",
+    "references": [
+      "INV-2026-3055",
+      "PO-32338"
+    ],
+    "placeOfIssue": "Ningbo",
+    "dateOfIssue": "13 May 2026",
+    "shippedOnBoardDate": "13 May 2026"
+  }
+}

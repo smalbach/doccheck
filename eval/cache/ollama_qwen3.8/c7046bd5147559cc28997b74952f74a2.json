@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 769,
+    "outputTokens": 895
+  },
+  "output": {
+    "blNumber": "KEYSTAO889689",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "114049691",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "038N",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU6717688",
+        "seal": "AG2150163",
+        "type": "20GP",
+        "packages": "102",
+        "grossWeight": {
+          "value": "10,820.50",
+          "unit": "KG"
+        },
+        "volumeM3": "14.79"
+      }
+    ],
+    "totalPackages": "102",
+    "totalGrossWeight": {
+      "value": "10,820.50",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-73723/C/NO. 1-102",
+    "cargoDescription": "SAID TO CONTAIN 102 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "CI/26/1172",
+      "PO-73723"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "Apr 14, 2026",
+    "shippedOnBoardDate": "Apr 14, 2026"
+  }
+}

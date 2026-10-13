@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 776,
+    "outputTokens": 893
+  },
+  "output": {
+    "blNumber": "KEYSHPH983045",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "780288828",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Công ty Cổ phần May Đông Á",
+      "addressLines": [
+        "Lô C2, KCN Đồng Văn II",
+        "Duy Tiên, Hà Nam"
+      ],
+      "city": "Duy Tiên",
+      "region": "Hà Nam",
+      "postalCode": null,
+      "country": "VN",
+      "taxId": "0700123456"
+    },
+    "consignee": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "notifyParty": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "097W",
+    "placeOfReceipt": {
+      "name": "Duy Tiên",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Hai Phong",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Moncton",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU7819874",
+        "seal": "AG9145634",
+        "type": "20GP",
+        "packages": "90",
+        "grossWeight": {
+          "value": "1,699.10",
+          "unit": "KG"
+        },
+        "volumeM3": "8.77"
+      }
+    ],
+    "totalPackages": "90",
+    "totalGrossWeight": {
+      "value": "1,699.10",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "ÉPICERIE/ÉP494986/C/NO. 1-90",
+    "cargoDescription": "SAID TO CONTAIN 90 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-7959",
+      "ÉP494986"
+    ],
+    "placeOfIssue": "Hai Phong",
+    "dateOfIssue": "Jun 27, 2026",
+    "shippedOnBoardDate": "Jun 27, 2026"
+  }
+}

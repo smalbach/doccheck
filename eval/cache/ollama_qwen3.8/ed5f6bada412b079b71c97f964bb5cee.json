@@ -1,0 +1,90 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 690,
+    "outputTokens": 774
+  },
+  "output": {
+    "invoiceNumber": "SAI2604790",
+    "invoiceDate": "2026-09-09",
+    "poNumber": "HA427385",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "2026-09-12",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "New York",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "13,300",
+        "unit": "PCS",
+        "unitPrice": "3.25",
+        "unitPriceCurrency": null,
+        "lineTotal": "34,225.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      }
+    ],
+    "totalPackages": "133",
+    "grossWeight": {
+      "value": "2,633.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,527.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "43,225.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

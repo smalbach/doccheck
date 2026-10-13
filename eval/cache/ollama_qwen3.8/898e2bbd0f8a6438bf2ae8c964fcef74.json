@@ -1,0 +1,91 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 627,
+    "outputTokens": 780
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-6820",
+    "invoiceDate": "May 11, 2026",
+    "poNumber": "PO-23127",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd",
+        "Fontana, CA, 92335"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "May 16, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "Bremerhaven",
+    "paymentTerms": "L/C at sight",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BV-2IN",
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "580",
+        "unit": "PCS",
+        "unitPrice": "17.07",
+        "unitPriceCurrency": null,
+        "lineTotal": "9,090.60",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "29",
+    "grossWeight": {
+      "value": "814.90",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "783.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "9,900.60",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

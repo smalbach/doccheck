@@ -1,0 +1,91 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 663,
+    "outputTokens": 802
+  },
+  "output": {
+    "invoiceNumber": "CI/26/8283",
+    "invoiceDate": "Feb 20, 2026",
+    "poNumber": "HA575046",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "Feb 27, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "New York",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CF-GRN-60",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+        "quantity": "11,940 KG",
+        "unit": "KG",
+        "unitPrice": "4.40",
+        "unitPriceCurrency": null,
+        "lineTotal": "52,536.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "199",
+    "grossWeight": {
+      "value": "12,099.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "11,940.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "52,536.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

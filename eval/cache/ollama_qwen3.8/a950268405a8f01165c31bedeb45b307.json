@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 746,
+    "outputTokens": 900
+  },
+  "output": {
+    "blNumber": "KEYSNSA755600",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "144193315",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd",
+        "Houston, TX, 77013"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "095E",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU4741137",
+        "seal": "AG1826463",
+        "type": "20GP",
+        "packages": "193",
+        "grossWeight": {
+          "value": "4,419.70",
+          "unit": "KG"
+        },
+        "volumeM3": "5.79"
+      }
+    ],
+    "totalPackages": "193",
+    "totalGrossWeight": {
+      "value": "4,419.70",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "BLUEBONNET/BL609082/C/NO. 1-193",
+    "cargoDescription": "SAID TO CONTAIN 193 CTNS BALL BEARING 6204-2RS",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/8858",
+      "BL609082"
+    ],
+    "placeOfIssue": "Nhava Sheva",
+    "dateOfIssue": "Sep 16, 2026",
+    "shippedOnBoardDate": "Sep 16, 2026"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 830,
+    "outputTokens": 870
+  },
+  "output": {
+    "blNumber": "PCCLCTG4852719",
+    "documentTitle": "MASTER B/L",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "685420966",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "CAFE ALTO HUILA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40"
+      ],
+      "city": "NEIVA",
+      "region": "HUILA",
+      "postalCode": null,
+      "country": "co",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "us",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "us",
+      "taxId": "22-4519873"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "012W",
+    "placeOfReceipt": {
+      "name": "NEIVA",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "CARTAGENA",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "NEWARK",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU3151500",
+        "seal": "PC2927323",
+        "type": "20GP",
+        "packages": "137",
+        "grossWeight": {
+          "value": "18364",
+          "unit": "LB"
+        },
+        "volumeM3": "19.52"
+      }
+    ],
+    "totalPackages": "137",
+    "totalGrossWeight": {
+      "value": "18364",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "HARBORLINE/HA611287/C/N0.",
+    "cargoDescription": "SAID TO CONTAIN 137 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CAF2606370",
+      "HA611287"
+    ],
+    "placeOfIssue": "CARTAGENA",
+    "dateOfIssue": "21-FEB-2026",
+    "shippedOnBoardDate": "21-FEB-2026"
+  }
+}

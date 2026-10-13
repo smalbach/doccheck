@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 604,
+    "outputTokens": 765
+  },
+  "output": {
+    "packingListNumber": "PL-SAI2609737",
+    "invoiceRef": "SAI2609737",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "marks": "PACIFIC/PA330184/C/NO. 1-212",
+    "packages": [
+      {
+        "range": "1-180",
+        "count": "180 CTN",
+        "packageType": "CTN",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket",
+        "quantity": "3,600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3,060.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,240.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "65 × 45 × 45"
+      },
+      {
+        "range": "181-212",
+        "count": "32 CTN",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M",
+        "description": "Men's cotton T-shirt",
+        "quantity": "3,200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "608.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "633.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      }
+    ],
+    "totalPackages": "212",
+    "totalNetWeight": {
+      "value": "3,668.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,873.60",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "26.38"
+  }
+}

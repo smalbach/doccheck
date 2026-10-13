@@ -1,0 +1,312 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1841,
+    "outputTokens": 3162
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-2941",
+    "invoiceDate": "5 June 2026",
+    "poNumber": "PO-8742",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "518112 Shenzhen Guangdong"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "16 June 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shekou",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "Houston",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "PZ-1000-GY",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour grey",
+        "quantity": "456",
+        "unit": "PCS",
+        "unitPrice": "3.14",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,431.84",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": "PZ-1000-NV",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour navy",
+        "quantity": "768",
+        "unit": "PCS",
+        "unitPrice": "3.14",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,411.52",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "3",
+        "sku": "PZ-1000-WH",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour white",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "3.14",
+        "unitPriceCurrency": null,
+        "lineTotal": "75.36",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "4",
+        "sku": "PZ-1000-BE",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour beige",
+        "quantity": "624",
+        "unit": "PCS",
+        "unitPrice": "3.14",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,959.36",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "5",
+        "sku": "PZ-1000-BK",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour black",
+        "quantity": "432",
+        "unit": "PCS",
+        "unitPrice": "3.14",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,356.48",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "6",
+        "sku": "PZ-1000-RD",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour red",
+        "quantity": "480",
+        "unit": "PCS",
+        "unitPrice": "3.14",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,507.20",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "7",
+        "sku": "TB-200-BK",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour black",
+        "quantity": "950",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "7,267.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "8",
+        "sku": "TB-200-BE",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour beige",
+        "quantity": "400",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,060.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "9",
+        "sku": "TB-200-NV",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour navy",
+        "quantity": "300",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,295.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "10",
+        "sku": "TB-200-GN",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour green",
+        "quantity": "100",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "765.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "11",
+        "sku": "TB-200-RD",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour red",
+        "quantity": "650",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,972.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "12",
+        "sku": "TB-200-GY",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour grey",
+        "quantity": "50",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "382.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "13",
+        "sku": "TB-200-BL",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour blue",
+        "quantity": "200",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,530.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "14",
+        "sku": "TB-200-OR",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour orange",
+        "quantity": "1,000",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "7,650.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "15",
+        "sku": "TB-200-WH",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour white",
+        "quantity": "800",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,120.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "16",
+        "sku": "TB-200-BR",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour brown",
+        "quantity": "800",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,120.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "17",
+        "sku": "TB-200-PK",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour pink",
+        "quantity": "100",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "765.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "18",
+        "sku": "TB-200-YL",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour yellow",
+        "quantity": "450",
+        "unit": "PCS",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,442.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "233",
+    "grossWeight": {
+      "value": "3,013.68",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,770.08",
+      "unit": "KG"
+    },
+    "invoiceTotal": "53,111.76",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

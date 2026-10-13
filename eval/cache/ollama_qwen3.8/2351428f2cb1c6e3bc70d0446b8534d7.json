@@ -1,0 +1,180 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1276,
+    "outputTokens": 2105
+  },
+  "output": {
+    "invoiceNumber": "CI/26/1295",
+    "invoiceDate": "20-JAN-2026",
+    "poNumber": "PO-72566",
+    "seller": {
+      "name": "CAFE ALTO HUILA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40",
+        "NEIVA HUILA"
+      ],
+      "city": "NEIVA HUILA",
+      "region": "HUILA",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "buyer": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "22-JAN-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "BUENAVENTURA",
+      "country": "CO"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "BUENAVENTURA",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "CAD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": "CF-GRN-60-L1",
+        "sku": "CF-GRN-60-L1",
+        "description": "GREEN COFFEE BEANS, ARABICA, NOT ROASTED, IN 60 KG JUTE BAGS, LOT A-509 HS 0901.11",
+        "quantity": "240",
+        "unit": "KG",
+        "unitPrice": "5.63",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1351.20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "CF-GRN-60-L2",
+        "sku": "CF-GRN-60-L2",
+        "description": "GREEN COFFEE BEANS, ARABICA, NOT ROASTED, IN 60 KG JUTE BAGS, LOT B-810 HS 0901.11",
+        "quantity": "2460",
+        "unit": "KG",
+        "unitPrice": "5.63",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "13849.80",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "CF-GRN-60-L3",
+        "sku": "CF-GRN-60-L3",
+        "description": "GREEN COFFEE BEANS, ARABICA, NOT ROASTED, IN 60 KG JUTE BAGS, LOT C-299 HS 0901.11",
+        "quantity": "1980",
+        "unit": "KG",
+        "unitPrice": "5.63",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "11147.40",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "CF-GRN-60-L4",
+        "sku": "CF-GRN-60-L4",
+        "description": "GREEN COFFEE BEANS, ARABICA, NOT ROASTED, IN 60 KG JUTE BAGS, LOT D-295 HS 0901.11",
+        "quantity": "1500",
+        "unit": "KG",
+        "unitPrice": "5.63",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "8445.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "CF-GRN-60-L5",
+        "sku": "CF-GRN-60-L5",
+        "description": "GREEN COFFEE BEANS, ARABICA, NOT ROASTED, IN 60 KG JUTE BAGS, LOT E-621 HS 0901.11",
+        "quantity": "1500",
+        "unit": "KG",
+        "unitPrice": "5.63",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "8445.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "CF-GRN-60-L6",
+        "sku": "CF-GRN-60-L6",
+        "description": "GREEN COFFEE BEANS, ARABICA, NOT ROASTED, IN 60 KG JUTE BAGS, LOT F-961 HS 0901.11",
+        "quantity": "180",
+        "unit": "KG",
+        "unitPrice": "5.63",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1013.40",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "CF-GRN-60-L7",
+        "sku": "CF-GRN-60-L7",
+        "description": "GREEN COFFEE BEANS, ARABICA, NOT ROASTED, IN 60 KG JUTE BAGS, LOT G-806 HS 0901.11",
+        "quantity": "480",
+        "unit": "KG",
+        "unitPrice": "5.63",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "2702.40",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "CF-GRN-60-L8",
+        "sku": "CF-GRN-60-L8",
+        "description": "GREEN COFFEE BEANS, ARABICA, NOT ROASTED, IN 60 KG JUTE BAGS, LOT H-425 HS 0901.11",
+        "quantity": "1620",
+        "unit": "KG",
+        "unitPrice": "5.63",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "9120.60",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "166 PKGS",
+    "grossWeight": {
+      "value": "10092.80",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "9960.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "56074.80",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

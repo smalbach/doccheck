@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 794,
+    "outputTokens": 960
+  },
+  "output": {
+    "blNumber": "TDWEBRV6001570",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "416679386",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "KÜCHENTECHNIK MÜLLER & SÖHNE GMBH",
+      "addressLines": [
+        "KÖNIGSTRASSE 48",
+        "STUTTGART 70173"
+      ],
+      "city": "STUTTGART",
+      "region": null,
+      "postalCode": "70173",
+      "country": "DE",
+      "taxId": "DE298765432"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "024W",
+    "placeOfReceipt": {
+      "name": "STUTTGART",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "BREMERHAVEN",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "VANCOUVER",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "VANCOUVER",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU5359190",
+        "seal": "TW1868092",
+        "type": "40GP",
+        "packages": "256",
+        "grossWeight": {
+          "value": "2498.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "27.12"
+      }
+    ],
+    "totalPackages": "256",
+    "totalGrossWeight": {
+      "value": "2498.00",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "COASTAL/PO-51429/C/NO. 1-256",
+    "cargoDescription": "SAID TO CONTAIN 256 CTNS BLENDER 600 W AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "KÜC2601966",
+      "PO-51429"
+    ],
+    "placeOfIssue": "BREMERHAVEN",
+    "dateOfIssue": "07-FEB-2026",
+    "shippedOnBoardDate": "07-FEB-2026"
+  }
+}

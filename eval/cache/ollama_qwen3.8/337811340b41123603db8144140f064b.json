@@ -1,0 +1,93 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 658,
+    "outputTokens": 784
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-7465",
+    "invoiceDate": "2026-06-26",
+    "poNumber": "PO-18529",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "us",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "2026-07-03",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shanghai",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "Shanghai",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar",
+        "quantity": "92",
+        "unit": "PCS",
+        "unitPrice": "26.09",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,200.28",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      }
+    ],
+    "totalPackages": "23",
+    "grossWeight": {
+      "value": "243.80",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "211.60",
+      "unit": "KG"
+    },
+    "invoiceTotal": "2,400.28",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

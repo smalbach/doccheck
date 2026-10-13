@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 757,
+    "outputTokens": 923
+  },
+  "output": {
+    "invoiceNumber": "CI/26/4295",
+    "invoiceDate": "2026-07-22",
+    "poNumber": "HA652152",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "2026-07-27",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Cai Mep",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "New York",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Wool blend socks, knitted, 3-pair pack",
+        "quantity": "29,760",
+        "unit": "PRS",
+        "unitPrice": "3.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "94,041.60",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6115.94"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "21,400",
+        "unit": "PCS",
+        "unitPrice": "3.53",
+        "unitPriceCurrency": null,
+        "lineTotal": "75,542.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      }
+    ],
+    "totalPackages": "338",
+    "grossWeight": {
+      "value": "6,556.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "6,298.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "169,583.60",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

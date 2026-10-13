@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 756,
+    "outputTokens": 951
+  },
+  "output": {
+    "blNumber": "KEYSSPE923767",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "AURORA GLOBAL LINES (AGLX)",
+    "bookingNumber": "432669610",
+    "carrierName": "AURORA GLOBAL LINES (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "079E",
+    "placeOfReceipt": {
+      "name": "SASSUOLO",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "LA SPEZIA",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "NEWARK",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGXU1061513",
+        "seal": "AG9823844",
+        "type": "20GP",
+        "packages": "7",
+        "grossWeight": {
+          "value": "6055.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "6.05"
+      }
+    ],
+    "totalPackages": "7",
+    "totalGrossWeight": {
+      "value": "6055.00",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-35165/C/NO. 1-7",
+    "cargoDescription": "SAID TO CONTAIN 7 PLTS PORCELAIN TILE 60X60\nREF: CI/26/5585 / PO-35165\nFREIGHT PREPAID",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "CI/26/5585",
+      "PO-35165"
+    ],
+    "placeOfIssue": "LA SPEZIA",
+    "dateOfIssue": "22-APR-2026",
+    "shippedOnBoardDate": "22-APR-2026"
+  }
+}

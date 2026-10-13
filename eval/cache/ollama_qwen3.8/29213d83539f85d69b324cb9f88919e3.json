@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 723,
+    "outputTokens": 843
+  },
+  "output": {
+    "blNumber": "PCCLTAO2872761",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "851204645",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "us",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "us",
+      "taxId": "22-4519873"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "094W",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU1272289",
+        "seal": "PC3299596",
+        "type": "20GP",
+        "packages": "18",
+        "grossWeight": {
+          "value": "754",
+          "unit": "LB"
+        },
+        "volumeM3": "1.58"
+      }
+    ],
+    "totalPackages": "18",
+    "totalGrossWeight": {
+      "value": "754",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "HARBORLINE/HAB27084/C/NO. 1-18",
+    "cargoDescription": "SAID TO CONTAIN 18 CRTS CENTRIFUGAL PUMP 0.75 KW",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "INV-2026-9508/ HAB27084"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "Jun 14, 2026",
+    "shippedOnBoardDate": "Jun 14, 2026"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 663,
+    "outputTokens": 908
+  },
+  "output": {
+    "packingListNumber": "PL/26/4379",
+    "invoiceRef": "CI/26/4379",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-62769/C/NO. 1-194",
+    "packages": [
+      {
+        "range": "1-17",
+        "count": "17 PLT",
+        "packageType": "PLT",
+        "sku": "HB-M12",
+        "description": "Hex bolt M12x60",
+        "quantity": "8,495 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "8,500.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "8,874.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 100 × 60"
+      },
+      {
+        "range": "18-139",
+        "count": "122 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "24,400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,684.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,793.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      },
+      {
+        "range": "140-194",
+        "count": "55 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "55 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "797.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,045.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      }
+    ],
+    "totalPackages": "194",
+    "totalNetWeight": {
+      "value": "11,981.50",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "12,712.80",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "20.74"
+  }
+}

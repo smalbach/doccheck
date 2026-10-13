@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 515,
+    "outputTokens": 558
+  },
+  "output": {
+    "packingListNumber": "PL-SAI2605984",
+    "invoiceRef": "SAI2605984",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "PACIFIC/PO-8121/C/NO. 1-59",
+    "packages": [
+      {
+        "range": "1-59",
+        "count": "59 CTN",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M",
+        "description": "Men's cotton T-shirt",
+        "quantity": "5,900 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,121.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,168.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      }
+    ],
+    "totalPackages": "59",
+    "totalNetWeight": {
+      "value": "1,121.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,168.20",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "4.96"
+  }
+}

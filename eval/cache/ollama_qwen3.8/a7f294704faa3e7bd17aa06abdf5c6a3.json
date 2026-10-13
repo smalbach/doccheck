@@ -1,0 +1,325 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1896,
+    "outputTokens": 3349
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-9648",
+    "invoiceDate": "26 May 2026",
+    "poNumber": "PO-92457",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "consignee": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "shipmentDate": "3 June 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": null,
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Qingdao",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CP-750-BL",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour blue",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "92.81",
+        "unitPriceCurrency": null,
+        "lineTotal": "742.48",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "2",
+        "sku": "CP-750-WH",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour white",
+        "quantity": "6",
+        "unit": "PCS",
+        "unitPrice": "92.81",
+        "unitPriceCurrency": null,
+        "lineTotal": "556.86",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "3",
+        "sku": "CP-750-NV",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour navy",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "92.81",
+        "unitPriceCurrency": null,
+        "lineTotal": "185.62",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "4",
+        "sku": "CP-750-BR",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour brown",
+        "quantity": "7",
+        "unit": "PCS",
+        "unitPrice": "92.81",
+        "unitPriceCurrency": null,
+        "lineTotal": "649.67",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "5",
+        "sku": "CP-750-YL",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour yellow",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "92.81",
+        "unitPriceCurrency": null,
+        "lineTotal": "371.24",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "6",
+        "sku": "CP-750-GY",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour grey",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "92.81",
+        "unitPriceCurrency": null,
+        "lineTotal": "742.48",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "7",
+        "sku": "CP-750-BK",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour black",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "92.81",
+        "unitPriceCurrency": null,
+        "lineTotal": "185.62",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "8",
+        "sku": "CP-750-GN",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour green",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "92.81",
+        "unitPriceCurrency": null,
+        "lineTotal": "185.62",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "9",
+        "sku": "CP-750-BE",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour beige",
+        "quantity": "7",
+        "unit": "PCS",
+        "unitPrice": "92.81",
+        "unitPriceCurrency": null,
+        "lineTotal": "649.67",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "10",
+        "sku": "HB-M12-YL",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour yellow",
+        "quantity": "1,000",
+        "unit": "KG",
+        "unitPrice": "1.94",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,940.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "11",
+        "sku": "HB-M12-BK",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour black",
+        "quantity": "1,000",
+        "unit": "KG",
+        "unitPrice": "1.94",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,940.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "12",
+        "sku": "HB-M12-WH",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour white",
+        "quantity": "1,000",
+        "unit": "KG",
+        "unitPrice": "1.94",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,940.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "13",
+        "sku": "HB-M12-GY",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour grey",
+        "quantity": "500",
+        "unit": "KG",
+        "unitPrice": "1.94",
+        "unitPriceCurrency": null,
+        "lineTotal": "970.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "14",
+        "sku": "HB-M12-BL",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour blue",
+        "quantity": "1,000",
+        "unit": "KG",
+        "unitPrice": "1.94",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,940.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "15",
+        "sku": "HB-M12-BR",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour brown",
+        "quantity": "500",
+        "unit": "KG",
+        "unitPrice": "1.94",
+        "unitPriceCurrency": null,
+        "lineTotal": "970.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "16",
+        "sku": "HB-M12-OR",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour orange",
+        "quantity": "1,000",
+        "unit": "KG",
+        "unitPrice": "1.94",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,940.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "17",
+        "sku": "HB-M12-RD",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour red",
+        "quantity": "1,000",
+        "unit": "KG",
+        "unitPrice": "1.94",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,940.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "18",
+        "sku": "HB-M12-PK",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour pink",
+        "quantity": "500",
+        "unit": "KG",
+        "unitPrice": "1.94",
+        "unitPriceCurrency": null,
+        "lineTotal": "970.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "19",
+        "sku": "HB-M12-GN",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour green",
+        "quantity": "500",
+        "unit": "KG",
+        "unitPrice": "1.94",
+        "unitPriceCurrency": null,
+        "lineTotal": "970.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      }
+    ],
+    "totalPackages": "60",
+    "grossWeight": {
+      "value": "9,226.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "8,667.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "19,789.26",
+    "invoiceTotalCurrency": "CAD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "2,826.00",
+        "currency": "USD"
+      }
+    ]
+  }
+}

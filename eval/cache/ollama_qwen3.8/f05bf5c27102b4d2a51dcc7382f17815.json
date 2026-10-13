@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 778,
+    "outputTokens": 925
+  },
+  "output": {
+    "blNumber": "MRDNTAO6543370",
+    "documentTitle": "BILL OF LADING FOR COMBINED TRANSPORT OR PORT TO PORT",
+    "issuer": "Meridian Ocean",
+    "bookingNumber": "587070258",
+    "carrierName": "Meridian Ocean",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain",
+        "E1A 1N5 Dieppe NB"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "notifyParty": {
+      "name": "Épicerie Fine Évangéline Coopérative Ltée",
+      "addressLines": [
+        "95 rue Champlain",
+        "E1A 1N5 Dieppe NB"
+      ],
+      "city": "Dieppe",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "036W",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Moncton",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU9527229",
+        "seal": "MD5286401",
+        "type": "20GP",
+        "packages": "62",
+        "grossWeight": {
+          "value": "9 226,00",
+          "unit": "kg"
+        },
+        "volumeM3": "15,57"
+      }
+    ],
+    "totalPackages": "62",
+    "totalGrossWeight": {
+      "value": "9 226,00",
+      "unit": "kg"
+    },
+    "marksAndNumbers": "ÉPICERIE/PO-92457/C/NO. 1-62",
+    "cargoDescription": "SAID TO CONTAIN 62 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "INV-2026-9648",
+      "PO-92457"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "03.06.2026",
+    "shippedOnBoardDate": "03.06.2026"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 711,
+    "outputTokens": 942
+  },
+  "output": {
+    "invoiceNumber": "QIN2603953",
+    "invoiceDate": "Feb 26, 2026",
+    "poNumber": "PA980841",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd",
+        "Fontana, CA, 92335"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "Mar 8, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "incotermCode": null,
+    "incotermPlace": null,
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CP-750",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "52",
+        "unit": "PCS",
+        "unitPrice": "71.17",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,700.84",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "2",
+        "sku": "BB-6204",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "31,200",
+        "unit": "PCS",
+        "unitPrice": "0.90",
+        "unitPriceCurrency": null,
+        "lineTotal": "28,080.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      }
+    ],
+    "totalPackages": "208",
+    "grossWeight": {
+      "value": "4,560.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "4,186.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "31,780.84",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

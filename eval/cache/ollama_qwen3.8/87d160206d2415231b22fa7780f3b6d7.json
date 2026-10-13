@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 669,
+    "outputTokens": 885
+  },
+  "output": {
+    "packingListNumber": "PL-2026-1736",
+    "invoiceRef": "INV-2026-1736",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "marks": "LAKESHORE/LA881850/C/NO. 1-261",
+    "packages": [
+      {
+        "range": "1-226",
+        "count": "226 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BALL BEARING 6204-2RS",
+        "quantity": "45200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4972.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "5175.40",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "227-237",
+        "count": "11 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "HEX BOLT M12X60",
+        "quantity": "5500 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "5500.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "5742.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "238-261",
+        "count": "24 CRT",
+        "packageType": "CRT",
+        "sku": null,
+        "description": "CENTRIFUGAL PUMP 0.75 KW",
+        "quantity": "19 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "348.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "456.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "261",
+    "totalNetWeight": {
+      "value": "10820.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "11373.40",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "16.81"
+  }
+}

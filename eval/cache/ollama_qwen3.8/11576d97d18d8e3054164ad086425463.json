@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 605,
+    "outputTokens": 741
+  },
+  "output": {
+    "invoiceNumber": "Ne.",
+    "invoiceDate": "Feb4, 2026",
+    "poNumber": "PO-1208",
+    "seller": {
+      "name": "Cafe Aîto Mulla Exportadores SAS.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": null,
+      "taxId": "000123456-7"
+    },
+    "buyer": {
+      "name": "Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pioay"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Home Goods DC",
+      "addressLines": [
+        "5800           Ra"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "us",
+      "taxId": null
+    },
+    "shipmentDate": "Feb 15, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Buenaventura,CO",
+      "country": "CO"
+    },
+    "portOfEntry": {
+      "name": "Houston,CO US",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "Buenaventura",
+    "paymentTerms": "T/T 30 days after Bi date",
+    "currency": "USD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "SHU",
+        "description": "Green coffee beans. arabica. not roasted. in 60 kg jute bags",
+        "quantity": "16,740 KG",
+        "unit": "KG",
+        "unitPrice": "595",
+        "unitPriceCurrency": null,
+        "lineTotal": "99.60300",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CO",
+        "hsCode": "0801 11"
+      }
+    ],
+    "totalPackages": null,
+    "grossWeight": {
+      "value": "16.96320",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "16,740.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "99,603.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

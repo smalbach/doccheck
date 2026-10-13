@@ -1,0 +1,101 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 816,
+    "outputTokens": 897
+  },
+  "output": {
+    "blNumber": "SILVYTHB21455",
+    "documentTitle": "HOUSE B/L",
+    "issuer": null,
+    "bookingNumber": "908348108",
+    "carrierName": "AURORA GLOBAL LINES (AGLK)",
+    "scac": "AGLK",
+    "shipper": {
+      "name": "BRAIGHTSTAR TOYS MANUFACTURING CO.. LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BJT SUBDISTRICT",
+        "SHENIHEN GUANGDONG 510112"
+      ],
+      "city": "SHENIHEN",
+      "region": "GUANGDONG",
+      "postalCode": "510112",
+      "country": null,
+      "taxId": null
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4248 AMBASSADOR CAFFERY PENY",
+        "HOUSTON TX 77041",
+        "us"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-2812456"
+    },
+    "notifyParty": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PENY",
+        "HOUSTON TX 77041",
+        "us"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "vessel": "AURCRA BOREAS",
+    "voyage": "C4BN",
+    "placeOfReceipt": {
+      "name": "SHENZNEN, CN",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "YANTIAN, CN",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "HOUSTON, US",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "HOUSTON, US",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "zocr",
+        "seal": null,
+        "type": null,
+        "packages": "20",
+        "grossWeight": {
+          "value": "450",
+          "unit": "LB"
+        },
+        "volumeM3": "1,8"
+      }
+    ],
+    "totalPackages": "20",
+    "totalGrossWeight": {
+      "value": "450",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "BLUEBONNET/BL821850/C/N0.",
+    "cargoDescription": "SAID TO CONTAIN 20 CTNS PLUSH TEDDY BEAR 30 CM",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "INV-2026-6880"
+    ],
+    "placeOfIssue": "YANTIAN",
+    "dateOfIssue": "29-JUL-2026",
+    "shippedOnBoardDate": "29-JUL-2026"
+  }
+}

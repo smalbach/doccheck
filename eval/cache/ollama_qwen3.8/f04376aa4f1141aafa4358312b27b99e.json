@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 762,
+    "outputTokens": 911
+  },
+  "output": {
+    "blNumber": "COMPBRV792514",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "172693692",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "Us",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "Us",
+      "taxId": "95-4783210"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "030E",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU1488149",
+        "seal": "PC9113758",
+        "type": "20GP",
+        "packages": "149",
+        "grossWeight": {
+          "value": "3,731.90",
+          "unit": "KG"
+        },
+        "volumeM3": "9.08"
+      }
+    ],
+    "totalPackages": "149",
+    "totalGrossWeight": {
+      "value": "3,731.90",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PACIFIC/PA996250/C/NO. 1-149",
+    "cargoDescription": "SAID TO CONTAIN 149 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "C1/26/0435 / PA996250"
+    ],
+    "placeOfIssue": "Bremerhaven",
+    "dateOfIssue": "Mar 10, 2026",
+    "shippedOnBoardDate": "Mar 10, 2026"
+  }
+}

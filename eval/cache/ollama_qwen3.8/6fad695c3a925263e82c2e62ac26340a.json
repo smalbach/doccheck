@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 665,
+    "outputTokens": 917
+  },
+  "output": {
+    "packingListNumber": "PL-2026-3560",
+    "invoiceRef": "INV-2026-3560",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "marks": "LAKESHORE/PO-11368/C/NO. 1-130",
+    "packages": [
+      {
+        "range": "1-16",
+        "count": "16 PLT",
+        "packageType": "PLT",
+        "sku": "HB-M12",
+        "description": "Hex bolt M12x60",
+        "quantity": "8,000 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "8,000.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "8,352.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 100 × 60"
+      },
+      {
+        "range": "17-57",
+        "count": "41 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "41 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "594.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "779.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      },
+      {
+        "range": "58-130",
+        "count": "73 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "14,600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,606.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,671.70",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      }
+    ],
+    "totalPackages": "130",
+    "totalNetWeight": {
+      "value": "10,200.50",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "10,802.70",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "17.32"
+  }
+}

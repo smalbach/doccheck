@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 724,
+    "outputTokens": 870
+  },
+  "output": {
+    "blNumber": "MRDNTAO5684967",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "209917255",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1246 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "097N",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU7734891",
+        "seal": "MD6651656",
+        "type": "20GP",
+        "packages": "194",
+        "grossWeight": {
+          "value": "12,712.80",
+          "unit": "KG"
+        },
+        "volumeM3": "20.74"
+      }
+    ],
+    "totalPackages": "194",
+    "totalGrossWeight": {
+      "value": "12,712.80",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-62769/C/NO. 1-194",
+    "cargoDescription": "SAID TO CONTAIN 194 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/4379",
+      "PO-62769"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "2026-06-26",
+    "shippedOnBoardDate": "2026-06-26"
+  }
+}

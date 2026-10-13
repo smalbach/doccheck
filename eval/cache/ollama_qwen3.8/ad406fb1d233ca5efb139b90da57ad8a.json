@@ -1,0 +1,118 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 810,
+    "outputTokens": 1089
+  },
+  "output": {
+    "invoiceNumber": "CI/26/7012",
+    "invoiceDate": "2026-03-07",
+    "poNumber": "LA666876",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "2026-03-13",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "New York",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "7,600",
+        "unit": "PCS",
+        "unitPrice": "3.13",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "23,788.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Women's padded jacket, woven polyester shell",
+        "quantity": "4,120",
+        "unit": "PCS",
+        "unitPrice": "18.68",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "76,961.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6202.40"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Wool blend socks, knitted, 3-pair pack",
+        "quantity": "29,280",
+        "unit": "PRS",
+        "unitPrice": "2.78",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "81,398.40",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6115.94"
+      }
+    ],
+    "totalPackages": "404",
+    "grossWeight": {
+      "value": "7,494.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "7,142.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "182,148.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 740,
+    "outputTokens": 890
+  },
+  "output": {
+    "blNumber": "KEYSTAO521336",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines",
+    "bookingNumber": "974852233",
+    "carrierName": "Tidewater Express Lines",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "notifyParty": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "022E",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU9619485",
+        "seal": "TW2448884",
+        "type": "20GP",
+        "packages": "63",
+        "grossWeight": {
+          "value": "4,718.00",
+          "unit": "KG"
+        },
+        "volumeM3": "9.97"
+      }
+    ],
+    "totalPackages": "63",
+    "totalGrossWeight": {
+      "value": "4,953.90",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "BLUEBONNET/PO-45637/C/NO. 1-63",
+    "cargoDescription": "SAID TO CONTAIN 63 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "QIN2608127",
+      "PO-45637"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "Apr 4, 2026",
+    "shippedOnBoardDate": "Apr 4, 2026"
+  }
+}

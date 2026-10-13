@@ -1,0 +1,105 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 723,
+    "outputTokens": 919
+  },
+  "output": {
+    "invoiceNumber": "QIN2604208",
+    "invoiceDate": "2026-01-11",
+    "poNumber": "BL966296",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd",
+        "Houston, TX, 77013"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "2026-01-16",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "Houston",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "42,400",
+        "unit": "PCS",
+        "unitPrice": "0.87",
+        "unitPriceCurrency": null,
+        "lineTotal": "36,888.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+        "quantity": "8,500",
+        "unit": "KG",
+        "unitPrice": "2.18",
+        "unitPriceCurrency": null,
+        "lineTotal": "81,530.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      }
+    ],
+    "totalPackages": "229",
+    "grossWeight": {
+      "value": "13,728.80",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "13,164.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "55,418.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

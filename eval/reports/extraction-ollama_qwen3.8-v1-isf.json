@@ -1,0 +1,2888 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "shipments": 100,
+  "documents": 100,
+  "failedDocuments": 0,
+  "cachedDocuments": 0,
+  "classificationAccuracy": 1,
+  "overall": {
+    "total": 1400,
+    "correct": 1398,
+    "wrong": 0,
+    "missing": 2,
+    "spurious": 0,
+    "accuracy": 0.9986
+  },
+  "byType": [
+    {
+      "type": "ISF",
+      "total": 1400,
+      "correct": 1398,
+      "wrong": 0,
+      "missing": 2,
+      "spurious": 0,
+      "accuracy": 0.9986
+    }
+  ],
+  "byTemplate": [
+    {
+      "template": "ISF · confirmation",
+      "total": 1400,
+      "correct": 1398,
+      "wrong": 0,
+      "missing": 2,
+      "spurious": 0,
+      "accuracy": 0.9986
+    }
+  ],
+  "byField": [
+    {
+      "type": "ISF",
+      "field": "manufacturer.address.city",
+      "total": 100,
+      "correct": 99,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.99
+    },
+    {
+      "type": "ISF",
+      "field": "containerStuffingLocation.city",
+      "total": 100,
+      "correct": 99,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.99
+    },
+    {
+      "type": "ISF",
+      "field": "importerOfRecordNumber",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "consigneeNumber",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "seller.name",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "seller.address.country",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "buyer.name",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "manufacturer.name",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "shipToParty.name",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "shipToParty.address.postalCode",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "consolidator.name",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "countryOfOrigin",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "htsCode",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ISF",
+      "field": "containerStuffingLocation.country",
+      "total": 100,
+      "correct": 100,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    }
+  ],
+  "rules": {
+    "shipmentsWithAllDocuments": 100,
+    "table": [
+      {
+        "rule": "U1",
+        "tp": 7,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X1",
+        "tp": 13,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X10",
+        "tp": 11,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X11",
+        "tp": 20,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X2",
+        "tp": 9,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X3",
+        "tp": 21,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X4",
+        "tp": 14,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X5",
+        "tp": 25,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X6",
+        "tp": 12,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X7",
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      }
+    ]
+  },
+  "usage": {
+    "inputTokens": 83440,
+    "outputTokens": 74431,
+    "seconds": 2937
+  },
+  "documentsDetail": [
+    {
+      "shipment": "US-001",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 816,
+        "outputTokens": 748
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 837,
+        "outputTokens": 728
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 843,
+        "outputTokens": 766
+      }
+    },
+    {
+      "shipment": "US-004",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 805,
+        "outputTokens": 745
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 841,
+        "outputTokens": 761
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 825,
+        "outputTokens": 736
+      }
+    },
+    {
+      "shipment": "US-007",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 847,
+        "outputTokens": 733
+      }
+    },
+    {
+      "shipment": "US-008",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 813,
+        "outputTokens": 674
+      }
+    },
+    {
+      "shipment": "US-009",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 839,
+        "outputTokens": 747
+      }
+    },
+    {
+      "shipment": "US-010",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 827,
+        "outputTokens": 739
+      }
+    },
+    {
+      "shipment": "US-011",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 836,
+        "outputTokens": 754
+      }
+    },
+    {
+      "shipment": "US-012",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 798,
+        "outputTokens": 723
+      }
+    },
+    {
+      "shipment": "US-013",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 841,
+        "outputTokens": 759
+      }
+    },
+    {
+      "shipment": "US-014",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 817,
+        "outputTokens": 748
+      }
+    },
+    {
+      "shipment": "US-015",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 800,
+        "outputTokens": 723
+      }
+    },
+    {
+      "shipment": "US-016",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 826,
+        "outputTokens": 749
+      }
+    },
+    {
+      "shipment": "US-017",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 841,
+        "outputTokens": 759
+      }
+    },
+    {
+      "shipment": "US-018",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 858,
+        "outputTokens": 769
+      }
+    },
+    {
+      "shipment": "US-019",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 868,
+        "outputTokens": 807
+      }
+    },
+    {
+      "shipment": "US-020",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 805,
+        "outputTokens": 666
+      }
+    },
+    {
+      "shipment": "US-021",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 854,
+        "outputTokens": 770
+      }
+    },
+    {
+      "shipment": "US-022",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 813,
+        "outputTokens": 674
+      }
+    },
+    {
+      "shipment": "US-023",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 846,
+        "outputTokens": 733
+      }
+    },
+    {
+      "shipment": "US-024",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 832,
+        "outputTokens": 745
+      }
+    },
+    {
+      "shipment": "US-025",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 838,
+        "outputTokens": 758
+      }
+    },
+    {
+      "shipment": "US-026",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 827,
+        "outputTokens": 739
+      }
+    },
+    {
+      "shipment": "US-027",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 877,
+        "outputTokens": 811
+      }
+    },
+    {
+      "shipment": "US-028",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 860,
+        "outputTokens": 774
+      }
+    },
+    {
+      "shipment": "US-029",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 838,
+        "outputTokens": 747
+      }
+    },
+    {
+      "shipment": "US-030",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 836,
+        "outputTokens": 758
+      }
+    },
+    {
+      "shipment": "US-031",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 807,
+        "outputTokens": 670
+      }
+    },
+    {
+      "shipment": "US-032",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 838,
+        "outputTokens": 752
+      }
+    },
+    {
+      "shipment": "US-033",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 846,
+        "outputTokens": 762
+      }
+    },
+    {
+      "shipment": "US-034",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 820,
+        "outputTokens": 702
+      }
+    },
+    {
+      "shipment": "US-035",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 825,
+        "outputTokens": 698
+      }
+    },
+    {
+      "shipment": "US-036",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 846,
+        "outputTokens": 781
+      }
+    },
+    {
+      "shipment": "US-037",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 866,
+        "outputTokens": 796
+      }
+    },
+    {
+      "shipment": "US-038",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 835,
+        "outputTokens": 736
+      }
+    },
+    {
+      "shipment": "US-039",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 814,
+        "outputTokens": 689
+      }
+    },
+    {
+      "shipment": "US-040",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 817,
+        "outputTokens": 744
+      }
+    },
+    {
+      "shipment": "US-041",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 844,
+        "outputTokens": 774
+      }
+    },
+    {
+      "shipment": "US-042",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 863,
+        "outputTokens": 772
+      }
+    },
+    {
+      "shipment": "US-043",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 852,
+        "outputTokens": 789
+      }
+    },
+    {
+      "shipment": "US-044",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 878,
+        "outputTokens": 811
+      }
+    },
+    {
+      "shipment": "US-045",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 800,
+        "outputTokens": 744
+      }
+    },
+    {
+      "shipment": "US-046",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 848,
+        "outputTokens": 767
+      }
+    },
+    {
+      "shipment": "US-047",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 813,
+        "outputTokens": 678
+      }
+    },
+    {
+      "shipment": "US-048",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 836,
+        "outputTokens": 728
+      }
+    },
+    {
+      "shipment": "US-049",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 865,
+        "outputTokens": 807
+      }
+    },
+    {
+      "shipment": "US-050",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 824,
+        "outputTokens": 739
+      }
+    },
+    {
+      "shipment": "US-051",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 798,
+        "outputTokens": 723
+      }
+    },
+    {
+      "shipment": "US-052",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 875,
+        "outputTokens": 807
+      }
+    },
+    {
+      "shipment": "US-053",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 815,
+        "outputTokens": 678
+      }
+    },
+    {
+      "shipment": "US-054",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 847,
+        "outputTokens": 767
+      }
+    },
+    {
+      "shipment": "US-055",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [
+        {
+          "field": "manufacturer.address.city",
+          "pattern": "manufacturer.address.city",
+          "outcome": "missing",
+          "expected": "Cixi"
+        },
+        {
+          "field": "containerStuffingLocation.city",
+          "pattern": "containerStuffingLocation.city",
+          "outcome": "missing",
+          "expected": "Cixi"
+        }
+      ],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 809,
+        "outputTokens": 735
+      }
+    },
+    {
+      "shipment": "US-056",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 846,
+        "outputTokens": 733
+      }
+    },
+    {
+      "shipment": "US-057",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 816,
+        "outputTokens": 691
+      }
+    },
+    {
+      "shipment": "US-058",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 853,
+        "outputTokens": 755
+      }
+    },
+    {
+      "shipment": "US-059",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 797,
+        "outputTokens": 739
+      }
+    },
+    {
+      "shipment": "US-060",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 859,
+        "outputTokens": 770
+      }
+    },
+    {
+      "shipment": "US-061",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 852,
+        "outputTokens": 789
+      }
+    },
+    {
+      "shipment": "US-062",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 804,
+        "outputTokens": 671
+      }
+    },
+    {
+      "shipment": "US-063",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 818,
+        "outputTokens": 734
+      }
+    },
+    {
+      "shipment": "US-064",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 850,
+        "outputTokens": 673
+      }
+    },
+    {
+      "shipment": "US-065",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 867,
+        "outputTokens": 807
+      }
+    },
+    {
+      "shipment": "US-066",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 877,
+        "outputTokens": 807
+      }
+    },
+    {
+      "shipment": "US-067",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 792,
+        "outputTokens": 658
+      }
+    },
+    {
+      "shipment": "US-068",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 815,
+        "outputTokens": 760
+      }
+    },
+    {
+      "shipment": "US-069",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 837,
+        "outputTokens": 758
+      }
+    },
+    {
+      "shipment": "US-070",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 819,
+        "outputTokens": 748
+      }
+    },
+    {
+      "shipment": "US-071",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 804,
+        "outputTokens": 733
+      }
+    },
+    {
+      "shipment": "US-072",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 814,
+        "outputTokens": 759
+      }
+    },
+    {
+      "shipment": "US-073",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 847,
+        "outputTokens": 762
+      }
+    },
+    {
+      "shipment": "US-074",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 834,
+        "outputTokens": 770
+      }
+    },
+    {
+      "shipment": "US-075",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 878,
+        "outputTokens": 811
+      }
+    },
+    {
+      "shipment": "US-076",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 827,
+        "outputTokens": 736
+      }
+    },
+    {
+      "shipment": "US-077",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 803,
+        "outputTokens": 669
+      }
+    },
+    {
+      "shipment": "US-078",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 857,
+        "outputTokens": 774
+      }
+    },
+    {
+      "shipment": "US-079",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 825,
+        "outputTokens": 694
+      }
+    },
+    {
+      "shipment": "US-080",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 824,
+        "outputTokens": 694
+      }
+    },
+    {
+      "shipment": "US-081",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 856,
+        "outputTokens": 800
+      }
+    },
+    {
+      "shipment": "US-082",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 858,
+        "outputTokens": 789
+      }
+    },
+    {
+      "shipment": "US-083",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 831,
+        "outputTokens": 744
+      }
+    },
+    {
+      "shipment": "US-084",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 853,
+        "outputTokens": 789
+      }
+    },
+    {
+      "shipment": "US-085",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 856,
+        "outputTokens": 800
+      }
+    },
+    {
+      "shipment": "US-086",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 825,
+        "outputTokens": 698
+      }
+    },
+    {
+      "shipment": "US-087",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 846,
+        "outputTokens": 778
+      }
+    },
+    {
+      "shipment": "US-088",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 829,
+        "outputTokens": 743
+      }
+    },
+    {
+      "shipment": "US-089",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 865,
+        "outputTokens": 803
+      }
+    },
+    {
+      "shipment": "US-090",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 841,
+        "outputTokens": 761
+      }
+    },
+    {
+      "shipment": "US-091",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 822,
+        "outputTokens": 744
+      }
+    },
+    {
+      "shipment": "US-092",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 816,
+        "outputTokens": 691
+      }
+    },
+    {
+      "shipment": "US-093",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 807,
+        "outputTokens": 670
+      }
+    },
+    {
+      "shipment": "US-094",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 835,
+        "outputTokens": 744
+      }
+    },
+    {
+      "shipment": "US-095",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 825,
+        "outputTokens": 733
+      }
+    },
+    {
+      "shipment": "US-096",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 801,
+        "outputTokens": 669
+      }
+    },
+    {
+      "shipment": "US-097",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 852,
+        "outputTokens": 770
+      }
+    },
+    {
+      "shipment": "US-098",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 855,
+        "outputTokens": 785
+      }
+    },
+    {
+      "shipment": "US-099",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 816,
+        "outputTokens": 678
+      }
+    },
+    {
+      "shipment": "US-100",
+      "type": "ISF",
+      "template": "confirmation",
+      "detectedType": "ISF",
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 851,
+        "outputTokens": 755
+      }
+    }
+  ],
+  "shipmentsDetail": [
+    {
+      "id": "US-001",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-002",
+      "expectedRules": [
+        "X1",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-003",
+      "expectedRules": [
+        "X11"
+      ],
+      "rulesOnTruth": [
+        "X11"
+      ],
+      "rulesOnExtracted": [
+        "X11"
+      ]
+    },
+    {
+      "id": "US-004",
+      "expectedRules": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-005",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-006",
+      "expectedRules": [
+        "X4"
+      ],
+      "rulesOnTruth": [
+        "X4"
+      ],
+      "rulesOnExtracted": [
+        "X4"
+      ]
+    },
+    {
+      "id": "US-007",
+      "expectedRules": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-008",
+      "expectedRules": [
+        "U1"
+      ],
+      "rulesOnTruth": [
+        "U1"
+      ],
+      "rulesOnExtracted": [
+        "U1"
+      ]
+    },
+    {
+      "id": "US-009",
+      "expectedRules": [
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X7"
+      ]
+    },
+    {
+      "id": "US-010",
+      "expectedRules": [
+        "X11",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X11",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X11",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-011",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-012",
+      "expectedRules": [
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X5"
+      ]
+    },
+    {
+      "id": "US-013",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-014",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-015",
+      "expectedRules": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-016",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-017",
+      "expectedRules": [
+        "U1",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "U1",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "U1",
+        "X6"
+      ]
+    },
+    {
+      "id": "US-018",
+      "expectedRules": [
+        "X4",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X4",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X4",
+        "X6"
+      ]
+    },
+    {
+      "id": "US-019",
+      "expectedRules": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-020",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-021",
+      "expectedRules": [
+        "X11",
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "X11",
+        "X3"
+      ],
+      "rulesOnExtracted": [
+        "X11",
+        "X3"
+      ]
+    },
+    {
+      "id": "US-022",
+      "expectedRules": [
+        "X10"
+      ],
+      "rulesOnTruth": [
+        "X10"
+      ],
+      "rulesOnExtracted": [
+        "X10"
+      ]
+    },
+    {
+      "id": "US-023",
+      "expectedRules": [
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "X3"
+      ],
+      "rulesOnExtracted": [
+        "X3"
+      ]
+    },
+    {
+      "id": "US-024",
+      "expectedRules": [
+        "X11"
+      ],
+      "rulesOnTruth": [
+        "X11"
+      ],
+      "rulesOnExtracted": [
+        "X11"
+      ]
+    },
+    {
+      "id": "US-025",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-026",
+      "expectedRules": [
+        "X1",
+        "X3",
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X3",
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X3",
+        "X5"
+      ]
+    },
+    {
+      "id": "US-027",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-028",
+      "expectedRules": [
+        "X3",
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X3",
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X3",
+        "X5"
+      ]
+    },
+    {
+      "id": "US-029",
+      "expectedRules": [
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X6"
+      ]
+    },
+    {
+      "id": "US-030",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-031",
+      "expectedRules": [
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X5"
+      ]
+    },
+    {
+      "id": "US-032",
+      "expectedRules": [
+        "X1",
+        "X11",
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X11",
+        "X3"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X11",
+        "X3"
+      ]
+    },
+    {
+      "id": "US-033",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-034",
+      "expectedRules": [
+        "X3",
+        "X6",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X3",
+        "X6",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X3",
+        "X6",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-035",
+      "expectedRules": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-036",
+      "expectedRules": [
+        "X2",
+        "X3",
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X2",
+        "X3",
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X2",
+        "X3",
+        "X5"
+      ]
+    },
+    {
+      "id": "US-037",
+      "expectedRules": [
+        "U1"
+      ],
+      "rulesOnTruth": [
+        "U1"
+      ],
+      "rulesOnExtracted": [
+        "U1"
+      ]
+    },
+    {
+      "id": "US-038",
+      "expectedRules": [
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X6"
+      ]
+    },
+    {
+      "id": "US-039",
+      "expectedRules": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-040",
+      "expectedRules": [
+        "X1",
+        "X11"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X11"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X11"
+      ]
+    },
+    {
+      "id": "US-041",
+      "expectedRules": [
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X5"
+      ]
+    },
+    {
+      "id": "US-042",
+      "expectedRules": [
+        "X11"
+      ],
+      "rulesOnTruth": [
+        "X11"
+      ],
+      "rulesOnExtracted": [
+        "X11"
+      ]
+    },
+    {
+      "id": "US-043",
+      "expectedRules": [
+        "X1",
+        "X11"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X11"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X11"
+      ]
+    },
+    {
+      "id": "US-044",
+      "expectedRules": [
+        "X4",
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X4",
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X4",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-045",
+      "expectedRules": [
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "X3"
+      ],
+      "rulesOnExtracted": [
+        "X3"
+      ]
+    },
+    {
+      "id": "US-046",
+      "expectedRules": [
+        "X1",
+        "X3",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X3",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X3",
+        "X6"
+      ]
+    },
+    {
+      "id": "US-047",
+      "expectedRules": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-048",
+      "expectedRules": [
+        "U1",
+        "X1",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "U1",
+        "X1",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "U1",
+        "X1",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-049",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-050",
+      "expectedRules": [
+        "U1",
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "U1",
+        "X3"
+      ],
+      "rulesOnExtracted": [
+        "U1",
+        "X3"
+      ]
+    },
+    {
+      "id": "US-051",
+      "expectedRules": [
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "X3"
+      ],
+      "rulesOnExtracted": [
+        "X3"
+      ]
+    },
+    {
+      "id": "US-052",
+      "expectedRules": [
+        "X11",
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X11",
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X11",
+        "X5"
+      ]
+    },
+    {
+      "id": "US-053",
+      "expectedRules": [
+        "X4"
+      ],
+      "rulesOnTruth": [
+        "X4"
+      ],
+      "rulesOnExtracted": [
+        "X4"
+      ]
+    },
+    {
+      "id": "US-054",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-055",
+      "expectedRules": [
+        "X2"
+      ],
+      "rulesOnTruth": [
+        "X2"
+      ],
+      "rulesOnExtracted": [
+        "X2"
+      ]
+    },
+    {
+      "id": "US-056",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-057",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-058",
+      "expectedRules": [
+        "X11",
+        "X3",
+        "X4"
+      ],
+      "rulesOnTruth": [
+        "X11",
+        "X3",
+        "X4"
+      ],
+      "rulesOnExtracted": [
+        "X11",
+        "X3",
+        "X4"
+      ]
+    },
+    {
+      "id": "US-059",
+      "expectedRules": [
+        "X1",
+        "X4"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X4"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X4"
+      ]
+    },
+    {
+      "id": "US-060",
+      "expectedRules": [
+        "X2"
+      ],
+      "rulesOnTruth": [
+        "X2"
+      ],
+      "rulesOnExtracted": [
+        "X2"
+      ]
+    },
+    {
+      "id": "US-061",
+      "expectedRules": [
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X7"
+      ]
+    },
+    {
+      "id": "US-062",
+      "expectedRules": [
+        "X1",
+        "X10",
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X10",
+        "X3"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X10",
+        "X3"
+      ]
+    },
+    {
+      "id": "US-063",
+      "expectedRules": [
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X7"
+      ]
+    },
+    {
+      "id": "US-064",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-065",
+      "expectedRules": [
+        "X10",
+        "X5",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X5",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X5",
+        "X6"
+      ]
+    },
+    {
+      "id": "US-066",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-067",
+      "expectedRules": [
+        "X11",
+        "X3",
+        "X4"
+      ],
+      "rulesOnTruth": [
+        "X11",
+        "X3",
+        "X4"
+      ],
+      "rulesOnExtracted": [
+        "X11",
+        "X3",
+        "X4"
+      ]
+    },
+    {
+      "id": "US-068",
+      "expectedRules": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-069",
+      "expectedRules": [
+        "X11",
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "X11",
+        "X3"
+      ],
+      "rulesOnExtracted": [
+        "X11",
+        "X3"
+      ]
+    },
+    {
+      "id": "US-070",
+      "expectedRules": [
+        "X2",
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X2",
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X2",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-071",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-072",
+      "expectedRules": [
+        "U1"
+      ],
+      "rulesOnTruth": [
+        "U1"
+      ],
+      "rulesOnExtracted": [
+        "U1"
+      ]
+    },
+    {
+      "id": "US-073",
+      "expectedRules": [
+        "U1",
+        "X2",
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "U1",
+        "X2",
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "U1",
+        "X2",
+        "X5"
+      ]
+    },
+    {
+      "id": "US-074",
+      "expectedRules": [
+        "X4",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X4",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X4",
+        "X6"
+      ]
+    },
+    {
+      "id": "US-075",
+      "expectedRules": [
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X7"
+      ]
+    },
+    {
+      "id": "US-076",
+      "expectedRules": [
+        "X11",
+        "X3",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X11",
+        "X3",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X11",
+        "X3",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-077",
+      "expectedRules": [
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X5"
+      ]
+    },
+    {
+      "id": "US-078",
+      "expectedRules": [
+        "X3",
+        "X4",
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X3",
+        "X4",
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X3",
+        "X4",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-079",
+      "expectedRules": [
+        "X4"
+      ],
+      "rulesOnTruth": [
+        "X4"
+      ],
+      "rulesOnExtracted": [
+        "X4"
+      ]
+    },
+    {
+      "id": "US-080",
+      "expectedRules": [
+        "X1",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-081",
+      "expectedRules": [
+        "X1",
+        "X11",
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X11",
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X11",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-082",
+      "expectedRules": [
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X7"
+      ]
+    },
+    {
+      "id": "US-083",
+      "expectedRules": [
+        "X11"
+      ],
+      "rulesOnTruth": [
+        "X11"
+      ],
+      "rulesOnExtracted": [
+        "X11"
+      ]
+    },
+    {
+      "id": "US-084",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-085",
+      "expectedRules": [
+        "X4"
+      ],
+      "rulesOnTruth": [
+        "X4"
+      ],
+      "rulesOnExtracted": [
+        "X4"
+      ]
+    },
+    {
+      "id": "US-086",
+      "expectedRules": [
+        "X3",
+        "X4",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X3",
+        "X4",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X3",
+        "X4",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-087",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-088",
+      "expectedRules": [
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X6"
+      ]
+    },
+    {
+      "id": "US-089",
+      "expectedRules": [
+        "X10",
+        "X2"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X2"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X2"
+      ]
+    },
+    {
+      "id": "US-090",
+      "expectedRules": [
+        "X1",
+        "X11",
+        "X4",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X11",
+        "X4",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X11",
+        "X4",
+        "X6"
+      ]
+    },
+    {
+      "id": "US-091",
+      "expectedRules": [
+        "X10",
+        "X2"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X2"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X2"
+      ]
+    },
+    {
+      "id": "US-092",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-093",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-094",
+      "expectedRules": [
+        "X10",
+        "X2"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X2"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X2"
+      ]
+    },
+    {
+      "id": "US-095",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-096",
+      "expectedRules": [
+        "X11",
+        "X3",
+        "X5",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X11",
+        "X3",
+        "X5",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X11",
+        "X3",
+        "X5",
+        "X6"
+      ]
+    },
+    {
+      "id": "US-097",
+      "expectedRules": [
+        "X1",
+        "X11",
+        "X2",
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X11",
+        "X2",
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X11",
+        "X2",
+        "X5"
+      ]
+    },
+    {
+      "id": "US-098",
+      "expectedRules": [
+        "X11",
+        "X4"
+      ],
+      "rulesOnTruth": [
+        "X11",
+        "X4"
+      ],
+      "rulesOnExtracted": [
+        "X11",
+        "X4"
+      ]
+    },
+    {
+      "id": "US-099",
+      "expectedRules": [
+        "X10",
+        "X11",
+        "X3",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X11",
+        "X3",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X11",
+        "X3",
+        "X6"
+      ]
+    },
+    {
+      "id": "US-100",
+      "expectedRules": [
+        "X10",
+        "X3",
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X3",
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X3",
+        "X5"
+      ]
+    }
+  ]
+}

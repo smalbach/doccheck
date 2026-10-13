@@ -1,0 +1,66 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 555,
+    "outputTokens": 567
+  },
+  "output": {
+    "packingListNumber": "PL/26/8858",
+    "invoiceRef": "CI/26/8858",
+    "seller": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS DC",
+      "addressLines": [
+        "9800 WALLISVILLE RD"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "BLUEBONNET/BL609082/C/NO. 1-193",
+    "packages": [
+      {
+        "range": "1-193",
+        "count": "193 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BALL BEARING 6204-2RS",
+        "quantity": "38600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4246.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "4419.70",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "193 PKGS",
+    "totalNetWeight": {
+      "value": "4246.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "4419.70",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "5.79 CBM"
+  }
+}

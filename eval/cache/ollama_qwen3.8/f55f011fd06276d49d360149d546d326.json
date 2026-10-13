@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 664,
+    "outputTokens": 916
+  },
+  "output": {
+    "packingListNumber": "PL-SAI2609269",
+    "invoiceRef": "SAI2609269",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "PACIFIC/PO-84710/C/NO. 1-447",
+    "packages": [
+      {
+        "range": "1-114",
+        "count": "114 CTN",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M",
+        "description": "Men's cotton T-shirt",
+        "quantity": "11,350 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,166.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,257.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      },
+      {
+        "range": "115-337",
+        "count": "223 CTN",
+        "packageType": "CTN",
+        "sku": "SK-WL-3",
+        "description": "Wool socks 3-pack",
+        "quantity": "53,520 PRS",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "4,014.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,170.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": "58 × 38 × 32"
+      },
+      {
+        "range": "338-447",
+        "count": "110 CTN",
+        "packageType": "CTN",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket",
+        "quantity": "2,200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,870.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,980.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "65 × 45 × 45"
+      }
+    ],
+    "totalPackages": "447",
+    "totalNetWeight": {
+      "value": "8,050.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "8,407.30",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "39.78"
+  }
+}

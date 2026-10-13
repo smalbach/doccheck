@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 670,
+    "outputTokens": 898
+  },
+  "output": {
+    "packingListNumber": "PL/26/5326",
+    "invoiceRef": "CI/26/5326",
+    "seller": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "marks": "LAKESHORE/PO-74437/C/NO. 1-280",
+    "packages": [
+      {
+        "range": "1-8",
+        "count": "8 CRT",
+        "packageType": "CRT",
+        "sku": null,
+        "description": "CENTRIFUGAL PUMP 0.75 KW",
+        "quantity": "8 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "116.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "152.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "9-67",
+        "count": "59 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BALL BEARING 6204-2RS",
+        "quantity": "11800 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1298.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1351.10",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "68-280",
+        "count": "213 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BRASS BALL VALVE 2\"",
+        "quantity": "4260 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "5751.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "5985.30",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "280",
+    "totalNetWeight": {
+      "value": "7165.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "7488.40",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "12.54"
+  }
+}

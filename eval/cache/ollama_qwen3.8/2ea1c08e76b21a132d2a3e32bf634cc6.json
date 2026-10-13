@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 762,
+    "outputTokens": 938
+  },
+  "output": {
+    "blNumber": "AGLXBUN5508191",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "751263155",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "070N",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Buenaventura",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU4343249",
+        "seal": "AG7063849",
+        "type": "20GP",
+        "packages": "166",
+        "grossWeight": {
+          "value": "10,092.80",
+          "unit": "KG"
+        },
+        "volumeM3": "23.65"
+      }
+    ],
+    "totalPackages": "166",
+    "totalGrossWeight": {
+      "value": "10,092.80",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-72566/C/NO. 1-166",
+    "cargoDescription": "SAID TO CONTAIN 166 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/1295",
+      "PO-72566"
+    ],
+    "placeOfIssue": "Buenaventura",
+    "dateOfIssue": "2026-01-22",
+    "shippedOnBoardDate": "2026-01-22"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 459,
+    "outputTokens": 417
+  },
+  "output": {
+    "packingListNumber": "PL/26/1944",
+    "invoiceRef": "C/26/1944",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores SAS.",
+      "addressLines": [
+        "Carrera$ # 12-40"
+      ],
+      "city": "Neiva, Huila",
+      "region": null,
+      "postalCode": null,
+      "country": "co",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "NorthernLantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd"
+      ],
+      "city": "Brampion",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/PO-55019/C/NO. 1-219",
+    "packages": [
+      {
+        "range": "1-219",
+        "count": "219 BAG",
+        "packageType": "BAG",
+        "sku": "CF-GRN-60",
+        "description": "Green coffee arabica",
+        "quantity": null,
+        "unit": null,
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "219 BAG",
+    "totalNetWeight": null,
+    "totalGrossWeight": null,
+    "totalVolumeM3": null
+  }
+}

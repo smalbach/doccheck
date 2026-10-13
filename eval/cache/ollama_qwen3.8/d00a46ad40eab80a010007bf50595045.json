@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 815,
+    "outputTokens": 982
+  },
+  "output": {
+    "blNumber": "AGLXAMR9400694",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "AURORA GLOBAL LINES (AGLX)",
+    "bookingNumber": "659211001",
+    "carrierName": "AURORA GLOBAL LINES (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "ÖZDEMIR VANA SANAYI VE TICARET A.Ş.",
+      "addressLines": [
+        "İKITELLI OSB, DEMIRCILER SITESI C BLOK NO: 9",
+        "BAŞAKŞEHIR İSTANBUL 34490"
+      ],
+      "city": "BAŞAKŞEHIR İSTANBUL",
+      "region": null,
+      "postalCode": "34490",
+      "country": "TR",
+      "taxId": "6810123456"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "012N",
+    "placeOfReceipt": {
+      "name": "BAŞAKŞEHIR",
+      "country": "TR"
+    },
+    "portOfLoading": {
+      "name": "AMBARLI",
+      "country": "TR"
+    },
+    "portOfDischarge": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGLU4275276",
+        "seal": "AG1259774",
+        "type": "20GP",
+        "packages": "24",
+        "grossWeight": {
+          "value": "456.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "2.11"
+      }
+    ],
+    "totalPackages": "24",
+    "totalGrossWeight": {
+      "value": "456.00",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/QU574444/C/NO. 1-24",
+    "cargoDescription": "SAID TO CONTAIN 24 CRTS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "ÖZD2600942",
+      "QU574444"
+    ],
+    "placeOfIssue": "AMBARLI",
+    "dateOfIssue": "26-MAY-2026",
+    "shippedOnBoardDate": "26-MAY-2026"
+  }
+}

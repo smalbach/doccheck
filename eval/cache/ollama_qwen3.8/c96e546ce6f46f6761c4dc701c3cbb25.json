@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 743,
+    "outputTokens": 900
+  },
+  "output": {
+    "blNumber": "KEYSBUN968080",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "326948249",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, LET 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "LET 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678AM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "048W",
+    "placeOfReceipt": {
+      "name": "Neiva, CO",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Buenaventura, CO",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Prince Rupert, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRUS181016",
+        "seal": "PC3752179",
+        "type": "40GP",
+        "packages": "219",
+        "grossWeight": {
+          "value": "13,316.20",
+          "unit": "KG"
+        },
+        "volumeM3": "31.21"
+      }
+    ],
+    "totalPackages": "219",
+    "totalGrossWeight": {
+      "value": "13,315.20",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHEAN/PO-55019/C/NO. 1-219",
+    "cargoDescription": "SAID TO CONTAIN 219 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "Raf: Cl/26/1944 / PO-55019"
+    ],
+    "placeOfIssue": "Buenaventura",
+    "dateOfIssue": "Jan 24, 2026",
+    "shippedOnBoardDate": "Jan 24, 2026"
+  }
+}

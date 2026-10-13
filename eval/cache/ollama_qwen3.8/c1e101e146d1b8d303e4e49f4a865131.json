@@ -1,0 +1,63 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 492,
+    "outputTokens": 516
+  },
+  "output": {
+    "packingListNumber": "PL/26/1364",
+    "invoiceRef": "CI/26/1364",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, VSJ SH6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "VSJ SH6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/PO-30786/C/NO. 1-119",
+    "packages": [
+      {
+        "range": "83-119",
+        "count": "37 CTN",
+        "packageType": "CTN",
+        "sku": "EK-17",
+        "description": "Blender 600 W",
+        "quantity": "148 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "340.40",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "392.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": "50 x 50 x 45"
+      }
+    ],
+    "totalPackages": null,
+    "totalNetWeight": null,
+    "totalGrossWeight": null,
+    "totalVolumeM3": null
+  }
+}

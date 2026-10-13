@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 679,
+    "outputTokens": 908
+  },
+  "output": {
+    "packingListNumber": "PL/26/8506",
+    "invoiceRef": "Invoice",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Maharashira, 411026"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": "411026",
+      "country": null,
+      "taxId": "27AABCP1234F125"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "marks": "BLUEBONNET/PO-64140/C/NO. 1-393",
+    "packages": [
+      {
+        "range": "1-207",
+        "count": "207 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "41,400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4 554.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,740.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 x 30 x 25"
+      },
+      {
+        "range": "208-377",
+        "count": "170 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2°",
+        "quantity": "3,400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4,500.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4777.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 x 35 x 30"
+      },
+      {
+        "range": "378-393",
+        "count": "16 CAT",
+        "packageType": "CAT",
+        "sku": "CP-750",
+        "description": "Centrifugalpump 0.75 kW",
+        "quantity": "15PCS8",
+        "unit": "PCS8",
+        "netWeight": {
+          "value": "232.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "304.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55x 40 x 40"
+      }
+    ],
+    "totalPackages": "393",
+    "totalNetWeight": {
+      "value": "9,376.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "9,621.30",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "15.65 m?"
+  }
+}

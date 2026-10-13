@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 682,
+    "outputTokens": 876
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0246",
+    "invoiceDate": "Sep 21, 2026",
+    "poNumber": "LA106238",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": null,
+    "shipmentDate": "Sep 23, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Savannah",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "Yantian",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+        "quantity": "2,448",
+        "unit": "PCS",
+        "unitPrice": "4.36",
+        "unitPriceCurrency": null,
+        "lineTotal": "10,673.28",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": "TB-200",
+        "description": "Plush teddy bear 30 cm, polyester filling",
+        "quantity": "1,700",
+        "unit": "PCS",
+        "unitPrice": "9.47",
+        "unitPriceCurrency": null,
+        "lineTotal": "16,099.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "136",
+    "grossWeight": {
+      "value": "1,956.36",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,823.76",
+      "unit": "KG"
+    },
+    "invoiceTotal": "26,772.28",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "4,056.00",
+        "currency": "EUR"
+      }
+    ]
+  }
+}

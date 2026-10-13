@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 766,
+    "outputTokens": 921
+  },
+  "output": {
+    "blNumber": "SILVMUN486801",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "468632933",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "096E",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU9055689",
+        "seal": "MD2271459",
+        "type": "20GP",
+        "packages": "104",
+        "grossWeight": {
+          "value": "2,233.40",
+          "unit": "KG"
+        },
+        "volumeM3": "6.46"
+      }
+    ],
+    "totalPackages": "104",
+    "totalGrossWeight": {
+      "value": "2,456.74",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PACIFIC/PA285804/C/NO. 1-104",
+    "cargoDescription": "SAID TO CONTAIN 104 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "PUN2608789",
+      "PA285804"
+    ],
+    "placeOfIssue": "Mundra",
+    "dateOfIssue": "May 29, 2026",
+    "shippedOnBoardDate": "May 29, 2026"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 502,
+    "outputTokens": 538
+  },
+  "output": {
+    "packingListNumber": "PL-NIN2601955",
+    "invoiceRef": "7TBAMO001",
+    "seller": {
+      "name": "Ningbo EverbrightAppliance Co, Lid.",
+      "addressLines": [
+        "366 JiangnanAd",
+        "Beilun District",
+        "910000"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": "910000",
+      "country": null,
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": null,
+      "taxId": "8123456"
+    },
+    "marks": "NORTHEAN/PO-B8984/C/NO.1-182",
+    "packages": [
+      {
+        "range": "1-182",
+        "count": "182 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "Electric kettle 1.7L",
+        "quantity": "1456 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,528.80",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,729.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 x 45 x 42"
+      }
+    ],
+    "totalPackages": "182",
+    "totalNetWeight": {
+      "value": "1,528.80",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,729.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "18.92m*"
+  }
+}

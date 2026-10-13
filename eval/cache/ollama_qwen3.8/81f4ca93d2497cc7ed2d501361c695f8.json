@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 642,
+    "outputTokens": 780
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-7847",
+    "invoiceDate": "Jun 30, 2026",
+    "poNumber": "PO-8710",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Lo 28197"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": null,
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "us",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "us",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "Jul 7, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "Savannah",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Bremerhaven",
+    "paymentTerms": "L/C at sight",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BV-2IN",
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "2,860",
+        "unit": "PCS",
+        "unitPrice": "14.57",
+        "unitPriceCurrency": null,
+        "lineTotal": "41,670.20",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "143",
+    "grossWeight": {
+      "value": "4,018.30",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,861.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "41,670.20",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

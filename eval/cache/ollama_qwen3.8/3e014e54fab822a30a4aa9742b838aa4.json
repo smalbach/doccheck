@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 761,
+    "outputTokens": 917
+  },
+  "output": {
+    "blNumber": "AGLXLIS3268580",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "645212839",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Azeites do Alentejo, Lda.",
+      "addressLines": [
+        "Rua da Fábrica, 7",
+        "Beja, 7800-309"
+      ],
+      "city": "Beja",
+      "region": null,
+      "postalCode": "7800-309",
+      "country": "PT",
+      "taxId": "PT509876543"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "PACIFIC CREST",
+    "voyage": "077S",
+    "placeOfReceipt": {
+      "name": "Beja",
+      "country": "PT"
+    },
+    "portOfLoading": {
+      "name": "Lisboa",
+      "country": "PT"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU4758369",
+        "seal": "AG8247502",
+        "type": "20GP",
+        "packages": "34",
+        "grossWeight": {
+          "value": "656.20",
+          "unit": "KG"
+        },
+        "volumeM3": "1.43"
+      }
+    ],
+    "totalPackages": "34",
+    "totalGrossWeight": {
+      "value": "656.20",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/CO757249/C/NO. 1-34",
+    "cargoDescription": "SAID TO CONTAIN 34 CTNS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "INV-2026-3266",
+      "CO757249"
+    ],
+    "placeOfIssue": "Lisboa",
+    "dateOfIssue": "Mar 17, 2026",
+    "shippedOnBoardDate": "Mar 17, 2026"
+  }
+}

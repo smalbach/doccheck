@@ -1,0 +1,56 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 414,
+    "outputTokens": 427
+  },
+  "output": {
+    "packingListNumber": "PL-NOR2608396",
+    "invoiceRef": "NOR2608396",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, MSV 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "MSV 3G5",
+      "country": "CA",
+      "taxId": "8123456 TRRMO001"
+    },
+    "marks": "NORTHERN/NO398514/C/NO, 1-44",
+    "packages": [
+      {
+        "range": "1-44",
+        "count": null,
+        "packageType": "Carton",
+        "sku": "BV-2IN",
+        "description": null,
+        "quantity": null,
+        "unit": null,
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": null,
+    "totalNetWeight": null,
+    "totalGrossWeight": null,
+    "totalVolumeM3": null
+  }
+}

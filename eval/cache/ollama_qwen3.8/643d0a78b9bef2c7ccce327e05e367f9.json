@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 770,
+    "outputTokens": 935
+  },
+  "output": {
+    "blNumber": "COMPMUN398953",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "AURORA GLOBAL LINES (AGLX)",
+    "bookingNumber": "952150624",
+    "carrierName": "AURORA GLOBAL LINES (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "069E",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "MUNDRA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "SAVANNAH",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "CHICAGO",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGXU8631407",
+        "seal": "AG5817177",
+        "type": "20GP",
+        "packages": "106",
+        "grossWeight": {
+          "value": "6211",
+          "unit": "LB"
+        },
+        "volumeM3": "4.47"
+      }
+    ],
+    "totalPackages": "106",
+    "totalGrossWeight": {
+      "value": "6211",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "LAKESHORE/LA426454/C/NO. 1-106",
+    "cargoDescription": "SAID TO CONTAIN 106 CTNS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "PUN2609145",
+      "LA426454"
+    ],
+    "placeOfIssue": "MUNDRA",
+    "dateOfIssue": "23-JUL-2026",
+    "shippedOnBoardDate": "23-JUL-2026"
+  }
+}

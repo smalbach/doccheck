@@ -1,0 +1,160 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1103,
+    "outputTokens": 1595
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-3802",
+    "invoiceDate": null,
+    "poNumber": "HA517689",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari"
+      ],
+      "city": "Pune",
+      "region": null,
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "21.09.2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Nhava Sheva",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BB-6204-YL",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour yellow",
+        "quantity": "3 800",
+        "unit": "PCS",
+        "unitPrice": "1,38",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "5.244,00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": "BB-6204-BL",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour blue",
+        "quantity": "2 400",
+        "unit": "PCS",
+        "unitPrice": "1,38",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "3.312,00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "3",
+        "sku": "BB-6204-WH",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour white",
+        "quantity": "740",
+        "unit": "PCS",
+        "unitPrice": "1,38",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "10.212,00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "4",
+        "sku": "BB-6204-GY",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour grey",
+        "quantity": "1 600",
+        "unit": "PCS",
+        "unitPrice": "1,38",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "2.208,00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "5",
+        "sku": "BB-6204-BR",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour brown",
+        "quantity": "7 600",
+        "unit": "PCS",
+        "unitPrice": "1,38",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "10.488,00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "6",
+        "sku": "BB-6204-NV",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour navy",
+        "quantity": "7 400",
+        "unit": "PCS",
+        "unitPrice": "1,38",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "10.212,00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      }
+    ],
+    "totalPackages": "151",
+    "grossWeight": {
+      "value": "3 457,90",
+      "unit": "kg"
+    },
+    "netWeight": {
+      "value": "3 322,00",
+      "unit": "kg"
+    },
+    "invoiceTotal": "41.676,00",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "2.495,00",
+        "currency": "INR"
+      }
+    ]
+  }
+}

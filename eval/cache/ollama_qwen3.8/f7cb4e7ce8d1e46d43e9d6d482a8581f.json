@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 513,
+    "outputTokens": 572
+  },
+  "output": {
+    "packingListNumber": "PL-BRI2608569",
+    "invoiceRef": "BRI2608569",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd",
+        "Houston, TX, 77013"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "BLUEBONNET/PO-63402/C/NO. 1-156",
+    "packages": [
+      {
+        "range": "1-156",
+        "count": "156 CTN",
+        "packageType": "CTN",
+        "sku": "TB-200",
+        "description": "Plush teddy bear 30 cm",
+        "quantity": "7,776 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,404.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,591.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 40"
+      }
+    ],
+    "totalPackages": "156",
+    "totalNetWeight": {
+      "value": "1,404.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,591.20",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "14.98"
+  }
+}

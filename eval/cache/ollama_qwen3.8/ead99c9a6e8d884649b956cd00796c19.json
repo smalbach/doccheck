@@ -1,0 +1,66 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 616,
+    "outputTokens": 570
+  },
+  "output": {
+    "packingListNumber": "PL-2026-7065",
+    "invoiceRef": "INV-2026-7065",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "ca",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/CO183787/C/NO. 1-18",
+    "packages": [
+      {
+        "range": "1-18",
+        "count": "18",
+        "packageType": "PLT",
+        "sku": "PORCELAIN TILE 60X60",
+        "description": "PORCELAIN TILE 60X60",
+        "quantity": "720",
+        "unit": "M2",
+        "netWeight": {
+          "value": "15120.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "15570.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "18",
+    "totalNetWeight": {
+      "value": "15120.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "15570.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "15.55"
+  }
+}

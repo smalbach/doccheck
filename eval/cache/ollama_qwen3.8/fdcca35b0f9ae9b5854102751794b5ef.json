@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 737,
+    "outputTokens": 921
+  },
+  "output": {
+    "blNumber": "SILVSGN136880",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "654906906",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS DC",
+      "addressLines": [
+        "9800 WALLISVILLE RD",
+        "HOUSTON TX 77013"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "027E",
+    "placeOfReceipt": {
+      "name": "HO CHI MINH CITY, VN",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "HO CHI MINH CITY, VN",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "HOUSTON, US",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "HOUSTON, US",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU9149676",
+        "seal": "MD2299205",
+        "type": "20GP",
+        "packages": "11",
+        "grossWeight": {
+          "value": "480",
+          "unit": "LB"
+        },
+        "volumeM3": "0.92"
+      }
+    ],
+    "totalPackages": "11",
+    "totalGrossWeight": {
+      "value": "480",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "BLUEBONNET/PO-12040/C/NO. 1-11",
+    "cargoDescription": "SAID TO CONTAIN 11 CTNS MEN'S COTTON T-SHIRT",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "SAI2608281",
+      "PO-12040"
+    ],
+    "placeOfIssue": "HO CHI MINH CITY",
+    "dateOfIssue": "05-JUL-2026",
+    "shippedOnBoardDate": "05-JUL-2026"
+  }
+}

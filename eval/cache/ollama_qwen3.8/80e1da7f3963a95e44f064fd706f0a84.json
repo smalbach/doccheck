@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 804,
+    "outputTokens": 996
+  },
+  "output": {
+    "blNumber": "KEYSFOS891412",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "871578475",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "SOCIÉTÉ LYONNAISE DE JOUETS S.A.R.L.",
+      "addressLines": [
+        "14 RUE DE L'INDUSTRIE",
+        "LYON 69007"
+      ],
+      "city": "LYON",
+      "region": "69007",
+      "postalCode": "69007",
+      "country": "FR",
+      "taxId": "FR40123456789"
+    },
+    "consignee": {
+      "name": "ÉPICERIE FINE ÉVANGÉLINE COOPÉRATIVE LTÉE",
+      "addressLines": [
+        "175 RUE CHAMPLAIN",
+        "DIEPPE NB E1A 1N5"
+      ],
+      "city": "DIEPPE",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "notifyParty": {
+      "name": "ÉPICERIE FINE ÉVANGÉLINE COOPÉRATIVE LTÉE",
+      "addressLines": [
+        "95 RUE CHAMPLAIN",
+        "DIEPPE NB E1A 1N5"
+      ],
+      "city": "DIEPPE",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "029E",
+    "placeOfReceipt": {
+      "name": "LYON",
+      "country": "FR"
+    },
+    "portOfLoading": {
+      "name": "FOS-SUR-MER",
+      "country": "FR"
+    },
+    "portOfDischarge": {
+      "name": "HALIFAX",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONCTON",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU4784951",
+        "seal": "PC5924823",
+        "type": "20GP",
+        "packages": "68",
+        "grossWeight": {
+          "value": "1073.04",
+          "unit": "KGS"
+        },
+        "volumeM3": "4.03"
+      }
+    ],
+    "totalPackages": "68",
+    "totalGrossWeight": {
+      "value": "1073.04",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "ÉPICERIE/PO-24076/C/NO. 1-68",
+    "cargoDescription": "SAID TO CONTAIN 68 CTNS JIGSAW PUZZLE 1000 PCS AND OTHER GOODS AS PER INVOICE REF: CI/26/9839 / PO-24076",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/9839",
+      "PO-24076"
+    ],
+    "placeOfIssue": "FOS-SUR-MER",
+    "dateOfIssue": "02-MAY-2026",
+    "shippedOnBoardDate": "02-MAY-2026"
+  }
+}

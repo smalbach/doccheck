@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 759,
+    "outputTokens": 921
+  },
+  "output": {
+    "blNumber": "COMPMUN967104",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "924948522",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F125"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "074N",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU5786582",
+        "seal": "PC7765282",
+        "type": "20GP",
+        "packages": "283",
+        "grossWeight": {
+          "value": "7,047.50",
+          "unit": "KG"
+        },
+        "volumeM3": "14.06"
+      }
+    ],
+    "totalPackages": "283",
+    "totalGrossWeight": {
+      "value": "7,047.50",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PO-75067/C/NO. 1-283",
+    "cargoDescription": "SAID TO CONTAIN 283 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "Cl/26/8087",
+      "PO-75067"
+    ],
+    "placeOfIssue": "Mundra",
+    "dateOfIssue": "May 3, 2026",
+    "shippedOnBoardDate": "May 3, 2026"
+  }
+}

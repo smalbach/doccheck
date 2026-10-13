@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 673,
+    "outputTokens": 846
+  },
+  "output": {
+    "invoiceNumber": "QIN2005408",
+    "invoiceDate": "Feb19, 2026",
+    "poNumber": "PO-55662",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "District"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc",
+      "addressLines": [
+        "250 Front St W. Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "MSY 3G5",
+      "country": "CA",
+      "taxId": "817345678AM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Slerway Bhd"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "LET 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "Mar 2, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": null,
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Qingdao",
+    "paymentTerms": "T/T 30 days after BL date. Shipping Supervisor",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "HE 848210",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "8.800",
+        "unit": "PCS",
+        "unitPrice": "1.17",
+        "unitPriceCurrency": null,
+        "lineTotal": "10.29600",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": null
+      },
+      {
+        "lineNo": "2",
+        "sku": "SH HEME",
+        "description": "Hex bolts M12   x 60, carbon steel, zinc plated",
+        "quantity": "3,000",
+        "unit": "KG",
+        "unitPrice": "210",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,300.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "731815"
+      }
+    ],
+    "totalPackages": "50",
+    "grossWeight": {
+      "value": "4,139.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,96800",
+      "unit": "KG"
+    },
+    "invoiceTotal": "16,596.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

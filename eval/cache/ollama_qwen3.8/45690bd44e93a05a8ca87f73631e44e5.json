@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 728,
+    "outputTokens": 956
+  },
+  "output": {
+    "invoiceNumber": "PUN2609145",
+    "invoiceDate": "Jul 9, 2026",
+    "poNumber": "LA426454",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "Jul 20, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Savannah",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "Savannah",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BB-6204",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "6,200",
+        "unit": "PCS",
+        "unitPrice": "1.31",
+        "unitPriceCurrency": null,
+        "lineTotal": "8,122.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": "BV-2IN",
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "1,500",
+        "unit": "PCS",
+        "unitPrice": "16.14",
+        "unitPriceCurrency": null,
+        "lineTotal": "24,210.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "106",
+    "grossWeight": {
+      "value": "2,817.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,707.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "32,332.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

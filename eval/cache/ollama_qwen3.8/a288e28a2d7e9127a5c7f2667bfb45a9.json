@@ -1,0 +1,81 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 644,
+    "outputTokens": 705
+  },
+  "output": {
+    "invoiceNumber": "NIN2600194",
+    "invoiceDate": "2026-08-11",
+    "poNumber": "PA244498",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": null,
+    "shipmentDate": "2026-08-13",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Ningbo",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+        "quantity": "1,584",
+        "unit": "PCS",
+        "unitPrice": "15.20",
+        "unitPriceCurrency": null,
+        "lineTotal": "24,076.80",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      }
+    ],
+    "totalPackages": "200",
+    "grossWeight": {
+      "value": "1,881.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,663.20",
+      "unit": "KG"
+    },
+    "invoiceTotal": "24,076.80",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

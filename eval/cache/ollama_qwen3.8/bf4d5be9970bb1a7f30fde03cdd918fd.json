@@ -1,0 +1,256 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1668,
+    "outputTokens": 2793
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-9381",
+    "invoiceDate": "21-MAR-2026",
+    "poNumber": "PO-89507",
+    "seller": {
+      "name": "CÔNG TY CỔ PHẦN MAY ĐÔNG Á",
+      "addressLines": [
+        "LÔ C2, KCN ĐỒNG VĂN II",
+        "DUY TIÊN HÀ NAM"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": "VN",
+      "taxId": "0700123456"
+    },
+    "buyer": {
+      "name": "ÉPICERIE FINE ÉVANGÉLINE COOPÉRATIVE LTÉE",
+      "addressLines": [
+        "95 RUE CHAMPLAIN"
+      ],
+      "city": "DIEPPE",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "consignee": {
+      "name": "ÉPICERIE FINE ÉVANGÉLINE COOPÉRATIVE LTÉE",
+      "addressLines": [
+        "95 RUE CHAMPLAIN"
+      ],
+      "city": "DIEPPE",
+      "region": "NB",
+      "postalCode": "E1A 1N5",
+      "country": "CA",
+      "taxId": "892345678RM0001"
+    },
+    "shipmentDate": "01-APR-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "HAI PHONG",
+      "country": "VN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CIF",
+    "incotermPlace": "HALIFAX",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M-NV-XXL",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES, COLOUR NAVY, SIZE XXL",
+        "quantity": "600",
+        "unit": "PCS",
+        "unitPrice": "2.73",
+        "unitPriceCurrency": null,
+        "lineTotal": "1638.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M-BE-XL",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES, COLOUR BEIGE, SIZE XL",
+        "quantity": "2800",
+        "unit": "PCS",
+        "unitPrice": "2.73",
+        "unitPriceCurrency": null,
+        "lineTotal": "7644.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M-NV-S",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES, COLOUR NAVY, SIZE S",
+        "quantity": "2700",
+        "unit": "PCS",
+        "unitPrice": "2.73",
+        "unitPriceCurrency": null,
+        "lineTotal": "7371.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M-BR-M",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES, COLOUR BROWN, SIZE M",
+        "quantity": "800",
+        "unit": "PCS",
+        "unitPrice": "2.73",
+        "unitPriceCurrency": null,
+        "lineTotal": "2184.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M-BE-XXL",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES, COLOUR BEIGE, SIZE XXL",
+        "quantity": "2700",
+        "unit": "PCS",
+        "unitPrice": "2.73",
+        "unitPriceCurrency": null,
+        "lineTotal": "7371.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M-GN-XS",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES, COLOUR GREEN, SIZE XS",
+        "quantity": "3200",
+        "unit": "PCS",
+        "unitPrice": "2.73",
+        "unitPriceCurrency": null,
+        "lineTotal": "8736.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M-BK-M",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES, COLOUR BLACK, SIZE M",
+        "quantity": "1700",
+        "unit": "PCS",
+        "unitPrice": "2.73",
+        "unitPriceCurrency": null,
+        "lineTotal": "6441.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M-WH-M",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES, COLOUR WHITE, SIZE M",
+        "quantity": "2300",
+        "unit": "PCS",
+        "unitPrice": "2.73",
+        "unitPriceCurrency": null,
+        "lineTotal": "6279.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "SK-WL-3-YL-XS",
+        "description": "WOOL BLEND SOCKS, KNITTED, 3-PAIR PACK, COLOUR YELLOW, SIZE XS",
+        "quantity": "8640",
+        "unit": "PRS",
+        "unitPrice": "3.05",
+        "unitPriceCurrency": null,
+        "lineTotal": "26352.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6115.94"
+      },
+      {
+        "lineNo": null,
+        "sku": "SK-WL-3-RD-L",
+        "description": "WOOL BLEND SOCKS, KNITTED, 3-PAIR PACK, COLOUR RED, SIZE L",
+        "quantity": "1440",
+        "unit": "PRS",
+        "unitPrice": "3.05",
+        "unitPriceCurrency": null,
+        "lineTotal": "4392.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6115.94"
+      },
+      {
+        "lineNo": null,
+        "sku": "SK-WL-3-PK-XL",
+        "description": "WOOL BLEND SOCKS, KNITTED, 3-PAIR PACK, COLOUR PINK, SIZE XL",
+        "quantity": "6480",
+        "unit": "PRS",
+        "unitPrice": "3.05",
+        "unitPriceCurrency": null,
+        "lineTotal": "19764.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6115.94"
+      },
+      {
+        "lineNo": null,
+        "sku": "SK-WL-3-WH-M",
+        "description": "WOOL BLEND SOCKS, KNITTED, 3-PAIR PACK, COLOUR WHITE, SIZE M",
+        "quantity": "2400",
+        "unit": "PRS",
+        "unitPrice": "3.05",
+        "unitPriceCurrency": null,
+        "lineTotal": "7320.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6115.94"
+      },
+      {
+        "lineNo": null,
+        "sku": "SK-WL-3-YL-S",
+        "description": "WOOL BLEND SOCKS, KNITTED, 3-PAIR PACK, COLOUR YELLOW, SIZE S",
+        "quantity": "7920",
+        "unit": "PRS",
+        "unitPrice": "3.05",
+        "unitPriceCurrency": null,
+        "lineTotal": "24156.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6115.94"
+      },
+      {
+        "lineNo": null,
+        "sku": "SK-WL-3-GY-L",
+        "description": "WOOL BLEND SOCKS, KNITTED, 3-PAIR PACK, COLOUR GREY, SIZE L",
+        "quantity": "480",
+        "unit": "PRS",
+        "unitPrice": "3.05",
+        "unitPriceCurrency": null,
+        "lineTotal": "1464.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6115.94"
+      }
+    ],
+    "totalPackages": "282 PKGS",
+    "grossWeight": {
+      "value": "5458.20",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "5244.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "129312.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

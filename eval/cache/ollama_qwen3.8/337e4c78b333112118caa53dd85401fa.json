@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 569,
+    "outputTokens": 587
+  },
+  "output": {
+    "packingListNumber": "PL-2026-1391",
+    "invoiceRef": "INV-2026-1391",
+    "seller": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "marks": "LAKESHORE/LA876206/C/NO. 1-84",
+    "packages": [
+      {
+        "range": "1-84",
+        "count": "84 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "WOOL SOCKS 3-PACK",
+        "quantity": "20150 PRS",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "1512.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1570.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "84",
+    "totalNetWeight": {
+      "value": "1512.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "1570.80",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "5.92"
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 2155,
+    "outputTokens": 3792
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-3055",
+    "invoiceDate": "30 April 2026",
+    "poNumber": "PO-32338",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "315800 Ningbo Zhejiang"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8250 NW 27th St"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "consignee": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8250 NW 27th St"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "shipmentDate": "11 May 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Miami",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "Miami",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "EK-17-BL",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour blue",
+        "quantity": "56",
+        "unit": "PCS",
+        "unitPrice": "17.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "973.84",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "2",
+        "sku": "EK-17-OR",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour orange",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "17.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "139.12",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "3",
+        "sku": "EK-17-YL",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour yellow",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "17.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "139.12",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "4",
+        "sku": "EK-17-BK",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour black",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "17.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "139.12",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "5",
+        "sku": "EK-17-GN",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour green",
+        "quantity": "32",
+        "unit": "PCS",
+        "unitPrice": "17.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "556.48",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "6",
+        "sku": "EK-17-BR",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour brown",
+        "quantity": "48",
+        "unit": "PCS",
+        "unitPrice": "17.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "834.72",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "7",
+        "sku": "EK-17-BE",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour beige",
+        "quantity": "32",
+        "unit": "PCS",
+        "unitPrice": "17.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "556.48",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "8",
+        "sku": "EK-17-WH",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour white",
+        "quantity": "64",
+        "unit": "PCS",
+        "unitPrice": "17.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,112.96",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "9",
+        "sku": "EK-17-NV",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour navy",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "17.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "139.12",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "10",
+        "sku": "EK-17-GY",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour grey",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "17.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "139.12",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      },
+      {
+        "lineNo": "11",
+        "sku": "BL-600-YL",
+        "description": "Countertop blender 600 W with glass jar, colour yellow",
+        "quantity": "100",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,108.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "12",
+        "sku": "BL-600-RD",
+        "description": "Countertop blender 600 W with glass jar, colour red",
+        "quantity": "52",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,096.16",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "13",
+        "sku": "BL-600-BE",
+        "description": "Countertop blender 600 W with glass jar, colour beige",
+        "quantity": "40",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "843.20",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "14",
+        "sku": "BL-600-WH",
+        "description": "Countertop blender 600 W with glass jar, colour white",
+        "quantity": "48",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,011.84",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "15",
+        "sku": "BL-600-BK",
+        "description": "Countertop blender 600 W with glass jar, colour black",
+        "quantity": "32",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "674.56",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "16",
+        "sku": "BL-600-GN",
+        "description": "Countertop blender 600 W with glass jar, colour green",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "84.32",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "17",
+        "sku": "BL-600-OR",
+        "description": "Countertop blender 600 W with glass jar, colour orange",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "168.64",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "18",
+        "sku": "BL-600-GY",
+        "description": "Countertop blender 600 W with glass jar, colour grey",
+        "quantity": "108",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,276.64",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "19",
+        "sku": "BL-600-PK",
+        "description": "Countertop blender 600 W with glass jar, colour pink",
+        "quantity": "64",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,349.12",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "20",
+        "sku": "BL-600-NV",
+        "description": "Countertop blender 600 W with glass jar, colour navy",
+        "quantity": "16",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "337.28",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "21",
+        "sku": "BL-600-BR",
+        "description": "Countertop blender 600 W with glass jar, colour brown",
+        "quantity": "78",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,433.44",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "22",
+        "sku": "BL-600-BL",
+        "description": "Countertop blender 600 W with glass jar, colour blue",
+        "quantity": "68",
+        "unit": "PCS",
+        "unitPrice": "21.08",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,433.44",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      }
+    ],
+    "totalPackages": "186",
+    "grossWeight": {
+      "value": "1,934.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,684.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "17,546.72",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

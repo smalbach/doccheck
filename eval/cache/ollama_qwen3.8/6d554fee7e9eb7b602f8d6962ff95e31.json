@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 756,
+    "outputTokens": 923
+  },
+  "output": {
+    "blNumber": "COMPGOA275490",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "647040543",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "090E",
+    "placeOfReceipt": {
+      "name": "SASSUOLO",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "GENOA",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "SAVANNAH",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "CHICAGO",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU3648157",
+        "seal": "MD8181866",
+        "type": "20GP",
+        "packages": "125",
+        "grossWeight": {
+          "value": "5319",
+          "unit": "LB"
+        },
+        "volumeM3": "5.25"
+      }
+    ],
+    "totalPackages": "125",
+    "totalGrossWeight": {
+      "value": "5319",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "LAKESHORE/LA801205/C/NO. 1-125",
+    "cargoDescription": "SAID TO CONTAIN 125 CTNS EV OLIVE OIL 5 L",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "INV-2026-7831",
+      "LA801205"
+    ],
+    "placeOfIssue": "GENOA",
+    "dateOfIssue": "21-MAY-2026",
+    "shippedOnBoardDate": "21-MAY-2026"
+  }
+}

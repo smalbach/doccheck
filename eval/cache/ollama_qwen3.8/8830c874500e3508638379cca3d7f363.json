@@ -1,0 +1,164 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 999,
+    "outputTokens": 1559
+  },
+  "output": {
+    "invoiceNumber": "IND2609016",
+    "invoiceDate": "2026-01-31",
+    "poNumber": "PO-52527",
+    "seller": {
+      "name": "Industrias Cerámicas del Levante, S.L.",
+      "addressLines": [
+        "Camí de la Mar, 23"
+      ],
+      "city": "Vila-real",
+      "region": "Castellón",
+      "postalCode": "12540",
+      "country": "ES",
+      "taxId": "ESB12345678"
+    },
+    "buyer": {
+      "name": "Les Importations Bélanger & Frères inc.",
+      "addressLines": [
+        "2875 boul. Laurier, bureau 300"
+      ],
+      "city": "Québec",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "consignee": {
+      "name": "Entrepôt Bélanger – Lévis",
+      "addressLines": [
+        "1200 rue de l'Église"
+      ],
+      "city": "Lévis",
+      "region": "QC",
+      "postalCode": "G6V 6N1",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "2026-02-09",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Valencia",
+      "country": "ES"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CFR",
+    "incotermPlace": "Halifax",
+    "paymentTerms": "Net 60",
+    "currency": "EUR",
+    "countryOfOrigin": "ES",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour beige",
+        "quantity": "120",
+        "unit": "M2",
+        "unitPrice": "7.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "781.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "ES",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour blue",
+        "quantity": "120",
+        "unit": "M2",
+        "unitPrice": "7.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "871.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "ES",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour grey",
+        "quantity": "120",
+        "unit": "M2",
+        "unitPrice": "7.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "871.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "ES",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "4",
+        "sku": null,
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour black",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "7.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "290.40",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "ES",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "5",
+        "sku": null,
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour green",
+        "quantity": "120",
+        "unit": "M2",
+        "unitPrice": "7.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "871.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "ES",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "6",
+        "sku": null,
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour orange",
+        "quantity": "80",
+        "unit": "M2",
+        "unitPrice": "7.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "580.80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "ES",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "7",
+        "sku": null,
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour brown",
+        "quantity": "80",
+        "unit": "M2",
+        "unitPrice": "7.26",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "580.80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "ES",
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "17",
+    "grossWeight": {
+      "value": "14,705.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "14,280.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "4,936.80",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 667,
+    "outputTokens": 791
+  },
+  "output": {
+    "invoiceNumber": "BRI2608569",
+    "invoiceDate": "2026-08-28",
+    "poNumber": "PO-63402",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd",
+        "Houston, TX, 77013"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "2026-08-30",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shekou",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Shekou",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": null,
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Plush teddy bear 30 cm, polyester filling",
+        "quantity": "7,800",
+        "unit": "PCS",
+        "unitPrice": "8.33",
+        "unitPriceCurrency": null,
+        "lineTotal": "64,974.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "156",
+    "grossWeight": {
+      "value": "1,591.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,404.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "64,974.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 787,
+    "outputTokens": 960
+  },
+  "output": {
+    "blNumber": "KEYSCMT269686",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "797782096",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000",
+        "VN"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6",
+        "CA"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6",
+        "CA"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "055S",
+    "placeOfReceipt": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Cai Mep",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGLU4283712",
+        "seal": "AG2480664",
+        "type": "40GP",
+        "packages": "425",
+        "grossWeight": {
+          "value": "8,021.60",
+          "unit": "KG"
+        },
+        "volumeM3": "45.51"
+      }
+    ],
+    "totalPackages": "425",
+    "totalGrossWeight": {
+      "value": "8,182.03",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/QU969565/C/NO. 1-425",
+    "cargoDescription": "SAID TO CONTAIN 425 CTNS WOMEN'S PADDED JACKET AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "SAI2601998",
+      "QU969565"
+    ],
+    "placeOfIssue": "Cai Mep",
+    "dateOfIssue": "Aug 17, 2026",
+    "shippedOnBoardDate": "Aug 17, 2026"
+  }
+}

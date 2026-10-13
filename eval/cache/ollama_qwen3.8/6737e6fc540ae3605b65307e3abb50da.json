@@ -1,0 +1,75 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 595,
+    "outputTokens": 581
+  },
+  "output": {
+    "invoiceNumber": "Cl26/9067",
+    "invoiceDate": "2026-04-20",
+    "poNumber": "PO-40015",
+    "seller": {
+      "name": "Brightstar Manufacturingede Ave Co. Lid.",
+      "addressLines": [
+        "a 0 ro"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": null,
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Phwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "BluchonnetHome Goods LLC",
+      "addressLines": [
+        "4200 AmbassadorCaffery Phwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "Us",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "2026-04-30",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": null,
+    "incotermPlace": null,
+    "paymentTerms": "T/T 30% deposit. 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": null,
+    "lines": [],
+    "totalPackages": null,
+    "grossWeight": {
+      "value": "520.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "459.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": null,
+    "invoiceTotalCurrency": null,
+    "charges": []
+  }
+}

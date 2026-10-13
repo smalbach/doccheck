@@ -1,0 +1,84 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 606,
+    "outputTokens": 749
+  },
+  "output": {
+    "blNumber": "13495219",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines (TDWE)",
+    "bookingNumber": "13495219",
+    "carrierName": "Tidewater Express Lines (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Brightstar Toys Manufacturing Co, Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buy",
+        "Shenzhen, Guangdong. S1#112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "S1#112",
+      "country": "CN",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Phwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "notifyParty": {
+      "name": "Home Goods LLC",
+      "addressLines": [
+        "4200 AmbassadorCaffery Phwy",
+        "Houston,TX, T7041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "T7041",
+      "country": "us",
+      "taxId": null
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "02IN",
+    "placeOfReceipt": {
+      "name": "Shenzhen",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "containers": [],
+    "totalPackages": "51 CTNS",
+    "totalGrossWeight": null,
+    "marksAndNumbers": "BLUEBONNET/PO-40035/C/NO. 1-51",
+    "cargoDescription": "SAIDTO CONTAIN 51 CTNS PLUSH TEDDY BEAR 30 CM",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "Ref CL26/9067/ PO-40035"
+    ],
+    "placeOfIssue": "Yantian",
+    "dateOfIssue": "2026-04. 30",
+    "shippedOnBoardDate": "2026-04-30"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 674,
+    "outputTokens": 822
+  },
+  "output": {
+    "invoiceNumber": "SAI2604496",
+    "invoiceDate": "Jan 13, 2026",
+    "poNumber": "PO-40833",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "Jan 20, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": null,
+    "incotermPlace": null,
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL. Shipping Supervisor.",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "TS-CTN-M",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "21,100",
+        "unit": "PCS",
+        "unitPrice": "2.17",
+        "unitPriceCurrency": null,
+        "lineTotal": "45,787.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      }
+    ],
+    "totalPackages": "211",
+    "grossWeight": {
+      "value": "4,009.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "4,177.80",
+      "unit": "KG"
+    },
+    "invoiceTotal": "45,787.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

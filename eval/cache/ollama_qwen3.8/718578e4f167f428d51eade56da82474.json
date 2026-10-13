@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 687,
+    "outputTokens": 809
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0634",
+    "invoiceDate": "2026-06-17",
+    "poNumber": "BL265643",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "2026-06-26",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Ningbo",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Countertop blender 600 W with glass jar",
+        "quantity": "840",
+        "unit": "PCS",
+        "unitPrice": "25.04",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "21,033.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8509.40"
+      }
+    ],
+    "totalPackages": "210",
+    "grossWeight": {
+      "value": "1,932.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,226.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "21,033.60",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

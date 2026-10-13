@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 623,
+    "outputTokens": 702
+  },
+  "output": {
+    "packingListNumber": "PL/26/6615",
+    "invoiceRef": "CI/26/6615",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "marks": "BLUEBONNET/BL425671/C/NO. 1-416",
+    "packages": [
+      {
+        "range": "1-216",
+        "count": "216 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "JIGSAW PUZZLE 1000 PCS",
+        "quantity": "5184 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": null,
+          "unit": null
+        },
+        "grossWeight": {
+          "value": null,
+          "unit": null
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "217-416",
+        "count": "200 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "PLUSH TEDDY BEAR 30 CM",
+        "quantity": "9999 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": null,
+          "unit": null
+        },
+        "grossWeight": {
+          "value": null,
+          "unit": null
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "416",
+    "totalNetWeight": {
+      "value": "5014.08",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "5448.48",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "32.00"
+  }
+}

@@ -1,0 +1,404 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 2200,
+    "outputTokens": 4262
+  },
+  "output": {
+    "invoiceNumber": "CI/26/2476",
+    "invoiceDate": "29.08.2026",
+    "poNumber": "PO-77818",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": null,
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "shipmentDate": "01.09.2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "La Spezia",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "CAD",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "OO-EV-5-L1",
+        "description": "Extra virgin olive oil, 5 L tins, lot A-673",
+        "quantity": "56",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.557,92",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "2",
+        "sku": "OO-EV-5-L2",
+        "description": "Extra virgin olive oil, 5 L tins, lot B-802",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "111,28",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "3",
+        "sku": "OO-EV-5-L3",
+        "description": "Extra virgin olive oil, 5 L tins, lot C-244",
+        "quantity": "68",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.891,76",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "4",
+        "sku": "OO-EV-5-L4",
+        "description": "Extra virgin olive oil, 5 L tins, lot D-390",
+        "quantity": "40",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.112,80",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "5",
+        "sku": "OO-EV-5-L5",
+        "description": "Extra virgin olive oil, 5 L tins, lot E-452",
+        "quantity": "56",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.557,92",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "6",
+        "sku": "OO-EV-5-L6",
+        "description": "Extra virgin olive oil, 5 L tins, lot F-130",
+        "quantity": "32",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "890,24",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "7",
+        "sku": "OO-EV-5-L7",
+        "description": "Extra virgin olive oil, 5 L tins, lot G-959",
+        "quantity": "48",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.335,36",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "8",
+        "sku": "OO-EV-5-L8",
+        "description": "Extra virgin olive oil, 5 L tins, lot H-946",
+        "quantity": "9",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "222,56",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "9",
+        "sku": "OO-EV-5-L9",
+        "description": "Extra virgin olive oil, 5 L tins, lot I-240",
+        "quantity": "40",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.112,80",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "10",
+        "sku": "OO-EV-5-L10",
+        "description": "Extra virgin olive oil, 5 L tins, lot J-457",
+        "quantity": "84",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "2.336,88",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "11",
+        "sku": "OO-EV-5-L11",
+        "description": "Extra virgin olive oil, 5 L tins, lot K-358",
+        "quantity": "56",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.557,92",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "12",
+        "sku": "OO-EV-5-L12",
+        "description": "Extra virgin olive oil, 5 L tins, lot L-611",
+        "quantity": "40",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.112,80",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "13",
+        "sku": "OO-EV-5-L13",
+        "description": "Extra virgin olive oil, 5 L tins, lot M-120",
+        "quantity": "68",
+        "unit": "PCS",
+        "unitPrice": "27,82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.891,76",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "14",
+        "sku": "CT-6060-GY",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour grey",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "339,20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "15",
+        "sku": "CT-6060-BK",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour black",
+        "quantity": "80",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "678,40",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "16",
+        "sku": "CT-6060-RD",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour red",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "339,20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "17",
+        "sku": "CT-6060-WH",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour white",
+        "quantity": "80",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "678,40",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "18",
+        "sku": "CT-6060-NV",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour navy",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "339,20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "19",
+        "sku": "CT-6060-BR",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour brown",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "339,20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "20",
+        "sku": "CT-6060-PK",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour pink",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "339,20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "21",
+        "sku": "CT-6060-GN",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour green",
+        "quantity": "80",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "678,40",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "22",
+        "sku": "CT-6060-BE",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour beige",
+        "quantity": "80",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "678,40",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "23",
+        "sku": "CT-6060-YL",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour yellow",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "339,20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "24",
+        "sku": "CT-6060-OR",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour orange",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "339,20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "25",
+        "sku": "CT-6060-BL",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm, colour blue",
+        "quantity": "40",
+        "unit": "M2",
+        "unitPrice": "8,48",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "339,20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "166",
+    "grossWeight": {
+      "value": "16 735,00",
+      "unit": "kg"
+    },
+    "netWeight": {
+      "value": "16 200,00",
+      "unit": "kg"
+    },
+    "invoiceTotal": "22.119,20",
+    "invoiceTotalCurrency": "CAD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "836,00",
+        "currency": "EUR"
+      }
+    ]
+  }
+}

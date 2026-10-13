@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 722,
+    "outputTokens": 904
+  },
+  "output": {
+    "blNumber": "COMPNGB615574",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines (TDWE)",
+    "bookingNumber": "151384515",
+    "carrierName": "Tidewater Express Lines (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "033N",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU6231114",
+        "seal": "TW7773825",
+        "type": "40GP",
+        "packages": "412",
+        "grossWeight": {
+          "value": "9,206",
+          "unit": "LB"
+        },
+        "volumeM3": "44.86"
+      }
+    ],
+    "totalPackages": "412",
+    "totalGrossWeight": {
+      "value": "9,666",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "HARBORLINE/HA522185/C/NO. 1-412",
+    "cargoDescription": "SAID TO CONTAIN 412 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "NIN2602127",
+      "HA522185"
+    ],
+    "placeOfIssue": "Ningbo",
+    "dateOfIssue": "2026-05-14",
+    "shippedOnBoardDate": "2026-05-14"
+  }
+}

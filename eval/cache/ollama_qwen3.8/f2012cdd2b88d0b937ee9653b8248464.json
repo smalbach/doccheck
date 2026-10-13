@@ -1,0 +1,196 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1202,
+    "outputTokens": 1864
+  },
+  "output": {
+    "invoiceNumber": "CI/26/1259",
+    "invoiceDate": "2026-06-12",
+    "poNumber": "QU483031",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "2026-06-23",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Hamburg",
+      "country": "DE"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CIF",
+    "incotermPlace": "Montreal",
+    "paymentTerms": "Net 60",
+    "currency": "CAD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour orange",
+        "quantity": "3",
+        "unit": "PCS",
+        "unitPrice": "80.82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "242.46",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour blue",
+        "quantity": "5",
+        "unit": "PCS",
+        "unitPrice": "80.82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "404.10",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour green",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "80.82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "161.64",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "4",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour grey",
+        "quantity": "3",
+        "unit": "PCS",
+        "unitPrice": "80.82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "242.46",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "5",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour yellow",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "80.82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "161.64",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "6",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour brown",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "80.82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "80.82",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "7",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour navy",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "80.82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "323.28",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "8",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour beige",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "80.82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "233.28",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "9",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour red",
+        "quantity": "3",
+        "unit": "PCS",
+        "unitPrice": "80.82",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "242.46",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "27",
+    "grossWeight": {
+      "value": "513.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "391.50",
+      "unit": "KG"
+    },
+    "invoiceTotal": "2,182.14",
+    "invoiceTotalCurrency": "CAD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "4,030.00",
+        "currency": "INR"
+      }
+    ]
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1753,
+    "outputTokens": 2989
+  },
+  "output": {
+    "invoiceNumber": "COO2601551",
+    "invoiceDate": "30.03.2026",
+    "poNumber": "NO844554",
+    "seller": {
+      "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "addressLines": [
+        "Av. Túpac Amaru 315",
+        "San Martín de Pangoa"
+      ],
+      "city": "San Martín de Pangoa",
+      "region": null,
+      "postalCode": null,
+      "country": "PE",
+      "taxId": "20123456789"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "06.04.2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Callao",
+      "country": "PE"
+    },
+    "portOfEntry": {
+      "name": "Prince Rupert",
+      "country": null
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "Prince Rupert",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "CAD",
+    "countryOfOrigin": "PE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CF-GRN-60-L1",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot A-323",
+        "quantity": "120 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "589,20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "2",
+        "sku": "CF-GRN-60-L2",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot B-835",
+        "quantity": "60 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "294,60",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "3",
+        "sku": "CF-GRN-60-L3",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot C-690",
+        "quantity": "300 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.473,00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "4",
+        "sku": "CF-GRN-60-L4",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot D-742",
+        "quantity": "360 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.767,60",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "5",
+        "sku": "CF-GRN-60-L5",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot E-279",
+        "quantity": "180 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "883,80",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "6",
+        "sku": "CF-GRN-60-L6",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot F-246",
+        "quantity": "180 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "883,80",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "7",
+        "sku": "CF-GRN-60-L7",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot G-273",
+        "quantity": "360 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.767,60",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "8",
+        "sku": "CF-GRN-60-L8",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot H-235",
+        "quantity": "60 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "294,60",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "9",
+        "sku": "CF-GRN-60-L9",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot I-638",
+        "quantity": "300 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.473,00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "10",
+        "sku": "CF-GRN-60-L10",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot J-965",
+        "quantity": "240 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.178,40",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "11",
+        "sku": "CF-GRN-60-L11",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot K-688",
+        "quantity": "60 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "294,60",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "12",
+        "sku": "CF-GRN-60-L12",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot L-145",
+        "quantity": "120 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "589,20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "13",
+        "sku": "CF-GRN-60-L13",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot M-550",
+        "quantity": "300 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.473,00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "14",
+        "sku": "CF-GRN-60-L14",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot N-194",
+        "quantity": "360 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1.767,60",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "15",
+        "sku": "CF-GRN-60-L15",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot O-772",
+        "quantity": "180 KG",
+        "unit": "KG",
+        "unitPrice": "4,91",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "883,80",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "54",
+    "grossWeight": {
+      "value": "3 222,40",
+      "unit": "kg"
+    },
+    "netWeight": {
+      "value": "3 180,00",
+      "unit": "kg"
+    },
+    "invoiceTotal": "15.613,80",
+    "invoiceTotalCurrency": "CAD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "2.687,00",
+        "currency": "USD"
+      }
+    ]
+  }
+}

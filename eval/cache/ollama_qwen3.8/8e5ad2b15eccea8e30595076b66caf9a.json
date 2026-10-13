@@ -1,0 +1,91 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 627,
+    "outputTokens": 829
+  },
+  "output": {
+    "invoiceNumber": "CI/26/2960",
+    "invoiceDate": "05-APR-2026",
+    "poNumber": "LA867180",
+    "seller": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "17-APR-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "HAMBURG",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "NEW YORK",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "USD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "560",
+        "unit": "PCS",
+        "unitPrice": "68.77",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "3851.12",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "56 PKGS",
+    "grossWeight": {
+      "value": "1064.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "812.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "3851.12",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

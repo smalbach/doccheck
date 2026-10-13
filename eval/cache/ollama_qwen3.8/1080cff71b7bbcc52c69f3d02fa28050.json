@@ -1,0 +1,394 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1513,
+    "outputTokens": 3350
+  },
+  "output": {
+    "packingListNumber": "PL/26/8937",
+    "invoiceRef": "CI/26/8937",
+    "seller": {
+      "name": "Küchentechnik Müller & Söhne GmbH",
+      "addressLines": [
+        "Königstraße 48",
+        "70173 Stuttgart",
+        "DE"
+      ],
+      "city": "Stuttgart",
+      "region": null,
+      "postalCode": "70173",
+      "country": "DE",
+      "taxId": "DE298765432"
+    },
+    "consignee": {
+      "name": "Les Importations Bélanger & Frères inc.",
+      "addressLines": [
+        "2875 boul. Laurier, bureau 300",
+        "G1V 2M2 Québec QC",
+        "CA"
+      ],
+      "city": "Québec",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "marks": "LES/PO-19112/C/NO. 1-197",
+    "packages": [
+      {
+        "range": "1-12",
+        "count": "12",
+        "packageType": "CTN",
+        "sku": "BL-600-BR",
+        "description": "Blender 600 W colour brown",
+        "quantity": "48 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "110.40",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "127.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "13-23",
+        "count": "11",
+        "packageType": "CTN",
+        "sku": "BL-600-BE",
+        "description": "Blender 600 W colour beige",
+        "quantity": "44 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "101.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "116.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "24-48",
+        "count": "25",
+        "packageType": "CTN",
+        "sku": "BL-600-RD",
+        "description": "Blender 600 W colour red",
+        "quantity": "100 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "230.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "265.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "49-70",
+        "count": "22",
+        "packageType": "CTN",
+        "sku": "BL-600-GY",
+        "description": "Blender 600 W colour grey",
+        "quantity": "88 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "202.40",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "233.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "71-83",
+        "count": "13",
+        "packageType": "CTN",
+        "sku": "BL-600-PK",
+        "description": "Blender 600 W colour pink",
+        "quantity": "52 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "119.60",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "137.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "84-120",
+        "count": "37",
+        "packageType": "CTN",
+        "sku": "BL-600-BL",
+        "description": "Blender 600 W colour blue",
+        "quantity": "148 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "340.40",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "392.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "121-122",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "BL-600-BK",
+        "description": "Blender 600 W colour black",
+        "quantity": "8 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "18.40",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "21.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "123-148",
+        "count": "26",
+        "packageType": "CTN",
+        "sku": "BL-600-WH",
+        "description": "Blender 600 W colour white",
+        "quantity": "104 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "239.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "275.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "149-166",
+        "count": "18",
+        "packageType": "CTN",
+        "sku": "BL-600-OR",
+        "description": "Blender 600 W colour orange",
+        "quantity": "72 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "165.60",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "190.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "167-169",
+        "count": "3",
+        "packageType": "CTN",
+        "sku": "EK-17-PK",
+        "description": "Electric kettle 1.7 L colour pink",
+        "quantity": "24 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "25.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "28.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "170-171",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "EK-17-YL",
+        "description": "Electric kettle 1.7 L colour yellow",
+        "quantity": "16 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "16.80",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "172-174",
+        "count": "3",
+        "packageType": "CTN",
+        "sku": "EK-17-NV",
+        "description": "Electric kettle 1.7 L colour navy",
+        "quantity": "24 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "25.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "28.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "175-178",
+        "count": "4",
+        "packageType": "CTN",
+        "sku": "EK-17-BK",
+        "description": "Electric kettle 1.7 L colour black",
+        "quantity": "32 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "33.60",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "179-180",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "EK-17-BE",
+        "description": "Electric kettle 1.7 L colour beige",
+        "quantity": "16 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "16.80",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "181-181",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "EK-17-WH",
+        "description": "Electric kettle 1.7 L colour white",
+        "quantity": "8 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "8.40",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "9.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "182-187",
+        "count": "6",
+        "packageType": "CTN",
+        "sku": "EK-17-GY",
+        "description": "Electric kettle 1.7 L colour grey",
+        "quantity": "48 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "50.40",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "57.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "188-189",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "EK-17-BL",
+        "description": "Electric kettle 1.7 L colour blue",
+        "quantity": "16 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "16.80",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "190-192",
+        "count": "3",
+        "packageType": "CTN",
+        "sku": "EK-17-BR",
+        "description": "Electric kettle 1.7 L colour brown",
+        "quantity": "24 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "25.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "28.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "193-197",
+        "count": "5",
+        "packageType": "CTN",
+        "sku": "EK-17-GN",
+        "description": "Electric kettle 1.7 L colour green",
+        "quantity": "40 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "42.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "47.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "197",
+    "totalNetWeight": {
+      "value": "1,787.60",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,054.10",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "21.90"
+  }
+}

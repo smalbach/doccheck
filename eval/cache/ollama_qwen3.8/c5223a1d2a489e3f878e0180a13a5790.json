@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 806,
+    "outputTokens": 925
+  },
+  "output": {
+    "blNumber": "AGLXSPE7680442",
+    "documentTitle": "BILL OF LADING FOR COMBINED TRANSPORT OR PORT TO PORT SHIPMENT",
+    "issuer": "Aurora Global Lines (SCAC AGLX)",
+    "bookingNumber": "880643769",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "41049 Sassuolo MO"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "V5J 5H6 Burnaby BC"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "V5J 5H6 Burnaby BC"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "067S",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU6080484",
+        "seal": "AG8271980",
+        "type": "20GP",
+        "packages": "82",
+        "grossWeight": {
+          "value": "1,582.60",
+          "unit": "KG"
+        },
+        "volumeM3": "3.44"
+      }
+    ],
+    "totalPackages": "82",
+    "totalGrossWeight": {
+      "value": "1,582.60",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/CO955063/C/NO. 1-82",
+    "cargoDescription": "SAID TO CONTAIN 82 CTNS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "PREPAID",
+    "references": [
+      "INV-2026-2733",
+      "CO955063"
+    ],
+    "placeOfIssue": "La Spezia",
+    "dateOfIssue": "4 March 2026",
+    "shippedOnBoardDate": "4 March 2026"
+  }
+}

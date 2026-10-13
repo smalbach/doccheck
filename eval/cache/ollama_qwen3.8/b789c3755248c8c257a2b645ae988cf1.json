@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 729,
+    "outputTokens": 892
+  },
+  "output": {
+    "blNumber": "PCCLGOA7200975",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "425150484",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5] 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5] 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "056E",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "Genoa",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU2759440",
+        "seal": "PC7334089",
+        "type": "ES",
+        "packages": "18 PLTS",
+        "grossWeight": null,
+        "volumeM3": null
+      }
+    ],
+    "totalPackages": "18 PLTS",
+    "totalGrossWeight": {
+      "value": "15,570.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/CO183787/C/NO. 1-18",
+    "cargoDescription": "SAID TO CONTAIN 18 PLTS PORCELAIN TILE 60X60",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-7065",
+      "CO183787"
+    ],
+    "placeOfIssue": "Genoa",
+    "dateOfIssue": "2026-05-29",
+    "shippedOnBoardDate": "2026-05-29"
+  }
+}

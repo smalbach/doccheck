@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 743,
+    "outputTokens": 884
+  },
+  "output": {
+    "blNumber": "MRDNTAO9497275",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "945288126",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2230 E 37TH ST"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "010S",
+    "placeOfReceipt": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "LONG BEACH",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "FONTANA",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU3751577",
+        "seal": "MD9535729",
+        "type": "20GP",
+        "packages": "9",
+        "grossWeight": {
+          "value": "377",
+          "unit": "LB"
+        },
+        "volumeM3": "0.79"
+      }
+    ],
+    "totalPackages": "9",
+    "totalGrossWeight": {
+      "value": "385",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "PACIFIC/PA676138/C/NO. 1-9",
+    "cargoDescription": "SAID TO CONTAIN 9 CRTS CENTRIFUGAL PUMP 0.75 KW",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "INV-2026-0565",
+      "PA676138"
+    ],
+    "placeOfIssue": "QINGDAO",
+    "dateOfIssue": "18-APR-2026",
+    "shippedOnBoardDate": "18-APR-2026"
+  }
+}

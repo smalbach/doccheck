@@ -1,0 +1,116 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 792,
+    "outputTokens": 1040
+  },
+  "output": {
+    "invoiceNumber": "SAI2609269",
+    "invoiceDate": "2026-03-23",
+    "poNumber": "PO-84710",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "2026-03-27",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Ho Chi Minh City",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "11,400",
+        "unit": "PCS",
+        "unitPrice": "3.61",
+        "unitPriceCurrency": null,
+        "lineTotal": "41,154.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Wool blend socks, knitted, 3-pair pack",
+        "quantity": "5,352",
+        "unit": "PRS",
+        "unitPrice": "2.62",
+        "unitPriceCurrency": null,
+        "lineTotal": "140,222.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6115.94"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Women's padded jacket, woven polyester shell",
+        "quantity": "2,200",
+        "unit": "PCS",
+        "unitPrice": "18.76",
+        "unitPriceCurrency": null,
+        "lineTotal": "41,272.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6202.40"
+      }
+    ],
+    "totalPackages": "447",
+    "grossWeight": {
+      "value": "8,407.30",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "8,050.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "222,648.40",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

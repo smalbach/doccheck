@@ -1,0 +1,101 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 755,
+    "outputTokens": 887
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-5041",
+    "invoiceDate": "25-PEB-20246",
+    "poNumber": "PO-44700",
+    "seller": {
+      "name": "MINGBO EVERRAIGNT APPLIANCE CO, LTD.",
+      "addressLines": [
+        "JIANGNAN KD",
+        "BEILUN DISTRICT",
+        "NINGBO 315800"
+      ],
+      "city": "NINGBO",
+      "region": null,
+      "postalCode": "315800",
+      "country": "CM",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL, INDUSTAIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "W758",
+      "country": "CA",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "QUINCAILLERTE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTAIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "N78 174",
+      "country": "ca",
+      "taxId": null
+    },
+    "shipmentDate": null,
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "NINGBO",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "NINGBO",
+    "paymentTerms": "T/T 204 DEPOSIT, TON AGAINST COPY OF BL",
+    "currency": "USD",
+    "countryOfOrigin": "ON",
+    "lines": [
+      {
+        "lineNo": "EX=17",
+        "sku": null,
+        "description": "ELECTRIC EETTLE 1.7 L, STAINLESS STEEL, 1500 M, 120 V",
+        "quantity": "1912",
+        "unit": "RS",
+        "unitPrice": "19,58",
+        "unitPriceCurrency": null,
+        "lineTotal": "29808.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": null
+      },
+      {
+        "lineNo": "BL~600",
+        "sku": null,
+        "description": "COUNTERTOF BLENDER 600 W WITH GLASS JAR",
+        "quantity": "624",
+        "unit": "cs",
+        "unitPrice": "24.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "15406.56",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": null
+      }
+    ],
+    "totalPackages": "39% MCs",
+    "grossWeight": {
+      "value": "447,60",
+      "unit": "EKGs"
+    },
+    "netWeight": {
+      "value": "3924.10",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "vso 49214,",
+    "invoiceTotalCurrency": null,
+    "charges": []
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 718,
+    "outputTokens": 939
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-9107",
+    "invoiceDate": "Aug 23, 2026",
+    "poNumber": "HA302497",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "Aug 30, 2026",
+    "transportMode": "Via SEA",
+    "placeOfShipment": {
+      "name": "Genoa",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Genoa",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CT-6060",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm",
+        "quantity": "680",
+        "unit": "M2",
+        "unitPrice": "7.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "5,202.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": "2",
+        "sku": "OO-EV-5",
+        "description": "Extra virgin olive oil, 5 L tins",
+        "quantity": "140",
+        "unit": "PCS",
+        "unitPrice": "25.63",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,588.20",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "52",
+    "grossWeight": {
+      "value": "15,380.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "14,924.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "8,790.20",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 569,
+    "outputTokens": 583
+  },
+  "output": {
+    "packingListNumber": "PL-2026-7831",
+    "invoiceRef": "INV-2026-7831",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "marks": "LAKESHORE/LA801205/C/NO. 1-125",
+    "packages": [
+      {
+        "range": "1-125",
+        "count": "125 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "EV OLIVE OIL 5 L",
+        "quantity": "500 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2300.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "2412.50",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "125",
+    "totalNetWeight": {
+      "value": "2300.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "2412.50",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "5.25"
+  }
+}

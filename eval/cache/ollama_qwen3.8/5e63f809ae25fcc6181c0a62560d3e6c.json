@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 731,
+    "outputTokens": 908
+  },
+  "output": {
+    "blNumber": "MRDNCMT9802372",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "368921719",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "095E",
+    "placeOfReceipt": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Cai Mep",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU5224230",
+        "seal": "MD7338237",
+        "type": "20GP",
+        "packages": "42",
+        "grossWeight": {
+          "value": "831.60",
+          "unit": "KG"
+        },
+        "volumeM3": "3.53"
+      }
+    ],
+    "totalPackages": "42",
+    "totalGrossWeight": {
+      "value": "831.60",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/NO408189/C/NO. 1-42",
+    "cargoDescription": "SAID TO CONTAIN 42 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "SAI2607696 / NO408189"
+    ],
+    "placeOfIssue": "Cai Mep",
+    "dateOfIssue": "2026-05-11",
+    "shippedOnBoardDate": "2026-05-11"
+  }
+}

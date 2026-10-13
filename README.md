@@ -70,10 +70,14 @@ Needs Postgres, Ollama with `qwen3.8` and `bge-m3`, and optionally Redis and S3 
 <!-- metrics:start -->
 | Stage | Metric | Result |
 | --- | --- | --- |
-| Extraction (ollama:qwen3.8) | Field accuracy, 18 PDFs | 99.4% |
+| Extraction (ollama:qwen3.8) | Field accuracy, 600 PDFs | 99.8% |
 | Classification | Document type | 100.0% |
 | Rules on ground truth | Recall / precision on 274 covered errors (of 293 injected) | 100.0% / 100.0% |
-| Rules on extracted PDFs | Recall / precision, end to end | 100.0% / 100.0% |
+| Rules on extracted PDFs | Recall / precision, end to end | 99.0% / 99.7% |
+| Extraction, scanned PDFs (OCR) | Field accuracy, 120 PDFs | 57.6% |
+| Rules on scanned PDFs | Recall / precision, end to end | 80.6% / 69.4% |
+| Extraction, ISF PDFs | Field accuracy, 100 PDFs | 99.9% |
+| X11 on extracted ISF PDFs | Recall / precision, end to end | 100.0% / 100.0% |
 | Agent | Same consignee written differently (40 cases): verdict / right action | 87.5% / 100.0% (0 wrong, 5 unsure) |
 | Agent | BL description vs invoice goods (40 cases): verdict / right action | 100.0% / 100.0% (0 wrong, 0 unsure) |
 

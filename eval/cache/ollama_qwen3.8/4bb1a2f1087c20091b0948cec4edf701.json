@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 528,
+    "outputTokens": 571
+  },
+  "output": {
+    "packingListNumber": "PL-CAF2601880",
+    "invoiceRef": "CAF2601880",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "marks": "LAKESHORE/LA366549/C/NO. 1-105",
+    "packages": [
+      {
+        "range": "1-105",
+        "count": "105",
+        "packageType": "BAG",
+        "sku": "CF-GRN-60",
+        "description": "Green coffee arabica",
+        "quantity": "6,300 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "6,300.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "6,384.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "95 × 60 × 25"
+      }
+    ],
+    "totalPackages": "105",
+    "totalNetWeight": {
+      "value": "6,300.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "6,384.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "14.96"
+  }
+}

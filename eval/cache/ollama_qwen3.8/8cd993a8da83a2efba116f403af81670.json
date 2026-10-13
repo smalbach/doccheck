@@ -1,0 +1,101 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 700,
+    "outputTokens": 860
+  },
+  "output": {
+    "invoiceNumber": "CI/26/8047",
+    "invoiceDate": null,
+    "poNumber": "PA998204",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "2026-03-17",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Bremerhaven",
+    "paymentTerms": "L/C at sight",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "36",
+        "unit": "PCS",
+        "unitPrice": "70.32",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,531.52",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "1,480",
+        "unit": "PCS",
+        "unitPrice": "15.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "22,348.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "110",
+    "grossWeight": {
+      "value": "2,763.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,520.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "24,879.52",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}
