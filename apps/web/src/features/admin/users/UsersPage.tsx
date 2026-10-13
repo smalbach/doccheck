@@ -9,6 +9,7 @@ import { Tag } from '../../../components/ui/Tag';
 import { useDemo } from '../../../hooks/useDemo';
 import { useI18n } from '../../../i18n/useI18n';
 import { useAuth } from '../../auth/useAuth';
+import { ResetPasswordDialog } from './ResetPasswordDialog';
 import { RoleSelect } from './RoleSelect';
 import { useAdminUsers } from './useAdminUsers';
 
@@ -47,6 +48,11 @@ export function UsersPage() {
       ),
     },
     { key: 'shipments', header: t('admin.columns.shipments'), cell: (u) => u.shipmentCount, numeric: true, secondary: true },
+    {
+      key: 'actions',
+      header: <span className="visually-hidden">{t('admin.columns.actions')}</span>,
+      cell: (u) => (u.id === me?.id ? null : <ResetPasswordDialog user={u} disabled={demo} onDone={setNotice} />),
+    },
     { key: 'created', header: t('admin.columns.created'), cell: (u) => <span className="muted">{formatDateTime(u.createdAt)}</span>, secondary: true },
   ];
   return (

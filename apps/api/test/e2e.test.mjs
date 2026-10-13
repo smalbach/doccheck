@@ -312,6 +312,21 @@ describe('admin', () => {
     assert.equal((await call('PATCH', `/admin/users/${me.id}`, { role: 'admin' }, other)).status, 200);
   });
 
+  it('lets an admin reset another user\'s password, signing them out', async () => {
+    const email = `${randomUUID()}@example.com`;
+    const userCookie = (await call('POST', '/auth/register', { email, password: 'forgotten password', name: 'Forgetful' }, '')).cookie;
+    const userId = (await call('GET', '/auth/me', undefined, userCookie)).body.id;
+    const adminId = (await call('GET', '/auth/me', undefined, admin)).body.id;
+    assert.equal((await call('POST', `/admin/users/${userId}/password`, { newPassword: 'brand new password' }, userCookie)).status, 403);
+    assert.equal((await call('POST', `/admin/users/${adminId}/password`, { newPassword: 'brand new password' }, admin)).status, 400);
+    assert.equal((await call('POST', `/admin/users/${userId}/password`, { newPassword: 'short' }, admin)).status, 400);
+    assert.equal((await call('POST', `/admin/users/${randomUUID()}/password`, { newPassword: 'brand new password' }, admin)).status, 404);
+    assert.equal((await call('POST', `/admin/users/${userId}/password`, { newPassword: 'brand new password' }, admin)).status, 204);
+    assert.equal((await call('GET', '/auth/me', undefined, userCookie)).status, 401);
+    assert.equal((await call('POST', '/auth/login', { email, password: 'forgotten password' }, '')).status, 401);
+    assert.equal((await call('POST', '/auth/login', { email, password: 'brand new password' }, '')).status, 200);
+  });
+
   it('reports the system status', async () => {
     const sys = (await call('GET', '/admin/system', undefined, admin)).body;
     for (const key of ['demo', 'ollama', 'model', 'embeddings', 'queue', 'storage', 'cache', 'ocr', 'agentEnabled', 'counts']) assert.ok(key in sys, key);

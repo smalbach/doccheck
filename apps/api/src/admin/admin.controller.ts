@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, ParseUUIDPipe, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { AdminGuard } from '../auth/admin.guard';
+import { AuthService } from '../auth/auth.service';
 import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
-import { SetRoleDto, UpdateSettingsDto } from './admin.dto';
+import { ResetPasswordDto, SetRoleDto, UpdateSettingsDto } from './admin.dto';
 import { AdminService } from './admin.service';
 import { SettingsService } from './settings.service';
 
@@ -14,6 +15,7 @@ export class AdminController {
   constructor(
     private readonly settings: SettingsService,
     private readonly admin: AdminService,
+    private readonly auth: AuthService,
   ) {}
 
   @Get('settings')
@@ -46,6 +48,13 @@ export class AdminController {
   @Get('users')
   users() {
     return this.admin.users();
+  }
+
+  /** Body { newPassword }: sets another user's password and signs them out everywhere. Not for your own account. */
+  @Post('users/:id/password')
+  @HttpCode(204)
+  async resetPassword(@CurrentUser() user: PublicUser, @Param('id', new ParseUUIDPipe()) id: string, @Body(new ZodValidationPipe(ResetPasswordDto)) dto: ResetPasswordDto) {
+    await this.auth.resetPassword(user, id, dto.newPassword);
   }
 
   @Patch('users/:id')

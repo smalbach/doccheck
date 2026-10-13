@@ -20,5 +20,8 @@ export type UpdateProfileDto = z.infer<typeof UpdateProfileDto>;
 export const ChangePasswordDto = z.object({ currentPassword: z.string().min(1).max(200), newPassword: password });
 export type ChangePasswordDto = z.infer<typeof ChangePasswordDto>;
 
+export const ResetPasswordDto = z.object({ newPassword: password });
+export type ResetPasswordDto = z.infer<typeof ResetPasswordDto>;
+
 export const DeleteAccountDto = z.object({ password: z.string().min(1).max(200) });
 export type DeleteAccountDto = z.infer<typeof DeleteAccountDto>;

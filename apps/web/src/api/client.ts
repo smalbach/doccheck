@@ -71,5 +71,6 @@ export const api = {
   adminModels: () => request<AdminModels>('/admin/models'),
   adminSystem: () => request<SystemStatus>('/admin/system'),
   adminUsers: () => request<UserSummary[]>('/admin/users'),
+  resetPassword: (id: string, newPassword: string) => request<void>(`/admin/users/${encodeURIComponent(id)}/password`, jsonBody({ newPassword })),
   setRole: (id: string, role: Role) => request<UserSummary[]>(`/admin/users/${encodeURIComponent(id)}`, { ...jsonBody({ role }), method: 'PATCH' }),
 };

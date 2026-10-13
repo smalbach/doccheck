@@ -33,3 +33,47 @@ jobs:
       - run: npm run test:e2e -w @doccheck/api
       # Phase 2+: run the evaluation set and publish the metrics diff on the PR.
       # - run: npm run eval
+
+  # Every page with axe-core (WCAG 2.1 AA) in English, Spanish and French, light and dark, at 375 and
+  # 1280 px, admin pages included; fails on any violation or horizontal overflow. No model: the
+  # samples replay the committed model answers (eval/cache), and the agent is off.
+  accessibility:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: doccheck
+          POSTGRES_PASSWORD: doccheck
+          POSTGRES_DB: doccheck
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U doccheck" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://doccheck:doccheck@localhost:5432/doccheck
+      LLM_CACHE_DIR: eval/cache/ollama_qwen3.8
+      LLM_CACHE_MODE: replay
+      AGENT_ENABLED: 'false'
+      ADMIN_EMAILS: a11y-admin@doccheck.invalid
+      A11Y_ADMIN_EMAIL: a11y-admin@doccheck.invalid
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      # The sample PDFs are generated, not committed (about a minute).
+      - run: npm run synth
+      - name: Start the API (serves the built web app)
+        run: |
+          nohup npm start > api.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf http://localhost:3000/health > /dev/null && exit 0; sleep 1; done
+          cat api.log
+          exit 1
+      - name: Accessibility audit
+        run: A11Y_ADMIN_PASSWORD="a11y-$(openssl rand -hex 12)" npm run a11y -- --url http://localhost:3000
+      - if: failure()
+        run: tail -n 100 api.log

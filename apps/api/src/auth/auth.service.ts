@@ -1,4 +1,4 @@
-import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, Logger, UnauthorizedException, type OnApplicationBootstrap } from '@nestjs/common';
+import { BadRequestException, ConflictException, ForbiddenException, NotFoundException, HttpException, HttpStatus, Inject, Injectable, Logger, UnauthorizedException, type OnApplicationBootstrap } from '@nestjs/common';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { adminEmails } from './admin-emails';
@@ -84,6 +84,19 @@ export class AuthService implements OnApplicationBootstrap {
     const user = await this.repo.findById(userId);
     if (!user) throw new UnauthorizedException();
     return publicUser(user);
+  }
+
+  /**
+   * An admin sets another user's password (there is no email reset): every session of that user is
+   * signed out, and the change is logged with who made it.
+   */
+  async resetPassword(admin: PublicUser, userId: string, newPassword: string): Promise<void> {
+    if (admin.id === userId) throw new BadRequestException('Change your own password from Account');
+    const user = await this.repo.findById(userId);
+    if (!user) throw new NotFoundException(`User ${userId} not found`);
+    await this.repo.updatePasswordHash(userId, await hashPassword(newPassword));
+    await this.repo.deleteOtherSessions(userId);
+    this.logger.log(`Password of ${user.email} reset by admin ${admin.email}; their sessions were signed out`);
   }
 
   /** The account and everything in it, PDFs included; refused while a document is extracting. */
