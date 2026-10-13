@@ -46,6 +46,8 @@ utimesSync(join(reportsDir, 'agent-ollama_test.json'), new Date(0), new Date(0))
 
 // E2E_PORT lets several checkouts run the suite at once (each with its own DATABASE_URL_TEST).
 const port = Number(process.env.E2E_PORT ?? 3990);
+// No SMTP: the API writes each email here as JSON (the reset links are read from it).
+const mailDir = mkdtempSync(join(tmpdir(), 'doccheck-e2e-mail-'));
 const base = `http://localhost:${port}`;
 let api;
 
@@ -100,6 +102,9 @@ before(async () => {
       LLM_CACHE_DIR: llmCacheDir,
       LLM_CACHE_MODE: 'replay',
       AGENT_ENABLED: 'false',
+      SMTP_URL: '',
+      MAIL_CAPTURE_DIR: mailDir,
+      APP_URL: 'http://app.example/',
     },
     stdio: ['ignore', 'ignore', 'inherit'],
   });
@@ -215,6 +220,110 @@ describe('auth', () => {
     assert.equal(res.status, 403);
     const same = await send(`${base}/shipments`, { method: 'POST', headers: { 'content-type': 'application/json', origin: base }, body: JSON.stringify({ destination: 'CA' }) });
     assert.equal(same.status, 201);
+  });
+});
+
+/** The emails sent to `to` so far, oldest first. */
+const mailsTo = (to) =>
+  readdirSync(mailDir)
+    .sort()
+    .map((f) => JSON.parse(readFileSync(join(mailDir, f), 'utf8')))
+    .filter((m) => m.to === to);
+
+/** Waits for the `count`-th email to `to` (sent after the API answered) and returns it. */
+const waitForMail = async (to, count = 1) => {
+  for (let i = 0; i < 40; i++) {
+    const mails = mailsTo(to);
+    if (mails.length >= count) return mails[count - 1];
+    await new Promise((r) => setTimeout(r, 100));
+  }
+  throw new Error(`No email #${count} to ${to}`);
+};
+const tokenOf = (mail) => new URL(mail.text.match(/http\S+/)[0].replace('/#/', '/')).searchParams.get('token');
+
+describe('password reset by email', () => {
+  it('answers the same for unknown and known emails, and only mails the known one', async () => {
+    const email = `${randomUUID()}@example.com`;
+    await call('POST', '/auth/register', { email, password: 'correct horse battery', name: 'Known' }, '');
+    const unknownEmail = `${randomUUID()}@example.com`;
+    const unknown = await call('POST', '/auth/forgot-password', { email: unknownEmail }, '');
+    const known = await call('POST', '/auth/forgot-password', { email: email.toUpperCase() }, '');
+    assert.equal(unknown.status, 202);
+    assert.equal(known.status, 202);
+    assert.deepEqual(unknown.body, known.body);
+    assert.equal((await call('POST', '/auth/forgot-password', { email: 'not-an-email' }, '')).status, 400);
+
+    const mail = await waitForMail(email);
+    assert.match(mail.subject, /reset/i);
+    assert.match(mail.text, /^http:\/\/app\.example\/#\/reset-password\?token=[\w-]{43}$/m);
+    assert.ok(mail.html.includes(`token=${tokenOf(mail)}`));
+    // The token is stored only as its hash.
+    assert.equal((await pool.query('select 1 from password_resets where token_hash = $1', [tokenOf(mail)])).rowCount, 0);
+    assert.equal(mailsTo(unknownEmail).length, 0);
+  });
+
+  it('resets once, signs out every session and voids the other links', async () => {
+    const email = `${randomUUID()}@example.com`;
+    const a = (await call('POST', '/auth/register', { email, password: 'old password', name: 'Forgetful' }, '')).cookie;
+    const b = (await call('POST', '/auth/login', { email, password: 'old password' }, '')).cookie;
+    assert.equal((await call('POST', '/auth/forgot-password', { email }, '')).status, 202);
+    const first = tokenOf(await waitForMail(email, 1));
+    assert.equal((await call('POST', '/auth/forgot-password', { email }, '')).status, 202);
+    const second = tokenOf(await waitForMail(email, 2));
+
+    assert.equal((await call('POST', '/auth/reset-password', { token: second, newPassword: 'short' }, '')).status, 400);
+    assert.equal((await call('POST', '/auth/reset-password', { token: second, newPassword: 'new password' }, '')).status, 204);
+    assert.equal((await call('POST', '/auth/reset-password', { token: second, newPassword: 'another password' }, '')).status, 400);
+    assert.equal((await call('POST', '/auth/reset-password', { token: first, newPassword: 'another password' }, '')).status, 400);
+
+    for (const session of [a, b]) assert.equal((await call('GET', '/auth/me', undefined, session)).status, 401);
+    assert.equal((await call('POST', '/auth/login', { email, password: 'old password' }, '')).status, 401);
+    assert.equal((await call('POST', '/auth/login', { email, password: 'new password' }, '')).status, 200);
+  });
+
+  it('refuses expired and made-up tokens', async () => {
+    const email = `${randomUUID()}@example.com`;
+    await call('POST', '/auth/register', { email, password: 'old password', name: 'Late' }, '');
+    await call('POST', '/auth/forgot-password', { email }, '');
+    const token = tokenOf(await waitForMail(email));
+    await pool.query("update password_resets set expires_at = now() - interval '1 minute' where user_id = (select id from users where email = $1)", [email]);
+    const expired = await call('POST', '/auth/reset-password', { token, newPassword: 'new password' }, '');
+    assert.equal(expired.status, 400);
+    assert.match(expired.body.message, /reset link/);
+    assert.equal((await call('POST', '/auth/reset-password', { token: 'made-up', newPassword: 'new password' }, '')).status, 400);
+    assert.equal((await call('POST', '/auth/reset-password', { newPassword: 'new password' }, '')).status, 400);
+    assert.equal((await call('POST', '/auth/login', { email, password: 'old password' }, '')).status, 200);
+  });
+
+  it('limits requests per email (whether it exists or not) and per address', async () => {
+    const email = `${randomUUID()}@example.com`;
+    for (let i = 0; i < 3; i++) assert.equal((await call('POST', '/auth/forgot-password', { email }, '')).status, 202);
+    assert.equal((await call('POST', '/auth/forgot-password', { email }, '')).status, 429);
+
+    const { ResetThrottle } = createRequire(import.meta.url)(join(root, 'apps/api/dist/auth/reset-throttle.js'));
+    const throttle = new ResetThrottle();
+    const now = Date.now();
+    for (let i = 0; i < 20; i++) {
+      assert.equal(throttle.retryAfter(`${i}@example.com`, '203.0.113.7', now), 0);
+      throttle.record(`${i}@example.com`, '203.0.113.7', now);
+    }
+    assert.ok(throttle.retryAfter('new@example.com', '203.0.113.7', now) > 0);
+    assert.equal(throttle.retryAfter('new@example.com', '198.51.100.1', now), 0);
+    assert.equal(throttle.retryAfter('new@example.com', '203.0.113.7', now + 16 * 60 * 1000), 0);
+  });
+
+  it('works in the read-only demo', () => {
+    const { readOnlyGuard } = createRequire(import.meta.url)(join(root, 'apps/api/dist/demo/demo-mode.js'));
+    const run = (method, path) => {
+      let status = 0;
+      let passed = false;
+      const res = { status: (s) => ((status = s), res), json: () => res };
+      readOnlyGuard({ method, path }, res, () => (passed = true));
+      return passed ? 'next' : status;
+    };
+    assert.equal(run('POST', '/auth/forgot-password'), 'next');
+    assert.equal(run('POST', '/auth/reset-password'), 'next');
+    assert.equal(run('POST', '/shipments'), 403);
   });
 });
 

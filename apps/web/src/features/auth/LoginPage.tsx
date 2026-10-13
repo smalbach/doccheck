@@ -52,6 +52,9 @@ export function LoginPage({ next }: { next?: string }) {
         <Field label={t('auth.password')}>
           {(id) => <TextInput id={id} type="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} aria-invalid={!!error} />}
         </Field>
+        <a className="auth-forgot" href="#/forgot-password">
+          {t('auth.forgotLink')}
+        </a>
         <Button type="submit" variant="primary" disabled={busy}>
           {busy ? t('auth.signingIn') : t('auth.signIn')}
         </Button>

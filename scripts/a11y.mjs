@@ -106,7 +106,7 @@ for (const locale of locales) {
       for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), '/']) await visit(path);
       // The sign-in forms redirect signed-in visitors: check them signed out.
       await context.clearCookies();
-      for (const path of ['/', '/login', '/register']) await visit(path);
+      for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example']) await visit(path);
     }
   }
 }

@@ -1,12 +1,16 @@
 import { BadRequestException, ConflictException, ForbiddenException, NotFoundException, HttpException, HttpStatus, Inject, Injectable, Logger, UnauthorizedException, type OnApplicationBootstrap } from '@nestjs/common';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
+import { Mailer } from '../mail/mailer';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
+import { appUrl } from './app-url';
 import { adminEmails } from './admin-emails';
 import { AuthRepository } from './auth.repository';
-import type { ChangePasswordDto, DeleteAccountDto, LoginDto, RegisterDto } from './auth.dto';
+import type { ChangePasswordDto, DeleteAccountDto, LoginDto, RegisterDto, ResetWithTokenDto } from './auth.dto';
 import type { PublicUser, UserRow } from './auth.types';
 import { LoginThrottle } from './login-throttle';
 import { registrationOpen } from './registration-open';
+import { resetEmail } from './reset-email';
+import { ResetThrottle } from './reset-throttle';
 import { SignupThrottle } from './signup-throttle';
 import { hashPassword, verifyPassword } from './password';
 import { SESSION_DAYS } from './session-cookie';
@@ -16,6 +20,10 @@ export const hashToken = (token: string) => createHash('sha256').update(token).d
 
 // Compared against when the email is unknown, so a miss takes as long as a wrong password.
 const DUMMY_HASH = hashPassword(randomBytes(16).toString('hex'));
+
+/** How long an emailed reset link works. */
+const RESET_MINUTES = 30;
+const INVALID_RESET = 'This reset link is invalid, expired or already used';
 
 export interface NewSession {
   user: PublicUser;
@@ -31,6 +39,8 @@ export class AuthService implements OnApplicationBootstrap {
     private readonly repo: AuthRepository,
     private readonly throttle: LoginThrottle,
     private readonly signups: SignupThrottle,
+    private readonly resets: ResetThrottle,
+    private readonly mailer: Mailer,
     @Inject(STORAGE) private readonly storage: ObjectStorage,
   ) {}
 
@@ -38,6 +48,7 @@ export class AuthService implements OnApplicationBootstrap {
   async onApplicationBootstrap() {
     const promoted = await this.repo.promoteAdmins(adminEmails());
     if (promoted) this.logger.log(`${promoted} account(s) made admin from ADMIN_EMAILS`);
+    if (!appUrl()) this.logger.warn('APP_URL is not set: "Forgot password?" emails cannot be sent');
   }
 
   private async startSession(user: PublicUser): Promise<NewSession> {
@@ -87,7 +98,7 @@ export class AuthService implements OnApplicationBootstrap {
   }
 
   /**
-   * An admin sets another user's password (there is no email reset): every session of that user is
+   * An admin sets another user's password (for users without email access): every session of that user is
    * signed out, and the change is logged with who made it.
    */
   async resetPassword(admin: PublicUser, userId: string, newPassword: string): Promise<void> {
@@ -107,6 +118,38 @@ export class AuthService implements OnApplicationBootstrap {
     if (res === 'pending') throw new ConflictException('Documents are still being extracted; delete the account when they are done');
     const failed = (await Promise.all(res.keys.map((k) => this.storage.delete(k).then(() => null, (err: Error) => `${k} (${err.message})`)))).filter(Boolean);
     if (failed.length) this.logger.warn(`Account ${userId} deleted, but these PDFs could not be removed from storage: ${failed.join(', ')}`);
+  }
+
+  /**
+   * "Forgot password?": answers the same whether or not the email has an account. The link is made
+   * and emailed after answering, so a known email does not answer slower than an unknown one.
+   */
+  forgotPassword(email: string, ip: string): void {
+    const wait = this.resets.retryAfter(email, ip);
+    if (wait > 0) throw new HttpException(`Too many reset requests. Try again in ${Math.ceil(wait / 60)} minute(s).`, HttpStatus.TOO_MANY_REQUESTS);
+    this.resets.record(email, ip);
+    void this.emailResetLink(email).catch((err: Error) => this.logger.error(`Password reset email for ${email} failed: ${err.message}`));
+  }
+
+  private async emailResetLink(email: string): Promise<void> {
+    const user = await this.repo.findByEmail(email);
+    if (!user) return;
+    const base = appUrl();
+    if (!base) return this.logger.error(`APP_URL is not set: no reset link sent to ${user.email}`);
+    const token = randomBytes(32).toString('base64url');
+    await this.repo.createPasswordReset(hashToken(token), user.id, new Date(Date.now() + RESET_MINUTES * 60 * 1000));
+    await this.mailer.send(resetEmail(user.email, `${base}/#/reset-password?token=${token}`, RESET_MINUTES));
+    this.logger.log(`Password reset link issued for ${user.email}`);
+  }
+
+  /** Sets the password from an emailed link: the link is used up and the user is signed out everywhere. */
+  async resetWithToken(dto: ResetWithTokenDto): Promise<void> {
+    const tokenHash = hashToken(dto.token);
+    const user = await this.repo.passwordResetUser(tokenHash);
+    if (!user) throw new BadRequestException(INVALID_RESET);
+    // Checked again inside the transaction: two requests with the same link cannot both win.
+    if (!(await this.repo.redeemPasswordReset(tokenHash, user.id, await hashPassword(dto.newPassword)))) throw new BadRequestException(INVALID_RESET);
+    this.logger.log(`Password of ${user.email} reset with an emailed link; their sessions were signed out`);
   }
 
   /** Other sessions are signed out; the current one stays. */

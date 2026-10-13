@@ -224,6 +224,24 @@ o sin Docker: `DEMO_READONLY=true npm start`.
 
 Para publicarla: VPS con Docker, proxy con TLS (Caddy como en la sección 3; el basic auth es opcional porque nada se puede modificar) y no publicar el puerto de Postgres. Probado en local con una segunda API en :3105 contra un Ollama inexistente: muestras, validación y citas funcionan; las escrituras dan 403; en celular sin scroll horizontal. El build de la imagen sigue pendiente (Docker apagado).
 
+## 5. Correo ("¿Olvidaste tu contraseña?")
+
+La API manda el enlace para restablecer la contraseña por SMTP, con cualquier proveedor. Se configura con tres variables:
+
+```bash
+SMTP_URL=smtps://resend:re_xxxxxxxx@smtp.resend.com:465        # Resend (usuario "resend", clave = API key)
+# SMTP_URL=smtps://postmaster%40mg.midominio.com:clave@smtp.mailgun.org:465   # Mailgun
+# SMTP_URL=smtp://usuario:clave@smtp.midominio.com:587                      # cualquier SMTP (STARTTLS)
+MAIL_FROM="DocCheck <no-reply@midominio.com>"   # un remitente de un dominio verificado en el proveedor
+APP_URL=https://doccheck.midominio.com          # dirección pública de la web: base de los enlaces
+```
+
+- Caracteres especiales en usuario o clave van codificados en la URL (`@` → `%40`, `:` → `%3A`).
+- Sin `SMTP_URL` no se envía nada: el correo, con el enlace, se escribe en el log de la API (útil en desarrollo). Al arrancar la API dice qué modo usa.
+- `APP_URL` nunca se deduce de la petición (un `Host` falsificado mandaría el enlace a otro sitio). Sin ella se usa `http://localhost:5173`, salvo con `NODE_ENV=production`, donde no se manda ningún enlace hasta configurarla.
+- El enlace vale 30 minutos y una sola vez; al usarlo se cierran todas las sesiones del usuario. `POST /auth/forgot-password` responde siempre 202 igual, exista o no la cuenta, y acepta 3 pedidos por correo y 20 por dirección cada 15 minutos.
+- Funciona también en la demo de solo lectura. Un admin puede seguir fijando la contraseña de otro usuario desde Usuarios.
+
 ## Variables de entorno
 
 | Variable | Por defecto | Uso |
@@ -247,6 +265,8 @@ Para publicarla: VPS con Docker, proxy con TLS (Caddy como en la sección 3; el 
 | `TRUST_PROXY` | `loopback` | Proxies cuyas cabeceras `X-Forwarded-*` se creen (cookie `Secure` y dirección del cliente). Valor de Express `trust proxy`: p. ej. `loopback`, una IP o `false` |
 | `ADMIN_EMAILS` | — | Correos de administradores (separados por coma). Solo así se obtiene el rol admin; registrarse nunca lo da. Un admin puede ascender a otros desde la web |
 | `REGISTRATION_OPEN` | `true` | Registro abierto; un admin lo cierra desde Configuración. Cerrado, solo se registran los correos de `ADMIN_EMAILS` |
+| `SMTP_URL`, `MAIL_FROM` | — | Correo saliente por SMTP (sección 5); sin `SMTP_URL` el correo se escribe en el log |
+| `APP_URL` | `http://localhost:5173` fuera de producción | Dirección pública de la web, para los enlaces de los correos |
 | `SIGNUP_LIMIT_PER_HOUR` | 5 | Cuentas nuevas por dirección y hora (las peticiones desde la misma máquina no cuentan; detrás del túnel cuenta la IP real del visitante) |
 | `OCR_LANGS`, `OCR_SCALE`, `OCR_PSM` | `eng+fra`, `4`, `6` | OCR de páginas escaneadas: idiomas instalados, escala de render (4 = 288 dpi) y modo de página de Tesseract |
 | `DEMO_BUILD_EMAIL`, `DEMO_BUILD_PASSWORD` | — | Cuenta con la que `scripts/demo-build.mjs` inicia sesión; sin ellas crea una cuenta desechable |
