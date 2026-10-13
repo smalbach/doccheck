@@ -1,0 +1,42 @@
+# Alternative to fly.toml: the read-only demo as a Render Blueprint (docs/DESPLIEGUE.md, "Demo pública").
+# Render passes these environment variables to `docker build` as build args too (OCR, REQUIRE_DEMO_SAMPLES).
+# A persistent disk needs a paid instance (starter); on the free plan uploaded sample PDFs would be lost
+# on every restart. DATABASE_URL (Neon) is asked for when the Blueprint is created.
+services:
+  - type: web
+    name: doccheck-demo
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    region: virginia
+    healthCheckPath: /health
+    autoDeploy: false
+    disk:
+      name: doccheck-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_EMAILS
+        sync: false
+      - key: DEMO_READONLY
+        value: "true"
+      - key: TRUST_PROXY
+        value: "1"
+      - key: LLM_MODEL
+        value: qwen3.8
+      - key: EMBED_MODEL
+        value: bge-m3
+      - key: AGENT_ENABLED
+        value: "true"
+      - key: REGISTRATION_OPEN
+        value: "true"
+      - key: SIGNUP_LIMIT_PER_HOUR
+        value: "5"
+      - key: STORAGE_DIR
+        value: /data/uploads
+      - key: OCR
+        value: "false"
+      - key: REQUIRE_DEMO_SAMPLES
+        value: "true"

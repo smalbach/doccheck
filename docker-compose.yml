@@ -25,20 +25,8 @@ services:
       - "host.docker.internal:host-gateway"
     depends_on: [postgres, redis, minio]
 
-  # Read-only public demo: `docker compose --profile demo up -d --build`. Needs only Postgres: the
-  # model answers come from eval/cache and the samples from data/demo (scripts/demo-build.mjs).
-  demo:
-    profiles: [demo]
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      DATABASE_URL: postgres://doccheck:doccheck@postgres:5432/doccheck
-      DEMO_READONLY: "true"
-      LLM_MODEL: qwen3.8
-      EMBED_MODEL: bge-m3
-      AGENT_ENABLED: "true"
-    depends_on: [postgres]
+  # The read-only public demo has its own file, set up as in production (fly.toml):
+  # docker compose -f docker-compose.demo.yml up -d --build
 
   postgres:
     image: pgvector/pgvector:pg17

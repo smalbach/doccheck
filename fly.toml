@@ -1,0 +1,53 @@
+# Read-only public demo of DocCheck on Fly.io (docs/DESPLIEGUE.md, "Demo pública").
+# One small shared VM, no GPU and no model: answers replay from eval/cache. Postgres is external
+# (Neon free tier, or Fly Postgres) and comes in as the DATABASE_URL secret; uploaded sample PDFs go
+# to a 1 GB volume. Before the first deploy: fly launch --copy-config --no-deploy, then the secrets.
+app = "doccheck-demo"          # must be unique on Fly.io: change it (or let fly launch pick one)
+primary_region = "iad"         # near Neon's us-east-1; any region works
+
+[build]
+  dockerfile = "Dockerfile"
+  [build.args]
+    OCR = "false"                  # the demo never runs OCR: ~65 MB smaller image
+    REQUIRE_DEMO_SAMPLES = "true"  # fail the build if data/demo is empty (npm run demo:build)
+
+[env]
+  DEMO_READONLY = "true"
+  # Fly's edge is the one proxy in front: trust one hop for the visitor's address (sign-up and
+  # sign-in limits) and for X-Forwarded-Proto (Secure session cookie).
+  TRUST_PROXY = "1"
+  LLM_MODEL = "qwen3.8"        # selects eval/cache/ollama_qwen3.8
+  EMBED_MODEL = "bge-m3"       # selects data/corpus/index/bge-m3*.json
+  AGENT_ENABLED = "true"       # replayed from the cache; a miss returns the rule findings only
+  REGISTRATION_OPEN = "true"
+  SIGNUP_LIMIT_PER_HOUR = "5"
+  STORAGE_DIR = "/data/uploads"
+  # Secrets (fly secrets set): DATABASE_URL, and optionally ADMIN_EMAILS.
+
+[[mounts]]
+  source = "doccheck_data"
+  destination = "/data"
+  initial_size = "1gb"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  # Sleeps when nobody visits (first request after that takes ~2-5 s); costs less.
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 50
+    hard_limit = 100
+
+  [[http_service.checks]]
+    grace_period = "30s"
+    interval = "30s"
+    method = "GET"
+    path = "/health"
+    timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"             # ~200 MB resident after validating a sample

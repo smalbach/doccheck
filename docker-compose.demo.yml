@@ -1,0 +1,53 @@
+# The read-only public demo exactly as fly.toml runs it (same image build args and environment),
+# with a local Postgres instead of Neon, to test it before deploying:
+#
+#   docker compose -f docker-compose.demo.yml up -d --build     # http://localhost:4060
+#   docker compose -f docker-compose.demo.yml down -v           # stop and wipe the demo database
+#
+# Needs the curated samples in data/demo (npm run demo:build). No Ollama, Redis or S3.
+name: doccheck-demo
+services:
+  app:
+    build:
+      context: .
+      args:
+        OCR: "false"
+        REQUIRE_DEMO_SAMPLES: "true"
+    ports:
+      - "${DEMO_PORT:-4060}:3000"
+    environment:
+      DATABASE_URL: postgres://doccheck:doccheck@postgres:5432/doccheck
+      DEMO_READONLY: "true"
+      TRUST_PROXY: "1"
+      LLM_MODEL: qwen3.8
+      EMBED_MODEL: bge-m3
+      AGENT_ENABLED: "true"
+      REGISTRATION_OPEN: "true"
+      SIGNUP_LIMIT_PER_HOUR: "5"
+      STORAGE_DIR: /data/uploads
+      ADMIN_EMAILS: ${ADMIN_EMAILS:-}
+    volumes:
+      - uploads:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Not published on the host: only the app reaches it. The app needs no pgvector.
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: doccheck
+      POSTGRES_PASSWORD: doccheck
+      POSTGRES_DB: doccheck
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U doccheck -d doccheck"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+  uploads:
