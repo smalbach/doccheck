@@ -41,3 +41,14 @@ export type ValidateShipmentDto = z.infer<typeof ValidateShipmentDto>;
 
 export const ReextractDto = z.object({ type: z.enum(['COMMERCIAL_INVOICE', 'PACKING_LIST', 'BILL_OF_LADING', 'ISF']) });
 export type ReextractDto = z.infer<typeof ReextractDto>;
+
+/** Values corrected by hand: JSON pointers into the normalized document; null removes an optional field. */
+export const CorrectDataDto = z
+  .object({
+    changes: z
+      .array(z.object({ path: z.string().max(300), value: z.union([z.string().max(2000), z.number(), z.boolean(), z.null()]) }).strict())
+      .min(1)
+      .max(500),
+  })
+  .strict();
+export type CorrectDataDto = z.infer<typeof CorrectDataDto>;

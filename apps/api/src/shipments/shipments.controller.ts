@@ -6,7 +6,7 @@ import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { ShipmentOwnerGuard } from './shipment-owner.guard';
-import { CreateShipmentDto, ListShipmentsQuery, ReextractDto, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
+import { CorrectDataDto, CreateShipmentDto, ListShipmentsQuery, ReextractDto, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
 import { ShipmentsService } from './shipments.service';
 
 const MAX_PDF_BYTES = 20 * 1024 * 1024;
@@ -62,7 +62,33 @@ export class ShipmentsController {
     return this.shipments.document(id, documentId);
   }
 
-  /** Re-extracts a document as the given type: { "type": "COMMERCIAL_INVOICE" | "PACKING_LIST" | "BILL_OF_LADING" | "ISF" }. */
+  /**
+   * Corrects extracted values by hand: { changes: [{ path: "/lines/0/quantity/value", value: "120" }] }.
+   * The corrected document must pass its schema (400 with issues otherwise); each change is recorded.
+   * Responds with the document detail, whose `corrected` lists the corrected paths. 409 while extracting.
+   */
+  @Patch(':id/documents/:documentId/data')
+  correct(@CurrentUser() user: PublicUser, @Param('id') id: string, @Param('documentId') documentId: string, @Body(new ZodValidationPipe(CorrectDataDto)) dto: CorrectDataDto) {
+    return this.shipments.correct(id, documentId, user.id, dto.changes);
+  }
+
+  /** Puts back the values the model read; the history records the revert. */
+  @Post(':id/documents/:documentId/data/revert')
+  @HttpCode(200)
+  revert(@CurrentUser() user: PublicUser, @Param('id') id: string, @Param('documentId') documentId: string) {
+    return this.shipments.revertCorrections(id, documentId, user.id);
+  }
+
+  /** History of the values corrected by hand, oldest first. Re-extracting the document clears it. */
+  @Get(':id/documents/:documentId/corrections')
+  corrections(@Param('id') id: string, @Param('documentId') documentId: string) {
+    return this.shipments.corrections(id, documentId);
+  }
+
+  /**
+   * Re-extracts a document as the given type: { "type": "COMMERCIAL_INVOICE" | "PACKING_LIST" | "BILL_OF_LADING" | "ISF" }.
+   * The new extraction replaces the data: values corrected by hand and their history are dropped.
+   */
   @Post(':id/documents/:documentId/reextract')
   @HttpCode(202)
   reextract(@Param('id') id: string, @Param('documentId') documentId: string, @Body(new ZodValidationPipe(ReextractDto)) dto: ReextractDto, @Query('wait') wait?: string) {

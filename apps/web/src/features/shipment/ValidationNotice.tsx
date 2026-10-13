@@ -12,7 +12,10 @@ export interface ValidationNoticeProps {
   onShowLatest: () => void;
 }
 
-/** Says when the findings are from an earlier run, or ran against another destination than the shipment's now. */
+/**
+ * Says when the findings are from an earlier run, ran against another destination than the shipment's
+ * now, or the data changed since (values corrected by hand or new documents put the shipment back to RECEIVED).
+ */
 export function ValidationNotice({ shipment, validation, past, onShowLatest }: ValidationNoticeProps) {
   const { t, formatDateTime } = useI18n();
   if (!validation) return null;
@@ -27,6 +30,7 @@ export function ValidationNotice({ shipment, validation, past, onShowLatest }: V
           </Button>
         </Banner>
       )}
+      {shipment.status === 'RECEIVED' && !past && <Banner tone="warning">{t('shipment.history.dataChanged')}</Banner>}
       {moved && !past && <Banner tone="warning">{t('shipment.history.destinationChanged', { destination: t(DESTINATION_OPTION_KEY[validation.destination!]) })}</Banner>}
     </>
   );

@@ -4,3 +4,11 @@
 .fields dd { margin: 0; overflow-wrap: anywhere; }
 .issues { margin: 0 0 12px; padding: 8px 12px 8px 28px; background: var(--accent-soft); border-radius: var(--radius-sm); font-size: 13px; }
 .reextract { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 12px 0 8px; }
+.corrected { display: inline-flex; gap: 6px; align-items: baseline; flex-wrap: wrap; margin-left: 6px; }
+.field .corrected { margin-left: 0; }
+.correction-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 0 0 12px; }
+.correction-form { margin: 0 0 12px; }
+.correction-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px 16px; margin: 0 0 14px; }
+.correction-grid .field { min-width: 0; }
+.correction-line { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 8px 12px 0; margin: 0 0 12px; min-width: 0; }
+.correction-line legend { padding: 0 4px; font-size: 13px; color: var(--muted); }

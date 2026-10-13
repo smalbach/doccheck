@@ -89,6 +89,7 @@ export function ShipmentPage({ id }: { id: string }) {
             setDataDoc(undefined);
             void refresh();
           }}
+          onCorrected={() => void refresh()}
         />
       )}
       {viewer && (

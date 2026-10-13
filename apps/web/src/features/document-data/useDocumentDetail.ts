@@ -3,7 +3,7 @@ import { api } from '../../api/client';
 import type { DocumentDetail } from '../../api/types';
 import { errorMessage } from '../../lib/errorMessage';
 
-/** What the extraction read from one document. */
+/** What the extraction read from one document; `setDetail` takes the detail returned by a correction. */
 export function useDocumentDetail(shipmentId: string, documentId: string) {
   const [detail, setDetail] = useState<DocumentDetail>();
   const [error, setError] = useState<string>();
@@ -17,5 +17,5 @@ export function useDocumentDetail(shipmentId: string, documentId: string) {
       active = false;
     };
   }, [shipmentId, documentId]);
-  return { detail, error };
+  return { detail, setDetail, error };
 }

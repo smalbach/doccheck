@@ -3,19 +3,39 @@ import { createHash, randomUUID } from 'node:crypto';
 import { attachRegulations, reviewFindings, type AgentDecision } from '@doccheck/agent';
 import { findFieldSource, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
 import { runRules, type EngineOutput, type ShipmentContext } from '@doccheck/rules';
-import type { BillOfLading, CommercialInvoice, Isf, PackingList, Shipment, ShipmentDocument } from '@doccheck/schemas';
+import {
+  applyPointerChanges, BillOfLading, CommercialInvoice, diffPointers, fieldPointer, Isf, PackingList, readPointer, toPointer,
+  type PointerChange, type Shipment, type ShipmentDocument,
+} from '@doccheck/schemas';
 import { isDemo } from '../demo/demo-mode';
 import { InjectLlm, RegulationsService } from '../llm/llm.module';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { ExtractionQueue } from './extraction.queue';
 import type { CreateShipmentDto, ListShipmentsQuery, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
-import { ShipmentsRepository } from './shipments.repository';
+import { ShipmentsRepository, type CorrectionResult, type ExtractionRow, type NewCorrection } from './shipments.repository';
 
 const SLOT = {
   COMMERCIAL_INVOICE: 'invoice',
   PACKING_LIST: 'packingList',
   BILL_OF_LADING: 'billOfLading',
 } as const;
+
+/** The schema a corrected document must still pass, per document type. */
+const SCHEMA = {
+  COMMERCIAL_INVOICE: CommercialInvoice,
+  PACKING_LIST: PackingList,
+  BILL_OF_LADING: BillOfLading,
+  ISF: Isf,
+} as const;
+
+/** Pointers to the values corrected by hand: where the current data differs from the model's. */
+const correctedPaths = (e: Pick<ExtractionRow, 'data' | 'modelData'>): string[] => (e.modelData ? diffPointers(e.modelData, e.data) : []);
+
+/** Whether evidence citing `field` shows a value corrected by hand (the field itself or a value inside it). */
+const citesCorrected = (field: string, corrected: readonly string[]) => {
+  const pointer = fieldPointer(field);
+  return corrected.some((p) => p === pointer || p.startsWith(`${pointer}/`));
+};
 
 export interface AgentOutcome {
   status: 'done' | 'skipped' | 'failed';
@@ -168,8 +188,72 @@ export class ShipmentsService {
     if (!doc || doc.shipmentId !== id) throw new NotFoundException(`Document ${documentId} not found in shipment ${id}`);
     const row = doc.status === 'EXTRACTED' ? await this.repo.findExtraction(id, documentId) : null;
     if (!row) return { document: doc };
-    const { pdfLines, document, ...extraction } = row;
-    return { document, ...extraction, lineCount: pdfLines.length };
+    const { pdfLines, document, modelData, ...extraction } = row;
+    // The values corrected by hand, with what the model had read.
+    const corrected = correctedPaths(row).map((path) => ({ path, modelValue: readPointer(modelData, path) ?? null }));
+    return { document, ...extraction, corrected, lineCount: pdfLines.length };
+  }
+
+  /**
+   * Corrects values of an extracted document by hand. The whole corrected document must still pass its
+   * schema (400 with the issues otherwise, nothing saved). Each changed value is recorded, and the
+   * shipment goes back to RECEIVED so the user validates again. Refused while the document extracts.
+   */
+  async correct(id: string, documentId: string, userId: string, changes: PointerChange[]) {
+    const row = await this.correctable(id, documentId);
+    // The last change to a path wins.
+    const unique = [...new Map(changes.map((c) => [c.path, c])).values()];
+    const applied = applyPointerChanges(row.data, unique);
+    if (applied.issues.length) throw new BadRequestException({ message: 'Invalid corrections', issues: applied.issues });
+    const parsed = SCHEMA[row.documentType as keyof typeof SCHEMA].safeParse(applied.data);
+    if (!parsed.success) {
+      const issues = parsed.error.issues.map((i) => ({ path: toPointer(i.path.map(String)), message: i.message }));
+      throw new BadRequestException({ message: 'The corrected document is not valid', issues });
+    }
+    // The schema drops fields it does not know, so a change to one is refused. The document is saved as
+    // applied (not as parsed) so nothing else the model stored is dropped and shown as corrected.
+    const unknown = unique.filter((c) => c.value !== null && readPointer(parsed.data, c.path) === undefined);
+    if (unknown.length) throw new BadRequestException({ message: 'Invalid corrections', issues: unknown.map((c) => ({ path: c.path, message: 'Not a field of this document' })) });
+
+    const corrections: NewCorrection[] = unique
+      .map((c) => ({ path: c.path, oldValue: readPointer(row.data, c.path), newValue: readPointer(applied.data, c.path) }))
+      .filter((c) => c.oldValue !== c.newValue);
+    if (corrections.length === 0) return this.document(id, documentId);
+    this.check(await this.repo.saveCorrections(id, documentId, userId, { before: row.data, after: applied.data, corrections }), documentId);
+    return this.document(id, documentId);
+  }
+
+  /** Puts back what the model read; the history keeps the corrections and records the revert. */
+  async revertCorrections(id: string, documentId: string, userId: string) {
+    const row = await this.correctable(id, documentId);
+    if (!row.modelData) throw new BadRequestException('The document has no corrections to revert');
+    const corrections = diffPointers(row.data, row.modelData).map((path) => ({ path, oldValue: readPointer(row.data, path), newValue: readPointer(row.modelData, path) }));
+    this.check(await this.repo.saveCorrections(id, documentId, userId, { before: row.data, after: row.modelData, corrections, revert: true }), documentId);
+    return this.document(id, documentId);
+  }
+
+  /** History of the corrections of a document, oldest first. */
+  async corrections(id: string, documentId: string) {
+    const doc = UUID.test(documentId) ? await this.repo.findDocument(documentId) : null;
+    if (!doc || doc.shipmentId !== id) throw new NotFoundException(`Document ${documentId} not found in shipment ${id}`);
+    return this.repo.listCorrections(documentId);
+  }
+
+  /** The extraction of a document that can be corrected: extracted, with normalized data of a known type. */
+  private async correctable(id: string, documentId: string): Promise<ExtractionRow> {
+    const doc = UUID.test(documentId) ? await this.repo.findDocument(documentId) : null;
+    if (!doc || doc.shipmentId !== id) throw new NotFoundException(`Document ${documentId} not found in shipment ${id}`);
+    if (doc.status === 'QUEUED' || doc.status === 'EXTRACTING') throw new ConflictException('The document is being extracted; correct it when it is done');
+    const row = doc.status === 'EXTRACTED' ? await this.repo.findExtraction(id, documentId) : null;
+    if (!row?.data || !(row.documentType in SCHEMA)) throw new BadRequestException('The document has no extracted data to correct');
+    return row;
+  }
+
+  private check(result: CorrectionResult, documentId: string): void {
+    if (result === 'not-found') throw new NotFoundException(`Document ${documentId} not found`);
+    if (result === 'pending') throw new ConflictException('The document is being extracted; correct it when it is done');
+    if (result === 'changed') throw new ConflictException('The document changed meanwhile; reload it and try again');
+    if (result === 'nothing') throw new BadRequestException('The document has no corrections to revert');
   }
 
   /**
@@ -185,13 +269,15 @@ export class ShipmentsService {
     if (pending > 0) throw new ConflictException(`${pending} document(s) are still being extracted; validate when they are done`);
     await this.repo.setStatus(id, 'VALIDATING');
 
-    const extracted = new Map<string, { documentId: string; data: unknown; pdf: PdfText; ocr: boolean }>();
+    type Source = { documentId: string; data: unknown; modelData?: unknown; corrected: string[]; pdf: PdfText; ocr: boolean };
+    const extracted = new Map<string, Source>();
     // ISF PDFs do not fill a slot here: the processor stores them as the shipment's ISF, read below.
-    const isfPdfs = new Map<string, { documentId: string; data: unknown; pdf: PdfText; ocr: boolean }>();
+    const isfPdfs = new Map<string, Source>();
     for (const e of await this.repo.listExtractions(id)) {
       const slot = SLOT[e.documentType as keyof typeof SLOT];
       const ocr = e.issues.some((i) => i.startsWith('Read with OCR'));
-      const row = { documentId: e.documentId, data: e.data, pdf: { pageCount: e.document.pageCount, lines: e.pdfLines, text: '' }, ocr };
+      const pdf = { pageCount: e.document.pageCount, lines: e.pdfLines, text: '' };
+      const row: Source = { documentId: e.documentId, data: e.data, modelData: e.modelData, corrected: correctedPaths(e), pdf, ocr };
       if (slot && e.data) extracted.set(slot, row);
       else if (e.documentType === 'ISF') isfPdfs.set(e.documentId, row);
     }
@@ -229,12 +315,17 @@ export class ShipmentsService {
     const output = runRules(ctx);
 
     const sources = [...extracted.values(), ...(isfPdf ? [isfPdf] : [])];
-    const pdfById = new Map(sources.map((e) => [e.documentId, e.pdf]));
+    const sourceById = new Map(sources.map((e) => [e.documentId, e]));
     const ocrDocs = new Set(sources.filter((e) => e.ocr).map((e) => e.documentId));
     for (const finding of output.findings) {
       for (const ev of finding.evidence) {
-        const pdf = pdfById.get(ev.documentId);
-        if (pdf && !ev.source) ev.source = findFieldSource(pdf, ev.documentId, ev.field, ev.value);
+        const src = sourceById.get(ev.documentId);
+        if (!src) continue;
+        // A value corrected by hand is not what the PDF prints: say so, and cite where the model's value is.
+        if (citesCorrected(ev.field, src.corrected)) ev.corrected = true;
+        if (!ev.source) ev.source = findFieldSource(src.pdf, ev.documentId, ev.field, ev.value);
+        const printed = ev.corrected ? readPointer(src.modelData, fieldPointer(ev.field)) : undefined;
+        if (!ev.source && (typeof printed === 'string' || typeof printed === 'number')) ev.source = findFieldSource(src.pdf, ev.documentId, ev.field, String(printed));
       }
       // OCR confuses look-alike characters (7/T, 0/O, 1/I): say so before anyone acts on the finding.
       if (finding.evidence.some((ev) => ocrDocs.has(ev.documentId))) {
