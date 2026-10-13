@@ -828,7 +828,7 @@ export const fr: Messages = {
     rightAction: 'bonne action · agent : {kind}',
     agentDetail: '{cases} cas · {wrong} erreurs · {unsure} incertains',
     agentKinds: { party: 'même destinataire ?', description: 'description du connaissement vs marchandises ?' },
-    sets: { v1: 'PDF avec couche de texte', 'v1-scans': 'PDF numérisés (OCR)', 'v1-isf': 'Dépôts ISF', v2: 'Mises en page et formats inédits (v2)' },
+    sets: { v1: 'PDF avec couche de texte', 'v1-scans': 'PDF numérisés, OCR Tesseract', 'v1-scans-unlimited': 'PDF numérisés, Unlimited-OCR (Apple Silicon)', 'v1-isf': 'Dépôts ISF', v2: 'Mises en page et formats inédits (v2)' },
     rulesTitle: 'Règles sur les documents extraits',
     rulesText: 'De bout en bout : le modèle lit les PDF, puis les règles s’appliquent. Un raté peut venir de l’extraction ou de la règle. {complete} expéditions sur {total} ont eu tous leurs documents extraits.',
     rulesCaption: 'Rappel et précision par règle',

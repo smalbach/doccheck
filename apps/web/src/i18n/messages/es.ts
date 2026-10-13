@@ -828,7 +828,7 @@ export const es: Messages = {
     rightAction: 'acción correcta · agente: {kind}',
     agentDetail: '{cases} casos · {wrong} errores · {unsure} dudosos',
     agentKinds: { party: '¿mismo consignatario?', description: '¿descripción del BL vs mercancía?' },
-    sets: { v1: 'PDF con capa de texto', 'v1-scans': 'PDF escaneados (OCR)', 'v1-isf': 'Presentaciones ISF', v2: 'Formatos y diseños nuevos (v2)' },
+    sets: { v1: 'PDF con capa de texto', 'v1-scans': 'PDF escaneados, OCR Tesseract', 'v1-scans-unlimited': 'PDF escaneados, Unlimited-OCR (Apple Silicon)', 'v1-isf': 'Presentaciones ISF', v2: 'Formatos y diseños nuevos (v2)' },
     rulesTitle: 'Reglas sobre los documentos extraídos',
     rulesText: 'De punta a punta: el modelo lee los PDF y luego se aplican las reglas. Un fallo puede venir de la extracción o de la regla. {complete} de {total} envíos tuvieron todos sus documentos extraídos.',
     rulesCaption: 'Recall y precisión por regla',

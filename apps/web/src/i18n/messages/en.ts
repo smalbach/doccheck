@@ -844,7 +844,7 @@ export const en = {
     rightAction: 'right action · agent: {kind}',
     agentDetail: '{cases} cases · {wrong} wrong · {unsure} unsure',
     agentKinds: { party: 'same consignee?', description: 'BL description vs goods?' },
-    sets: { v1: 'PDFs with a text layer', 'v1-scans': 'Scanned PDFs (OCR)', 'v1-isf': 'ISF filings', v2: 'Unseen layouts and formats (v2)' },
+    sets: { v1: 'PDFs with a text layer', 'v1-scans': 'Scanned PDFs, Tesseract OCR', 'v1-scans-unlimited': 'Scanned PDFs, Unlimited-OCR (Apple Silicon)', 'v1-isf': 'ISF filings', v2: 'Unseen layouts and formats (v2)' },
     rulesTitle: 'Rules on the extracted documents',
     rulesText: 'End to end: PDFs read by the model, then the rules. A miss can come from extraction or from the rule. {complete} of {total} shipments had all their documents extracted.',
     rulesCaption: 'Recall and precision per rule',
