@@ -1,0 +1,38 @@
+{
+  "id": "US-073",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "invoiceDate",
+      "before": "2026-09-11",
+      "after": null,
+      "expectedRuleIds": [
+        "U1"
+      ],
+      "description": "Invoice date missing."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 193,
+      "after": 191,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 191 packages instead of 193."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "37828.00",
+      "after": "73828.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (37828.00 -> 73828.00)."
+    }
+  ]
+}

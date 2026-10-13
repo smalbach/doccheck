@@ -1,0 +1,35 @@
+{
+  "id": "US-029",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Consignee missing from the invoice."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CNY",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 3514.00 CNY on an invoice in USD."
+    }
+  ]
+}

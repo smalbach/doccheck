@@ -1,0 +1,457 @@
+{
+  "id": "US-066",
+  "seed": 837575911,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/4295",
+      "invoiceDate": "2026-07-22",
+      "poNumber": "HA652152",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-07-27",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "New York"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 338,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "29760",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "3.16",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "94041.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "21400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.53",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "75542.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6556.00",
+        "raw": {
+          "value": "6556.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "6298.00",
+        "raw": {
+          "value": "6298.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "169583.60",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/4295",
+      "invoiceRef": "CI/26/4295",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-124",
+          "count": 124,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA652152/C/NO. 1-338",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "29760",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2232.00",
+            "raw": {
+              "value": "2232.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2318.80",
+            "raw": {
+              "value": "2318.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        },
+        {
+          "range": "125-338",
+          "count": 214,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA652152/C/NO. 1-338",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "21400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4066.00",
+            "raw": {
+              "value": "4066.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4237.20",
+            "raw": {
+              "value": "4237.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 338,
+        "netWeight": {
+          "kg": "6298.00",
+          "raw": {
+            "value": "6298.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6556.00",
+          "raw": {
+            "value": "6556.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "26.72"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXCMT6754983",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "236733852",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "032N",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGXU8766526",
+          "seal": "AG6784055",
+          "type": "40GP",
+          "packages": 338,
+          "grossWeight": {
+            "kg": "6556.00",
+            "raw": {
+              "value": "6556.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "26.72"
+        }
+      ],
+      "totalPackages": 338,
+      "totalGrossWeight": {
+        "kg": "6556.00",
+        "raw": {
+          "value": "6556.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/HA652152/C/NO. 1-338",
+      "cargoDescription": "SAID TO CONTAIN 338 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-07-28",
+      "shippedOnBoardDate": "2026-07-28",
+      "references": [
+        "CI/26/4295",
+        "HA652152"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "VN",
+      "htsCode": "611594",
+      "containerStuffingLocation": {
+        "lines": [
+          "Lot B4, Tan Thuan Export Processing Zone",
+          "District 7"
+        ],
+        "city": "Ho Chi Minh City",
+        "postalCode": "700000",
+        "country": "VN"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

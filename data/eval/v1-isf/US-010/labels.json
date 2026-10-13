@@ -1,0 +1,27 @@
+{
+  "id": "US-010",
+  "errors": [
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[0].contents[0].quantity.value",
+      "before": "10260",
+      "after": "10236",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    },
+    {
+      "kind": "isf_seller_mismatch",
+      "document": "isf",
+      "field": "seller.name",
+      "before": "Cafe Alto Huila Exportadores S.A.S.",
+      "after": "Nordhafen Armaturen GmbH",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF seller \"Nordhafen Armaturen GmbH\" instead of \"Cafe Alto Huila Exportadores S.A.S.\""
+    }
+  ]
+}

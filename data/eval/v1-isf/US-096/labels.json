@@ -1,0 +1,48 @@
+{
+  "id": "US-096",
+  "errors": [
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CAD",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 1382.00 CAD on an invoice in USD."
+    },
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "4718.00",
+      "after": "4953.90",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.05 against the packing list."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "7210.00",
+      "after": "2710.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (7210.00 -> 2710.00)."
+    },
+    {
+      "kind": "isf_hts_mismatch",
+      "document": "isf",
+      "field": "htsCode",
+      "before": "731815",
+      "after": "940360",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF HTS 940360 instead of 731815"
+    }
+  ]
+}

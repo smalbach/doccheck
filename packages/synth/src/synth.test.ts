@@ -4,6 +4,7 @@ import { BillOfLading, CommercialInvoice, Isf, PackingList } from '@doccheck/sch
 import { buildDataset, V1 } from './dataset';
 import { ERROR_KINDS, injectErrors } from './errors';
 import { generateShipment, type SyntheticShipment } from './generate';
+import { buildIsfDataset, renderIsf } from './isf';
 import { renderHtml } from './pdf';
 import { Rng } from './rng';
 
@@ -109,6 +110,37 @@ describe('templates', () => {
       expect(html['bill-of-lading']).toContain(billOfLading.blNumber);
       billOfLading.containers.forEach((c) => expect(html['bill-of-lading']).toContain(c.number));
       expect(html['bill-of-lading']).toContain(billOfLading.totalGrossWeight.raw.unit);
+    }
+  });
+});
+
+describe('ISF set (v1-isf)', () => {
+  const isfSet = buildIsfDataset(dataset);
+
+  it('covers every US shipment without changing the v1 dataset', () => {
+    const before = JSON.stringify(dataset);
+    expect(isfSet.map((e) => e.shipment.id)).toEqual(dataset.filter((e) => e.shipment.destination === 'US').map((e) => e.shipment.id));
+    expect(JSON.stringify(buildIsfDataset(dataset))).toBe(JSON.stringify(isfSet));
+    expect(JSON.stringify(dataset)).toBe(before);
+    expect(dataset.every((e) => e.shipment.render.isfTemplate === undefined)).toBe(true);
+    expect(isfSet.filter((e) => e.labels.some((l) => l.document === 'isf')).length).toBeGreaterThan(10);
+  });
+
+  it('X11 flags exactly the ISF errors the labels expect', () => {
+    for (const { shipment, labels } of isfSet) {
+      expect(Isf.safeParse(shipment.documents.isf).error).toBeUndefined();
+      const expected = new Set(labels.flatMap((l) => l.expectedRuleIds));
+      const got = new Set(runRules(context(shipment)).findings.map((f) => f.ruleId));
+      expect([shipment.id, [...got].sort()]).toEqual([shipment.id, [...expected].sort()]);
+    }
+  });
+
+  it('the confirmation prints the ten elements', () => {
+    for (const { shipment } of isfSet.slice(0, 20)) {
+      const isf = shipment.documents.isf;
+      const html = renderIsf(isf, shipment.documents.billOfLading, shipment.seed);
+      for (const v of [isf.importerOfRecordNumber, isf.consigneeNumber, isf.countryOfOrigin, isf.htsCode.slice(0, 4), isf.consolidator.name, isf.containerStuffingLocation.country]) expect(html).toContain(v);
+      for (const p of [isf.seller, isf.buyer, isf.manufacturer, isf.shipToParty]) expect(html).toContain(p.name.replace(/&/g, '&amp;'));
     }
   });
 });

@@ -24,6 +24,8 @@ export interface RenderOptions {
   blWeightUnit: 'KG' | 'LB';
   /** Print an English/French bilingual invoice (allowed by CBSA). */
   bilingual: boolean;
+  /** ISF confirmation template; only set in data/eval/v1-isf. */
+  isfTemplate?: string;
 }
 
 export interface ShipmentDocuments {

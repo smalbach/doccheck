@@ -1,0 +1,443 @@
+{
+  "id": "US-092",
+  "seed": 1381410919,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "QIN2603953",
+      "invoiceDate": "2026-02-26",
+      "poNumber": "PA980841",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-03-08",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 208,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "52",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "71.17",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3700.84",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "31200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "0.90",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "28080.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8482.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4560.40",
+        "raw": {
+          "value": "4560.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4186.00",
+        "raw": {
+          "value": "4186.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "31780.84",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-QIN2603953",
+      "invoiceRef": "QIN2603953",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-52",
+          "count": 52,
+          "type": "CRT",
+          "marks": "PACIFIC/PA980841/C/NO. 1-208",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "52",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "754.00",
+            "raw": {
+              "value": "754.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "988.00",
+            "raw": {
+              "value": "988.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "53-208",
+          "count": 156,
+          "type": "CTN",
+          "marks": "PACIFIC/PA980841/C/NO. 1-208",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "31200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3432.00",
+            "raw": {
+              "value": "3432.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3572.40",
+            "raw": {
+              "value": "3572.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 208,
+        "netWeight": {
+          "kg": "4186.00",
+          "raw": {
+            "value": "4186.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4560.40",
+          "raw": {
+            "value": "4560.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "9.26"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXTAO3381290",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "972519795",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "notifyParty": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "006E",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Fontana",
+        "unLocode": "USFON",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGXU4869573",
+          "seal": "AG7489579",
+          "type": "20GP",
+          "packages": 208,
+          "grossWeight": {
+            "kg": "4560.40",
+            "raw": {
+              "value": "4560.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "9.26"
+        }
+      ],
+      "totalPackages": 208,
+      "totalGrossWeight": {
+        "kg": "4560.40",
+        "raw": {
+          "value": "4560.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PACIFIC/PA980841/C/NO. 1-208",
+      "cargoDescription": "SAID TO CONTAIN 208 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-03-10",
+      "shippedOnBoardDate": "2026-03-10",
+      "references": [
+        "QIN2603953",
+        "PA980841"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "importerOfRecordNumber": "95-478321000",
+      "consigneeNumber": "95-478321000",
+      "manufacturer": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipToParty": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "841370",
+      "containerStuffingLocation": {
+        "lines": [
+          "55 Huangpu Rd",
+          "Huangdao District"
+        ],
+        "city": "Qingdao",
+        "region": "Shandong",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

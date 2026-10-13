@@ -1,0 +1,399 @@
+{
+  "id": "US-049",
+  "seed": 1038807102,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SAI2605984",
+      "invoiceDate": "2026-04-25",
+      "poNumber": "PO-8121",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-05-06",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Cai Mep"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 59,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "5900",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.37",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "13983.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1168.20",
+        "raw": {
+          "value": "1168.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1121.00",
+        "raw": {
+          "value": "1121.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "13983.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-SAI2605984",
+      "invoiceRef": "SAI2605984",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-59",
+          "count": 59,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-8121/C/NO. 1-59",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "5900",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1121.00",
+            "raw": {
+              "value": "1121.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1168.20",
+            "raw": {
+              "value": "1168.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 59,
+        "netWeight": {
+          "kg": "1121.00",
+          "raw": {
+            "value": "1121.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1168.20",
+          "raw": {
+            "value": "1168.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.96"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVCMT347656",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "513324451",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "notifyParty": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "076W",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Fontana",
+        "unLocode": "USFON",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "MDOU4853583",
+          "seal": "MD5573620",
+          "type": "20GP",
+          "packages": 59,
+          "grossWeight": {
+            "kg": "1168.20",
+            "raw": {
+              "value": "1168.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.96"
+        }
+      ],
+      "totalPackages": 59,
+      "totalGrossWeight": {
+        "kg": "1168.20",
+        "raw": {
+          "value": "1168.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PACIFIC/PO-8121/C/NO. 1-59",
+      "cargoDescription": "SAID TO CONTAIN 59 CTNS MEN'S COTTON T-SHIRT",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-05-09",
+      "shippedOnBoardDate": "2026-05-09",
+      "references": [
+        "SAI2605984",
+        "PO-8121"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "importerOfRecordNumber": "95-478321000",
+      "consigneeNumber": "95-478321000",
+      "manufacturer": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipToParty": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "VN",
+      "htsCode": "610910",
+      "containerStuffingLocation": {
+        "lines": [
+          "Lot B4, Tan Thuan Export Processing Zone",
+          "District 7"
+        ],
+        "city": "Ho Chi Minh City",
+        "postalCode": "700000",
+        "country": "VN"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

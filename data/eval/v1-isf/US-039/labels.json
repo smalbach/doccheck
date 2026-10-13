@@ -1,0 +1,17 @@
+{
+  "id": "US-039",
+  "errors": [
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[0].quantity.value",
+      "before": "7000",
+      "after": "700",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 1 quantity changed without updating the line total."
+    }
+  ]
+}

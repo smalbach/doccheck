@@ -1,0 +1,396 @@
+{
+  "id": "US-020",
+  "seed": 123571770,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "LB",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-9508",
+      "invoiceDate": "2026-06-07",
+      "poNumber": "HA827084",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-06-12",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "New York"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 18,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "18",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.59",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1468.62",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "342.00",
+        "raw": {
+          "value": "342.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "261.00",
+        "raw": {
+          "value": "261.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "1468.62",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-9508",
+      "invoiceRef": "INV-2026-9508",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-18",
+          "count": 18,
+          "type": "CRT",
+          "marks": "HARBORLINE/HA827084/C/NO. 1-18",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "18",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "261.00",
+            "raw": {
+              "value": "261.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "342.00",
+            "raw": {
+              "value": "342.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 18,
+        "netWeight": {
+          "kg": "261.00",
+          "raw": {
+            "value": "261.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "342.00",
+          "raw": {
+            "value": "342.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "1.58"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLTAO2872761",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "851204645",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "094W",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCRU1272289",
+          "seal": "PC3299596",
+          "type": "20GP",
+          "packages": 18,
+          "grossWeight": {
+            "kg": "342.00",
+            "raw": {
+              "value": "754",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "1.58"
+        }
+      ],
+      "totalPackages": 18,
+      "totalGrossWeight": {
+        "kg": "342.00",
+        "raw": {
+          "value": "754",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/HA827084/C/NO. 1-18",
+      "cargoDescription": "SAID TO CONTAIN 18 CRTS CENTRIFUGAL PUMP 0.75 KW",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-06-14",
+      "shippedOnBoardDate": "2026-06-14",
+      "references": [
+        "INV-2026-9508",
+        "HA827084"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "841370",
+      "containerStuffingLocation": {
+        "lines": [
+          "55 Huangpu Rd",
+          "Huangdao District"
+        ],
+        "city": "Qingdao",
+        "region": "Shandong",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Compass Freight Forwarding Co.",
+        "address": {
+          "lines": [
+            "18 Changjiang Rd"
+          ],
+          "city": "Shanghai",
+          "country": "CN"
+        }
+      }
+    }
+  }
+}

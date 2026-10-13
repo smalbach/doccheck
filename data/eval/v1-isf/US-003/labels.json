@@ -1,0 +1,16 @@
+{
+  "id": "US-003",
+  "errors": [
+    {
+      "kind": "isf_hts_mismatch",
+      "document": "isf",
+      "field": "htsCode",
+      "before": "090111",
+      "after": "940360",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF HTS 940360 instead of 090111"
+    }
+  ]
+}

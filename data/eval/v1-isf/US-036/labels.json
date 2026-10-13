@@ -1,0 +1,38 @@
+{
+  "id": "US-036",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[1].lineTotal.amount",
+      "before": "133804.80",
+      "after": "313804.80",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 2 total mistyped (133804.80 -> 313804.80)."
+    },
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "9325.00",
+      "after": "10257.50",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.10 against the packing list."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 490,
+      "after": 480,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 480 packages instead of 490."
+    }
+  ]
+}

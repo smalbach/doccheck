@@ -1,0 +1,50 @@
+{
+  "id": "US-081",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "13500 Valley Blvd",
+      "after": "13524 Valley Blvd",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[0].contents[0].quantity.value",
+      "before": "11400",
+      "after": "11350",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[1].quantity.value",
+      "before": "53520",
+      "after": "5352",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 2 quantity changed without updating the line total."
+    },
+    {
+      "kind": "isf_hts_mismatch",
+      "document": "isf",
+      "field": "htsCode",
+      "before": "610910",
+      "after": "940360",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF HTS 940360 instead of 610910"
+    }
+  ]
+}

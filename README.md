@@ -145,9 +145,9 @@ After the rules run, `/validate` does a second pass:
 | GET | `/rules?destination=CA` | Active rules for a destination |
 | POST | `/shipments` | Create a shipment: `{ reference?, destination: "CA" \| "US", transportMode? }` |
 | GET | `/shipments/:id` | Shipment and status |
-| PUT / GET / DELETE | `/shipments/:id/isf` | The shipment's ISF (10+2) as JSON, used by X11 on US shipments |
-| POST | `/shipments/:id/documents` | Upload PDFs (multipart field `files`). Returns 202 with the documents `QUEUED`; `?wait=true` waits for extraction |
-| POST | `/shipments/:id/documents/:documentId/reextract` | Extract again as a given type `{ type }` when classification got it wrong |
+| PUT / GET / DELETE | `/shipments/:id/isf` | The shipment's ISF (10+2) as JSON, used by X11 on US shipments. GET says where it came from (`source`: `upload`, `sample` or `pdf` with `documentId`) |
+| POST | `/shipments/:id/documents` | Upload PDFs (multipart field `files`): invoice, packing list, bill of lading or ISF filing confirmation (stored as the shipment's ISF). Returns 202 with the documents `QUEUED`; `?wait=true` waits for extraction |
+| POST | `/shipments/:id/documents/:documentId/reextract` | Extract again as a given type `{ type }` (including `ISF`) when classification got it wrong |
 | GET | `/shipments/:id/documents/:documentId` | Document status (`QUEUED`, `EXTRACTING`, `EXTRACTED`, `FAILED`) and, once extracted, values as printed, normalized document and issues |
 | POST | `/shipments/:id/validate` | Run the rules on the extracted documents (409 while any is still extracting), or on normalized JSON documents in the body `{ invoice?, packingList?, billOfLading?, isf? }`; then citations and agent review (`?agent=false` skips the model) |
 | GET | `/shipments/:id/findings` | Findings from the last validation |

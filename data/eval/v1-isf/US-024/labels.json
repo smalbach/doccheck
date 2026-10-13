@@ -1,0 +1,16 @@
+{
+  "id": "US-024",
+  "errors": [
+    {
+      "kind": "isf_seller_mismatch",
+      "document": "isf",
+      "field": "seller.name",
+      "before": "Brightstar Toys Manufacturing Co., Ltd.",
+      "after": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF seller \"Qingdao Hengli Fasteners & Machinery Co., Ltd.\" instead of \"Brightstar Toys Manufacturing Co., Ltd.\""
+    }
+  ]
+}

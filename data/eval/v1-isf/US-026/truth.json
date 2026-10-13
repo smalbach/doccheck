@@ -1,0 +1,481 @@
+{
+  "id": "US-026",
+  "seed": 1603297876,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "BRI2604964",
+      "invoiceDate": "2026-07-26",
+      "poNumber": "HA772252",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-08-02",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Shekou",
+          "unLocode": "CNSHK",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Shekou"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 436,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "11700",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.48",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "78516.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "PZ-1000",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+          "quantity": {
+            "value": "4848",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.79",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "18373.92",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "5574.36",
+        "raw": {
+          "value": "5574.36",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5111.76",
+        "raw": {
+          "value": "5111.76",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "105889.92",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-BRI2604964",
+      "invoiceRef": "BRI2604964",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-234",
+          "count": 234,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA772252/C/NO. 1-436",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "11700",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2106.00",
+            "raw": {
+              "value": "2106.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2386.80",
+            "raw": {
+              "value": "2386.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "235-436",
+          "count": 202,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA772252/C/NO. 1-436",
+          "contents": [
+            {
+              "sku": "PZ-1000",
+              "description": "Jigsaw puzzle 1000 pcs",
+              "quantity": {
+                "value": "4848",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3005.76",
+            "raw": {
+              "value": "3005.76",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3187.56",
+            "raw": {
+              "value": "3187.56",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 436,
+        "netWeight": {
+          "kg": "5111.76",
+          "raw": {
+            "value": "5111.76",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5574.36",
+          "raw": {
+            "value": "5574.36",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "34.44"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPSHK122483",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "703146269",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1258 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "033S",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Shekou",
+        "unLocode": "CNSHK",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGXU7400276",
+          "seal": "AG2377719",
+          "type": "40GP",
+          "packages": 436,
+          "grossWeight": {
+            "kg": "5574.36",
+            "raw": {
+              "value": "5574.36",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "34.44"
+        }
+      ],
+      "totalPackages": 436,
+      "totalGrossWeight": {
+        "kg": "5407.13",
+        "raw": {
+          "value": "5407.13",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/HA772252/C/NO. 1-436",
+      "cargoDescription": "SAID TO CONTAIN 436 CTNS PLUSH TEDDY BEAR 30 CM AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Shekou",
+      "dateOfIssue": "2026-08-04",
+      "shippedOnBoardDate": "2026-08-04",
+      "references": [
+        "BRI2604964",
+        "HA772252"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "950300",
+      "containerStuffingLocation": {
+        "lines": [
+          "No. 18 Longgang Industrial Ave",
+          "Buji Subdistrict"
+        ],
+        "city": "Shenzhen",
+        "region": "Guangdong",
+        "postalCode": "518112",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Compass Freight Forwarding Co.",
+        "address": {
+          "lines": [
+            "18 Changjiang Rd"
+          ],
+          "city": "Shanghai",
+          "country": "CN"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "US-046",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "7637.00",
+      "after": "6491.45",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 0.85 against the packing list."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CNY",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 2284.00 CNY on an invoice in USD."
+    },
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "2150 E 37th St",
+      "after": "2154 E 37th St",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    }
+  ]
+}

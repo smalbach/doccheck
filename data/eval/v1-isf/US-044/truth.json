@@ -1,0 +1,403 @@
+{
+  "id": "US-044",
+  "seed": 1340772361,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "LB",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-3306",
+      "invoiceDate": "2026-09-08",
+      "poNumber": "PO-6325",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-09-13",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "New York"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 220,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "22000",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.50",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "70700.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4180.00",
+        "raw": {
+          "value": "4180.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4356.00",
+        "raw": {
+          "value": "4356.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "77000.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-3306",
+      "invoiceRef": "INV-2026-3306",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "packages": [
+        {
+          "range": "1-220",
+          "count": 220,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-6325/C/NO. 1-220",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "21950",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4180.00",
+            "raw": {
+              "value": "4180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4356.00",
+            "raw": {
+              "value": "4356.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 220,
+        "netWeight": {
+          "kg": "4180.00",
+          "raw": {
+            "value": "4180.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4356.00",
+          "raw": {
+            "value": "4356.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "18.48"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWECMT1682324",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "256255969",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "notifyParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "071S",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Chicago",
+        "unLocode": "USCHI",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "TWEU1703856",
+          "seal": "TW6736076",
+          "type": "20GP",
+          "packages": 220,
+          "grossWeight": {
+            "kg": "4356.00",
+            "raw": {
+              "value": "9603",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "18.48"
+        }
+      ],
+      "totalPackages": 220,
+      "totalGrossWeight": {
+        "kg": "4356.00",
+        "raw": {
+          "value": "9603",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "LAKESHORE/PO-6325/C/NO. 1-220",
+      "cargoDescription": "SAID TO CONTAIN 220 CTNS MEN'S COTTON T-SHIRT",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-09-14",
+      "shippedOnBoardDate": "2026-09-14",
+      "references": [
+        "INV-2026-3306",
+        "PO-6325"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "importerOfRecordNumber": "36-412876500",
+      "consigneeNumber": "36-412876500",
+      "manufacturer": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipToParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "countryOfOrigin": "VN",
+      "htsCode": "610910",
+      "containerStuffingLocation": {
+        "lines": [
+          "Lot B4, Tan Thuan Export Processing Zone",
+          "District 7"
+        ],
+        "city": "Ho Chi Minh City",
+        "postalCode": "700000",
+        "country": "VN"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

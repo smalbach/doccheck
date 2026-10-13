@@ -1,7 +1,7 @@
 import { BadRequestException, ConflictException, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { createHash, randomUUID } from 'node:crypto';
 import { attachRegulations, reviewFindings, type AgentDecision } from '@doccheck/agent';
-import { findSource, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
+import { findFieldSource, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
 import { runRules, type EngineOutput, type ShipmentContext } from '@doccheck/rules';
 import type { BillOfLading, CommercialInvoice, Isf, PackingList, Shipment, ShipmentDocument } from '@doccheck/schemas';
 import { InjectLlm, RegulationsService } from '../llm/llm.module';
@@ -123,6 +123,8 @@ export class ShipmentsService {
     const doc = UUID.test(documentId) ? await this.repo.findDocument(documentId) : null;
     if (!doc || doc.shipmentId !== id) throw new NotFoundException(`Document ${documentId} not found in shipment ${id}`);
     if (doc.status === 'QUEUED' || doc.status === 'EXTRACTING') throw new ConflictException('The document is already being extracted');
+    // Not an ISF after all: the ISF taken from it goes now, even if the new extraction fails.
+    if (type !== 'ISF') await this.repo.deleteIsfFromDocument(documentId);
     await this.repo.updateDocumentStatus(documentId, 'QUEUED');
     await this.repo.refreshShipmentStatus(id);
     await this.queue.enqueue([documentId], wait, type);
@@ -153,10 +155,14 @@ export class ShipmentsService {
     await this.repo.setStatus(id, 'VALIDATING');
 
     const extracted = new Map<string, { documentId: string; data: unknown; pdf: PdfText; ocr: boolean }>();
+    // ISF PDFs do not fill a slot here: the processor stores them as the shipment's ISF, read below.
+    const isfPdfs = new Map<string, { documentId: string; data: unknown; pdf: PdfText; ocr: boolean }>();
     for (const e of await this.repo.listExtractions(id)) {
       const slot = SLOT[e.documentType as keyof typeof SLOT];
       const ocr = e.issues.some((i) => i.startsWith('Read with OCR'));
-      if (slot && e.data) extracted.set(slot, { documentId: e.documentId, data: e.data, pdf: { pageCount: e.document.pageCount, lines: e.pdfLines, text: '' }, ocr });
+      const row = { documentId: e.documentId, data: e.data, pdf: { pageCount: e.document.pageCount, lines: e.pdfLines, text: '' }, ocr };
+      if (slot && e.data) extracted.set(slot, row);
+      else if (e.documentType === 'ISF') isfPdfs.set(e.documentId, row);
     }
     const inputs: Record<string, string> = {};
     const pick = <T>(slot: keyof typeof inputs & string, fromBody: T | undefined, bodyId: string) => {
@@ -178,23 +184,26 @@ export class ShipmentsService {
       billOfLading: pick<BillOfLading>('billOfLading', docs.billOfLading, 'bill-of-lading'),
       isf: undefined,
     };
-    // ISF: the one in the body wins, otherwise the one stored for the shipment.
+    // ISF: the one in the body wins, otherwise the one stored for the shipment (JSON or extracted
+    // from a PDF; a PDF one is cited by its document id so its evidence gets page and bbox).
     const storedIsf = docs.isf ? null : await this.repo.findIsf(id);
+    const isfPdf = storedIsf?.documentId ? isfPdfs.get(storedIsf.documentId) : undefined;
     if (docs.isf) {
       ctx.isf = { id: 'isf', data: docs.isf };
       inputs.isf = 'body';
     } else if (storedIsf) {
-      ctx.isf = { id: 'isf', data: storedIsf.data };
-      inputs.isf = 'stored';
+      ctx.isf = { id: isfPdf?.documentId ?? 'isf', data: storedIsf.data };
+      inputs.isf = isfPdf?.documentId ?? 'stored';
     }
     const output = runRules(ctx);
 
-    const pdfById = new Map([...extracted.values()].map((e) => [e.documentId, e.pdf]));
-    const ocrDocs = new Set([...extracted.values()].filter((e) => e.ocr).map((e) => e.documentId));
+    const sources = [...extracted.values(), ...(isfPdf ? [isfPdf] : [])];
+    const pdfById = new Map(sources.map((e) => [e.documentId, e.pdf]));
+    const ocrDocs = new Set(sources.filter((e) => e.ocr).map((e) => e.documentId));
     for (const finding of output.findings) {
       for (const ev of finding.evidence) {
         const pdf = pdfById.get(ev.documentId);
-        if (pdf && !ev.source) ev.source = findSource(pdf, ev.documentId, ev.value);
+        if (pdf && !ev.source) ev.source = findFieldSource(pdf, ev.documentId, ev.field, ev.value);
       }
       // OCR confuses look-alike characters (7/T, 0/O, 1/I): say so before anyone acts on the finding.
       if (finding.evidence.some((ev) => ocrDocs.has(ev.documentId))) {

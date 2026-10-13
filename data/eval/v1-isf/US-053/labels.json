@@ -1,0 +1,16 @@
+{
+  "id": "US-053",
+  "errors": [
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "10200.50",
+      "after": "10802.70",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    }
+  ]
+}

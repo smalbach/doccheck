@@ -43,3 +43,14 @@ export function findSource(pdf: PdfText, documentId: string, value: string, hint
   const line = (hint && candidates.find((l) => hint.test(l.text))) || candidates[0];
   return line ? { documentId, page: line.page, bbox: line.bbox, rawText: line.text } : undefined;
 }
+
+/**
+ * findSource for a rule's evidence field. HTS numbers are normalized to digits ("940360") but
+ * printed with dots ("9403.60" or "9403.60.1020"), so for those fields the dotted form is tried too.
+ */
+export function findFieldSource(pdf: PdfText, documentId: string, field: string, value: string): SourceRef | undefined {
+  const found = findSource(pdf, documentId, value);
+  if (found || !/(^|\.)(htsCode|hsCode)$/.test(field) || !/^\d{6,10}$/.test(value)) return found;
+  const dotted = value.replace(/^(\d{4})(\d{2})(\d*)$/, (_, a, b, rest) => `${a}.${b}${rest ? `.${rest}` : ''}`);
+  return findSource(pdf, documentId, dotted);
+}

@@ -33,6 +33,12 @@ export const SCORED_FIELDS: Record<ExtractableType, [path: string, kind: Kind][]
     ['totalPackages', 'decimal'], ['totalGrossWeight.kg', 'weight'], ['totalGrossWeight.raw.unit', 'code'], ['shippedOnBoardDate', 'code'],
     ['containers[*].number', 'code'], ['containers[*].seal', 'code'], ['containers[*].packages', 'decimal'], ['containers[*].grossWeight.kg', 'weight'],
   ],
+  ISF: [
+    ['importerOfRecordNumber', 'code'], ['consigneeNumber', 'code'],
+    ['seller.name', 'text'], ['seller.address.country', 'code'], ['buyer.name', 'text'], ['manufacturer.name', 'text'], ['manufacturer.address.city', 'text'],
+    ['shipToParty.name', 'text'], ['shipToParty.address.postalCode', 'code'], ['consolidator.name', 'text'],
+    ['countryOfOrigin', 'code'], ['htsCode', 'code'], ['containerStuffingLocation.city', 'text'], ['containerStuffingLocation.country', 'code'],
+  ],
 };
 
 export type Outcome = 'correct' | 'wrong' | 'missing' | 'spurious';

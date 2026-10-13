@@ -1,0 +1,451 @@
+{
+  "id": "US-047",
+  "seed": 603115193,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-3046",
+      "invoiceDate": "2026-03-28",
+      "poNumber": "LA805107",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-04-03",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "New York"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 155,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "HB-M12",
+          "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+          "quantity": {
+            "value": "8501",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "2.01",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "17085.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "7318.15"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "27600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "0.92",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "25392.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8482.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "12034.20",
+        "raw": {
+          "value": "12034.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "11536.00",
+        "raw": {
+          "value": "11536.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "42477.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-3046",
+      "invoiceRef": "INV-2026-3046",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "packages": [
+        {
+          "range": "1-17",
+          "count": 17,
+          "type": "PLT",
+          "marks": "LAKESHORE/LA805107/C/NO. 1-155",
+          "contents": [
+            {
+              "sku": "HB-M12",
+              "description": "Hex bolt M12x60",
+              "quantity": {
+                "value": "8500",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "8500.00",
+            "raw": {
+              "value": "8500.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "8874.00",
+            "raw": {
+              "value": "8874.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            100,
+            60
+          ]
+        },
+        {
+          "range": "18-155",
+          "count": 138,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA805107/C/NO. 1-155",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "27600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3036.00",
+            "raw": {
+              "value": "3036.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3160.20",
+            "raw": {
+              "value": "3160.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 155,
+        "netWeight": {
+          "kg": "11536.00",
+          "raw": {
+            "value": "11536.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "12034.20",
+          "raw": {
+            "value": "12034.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "16.38"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSTAO402061",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "196186249",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "notifyParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "083N",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Chicago",
+        "unLocode": "USCHI",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCLU3239040",
+          "seal": "PC4634956",
+          "type": "20GP",
+          "packages": 155,
+          "grossWeight": {
+            "kg": "12034.20",
+            "raw": {
+              "value": "12034.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "16.38"
+        }
+      ],
+      "totalPackages": 155,
+      "totalGrossWeight": {
+        "kg": "12034.20",
+        "raw": {
+          "value": "12034.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "LAKESHORE/LA805107/C/NO. 1-155",
+      "cargoDescription": "SAID TO CONTAIN 155 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-04-04",
+      "shippedOnBoardDate": "2026-04-04",
+      "references": [
+        "INV-2026-3046",
+        "LA805107"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "importerOfRecordNumber": "36-412876500",
+      "consigneeNumber": "36-412876500",
+      "manufacturer": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipToParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "731815",
+      "containerStuffingLocation": {
+        "lines": [
+          "55 Huangpu Rd",
+          "Huangdao District"
+        ],
+        "city": "Qingdao",
+        "region": "Shandong",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

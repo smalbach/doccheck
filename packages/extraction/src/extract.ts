@@ -1,12 +1,15 @@
-import type { BillOfLading, CommercialInvoice, DocumentType, PackingList } from '@doccheck/schemas';
+import type { BillOfLading, CommercialInvoice, DocumentType, Isf, PackingList } from '@doccheck/schemas';
 import type { z } from 'zod';
 import { classifyDocument } from './classify';
 import type { LlmClient, Usage } from './llm';
-import { normalizeBillOfLading, normalizeInvoice, normalizePackingList, type NormalizeResult } from './normalize';
+import { normalizeBillOfLading, normalizeInvoice, normalizeIsf, normalizePackingList, type NormalizeResult } from './normalize';
 import { readPdfText, type PdfText } from './pdf-text';
-import { RawBillOfLading, RawInvoice, RawPackingList } from './raw-schemas';
+import { RawBillOfLading, RawInvoice, RawIsf, RawPackingList } from './raw-schemas';
 
-/** Bump when a prompt changes, so cached responses from the old prompt are not reused. */
+/**
+ * Bump when a prompt changes, so cached responses from the old prompt are not reused. Adding a
+ * document type does not need a bump: its own instructions are part of the cache key.
+ */
 export const PROMPT_VERSION = 'extract-v3';
 
 const COMMON = `You extract data from freight documents for a customs pre-check.
@@ -25,19 +28,24 @@ List freight, insurance or packing charges printed on the invoice in "charges", 
   PACKING_LIST: `This is a packing list. Extract one entry in "packages" per package row, in order, and the totals row separately.`,
   BILL_OF_LADING: `This is a bill of lading or sea waybill. Extract one entry in "containers" per container row.
 "totalPackages" and "totalGrossWeight" come from the cargo description section, not from the container rows.`,
+  ISF: `This is an Importer Security Filing (ISF 10+2) confirmation. Each of the ten data elements is labeled: copy each party into its own field (manufacturer, seller, buyer, ship-to party, consolidator), even when two of them are the same company.
+The container stuffing location is an address. Copy the importer of record and consignee numbers, the country of origin and the HTSUS number as printed.`,
 };
 
-export type ExtractableType = 'COMMERCIAL_INVOICE' | 'PACKING_LIST' | 'BILL_OF_LADING';
+export type ExtractableType = 'COMMERCIAL_INVOICE' | 'PACKING_LIST' | 'BILL_OF_LADING' | 'ISF';
 
-type Canonical = { COMMERCIAL_INVOICE: CommercialInvoice; PACKING_LIST: PackingList; BILL_OF_LADING: BillOfLading };
+export const EXTRACTABLE_TYPES: ExtractableType[] = ['COMMERCIAL_INVOICE', 'PACKING_LIST', 'BILL_OF_LADING', 'ISF'];
+
+type Canonical = { COMMERCIAL_INVOICE: CommercialInvoice; PACKING_LIST: PackingList; BILL_OF_LADING: BillOfLading; ISF: Isf };
 
 const PIPELINES: { [K in ExtractableType]: { schema: z.ZodType; normalize: (raw: never) => NormalizeResult<Canonical[K]> } } = {
   COMMERCIAL_INVOICE: { schema: RawInvoice, normalize: normalizeInvoice },
   PACKING_LIST: { schema: RawPackingList, normalize: normalizePackingList },
   BILL_OF_LADING: { schema: RawBillOfLading, normalize: normalizeBillOfLading },
+  ISF: { schema: RawIsf, normalize: normalizeIsf },
 };
 
-export interface ExtractionResult<T = CommercialInvoice | PackingList | BillOfLading> {
+export interface ExtractionResult<T = CommercialInvoice | PackingList | BillOfLading | Isf> {
   documentType: DocumentType;
   typeConfidence: number;
   pdf: PdfText;
@@ -50,13 +58,18 @@ export interface ExtractionResult<T = CommercialInvoice | PackingList | BillOfLa
   cached: boolean;
 }
 
-export async function extractFromText<K extends ExtractableType>(pdf: PdfText, type: K, llm: LlmClient): Promise<Omit<ExtractionResult<Canonical[K]>, 'documentType' | 'typeConfidence' | 'pdf'>> {
-  const pipeline = PIPELINES[type];
-  const { output, usage, cached } = await llm.call(PROMPT_VERSION, {
+/** The model request for a document of this type; also lets callers check the cache (`llm.isCached`). */
+export function extractionRequest(pdf: PdfText, type: ExtractableType) {
+  return {
     system: `${COMMON}\n\n${SPECIFIC[type]}`,
     user: `<document>\n${pdf.text}\n</document>`,
-    schema: pipeline.schema,
-  });
+    schema: PIPELINES[type].schema,
+  };
+}
+
+export async function extractFromText<K extends ExtractableType>(pdf: PdfText, type: K, llm: LlmClient): Promise<Omit<ExtractionResult<Canonical[K]>, 'documentType' | 'typeConfidence' | 'pdf'>> {
+  const pipeline = PIPELINES[type];
+  const { output, usage, cached } = await llm.call(PROMPT_VERSION, extractionRequest(pdf, type));
   const { data, issues } = pipeline.normalize(output as never);
   return { raw: output, data, issues, usage, cached };
 }

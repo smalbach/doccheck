@@ -1,0 +1,37 @@
+{
+  "id": "US-063",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Consignee missing from the invoice."
+    },
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[1].contents[0].quantity.value",
+      "before": "10000",
+      "after": "9999",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    }
+  ]
+}

@@ -3,10 +3,10 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { classifyDocument } from './classify';
-import { countryCode, decimal, isoDate, normalizeBillOfLading, normalizePackingList, quantityUnit, weight } from './normalize';
+import { countryCode, decimal, htsCode, isoDate, normalizeBillOfLading, normalizeIsf, normalizePackingList, quantityUnit, weight } from './normalize';
 import { readPdfText } from './pdf-text';
-import { findSource } from './provenance';
-import type { RawBillOfLading } from './raw-schemas';
+import { findFieldSource, findSource } from './provenance';
+import type { RawBillOfLading, RawIsf, RawParty } from './raw-schemas';
 import { scoreDocument, tally } from './score';
 
 describe('normalization', () => {
@@ -69,6 +69,68 @@ describe('classification', () => {
   });
 });
 
+describe('ISF', () => {
+  const p = (name: string | null, country = 'CN', extra: Partial<RawParty> = {}): RawParty => ({ name, addressLines: ['No. 18 Longgang Industrial Ave', 'Buji Subdistrict'], city: 'Shenzhen', region: 'Guangdong', postalCode: '518112', country, taxId: null, ...extra });
+  const raw: RawIsf = {
+    importerOfRecordNumber: '74-381245600',
+    consigneeNumber: '74-381245600 ',
+    manufacturer: p('Brightstar Toys Manufacturing Co., Ltd.'),
+    seller: p('Brightstar Toys Manufacturing Co., Ltd.'),
+    buyer: p('Bluebonnet Home Goods LLC', 'US', { addressLines: ['4200 Ambassador Caffery Pkwy'], city: 'Houston', region: 'TX', postalCode: '77041', taxId: '74-3812456' }),
+    shipToParty: p('Bluebonnet Home Goods DC', 'United States', { addressLines: ['9800 Wallisville Rd'], city: 'Houston', region: 'TX', postalCode: '77013' }),
+    containerStuffingLocation: p(null),
+    consolidator: p('Silverline Logistics (HK) Ltd.', 'Hong Kong', { addressLines: ['25 Harbour Rd'], city: 'Wan Chai', region: null, postalCode: null }),
+    countryOfOrigin: 'China',
+    htsCode: '9503.00',
+  };
+
+  it('normalizes the printed filing to the Isf schema', () => {
+    const { data, issues } = normalizeIsf(raw);
+    expect(issues).toEqual([]);
+    expect(data).toMatchObject({
+      importerOfRecordNumber: '74-381245600',
+      consigneeNumber: '74-381245600',
+      countryOfOrigin: 'CN',
+      htsCode: '950300',
+      shipToParty: { name: 'Bluebonnet Home Goods DC', address: { country: 'US', postalCode: '77013' } },
+      consolidator: { address: { country: 'HK' } },
+      containerStuffingLocation: { lines: ['No. 18 Longgang Industrial Ave', 'Buji Subdistrict'], city: 'Shenzhen', country: 'CN' },
+      buyer: { taxId: '74-3812456' },
+    });
+  });
+
+  it('finds an HTS number printed with dots only for HTS fields', () => {
+    const pdf = { pageCount: 1, text: '', lines: [{ page: 1, text: '10   Commodity HTSUS number (6-digit)   9403.60', bbox: [0, 0, 1, 1] as [number, number, number, number] }] };
+    expect(findFieldSource(pdf, 'isf', 'htsCode', '940360')?.page).toBe(1);
+    expect(findFieldSource(pdf, 'inv', 'lines[0].hsCode', '9403601020')).toBeUndefined();
+    expect(findFieldSource(pdf, 'inv', 'invoiceTotal.amount', '940360')).toBeUndefined();
+  });
+
+  it('reads HTS numbers as printed', () => {
+    expect(htsCode('9503.00')).toBe('950300');
+    expect(htsCode('HTS 8481.80.1020')).toBe('8481801020');
+    expect(htsCode('8481')).toBeNull();
+    expect(htsCode(null)).toBeNull();
+  });
+
+  it('returns no document when a required element is missing or unreadable', () => {
+    const { data, issues } = normalizeIsf({ ...raw, seller: null, htsCode: 'see invoice', importerOfRecordNumber: 'N/A' });
+    expect(data).toBeNull();
+    expect(issues).toEqual(expect.arrayContaining([expect.stringMatching(/^htsCode: could not normalize/), expect.stringMatching(/^importerOfRecordNumber:/), expect.stringMatching(/^seller:/)]));
+  });
+
+  it('classifies a filing confirmation as ISF', () => {
+    const text = 'ISF FILING CONFIRMATION\nImporter Security Filing (10+2) · 19 CFR Part 149\nIMPORTER OF RECORD NO.   CONSIGNEE NO.\n1  Manufacturer (or supplier)  Acme\n2  Seller  Acme\n3  Buyer  Bluebonnet\n4  Ship-to party  Bluebonnet DC\n5  Container stuffing location  Shenzhen\n6  Consolidator (stuffer)  Silverline\n10  Commodity HTSUS number  9503.00';
+    expect(classifyDocument(text)).toMatchObject({ type: 'ISF' });
+    // OCR may lose the title; the element names still decide.
+    expect(classifyDocument(text.split('\n').slice(2).join('\n')).type).toBe('ISF');
+  });
+
+  it('does not take an invoice that names a buyer, seller or manufacturer for an ISF', () => {
+    expect(classifyDocument('COMMERCIAL INVOICE\nSeller: Acme  Manufacturer: Acme Factory\nSOLD TO: Bluebonnet\nCurrency: USD\nUnit Price  Amount').type).toBe('COMMERCIAL_INVOICE');
+  });
+});
+
 describe('OCR debris', () => {
   it('treats a reference without digits as unreadable instead of comparing it', () => {
     const pkg = { range: '1-10', count: '10', packageType: 'CTN', sku: null, description: 'Toys', quantity: '100', unit: 'PCS', netWeight: null, grossWeight: null, dimensionsCm: null };
@@ -107,6 +169,18 @@ describe.skipIf(!existsSync(join(sample, 'invoice.pdf')))('PDF text layer', () =
   it('matches a number after a longer number that contains it', () => {
     const pdf = { pageCount: 1, text: '', lines: [{ page: 1, text: 'PUMP 0.75 KW   5 PCS   83.65', bbox: [0, 0, 1, 1] as [number, number, number, number] }] };
     expect(findSource(pdf, 'inv', '5')?.rawText).toContain('5 PCS');
+  });
+});
+
+// Needs the ISF set (npm run synth -- --isf-pdfs); skipped otherwise.
+const isfSample = join(__dirname, '../../../data/eval/v1-isf/US-002');
+describe.skipIf(!existsSync(join(isfSample, 'isf.pdf')))('ISF PDF', () => {
+  it('reads and classifies the filing confirmation and locates its values', async () => {
+    const truth = JSON.parse(await readFile(join(isfSample, 'truth.json'), 'utf8'));
+    const pdf = await readPdfText(await readFile(join(isfSample, 'isf.pdf')));
+    expect(classifyDocument(pdf.text).type).toBe('ISF');
+    expect(findSource(pdf, 'isf', truth.documents.isf.importerOfRecordNumber)?.page).toBe(1);
+    expect(findSource(pdf, 'isf', truth.documents.isf.consolidator.name)?.bbox).toHaveLength(4);
   });
 });
 

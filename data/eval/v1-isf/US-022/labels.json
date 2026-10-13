@@ -1,0 +1,16 @@
+{
+  "id": "US-022",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "TWEU6955932",
+      "after": "TWEU6955936",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: TWEU6955932 -> TWEU6955936."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "US-091",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "PCLU4313369",
+      "after": "PCLU4313366",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: PCLU4313369 -> PCLU4313366."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 132,
+      "after": 122,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 122 packages instead of 132."
+    }
+  ]
+}

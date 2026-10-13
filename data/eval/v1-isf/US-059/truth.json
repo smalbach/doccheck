@@ -1,0 +1,399 @@
+{
+  "id": "US-059",
+  "seed": 1428095557,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "LB",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/0634",
+      "invoiceDate": "2026-06-17",
+      "poNumber": "BL265643",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-06-26",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ningbo",
+          "unLocode": "CNNGB",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ningbo"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 210,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "840",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.04",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "21033.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1932.00",
+        "raw": {
+          "value": "1932.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2226.00",
+        "raw": {
+          "value": "2226.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "21033.60",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/0634",
+      "invoiceRef": "CI/26/0634",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "packages": [
+        {
+          "range": "1-210",
+          "count": 210,
+          "type": "CTN",
+          "marks": "BLUEBONNET/BL265643/C/NO. 1-210",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "840",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1932.00",
+            "raw": {
+              "value": "1932.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2226.00",
+            "raw": {
+              "value": "2226.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 210,
+        "netWeight": {
+          "kg": "1932.00",
+          "raw": {
+            "value": "1932.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2226.00",
+          "raw": {
+            "value": "2226.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "23.63"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSNGB702120",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "798767194",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4234 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "notifyParty": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "015S",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Ningbo",
+        "unLocode": "CNNGB",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCLU7694253",
+          "seal": "PC5966816",
+          "type": "20GP",
+          "packages": 210,
+          "grossWeight": {
+            "kg": "2226.00",
+            "raw": {
+              "value": "4907",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "23.63"
+        }
+      ],
+      "totalPackages": 210,
+      "totalGrossWeight": {
+        "kg": "2226.00",
+        "raw": {
+          "value": "4907",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "BLUEBONNET/BL265643/C/NO. 1-210",
+      "cargoDescription": "SAID TO CONTAIN 210 CTNS BLENDER 600 W",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ningbo",
+      "dateOfIssue": "2026-06-29",
+      "shippedOnBoardDate": "2026-06-29",
+      "references": [
+        "CI/26/0634",
+        "BL265643"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "importerOfRecordNumber": "74-381245600",
+      "consigneeNumber": "74-381245600",
+      "manufacturer": {
+        "name": "Cixi Hongda Electric Factory",
+        "address": {
+          "lines": [
+            "22 Xinxing Rd"
+          ],
+          "city": "Cixi",
+          "region": "Zhejiang",
+          "country": "CN"
+        }
+      },
+      "shipToParty": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "850940",
+      "containerStuffingLocation": {
+        "lines": [
+          "22 Xinxing Rd"
+        ],
+        "city": "Cixi",
+        "region": "Zhejiang",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "US-074",
+  "errors": [
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "6720.00",
+      "after": "6920.00",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CAD",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 4496.00 CAD on an invoice in EUR."
+    }
+  ]
+}

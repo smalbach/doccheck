@@ -1,0 +1,16 @@
+{
+  "id": "US-042",
+  "errors": [
+    {
+      "kind": "isf_seller_mismatch",
+      "document": "isf",
+      "field": "seller.name",
+      "before": "Pune Precision Engineering Pvt. Ltd.",
+      "after": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF seller \"Qingdao Hengli Fasteners & Machinery Co., Ltd.\" instead of \"Pune Precision Engineering Pvt. Ltd.\""
+    }
+  ]
+}

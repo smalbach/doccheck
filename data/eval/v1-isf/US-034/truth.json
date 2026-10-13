@@ -1,0 +1,429 @@
+{
+  "id": "US-034",
+  "seed": 336205694,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "legacy",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "BRI2606654",
+      "invoiceDate": "2026-06-15",
+      "poNumber": "PA611767",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-06-20",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Yantian",
+          "unLocode": "CNYTN",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Long Beach"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 168,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "8400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.68",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "81312.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1713.60",
+        "raw": {
+          "value": "1713.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1512.00",
+        "raw": {
+          "value": "1512.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "81312.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      },
+      "charges": {
+        "freight": {
+          "amount": "1028.00",
+          "currency": "EUR"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-BRI2606654",
+      "invoiceRef": "BRI2606654",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-168",
+          "count": 168,
+          "type": "CTN",
+          "marks": "PACIFIC/PA611767/C/NO. 1-168",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "8376",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1512.00",
+            "raw": {
+              "value": "1512.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1713.60",
+            "raw": {
+              "value": "1713.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 168,
+        "netWeight": {
+          "kg": "1512.00",
+          "raw": {
+            "value": "1512.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1713.60",
+          "raw": {
+            "value": "1713.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "16.13"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXYTN5108051",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "739610516",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "notifyParty": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "059S",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Yantian",
+        "unLocode": "CNYTN",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Fontana",
+        "unLocode": "USFON",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGLU7467138",
+          "seal": "AG2908902",
+          "type": "20GP",
+          "packages": 168,
+          "grossWeight": {
+            "kg": "1713.60",
+            "raw": {
+              "value": "1713.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "16.13"
+        }
+      ],
+      "totalPackages": 168,
+      "totalGrossWeight": {
+        "kg": "1884.96",
+        "raw": {
+          "value": "1884.96",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PACIFIC/PA611767/C/NO. 1-168",
+      "cargoDescription": "SAID TO CONTAIN 168 CTNS PLUSH TEDDY BEAR 30 CM",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Yantian",
+      "dateOfIssue": "2026-06-21",
+      "shippedOnBoardDate": "2026-06-21",
+      "references": [
+        "BRI2606654",
+        "PA611767"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "importerOfRecordNumber": "95-478321000",
+      "consigneeNumber": "95-478321000",
+      "manufacturer": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipToParty": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "950300",
+      "containerStuffingLocation": {
+        "lines": [
+          "No. 18 Longgang Industrial Ave",
+          "Buji Subdistrict"
+        ],
+        "city": "Shenzhen",
+        "region": "Guangdong",
+        "postalCode": "518112",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Compass Freight Forwarding Co.",
+        "address": {
+          "lines": [
+            "18 Changjiang Rd"
+          ],
+          "city": "Shanghai",
+          "country": "CN"
+        }
+      }
+    }
+  }
+}

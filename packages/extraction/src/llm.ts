@@ -117,12 +117,23 @@ export class LlmClient {
     private readonly mode: CacheMode = cacheDir ? 'readwrite' : 'off',
   ) {}
 
-  async call<S extends z.ZodType>(promptVersion: string, req: StructuredRequest<S>): Promise<CallResult<z.infer<S>>> {
-    const started = Date.now();
-    const key = createHash('sha256')
+  cacheKey(promptVersion: string, req: Pick<StructuredRequest<z.ZodType>, 'system' | 'user'>): string {
+    return createHash('sha256')
       .update(JSON.stringify([this.provider.id, promptVersion, req.system, req.user]))
       .digest('hex')
       .slice(0, 32);
+  }
+
+  /** Whether a valid cached response exists for this request (no model call). */
+  async isCached<S extends z.ZodType>(promptVersion: string, req: StructuredRequest<S>): Promise<boolean> {
+    if (!this.cacheDir) return false;
+    const hit = await readFile(join(this.cacheDir, `${this.cacheKey(promptVersion, req)}.json`), 'utf8').then(JSON.parse, () => undefined);
+    return !!hit && req.schema.safeParse(hit.output).success;
+  }
+
+  async call<S extends z.ZodType>(promptVersion: string, req: StructuredRequest<S>): Promise<CallResult<z.infer<S>>> {
+    const started = Date.now();
+    const key = this.cacheKey(promptVersion, req);
     const trace = (t: Partial<LlmTrace>) =>
       Promise.resolve(this.provider.version?.())
         .then((modelVersion) => this.tracer?.({ provider: this.provider.id, promptVersion, key, cached: false, ms: Date.now() - started, modelVersion, ...t }))

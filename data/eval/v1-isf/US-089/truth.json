@@ -1,0 +1,399 @@
+{
+  "id": "US-089",
+  "seed": 198814708,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "LB",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SAI2608281",
+      "invoiceDate": "2026-06-26",
+      "poNumber": "PO-12040",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-07-05",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ho Chi Minh City",
+          "unLocode": "VNSGN",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Ho Chi Minh City"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 12,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "1100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.30",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3630.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "217.80",
+        "raw": {
+          "value": "217.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "209.00",
+        "raw": {
+          "value": "209.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "3630.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-SAI2608281",
+      "invoiceRef": "SAI2608281",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-11",
+          "count": 11,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-12040/C/NO. 1-11",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "1100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "209.00",
+            "raw": {
+              "value": "209.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "217.80",
+            "raw": {
+              "value": "217.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 11,
+        "netWeight": {
+          "kg": "209.00",
+          "raw": {
+            "value": "209.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "217.80",
+          "raw": {
+            "value": "217.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "0.92"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVSGN136880",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "654906906",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "notifyParty": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "027E",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Ho Chi Minh City",
+        "unLocode": "VNSGN",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "MDOU9149676",
+          "seal": "MD2299205",
+          "type": "20GP",
+          "packages": 11,
+          "grossWeight": {
+            "kg": "217.80",
+            "raw": {
+              "value": "480",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "0.92"
+        }
+      ],
+      "totalPackages": 11,
+      "totalGrossWeight": {
+        "kg": "217.80",
+        "raw": {
+          "value": "480",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "BLUEBONNET/PO-12040/C/NO. 1-11",
+      "cargoDescription": "SAID TO CONTAIN 11 CTNS MEN'S COTTON T-SHIRT",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ho Chi Minh City",
+      "dateOfIssue": "2026-07-05",
+      "shippedOnBoardDate": "2026-07-05",
+      "references": [
+        "SAI2608281",
+        "PO-12040"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "importerOfRecordNumber": "74-381245600",
+      "consigneeNumber": "74-381245600",
+      "manufacturer": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipToParty": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "VN",
+      "htsCode": "610910",
+      "containerStuffingLocation": {
+        "lines": [
+          "Lot B4, Tan Thuan Export Processing Zone",
+          "District 7"
+        ],
+        "city": "Ho Chi Minh City",
+        "postalCode": "700000",
+        "country": "VN"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

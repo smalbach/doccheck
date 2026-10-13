@@ -44,7 +44,7 @@ export class ShipmentsController {
     return this.shipments.document(id, documentId);
   }
 
-  /** Re-extracts a document as the given type: { "type": "COMMERCIAL_INVOICE" | "PACKING_LIST" | "BILL_OF_LADING" }. */
+  /** Re-extracts a document as the given type: { "type": "COMMERCIAL_INVOICE" | "PACKING_LIST" | "BILL_OF_LADING" | "ISF" }. */
   @Post(':id/documents/:documentId/reextract')
   @HttpCode(202)
   reextract(@Param('id') id: string, @Param('documentId') documentId: string, @Body(new ZodValidationPipe(ReextractDto)) dto: ReextractDto, @Query('wait') wait?: string) {
@@ -60,7 +60,7 @@ export class ShipmentsController {
     res.send(bytes);
   }
 
-  /** The Importer Security Filing (10+2) as JSON. Used by X11 on US shipments. */
+  /** The Importer Security Filing (10+2) as JSON. Used by X11 on US shipments; an uploaded ISF PDF also lands here. */
   @Put(':id/isf')
   saveIsf(@Param('id') id: string, @Body(new ZodValidationPipe(Isf)) isf: Isf) {
     return this.shipments.saveIsf(id, isf);

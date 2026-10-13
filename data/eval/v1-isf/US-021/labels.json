@@ -1,0 +1,27 @@
+{
+  "id": "US-021",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "10883.20",
+      "after": "11100.86",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.02 against the packing list."
+    },
+    {
+      "kind": "isf_hts_mismatch",
+      "document": "isf",
+      "field": "htsCode",
+      "before": "090111",
+      "after": "420292",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF HTS 420292 instead of 090111"
+    }
+  ]
+}

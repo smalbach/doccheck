@@ -1,0 +1,49 @@
+{
+  "id": "US-070",
+  "errors": [
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[0].quantity.value",
+      "before": "56",
+      "after": "560",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 1 quantity changed without updating the line total."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 56,
+      "after": 58,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 58 packages instead of 56."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Consignee missing from the invoice."
+    }
+  ]
+}

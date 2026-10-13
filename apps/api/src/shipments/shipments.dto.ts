@@ -20,5 +20,5 @@ export const ValidateShipmentDto = z.object({
 });
 export type ValidateShipmentDto = z.infer<typeof ValidateShipmentDto>;
 
-export const ReextractDto = z.object({ type: z.enum(['COMMERCIAL_INVOICE', 'PACKING_LIST', 'BILL_OF_LADING']) });
+export const ReextractDto = z.object({ type: z.enum(['COMMERCIAL_INVOICE', 'PACKING_LIST', 'BILL_OF_LADING', 'ISF']) });
 export type ReextractDto = z.infer<typeof ReextractDto>;

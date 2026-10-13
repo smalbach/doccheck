@@ -17,6 +17,16 @@ export interface ExtractionRow {
   outputTokens?: number;
 }
 
+export interface IsfRow {
+  data: Isf;
+  /** 'upload' (JSON), 'sample' or 'pdf'. */
+  source: string;
+  updatedAt: string;
+  /** The PDF the ISF was extracted from, when source is 'pdf'. */
+  documentId?: string;
+  fileName?: string;
+}
+
 export interface ValidationRow {
   id: string;
   shipmentId: string;
@@ -113,21 +123,37 @@ export class ShipmentsRepository {
     return { id: r.id, shipmentId: r.shipment_id, ran: r.ran, skipped: r.skipped, inputs: r.inputs, agent: r.agent ?? undefined, createdAt: new Date(r.created_at).toISOString() };
   }
 
-  async saveIsf(shipmentId: string, data: Isf, source: string): Promise<void> {
+  /** Replaces the shipment's ISF. `documentId` is the PDF it was extracted from, if any. */
+  async saveIsf(shipmentId: string, data: Isf, source: string, documentId?: string): Promise<void> {
     await this.pool.query(
-      `insert into isf_filings (shipment_id, data, source) values ($1, $2, $3)
-       on conflict (shipment_id) do update set data = excluded.data, source = excluded.source, updated_at = now()`,
-      [shipmentId, JSON.stringify(data), source],
+      `insert into isf_filings (shipment_id, data, source, document_id) values ($1, $2, $3, $4)
+       on conflict (shipment_id) do update set data = excluded.data, source = excluded.source, document_id = excluded.document_id, updated_at = now()`,
+      [shipmentId, JSON.stringify(data), source, documentId ?? null],
     );
   }
 
-  async findIsf(shipmentId: string): Promise<{ data: Isf; source: string; updatedAt: string } | null> {
-    const { rows } = await this.pool.query('select * from isf_filings where shipment_id = $1', [shipmentId]);
-    return rows[0] ? { data: rows[0].data, source: rows[0].source, updatedAt: new Date(rows[0].updated_at).toISOString() } : null;
+  async findIsf(shipmentId: string): Promise<IsfRow | null> {
+    const { rows } = await this.pool.query(
+      'select i.*, d.file_name from isf_filings i left join documents d on d.id = i.document_id where i.shipment_id = $1',
+      [shipmentId],
+    );
+    const r = rows[0];
+    if (!r) return null;
+    return {
+      data: r.data,
+      source: r.source,
+      updatedAt: new Date(r.updated_at).toISOString(),
+      ...(r.document_id ? { documentId: r.document_id, fileName: r.file_name } : {}),
+    };
   }
 
   async deleteIsf(shipmentId: string): Promise<void> {
     await this.pool.query('delete from isf_filings where shipment_id = $1', [shipmentId]);
+  }
+
+  /** Drops the ISF taken from this document, e.g. after it was re-extracted as another type. */
+  async deleteIsfFromDocument(documentId: string): Promise<void> {
+    await this.pool.query('delete from isf_filings where document_id = $1', [documentId]);
   }
 
   async setStatus(id: string, status: ShipmentStatus): Promise<void> {

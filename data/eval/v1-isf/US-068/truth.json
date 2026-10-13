@@ -1,0 +1,392 @@
+{
+  "id": "US-068",
+  "seed": 797434379,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "LB",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-6820",
+      "invoiceDate": "2026-05-11",
+      "poNumber": "PO-23127",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-05-16",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Bremerhaven",
+          "unLocode": "DEBRV",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Bremerhaven"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 29,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "580",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.07",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "9090.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "814.90",
+        "raw": {
+          "value": "814.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "783.00",
+        "raw": {
+          "value": "783.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "9900.60",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Los Angeles",
+        "unLocode": "USLAX",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-6820",
+      "invoiceRef": "INV-2026-6820",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-29",
+          "count": 29,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-23127/C/NO. 1-29",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "579",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "783.00",
+            "raw": {
+              "value": "783.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "814.90",
+            "raw": {
+              "value": "814.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 29,
+        "netWeight": {
+          "kg": "783.00",
+          "raw": {
+            "value": "783.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "814.90",
+          "raw": {
+            "value": "814.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "1.37"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSBRV384401",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "561873991",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "notifyParty": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "025N",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Bremerhaven",
+        "unLocode": "DEBRV",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Los Angeles",
+        "unLocode": "USLAX",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Fontana",
+        "unLocode": "USFON",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGLU3834596",
+          "seal": "AG3104354",
+          "type": "20GP",
+          "packages": 29,
+          "grossWeight": {
+            "kg": "814.90",
+            "raw": {
+              "value": "1797",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "1.37"
+        }
+      ],
+      "totalPackages": 29,
+      "totalGrossWeight": {
+        "kg": "814.90",
+        "raw": {
+          "value": "1797",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "PACIFIC/PO-23127/C/NO. 1-29",
+      "cargoDescription": "SAID TO CONTAIN 29 CTNS BRASS BALL VALVE 2\"",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Bremerhaven",
+      "dateOfIssue": "2026-05-16",
+      "shippedOnBoardDate": "2026-05-16",
+      "references": [
+        "INV-2026-6820",
+        "PO-23127"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "importerOfRecordNumber": "95-478321000",
+      "consigneeNumber": "95-478321000",
+      "manufacturer": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipToParty": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "DE",
+      "htsCode": "848180",
+      "containerStuffingLocation": {
+        "lines": [
+          "Industriestrasse 9"
+        ],
+        "city": "Bremen",
+        "postalCode": "28197",
+        "country": "DE"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

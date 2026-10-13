@@ -1,0 +1,457 @@
+{
+  "id": "US-060",
+  "seed": 684032665,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "legacy",
+    "blWeightUnit": "LB",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "PUN2609899",
+      "invoiceDate": "2026-05-16",
+      "poNumber": "LA181720",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-05-21",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "New York"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 118,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "19600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.22",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "23912.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "13.83",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "5532.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2806.20",
+        "raw": {
+          "value": "2806.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2696.00",
+        "raw": {
+          "value": "2696.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "29444.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-PUN2609899",
+      "invoiceRef": "PUN2609899",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "packages": [
+        {
+          "range": "1-98",
+          "count": 98,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA181720/C/NO. 1-118",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "19600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2156.00",
+            "raw": {
+              "value": "2156.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2244.20",
+            "raw": {
+              "value": "2244.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "99-118",
+          "count": 20,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA181720/C/NO. 1-118",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "540.00",
+            "raw": {
+              "value": "540.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "562.00",
+            "raw": {
+              "value": "562.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 118,
+        "netWeight": {
+          "kg": "2696.00",
+          "raw": {
+            "value": "2696.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2806.20",
+          "raw": {
+            "value": "2806.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "3.88"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLNSA3423692",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "843259885",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "notifyParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "055W",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Chicago",
+        "unLocode": "USCHI",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCRU8842779",
+          "seal": "PC2049445",
+          "type": "20GP",
+          "packages": 118,
+          "grossWeight": {
+            "kg": "2806.20",
+            "raw": {
+              "value": "6187",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "3.88"
+        }
+      ],
+      "totalPackages": 108,
+      "totalGrossWeight": {
+        "kg": "2806.20",
+        "raw": {
+          "value": "6187",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "LAKESHORE/LA181720/C/NO. 1-118",
+      "cargoDescription": "SAID TO CONTAIN 118 CTNS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-05-22",
+      "shippedOnBoardDate": "2026-05-22",
+      "references": [
+        "PUN2609899",
+        "LA181720"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "importerOfRecordNumber": "36-412876500",
+      "consigneeNumber": "36-412876500",
+      "manufacturer": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipToParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "countryOfOrigin": "IN",
+      "htsCode": "848210",
+      "containerStuffingLocation": {
+        "lines": [
+          "Plot 41, MIDC Bhosari"
+        ],
+        "city": "Pune",
+        "region": "Maharashtra",
+        "postalCode": "411026",
+        "country": "IN"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

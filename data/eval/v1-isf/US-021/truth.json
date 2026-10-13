@@ -1,0 +1,396 @@
+{
+  "id": "US-021",
+  "seed": 1203691643,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/1999",
+      "invoiceDate": "2026-07-04",
+      "poNumber": "LA203868",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-07-12",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cartagena",
+          "unLocode": "COCTG",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Cartagena"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 179,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "10740",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.79",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "51444.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "10883.20",
+        "raw": {
+          "value": "10883.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "10740.00",
+        "raw": {
+          "value": "10740.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "51444.60",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/1999",
+      "invoiceRef": "CI/26/1999",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "packages": [
+        {
+          "range": "1-179",
+          "count": 179,
+          "type": "BAG",
+          "marks": "LAKESHORE/LA203868/C/NO. 1-179",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "10740",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "10740.00",
+            "raw": {
+              "value": "10740.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "10883.20",
+            "raw": {
+              "value": "10883.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 179,
+        "netWeight": {
+          "kg": "10740.00",
+          "raw": {
+            "value": "10740.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "10883.20",
+          "raw": {
+            "value": "10883.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "25.51"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLCTG2088010",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "118474353",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "notifyParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "072N",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Cartagena",
+        "unLocode": "COCTG",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Chicago",
+        "unLocode": "USCHI",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCRU8326324",
+          "seal": "PC3735023",
+          "type": "40GP",
+          "packages": 179,
+          "grossWeight": {
+            "kg": "10883.20",
+            "raw": {
+              "value": "10883.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "25.51"
+        }
+      ],
+      "totalPackages": 179,
+      "totalGrossWeight": {
+        "kg": "11100.86",
+        "raw": {
+          "value": "11100.86",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "LAKESHORE/LA203868/C/NO. 1-179",
+      "cargoDescription": "SAID TO CONTAIN 179 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cartagena",
+      "dateOfIssue": "2026-07-15",
+      "shippedOnBoardDate": "2026-07-15",
+      "references": [
+        "CI/26/1999",
+        "LA203868"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "importerOfRecordNumber": "36-412876500",
+      "consigneeNumber": "36-412876500",
+      "manufacturer": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipToParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "countryOfOrigin": "CO",
+      "htsCode": "420292",
+      "containerStuffingLocation": {
+        "lines": [
+          "Carrera 5 # 12-40"
+        ],
+        "city": "Neiva",
+        "region": "Huila",
+        "country": "CO"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

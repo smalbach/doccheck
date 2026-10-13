@@ -1,0 +1,27 @@
+{
+  "id": "US-069",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "7113.60",
+      "after": "7824.96",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.10 against the packing list."
+    },
+    {
+      "kind": "isf_seller_mismatch",
+      "document": "isf",
+      "field": "seller.name",
+      "before": "Cafe Alto Huila Exportadores S.A.S.",
+      "after": "Nordhafen Armaturen GmbH",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF seller \"Nordhafen Armaturen GmbH\" instead of \"Cafe Alto Huila Exportadores S.A.S.\""
+    }
+  ]
+}

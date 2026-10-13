@@ -41,8 +41,11 @@ export interface RuleDefinition {
 }
 
 export interface IsfFiling {
+  /** 'upload' (JSON), 'sample' or 'pdf' (extracted from an uploaded filing confirmation). */
   source: string;
   updatedAt: string;
+  documentId?: string;
+  fileName?: string;
   data: { seller: { name: string }; buyer: { name: string }; countryOfOrigin: string; htsCode: string; importerOfRecordNumber: string };
 }
 
