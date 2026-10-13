@@ -1,5 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { extractDocument, PROMPT_VERSION, type LlmClient } from '@doccheck/extraction';
+import { extractDocument, PROMPT_VERSION, type ExtractableType, type LlmClient } from '@doccheck/extraction';
 import type { CommercialInvoice } from '@doccheck/schemas';
 import { InjectLlm } from '../llm/llm.module';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
@@ -16,7 +16,8 @@ export class DocumentProcessor {
     @InjectLlm() private readonly llm: LlmClient,
   ) {}
 
-  async process(documentId: string): Promise<void> {
+  /** `type` skips classification, for a document whose type the user corrected. */
+  async process(documentId: string, type?: ExtractableType): Promise<void> {
     const doc = await this.repo.findDocument(documentId);
     if (!doc) throw new Error(`Document ${documentId} not found`);
     await this.repo.updateDocumentStatus(documentId, 'EXTRACTING');
@@ -24,7 +25,7 @@ export class DocumentProcessor {
     const started = Date.now();
     try {
       const bytes = await this.storage.get(doc.storageKey);
-      const { pdf, ...result } = await extractDocument(new Uint8Array(bytes), this.llm);
+      const { pdf, ...result } = await extractDocument(new Uint8Array(bytes), this.llm, type);
       await this.repo.saveExtraction(
         documentId,
         {

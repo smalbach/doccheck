@@ -195,6 +195,12 @@ describe('PDF upload', { skip: !hasSample && 'evaluation set not generated' }, (
     assert.deepEqual([...new Set(run.body.findings.map((f) => f.ruleId))].sort(), expected);
     assert.ok(run.body.findings.every((f) => f.evidence.some((e) => e.source?.page === 1)));
 
+    const invoiceId = documents[0].document.id;
+    const again = await fetch(`${base}/shipments/${s.id}/documents/${invoiceId}/reextract?wait=true`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ type: 'COMMERCIAL_INVOICE' }) });
+    assert.equal(again.status, 202);
+    assert.deepEqual([(await again.json()).document.status, (await call('GET', `/shipments/${s.id}/documents/${invoiceId}`)).body.document.typeConfidence], ['EXTRACTED', 1]);
+    assert.equal((await call('POST', `/shipments/${s.id}/documents/${invoiceId}/reextract`, { type: 'ISF' })).status, 400);
+
     const file = await fetch(`${base}/shipments/${s.id}/documents/${documents[0].document.id}/file`);
     assert.equal(file.headers.get('content-type'), 'application/pdf');
     assert.equal((await file.arrayBuffer()).byteLength, readFileSync(join(sample, 'invoice.pdf')).length);

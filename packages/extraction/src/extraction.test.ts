@@ -3,7 +3,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { classifyDocument } from './classify';
-import { countryCode, decimal, isoDate, normalizeBillOfLading, quantityUnit, weight } from './normalize';
+import { countryCode, decimal, isoDate, normalizeBillOfLading, normalizePackingList, quantityUnit, weight } from './normalize';
 import { readPdfText } from './pdf-text';
 import { findSource } from './provenance';
 import type { RawBillOfLading } from './raw-schemas';
@@ -66,6 +66,15 @@ describe('classification', () => {
 
   it('does not take an invoice reference on a packing list for a title', () => {
     expect(classifyDocument('Packing List\nAcme Co.   Invoice No. CI/26/0799\nMarks: 1-279\nCarton No.  Packages  Description  Net Weight  Gross Weight  Dimensions (cm)').type).toBe('PACKING_LIST');
+  });
+});
+
+describe('OCR debris', () => {
+  it('treats a reference without digits as unreadable instead of comparing it', () => {
+    const pkg = { range: '1-10', count: '10', packageType: 'CTN', sku: null, description: 'Toys', quantity: '100', unit: 'PCS', netWeight: null, grossWeight: null, dimensionsCm: null };
+    const { data, issues } = normalizePackingList({ packingListNumber: 'PL-1', invoiceRef: 'rr,,', seller: null, consignee: null, marks: null, packages: [pkg], totalPackages: '10', totalNetWeight: null, totalGrossWeight: null, totalVolumeM3: null });
+    expect(data?.invoiceRef).toBeUndefined();
+    expect(issues[0]).toMatch(/does not look like a document number/);
   });
 });
 

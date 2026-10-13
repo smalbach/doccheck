@@ -203,6 +203,14 @@ function description(text: string | null, hsCode: string | null, sku: string | n
   return d.trim();
 }
 
+function reference(v: string | null, field: string, issues: string[]): string | undefined {
+  const t = clean(v);
+  if (!t) return undefined;
+  if (/\d/.test(t)) return t;
+  issues.push(`${field}: "${t}" does not look like a document number`);
+  return undefined;
+}
+
 const prune = <T extends object>(o: T): T => Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined && v !== null)) as T;
 
 function finish<S extends z.ZodType>(schema: S, value: unknown, issues: string[]): NormalizeResult<z.infer<S>> {
@@ -294,7 +302,8 @@ export function normalizePackingList(raw: RawPackingList): NormalizeResult<Packi
     PackingList,
     prune({
       packingListNumber: clean(raw.packingListNumber) ?? undefined,
-      invoiceRef: clean(raw.invoiceRef) ?? undefined,
+      // A document number has digits; OCR debris like "rr,," is treated as unreadable, not compared.
+      invoiceRef: reference(raw.invoiceRef, 'invoiceRef', issues),
       seller: party(raw.seller, 'seller', issues),
       consignee: party(raw.consignee, 'consignee', issues),
       packages,

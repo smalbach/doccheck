@@ -1,4 +1,4 @@
-import { excerpt, type RegulationIndex } from '@doccheck/regulations';
+import { excerpt, sentenceMatch, type RegulationIndex } from '@doccheck/regulations';
 import { PROFILES } from '@doccheck/rules';
 import type { Destination, Finding } from '@doccheck/schemas';
 
@@ -12,11 +12,13 @@ const QUERIES: Record<string, { CBSA: string | null; CBP: string | null }> = {
   X2: { CBSA: 'number of packages', CBP: 'marks and numbers of the packages' },
   X3: { CBSA: 'net and gross weight', CBP: 'quantities in weights and measures' },
   X4: { CBSA: 'net and gross weight', CBP: 'quantities in weights and measures' },
-  X5: { CBSA: 'unit price total price paid or payable', CBP: 'purchase price of each item in the currency of the purchase' },
-  X6: { CBSA: 'currency of settlement', CBP: 'kind of currency' },
+  X5: { CBSA: 'unit price total price paid or payable', CBP: 'purchase price of each item' },
+  X6: { CBSA: 'currency of settlement', CBP: 'purchase price in the currency of the purchase' },
   X7: { CBSA: 'quantity of goods description', CBP: 'quantities in weights and measures' },
   X8: { CBSA: 'other references commercial invoice number', CBP: null },
+  X9: { CBSA: 'Field 2: Date of direct shipment to Canada', CBP: 'the time when the merchandise is shipped' },
   X10: { CBSA: null, CBP: null },
+  X12: { CBSA: 'Field 9: Conditions of sale and terms of payment terms and conditions agreed upon by the vendor and the purchaser', CBP: 'all charges upon the merchandise itemized by name and amount including freight' },
   X11: { CBSA: null, CBP: 'importer security filing data elements' },
   C2: { CBSA: 'invoice in English or French translation', CBP: null },
   A1: { CBSA: 'detailed description of the goods', CBP: 'detailed description of the merchandise' },
@@ -58,7 +60,13 @@ export async function attachRegulations(findings: Finding[], destination: Destin
     const query = citationQuery(finding, destination);
     if (!query) continue;
     if (!cache.has(query)) {
-      const [hit] = (await index.search(query, { authority, language: 'en', limit: 3 })).filter((h) => (h.ranks.keyword ?? 99) <= 5);
+      // Among relevant passages, quote the one with the sentence closest to the query: a short chunk can
+      // outrank the paragraph that actually defines the field.
+      const relevant = (await index.search(query, { authority, language: 'en', limit: 3 })).filter((h) => (h.ranks.keyword ?? 99) <= 5);
+      const hit = relevant.reduce<(typeof relevant)[number] | undefined>(
+        (best, h) => (!best || sentenceMatch(h.chunk.text, query) > sentenceMatch(best.chunk.text, query) ? h : best),
+        undefined,
+      );
       cache.set(
         query,
         hit

@@ -3,7 +3,7 @@ import { Isf } from '@doccheck/schemas';
 import type { Response } from 'express';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
-import { CreateShipmentDto, ValidateShipmentDto } from './shipments.dto';
+import { CreateShipmentDto, ReextractDto, ValidateShipmentDto } from './shipments.dto';
 import { ShipmentsService } from './shipments.service';
 
 const MAX_PDF_BYTES = 20 * 1024 * 1024;
@@ -42,6 +42,13 @@ export class ShipmentsController {
   @Get(':id/documents/:documentId')
   document(@Param('id') id: string, @Param('documentId') documentId: string) {
     return this.shipments.document(id, documentId);
+  }
+
+  /** Re-extracts a document as the given type: { "type": "COMMERCIAL_INVOICE" | "PACKING_LIST" | "BILL_OF_LADING" }. */
+  @Post(':id/documents/:documentId/reextract')
+  @HttpCode(202)
+  reextract(@Param('id') id: string, @Param('documentId') documentId: string, @Body(new ZodValidationPipe(ReextractDto)) dto: ReextractDto, @Query('wait') wait?: string) {
+    return this.shipments.reextract(id, documentId, dto.type, wait === 'true');
   }
 
   /** The uploaded PDF, for the viewer. */

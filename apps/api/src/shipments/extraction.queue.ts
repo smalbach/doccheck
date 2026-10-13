@@ -1,5 +1,6 @@
 import { Injectable, Logger, type OnApplicationShutdown, type OnModuleInit } from '@nestjs/common';
 import { Queue, QueueEvents, Worker, type ConnectionOptions } from 'bullmq';
+import type { ExtractableType } from '@doccheck/extraction';
 import { DocumentProcessor } from './document.processor';
 
 const QUEUE = 'extraction';
@@ -47,7 +48,7 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationShutdown {
     this.queue = new Queue(QUEUE, { connection, prefix });
     this.events = new QueueEvents(QUEUE, { connection, prefix });
     if (process.env.EXTRACTION_WORKER !== 'false') {
-      this.worker = new Worker(QUEUE, (job) => this.processor.process(job.data.documentId), {
+      this.worker = new Worker(QUEUE, (job) => this.processor.process(job.data.documentId, job.data.type), {
         connection,
         prefix,
         concurrency: Number(process.env.EXTRACTION_CONCURRENCY ?? 1),
@@ -59,10 +60,10 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationShutdown {
   }
 
   /** Queues the documents; with `wait` the call resolves once every one is extracted or failed. */
-  async enqueue(documentIds: string[], wait = false): Promise<void> {
+  async enqueue(documentIds: string[], wait = false, type?: ExtractableType): Promise<void> {
     if (!this.queue) {
       const run = async () => {
-        for (const id of documentIds) await this.processor.process(id).catch(() => undefined);
+        for (const id of documentIds) await this.processor.process(id, type).catch(() => undefined);
       };
       if (wait) await run();
       else void run();
@@ -71,8 +72,9 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationShutdown {
     const jobs = await this.queue.addBulk(
       documentIds.map((documentId) => ({
         name: 'extract',
-        data: { documentId },
-        opts: { jobId: documentId, attempts: 2, backoff: { type: 'exponential', delay: 5000 }, removeOnComplete: 1000, removeOnFail: 5000 },
+        data: { documentId, type },
+        // A re-extraction needs its own job id: BullMQ ignores a job id it already has.
+        opts: { jobId: type ? `${documentId}-${type}-${Date.now()}` : documentId, attempts: 2, backoff: { type: 'exponential', delay: 5000 }, removeOnComplete: 1000, removeOnFail: 5000 },
       })),
     );
     if (wait) await Promise.all(jobs.map((j) => j.waitUntilFinished(this.events!).catch(() => undefined)));

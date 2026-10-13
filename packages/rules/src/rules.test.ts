@@ -39,7 +39,7 @@ describe('rule engine', () => {
   it('finds nothing on a clean shipment', () => {
     const out = runRules(clean());
     expect(out.findings).toEqual([]);
-    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X10', 'C1', 'C2']);
+    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X12', 'C1', 'C2']);
   });
 
   it('X2: flags a package count mismatch', () => {
@@ -83,7 +83,7 @@ describe('rule engine', () => {
     const ctx = clean();
     delete ctx.billOfLading;
     const out = runRules(ctx);
-    expect(out.skipped.map((s) => s.ruleId)).toEqual(['X1', 'X2', 'X3', 'X10']);
+    expect(out.skipped.map((s) => s.ruleId)).toEqual(['X1', 'X2', 'X3', 'X9', 'X10', 'X12']);
   });
 
   it('X1: ignores formatting but flags a different street', () => {
@@ -123,6 +123,24 @@ describe('rule engine', () => {
     expect(ruleIds(ctx)).toEqual(['X8']);
   });
 
+  it('X9: tolerates a few days between invoice and BL dates, not weeks', () => {
+    const ctx = clean();
+    ctx.billOfLading!.data.shippedOnBoardDate = '2026-10-09';
+    expect(ruleIds(ctx)).toEqual([]);
+    ctx.billOfLading!.data.shippedOnBoardDate = '2026-11-02';
+    const x9 = runRules(ctx).findings.filter((f) => f.ruleId === 'X9');
+    expect(x9[0].message).toContain('28 days later');
+  });
+
+  it('X12: flags a CIF invoice on a freight collect BL, not an FOB one', () => {
+    const ctx = clean();
+    expect(ruleIds(ctx)).toEqual([]); // FOB + COLLECT
+    ctx.invoice!.data.incoterm = { code: 'CIF', place: 'Vancouver' };
+    expect(ruleIds(ctx)).toEqual(['X12']);
+    ctx.billOfLading!.data.freightTerms = 'PREPAID';
+    expect(ruleIds(ctx)).toEqual([]);
+  });
+
   it('C1: reports each field CBSA requires that is missing', () => {
     const ctx = clean();
     delete ctx.invoice!.data.incoterm;
@@ -148,7 +166,7 @@ describe('rule engine', () => {
     };
     ctx.isf = { id: 'isf-1', data: isf };
     const out = runRules(ctx);
-    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X10', 'X11', 'U1']);
+    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X11', 'X12', 'U1']);
     expect(out.findings).toEqual([]);
 
     ctx.isf.data = { ...isf, countryOfOrigin: 'VN', htsCode: '950490' };

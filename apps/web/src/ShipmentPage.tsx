@@ -1,5 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { api, ApiError, type Finding, type IsfFiling, type RuleDefinition, type Shipment, type ShipmentDocument, type Validation } from './api';
+import { DocumentData } from './DocumentData';
 import type { Highlight } from './PdfViewer';
 
 // pdf.js is large: load it only when a document is opened.
@@ -23,6 +24,7 @@ export function ShipmentPage({ id }: { id: string }) {
   const [busy, setBusy] = useState<'upload' | 'validate'>();
   const [useAgent, setUseAgent] = useState(true);
   const [viewer, setViewer] = useState<{ doc: ShipmentDocument; highlight?: Highlight }>();
+  const [dataDoc, setDataDoc] = useState<ShipmentDocument>();
   const [dragging, setDragging] = useState(false);
   const input = useRef<HTMLInputElement>(null);
 
@@ -128,6 +130,12 @@ export function ShipmentPage({ id }: { id: string }) {
                   </button>
                   <span className="muted small">
                     {d.status === 'EXTRACTED' ? `${TYPE_LABEL[d.detectedType]} · ${d.pageCount} page${d.pageCount === 1 ? '' : 's'}` : d.status === 'FAILED' ? d.error : 'Extracting with the local model…'}
+                    {d.status === 'EXTRACTED' && (
+                      <>
+                        {' · '}
+                        <button className="link small" onClick={() => setDataDoc(d)}>extracted data</button>
+                      </>
+                    )}
                   </span>
                   <span className={`status ${d.status}`}>{pending(d) ? <span className="spinner" aria-label="in progress" /> : (d.status ?? 'extracted').toLowerCase()}</span>
                 </li>
@@ -179,6 +187,17 @@ export function ShipmentPage({ id }: { id: string }) {
         </section>
       </div>
 
+      {dataDoc && (
+        <DocumentData
+          shipmentId={id}
+          doc={dataDoc}
+          onClose={() => setDataDoc(undefined)}
+          onReextract={() => {
+            setDataDoc(undefined);
+            void refresh();
+          }}
+        />
+      )}
       {viewer && (
         <Suspense fallback={<div className="viewer"><p className="muted" style={{ padding: 16 }}>Loading viewer…</p></div>}>
           <PdfViewer url={api.fileUrl(id, viewer.doc.id)} title={`${TYPE_LABEL[viewer.doc.detectedType]} · ${viewer.doc.fileName}`} highlight={viewer.highlight} onClose={() => setViewer(undefined)} />

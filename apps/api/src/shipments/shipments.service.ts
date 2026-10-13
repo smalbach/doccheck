@@ -1,7 +1,7 @@
 import { BadRequestException, ConflictException, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { createHash, randomUUID } from 'node:crypto';
 import { attachRegulations, reviewFindings, type AgentDecision } from '@doccheck/agent';
-import { findSource, type LlmClient, type PdfText } from '@doccheck/extraction';
+import { findSource, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
 import { runRules, type EngineOutput, type ShipmentContext } from '@doccheck/rules';
 import type { BillOfLading, CommercialInvoice, Isf, PackingList, Shipment, ShipmentDocument } from '@doccheck/schemas';
 import { InjectLlm, RegulationsService } from '../llm/llm.module';
@@ -118,6 +118,17 @@ export class ShipmentsService {
     await this.repo.deleteIsf(id);
   }
 
+  /** Extracts a document again as the given type, when classification got it wrong. */
+  async reextract(id: string, documentId: string, type: ExtractableType, wait = false) {
+    const doc = UUID.test(documentId) ? await this.repo.findDocument(documentId) : null;
+    if (!doc || doc.shipmentId !== id) throw new NotFoundException(`Document ${documentId} not found in shipment ${id}`);
+    if (doc.status === 'QUEUED' || doc.status === 'EXTRACTING') throw new ConflictException('The document is already being extracted');
+    await this.repo.updateDocumentStatus(documentId, 'QUEUED');
+    await this.repo.refreshShipmentStatus(id);
+    await this.queue.enqueue([documentId], wait, type);
+    return this.document(id, documentId);
+  }
+
   /** Document with its status; extraction results once it is EXTRACTED. */
   async document(id: string, documentId: string) {
     const doc = UUID.test(documentId) ? await this.repo.findDocument(documentId) : null;
@@ -141,10 +152,11 @@ export class ShipmentsService {
     if (pending > 0) throw new ConflictException(`${pending} document(s) are still being extracted; validate when they are done`);
     await this.repo.setStatus(id, 'VALIDATING');
 
-    const extracted = new Map<string, { documentId: string; data: unknown; pdf: PdfText }>();
+    const extracted = new Map<string, { documentId: string; data: unknown; pdf: PdfText; ocr: boolean }>();
     for (const e of await this.repo.listExtractions(id)) {
       const slot = SLOT[e.documentType as keyof typeof SLOT];
-      if (slot && e.data) extracted.set(slot, { documentId: e.documentId, data: e.data, pdf: { pageCount: e.document.pageCount, lines: e.pdfLines, text: '' } });
+      const ocr = e.issues.some((i) => i.startsWith('Read with OCR'));
+      if (slot && e.data) extracted.set(slot, { documentId: e.documentId, data: e.data, pdf: { pageCount: e.document.pageCount, lines: e.pdfLines, text: '' }, ocr });
     }
     const inputs: Record<string, string> = {};
     const pick = <T>(slot: keyof typeof inputs & string, fromBody: T | undefined, bodyId: string) => {
@@ -178,10 +190,16 @@ export class ShipmentsService {
     const output = runRules(ctx);
 
     const pdfById = new Map([...extracted.values()].map((e) => [e.documentId, e.pdf]));
+    const ocrDocs = new Set([...extracted.values()].filter((e) => e.ocr).map((e) => e.documentId));
     for (const finding of output.findings) {
       for (const ev of finding.evidence) {
         const pdf = pdfById.get(ev.documentId);
         if (pdf && !ev.source) ev.source = findSource(pdf, ev.documentId, ev.value);
+      }
+      // OCR confuses look-alike characters (7/T, 0/O, 1/I): say so before anyone acts on the finding.
+      if (finding.evidence.some((ev) => ocrDocs.has(ev.documentId))) {
+        const note = 'Some of these values were read from a scan with OCR; confirm them against the document first.';
+        finding.suggestedFix = finding.suggestedFix ? `${note} ${finding.suggestedFix}` : note;
       }
     }
 

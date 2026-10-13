@@ -211,5 +211,6 @@ Para mostrar el proyecto sin servidor con GPU: publicar la web con resultados ya
 | `brew install pgvector` falla con `cannot load such file -- macho` | Homebrew no soporta macOS 27; además el Postgres de EDB no carga extensiones de Homebrew | No hace falta: la búsqueda de normativa usa índice en memoria. Si se necesita, compilar pgvector contra `/Library/PostgreSQL/18/bin/pg_config` |
 | La extracción queda en `QUEUED` | Ollama ocupado (evaluación corriendo) o worker detenido | Esperar, o revisar que `REDIS_URL` apunte al Redis correcto y que la API muestre "Extraction queue ready" |
 | `Ollama is not reachable` | Ollama cerrado, o otro programa (p. ej. AnythingLLM con su propio Ollama) en el puerto 11434 | Abrir Ollama; `lsof -nP -iTCP:11434` para ver quién tiene el puerto |
+| Un documento quedó con el tipo equivocado | El clasificador falló (más probable en escaneos) | En la web, "extracted data" → elegir el tipo → Re-extract |
 | `validate` responde 409 | Documentos todavía extrayéndose | Esperar a que todos estén `extracted` |
 | Envío US en `NEEDS_INPUT` | Falta el ISF, que necesita X11 | Subir el ISF como JSON en la página del envío (o `PUT /shipments/:id/isf`) |

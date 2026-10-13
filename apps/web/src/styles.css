@@ -145,3 +145,14 @@ table.list { width: 100%; border-collapse: collapse; }
 .isf { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 10px; }
 .isf h3 { font-size: 13px; margin: 0 0 4px; }
 .isf p { margin: 0; }
+
+.data-panel { overflow: auto; padding: 14px; flex: 1; }
+.fields { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px 16px; margin: 0 0 14px; }
+.fields div { min-width: 0; }
+.fields dt { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+.fields dd { margin: 0; overflow-wrap: anywhere; }
+.issues { margin: 0 0 12px; padding: 8px 12px 8px 28px; background: var(--accent-soft); border-radius: 6px; font-size: 13px; }
+table.compact td, table.compact th { padding: 4px 6px; font-size: 13px; }
+table.compact tbody tr { cursor: default; }
+.retype { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 12px 0 8px; }
+.retype select { width: auto; }

@@ -148,6 +148,22 @@ const stripEmbedding = (c: Chunk | IndexedChunk): Chunk => {
   return chunk;
 };
 
+/**
+ * How well the best sentence of `text` matches the query: distinct query terms it contains, with
+ * ties broken by density, so the paragraph that is about the topic beats one that mentions it.
+ */
+export function sentenceMatch(text: string, query: string): number {
+  const terms = new Set(tokenize(query));
+  return Math.max(
+    0,
+    ...text.split(/(?<=[.;])\s+(?=[A-Z(0-9])|\s+(?=Field \d+:)/).map((s) => {
+      const tokens = tokenize(s);
+      const matched = new Set(tokens.filter((t) => terms.has(t))).size;
+      return matched + matched / Math.max(1, tokens.length);
+    }),
+  );
+}
+
 /** Sentence-aligned excerpt of at most `max` characters around the query terms. */
 export function excerpt(text: string, query: string, max = 500): string {
   // Sentences, and a hard break before each "Field N:" so one form field is never quoted with the next.

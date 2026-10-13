@@ -1,5 +1,6 @@
 import { LlmClient, type LlmProvider } from '@doccheck/extraction';
-import { chunkDocument, parseDocument, RegulationIndex, tokenize } from '@doccheck/regulations';
+import { chunkDocument, loadCorpus, parseDocument, RegulationIndex, tokenize } from '@doccheck/regulations';
+import { join } from 'node:path';
 import { runRules, type ShipmentContext } from '@doccheck/rules';
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { describe, expect, it } from 'vitest';
@@ -53,6 +54,25 @@ describe('citations', () => {
     const findings = await attachRegulations(runRules(c).findings, 'CA', await index());
     expect(findings.find((f) => f.ruleId === 'C1')?.regulation?.excerpt).toMatch(/^Field 7/);
     expect(findings.find((f) => f.ruleId === 'X10')?.regulation).toBeUndefined();
+  });
+});
+
+describe('citations on the real corpus', () => {
+  // Keyword retrieval only (constant embeddings), so the test needs no model; the expected passages
+  // are the CI1 field or 141.86 paragraph each rule is about.
+  const EXPECTED: [string, 'CA' | 'US', string][] = [
+    ['X2', 'CA', 'Field 11: Number of packages'],
+    ['X6', 'CA', 'Field 10: Currency of settlement'],
+    ['X9', 'CA', 'Field 2: Date of direct shipment'],
+    ['X12', 'CA', 'Field 9: Conditions of sale'],
+    ['X5', 'US', '(5) The purchase price of each item'],
+    ['X12', 'US', '(8) All charges upon the merchandise'],
+  ];
+  it.each(EXPECTED)('%s (%s) quotes "%s"', async (ruleId, destination, start) => {
+    const docs = await loadCorpus(join(__dirname, '../../../data/corpus'));
+    const index = await RegulationIndex.build(docs.flatMap((d) => chunkDocument(d)), { id: 'flat', embed: async (t) => t.map(() => [1, 0]) });
+    const [f] = await attachRegulations([{ id: ruleId, shipmentId: 's', ruleId, severity: 'LOW', decidedBy: 'RULE', message: '', evidence: [{ documentId: 'd', field: '', value: '' }] }], destination, index);
+    expect(f.regulation?.excerpt.startsWith(start)).toBe(true);
   });
 });
 
