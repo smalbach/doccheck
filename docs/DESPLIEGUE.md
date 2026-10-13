@@ -166,7 +166,8 @@ docker compose --profile app up -d --build
 
 - App en `http://localhost:3000`. Credenciales de la base y de MinIO: las del compose (cambiarlas fuera de un entorno de prueba).
 - La galería de muestras usa `data/eval/v1` montado como volumen: corre `npm run synth` antes si no existen los PDFs.
-- **Pendiente de verificar:** el Dockerfile no se ha construido todavía (Docker no estaba corriendo en esta Mac). Es lo primero que hay que probar.
+- **Pendiente de verificar:** la imagen no se ha construido con Docker todavía (el daemon no estaba corriendo en esta Mac); sus pasos sí se reprodujeron fuera de Docker (sección 4). Es lo primero que hay que probar.
+- La imagen guarda los PDFs en `STORAGE_DIR=/data/uploads` cuando no hay S3; monta un volumen en `/data` para conservarlos.
 - En Mac, el puerto 9000 de MinIO choca con php-fpm local: cambia el mapeo `9000:9000` o detén php-fpm.
 
 ## 3. Servidor con GPU
@@ -194,35 +195,144 @@ Límite de subida: 10 PDFs por pedido, 20 MB cada uno (`apps/api/src/shipments/s
 
 ## 4. Demo pública de solo lectura (sin GPU)
 
-Con `DEMO_READONLY=true` la misma app corre sin modelo: muestra una selección de envíos sintéticos y repite las respuestas que el modelo ya dio en local. Sirve un VPS chico (1 vCPU, 1 GB) con Postgres; no hace falta Ollama, Redis ni S3.
+Con `DEMO_READONLY=true` la misma app corre sin modelo: muestra una selección de envíos sintéticos y repite las respuestas que el modelo ya dio en local. Basta una VM chica (1 vCPU compartida, 512 MB) con Postgres; no hace falta Ollama, Redis, S3 ni GPU.
 
 Qué cambia en modo demo:
 
-- La API rechaza con 403 toda escritura salvo `POST /demo/samples/:id` y `POST /shipments/:id/validate`: no se suben PDFs, no se edita el ISF, no se re-extrae, no se borra.
-- El modelo corre solo desde caché (`LLM_CACHE_MODE=replay`, `LLM_CACHE_DIR` por defecto `eval/cache/ollama_<LLM_MODEL>`). Las muestras se leen de `data/demo` y solo se listan las que tienen su extracción en caché.
+- La API rechaza con 403 toda escritura salvo `POST /demo/samples/:id` y `POST /shipments/:id/validate` (y la cuenta propia: registro, sesión, perfil, contraseña, borrar la cuenta): no se suben PDFs, no se edita el ISF, no se re-extrae, no se borra.
+- El modelo corre solo desde caché (`LLM_CACHE_MODE=replay`, `LLM_CACHE_DIR` por defecto `eval/cache/ollama_<LLM_MODEL>`); nunca llama a Ollama. Las muestras se leen de `data/demo` y solo se listan las que tienen su extracción en caché.
 - Hay que crear cuenta para entrar (el registro funciona también en modo demo). Cada usuario recibe su propio envío por muestra, porque los envíos son privados: la base crece como usuarios × muestras (unas 24 por usuario).
 - Citas: los vectores de las consultas están en `data/corpus/index/bge-m3.queries.json`; si falta una, la búsqueda usa solo palabras clave (BM25).
 - Si falta la respuesta del agente para un envío, la validación igual devuelve los hallazgos de las reglas y dice que el agente no está disponible.
 - La web pregunta a `GET /health` (`demo: true`), oculta subida, borrar y editar ISF y muestra un aviso.
 
-Preparar las muestras (una vez, y de nuevo si cambia el prompt o el modelo):
+### Archivos
+
+| Archivo | Para qué |
+| --- | --- |
+| `Dockerfile` | Imagen multi-etapa: compila todo y deja solo lo que corre (dependencias de producción de la API, `dist`, migraciones, web, corpus, `eval/cache`, `eval/reports`, `data/demo`). Corre como usuario `node`; `HEALTHCHECK` contra `/health`. Argumentos: `OCR=false` quita Tesseract (~65 MB; la demo nunca hace OCR) y `REQUIRE_DEMO_SAMPLES=true` hace fallar el build si `data/demo` está vacío |
+| `scripts/docker-entrypoint.sh` | Si el contenedor arranca como root (volúmenes de Fly y Render se montan como root), le da `STORAGE_DIR` al usuario `node` y baja a ese usuario antes de arrancar la API |
+| `fly.toml` | Fly.io (recomendado): VM `shared-cpu-1x` de 512 MB que se apaga sin visitas, volumen de 1 GB en `/data`, chequeo de `/health`, HTTPS forzado, variables de la demo |
+| `render.yaml` | Alternativa en Render (Blueprint): instancia `starter` con disco de 1 GB |
+| `docker-compose.demo.yml` | La demo en local tal como corre en producción (mismos argumentos y variables), con un Postgres local en lugar de Neon |
+
+### Requisitos
+
+1. **Muestras preparadas y versionadas.** La imagen copia `data/demo`, `eval/cache` y `data/corpus/index/bge-m3.queries.json` del repositorio; sin muestras el build de la demo falla a propósito. Prepararlas (una vez, y de nuevo si cambia el prompt o el modelo), en esta Mac con Ollama:
+
+   ```bash
+   npm run synth                                            # PDFs de data/eval/v1 (no se versionan)
+   ```
+   ```bash
+   LLM_CACHE_DIR=eval/cache/ollama_qwen3.8 npm start        # modo normal, con Ollama; deja la terminal abierta
+   ```
+   ```bash
+   npm run demo:build                                       # en otra terminal: elige ~24 muestras, las corre por la API,
+                                                            # llena las cachés y copia PDFs, verdad y etiquetas a data/demo
+   ```
+   ```bash
+   git add data/demo eval/cache data/corpus/index/bge-m3.queries.json && git commit -m "Demo samples"
+   ```
+
+   Sin `LLM_CACHE_DIR` las respuestas no quedan en caché y la demo no las encuentra. El script descarta las muestras cuyo agente no terminó.
+2. **Cuenta en Fly.io** con tarjeta registrada y `flyctl` instalado e iniciado (`brew install flyctl`, `fly auth login`).
+3. **Postgres.** Recomendado: [Neon](https://neon.tech), plan gratuito (0,5 GB), proyecto en AWS `us-east-1` (cerca de la región `iad` de Fly). Copiar la cadena de conexión y cambiar el final por `?sslmode=verify-full`. La app no necesita pgvector ni extensiones; las tablas las crean las migraciones al arrancar. Alternativa dentro de Fly: `fly postgres create --name doccheck-demo-db --region iad --initial-cluster-size 1 --vm-size shared-cpu-1x --volume-size 1` y luego `fly postgres attach doccheck-demo-db` (pone `DATABASE_URL` sola; ~2–4 USD/mes más, y Fly no administra esa base: respaldos y actualizaciones quedan por cuenta propia).
+
+### Probar en local antes de publicar
 
 ```bash
-npm start                         # modo normal, con Ollama
-node scripts/demo-build.mjs       # elige ~24 muestras (cada tipo de error, CA y US, más limpias),
-                                  # las corre por la API, llena las cachés y copia todo a data/demo
-git add data/demo eval/cache data/corpus/index/bge-m3.queries.json
+docker compose -f docker-compose.demo.yml up -d --build
+```
+```bash
+curl -s localhost:4060/health
 ```
 
-Levantar la demo:
+Debe responder `"status":"ok"` y `"demo":true`. En `http://localhost:4060`: crear cuenta, "Try a sample", validar; subir o borrar debe dar 403. El puerto se cambia con `DEMO_PORT=4070 docker compose -f docker-compose.demo.yml up -d --build`. Apagar y borrar la base de prueba:
 
 ```bash
-docker compose --profile demo up -d --build      # app + Postgres, en :3000
+docker compose -f docker-compose.demo.yml down -v
 ```
 
-o sin Docker: `DEMO_READONLY=true npm start`.
+Sin Docker: `DEMO_READONLY=true npm start`.
 
-Para publicarla: VPS con Docker, proxy con TLS (Caddy como en la sección 3; el basic auth es opcional porque nada se puede modificar) y no publicar el puerto de Postgres. Probado en local con una segunda API en :3105 contra un Ollama inexistente: muestras, validación y citas funcionan; las escrituras dan 403; en celular sin scroll horizontal. El build de la imagen sigue pendiente (Docker apagado).
+Verificado el 13/10/2026 sin Docker (el daemon estaba apagado): se reprodujeron los pasos del `Dockerfile` (dependencias de producción de la API sin Tesseract, solo `dist`) en una carpeta aparte y se arrancó como en `fly.toml`, sin `.env` ni Ollama: migraciones al arrancar, 24 muestras listadas, carga y validación con hallazgos, agente y citas desde caché, PDF guardado en `STORAGE_DIR`, crear y borrar envíos dan 403, cookie `Secure` detrás de un proxy HTTPS y con `SIGNUP_LIMIT_PER_HOUR=3` el 4.º registro desde una misma dirección da 429 mientras otra dirección sigue pudiendo. ~200 MB de memoria residente. Falta construir la imagen con Docker y probar `docker-compose.demo.yml`.
+
+### Publicar en Fly.io
+
+Desde la raíz del repositorio, con las muestras ya versionadas. El nombre de la app es único en todo Fly: cambia `doccheck-demo` por uno propio (queda la URL `https://<nombre>.fly.dev`).
+
+```bash
+fly launch --copy-config --no-deploy --name doccheck-demo --region iad
+```
+
+Usa el `fly.toml` del repositorio y crea la app sin desplegar. Si pregunta por ajustes, Postgres, Redis o almacenamiento de Fly, responder que no (la base va por secreto).
+
+```bash
+fly volumes create doccheck_data --size 1 --region iad --yes
+```
+```bash
+fly secrets set DATABASE_URL='postgres://<usuario>:<contraseña>@<host>.neon.tech/neondb?sslmode=verify-full' ADMIN_EMAILS='tu@correo.com'
+```
+```bash
+fly deploy
+```
+```bash
+curl -s https://doccheck-demo.fly.dev/health
+```
+
+`fly deploy` construye la imagen en los servidores de Fly (no hace falta Docker local). Al arrancar, la API aplica las migraciones. Debe quedar una sola máquina (el volumen y el límite de registros son por máquina): `fly scale count 1` si `fly status` muestra más. Logs: `fly logs`.
+
+### Costo estimado (precios publicados de Fly y Neon; verificar al contratar)
+
+| Qué | Costo mensual |
+| --- | --- |
+| VM `shared-cpu-1x` 512 MB | ~3,2 USD si estuviera encendida todo el mes; con `auto_stop_machines` se paga solo el tiempo encendida (una demo con pocas visitas: ~0,5–1,5 USD) |
+| Volumen de 1 GB | ~0,15 USD |
+| Neon, plan gratuito | 0 USD (0,5 GB; la base se suspende sin uso y despierta en ~1 s) |
+| Tráfico saliente | centavos (0,02 USD/GB en Norteamérica y Europa) |
+| **Total** | **~1–4 USD/mes** |
+
+Con Render (`render.yaml`): instancia `starter` 7 USD + disco 0,25 USD ≈ 7,3 USD/mes, más Neon gratis.
+
+### Actualizar
+
+Cada cambio de código, de prompt o de muestras: volver a preparar las muestras si cambió el prompt o el modelo (Requisitos, paso 1), hacer commit y
+
+```bash
+fly deploy
+```
+
+Las migraciones nuevas se aplican solas al arrancar (con bloqueo, una vez). Volver a la versión anterior: `fly releases` y `fly deploy --image <imagen de esa versión>`.
+
+### Reiniciar la base de la demo
+
+Borra todas las cuentas y envíos; las tablas se recrean al reiniciar. Con Neon, en su consola (SQL Editor) o con `psql`:
+
+```bash
+psql "$DATABASE_URL" -c "drop schema public cascade; create schema public;"
+```
+```bash
+fly ssh console -C "sh -c 'rm -rf /data/uploads/*'"
+```
+```bash
+fly apps restart doccheck-demo
+```
+
+En Neon también sirve restaurar la rama a un punto anterior (Branches → Restore). En local: `docker compose -f docker-compose.demo.yml down -v`.
+
+### Seguridad
+
+- **Solo lectura**: nadie puede subir archivos, editar ni borrar envíos; solo cargar muestras propias y validarlas. No hay Ollama ni modelo detrás: una respuesta que no esté en caché da error, nunca una llamada a un modelo.
+- **Registro**: abierto, con `SIGNUP_LIMIT_PER_HOUR=5` cuentas por dirección y hora. `TRUST_PROXY=1` hace que cuente la dirección real del visitante (la que agrega el proxy de Fly) y que la cookie de sesión salga `Secure`; sin eso todos los visitantes compartirían la dirección del proxy. El límite vive en memoria: se reinicia cuando la máquina se apaga. Si hay abuso, un admin (`ADMIN_EMAILS`) cierra el registro desde Configuración, o `fly secrets set REGISTRATION_OPEN=false`.
+- **Inicio de sesión**: bloqueo tras 10 intentos fallidos por correo o 50 por dirección en 15 minutos.
+- **Secretos**: `DATABASE_URL` y `ADMIN_EMAILS` solo como `fly secrets`, nunca en `fly.toml` ni en el repositorio. Neon exige TLS (`sslmode=verify-full`) y contraseña; la base no tiene otra exposición.
+- **Contenedor**: la API corre como usuario `node`; solo `/data/uploads` es escribible. HTTPS forzado (`force_https`).
+- **Crecimiento**: cada usuario puede generar ~24 envíos (uno por muestra); el plan gratuito de Neon (0,5 GB) alcanza para miles de cuentas. Si se llena, reiniciar la base.
+- **Datos**: todo es sintético; no subir datos reales a la demo (tampoco se puede).
+
+### Alternativa: Render
+
+`render.yaml` describe el mismo servicio. En Render: New → Blueprint → elegir el repositorio; pide `DATABASE_URL` (Neon) y `ADMIN_EMAILS`. Render pasa las variables (`OCR`, `REQUIRE_DEMO_SAMPLES`) también como argumentos del build. El disco persistente exige instancia de pago (`starter`); en el plan gratuito los PDFs de las muestras cargadas se pierden en cada reinicio. `TRUST_PROXY=1` está pensado para un solo proxy delante; en Render no se ha verificado cuántos saltos agrega su borde.
 
 ## Variables de entorno
 
@@ -231,7 +341,7 @@ Para publicarla: VPS con Docker, proxy con TLS (Caddy como en la sección 3; el 
 | `PORT` | 3000 | Puerto de la API y la web |
 | `DATABASE_URL` | — (obligatoria) | Conexión a Postgres |
 | `MIGRATE_ON_START` | `true` | Aplicar migraciones al arrancar |
-| `STORAGE_DIR` | `.data/uploads` | PDFs cuando no hay S3 |
+| `STORAGE_DIR` | `.data/uploads` (`/data/uploads` en la imagen Docker) | PDFs cuando no hay S3 |
 | `S3_ENDPOINT`, `S3_BUCKET`, `S3_ACCESS_KEY`, `S3_SECRET_KEY`, `S3_REGION` | — | Almacenamiento S3 (MinIO, SeaweedFS, AWS, R2); el bucket se crea solo |
 | `REDIS_URL` | — | Cola de extracción; sin ella, extracción en el mismo proceso |
 | `EXTRACTION_CONCURRENCY` | 1 | Extracciones simultáneas (subir solo con varias GPUs o modelos) |
@@ -244,7 +354,7 @@ Para publicarla: VPS con Docker, proxy con TLS (Caddy como en la sección 3; el 
 | `EVAL_DIR` | `data/eval/v1` (`data/demo` en modo demo) | Muestras para la galería |
 | `DEMO_READONLY` | `false` | Demo pública de solo lectura: sin escrituras, modelo desde caché (sección 4) |
 | `LLM_CACHE_DIR`, `LLM_CACHE_MODE` | — | Caché de respuestas del modelo (`readwrite`, `replay`, `off`) |
-| `TRUST_PROXY` | `loopback` | Proxies cuyas cabeceras `X-Forwarded-*` se creen (cookie `Secure` y dirección del cliente). Valor de Express `trust proxy`: p. ej. `loopback`, una IP o `false` |
+| `TRUST_PROXY` | `loopback` | Proxies cuyas cabeceras `X-Forwarded-*` se creen (cookie `Secure` y dirección del cliente). Valor de Express `trust proxy`: `loopback`, una IP o subred, un número de saltos (`1` detrás del borde de Fly.io o Render), `true` o `false` |
 | `ADMIN_EMAILS` | — | Correos de administradores (separados por coma). Solo así se obtiene el rol admin; registrarse nunca lo da. Un admin puede ascender a otros desde la web |
 | `REGISTRATION_OPEN` | `true` | Registro abierto; un admin lo cierra desde Configuración. Cerrado, solo se registran los correos de `ADMIN_EMAILS` |
 | `SIGNUP_LIMIT_PER_HOUR` | 5 | Cuentas nuevas por dirección y hora (las peticiones desde la misma máquina no cuentan; detrás del túnel cuenta la IP real del visitante) |
