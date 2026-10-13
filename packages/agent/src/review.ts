@@ -2,7 +2,7 @@ import type { LlmClient } from '@doccheck/extraction';
 import type { RegulationIndex } from '@doccheck/regulations';
 import { excerpt } from '@doccheck/regulations';
 import { PROFILES, type ShipmentContext } from '@doccheck/rules';
-import { report, startStage, type AgentAnswer, type Finding, type Party, type ProgressCallback, type ValidationDetail } from '@doccheck/schemas';
+import { clip, findingPreview, report, startStage, type AgentAnswer, type Finding, type Party, type ProgressCallback, type ValidationDetail } from '@doccheck/schemas';
 import { z } from 'zod';
 import { INVOICE_REQUIREMENTS } from './cite';
 
@@ -96,7 +96,7 @@ export function countAgentQuestions(ctx: ShipmentContext, findings: readonly Fin
 const answerOf = (verdict: AgentAnswer['verdict'], confidence: number, rationale: string, effect: AgentAnswer['effect']): AgentAnswer => ({
   verdict,
   confidence,
-  rationale: rationale.length > RATIONALE_CHARS ? `${rationale.slice(0, RATIONALE_CHARS - 1)}…` : rationale,
+  rationale: clip(rationale, RATIONALE_CHARS),
   effect,
 });
 
@@ -124,14 +124,19 @@ async function review(ctx: ShipmentContext, findings: Finding[], llm: LlmClient,
   const decisions: AgentDecision[] = [];
   const out: Finding[] = [];
   const authority = PROFILES[ctx.destination].authority;
-  /** Reports a question as asked, runs it, then reports the decision it led to. */
-  const ask = async <T>(ruleId: string, question: string, run: () => Promise<T>, decide: (result: T) => AgentDecision): Promise<T> => {
-    const at = { index: decisions.length + 1, total: progress.total, ruleId, question };
+  /**
+   * Reports a question as asked (about `findingId`, if any), runs it, then reports the decision it led to;
+   * `addedOf` gives the finding the decision added, for its preview.
+   */
+  const ask = async <T>(ruleId: string, question: string, findingId: string | undefined, run: () => Promise<T>, decide: (result: T) => AgentDecision, addedOf?: (result: T) => Finding | undefined): Promise<T> => {
+    const at = { index: decisions.length + 1, total: progress.total, ruleId, question, ...(findingId ? { findingId } : {}) };
     await report(progress.onProgress, { stage: 'agent', status: 'progress', detail: at });
     const result = await run();
     const d = decide(result);
     decisions.push(d);
-    await report(progress.onProgress, { stage: 'agent', status: 'progress', detail: { ...at, answer: answerOf(d.verdict, d.confidence, d.rationale, d.effect) } });
+    const added = d.effect === 'added' ? addedOf?.(result) : undefined;
+    const answer = answerOf(d.verdict, d.confidence, d.rationale, d.effect);
+    await report(progress.onProgress, { stage: 'agent', status: 'progress', detail: { ...at, answer, ...(added ? { findingId: added.id, added: findingPreview(added) } : {}) } });
     return result;
   };
 
@@ -144,6 +149,7 @@ async function review(ctx: ShipmentContext, findings: Finding[], llm: LlmClient,
     const { output } = await ask(
       'X1',
       question,
+      f.id,
       () => judgeSameParty(llm, ctx.invoice!.data.consignee!, ctx.billOfLading!.data.consignee, 'The consignee names differ between two documents of the same shipment.'),
       ({ output: o }) => ({ ruleId: 'X1', question, verdict: o.sameParty, confidence: o.confidence, rationale: o.rationale, effect: o.sameParty === 'yes' && o.confidence >= ACT_CONFIDENCE ? 'dismissed' : 'kept' }),
     );
@@ -161,29 +167,29 @@ async function review(ctx: ShipmentContext, findings: Finding[], llm: LlmClient,
     }
     const lines = inv.lines.map((l) => `${l.description} (${l.quantity.value} ${l.quantity.unit})`);
     const question = 'BL cargo description consistent with the invoice?';
+    const mismatch = (rationale: string): Finding => ({
+      id: `${ctx.shipmentId}:A1:0`,
+      shipmentId: ctx.shipmentId,
+      ruleId: 'A1',
+      severity: 'MEDIUM',
+      decidedBy: 'AGENT',
+      message: `The BL describes the cargo as "${bl.cargoDescription}", which does not match the goods on the invoice.`,
+      evidence: [
+        { documentId: ctx.billOfLading!.id, field: 'cargoDescription', value: bl.cargoDescription },
+        ...inv.lines.map((l, i) => ({ documentId: ctx.invoice!.id, field: `lines[${i}].description`, value: l.description })),
+      ],
+      agentRationale: rationale,
+      suggestedFix: 'Ask the carrier or forwarder to correct the BL description before the cargo report is filed.',
+    });
     const { output } = await ask(
       'A1',
       question,
+      undefined,
       () => judgeDescription(llm, bl.cargoDescription, lines, regulation),
       ({ output: o }) => ({ ruleId: 'A1', question, verdict: o.consistent, confidence: o.confidence, rationale: o.rationale, effect: o.consistent === 'no' && o.confidence >= ACT_CONFIDENCE ? 'added' : 'none' }),
+      ({ output: o }) => mismatch(o.rationale),
     );
-    const add = output.consistent === 'no' && output.confidence >= ACT_CONFIDENCE;
-    if (add) {
-      out.push({
-        id: `${ctx.shipmentId}:A1:0`,
-        shipmentId: ctx.shipmentId,
-        ruleId: 'A1',
-        severity: 'MEDIUM',
-        decidedBy: 'AGENT',
-        message: `The BL describes the cargo as "${bl.cargoDescription}", which does not match the goods on the invoice.`,
-        evidence: [
-          { documentId: ctx.billOfLading.id, field: 'cargoDescription', value: bl.cargoDescription },
-          ...inv.lines.map((l, i) => ({ documentId: ctx.invoice!.id, field: `lines[${i}].description`, value: l.description })),
-        ],
-        agentRationale: output.rationale,
-        suggestedFix: 'Ask the carrier or forwarder to correct the BL description before the cargo report is filed.',
-      });
-    }
+    if (output.consistent === 'no' && output.confidence >= ACT_CONFIDENCE) out.push(mismatch(output.rationale));
   }
   return { findings: out, decisions };
 }

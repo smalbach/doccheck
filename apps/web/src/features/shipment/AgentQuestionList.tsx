@@ -1,27 +1,36 @@
+import type { RuleDefinition } from '../../api/types';
 import { useI18n } from '../../i18n/useI18n';
-import type { AgentQuestion } from '../../lib/progressTimeline';
+import { agentStatus, type RunTimeline } from '../../lib/progressTimeline';
+import { AgentQuestionItem } from './AgentQuestionItem';
+
+export interface AgentQuestionListProps {
+  run: RunTimeline;
+  rules: Readonly<Record<string, RuleDefinition>>;
+  /** Scrolls to the finding a question is about. */
+  onShowFinding?: (findingId: string) => void;
+}
 
 /**
- * The agent's questions of a run: answered ones with verdict and confidence; while the run goes on, the
- * pending one with a spinner (a question left unanswered by a failed agent shows no answer).
+ * The agent's questions of a validation run, each with its rule, the model thinking, then its verdict
+ * and effect. When the agent was off, failed or had nothing to ask, one line says so: the rule findings
+ * stand either way.
  */
-export function AgentQuestionList({ questions, running }: { questions: readonly AgentQuestion[]; running: boolean }) {
+export function AgentQuestionList({ run, rules, onShowFinding }: AgentQuestionListProps) {
   const { t } = useI18n();
-  if (questions.length === 0) return null;
+  const running = run.state === 'running';
+  const status = agentStatus(run);
   return (
-    <ol className="run-questions" aria-label={t('progress.validation.questions')}>
-      {questions.map((q) => (
-        <li key={q.index}>
-          <span>{q.question ?? q.ruleId}</span>{' '}
-          {q.answer ? (
-            <span className={`verdict verdict-${q.answer.verdict}`}>
-              {t('progress.validation.answer', { verdict: t(`shipment.agent.verdicts.${q.answer.verdict}`), confidence: Math.round(q.answer.confidence * 100) })}
-            </span>
-          ) : (
-            running && <span className="spinner step-spinner" aria-hidden />
-          )}
-        </li>
-      ))}
-    </ol>
+    <>
+      {run.questions.length > 0 && (
+        <ol className="agent-questions" aria-label={t('progress.validation.questions')}>
+          {run.questions.map((q) => (
+            <AgentQuestionItem key={q.index} question={q} rule={q.ruleId ? rules[q.ruleId] : undefined} running={running} onShowFinding={onShowFinding} />
+          ))}
+        </ol>
+      )}
+      {status === 'disabled' && <p className="muted small">{t('progress.agent.disabled')}</p>}
+      {status === 'failed' && <p className="muted small">{t('progress.agent.failed')}</p>}
+      {status === 'none' && <p className="muted small">{t('progress.agent.none')}</p>}
+    </>
   );
 }

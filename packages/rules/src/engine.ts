@@ -26,6 +26,8 @@ export interface RuleProgress {
   total: number;
   skipped: boolean;
   findings: number;
+  /** The findings this rule produced (already in the output, in order). */
+  found: readonly Finding[];
 }
 
 export interface RunOptions {
@@ -52,7 +54,7 @@ export function runRules(ctx: ShipmentContext, params: Partial<RuleParams> = {},
     const missing = def.requires.filter((t) => !have.has(t));
     if (missing.length > 0) {
       output.skipped.push({ ruleId: def.id, missing });
-      notify({ rule: def.id, index: i + 1, total: rules.length, skipped: true, findings: 0 });
+      notify({ rule: def.id, index: i + 1, total: rules.length, skipped: true, findings: 0, found: [] });
       continue;
     }
     output.ran.push(def.id);
@@ -69,7 +71,8 @@ export function runRules(ctx: ShipmentContext, params: Partial<RuleParams> = {},
         suggestedFix: r.suggestedFix,
       });
     });
-    notify({ rule: def.id, index: i + 1, total: rules.length, skipped: false, findings: output.findings.length - before });
+    const found = output.findings.slice(before);
+    notify({ rule: def.id, index: i + 1, total: rules.length, skipped: false, findings: found.length, found });
   }
   return output;
 }

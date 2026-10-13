@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { fromFixed, mul, withinTolerance } from './decimal';
-import { runRules } from './engine';
+import { runRules, type RuleProgress } from './engine';
 import { iso6346CheckDigit, isValidContainerNumber } from './rules/x10-container-check-digit';
 import type { ShipmentContext } from './types';
 
@@ -46,13 +46,15 @@ describe('rule engine', () => {
     const ctx = clean();
     ctx.billOfLading!.data.totalPackages = 121;
     delete ctx.packingList;
-    const seen: { rule: string; index: number; total: number; skipped: boolean; findings: number }[] = [];
+    const seen: RuleProgress[] = [];
     const out = runRules(ctx, {}, { onRule: (p) => void seen.push(p) });
     expect(seen.map((p) => p.index)).toEqual(seen.map((_, i) => i + 1));
     expect(seen.every((p) => p.total === seen.length)).toBe(true);
     expect(seen.length).toBe(out.ran.length + out.skipped.length);
     expect(seen.filter((p) => p.skipped).map((p) => p.rule)).toEqual(out.skipped.map((s) => s.ruleId));
     expect(seen.reduce((n, p) => n + p.findings, 0)).toBe(out.findings.length);
+    expect(seen.flatMap((p) => p.found)).toEqual(out.findings);
+    expect(seen.every((p) => p.found.length === p.findings && p.found.every((f) => f.ruleId === p.rule))).toBe(true);
     const thrown = runRules(ctx, {}, { onRule: () => { throw new Error('boom'); } });
     expect(thrown.findings).toEqual(out.findings);
   });

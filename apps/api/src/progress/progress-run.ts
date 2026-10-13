@@ -31,11 +31,26 @@ export class ProgressRun<K extends ProgressKind> {
     return this.scope.runId;
   }
 
-  /** Reports one update. Resolves once it is queued for publishing (after the demo pacing wait, if any). */
-  readonly report = async (update: UpdateOf<DetailOf<K>>): Promise<void> => {
-    const answered = !!update.detail && 'answer' in update.detail && !!update.detail.answer;
-    const wait = this.paced ? pacingFor(this.scope.kind, update.stage, update.status, answered) : 0;
-    if (wait) await sleep(wait);
+  /** Paced runs report one update at a time, so waits add up even for updates sent without awaiting (rules). */
+  private paceChain: Promise<void> = Promise.resolve();
+
+  /**
+   * Reports one update. Resolves once it is queued for publishing (after the demo pacing wait, if any:
+   * then updates wait in line, and the time spent in line is added to the duration).
+   */
+  readonly report = (update: UpdateOf<DetailOf<K>>): Promise<void> => {
+    if (!this.paced) return this.send(update, 0);
+    const calledAt = Date.now();
+    const turn = this.paceChain.then(async () => {
+      const wait = pacingFor(this.scope.kind, update.stage, update.status, (update.detail ?? {}) as Record<string, unknown>);
+      if (wait) await sleep(wait);
+      await this.send(update, Date.now() - calledAt);
+    });
+    this.paceChain = turn.catch(() => undefined);
+    return turn;
+  };
+
+  private async send(update: UpdateOf<DetailOf<K>>, wait: number): Promise<void> {
     const at = Date.now();
     // The validation's `started` stage is an instant marker: it never ends, so it is not tracked as open.
     if (update.status === 'started' && !(this.scope.kind === 'validation' && update.stage === 'started')) this.open.set(update.stage, at);
@@ -50,7 +65,7 @@ export class ProgressRun<K extends ProgressKind> {
       detail: update.detail ?? {},
       ...(update.ephemeral ? { ephemeral: true } : {}),
     } as NewProgressEvent);
-  };
+  }
 
   /** Shorthand for a stage reported in one go (an instant marker, a skip, the final save). */
   emit(update: UpdateOf<DetailOf<K>>): Promise<void> {
@@ -62,6 +77,8 @@ export class ProgressRun<K extends ProgressKind> {
    * ends with a `saved` event (done or failed) whatever stage the error came from.
    */
   async fail(err: unknown, final: UpdateOf<DetailOf<K>>['stage'], detail: Record<string, unknown> = {}): Promise<void> {
+    // Updates still waiting in line (paced runs) may open stages: let them through first.
+    await this.paceChain;
     const error = errorText(err);
     const now = Date.now();
     const finalStarted = this.open.get(final);

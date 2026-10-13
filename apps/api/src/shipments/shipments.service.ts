@@ -4,7 +4,7 @@ import { attachRegulations, reviewFindings, type AgentDecision } from '@doccheck
 import { findFieldSource, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
 import { runRules, type EngineOutput, type ShipmentContext } from '@doccheck/rules';
 import {
-  applyPointerChanges, BillOfLading, CommercialInvoice, diffPointers, fieldPointer, Isf, PackingList, readPointer, startStage, toPointer,
+  applyPointerChanges, BillOfLading, clip, CommercialInvoice, diffPointers, fieldPointer, findingPreview, FINDING_PREVIEWS_PER_RULE, Isf, PackingList, readPointer, startStage, toPointer,
   type Destination, type PointerChange, type Shipment, type ShipmentDocument,
 } from '@doccheck/schemas';
 import { isDemo } from '../demo/demo-mode';
@@ -15,6 +15,9 @@ import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { ExtractionQueue } from './extraction.queue';
 import type { CreateShipmentDto, ListShipmentsQuery, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
 import { ShipmentsRepository, type CorrectionResult, type ExtractionRow, type NewCorrection } from './shipments.repository';
+
+/** Citation progress events carry the passage's title cut to this length. */
+const CITATION_TITLE_CHARS = 120;
 
 const SLOT = {
   COMMERCIAL_INVOICE: 'invoice',
@@ -332,8 +335,13 @@ export class ShipmentsService {
       ctx.isf = { id: isfPdf?.documentId ?? 'isf', data: storedIsf.data };
       inputs.isf = isfPdf?.documentId ?? 'stored';
     }
-    const rules = await startStage(run.report, 'rules');
-    const output = runRules(ctx, {}, { onRule: ({ rule, index, total, skipped, findings }) => void rules.progress({ rule, index, total, skipped, findings }) });
+    const documents = [ctx.invoice, ctx.packingList, ctx.billOfLading, ctx.isf].filter(Boolean).length;
+    const rules = await startStage(run.report, 'rules', { documents });
+    // Each rule's findings go out with it (a few, cut short), so the web can show them as they are found.
+    const output = runRules(ctx, {}, {
+      onRule: ({ rule, index, total, skipped, findings, found }) =>
+        void rules.progress({ rule, index, total, skipped, findings, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) }),
+    });
     await rules.done({ ran: output.ran.length, skipped: output.skipped.length, total: output.ran.length + output.skipped.length, findings: output.findings.length });
 
     const sources = [...extracted.values(), ...(isfPdf ? [isfPdf] : [])];
@@ -371,12 +379,12 @@ export class ShipmentsService {
    */
   private async runAgent(ctx: ShipmentContext, output: EngineOutput, enabled: boolean, run: ProgressRun<'validation'>): Promise<AgentOutcome> {
     const outcome: AgentOutcome = { status: 'skipped', citations: 0, decisions: [] };
-    const citations = await startStage(run.report, 'citations');
+    const citations = await startStage(run.report, 'citations', { findings: output.findings.length });
     let citing = true;
     try {
       const index = await this.regulations.get();
       if (index) {
-        await attachRegulations(output.findings, ctx.destination, index);
+        await attachRegulations(output.findings, ctx.destination, index, (f) => citations.progress({ findingId: f.id, title: clip(f.regulation.title, CITATION_TITLE_CHARS) }));
         outcome.citations = output.findings.filter((f) => f.regulation).length;
         await citations.done({ citations: outcome.citations });
       } else {

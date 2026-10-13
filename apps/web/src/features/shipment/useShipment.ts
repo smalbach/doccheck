@@ -30,6 +30,8 @@ export function useShipment(id: string) {
   const { t } = useI18n();
   const [shipment, setShipment] = useState<Shipment>();
   const [validation, setValidation] = useState<Validation>();
+  /** The first fetch of the latest validation answered (with one, or none). */
+  const [validationLoaded, setValidationLoaded] = useState(false);
   const [rules, setRules] = useState<Record<string, RuleDefinition>>({});
   const [error, setError] = useState<string>();
   const [busy, setBusy] = useState<ShipmentBusy>();
@@ -44,7 +46,11 @@ export function useShipment(id: string) {
 
   useEffect(() => {
     void refresh();
-    api.validation(id).then(setValidation, () => setValidation(undefined));
+    setValidationLoaded(false);
+    api
+      .validation(id)
+      .then(setValidation, () => setValidation(undefined))
+      .finally(() => setValidationLoaded(true));
   }, [id, refresh]);
 
   const destination = shipment?.destination;
@@ -56,6 +62,16 @@ export function useShipment(id: string) {
     );
   }, [destination]);
 
+  /**
+   * After a validation: the stored run (the source of truth, with its id, date and destination) and the
+   * shipment's new status, set together so the card does not show one without the other.
+   */
+  const reconcile = useCallback(async () => {
+    const [stored, fresh] = await Promise.all([api.validation(id), api.shipment(id)]);
+    setValidation(stored);
+    setShipment(fresh);
+  }, [id]);
+
   // Refresh when a live event says a document or a validation changed (from this tab or another one).
   const refreshTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const validatingHere = useRef(false);
@@ -66,12 +82,9 @@ export function useShipment(id: string) {
         clearTimeout(refreshTimer.current);
         refreshTimer.current = setTimeout(() => void refresh(), REFRESH_DEBOUNCE_MS);
       }
-      if (endsValidation(e) && !validatingHere.current) {
-        api.validation(id).then(setValidation, () => undefined);
-        void refresh();
-      }
+      if (endsValidation(e) && !validatingHere.current) void reconcile().catch(() => undefined);
     },
-    [id, refresh],
+    [refresh, reconcile],
   );
   useEffect(() => () => clearTimeout(refreshTimer.current), []);
   const events = useShipmentEvents(id, onEvent);
@@ -111,9 +124,7 @@ export function useShipment(id: string) {
         validatingHere.current = true;
         try {
           await api.validate(id, useAgent);
-          // The stored run, with its id, date and destination (the validate response has the results only).
-          setValidation(await api.validation(id));
-          await refresh();
+          await reconcile();
         } finally {
           validatingHere.current = false;
         }
@@ -134,5 +145,5 @@ export function useShipment(id: string) {
 
   const documents = useMemo(() => new Map((shipment?.documents ?? []).map((d) => [d.id, d])), [shipment]);
 
-  return { shipment, validation, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove, progress: events.progress, lastLive: events.lastLive };
+  return { shipment, validation, validationLoaded, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove, progress: events.progress, lastLive: events.lastLive };
 }

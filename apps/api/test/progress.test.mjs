@@ -58,14 +58,31 @@ describe('progress helpers', () => {
     assert.equal(demoPacing({ DEMO_READONLY: 'true' }), true);
     assert.equal(demoPacing({ DEMO_READONLY: 'true', DEMO_PACING: 'false' }), false);
     assert.equal(demoPacing({}), false);
-    assert.ok(pacingFor('extraction', 'reading', 'done', false) > 0);
+    assert.ok(pacingFor('extraction', 'reading', 'done') > 0);
     // The model stage is paced by replaying the cached answer as a stream, not by a wait at its end.
-    assert.equal(pacingFor('extraction', 'extracting', 'done', false), 0);
-    assert.equal(pacingFor('extraction', 'extracting', 'started', false), 0);
-    assert.equal(pacingFor('extraction', 'saved', 'done', false), 0);
-    assert.ok(pacingFor('validation', 'agent', 'progress', true) > 0);
-    assert.equal(pacingFor('validation', 'agent', 'progress', false), 0);
-    assert.equal(pacingFor('validation', 'agent', 'done', false), 0);
+    assert.equal(pacingFor('extraction', 'extracting', 'done'), 0);
+    assert.equal(pacingFor('extraction', 'extracting', 'started'), 0);
+    assert.equal(pacingFor('extraction', 'saved', 'done'), 0);
+    assert.ok(pacingFor('validation', 'agent', 'progress', { answer: { verdict: 'yes', confidence: 1 } }) > 0);
+    assert.equal(pacingFor('validation', 'agent', 'progress', { question: 'Same?' }), 0);
+    assert.ok(pacingFor('validation', 'agent', 'done') > 0);
+    assert.equal(pacingFor('validation', 'agent', 'skipped', { reason: 'disabled' }), 0);
+    // A rule that found something lingers longer than one that found nothing; each quote is paced too.
+    assert.ok(pacingFor('validation', 'rules', 'progress', { findings: 1 }) > pacingFor('validation', 'rules', 'progress', { findings: 0 }));
+    assert.ok(pacingFor('validation', 'citations', 'progress', { findingId: 'f' }) > 0);
+  });
+
+  it('paces a demo run in line: updates sent without waiting go out in order, and the wait counts in the duration', async () => {
+    const published = [];
+    const run = new ProgressRun({ kind: 'validation', shipmentId: event.shipmentId, runId: event.runId }, async (e) => published.push(e), true);
+    void run.report({ stage: 'rules', status: 'started' });
+    void run.report({ stage: 'rules', status: 'progress', detail: { rule: 'X1', index: 1, total: 2, findings: 0 } });
+    void run.report({ stage: 'rules', status: 'progress', detail: { rule: 'X2', index: 2, total: 2, findings: 1 } });
+    await run.report({ stage: 'rules', status: 'done', durationMs: 1 });
+    assert.deepEqual(published.map((e) => `${e.stage}:${e.status}:${e.detail.rule ?? ''}`), ['rules:started:', 'rules:progress:X1', 'rules:progress:X2', 'rules:done:']);
+    const paced = pacingFor('validation', 'rules', 'progress', { findings: 0 }) + pacingFor('validation', 'rules', 'progress', { findings: 1 }) + pacingFor('validation', 'rules', 'done');
+    assert.ok(published.at(-1).durationMs >= paced, `${published.at(-1).durationMs} >= ${paced}`);
+    assert.ok(Date.parse(published[2].at) - Date.parse(published[1].at) >= pacingFor('validation', 'rules', 'progress', { findings: 1 }) - 5);
   });
 
   it('fails the open stages, then saved, when a run fails between or inside stages', async () => {

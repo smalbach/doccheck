@@ -1,5 +1,6 @@
 import type { AgentAnswer, ProgressEvent, ProgressKind, ProgressStatus } from '../api/types';
 import { applyOutput, type LiveOutput } from './liveOutput';
+import { applyFindingEvent, type LiveFinding } from './liveFindings';
 
 /** One stage of a run as last reported. `status` is the latest event's (progress while it runs). */
 export interface StepState {
@@ -18,7 +19,12 @@ export interface AgentQuestion {
   total?: number;
   ruleId?: string;
   question?: string;
+  /** The finding the question is about (for a finding the agent added: once answered). */
+  findingId?: string;
   answer?: AgentAnswer;
+  /** When it was asked and answered (ISO), for the time the model took. */
+  askedAt?: string;
+  answeredAt?: string;
 }
 
 /** One extraction of a document or one validation, built from its events. */
@@ -33,6 +39,8 @@ export interface RunTimeline {
   state: 'running' | 'done' | 'failed';
   steps: Partial<Record<string, StepState>>;
   questions: AgentQuestion[];
+  /** Validation: its findings as they are found, cited and reviewed (liveFindings). */
+  findings: readonly LiveFinding[];
   /** Highest event id applied. */
   lastId: number;
 }
@@ -70,9 +78,11 @@ function applyStep(prev: StepState | undefined, e: ProgressEvent): StepState {
 
 function applyQuestion(questions: AgentQuestion[], e: ProgressEvent): AgentQuestion[] {
   if (e.kind !== 'validation' || e.stage !== 'agent' || e.status !== 'progress' || !e.detail.index) return questions;
-  const { index, total, ruleId, question, answer } = e.detail;
+  const { index, total, ruleId, question, findingId, answer } = e.detail;
+  const prev = questions.find((q) => q.index === index);
   const next = questions.filter((q) => q.index !== index);
-  next.push({ index, total, ruleId, question, answer });
+  const askedAt = prev?.askedAt ?? e.at;
+  next.push({ index, total, ruleId, question, findingId: findingId ?? prev?.findingId, answer, askedAt, ...(answer ? { answeredAt: e.at } : {}) });
   return next.sort((a, b) => a.index - b.index);
 }
 
@@ -90,11 +100,12 @@ export function applyToRun(run: RunTimeline | undefined, e: ProgressEvent): RunT
   const base: RunTimeline =
     run && run.runId === e.runId && !restarts(run, e)
       ? run
-      : { kind: e.kind, runId: e.runId, documentId: e.documentId, startedAt: run?.runId === e.runId ? run.startedAt : e.at, state: 'running', steps: {}, questions: [], lastId: 0 };
+      : { kind: e.kind, runId: e.runId, documentId: e.documentId, startedAt: run?.runId === e.runId ? run.startedAt : e.at, state: 'running', steps: {}, questions: [], findings: [], lastId: 0 };
   const next: RunTimeline = {
     ...base,
     steps: { ...base.steps, [e.stage]: applyStep(base.steps[e.stage], e) },
     questions: applyQuestion(base.questions, e),
+    findings: applyFindingEvent(base.findings, e),
     lastId: Math.max(base.lastId, e.id),
   };
   next.state = runState(next);
@@ -124,6 +135,19 @@ export function applyEvent(state: ProgressState, e: ProgressEvent): ProgressStat
   // A new model call starts a new output; the end of the run drops it (it was never stored).
   const ends = (e.stage === 'extracting' && e.status === 'started') || (e.stage === 'saved' && ENDS.includes(e.status));
   return { ...state, documents: { ...state.documents, [documentId]: run }, outputs: ends ? dropOutput(state.outputs, documentId) : state.outputs };
+}
+
+/**
+ * How the agent fares in a validation run: not reached yet, turned off, failed (or skipped because the
+ * citations failed), nothing to ask, asking, or done.
+ */
+export function agentStatus(run: RunTimeline): 'pending' | 'disabled' | 'failed' | 'none' | 'asking' | 'done' {
+  const step = run.steps.agent;
+  if (!step) return 'pending';
+  if (step.status === 'skipped') return step.detail.reason === 'disabled' ? 'disabled' : 'failed';
+  if (step.status === 'failed') return 'failed';
+  if (step.status === 'done') return run.questions.length === 0 ? 'none' : 'done';
+  return 'asking';
 }
 
 /** Milliseconds from the first event to the end of the run (or to `now` while it runs). */

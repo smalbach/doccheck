@@ -51,9 +51,14 @@ describe('citations', () => {
     const c = ctx();
     delete c.invoice!.data.lines[0].countryOfOrigin;
     c.billOfLading!.data.containers[0].number = 'CSQU3054384';
-    const findings = await attachRegulations(runRules(c).findings, 'CA', await index());
+    const cited: string[] = [];
+    const findings = await attachRegulations(runRules(c).findings, 'CA', await index(), (f) => {
+      cited.push(f.id);
+      throw new Error('ignored');
+    });
     expect(findings.find((f) => f.ruleId === 'C1')?.regulation?.excerpt).toMatch(/^Field 7/);
     expect(findings.find((f) => f.ruleId === 'X10')?.regulation).toBeUndefined();
+    expect(cited).toEqual(findings.filter((f) => f.regulation).map((f) => f.id));
   });
 });
 
@@ -166,6 +171,25 @@ describe('agent review', () => {
     expect(seen[0].detail).toEqual({ model: 'scripted', total: 2 });
     expect(seen[2].detail).toMatchObject({ ruleId: 'X1', question: 'Same consignee written differently?', total: 2, answer: { confidence: 0.9, rationale: 'Same company.', effect: 'dismissed' } });
     expect(seen[5]).toMatchObject({ durationMs: expect.any(Number), detail: { decisions: 2 } });
+  });
+
+  it('names the finding each question is about, and previews a finding the agent adds', async () => {
+    const c = ctx();
+    c.billOfLading!.data.consignee = { ...sampleBillOfLading.consignee, name: 'Maple Holdings' };
+    const findings = runRules(c).findings;
+    const x1 = findings.find((f) => f.ruleId === 'X1')!;
+    const llm = scripted([
+      { sameParty: 'unsure', confidence: 0.5, rationale: 'Cannot tell.' },
+      { consistent: 'no', confidence: 0.9, rationale: 'Steel pipes are not toys.' },
+    ]);
+    const seen: ValidationUpdate[] = [];
+    const review = await reviewFindings(c, findings, llm, undefined, (u) => void seen.push(u));
+    const progress = seen.filter((u) => u.status === 'progress').map((u) => u.detail as Record<string, unknown>);
+    expect(progress[0]).toMatchObject({ ruleId: 'X1', findingId: x1.id });
+    expect(progress[1]).toMatchObject({ findingId: x1.id, answer: { effect: 'kept' } });
+    expect(progress[2]).not.toHaveProperty('findingId');
+    const added = review.findings.find((f) => f.ruleId === 'A1')!;
+    expect(progress[3]).toMatchObject({ findingId: added.id, added: { id: added.id, severity: 'MEDIUM', message: added.message }, answer: { effect: 'added' } });
   });
 
   it('reports a failed model call on the agent stage', async () => {
