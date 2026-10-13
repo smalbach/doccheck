@@ -9,6 +9,7 @@ export type {
   ExtractionDetail,
   ExtractionEvent,
   ExtractionStage,
+  FindingPreview,
   ProgressEvent,
   ProgressKind,
   ProgressStatus,

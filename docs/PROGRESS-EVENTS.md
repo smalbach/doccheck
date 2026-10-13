@@ -15,7 +15,7 @@ the API that delivers them, and the web app that shows them.
 | A run being reported (ids, open stages, demo pacing) | `apps/api/src/progress/progress-run.ts` |
 | SQL | `apps/api/src/progress/progress.repository.ts` |
 | SSE routes | `apps/api/src/progress/progress.controller.ts`, framing in `sse.ts` |
-| Web: hook, state, UI | `apps/web/src/features/shipment/useShipmentEvents.ts`, `apps/web/src/lib/progressTimeline.ts`, `progressSteps.ts`, `progressAnnouncement.ts`, `RunSteps.tsx`, `DocumentProgress.tsx`, `ValidationProgress.tsx`, `ProgressAnnouncer.tsx` |
+| Web: hook, state, UI | `apps/web/src/features/shipment/useShipmentEvents.ts`, `apps/web/src/lib/progressTimeline.ts`, `liveFindings.ts`, `validationCaption.ts`, `progressSteps.ts`, `progressAnnouncement.ts`, `RunSteps.tsx`, `DocumentProgress.tsx`, `ValidationProgress.tsx`, `AgentQuestionList.tsx`, `AgentQuestionItem.tsx`, `LiveFindingList.tsx`, `LiveFindingItem.tsx`, `DismissedFindings.tsx`, `ProgressAnnouncer.tsx` |
 
 The types are defined once, in `@doccheck/schemas`. The web imports them with `import type` (re-exported
 from `apps/web/src/api/types.ts`), so no runtime code or Zod reaches its bundle. The stage order the web
@@ -69,10 +69,16 @@ A blank PDF (no text even with OCR) or an unsupported type goes from `reading` s
 | Stage | Detail |
 | --- | --- |
 | `started` | Instant marker, status `started` only: `{ agent, destination }` |
-| `rules` | progress per rule, in order: `{ rule, index, total, skipped, findings }` (skipped: a document is missing); done: `{ ran, skipped, total, findings }` |
-| `citations` | done: `{ citations }` (findings that got a regulation quote); skipped `reason: 'no-index'`; failed when the index or embedder fails (then `agent` is skipped with `reason: 'citations-failed'`) |
-| `agent` | started `{ model, total }` (questions it will ask); progress per question, twice: asked `{ index, total, ruleId, question }`, then answered with `answer: { verdict, confidence, rationale, effect }` (rationale cut to 500 chars); done `{ decisions }`; skipped `reason: 'disabled'`; failed with `error` (the validation still ends with `saved` done: the rule findings stand) |
+| `rules` | started: `{ documents }` (how many documents the rules read); progress per rule, in order: `{ rule, index, total, skipped, findings, found? }` (skipped: a document is missing; `found`: previews of the findings it produced, see below); done: `{ ran, skipped, total, findings }` |
+| `citations` | started: `{ findings }` (how many will be looked up); progress per finding that got a regulation quote: `{ findingId, title }` (passage title cut to 120 chars); done: `{ citations }`; skipped `reason: 'no-index'`; failed when the index or embedder fails (then `agent` is skipped with `reason: 'citations-failed'`) |
+| `agent` | started `{ model, total }` (questions it will ask); progress per question, twice: asked `{ index, total, ruleId, question, findingId? }`, then answered with `answer: { verdict, confidence, rationale, effect }` (rationale cut to 500 chars); `findingId` is the finding the question is about (X1); a finding the agent adds comes on the answer as `findingId` + `added` (a preview); done `{ decisions }`; skipped `reason: 'disabled'`; failed with `error` (the validation still ends with `saved` done: the rule findings stand) |
 | `saved` | done: `{ validationId, findings, skipped, agent: 'done' | 'skipped' | 'failed' }` |
+
+**Finding previews** (`FindingPreview`, `findingPreview()` in `@doccheck/schemas`): `{ id, severity, message }`,
+the message cut to 200 chars (`FINDING_MESSAGE_CHARS`), at most 8 per rule (`FINDING_PREVIEWS_PER_RULE`; `findings`
+keeps the full count). The `id` is the one the stored finding keeps (`<shipmentId>:<ruleId>:<n>`), so the web
+can follow a finding through citations and the agent, and match it with the saved validation. With these
+limits a rule event stays around 2 KB, well under the NOTIFY limit.
 
 ## Publishing from code
 
@@ -82,7 +88,8 @@ Packages never import Nest. Pipeline functions take an optional callback typed
 - `extractDocument(bytes, llm, type?, { onProgress })`, `extractFromText(pdf, type, llm, onProgress?)`,
   `readPdfText(bytes, { onProgress })` (`@doccheck/extraction`)
 - `reviewFindings(ctx, findings, llm, index?, onProgress?)` and `countAgentQuestions(ctx, findings)` (`@doccheck/agent`)
-- `runRules(ctx, params, { onRule })` (`@doccheck/rules`): a plain per-rule hook, mapped to `rules` progress by the API.
+- `runRules(ctx, params, { onRule })` (`@doccheck/rules`): a plain per-rule hook (with the rule's `found` findings), mapped to `rules` progress by the API.
+- `attachRegulations(findings, destination, index, onCited?)` (`@doccheck/agent`): called and awaited per finding that got a passage, mapped to `citations` progress.
 
 Inside a package, report a stage with the helpers from `@doccheck/schemas`:
 
@@ -173,6 +180,23 @@ could miss an event with a smaller id committed later. The safety poll on the we
 - `applyEvent(state, event)` (pure, idempotent) keeps the latest run per document and the latest validation;
   `stepsOf(run)` turns a run into stepper rows (pending / running / done / failed / skipped with a note and a
   duration). A retry (`queued` or `reading` started again in the same run) starts the steps over.
+- `applyEvent` also builds `run.findings` for a validation (`liveFindings.ts`, `applyFindingEvent`): each rule's
+  previews, the regulation title from the citations, the question and effect from the agent (kept / dismissed /
+  added, with the rationale). Agent questions keep `askedAt` / `answeredAt` and the `findingId`.
+- Findings card: while a validation runs, and after it is saved until the stored validation is fetched
+  (`liveValidationRun`), the card shows the live findings instead of the stored ones (`LiveFindingList`): a card
+  slides in when its rule finds it, its regulation line fades in, a dismissed one fades and is struck through
+  with the agent's reason, an added one slides in. Once the stored validation (the source of truth) has the
+  run's id, the stored cards replace them in the same order; the findings the agent dismissed, which the
+  stored validation does not keep, are listed under them from the events (`DismissedFindings`). The stored
+  validation and the shipment's status are fetched together, so no stale banner flashes in between.
+- `ValidationProgress` shows one plain-language line per stage (`validationCaption`: "Checking 13 rules across
+  the 3 documents", "Looking up the regulation behind each finding", "Asking the local model about 1 ambiguous
+  case", "Saving the results") and the agent's questions (`AgentQuestionItem`): rule, question, "Thinking… 4 s",
+  then the verdict with a confidence bar, rationale, effect and a "Show the finding" button that scrolls to the
+  finding card, focuses it and flashes it (`showFinding`). One line says when the agent was off, failed or had
+  nothing to ask. The card is not a live region while findings arrive (`aria-live="off"`); the announcer keeps
+  speaking only milestones. Entrance, fade and flash animations are off under `prefers-reduced-motion`.
 - UI: `DocumentProgress` under each document (steps while running; "Extracted in 32 s · OCR 4.2 s · Model 28 s"
   afterwards, expandable); `ValidationProgress` at the top of the findings card (live panel, then "Last run
   took 41 s", expandable with the agent's questions and answers). Neither is a live region:
@@ -185,17 +209,22 @@ could miss an event with a smaller id committed later. The safety poll on the we
 
 The demo replays model answers from a cache, so stages end in milliseconds. With `DEMO_READONLY=true` (and
 unless `DEMO_PACING=false`), a run waits before reporting the end of some stages and adds the wait to their
-duration: reading 0.5 s, OCR 0.8 s, classifying 0.3 s, model 2.5 s, normalizing 0.3 s; rules 0.7 s,
-citations 0.5 s, each answered agent question 1.8 s (`apps/api/src/progress/demo-pacing.ts`). The work
-itself is slowed the same way, so the timeline and the results stay consistent. The e2e suite sets
-`DEMO_PACING=false`.
+duration: reading 0.5 s, OCR 0.8 s, classifying 0.3 s, model 2.5 s, normalizing 0.3 s; rules 0.3 s,
+citations 0.3 s, each answered agent question 1.8 s, the agent's end 1.2 s (so its last answer stays on
+screen); and, so findings appear one at a time, each rule 0.15 s (0.5 s when it found something) and each
+regulation quote 0.35 s (`apps/api/src/progress/demo-pacing.ts`). A paced run reports its updates in line
+(`ProgressRun`), so waits add up even for the rule hook, which does not await; the time spent in line counts
+in the stage's duration. The work itself is slowed the same way, so the timeline and the results stay
+consistent. The e2e suite sets `DEMO_PACING=false`.
 
 ## Tests
 
 - `packages/schemas/src/progress.test.ts`: stage helpers, envelope schema.
 - `packages/extraction`, `packages/agent`, `packages/rules`: the events each pipeline reports.
-- `apps/api/test/progress.test.mjs`: NOTIFY parsing, SSE framing, resume position, pacing, failing a run.
-- `apps/api/test/e2e.test.mjs` (`progress events`): live order of a validation, Last-Event-ID / `?after=`
+- `apps/api/test/progress.test.mjs`: NOTIFY parsing, SSE framing, resume position, pacing (and paced updates in line), failing a run.
+- `apps/api/test/e2e.test.mjs` (`progress events`): live order of a validation, rule finding previews with the stored ids, one citation event per cited finding, Last-Event-ID / `?after=`
   replay, 404 for another user, 401 without a session, `/events` limited to the user's shipments, and the
   extraction stages of uploaded PDFs (when the evaluation PDFs are present).
 - `apps/web/src/lib/progressTimeline.test.ts`: the web's state, steps and announcements.
+- `apps/web/src/lib/liveFindings.test.ts`, `validationCaption.test.ts`: live findings, agent status, captions,
+  and when the card shows the live run.

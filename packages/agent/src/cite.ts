@@ -60,12 +60,15 @@ export function citationScope(finding: Finding, destination: Destination): strin
   return [...INVOICE_REQUIREMENTS[PROFILES[destination].authority]];
 }
 
+/** Called (and awaited) each time a finding gets its passage; errors it throws are ignored. */
+export type OnCited = (finding: Finding & { regulation: NonNullable<Finding['regulation']> }) => void | Promise<void>;
+
 /**
  * Attaches the best matching passage of the destination's regulations to each finding.
  * A passage is only used when both retrievers agree it is relevant (it ranks in the keyword top 5),
  * so an unrelated paragraph is never presented as the legal basis.
  */
-export async function attachRegulations(findings: Finding[], destination: Destination, index: RegulationIndex): Promise<Finding[]> {
+export async function attachRegulations(findings: Finding[], destination: Destination, index: RegulationIndex, onCited?: OnCited): Promise<Finding[]> {
   const authority = PROFILES[destination].authority;
   const cache = new Map<string, Finding['regulation'] | null>();
   for (const finding of findings) {
@@ -95,7 +98,13 @@ export async function attachRegulations(findings: Finding[], destination: Destin
       );
     }
     const regulation = cache.get(key);
-    if (regulation) finding.regulation = regulation;
+    if (!regulation) continue;
+    finding.regulation = regulation;
+    try {
+      await onCited?.({ ...finding, regulation });
+    } catch {
+      // Progress must not break the run.
+    }
   }
   return findings;
 }

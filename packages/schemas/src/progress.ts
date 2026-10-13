@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { Destination, DocumentType } from './common';
+import type { Finding, Severity } from './entities';
 
 /**
  * Live progress events: what the API is doing while it extracts a document or validates a shipment.
@@ -50,6 +51,27 @@ export interface AgentAnswer {
   effect?: 'kept' | 'dismissed' | 'added' | 'none';
 }
 
+/**
+ * A finding as live events show it before the run is saved: the stored finding's id (findings keep their
+ * id when saved), severity and message (cut to FINDING_MESSAGE_CHARS so events stay small).
+ */
+export interface FindingPreview {
+  id: string;
+  severity: Severity;
+  message: string;
+}
+
+/** Live events carry at most this many characters of a finding's message. */
+export const FINDING_MESSAGE_CHARS = 200;
+/** A rule's progress event lists at most this many of its findings (`findings` has the full count). */
+export const FINDING_PREVIEWS_PER_RULE = 8;
+
+/** Cuts text to `max` characters, ending with an ellipsis when it was longer. */
+export const clip = (text: string, max: number): string => (text.length > max ? `${text.slice(0, max - 1)}…` : text);
+
+/** The preview of a finding, for a progress event. */
+export const findingPreview = (f: Pick<Finding, 'id' | 'severity' | 'message'>): FindingPreview => ({ id: f.id, severity: f.severity, message: clip(f.message, FINDING_MESSAGE_CHARS) });
+
 /** Detail per extraction stage. Every field is optional: a stage reports what it knows when it knows it. */
 export interface ExtractionDetail {
   /** started: place in the queue (1 = next). */
@@ -72,15 +94,23 @@ export interface ExtractionDetail {
 export interface ValidationDetail {
   /** The run began (status started only). runId is the id the stored validation will have. */
   started: { agent?: boolean; destination?: Destination };
-  /** progress: one rule evaluated (index of total, skipped when a document is missing); done: the totals. */
-  rules: { rule?: string; index?: number; total?: number; skipped?: number | boolean; ran?: number; findings?: number };
-  /** done: findings that got a regulation quote; skipped (reason 'no-index'): no regulation index. */
-  citations: { citations?: number };
+  /**
+   * started: how many documents the rules read. progress: one rule evaluated (index of total, skipped
+   * when a document is missing), with the findings it produced (`found`, at most FINDING_PREVIEWS_PER_RULE;
+   * `findings` is the count); done: the totals.
+   */
+  rules: { documents?: number; rule?: string; index?: number; total?: number; skipped?: number | boolean; ran?: number; findings?: number; found?: FindingPreview[] };
+  /**
+   * started: how many findings will be looked up. progress: one finding got a regulation quote (`findingId`,
+   * `title` of the passage, cut to 120 chars). done: findings that got one; skipped (reason 'no-index').
+   */
+  citations: { findings?: number; findingId?: string; title?: string; citations?: number };
   /**
    * started: model and number of questions. progress: one question, without `answer` when it is asked
-   * and with it once answered. done: number of decisions. skipped (reason 'disabled'): agent turned off.
+   * and with it once answered; `findingId` is the finding it is about (on the answer only for a finding the
+   * agent `added`, whose preview comes in `added`). done: number of decisions. skipped (reason 'disabled').
    */
-  agent: { model?: string; total?: number; index?: number; ruleId?: string; question?: string; answer?: AgentAnswer; decisions?: number };
+  agent: { model?: string; total?: number; index?: number; ruleId?: string; question?: string; findingId?: string; answer?: AgentAnswer; added?: FindingPreview; decisions?: number };
   /** done: the run is stored (validationId === runId). */
   saved: { validationId?: string; findings?: number; skipped?: number; agent?: 'done' | 'skipped' | 'failed' };
 }

@@ -793,6 +793,18 @@ describe('progress events', () => {
     assert.equal(rules.length, run.body.ran.length + run.body.skipped.length);
     assert.deepEqual(rules.map((e) => e.detail.index), rules.map((_, i) => i + 1));
     assert.equal(rules.find((e) => e.detail.rule === 'X2').detail.findings, 1);
+    assert.deepEqual(events.find((e) => e.stage === 'rules' && e.status === 'started').detail, { documents: 3 });
+    // Each rule's findings come with it, under the id the stored finding keeps.
+    const [x2] = run.body.findings;
+    assert.deepEqual(rules.find((e) => e.detail.rule === 'X2').detail.found, [{ id: x2.id, severity: x2.severity, message: x2.message }]);
+    assert.ok(rules.filter((e) => e.detail.rule !== 'X2').every((e) => e.detail.found === undefined));
+    const stored = await call('GET', `/shipments/${s.id}/validation`);
+    assert.deepEqual(stored.body.findings.map((f) => f.id), [x2.id]);
+    // One citation event per finding that got a regulation quote, naming the finding.
+    assert.deepEqual(events.find((e) => e.stage === 'citations' && e.status === 'started').detail, { findings: 1 });
+    const cited = events.filter((e) => e.stage === 'citations' && e.status === 'progress');
+    assert.deepEqual(cited.map((e) => e.detail.findingId), run.body.findings.filter((f) => f.regulation).map((f) => f.id));
+    assert.ok(cited.every((e) => typeof e.detail.title === 'string' && e.detail.title.length <= 120));
     const done = events.find((e) => e.stage === 'rules' && e.status === 'done');
     assert.deepEqual(done.detail, { ran: run.body.ran.length, skipped: run.body.skipped.length, total: rules.length, findings: 1 });
     assert.equal(typeof done.durationMs, 'number');

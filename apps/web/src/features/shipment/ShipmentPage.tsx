@@ -5,6 +5,8 @@ import { Banner } from '../../components/ui/Banner';
 import { Sheet } from '../../components/ui/Sheet';
 import { useDemo } from '../../hooks/useDemo';
 import { useI18n } from '../../i18n/useI18n';
+import { showFinding } from '../../lib/showFinding';
+import { liveValidationRun } from '../../lib/validationCaption';
 import { DocumentDataSheet } from '../document-data/DocumentDataSheet';
 import type { ViewerTarget } from '../pdf/types';
 import { DocumentsCard } from './DocumentsCard';
@@ -25,7 +27,7 @@ const PdfViewerSheet = lazy(() => import('../pdf/PdfViewerSheet').then((m) => ({
 export function ShipmentPage({ id }: { id: string }) {
   const { t } = useI18n();
   const demo = useDemo();
-  const { shipment, validation: latest, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove, progress, lastLive } = useShipment(id);
+  const { shipment, validation: latest, validationLoaded, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove, progress, lastLive } = useShipment(id);
   const history = useValidationHistory(id, latest?.id);
   const [viewer, setViewer] = useState<ViewerTarget>();
   const [dataDoc, setDataDoc] = useState<ShipmentDocument>();
@@ -33,6 +35,8 @@ export function ShipmentPage({ id }: { id: string }) {
   if (!shipment) return <LoadingCard error={error} />;
   // A past run picked in the history replaces the latest one in Findings and in the export.
   const validation = history.past ?? latest;
+  // A running validation (or one saved but not fetched yet) shows its findings as they come.
+  const live = liveValidationRun(progress.validation, latest?.id, validationLoaded);
 
   return (
     <div className="page shipment">
@@ -71,7 +75,11 @@ export function ShipmentPage({ id }: { id: string }) {
           rules={rules}
           documents={documents}
           onOpen={setViewer}
-          progress={<ValidationProgress run={progress.validation} validating={busy === 'validate'} shownId={validation?.id} />}
+          live={live}
+          run={progress.validation}
+          progress={
+            <ValidationProgress run={progress.validation} validating={busy === 'validate'} shownId={validation?.id} rules={rules} onShowFinding={(findingId) => void showFinding(findingId)} />
+          }
           notice={<ValidationNotice shipment={shipment} validation={validation} past={!!history.past} onShowLatest={history.showLatest} />}
         />
       </div>

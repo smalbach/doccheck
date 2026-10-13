@@ -3,7 +3,7 @@ import { countBySeverity } from '../../lib/countBySeverity';
 import { useI18n } from '../../i18n/useI18n';
 
 /** "3 findings: 1 high, 2 medium". */
-export function FindingsSummary({ findings }: { findings: readonly Finding[] }) {
+export function FindingsSummary({ findings }: { findings: readonly Pick<Finding, 'severity'>[] }) {
   const { t } = useI18n();
   const counts = countBySeverity(findings);
   return (
