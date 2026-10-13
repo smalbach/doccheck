@@ -1,5 +1,6 @@
 # DocCheck API + web app in one image. Models are not included: point OLLAMA_BASE_URL at an
-# Ollama server with the extraction model (LLM_MODEL, default qwen3.8) and bge-m3 pulled.
+# Ollama server with the extraction model (LLM_MODEL, default qwen3.8) and bge-m3 pulled, or run
+# the read-only demo (DEMO_READONLY=true), which replays the cached answers and needs no model.
 FROM node:22-bookworm-slim AS build
 WORKDIR /app
 COPY package.json package-lock.json tsconfig.base.json ./
@@ -20,6 +21,9 @@ COPY --from=build /app/apps/api/migrations ./apps/api/migrations
 COPY --from=build /app/apps/web/dist ./apps/web/dist
 # Regulation corpus and its embedding index; the evaluation set enables the demo samples when mounted.
 COPY data/corpus ./data/corpus
+# Read-only demo: curated samples (scripts/demo-build.mjs) and the model answers they replay.
+COPY data/demo ./data/demo
+COPY eval/cache ./eval/cache
 EXPOSE 3000
 USER node
 CMD ["node", "apps/api/dist/main.js"]

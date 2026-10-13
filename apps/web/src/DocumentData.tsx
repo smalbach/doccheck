@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api, type ShipmentDocument } from './api';
+import { useDemo } from './demo';
 
 type Data = Record<string, unknown>;
 
@@ -39,6 +40,7 @@ const TYPES: [string, string][] = [
 ];
 
 export function DocumentData({ shipmentId, doc, onClose, onReextract }: { shipmentId: string; doc: ShipmentDocument; onClose: () => void; onReextract: () => void }) {
+  const demo = useDemo();
   const [retype, setRetype] = useState(doc.detectedType);
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<{ data: Data | null; issues: string[]; model?: string; promptVersion?: string }>();
@@ -119,7 +121,7 @@ export function DocumentData({ shipmentId, doc, onClose, onReextract }: { shipme
                 )}
               </>
             )}
-            <div className="retype">
+            {!demo && <div className="retype">
               <span className="small muted">Wrong document type?</span>
               <select value={retype} onChange={(e) => setRetype(e.target.value as ShipmentDocument['detectedType'])}>
                 {TYPES.map(([v, l]) => (
@@ -138,7 +140,7 @@ export function DocumentData({ shipmentId, doc, onClose, onReextract }: { shipme
               >
                 Re-extract
               </button>
-            </div>
+            </div>}
             <p className="muted small">
               {result.model} · prompt {result.promptVersion}. Values were normalized from what is printed (dates to ISO, weights to kg); check them against the PDF.
             </p>

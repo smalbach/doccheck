@@ -4,6 +4,7 @@ import { attachRegulations, reviewFindings, type AgentDecision } from '@doccheck
 import { findFieldSource, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
 import { runRules, type EngineOutput, type ShipmentContext } from '@doccheck/rules';
 import type { BillOfLading, CommercialInvoice, Isf, PackingList, Shipment, ShipmentDocument } from '@doccheck/schemas';
+import { isDemo } from '../demo/demo-mode';
 import { InjectLlm, RegulationsService } from '../llm/llm.module';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { ExtractionQueue } from './extraction.queue';
@@ -259,6 +260,7 @@ export class ShipmentsService {
     } catch (err) {
       outcome.status = 'failed';
       outcome.error = err instanceof Error ? err.message : String(err);
+      if (isDemo() && /Cache miss/.test(outcome.error)) outcome.error = 'The agent has no cached answer for this shipment in the read-only demo; the rule findings stand as they are.';
       this.logger.warn(`Agent review failed for ${ctx.shipmentId}: ${outcome.error}`);
     }
     return outcome;

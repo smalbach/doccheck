@@ -5,12 +5,17 @@ import type { NestExpressApplication } from '@nestjs/platform-express';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { AppModule } from './app.module';
+import { isDemo, readOnlyGuard } from './demo/demo-mode';
 import { loadEnv } from './env';
 
 async function bootstrap() {
   loadEnv();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableShutdownHooks();
+  if (isDemo()) {
+    app.use(readOnlyGuard);
+    Logger.log('Read-only demo: uploads, edits and deletes are disabled; the model runs from its cache', 'Bootstrap');
+  }
   // The built web app (npm run build -w @doccheck/web) is served from the same origin.
   const web = resolve(__dirname, '../../web/dist');
   // index.html is revalidated on every load so a new build is picked up; hashed assets cache normally.

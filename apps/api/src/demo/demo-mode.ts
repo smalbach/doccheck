@@ -1,0 +1,16 @@
+import type { NextFunction, Request, Response } from 'express';
+
+/**
+ * Read-only public demo (DEMO_READONLY=true): visitors can open the curated samples, validate them
+ * and read everything, but cannot upload, edit or delete. The model runs from its cached answers
+ * only (no Ollama, no GPU), so the demo can be hosted on a small server.
+ */
+export const isDemo = (env: NodeJS.ProcessEnv = process.env) => env.DEMO_READONLY === 'true';
+
+const ALLOWED_WRITES = [/^\/demo\/samples\/[\w-]+$/, /^\/shipments\/[0-9a-f-]{36}\/validate$/i];
+
+export function readOnlyGuard(req: Request, res: Response, next: NextFunction) {
+  if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') return next();
+  if (req.method === 'POST' && ALLOWED_WRITES.some((re) => re.test(req.path))) return next();
+  res.status(403).json({ statusCode: 403, message: 'This is a read-only demo: load a sample shipment and validate it.' });
+}

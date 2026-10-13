@@ -190,13 +190,37 @@ Para dejarlo accesible a otras personas con los modelos locales:
 
 Límite de subida: 10 PDFs por pedido, 20 MB cada uno (`apps/api/src/shipments/shipments.controller.ts`). Si el proxy tiene su propio límite, debe ser igual o mayor.
 
-## 4. Demo pública de solo lectura (idea, no implementada)
+## 4. Demo pública de solo lectura (sin GPU)
 
-Para mostrar el proyecto sin servidor con GPU: publicar la web con resultados ya calculados de las muestras sintéticas (extracción, hallazgos, citas, decisiones del agente) en archivos JSON, sin subida de PDFs ni modelo. Pasos previstos:
+Con `DEMO_READONLY=true` la misma app corre sin modelo: muestra una selección de envíos sintéticos y repite las respuestas que el modelo ya dio en local. Sirve un VPS chico (1 vCPU, 1 GB) con Postgres; no hace falta Ollama, Redis ni S3.
 
-1. Script que valida todas las muestras con la API local y exporta envíos, hallazgos y PDFs a `apps/web/public/demo/`.
-2. Modo `VITE_DEMO=static` en la web que lee esos JSON en lugar de la API y oculta la subida.
-3. Publicar `apps/web/dist` en un hosting estático (GitHub Pages, Cloudflare Pages, Netlify).
+Qué cambia en modo demo:
+
+- La API rechaza con 403 toda escritura salvo `POST /demo/samples/:id` y `POST /shipments/:id/validate`: no se suben PDFs, no se edita el ISF, no se re-extrae, no se borra.
+- El modelo corre solo desde caché (`LLM_CACHE_MODE=replay`, `LLM_CACHE_DIR` por defecto `eval/cache/ollama_<LLM_MODEL>`). Las muestras se leen de `data/demo` y solo se listan las que tienen su extracción en caché.
+- Cada muestra se carga una sola vez: todos los visitantes ven el mismo envío, así la base no crece.
+- Citas: los vectores de las consultas están en `data/corpus/index/bge-m3.queries.json`; si falta una, la búsqueda usa solo palabras clave (BM25).
+- Si falta la respuesta del agente para un envío, la validación igual devuelve los hallazgos de las reglas y dice que el agente no está disponible.
+- La web pregunta a `GET /health` (`demo: true`), oculta subida, borrar y editar ISF y muestra un aviso.
+
+Preparar las muestras (una vez, y de nuevo si cambia el prompt o el modelo):
+
+```bash
+npm start                         # modo normal, con Ollama
+node scripts/demo-build.mjs       # elige ~24 muestras (cada tipo de error, CA y US, más limpias),
+                                  # las corre por la API, llena las cachés y copia todo a data/demo
+git add data/demo eval/cache data/corpus/index/bge-m3.queries.json
+```
+
+Levantar la demo:
+
+```bash
+docker compose --profile demo up -d --build      # app + Postgres, en :3000
+```
+
+o sin Docker: `DEMO_READONLY=true npm start`.
+
+Para publicarla: VPS con Docker, proxy con TLS (Caddy como en la sección 3; el basic auth es opcional porque nada se puede modificar) y no publicar el puerto de Postgres. Probado en local con una segunda API en :3105 contra un Ollama inexistente: muestras, validación y citas funcionan; las escrituras dan 403; en celular sin scroll horizontal. El build de la imagen sigue pendiente (Docker apagado).
 
 ## Variables de entorno
 
@@ -215,7 +239,8 @@ Para mostrar el proyecto sin servidor con GPU: publicar la web con resultados ya
 | `EMBED_MODEL` | `bge-m3` | Modelo de embeddings; debe coincidir con el índice |
 | `AGENT_ENABLED` | `true` | Revisión del agente en `/validate` (por pedido: `?agent=false`) |
 | `CORPUS_DIR` | `data/corpus` | Corpus de normativa e índice |
-| `EVAL_DIR` | `data/eval/v1` | Muestras para la galería de la demo |
+| `EVAL_DIR` | `data/eval/v1` (`data/demo` en modo demo) | Muestras para la galería |
+| `DEMO_READONLY` | `false` | Demo pública de solo lectura: sin escrituras, modelo desde caché (sección 4) |
 | `LLM_CACHE_DIR`, `LLM_CACHE_MODE` | — | Caché de respuestas del modelo (`readwrite`, `replay`, `off`) |
 
 ## Problemas conocidos

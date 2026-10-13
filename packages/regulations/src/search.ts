@@ -1,3 +1,4 @@
+import { readFile, writeFile } from 'node:fs/promises';
 import type { Chunk } from './corpus';
 
 /** Text -> vector. The default implementation calls a local Ollama embedding model. */
@@ -29,6 +30,45 @@ export class OllamaEmbedder implements Embedder {
     if (!res.ok) throw new Error(`Ollama embed ${res.status}: ${await res.text()}`);
     const body = (await res.json()) as { embeddings: number[][] };
     return body.embeddings;
+  }
+}
+
+/**
+ * Query vectors kept in a JSON file ({ text: vector }), so the API can embed its fixed citation
+ * queries once and later run without the embedding model. "replay" never calls the inner embedder.
+ */
+export class CachedEmbedder implements Embedder {
+  readonly id: string;
+  private cache?: Promise<Map<string, number[]>>;
+
+  constructor(
+    private readonly inner: Embedder,
+    private readonly file: string,
+    private readonly mode: 'readwrite' | 'replay' = 'readwrite',
+  ) {
+    this.id = inner.id;
+  }
+
+  private load() {
+    this.cache ??= readFile(this.file, 'utf8').then(
+      (json) => new Map(Object.entries((JSON.parse(json) as { vectors: Record<string, number[]> }).vectors)),
+      () => new Map<string, number[]>(),
+    );
+    return this.cache;
+  }
+
+  async embed(texts: string[]): Promise<number[][]> {
+    const cache = await this.load();
+    const missing = [...new Set(texts.filter((t) => !cache.has(t)))];
+    if (missing.length > 0) {
+      if (this.mode === 'replay') throw new Error(`${missing.length} query vector(s) not in ${this.file} (replay mode)`);
+      const vectors = await this.inner.embed(missing);
+      missing.forEach((t, i) => cache.set(t, vectors[i].map((x) => Math.round(x * 1e5) / 1e5)));
+      const sorted = Object.fromEntries([...cache].sort(([a], [b]) => a.localeCompare(b)));
+      // A read-only file (e.g. inside a container) only costs the next process a model call.
+      await writeFile(this.file, JSON.stringify({ embedder: this.id, vectors: sorted }) + '\n').catch(() => undefined);
+    }
+    return texts.map((t) => cache.get(t)!);
   }
 }
 
@@ -122,16 +162,18 @@ export class RegulationIndex {
       .map((c, i) => ({ c, i }))
       .filter(({ c }) => (!opts.authority || c.authority === opts.authority) && (!opts.documents || opts.documents.some((d) => c.documentId.startsWith(d))));
     if (candidates.length === 0) return [];
-    const [qv] = await this.embedder.embed([query]);
+    // Without the embedding model (offline demo, Ollama down) the search falls back to keywords only.
+    const qv = await this.embedder.embed([query]).then(([v]) => v, () => undefined);
     const qt = tokenize(query);
 
-    const byVector = candidates.map(({ c, i }) => ({ i, s: cosine(qv, c.embedding) })).sort((a, b) => b.s - a.s);
+    const byVector = qv ? candidates.map(({ c, i }) => ({ i, s: cosine(qv, c.embedding) })).sort((a, b) => b.s - a.s) : [];
     const byKeyword = candidates.map(({ i }) => ({ i, s: this.bm25(qt, i) })).filter((x) => x.s > 0).sort((a, b) => b.s - a.s);
     const fused = new Map<number, SearchHit>();
     const K = 60;
     byVector.forEach(({ i }, rank) => fused.set(i, { chunk: this.chunks[i], score: 1 / (K + rank + 1), ranks: { vector: rank + 1 } }));
     byKeyword.forEach(({ i }, rank) => {
-      const hit = fused.get(i)!;
+      const hit = fused.get(i) ?? { chunk: this.chunks[i], score: 0, ranks: {} };
+      fused.set(i, hit);
       hit.score += 1 / (K + rank + 1);
       hit.ranks.keyword = rank + 1;
     });

@@ -1,5 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { api, ApiError, type Finding, type IsfFiling, type RuleDefinition, type Shipment, type ShipmentDocument, type Validation } from './api';
+import { useDemo } from './demo';
 import { DocumentData } from './DocumentData';
 import type { Highlight } from './PdfViewer';
 
@@ -17,6 +18,7 @@ const SEVERITY_ORDER = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW'];
 const pending = (d: ShipmentDocument) => d.status === 'QUEUED' || d.status === 'EXTRACTING';
 
 export function ShipmentPage({ id }: { id: string }) {
+  const demo = useDemo();
   const [shipment, setShipment] = useState<Shipment>();
   const [validation, setValidation] = useState<Validation>();
   const [rules, setRules] = useState<Record<string, RuleDefinition>>({});
@@ -96,7 +98,7 @@ export function ShipmentPage({ id }: { id: string }) {
             <span className={`status ${shipment.status}`}>{shipment.status.replace('_', ' ')}</span>
           </p>
         </div>
-        <button
+        {!demo && <button
           className="danger"
           disabled={extracting}
           title={extracting ? 'Wait until extraction finishes' : 'Delete the shipment, its documents and findings'}
@@ -111,14 +113,14 @@ export function ShipmentPage({ id }: { id: string }) {
           }}
         >
           Delete
-        </button>
+        </button>}
       </div>
       {error && <p className="error banner">{error}</p>}
 
       <div className="columns">
         <section className="card">
           <h2>Documents</h2>
-          <div
+          {!demo && <div
             className={`drop ${dragging ? 'over' : ''}`}
             onDragOver={(e) => {
               e.preventDefault();
@@ -136,7 +138,7 @@ export function ShipmentPage({ id }: { id: string }) {
           >
             <input ref={input} type="file" accept="application/pdf" multiple hidden onChange={(e) => void upload([...(e.target.files ?? [])])} />
             {busy === 'upload' ? 'Uploading…' : `Drop PDFs here or click to choose: invoice, packing list, bill of lading${shipment.destination === 'US' ? ', ISF' : ''}`}
-          </div>
+          </div>}
           {shipment.documents.length > 0 && (
             <ul className="docs">
               {shipment.documents.map((d) => (
@@ -169,6 +171,7 @@ export function ShipmentPage({ id }: { id: string }) {
           {shipment.destination === 'US' && (
             <IsfCard
               id={id}
+              readOnly={demo}
               version={shipment.documents.filter((d) => d.detectedType === 'ISF' || pending(d)).map((d) => `${d.id}:${d.status}`).join(',')}
               onError={setError}
               onOpen={(documentId) => {
@@ -237,7 +240,7 @@ export function ShipmentPage({ id }: { id: string }) {
  * The shipment's ISF: from its filing confirmation PDF (dropped with the other documents), from
  * JSON (the Isf schema), or from the sample. `version` changes when an ISF PDF finishes extracting.
  */
-function IsfCard({ id, version, onError, onOpen }: { id: string; version: string; onError: (m: string) => void; onOpen: (documentId: string) => void }) {
+function IsfCard({ id, version, readOnly, onError, onOpen }: { id: string; version: string; readOnly: boolean; onError: (m: string) => void; onOpen: (documentId: string) => void }) {
   const [isf, setIsf] = useState<IsfFiling | null>();
   const input = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -272,14 +275,24 @@ function IsfCard({ id, version, onError, onOpen }: { id: string; version: string
             ) : (
               'Uploaded as JSON'
             )}{' '}
-            {new Date(isf.updatedAt).toLocaleString()} ·{' '}
-            <button className="link small" onClick={() => api.deleteIsf(id).then(() => setIsf(null))}>remove</button>
+            {new Date(isf.updatedAt).toLocaleString()}
+            {!readOnly && (
+              <>
+                {' · '}
+                <button className="link small" onClick={() => api.deleteIsf(id).then(() => setIsf(null))}>remove</button>
+              </>
+            )}
           </span>
         </p>
       ) : (
         <p className="small muted">
-          No ISF on file, so X11 (ISF vs invoice) will not run. Drop the ISF filing PDF with the documents, or{' '}
-          <button className="link small" onClick={() => input.current?.click()}>upload ISF JSON</button>
+          No ISF on file, so X11 (ISF vs invoice) will not run.
+          {!readOnly && (
+            <>
+              {' '}Drop the ISF filing PDF with the documents, or{' '}
+              <button className="link small" onClick={() => input.current?.click()}>upload ISF JSON</button>
+            </>
+          )}
         </p>
       )}
       <input ref={input} type="file" accept="application/json,.json" hidden onChange={(e) => void upload(e.target.files?.[0])} />

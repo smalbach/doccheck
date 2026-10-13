@@ -56,6 +56,13 @@ Local: Postgres 18 en el 5432, base `doccheck`, credenciales en `.env` (no versi
   - v2 destapó tres fallas antes de correr el modelo, ya corregidas con tests: `decimal("48 600,00")` daba 48 (agrupación con espacio), `isoDate("14.03.2026")` daba null (quitaba los puntos) y `findSource` no encontraba números europeos (recall de texto 93,5% → 99,6%; v1 sigue en 99,7%).
   - Sin modelo: clasificación 180/180. La evaluación con qwen3.8 queda encolada después de la del ISF (`npm run eval:extraction -- --data data/eval/v2`); `metrics.mjs` agrega la sección "Unseen formats" y la página Results la muestra sola.
   - Ambigüedad conocida, fuera de v2 a propósito: "1.200" sin decimales (¿mil doscientos o uno coma dos?) y fechas US "03/04/2026" (mes primero). El normalizador asume día primero; hace falta contexto (país del emisor) para resolverlas.
+- **Demo de solo lectura (`DEMO_READONLY=true`).** Misma app, sin modelo, para publicarla en un servidor sin GPU.
+  - Guardia Express en `main.ts`: 403 a toda escritura salvo cargar muestra y validar. La web lee `demo` de `/health` y oculta subir, borrar, editar ISF y re-extraer.
+  - LLM en `replay` sobre `eval/cache/ollama_<modelo>`. Muestras de `data/demo`, listadas solo si su extracción está en caché (chequeo al arrancar). Cada muestra se carga una vez y todos ven el mismo envío (también con pedidos simultáneos).
+  - Embeddings de consultas: `CachedEmbedder` guarda los vectores en `data/corpus/index/bge-m3.queries.json` (graba en modo normal, solo lee en demo). `RegulationIndex.search` cae a BM25 si el embedder falla, en cualquier modo: con Ollama caído antes no había citas.
+  - `scripts/demo-build.mjs` (`npm run demo:build`): elige un envío por tipo de error y país más dos limpios (24), los corre por la API con el modelo para llenar las cachés, los copia a `data/demo` y borra los envíos de calentamiento. Pendiente: correrlo cuando terminen las evaluaciones.
+  - Docker: la imagen incluye `data/demo` y `eval/cache`; perfil `demo` en compose (app + Postgres).
+  - Tests e2e nuevos (14 en total): escrituras bloqueadas, solo muestras en caché, misma muestra = mismo envío, validación sin Ollama.
 
 - `apps/web`: Vite + React, sin router ni librería de UI (dos pantallas, rutas por hash). La API sirve el build desde el mismo origen (`npm start` en :3000); en desarrollo Vite en :5173 hace proxy.
 - Pantallas: inicio (crear envío, muestras sintéticas con sus errores, envíos recientes) y envío (subir PDFs, estado de extracción con polling, validar con o sin agente, hallazgos ordenados por severidad con evidencia, cita de la norma y razón del agente).

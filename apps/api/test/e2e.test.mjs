@@ -9,7 +9,7 @@
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
-import { existsSync, mkdtempSync, readdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
@@ -376,5 +376,69 @@ describe('ISF PDF upload', { skip: !isfSample && 'no ISF PDF with a cached model
     assert.equal((await call('GET', `/shipments/${ca.id}/isf`)).status, 404);
     const detail = await call('GET', `/shipments/${ca.id}/documents/${doc.id}`);
     assert.ok(detail.body.issues.some((i) => i.includes('only applies to US-bound shipments')));
+  });
+});
+
+// Read-only demo: a second API process with DEMO_READONLY=true over a samples folder holding CA-001
+// (cached) and a copy of it renamed CA-999 with its PDFs swapped (the invoice file holds the bill of
+// lading...), so the demo never finds CA-999's extraction in the cache.
+describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' }, () => {
+  const demoPort = 3991;
+  const demoBase = `http://localhost:${demoPort}`;
+  let demo;
+  before(async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'doccheck-e2e-demo-'));
+    const files = ['invoice.pdf', 'packing-list.pdf', 'bill-of-lading.pdf', 'truth.json', 'labels.json'];
+    for (const id of ['CA-001', 'CA-999']) {
+      mkdirSync(join(dir, id));
+      const swap = { 'invoice.pdf': 'bill-of-lading.pdf', 'packing-list.pdf': 'invoice.pdf', 'bill-of-lading.pdf': 'packing-list.pdf' };
+      for (const f of files) writeFileSync(join(dir, id, f), readFileSync(join(sample, id === 'CA-999' ? (swap[f] ?? f) : f)));
+    }
+    const manifest = JSON.parse(readFileSync(join(root, 'data/eval/v1/manifest.json'), 'utf8'));
+    const ca1 = manifest.shipments.find((s) => s.id === 'CA-001');
+    writeFileSync(join(dir, 'manifest.json'), JSON.stringify({ ...manifest, shipments: [ca1, { ...ca1, id: 'CA-999' }] }));
+    demo = spawn('node', [join(root, 'apps/api/dist/main.js')], {
+      cwd: root,
+      env: { ...process.env, PORT: String(demoPort), DATABASE_URL: testUrl, REDIS_URL: '', S3_ENDPOINT: '', STORAGE_DIR: mkdtempSync(join(tmpdir(), 'doccheck-e2e-')), DEMO_READONLY: 'true', EVAL_DIR: dir, LLM_CACHE_DIR: llmCacheDir, OLLAMA_BASE_URL: 'http://127.0.0.1:9' },
+      stdio: ['ignore', 'ignore', 'inherit'],
+    });
+    for (let i = 0; i < 60; i++) {
+      try {
+        if ((await fetch(`${demoBase}/health`)).ok) return;
+      } catch {}
+      await new Promise((r) => setTimeout(r, 250));
+    }
+    throw new Error('Demo API did not start');
+  });
+  after(() => demo?.kill());
+
+  const demoCall = async (method, path, body) => {
+    const res = await fetch(demoBase + path, { method, headers: body === undefined ? {} : { 'content-type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body) });
+    const text = await res.text();
+    return { status: res.status, body: text ? JSON.parse(text) : undefined };
+  };
+
+  it('refuses every write except loading and validating a sample', async () => {
+    assert.equal((await demoCall('GET', '/health')).body.demo, true);
+    const id = randomUUID();
+    for (const [method, path] of [['POST', '/shipments'], ['DELETE', `/shipments/${id}`], ['PUT', `/shipments/${id}/isf`], ['DELETE', `/shipments/${id}/isf`], ['POST', `/shipments/${id}/documents`], ['POST', `/shipments/${id}/documents/${id}/reextract`]]) {
+      assert.equal((await demoCall(method, path, {})).status, 403, `${method} ${path}`);
+    }
+  });
+
+  it('lists only cached samples and replays them without the model', async () => {
+    assert.deepEqual((await demoCall('GET', '/demo/samples')).body.map((s) => s.id), ['CA-001']);
+    assert.equal((await demoCall('POST', '/demo/samples/CA-999')).status, 404);
+    const [a, b] = await Promise.all([demoCall('POST', '/demo/samples/CA-001'), demoCall('POST', '/demo/samples/CA-001')]);
+    assert.equal(a.body.id, b.body.id);
+    for (let i = 0; i < 40; i++) {
+      const s = (await demoCall('GET', `/shipments/${a.body.id}`)).body;
+      if (s.documents.length === 3 && s.documents.every((d) => d.status === 'EXTRACTED')) break;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+    const run = await demoCall('POST', `/shipments/${a.body.id}/validate?agent=false`);
+    assert.equal(run.status, 200);
+    const expected = JSON.parse(readFileSync(join(sample, 'labels.json'), 'utf8')).errors.flatMap((e) => e.expectedRuleIds).sort();
+    assert.deepEqual([...new Set(run.body.findings.map((f) => f.ruleId))].sort(), expected);
   });
 });

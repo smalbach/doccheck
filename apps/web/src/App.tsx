@@ -1,5 +1,6 @@
 import { Component, useCallback, useEffect, useState, type ReactNode } from 'react';
 import { api, type Sample, type ShipmentSummary } from './api';
+import { useDemo } from './demo';
 import { ResultsPage } from './ResultsPage';
 import { ShipmentPage } from './ShipmentPage';
 
@@ -75,6 +76,7 @@ const ERROR_LABELS: Record<string, string> = {
 };
 
 function Home() {
+  const demo = useDemo();
   const [shipments, setShipments] = useState<ShipmentSummary[]>([]);
   const [samples, setSamples] = useState<Sample[]>([]);
   const [destination, setDestination] = useState<'CA' | 'US'>('CA');
@@ -116,6 +118,14 @@ function Home() {
   return (
     <div className="home">
       {error && <p className="error banner">{error}</p>}
+      {demo ? (
+        <section className="card demo-note">
+          <h2>Read-only demo</h2>
+          <p className="muted">
+            Pick one of the synthetic shipments below: its three PDFs are extracted, then <strong>Validate</strong> runs the rules and the agent and shows each finding with the line it comes from and the regulation behind it. Uploads are turned off here; the model's answers were computed locally and are replayed from a cache.
+          </p>
+        </section>
+      ) : (
       <section className="card">
         <h2>New shipment</h2>
         <p className="muted">Create a shipment, upload its commercial invoice, packing list and bill of lading as PDFs, then validate.</p>
@@ -136,6 +146,7 @@ function Home() {
           </button>
         </div>
       </section>
+      )}
 
       {samples.length > 0 && (
         <section className="card">
@@ -149,7 +160,7 @@ function Home() {
               ))}
             </div>
           </div>
-          <p className="muted">Synthetic shipments with known, injected errors. Loading one uploads its three PDFs and extracts them with the local model (about 30 s per document).</p>
+          <p className="muted">Synthetic shipments with known, injected errors. {demo ? 'Loading one opens its three PDFs, already extracted by the local model.' : 'Loading one uploads its three PDFs and extracts them with the local model (about 30 s per document).'}</p>
           <div className="samples">
             {shown.map((s) => (
               <button key={s.id} className="sample" onClick={() => loadSample(s.id)} disabled={!!busy}>

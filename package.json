@@ -22,7 +22,8 @@
     "dev:web": "npm run dev -w @doccheck/web",
     "metrics": "node scripts/metrics.mjs",
     "cache:audit": "node scripts/cache-audit.mjs",
-    "eval:ocr": "npm run build -w @doccheck/extraction && node packages/extraction/dist/ocr-eval-cli.js"
+    "eval:ocr": "npm run build -w @doccheck/extraction && node packages/extraction/dist/ocr-eval-cli.js",
+    "demo:build": "node scripts/demo-build.mjs"
   },
   "engines": {
     "node": ">=22"

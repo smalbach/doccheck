@@ -61,7 +61,7 @@ Money and weights are decimal strings and use fixed-point arithmetic — never J
 scripts/start-local.sh          # checks Postgres, Redis, S3, Ollama and models, then builds and serves http://localhost:3000
 ```
 
-Create a shipment and drop its PDFs, or pick one of the synthetic samples (each lists the errors injected into it). `#/results` shows the evaluation numbers. Extraction runs in the background; then **Validate** shows each finding with its evidence, a link that opens the PDF with the cited line highlighted, the regulation passage that backs it and, when the agent was involved, its rationale. For frontend work, `npm run dev:web` serves the app on :5173 with hot reload and proxies the API.
+Create a shipment and drop its PDFs, or pick one of the synthetic samples (each lists the errors injected into it). `#/results` shows the evaluation numbers. Extraction runs in the background; then **Validate** shows each finding with its evidence, a link that opens the PDF with the cited line highlighted, the regulation passage that backs it and, when the agent was involved, its rationale. `DEMO_READONLY=true` runs the same app as a public read-only demo with no model: curated samples from `data/demo` (`npm run demo:build`), model answers replayed from `eval/cache`, and every write refused except loading and validating a sample (see [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md), section 4). For frontend work, `npm run dev:web` serves the app on :5173 with hot reload and proxies the API.
 
 Needs Postgres, Ollama with `qwen3.8` and `bge-m3`, and optionally Redis and S3 storage (see below).
 

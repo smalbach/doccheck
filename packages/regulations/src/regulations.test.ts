@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { chunkDocument, parseDocument } from './corpus';
-import { excerpt, RegulationIndex, tokenize, type Embedder } from './search';
+import { mkdtemp, readFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { CachedEmbedder, excerpt, RegulationIndex, tokenize, type Embedder } from './search';
 
 const DOC = `---
 id: "test-doc"
@@ -57,6 +60,30 @@ describe('search', () => {
     expect(hits.length).toBeGreaterThan(0);
     expect(hits.every((h) => h.chunk.documentId === 'other-memo')).toBe(true);
     expect(await index.search('currency', { documents: ['missing'] })).toEqual([]);
+  });
+
+  it('falls back to keywords when the embedder fails', async () => {
+    const index = await RegulationIndex.build(chunkDocument(parseDocument(DOC), 120), fake);
+    const offline = new RegulationIndex(index.toJSON().chunks as never, { id: 'fake', embed: async () => Promise.reject(new Error('offline')) });
+    const [hit] = await offline.search('currency of settlement', { authority: 'CBSA' });
+    expect(hit.chunk.text).toContain('Field 10');
+    expect(hit.ranks).toEqual({ keyword: 1 });
+  });
+
+  it('records query vectors and replays them without the model', async () => {
+    const file = join(await mkdtemp(join(tmpdir(), 'doccheck-q-')), 'queries.json');
+    let calls = 0;
+    const counting: Embedder = { id: 'fake', embed: async (t) => ((calls += t.length), fake.embed(t)) };
+    const rec = new CachedEmbedder(counting, file);
+    const [v] = await rec.embed(['currency of settlement']);
+    await rec.embed(['currency of settlement']);
+    expect(calls).toBe(1);
+    expect(JSON.parse(await readFile(file, 'utf8')).embedder).toBe('fake');
+
+    const replay = new CachedEmbedder(counting, file, 'replay');
+    expect(await replay.embed(['currency of settlement'])).toEqual([v]);
+    await expect(replay.embed(['something new'])).rejects.toThrow(/replay/);
+    expect(calls).toBe(1);
   });
 
   it('quotes whole sentences around the query terms', () => {
