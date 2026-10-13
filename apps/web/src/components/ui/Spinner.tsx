@@ -1,3 +1,3 @@
-export function Spinner({ label = 'In progress' }: { label?: string }) {
+export function Spinner({ label }: { label: string }) {
   return <span className="spinner" role="status" aria-label={label} />;
 }

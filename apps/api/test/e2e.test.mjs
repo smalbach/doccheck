@@ -175,6 +175,18 @@ describe('auth', () => {
     assert.equal((await call('POST', '/auth/login', { email, password: 'second password' }, '')).status, 200);
   });
 
+  it('deletes the account with its shipments after checking the password', async () => {
+    const email = `${randomUUID()}@example.com`;
+    const me = (await call('POST', '/auth/register', { email, password: 'to be deleted', name: 'Leaving' }, '')).cookie;
+    const { body: shipment } = await call('POST', '/shipments', { destination: 'CA' }, me);
+    assert.equal((await call('DELETE', '/auth/me', { password: 'wrong' }, me)).status, 401);
+    const del = await call('DELETE', '/auth/me', { password: 'to be deleted' }, me);
+    assert.equal(del.status, 204);
+    assert.equal((await call('GET', '/auth/me', undefined, me)).status, 401);
+    assert.equal((await call('POST', '/auth/login', { email, password: 'to be deleted' }, '')).status, 401);
+    assert.equal((await pool.query('select 1 from shipments where id = $1', [shipment.id])).rowCount, 0);
+  });
+
   it('refuses sign-in after 10 failures for an email', async () => {
     const email = `${randomUUID()}@example.com`;
     await call('POST', '/auth/register', { email, password: 'correct horse battery', name: 'Target' }, '');

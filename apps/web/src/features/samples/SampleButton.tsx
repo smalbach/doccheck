@@ -1,6 +1,7 @@
 import type { Sample } from '../../api/types';
 import { Tag } from '../../components/ui/Tag';
 import { Tooltip } from '../../components/ui/Tooltip';
+import { useI18n } from '../../i18n/useI18n';
 import { SampleErrorTags } from './SampleErrorTags';
 
 export interface SampleButtonProps {
@@ -11,7 +12,8 @@ export interface SampleButtonProps {
 }
 
 export function SampleButton({ sample, loading, disabled, onLoad }: SampleButtonProps) {
-  const description = sample.errors.map((e) => e.description).join('\n') || 'A clean shipment: the rules should find nothing.';
+  const { t } = useI18n();
+  const description = sample.errors.map((e) => e.description).join('\n') || t('samples.cleanDescription');
   return (
     <Tooltip content={description}>
       <button type="button" className="sample" onClick={() => onLoad(sample.id)} disabled={disabled}>
@@ -21,7 +23,7 @@ export function SampleButton({ sample, loading, disabled, onLoad }: SampleButton
         <span className="sample-errors">
           <SampleErrorTags errors={sample.errors} />
         </span>
-        {loading && <span className="muted small">Loading…</span>}
+        {loading && <span className="muted small" role="status">{t('samples.loading')}</span>}
       </button>
     </Tooltip>
   );

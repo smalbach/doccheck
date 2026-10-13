@@ -13,5 +13,7 @@ const ALLOWED_WRITES = [/^\/auth\/(register|login|logout|me|password)$/, /^\/dem
 export function readOnlyGuard(req: Request, res: Response, next: NextFunction) {
   if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') return next();
   if ((req.method === 'POST' || req.method === 'PATCH') && ALLOWED_WRITES.some((re) => re.test(req.path))) return next();
+  // Visitors can always delete their own account.
+  if (req.method === 'DELETE' && req.path === '/auth/me') return next();
   res.status(403).json({ statusCode: 403, message: 'This is a read-only demo: load a sample shipment and validate it.' });
 }

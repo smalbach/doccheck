@@ -5,6 +5,7 @@ import { Card } from '../../components/ui/Card';
 import { TextInput } from '../../components/ui/TextInput';
 import { ToggleChips } from '../../components/ui/ToggleChips';
 import { SAMPLE_FILTERS, SAMPLE_PAGE_SIZE, type SampleFilter } from '../../constants/sampleErrors';
+import { useI18n } from '../../i18n/useI18n';
 import { filterSamples } from '../../lib/filterSamples';
 import { SampleButton } from './SampleButton';
 
@@ -16,6 +17,7 @@ export interface SamplesCardProps {
 }
 
 export function SamplesCard({ samples, demo, busy, onLoad }: SamplesCardProps) {
+  const { t } = useI18n();
   const [filter, setFilter] = useState<SampleFilter>('all');
   const [query, setQuery] = useState('');
   const [limit, setLimit] = useState(SAMPLE_PAGE_SIZE);
@@ -28,14 +30,18 @@ export function SamplesCard({ samples, demo, busy, onLoad }: SamplesCardProps) {
   };
 
   return (
-    <Card title="Pick a sample" aside={<ToggleChips value={filter} options={SAMPLE_FILTERS} onValueChange={changeFilter} ariaLabel="Filter samples" />}>
+    <Card
+      title={t('samples.cardTitle')}
+      aside={<ToggleChips value={filter} options={SAMPLE_FILTERS.map((f) => ({ value: f.value, label: t(f.labelKey) }))} onValueChange={changeFilter} ariaLabel={t('samples.filterLabel')} />}
+    >
       <p className="muted">
-        Synthetic shipments with known, injected errors.{' '}
-        {demo ? 'Loading one opens its three PDFs, already extracted by the local model.' : 'Loading one uploads its three PDFs and extracts them with the local model (about 30 s per document).'}
+        {t('samples.intro')} {demo ? t('samples.introDemo') : t('samples.introLive')}
       </p>
-      <TextInput className="sample-search" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Find by ID, e.g. US-042" aria-label="Find a sample by ID" />
+      <TextInput className="sample-search" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t('samples.search')} aria-label={t('samples.searchLabel')} />
       {shown.length === 0 ? (
-        <p className="muted">No sample matches.</p>
+        <p className="muted" role="status">
+          {t('samples.noMatch')}
+        </p>
       ) : (
         <div className="samples">
           {shown.map((s) => (
@@ -46,7 +52,7 @@ export function SamplesCard({ samples, demo, busy, onLoad }: SamplesCardProps) {
       {matching.length > shown.length && (
         <div className="more">
           <Button onClick={() => setLimit((n) => n + SAMPLE_PAGE_SIZE)}>
-            Show more ({matching.length - shown.length} left)
+            {t('samples.showMore', { count: matching.length - shown.length })}
           </Button>
         </div>
       )}

@@ -1,20 +1,21 @@
 import type { ShipmentSummary } from '../api/types';
+import type { MessageKey } from '../i18n/keys';
 
 export type StatusFilter = 'all' | 'open' | 'attention' | 'done';
 
-export const STATUS_FILTERS: { value: StatusFilter; label: string }[] = [
-  { value: 'all', label: 'All' },
-  { value: 'open', label: 'In progress' },
-  { value: 'attention', label: 'Needs attention' },
-  { value: 'done', label: 'Clean' },
+export const STATUS_FILTERS: readonly { value: StatusFilter; labelKey: MessageKey }[] = [
+  { value: 'all', labelKey: 'shipments.statusFilters.all' },
+  { value: 'open', labelKey: 'shipments.statusFilters.open' },
+  { value: 'attention', labelKey: 'shipments.statusFilters.attention' },
+  { value: 'done', labelKey: 'shipments.statusFilters.done' },
 ];
 
 export type DestinationFilter = 'any' | 'CA' | 'US';
 
-export const DESTINATION_FILTERS: { value: DestinationFilter; label: string }[] = [
-  { value: 'any', label: 'Any destination' },
-  { value: 'CA', label: 'Canada (CBSA)' },
-  { value: 'US', label: 'United States (CBP)' },
+export const DESTINATION_FILTERS: readonly { value: DestinationFilter; labelKey: MessageKey }[] = [
+  { value: 'any', labelKey: 'shipments.anyDestination' },
+  { value: 'CA', labelKey: 'destinations.CA' },
+  { value: 'US', labelKey: 'destinations.US' },
 ];
 
 /** Not validated yet, or being worked on. */

@@ -44,6 +44,36 @@ export class AuthRepository {
     await this.pool.query('update users set password_hash = $2, updated_at = now() where id = $1', [id, passwordHash]);
   }
 
+  /**
+   * Deletes the user and, by cascade, sessions, shipments, documents, extractions, ISF and findings,
+   * unless a document is still extracting. Returns the storage keys of the user's PDFs.
+   */
+  async deleteUser(id: string): Promise<{ keys: string[] } | 'pending'> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('begin');
+      await client.query('select 1 from users where id = $1 for update', [id]);
+      // Lock the user's shipments too, so an upload cannot slip a document in meanwhile.
+      await client.query('select 1 from shipments where user_id = $1 for update', [id]);
+      const docs = await client.query<{ storage_key: string; status: string }>(
+        'select d.storage_key, d.status from documents d join shipments s on s.id = d.shipment_id where s.user_id = $1',
+        [id],
+      );
+      if (docs.rows.some((r) => r.status === 'QUEUED' || r.status === 'EXTRACTING')) {
+        await client.query('rollback');
+        return 'pending';
+      }
+      await client.query('delete from users where id = $1', [id]);
+      await client.query('commit');
+      return { keys: docs.rows.map((r) => r.storage_key) };
+    } catch (err) {
+      await client.query('rollback');
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
+
   async createSession(tokenHash: string, userId: string, expiresAt: Date): Promise<void> {
     await this.pool.query('insert into sessions (token_hash, user_id, expires_at) values ($1, $2, $3)', [tokenHash, userId, expiresAt]);
   }

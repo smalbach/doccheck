@@ -54,3 +54,16 @@
 .public-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 24px; border-bottom: 1px solid var(--line); background: var(--surface); }
 .public-nav { display: flex; gap: 8px; }
 @media (max-width: 600px) { .public-header { padding: 12px 16px; } }
+
+/* Skip link: hidden until focused with the keyboard */
+.skip-link { position: absolute; left: 12px; top: -48px; z-index: 100; padding: 8px 12px; background: var(--accent); color: var(--accent-contrast); border-radius: var(--radius-sm); font-weight: 600; text-decoration: none; }
+.skip-link:focus { top: 12px; }
+main:focus { outline: none; }
+
+/* Language and theme controls */
+.sidebar-prefs { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 4px; }
+.sidebar-prefs .select-trigger { min-width: 0; flex: 1; }
+.public-header-tools { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.public-header-tools .select-trigger { min-width: 120px; }
+@media (max-width: 600px) { .public-header { flex-wrap: wrap; } .public-header-tools { order: 3; width: 100%; justify-content: space-between; margin-left: 0; } }
+.title-actions { display: flex; gap: 8px; flex-wrap: wrap; }

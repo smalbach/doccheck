@@ -1,36 +1,59 @@
+/* Light by default; dark when chosen (data-theme="dark") or, with no choice, when the system asks for it. */
 :root {
   --bg: #f6f7f8;
   --surface: #ffffff;
   --surface-raised: #ffffff;
   --text: #1c2024;
-  --muted: #646b73;
+  --muted: #5b626a;
   --line: #e2e5e9;
   --accent: #0f766e;
   --accent-contrast: #ffffff;
   --accent-soft: #e6f4f2;
   --critical: #9f1239;
-  --high: #c2410c;
-  --medium: #a16207;
+  --high: #b93c08;
+  --medium: #8a5300;
   --low: #4b5563;
   --ok: #15803d;
   --mark: rgba(234, 88, 12, 0.18);
   --mark-line: #ea580c;
   --overlay: rgba(15, 20, 25, 0.35);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+  color-scheme: light;
   --radius: 10px;
   --radius-sm: 6px;
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
-  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: #111416;
+  --surface: #1a1e21;
+  --surface-raised: #22272b;
+  --text: #e7e9eb;
+  --muted: #a3aab1;
+  --line: #2c3236;
+  --accent: #2dd4bf;
+  --accent-contrast: #062320;
+  --accent-soft: #123532;
+  --critical: #fb7185;
+  --high: #fb923c;
+  --medium: #facc15;
+  --low: #a8b0bb;
+  --ok: #4ade80;
+  --mark: rgba(234, 88, 12, 0.22);
+  --mark-line: #fb923c;
+  --overlay: rgba(0, 0, 0, 0.55);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --bg: #111416;
     --surface: #1a1e21;
     --surface-raised: #22272b;
     --text: #e7e9eb;
-    --muted: #9aa1a8;
+    --muted: #a3aab1;
     --line: #2c3236;
     --accent: #2dd4bf;
     --accent-contrast: #062320;
@@ -38,8 +61,10 @@
     --critical: #fb7185;
     --high: #fb923c;
     --medium: #facc15;
-    --low: #9ca3af;
+    --low: #a8b0bb;
     --ok: #4ade80;
+    --mark: rgba(234, 88, 12, 0.22);
+    --mark-line: #fb923c;
     --overlay: rgba(0, 0, 0, 0.55);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     color-scheme: dark;

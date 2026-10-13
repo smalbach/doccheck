@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ShipmentDocument } from '../../api/types';
 import { Sheet } from '../../components/ui/Sheet';
+import { useI18n } from '../../i18n/useI18n';
 import { ExtractedFields } from './ExtractedFields';
 import { ExtractedRowsTable } from './ExtractedRowsTable';
 import { ExtractionIssues } from './ExtractionIssues';
@@ -17,15 +18,24 @@ export interface DocumentDataSheetProps {
 
 /** What the extraction read from one document: issues first, then the key fields and the rows. */
 export function DocumentDataSheet({ shipmentId, doc, readOnly, onClose, onReextracted }: DocumentDataSheetProps) {
+  const { t } = useI18n();
   const { detail, error: loadError } = useDocumentDetail(shipmentId, doc.id);
   const [actionError, setActionError] = useState<string>();
-  const error = actionError ?? (loadError && `Could not load the extraction (${loadError}).`);
+  const error = actionError ?? (loadError && t('extracted.loadError', { message: loadError }));
 
   return (
-    <Sheet title={`Extracted data · ${doc.fileName}`} onClose={onClose}>
+    <Sheet title={t('extracted.title', { file: doc.fileName })} onClose={onClose}>
       <div className="sheet-body">
-        {error && <p className="error">{error}</p>}
-        {!detail && !loadError && <p className="muted">Loading…</p>}
+        {error && (
+          <p className="error" role="alert">
+            {error}
+          </p>
+        )}
+        {!detail && !loadError && (
+          <p className="muted" role="status">
+            {t('common.loading')}
+          </p>
+        )}
         {detail && (
           <>
             <ExtractionIssues issues={detail.issues} />
@@ -35,11 +45,11 @@ export function DocumentDataSheet({ shipmentId, doc, readOnly, onClose, onReextr
                 <ExtractedRowsTable type={doc.detectedType} data={detail.data} />
               </>
             ) : (
-              <p className="muted">The document could not be normalized; see the issues above.</p>
+              <p className="muted">{t('extracted.notNormalized')}</p>
             )}
             {!readOnly && <ReextractControl shipmentId={shipmentId} doc={doc} onDone={onReextracted} onError={setActionError} />}
             <p className="muted small">
-              {detail.model} · prompt {detail.promptVersion}. Values were normalized from what is printed (dates to ISO, weights to kg); check them against the PDF.
+              {t('extracted.footer', { model: detail.model ?? '', prompt: detail.promptVersion ?? '' })}
             </p>
           </>
         )}

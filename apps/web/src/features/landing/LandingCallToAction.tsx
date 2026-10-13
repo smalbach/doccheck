@@ -1,12 +1,14 @@
 import { Button } from '../../components/ui/Button';
+import { useI18n } from '../../i18n/useI18n';
 
 export function LandingCallToAction({ signedIn }: { signedIn: boolean }) {
+  const { t } = useI18n();
   return (
-    <section className="landing-cta">
-      <h2>Try it on a sample in under a minute</h2>
-      <p className="muted">Synthetic shipments with known errors are ready to open once you sign in.</p>
+    <section className="landing-cta" aria-labelledby="landing-cta">
+      <h2 id="landing-cta">{t('landing.ctaTitle')}</h2>
+      <p className="muted">{t('landing.ctaText')}</p>
       <Button asChild variant="primary">
-        <a href={signedIn ? '#/app/samples' : '#/register'}>{signedIn ? 'Open the samples' : 'Get started'}</a>
+        <a href={signedIn ? '#/app/samples' : '#/register'}>{signedIn ? t('landing.ctaSamples') : t('auth.getStarted')}</a>
       </Button>
     </section>
   );

@@ -1,4 +1,5 @@
 import type { NavItem } from '../../constants/navigation';
+import { useI18n } from '../../i18n/useI18n';
 import { cx } from '../../lib/cx';
 
 export interface SidebarLinkProps {
@@ -8,11 +9,12 @@ export interface SidebarLinkProps {
 }
 
 export function SidebarLink({ item, active, onNavigate }: SidebarLinkProps) {
+  const { t } = useI18n();
   const Icon = item.icon;
   return (
     <a href={item.href} className={cx('sidebar-link', active && 'active')} aria-current={active ? 'page' : undefined} onClick={onNavigate}>
       <Icon aria-hidden />
-      <span>{item.label}</span>
+      <span>{t(item.labelKey)}</span>
     </a>
   );
 }

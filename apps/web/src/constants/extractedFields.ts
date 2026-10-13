@@ -1,7 +1,8 @@
 import type { DocumentType } from '../api/types';
+import type { MessageKey } from '../i18n/keys';
 
 export interface FieldSpec {
-  label: string;
+  labelKey: MessageKey;
   /** Dot path into the normalized document. */
   path: string;
 }
@@ -9,60 +10,60 @@ export interface FieldSpec {
 /** Key fields shown per document type. */
 export const EXTRACTED_FIELDS: Partial<Record<DocumentType, FieldSpec[]>> = {
   COMMERCIAL_INVOICE: [
-    { label: 'Invoice no.', path: 'invoiceNumber' },
-    { label: 'Invoice date', path: 'invoiceDate' },
-    { label: 'PO', path: 'poNumber' },
-    { label: 'Seller', path: 'seller.name' },
-    { label: 'Buyer', path: 'buyer.name' },
-    { label: 'Consignee', path: 'consignee.name' },
-    { label: 'Shipment date', path: 'shipmentDate' },
-    { label: 'Terms of sale', path: 'incoterm.code' },
-    { label: 'Currency', path: 'currency' },
-    { label: 'Packages', path: 'packageCount' },
-    { label: 'Net weight (kg)', path: 'netWeight.kg' },
-    { label: 'Gross weight (kg)', path: 'grossWeight.kg' },
-    { label: 'Invoice total', path: 'invoiceTotal.amount' },
-    { label: 'Port of entry', path: 'portOfEntry.name' },
+    { labelKey: 'extracted.fields.invoiceNumber', path: 'invoiceNumber' },
+    { labelKey: 'extracted.fields.invoiceDate', path: 'invoiceDate' },
+    { labelKey: 'extracted.fields.po', path: 'poNumber' },
+    { labelKey: 'extracted.fields.seller', path: 'seller.name' },
+    { labelKey: 'extracted.fields.buyer', path: 'buyer.name' },
+    { labelKey: 'extracted.fields.consignee', path: 'consignee.name' },
+    { labelKey: 'extracted.fields.shipmentDate', path: 'shipmentDate' },
+    { labelKey: 'extracted.fields.terms', path: 'incoterm.code' },
+    { labelKey: 'extracted.fields.currency', path: 'currency' },
+    { labelKey: 'extracted.fields.packages', path: 'packageCount' },
+    { labelKey: 'extracted.fields.netWeight', path: 'netWeight.kg' },
+    { labelKey: 'extracted.fields.grossWeight', path: 'grossWeight.kg' },
+    { labelKey: 'extracted.fields.invoiceTotal', path: 'invoiceTotal.amount' },
+    { labelKey: 'extracted.fields.portOfEntry', path: 'portOfEntry.name' },
   ],
   PACKING_LIST: [
-    { label: 'Packing list no.', path: 'packingListNumber' },
-    { label: 'Invoice ref.', path: 'invoiceRef' },
-    { label: 'Consignee', path: 'consignee.name' },
-    { label: 'Packages', path: 'totals.packageCount' },
-    { label: 'Net weight (kg)', path: 'totals.netWeight.kg' },
-    { label: 'Gross weight (kg)', path: 'totals.grossWeight.kg' },
-    { label: 'Volume (m³)', path: 'totals.volumeM3' },
+    { labelKey: 'extracted.fields.packingListNumber', path: 'packingListNumber' },
+    { labelKey: 'extracted.fields.invoiceRef', path: 'invoiceRef' },
+    { labelKey: 'extracted.fields.consignee', path: 'consignee.name' },
+    { labelKey: 'extracted.fields.packages', path: 'totals.packageCount' },
+    { labelKey: 'extracted.fields.netWeight', path: 'totals.netWeight.kg' },
+    { labelKey: 'extracted.fields.grossWeight', path: 'totals.grossWeight.kg' },
+    { labelKey: 'extracted.fields.volume', path: 'totals.volumeM3' },
   ],
   BILL_OF_LADING: [
-    { label: 'B/L no.', path: 'blNumber' },
-    { label: 'Carrier', path: 'carrier.name' },
-    { label: 'Shipper', path: 'shipper.name' },
-    { label: 'Consignee', path: 'consignee.name' },
-    { label: 'Vessel / voyage', path: 'vessel' },
-    { label: 'Port of loading', path: 'portOfLoading.name' },
-    { label: 'Port of discharge', path: 'portOfDischarge.name' },
-    { label: 'On board', path: 'shippedOnBoardDate' },
-    { label: 'Packages', path: 'totalPackages' },
-    { label: 'Gross weight (kg)', path: 'totalGrossWeight.kg' },
-    { label: 'Freight', path: 'freightTerms' },
+    { labelKey: 'extracted.fields.blNumber', path: 'blNumber' },
+    { labelKey: 'extracted.fields.carrier', path: 'carrier.name' },
+    { labelKey: 'extracted.fields.shipper', path: 'shipper.name' },
+    { labelKey: 'extracted.fields.consignee', path: 'consignee.name' },
+    { labelKey: 'extracted.fields.vessel', path: 'vessel' },
+    { labelKey: 'extracted.fields.portOfLoading', path: 'portOfLoading.name' },
+    { labelKey: 'extracted.fields.portOfDischarge', path: 'portOfDischarge.name' },
+    { labelKey: 'extracted.fields.onBoard', path: 'shippedOnBoardDate' },
+    { labelKey: 'extracted.fields.packages', path: 'totalPackages' },
+    { labelKey: 'extracted.fields.grossWeight', path: 'totalGrossWeight.kg' },
+    { labelKey: 'extracted.fields.freight', path: 'freightTerms' },
   ],
   ISF: [
-    { label: 'Importer of record no.', path: 'importerOfRecordNumber' },
-    { label: 'Consignee no.', path: 'consigneeNumber' },
-    { label: 'Seller', path: 'seller.name' },
-    { label: 'Buyer', path: 'buyer.name' },
-    { label: 'Manufacturer', path: 'manufacturer.name' },
-    { label: 'Ship-to party', path: 'shipToParty.name' },
-    { label: 'Country of origin', path: 'countryOfOrigin' },
-    { label: 'HTS', path: 'htsCode' },
-    { label: 'Stuffing location', path: 'containerStuffingLocation.city' },
-    { label: 'Consolidator', path: 'consolidator.name' },
+    { labelKey: 'extracted.fields.importerNumber', path: 'importerOfRecordNumber' },
+    { labelKey: 'extracted.fields.consigneeNumber', path: 'consigneeNumber' },
+    { labelKey: 'extracted.fields.seller', path: 'seller.name' },
+    { labelKey: 'extracted.fields.buyer', path: 'buyer.name' },
+    { labelKey: 'extracted.fields.manufacturer', path: 'manufacturer.name' },
+    { labelKey: 'extracted.fields.shipTo', path: 'shipToParty.name' },
+    { labelKey: 'extracted.fields.origin', path: 'countryOfOrigin' },
+    { labelKey: 'extracted.fields.hts', path: 'htsCode' },
+    { labelKey: 'extracted.fields.stuffing', path: 'containerStuffingLocation.city' },
+    { labelKey: 'extracted.fields.consolidator', path: 'consolidator.name' },
   ],
 };
 
 /** Column headings of the line table per document type (the first column is the row label). */
-export const EXTRACTED_ROW_HEADINGS: Partial<Record<DocumentType, string[]>> = {
-  COMMERCIAL_INVOICE: ['Description', 'Quantity', 'Unit price', 'Total', 'Origin'],
-  PACKING_LIST: ['Packages', 'Description', 'Quantity', 'Gross kg'],
-  BILL_OF_LADING: ['Seal', 'Type', 'Packages', 'Gross kg'],
+export const EXTRACTED_ROW_HEADINGS: Partial<Record<DocumentType, MessageKey[]>> = {
+  COMMERCIAL_INVOICE: ['extracted.columns.description', 'extracted.columns.quantity', 'extracted.columns.unitPrice', 'extracted.columns.total', 'extracted.columns.origin'],
+  PACKING_LIST: ['extracted.columns.packages', 'extracted.columns.description', 'extracted.columns.quantity', 'extracted.columns.grossKg'],
+  BILL_OF_LADING: ['extracted.columns.seal', 'extracted.columns.type', 'extracted.columns.packages', 'extracted.columns.grossKg'],
 };

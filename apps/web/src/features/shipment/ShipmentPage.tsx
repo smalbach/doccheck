@@ -4,9 +4,11 @@ import { LoadingCard } from '../../components/layout/LoadingCard';
 import { Banner } from '../../components/ui/Banner';
 import { Sheet } from '../../components/ui/Sheet';
 import { useDemo } from '../../hooks/useDemo';
+import { useI18n } from '../../i18n/useI18n';
 import { DocumentDataSheet } from '../document-data/DocumentDataSheet';
 import type { ViewerTarget } from '../pdf/types';
 import { DocumentsCard } from './DocumentsCard';
+import { ExportMenu } from './ExportMenu';
 import { FindingsCard } from './FindingsCard';
 import { ShipmentHeader } from './ShipmentHeader';
 import { useShipment } from './useShipment';
@@ -15,6 +17,7 @@ import { useShipment } from './useShipment';
 const PdfViewerSheet = lazy(() => import('../pdf/PdfViewerSheet').then((m) => ({ default: m.PdfViewerSheet })));
 
 export function ShipmentPage({ id }: { id: string }) {
+  const { t } = useI18n();
   const demo = useDemo();
   const { shipment, validation, rules, documents, error, setError, busy, extracting, refresh, upload, validate, remove } = useShipment(id);
   const [viewer, setViewer] = useState<ViewerTarget>();
@@ -24,7 +27,13 @@ export function ShipmentPage({ id }: { id: string }) {
 
   return (
     <div className="page shipment">
-      <ShipmentHeader shipment={shipment} canDelete={!demo} extracting={extracting} onDelete={() => void remove()} />
+      <ShipmentHeader
+        shipment={shipment}
+        canDelete={!demo}
+        extracting={extracting}
+        onDelete={() => void remove()}
+        actions={validation && <ExportMenu shipment={shipment} validation={validation} />}
+      />
       {error && <Banner tone="error">{error}</Banner>}
 
       <div className="shipment-columns">
@@ -59,8 +68,10 @@ export function ShipmentPage({ id }: { id: string }) {
       {viewer && (
         <Suspense
           fallback={
-            <Sheet title="Loading viewer…" onClose={() => setViewer(undefined)}>
-              <p className="muted sheet-body">Loading viewer…</p>
+            <Sheet title={t('viewer.loading')} onClose={() => setViewer(undefined)}>
+              <p className="muted sheet-body" role="status">
+                {t('viewer.loading')}
+              </p>
             </Sheet>
           }
         >

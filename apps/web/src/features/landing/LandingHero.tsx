@@ -1,31 +1,30 @@
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import { Button } from '../../components/ui/Button';
+import { useI18n } from '../../i18n/useI18n';
 
 export function LandingHero({ signedIn }: { signedIn: boolean }) {
+  const { t } = useI18n();
   return (
-    <section className="landing-hero">
-      <p className="landing-eyebrow">For customs brokers and importers · Canada and the US</p>
-      <h1>Catch freight document errors before customs does.</h1>
-      <p className="landing-lede">
-        DocCheck cross-checks the commercial invoice, packing list, bill of lading and ISF, and flags every inconsistency with the line it comes from and the CBSA or CBP rule behind
-        it.
-      </p>
+    <section className="landing-hero" aria-labelledby="landing-title">
+      <p className="landing-eyebrow">{t('landing.eyebrow')}</p>
+      <h1 id="landing-title">{t('landing.title')}</h1>
+      <p className="landing-lede">{t('landing.lede')}</p>
       <div className="landing-ctas">
         {signedIn ? (
           <Button asChild variant="primary">
             <a href="#/app">
-              Open the app <ArrowRightIcon aria-hidden />
+              {t('auth.openApp')} <ArrowRightIcon aria-hidden />
             </a>
           </Button>
         ) : (
           <>
             <Button asChild variant="primary">
               <a href="#/register">
-                Create a free account <ArrowRightIcon aria-hidden />
+                {t('landing.register')} <ArrowRightIcon aria-hidden />
               </a>
             </Button>
             <Button asChild>
-              <a href="#/login">Sign in</a>
+              <a href="#/login">{t('auth.signIn')}</a>
             </Button>
           </>
         )}

@@ -1,7 +1,7 @@
 import type { ShipmentDocument } from '../../api/types';
 import { Button } from '../../components/ui/Button';
-import { DOCUMENT_TYPE_LABEL } from '../../constants/documentTypes';
-import { pluralize } from '../../lib/pluralize';
+import { DOCUMENT_TYPE_KEY } from '../../constants/documentTypes';
+import { useI18n } from '../../i18n/useI18n';
 
 export interface DocumentDetailProps {
   doc: ShipmentDocument;
@@ -10,13 +10,14 @@ export interface DocumentDetailProps {
 
 /** One line under the file name: its type and pages, the extraction error, or that it is still extracting. */
 export function DocumentDetail({ doc, onShowData }: DocumentDetailProps) {
+  const { t } = useI18n();
   if (doc.status === 'FAILED') return <span className="error">{doc.error}</span>;
-  if (doc.status !== 'EXTRACTED') return <>Extracting with the local model…</>;
+  if (doc.status !== 'EXTRACTED') return <>{t('shipment.extracting')}</>;
   return (
     <>
-      {DOCUMENT_TYPE_LABEL[doc.detectedType]} · {pluralize(doc.pageCount, 'page')} ·{' '}
-      <Button variant="link" size="sm" onClick={() => onShowData(doc)}>
-        extracted data
+      {t(DOCUMENT_TYPE_KEY[doc.detectedType])} · {t('shipment.pages', { count: doc.pageCount })} ·{' '}
+      <Button variant="link" size="sm" onClick={() => onShowData(doc)} aria-label={`${t('shipment.extractedData')} · ${doc.fileName}`}>
+        {t('shipment.extractedData')}
       </Button>
     </>
   );

@@ -1,6 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
-import { Card } from '../ui/Card';
-import { BackLink } from './BackLink';
+import { PageError } from './PageError';
 
 interface State {
   error?: Error;
@@ -20,11 +19,6 @@ export class PageBoundary extends Component<{ children: ReactNode }, State> {
 
   override render() {
     if (!this.state.error) return this.props.children;
-    return (
-      <Card>
-        <p className="error">This page could not be shown ({this.state.error.message}).</p>
-        <BackLink />
-      </Card>
-    );
+    return <PageError message={this.state.error.message} />;
   }
 }

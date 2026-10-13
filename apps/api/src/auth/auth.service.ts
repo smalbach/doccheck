@@ -1,7 +1,8 @@
-import { ConflictException, HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, HttpException, HttpStatus, Inject, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
+import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { AuthRepository } from './auth.repository';
-import type { ChangePasswordDto, LoginDto, RegisterDto } from './auth.dto';
+import type { ChangePasswordDto, DeleteAccountDto, LoginDto, RegisterDto } from './auth.dto';
 import type { PublicUser, UserRow } from './auth.types';
 import { LoginThrottle } from './login-throttle';
 import { hashPassword, verifyPassword } from './password';
@@ -21,9 +22,12 @@ export interface NewSession {
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger(AuthService.name);
+
   constructor(
     private readonly repo: AuthRepository,
     private readonly throttle: LoginThrottle,
+    @Inject(STORAGE) private readonly storage: ObjectStorage,
   ) {}
 
   private async startSession(user: PublicUser): Promise<NewSession> {
@@ -65,6 +69,16 @@ export class AuthService {
     const user = await this.repo.findById(userId);
     if (!user) throw new UnauthorizedException();
     return publicUser(user);
+  }
+
+  /** The account and everything in it, PDFs included; refused while a document is extracting. */
+  async deleteAccount(userId: string, dto: DeleteAccountDto): Promise<void> {
+    const user = await this.repo.findById(userId);
+    if (!user || !(await verifyPassword(dto.password, user.passwordHash))) throw new UnauthorizedException('The password is wrong');
+    const res = await this.repo.deleteUser(userId);
+    if (res === 'pending') throw new ConflictException('Documents are still being extracted; delete the account when they are done');
+    const failed = (await Promise.all(res.keys.map((k) => this.storage.delete(k).then(() => null, (err: Error) => `${k} (${err.message})`)))).filter(Boolean);
+    if (failed.length) this.logger.warn(`Account ${userId} deleted, but these PDFs could not be removed from storage: ${failed.join(', ')}`);
   }
 
   /** Other sessions are signed out; the current one stays. */

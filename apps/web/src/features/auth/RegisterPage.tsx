@@ -3,6 +3,8 @@ import { Banner } from '../../components/ui/Banner';
 import { Button } from '../../components/ui/Button';
 import { Field } from '../../components/ui/Field';
 import { TextInput } from '../../components/ui/TextInput';
+import { useI18n } from '../../i18n/useI18n';
+import { authErrorKey } from '../../lib/authErrorKey';
 import { errorMessage } from '../../lib/errorMessage';
 import { navigate } from '../../lib/navigate';
 import { safeNext } from '../../lib/safeNext';
@@ -12,6 +14,7 @@ import { useAuth } from './useAuth';
 
 export function RegisterPage({ next }: { next?: string }) {
   const { register } = useAuth();
+  const { t } = useI18n();
   const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string>();
@@ -20,14 +23,15 @@ export function RegisterPage({ next }: { next?: string }) {
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     const problem = validateSignUp(form);
-    if (problem) return setError(problem);
+    if (problem) return setError(t(problem, { min: MIN_PASSWORD_LENGTH }));
     setBusy(true);
     setError(undefined);
     try {
       await register({ name: form.name.trim(), email: form.email, password: form.password });
       navigate(safeNext(next));
     } catch (err) {
-      setError(errorMessage(err));
+      const key = authErrorKey(err);
+      setError(key ? t(key) : t('auth.errors.invalid', { message: errorMessage(err) }));
       setBusy(false);
     }
   };
@@ -35,26 +39,26 @@ export function RegisterPage({ next }: { next?: string }) {
   const loginHref = `#/login${next ? `?next=${encodeURIComponent(next)}` : ''}`;
   return (
     <AuthLayout
-      title="Create your account"
-      subtitle="Check freight documents before they reach customs. Free, and your PDFs stay on this server."
+      title={t('auth.registerTitle')}
+      subtitle={t('auth.registerSubtitle')}
       footer={
         <>
-          Already have an account? <a href={loginHref}>Sign in</a>
+          {t('auth.haveAccount')} <a href={loginHref}>{t('auth.signIn')}</a>
         </>
       }
     >
-      <form className="auth-form" onSubmit={(e) => void submit(e)}>
+      <form className="auth-form" onSubmit={(e) => void submit(e)} aria-busy={busy}>
         {error && <Banner tone="error">{error}</Banner>}
-        <Field label="Name">{(id) => <TextInput id={id} autoComplete="name" required value={form.name} onChange={(e) => set('name')(e.target.value)} />}</Field>
-        <Field label="Email">{(id) => <TextInput id={id} type="email" autoComplete="email" required value={form.email} onChange={(e) => set('email')(e.target.value)} />}</Field>
-        <Field label={`Password (${MIN_PASSWORD_LENGTH}+ characters)`}>
+        <Field label={t('auth.name')}>{(id) => <TextInput id={id} autoComplete="name" required value={form.name} onChange={(e) => set('name')(e.target.value)} />}</Field>
+        <Field label={t('auth.email')}>{(id) => <TextInput id={id} type="email" autoComplete="email" required value={form.email} onChange={(e) => set('email')(e.target.value)} />}</Field>
+        <Field label={t('auth.passwordHint', { min: MIN_PASSWORD_LENGTH })}>
           {(id) => <TextInput id={id} type="password" autoComplete="new-password" required minLength={MIN_PASSWORD_LENGTH} value={form.password} onChange={(e) => set('password')(e.target.value)} />}
         </Field>
-        <Field label="Confirm password">
+        <Field label={t('auth.confirmPassword')}>
           {(id) => <TextInput id={id} type="password" autoComplete="new-password" required value={form.confirm} onChange={(e) => set('confirm')(e.target.value)} />}
         </Field>
         <Button type="submit" variant="primary" disabled={busy}>
-          {busy ? 'Creating account…' : 'Create account'}
+          {busy ? t('auth.creatingAccount') : t('auth.createAccount')}
         </Button>
       </form>
     </AuthLayout>

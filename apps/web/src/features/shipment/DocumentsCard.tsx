@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Shipment, ShipmentDocument, Validation } from '../../api/types';
 import { Card } from '../../components/ui/Card';
+import { useI18n } from '../../i18n/useI18n';
 import { isPendingDocument } from '../../lib/isPendingDocument';
 import type { ViewerTarget } from '../pdf/types';
 import { DocumentList } from './DocumentList';
@@ -26,6 +27,7 @@ export interface DocumentsCardProps {
 
 /** Documents of the shipment, the upload area, the Validate action and the ISF on file. */
 export function DocumentsCard({ shipment, validation, documents, readOnly, busy, extracting, onUpload, onValidate, onOpen, onShowData, onError }: DocumentsCardProps) {
+  const { t } = useI18n();
   const [useAgent, setUseAgent] = useState(true);
   const extracted = shipment.documents.filter((d) => d.status === 'EXTRACTED').length;
   // Reload the ISF when an ISF PDF arrives or finishes extracting.
@@ -35,7 +37,7 @@ export function DocumentsCard({ shipment, validation, documents, readOnly, busy,
     .join(',');
 
   return (
-    <Card title="Documents">
+    <Card title={t('shipment.documents')}>
       {!readOnly && <UploadDropzone uploading={busy === 'upload'} acceptsIsf={shipment.destination === 'US'} onFiles={onUpload} />}
       <DocumentList documents={shipment.documents} onOpen={(doc) => onOpen({ doc })} onShowData={onShowData} />
       <ValidateBar

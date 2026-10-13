@@ -29,6 +29,7 @@ export const api = {
   logout: () => request<void>('/auth/logout', { method: 'POST' }),
   updateProfile: (body: { name: string }) => request<User>('/auth/me', { ...jsonBody(body), method: 'PATCH' }),
   changePassword: (body: { currentPassword: string; newPassword: string }) => request<void>('/auth/password', jsonBody(body)),
+  deleteAccount: (password: string) => request<void>('/auth/me', { ...jsonBody({ password }), method: 'DELETE' }),
 
   shipments: () => request<ShipmentSummary[]>('/shipments'),
   shipment: (id: string) => request<Shipment>(shipmentPath(id)),

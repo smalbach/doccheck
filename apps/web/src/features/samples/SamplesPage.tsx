@@ -7,20 +7,22 @@ import { PageHeader } from '../../components/ui/PageHeader';
 import { useDemo } from '../../hooks/useDemo';
 import { useOpenShipment } from '../../hooks/useOpenShipment';
 import { useSamples } from '../../hooks/useSamples';
+import { useI18n } from '../../i18n/useI18n';
 import { SamplesCard } from './SamplesCard';
 
 export function SamplesPage() {
+  const { t } = useI18n();
   const demo = useDemo();
   const samples = useSamples();
   const { busy, error, open } = useOpenShipment();
   if (!samples) return <LoadingCard />;
   return (
     <div className="page">
-      <PageHeader title="Samples" description="Synthetic shipments with known, injected errors: a quick way to see what the checks catch." />
+      <PageHeader title={t('samples.title')} description={t('samples.description')} />
       {error && <Banner tone="error">{error}</Banner>}
       {samples.length === 0 ? (
         <Card>
-          <EmptyState title="No samples on this server">Generate them with npm run synth.</EmptyState>
+          <EmptyState title={t('samples.noneTitle')}>{t('samples.noneText')}</EmptyState>
         </Card>
       ) : (
         <SamplesCard samples={samples} demo={demo} busy={busy} onLoad={(id) => void open(id, () => api.loadSample(id))} />

@@ -1,7 +1,7 @@
-import { Body, Controller, Get, HttpCode, Patch, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Patch, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
 import type { Request, Response } from 'express';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
-import { ChangePasswordDto, LoginDto, RegisterDto, UpdateProfileDto } from './auth.dto';
+import { ChangePasswordDto, DeleteAccountDto, LoginDto, RegisterDto, UpdateProfileDto } from './auth.dto';
 import { AuthService, type NewSession } from './auth.service';
 import type { AuthedRequest, PublicUser } from './auth.types';
 import { CurrentUser } from './current-user.decorator';
@@ -47,6 +47,19 @@ export class AuthController {
   @Patch('me')
   updateProfile(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(UpdateProfileDto)) dto: UpdateProfileDto) {
     return this.auth.updateProfile(user.id, dto.name);
+  }
+
+  /** Body { password }: deletes the account with its shipments and PDFs, and signs out. */
+  @Delete('me')
+  @HttpCode(204)
+  async deleteAccount(
+    @CurrentUser() user: PublicUser,
+    @Body(new ZodValidationPipe(DeleteAccountDto)) dto: DeleteAccountDto,
+    @Req() req: Request,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    await this.auth.deleteAccount(user.id, dto);
+    clearSessionCookie(req, res);
   }
 
   @Post('password')

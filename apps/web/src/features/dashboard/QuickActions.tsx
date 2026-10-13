@@ -1,29 +1,30 @@
 import { ArrowRightIcon, LayersIcon, PlusIcon, ReaderIcon } from '@radix-ui/react-icons';
 import type { ComponentType } from 'react';
+import { useI18n } from '../../i18n/useI18n';
 
 interface Action {
+  id: 'newShipment' | 'samples' | 'rules';
   href: string;
-  title: string;
-  text: string;
   icon: ComponentType<{ 'aria-hidden'?: boolean }>;
   writes?: boolean;
 }
 
-const ACTIONS: Action[] = [
-  { href: '#/app/shipments/new', title: 'New shipment', text: 'Upload the PDFs of a real shipment and validate them.', icon: PlusIcon, writes: true },
-  { href: '#/app/samples', title: 'Try a sample', text: 'Synthetic shipments with known errors, ready to check.', icon: LayersIcon },
-  { href: '#/app/rules', title: 'What gets checked', text: 'Every rule, by destination, with what it needs.', icon: ReaderIcon },
+const ACTIONS: readonly Action[] = [
+  { id: 'newShipment', href: '#/app/shipments/new', icon: PlusIcon, writes: true },
+  { id: 'samples', href: '#/app/samples', icon: LayersIcon },
+  { id: 'rules', href: '#/app/rules', icon: ReaderIcon },
 ];
 
 export function QuickActions({ demo }: { demo: boolean }) {
+  const { t } = useI18n();
   return (
     <div className="quick-actions">
-      {ACTIONS.filter((a) => !(demo && a.writes)).map(({ href, title, text, icon: Icon }) => (
-        <a key={href} href={href} className="quick-action">
+      {ACTIONS.filter((a) => !(demo && a.writes)).map(({ id, href, icon: Icon }) => (
+        <a key={id} href={href} className="quick-action">
           <Icon aria-hidden />
           <span className="quick-action-text">
-            <strong>{title}</strong>
-            <span className="muted small">{text}</span>
+            <strong>{t(`dashboard.actions.${id}.title`)}</strong>
+            <span className="muted small">{t(`dashboard.actions.${id}.text`)}</span>
           </span>
           <ArrowRightIcon aria-hidden className="quick-action-arrow" />
         </a>

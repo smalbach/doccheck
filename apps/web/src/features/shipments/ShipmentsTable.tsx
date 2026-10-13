@@ -1,18 +1,18 @@
 import type { ShipmentSummary } from '../../api/types';
 import { DataTable, type Column } from '../../components/ui/DataTable';
 import { StatusBadge } from '../../components/ui/StatusBadge';
-import { formatDateTime } from '../../lib/formatDateTime';
-import { navigate } from '../../lib/navigate';
+import { useI18n } from '../../i18n/useI18n';
 
-const COLUMNS: Column<ShipmentSummary>[] = [
-  { key: 'reference', header: 'Reference', cell: (s) => s.reference ?? <span className="muted">{s.id.slice(0, 8)}</span> },
-  { key: 'destination', header: 'Destination', cell: (s) => s.destination ?? '—', secondary: true },
-  { key: 'status', header: 'Status', cell: (s) => <StatusBadge status={s.status} /> },
-  { key: 'documents', header: 'Documents', cell: (s) => s.documentCount, numeric: true, secondary: true },
-  { key: 'findings', header: 'Findings', cell: (s) => s.findingCount ?? '—', numeric: true },
-  { key: 'created', header: 'Created', cell: (s) => <span className="muted">{formatDateTime(s.createdAt)}</span>, secondary: true },
-];
-
+/** The reference is a real link, so the row works with the keyboard, middle-click and screen readers. */
 export function ShipmentsTable({ shipments }: { shipments: readonly ShipmentSummary[] }) {
-  return <DataTable columns={COLUMNS} rows={shipments} rowKey={(s) => s.id} onRowClick={(s) => navigate(`/app/s/${s.id}`)} caption="Shipments" />;
+  const { t, formatDateTime } = useI18n();
+  const columns: Column<ShipmentSummary>[] = [
+    { key: 'reference', header: t('shipments.columns.reference'), cell: (s) => <a href={`#/app/s/${s.id}`}>{s.reference ?? s.id.slice(0, 8)}</a> },
+    { key: 'destination', header: t('shipments.columns.destination'), cell: (s) => s.destination ?? '—', secondary: true },
+    { key: 'status', header: t('shipments.columns.status'), cell: (s) => <StatusBadge status={s.status} /> },
+    { key: 'documents', header: t('shipments.columns.documents'), cell: (s) => s.documentCount, numeric: true, secondary: true },
+    { key: 'findings', header: t('shipments.columns.findings'), cell: (s) => s.findingCount ?? '—', numeric: true },
+    { key: 'created', header: t('shipments.columns.created'), cell: (s) => <span className="muted">{formatDateTime(s.createdAt)}</span>, secondary: true },
+  ];
+  return <DataTable columns={columns} rows={shipments} rowKey={(s) => s.id} caption={t('shipments.caption')} />;
 }

@@ -3,6 +3,7 @@ import { api } from '../../api/client';
 import { ApiError } from '../../api/ApiError';
 import type { RuleDefinition, Shipment, Validation } from '../../api/types';
 import { useInterval } from '../../hooks/useInterval';
+import { useI18n } from '../../i18n/useI18n';
 import { errorMessage } from '../../lib/errorMessage';
 import { isPdfFile } from '../../lib/isPdfFile';
 import { isPendingDocument } from '../../lib/isPendingDocument';
@@ -14,6 +15,7 @@ export type ShipmentBusy = 'upload' | 'validate' | 'delete';
 
 /** A shipment with its last validation and rules, polled while documents extract, and the actions on it. */
 export function useShipment(id: string) {
+  const { t } = useI18n();
   const [shipment, setShipment] = useState<Shipment>();
   const [validation, setValidation] = useState<Validation>();
   const [rules, setRules] = useState<Record<string, RuleDefinition>>({});
@@ -60,7 +62,7 @@ export function useShipment(id: string) {
   const upload = (files: File[]) => {
     const pdfs = files.filter(isPdfFile);
     if (pdfs.length === 0) {
-      setError('Only PDF files can be uploaded.');
+      setError(t('shipment.onlyPdf'));
       return Promise.resolve();
     }
     return run('upload', async () => {
@@ -76,7 +78,7 @@ export function useShipment(id: string) {
         setValidation(await api.validate(id, useAgent));
         await refresh();
       },
-      (e) => (e instanceof ApiError && e.status === 409 ? 'Some documents are still being extracted. Validate when they are done.' : errorMessage(e)),
+      (e) => (e instanceof ApiError && e.status === 409 ? t('shipment.stillExtracting') : errorMessage(e)),
     );
 
   const remove = () =>

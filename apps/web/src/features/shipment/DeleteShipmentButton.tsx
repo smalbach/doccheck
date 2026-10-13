@@ -2,6 +2,7 @@ import { TrashIcon } from '@radix-ui/react-icons';
 import { Button } from '../../components/ui/Button';
 import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
 import { Tooltip } from '../../components/ui/Tooltip';
+import { useI18n } from '../../i18n/useI18n';
 
 export interface DeleteShipmentButtonProps {
   disabled: boolean;
@@ -9,13 +10,14 @@ export interface DeleteShipmentButtonProps {
 }
 
 export function DeleteShipmentButton({ disabled, onConfirm }: DeleteShipmentButtonProps) {
+  const { t } = useI18n();
   if (disabled) {
     return (
-      <Tooltip content="Wait until extraction finishes">
+      <Tooltip content={t('shipment.deleteWait')}>
         {/* A disabled button gets no pointer events, so the hint sits on a wrapper. */}
         <span tabIndex={0}>
           <Button variant="danger" disabled>
-            <TrashIcon aria-hidden /> Delete
+            <TrashIcon aria-hidden /> {t('shipment.delete')}
           </Button>
         </span>
       </Tooltip>
@@ -25,12 +27,12 @@ export function DeleteShipmentButton({ disabled, onConfirm }: DeleteShipmentButt
     <ConfirmDialog
       trigger={
         <Button variant="danger">
-          <TrashIcon aria-hidden /> Delete
+          <TrashIcon aria-hidden /> {t('shipment.delete')}
         </Button>
       }
-      title="Delete this shipment?"
-      description="Its PDFs, extractions, ISF and findings are removed too. This cannot be undone."
-      confirmLabel="Delete shipment"
+      title={t('shipment.deleteTitle')}
+      description={t('shipment.deleteText')}
+      confirmLabel={t('shipment.deleteConfirm')}
       onConfirm={onConfirm}
     />
   );

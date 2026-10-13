@@ -1,8 +1,7 @@
 import type { RuleDefinition, ShipmentDocument, Validation } from '../../api/types';
 import { Banner } from '../../components/ui/Banner';
 import { Card } from '../../components/ui/Card';
-import { formatDateTime } from '../../lib/formatDateTime';
-import { pluralize } from '../../lib/pluralize';
+import { useI18n } from '../../i18n/useI18n';
 import { sortFindings } from '../../lib/sortFindings';
 import type { ViewerTarget } from '../pdf/types';
 import { AgentDecisions } from './AgentDecisions';
@@ -17,17 +16,18 @@ export interface FindingsCardProps {
 }
 
 export function FindingsCard({ validation, rules, documents, onOpen }: FindingsCardProps) {
+  const { t, formatDateTime } = useI18n();
   const aside = validation && (
     <span className="muted small">
-      {formatDateTime(validation.createdAt)} · {pluralize(validation.ran.length, 'rule')} ran
+      {formatDateTime(validation.createdAt)} · {t('shipment.findings.ran', { count: validation.ran.length })}
     </span>
   );
   return (
-    <Card title="Findings" aside={aside} className="findings">
+    <Card title={t('shipment.findings.title')} aside={aside} className="findings" aria-live="polite">
       {!validation ? (
-        <p className="muted">Upload the documents and validate to see findings.</p>
+        <p className="muted">{t('shipment.findings.empty')}</p>
       ) : validation.findings.length === 0 ? (
-        <Banner tone="ok">No inconsistencies found by the {pluralize(validation.ran.length, 'rule')} that ran.</Banner>
+        <Banner tone="ok">{t('shipment.findings.none', { count: validation.ran.length })}</Banner>
       ) : (
         <>
           <FindingsSummary findings={validation.findings} />
@@ -37,7 +37,7 @@ export function FindingsCard({ validation, rules, documents, onOpen }: FindingsC
         </>
       )}
       {validation?.agent && <AgentDecisions decisions={validation.agent.decisions} />}
-      {validation?.agent?.status === 'failed' && <p className="muted small">Agent review unavailable: {validation.agent.error}</p>}
+      {validation?.agent?.status === 'failed' && <p className="muted small">{t('shipment.agent.unavailable', { error: validation.agent.error ?? '' })}</p>}
     </Card>
   );
 }

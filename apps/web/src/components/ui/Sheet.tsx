@@ -1,6 +1,7 @@
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { Dialog } from 'radix-ui';
 import type { ReactNode } from 'react';
+import { useI18n } from '../../i18n/useI18n';
 
 export interface SheetProps {
   title: string;
@@ -12,6 +13,7 @@ export interface SheetProps {
 
 /** A panel sliding in from the right, over the page: focus is trapped, Escape and the overlay close it. */
 export function Sheet({ title, onClose, actions, children }: SheetProps) {
+  const { t } = useI18n();
   return (
     <Dialog.Root open onOpenChange={(open) => !open && onClose()}>
       <Dialog.Portal>
@@ -20,7 +22,7 @@ export function Sheet({ title, onClose, actions, children }: SheetProps) {
           <header className="sheet-head">
             <Dialog.Title className="sheet-title">{title}</Dialog.Title>
             {actions}
-            <Dialog.Close className="btn btn-ghost icon-btn" aria-label="Close">
+            <Dialog.Close className="btn btn-ghost icon-btn" aria-label={t('common.close')}>
               <Cross2Icon />
             </Dialog.Close>
           </header>

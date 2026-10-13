@@ -4,6 +4,8 @@ import { readPath } from './readPath';
 
 export interface ExtractedRow {
   label: string;
+  /** Invoice lines: label is the line number, shown as "Line n". */
+  isLine?: boolean;
   cells: string[];
 }
 
@@ -18,7 +20,8 @@ export function buildExtractedRows(type: DocumentType, data: ExtractedData): Ext
   switch (type) {
     case 'COMMERCIAL_INVOICE':
       return list(data, 'lines').map((l) => ({
-        label: `Line ${at(l, 'lineNo')}`,
+        label: at(l, 'lineNo'),
+        isLine: true,
         cells: [at(l, 'description'), `${at(l, 'quantity.value')} ${at(l, 'quantity.unit')}`, at(l, 'unitPrice.amount'), at(l, 'lineTotal.amount'), at(l, 'countryOfOrigin')],
       }));
     case 'PACKING_LIST':

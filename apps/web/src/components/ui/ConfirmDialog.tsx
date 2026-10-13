@@ -1,5 +1,6 @@
 import { AlertDialog } from 'radix-ui';
 import type { ReactNode } from 'react';
+import { useI18n } from '../../i18n/useI18n';
 import { Button } from './Button';
 
 export interface ConfirmDialogProps {
@@ -13,6 +14,7 @@ export interface ConfirmDialogProps {
 
 /** Asks before a destructive action; Cancel has focus by default. */
 export function ConfirmDialog({ trigger, title, description, confirmLabel, onConfirm }: ConfirmDialogProps) {
+  const { t } = useI18n();
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>{trigger}</AlertDialog.Trigger>
@@ -23,7 +25,7 @@ export function ConfirmDialog({ trigger, title, description, confirmLabel, onCon
           <AlertDialog.Description className="dialog-description">{description}</AlertDialog.Description>
           <div className="dialog-actions">
             <AlertDialog.Cancel asChild>
-              <Button>Cancel</Button>
+              <Button>{t('common.cancel')}</Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action asChild>
               <Button variant="danger" onClick={onConfirm}>

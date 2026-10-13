@@ -1,0 +1,13 @@
+/* Printing a shipment gives a clean report: no navigation, buttons or upload area, and no cut findings. */
+@media print {
+  :root { color-scheme: light; --bg: #fff; --surface: #fff; --text: #000; --muted: #444; --line: #ccc; }
+  body { background: #fff; }
+  .app-sidebar, .mobile-topbar, .skip-link, .app-footer, .no-print, .btn, .dropzone, .validate-bar, .back-link, .disclosure-trigger { display: none !important; }
+  .app-shell { display: block; }
+  .app-main { max-width: none; padding: 0; }
+  .shipment-columns { display: block; }
+  .card { border: 0; padding: 0 0 12px; break-inside: avoid; }
+  .finding { break-inside: avoid; }
+  .disclosure-content[hidden] { display: block !important; }
+  a { color: inherit; text-decoration: none; }
+}
