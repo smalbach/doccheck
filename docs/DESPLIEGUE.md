@@ -142,10 +142,17 @@ Cargar con `launchctl load ~/Library/LaunchAgents/com.doccheck.app.plist`. Repet
 ### Verlo desde el celular u otra red (ngrok)
 
 ```bash
-ngrok http 3000 --url https://powerful-stallion-purely.ngrok-free.app --basic-auth "usuario:contraseña"
+scripts/tunnel.sh
 ```
 
-El túnel apunta al puerto de la app (3000, no 80). Sin `--basic-auth` cualquiera con la URL ve los envíos y puede subir documentos. ngrok gratuito muestra una página de aviso la primera vez ("Visit Site").
+Abre el túnel de ngrok hacia la app (puerto 3000) **con usuario y contraseña**, tomados de `.env`:
+
+```
+NGROK_URL=https://powerful-stallion-purely.ngrok-free.app
+NGROK_BASIC_AUTH=doccheck:<contraseña de 8+ caracteres>
+```
+
+El navegador pide esas credenciales al abrir la URL; sin ellas responde 401. ngrok gratuito muestra además una página de aviso la primera vez ("Visit Site"). Cerrar: `scripts/tunnel.sh stop`. Registro en `.data/ngrok.log`.
 
 ## 2. Docker (autoalojado)
 
