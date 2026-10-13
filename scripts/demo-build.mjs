@@ -40,13 +40,16 @@ async function call(method, path, body) {
   return res.status === 204 ? null : res.json();
 }
 
+// Password of the account this run signs up, so it can delete it at the end.
+let throwaway;
 const health = await call('GET', '/health');
 if (process.env.DEMO_BUILD_EMAIL && process.env.DEMO_BUILD_PASSWORD) {
   await call('POST', '/auth/login', { email: process.env.DEMO_BUILD_EMAIL, password: process.env.DEMO_BUILD_PASSWORD });
 } else {
   const email = `demo-build-${randomBytes(6).toString('hex')}@doccheck.invalid`;
-  await call('POST', '/auth/register', { email, password: randomBytes(18).toString('base64url'), name: 'demo-build' });
-  console.log(`Signed up ${email} for this run`);
+  throwaway = randomBytes(18).toString('base64url');
+  await call('POST', '/auth/register', { email, password: throwaway, name: 'demo-build' });
+  console.log(`Signed up ${email} for this run (deleted at the end)`);
 }
 if (health.demo) throw new Error('The API runs in demo mode; start it in normal mode with the local model to warm the caches.');
 
@@ -95,3 +98,7 @@ for (const s of ok) {
 }
 await writeFile(join(values.out, 'manifest.json'), JSON.stringify({ ...manifest, source: values.from, shipments: ok }, null, 2) + '\n');
 console.log(`Wrote ${ok.length} samples to ${values.out}. Commit it with eval/cache and data/corpus/index/*.queries.json.`);
+if (throwaway) {
+  await call('DELETE', '/auth/me', { password: throwaway });
+  console.log('Deleted the throwaway account.');
+}
