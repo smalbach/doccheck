@@ -172,6 +172,7 @@ para que la revises.
 | Vistas de empresas y productos con historial de precios | (este commit) | en la base local, la normalización final bajó de 98 a 73 empresas; tests de la API: 76 de 76 |
 | Menú Datos: un módulo por página; fichas completas de empresa y producto; contenedores | `ec31499` | — |
 | Qué hacer con un finding: estados con motivo e historial, corregir desde la evidencia, carta al proveedor en en/es/fr, resueltos y nuevos entre validaciones | (este commit) | tests de la API 77 de 77, web 55 de 55 |
+| Correo dentro de la app: pedidos al proveedor, bandeja, hilos, cola de envío con reintentos, recepción por IMAP o webhook, adjuntos al envío, alertas | (este commit) | tests de la API 78 de 78 (uno cubre el ciclo completo: pedido, envío, respuesta con PDF, importación y respuesta) |
 
 Decisiones para contar:
 
@@ -199,3 +200,4 @@ Decisiones para contar:
 - 13 oct 2026: OCR de Baidu integrado; escaneos de punta a punta 81.5% → 94.0%, reglas 100% de recall.
 - 13 oct 2026: hitos de la app web y de las tablas de datos extraídos (sesión de la app).
 - 13 oct 2026: menú Datos y flujo de resolución de findings (sesión de la app).
+- 13 oct 2026: correo integrado en la app (sesión de la app).

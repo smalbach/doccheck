@@ -16,6 +16,12 @@ export function alertMessage(alert: Alert, t: I18nState['t']): string {
         : t('dashboard.alerts.ocrNew', { file: alert.fileName });
     case 'not-validated':
       return t(alert.detail.reason === 'never' ? 'dashboard.alerts.never' : 'dashboard.alerts.changed');
+    case 'mail-reply':
+      return t('dashboard.alerts.mailReply', { subject: alert.detail.subject, count: alert.detail.count });
+    case 'mail-overdue':
+      return t('dashboard.alerts.mailOverdue', { subject: alert.detail.subject });
+    case 'mail-failed':
+      return t('dashboard.alerts.mailFailed', { subject: alert.detail.subject, count: alert.detail.count });
     case 'stale-destination': {
       const validated = t(`destinations.${alert.detail.validated}`);
       return alert.detail.current

@@ -6,15 +6,22 @@ export interface SidebarLinkProps {
   item: NavItem;
   active: boolean;
   onNavigate?: () => void;
+  /** A count next to the label (unread replies). */
+  count?: number;
 }
 
-export function SidebarLink({ item, active, onNavigate }: SidebarLinkProps) {
+export function SidebarLink({ item, active, onNavigate, count }: SidebarLinkProps) {
   const { t } = useI18n();
   const Icon = item.icon;
   return (
     <a href={item.href} className={cx('sidebar-link', active && 'active')} aria-current={active ? 'page' : undefined} onClick={onNavigate}>
       <Icon aria-hidden />
       <span>{t(item.labelKey)}</span>
+      {!!count && (
+        <span className="sidebar-badge" aria-label={t('mail.unread', { count })}>
+          {count}
+        </span>
+      )}
     </a>
   );
 }

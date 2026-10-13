@@ -16,7 +16,7 @@ Cada decisión queda en el historial del finding con usuario, fecha y motivo.
 
 1. **Ver qué falla:** la tarjeta dice el problema y qué hacer en el idioma de la interfaz, con los valores de cada documento y la página del PDF. El mensaje técnico de la regla sigue debajo, en inglés.
 2. **Si el modelo leyó mal:** "Corregir este valor" abre los datos del documento en ese campo. Después de guardar, vuelve a validar.
-3. **Si el documento está mal:** "Pedir correcciones" arma un mensaje para el proveedor, en inglés, español o francés, con los findings elegidos, los valores y qué corregir. Se copia o se abre en tu correo; DocCheck no envía nada. Desde ahí se marcan como esperando al proveedor. Al llegar el documento corregido, súbelo y valida.
+3. **Si el documento está mal:** "Pedir correcciones" redacta el correo al proveedor (en/es/fr) con los findings elegidos, los valores y qué corregir, y lo envía desde la app. Los findings pasan a esperando al proveedor y la respuesta llega a la conversación en la bandeja; su PDF se agrega al envío con un clic (ver [MESSAGING.md](MESSAGING.md)).
 4. **Si no hace falta corregir:** acepta el riesgo o márcalo como falso positivo, con el motivo.
 5. **Al validar de nuevo:** los findings nuevos llevan la etiqueta "Nuevo" y los que ya no están aparecen como resueltos. Una decisión se mantiene mientras el finding sea el mismo: misma regla, mismos campos y valores (aunque el documento se haya vuelto a subir).
 

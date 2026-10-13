@@ -13,6 +13,8 @@ const AccountPage = lazy(() => import('../../features/account/AccountPage').then
 const SettingsPage = lazy(() => import('../../features/admin/settings/SettingsPage').then((m) => ({ default: m.SettingsPage })));
 const SystemPage = lazy(() => import('../../features/admin/system/SystemPage').then((m) => ({ default: m.SystemPage })));
 const UsersPage = lazy(() => import('../../features/admin/users/UsersPage').then((m) => ({ default: m.UsersPage })));
+const InboxPage = lazy(() => import('../../features/mail/InboxPage').then((m) => ({ default: m.InboxPage })));
+const ThreadPage = lazy(() => import('../../features/mail/ThreadPage').then((m) => ({ default: m.ThreadPage })));
 // The data pages share one chunk.
 const data = () => import('../../features/insights/pages');
 const DataSummaryPage = lazy(() => data().then((m) => ({ default: m.DataSummaryPage })));
@@ -39,6 +41,10 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return <ShipmentPage id={route.id} />;
     case 'samples':
       return <SamplesPage />;
+    case 'inbox':
+      return <InboxPage key={route.filter ?? ''} initialFilter={route.filter} />;
+    case 'thread':
+      return <ThreadPage key={route.id} id={route.id} />;
     case 'data-summary':
       return <DataSummaryPage />;
     case 'goods':

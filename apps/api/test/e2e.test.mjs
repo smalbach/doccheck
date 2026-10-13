@@ -104,6 +104,10 @@ before(async () => {
       AGENT_ENABLED: 'false',
       SMTP_URL: '',
       MAIL_CAPTURE_DIR: mailDir,
+      MAIL_FROM: 'DocCheck <docs@doccheck.example>',
+      MAIL_OUTBOX_MS: '200',
+      MAIL_INBOUND_SECRET: 'inbound-secret',
+      IMAP_URL: '',
       APP_URL: 'http://app.example/',
     },
     stdio: ['ignore', 'ignore', 'inherit'],
@@ -226,6 +230,7 @@ describe('auth', () => {
 /** The emails sent to `to` so far, oldest first. */
 const mailsTo = (to) =>
   readdirSync(mailDir)
+    .filter((f) => f.endsWith('.json'))
     .sort()
     .map((f) => JSON.parse(readFileSync(join(mailDir, f), 'utf8')))
     .filter((m) => m.to === to);
@@ -1500,7 +1505,7 @@ describe('alerts', () => {
     const user = await signUp('Alerts');
     const create = async (reference, destination = 'CA') => (await call('POST', '/shipments', { reference, destination }, user)).body;
     const get = () => call('GET', '/shipments/alerts', undefined, user);
-    assert.deepEqual((await get()).body, { items: [], counts: { critical: 0, 'failed-document': 0, ocr: 0, 'not-validated': 0, 'stale-destination': 0 }, total: 0 });
+    assert.deepEqual((await get()).body, { items: [], counts: { critical: 0, 'failed-document': 0, ocr: 0, 'not-validated': 0, 'stale-destination': 0, 'mail-reply': 0, 'mail-overdue': 0, 'mail-failed': 0 }, total: 0 });
 
     // critical: the latest run has CRITICAL or HIGH findings; an earlier run's do not count.
     const critical = await create('AL-critical');
@@ -1561,7 +1566,7 @@ describe('alerts', () => {
       ['failed-document', 'AL-failed', 'scan.pdf', { error: 'Unreadable PDF' }],
       ['critical', 'AL-critical', undefined, { critical: 1, high: 2 }],
     ]);
-    assert.deepEqual(body.counts, { critical: 1, 'failed-document': 1, ocr: 2, 'not-validated': 2, 'stale-destination': 1 });
+    assert.deepEqual(body.counts, { critical: 1, 'failed-document': 1, ocr: 2, 'not-validated': 2, 'stale-destination': 1, 'mail-reply': 0, 'mail-overdue': 0, 'mail-failed': 0 });
     assert.equal(body.total, 7);
     assert.equal(body.items.find((a) => a.kind === 'failed-document').documentId, failedDoc);
     assert.deepEqual(body.items.filter((a) => a.kind === 'ocr').map((a) => a.documentId), [ocrCitedDoc, ocrNewDoc]);
@@ -1756,6 +1761,107 @@ describe('finding reviews', () => {
 
     const other = await signUp('Not theirs');
     assert.equal((await call('POST', `/shipments/${s.id}/findings/review`, { fingerprints: [fp], status: 'open' }, other)).status, 404);
+  });
+});
+
+describe('mail', () => {
+  // Builds raw messages the way a supplier's mail client would send them.
+  const builder = createRequire(join(root, 'apps/api/package.json'))('nodemailer').createTransport({ streamTransport: true, buffer: true });
+  const compose = (mail) => builder.sendMail(mail).then((info) => info.message);
+  const inbound = (raw, secret = 'inbound-secret') => send(`${base}/mail/inbound`, { method: 'POST', headers: { 'content-type': 'message/rfc822', 'x-inbound-secret': secret }, body: raw }, '');
+  /** The captured .eml of an outgoing message whose subject has `text`, once the outbox sent it. */
+  const sentMail = async (text) => {
+    for (let i = 0; i < 50; i++) {
+      const hit = readdirSync(mailDir).filter((f) => f.endsWith('.eml')).map((f) => readFileSync(join(mailDir, f), 'utf8')).find((m) => m.includes(text));
+      if (hit) return hit;
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    throw new Error(`No mail with ${text}`);
+  };
+  const header = (eml, name) => new RegExp(`^${name}: ?(.*(?:\n[ \t].*)*)`, 'mi').exec(eml)?.[1].replace(/\n[ \t]+/g, ' ').trim();
+  const thread = (id, who) => call('GET', `/mail/threads/${id}`, undefined, who).then((r) => r.body);
+  const until = async (check) => {
+    for (let i = 0; i < 50; i++) {
+      const value = await check();
+      if (value) return value;
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    throw new Error('Timed out');
+  };
+
+  it('requests corrections, sends through the outbox, files the reply and its PDF, and answers', async () => {
+    const user = await signUp('Mailer');
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA', reference: 'MAIL-1' }, user);
+    for (const [type, data] of Object.entries({ COMMERCIAL_INVOICE: sampleInvoice, PACKING_LIST: samplePackingList, BILL_OF_LADING: { ...sampleBillOfLading, totalPackages: 121 } })) {
+      const id = randomUUID();
+      await repo.insertDocument({ id, shipmentId: s.id, fileName: `${type}.pdf`, storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+      await repo.saveExtraction(id, { pageCount: 1, detectedType: type, typeConfidence: 1 }, { documentId: id, documentType: type, model: 'test', promptVersion: 'test', raw: {}, data, issues: [], pdfLines: [] });
+    }
+    const run = (await call('POST', `/shipments/${s.id}/validate?agent=false`, undefined, user), (await call('GET', `/shipments/${s.id}/validation`, undefined, user)).body);
+    const fp = run.findings[0].fingerprint;
+
+    const bad = await call('POST', '/mail/threads', { kind: 'correction_request', shipmentId: s.id, to: ['not an email'], subject: 'x', body: 'y', fingerprints: [fp] }, user);
+    assert.equal(bad.status, 400);
+    const created = await call('POST', '/mail/threads', { kind: 'correction_request', shipmentId: s.id, to: ['Supplier@Example.com'], subject: 'Corrections needed: MAIL-1', body: 'Please fix the package count.', language: 'en', fingerprints: [fp] }, user);
+    assert.equal(created.status, 201);
+    const t = created.body;
+    assert.deepEqual([t.kind, t.status, t.items.length, t.items[0].to, t.partyName], ['correction_request', 'awaiting', 1, ['supplier@example.com'], sampleInvoice.seller.name]);
+    assert.equal((await call('GET', `/shipments/${s.id}/validation`, undefined, user)).body.findings[0].review.status, 'waiting_supplier');
+
+    // The outbox sends it (captured: no SMTP in tests), threaded and tagged.
+    const sent = await until(async () => (await thread(t.id, user)).items[0].status === 'sent' && (await thread(t.id, user)));
+    assert.equal(sent.items[0].transport, 'log');
+    const eml = await sentMail('Corrections needed: MAIL-1');
+    const tag = /\[DC-([a-z0-9]+)\]/.exec(header(eml, 'Subject'))[1];
+    assert.equal(header(eml, 'Reply-To'), `docs+${tag}@doccheck.example`);
+    const ourId = header(eml, 'Message-ID').replace(/[<>]/g, '');
+
+    // The supplier answers with a corrected PDF.
+    assert.equal((await inbound(Buffer.from('x'), 'wrong')).status, 403);
+    const reply = await compose({ from: 'Supplier <supplier@example.com>', to: `docs+${tag}@doccheck.example`, subject: 'Re: Corrections needed', inReplyTo: `<${ourId}>`, messageId: '<reply-1@example.com>', text: 'Corrected B/L attached.', attachments: [{ filename: 'bl-corrected.pdf', content: Buffer.from('%PDF-1.4\n%fake\n'), contentType: 'application/pdf' }, { filename: 'run.exe', content: Buffer.from('MZ'), contentType: 'application/octet-stream' }] });
+    const received = await inbound(reply);
+    assert.equal(received.status, 202);
+    assert.deepEqual(await received.json().then((b) => [b.status, b.threadId]), ['stored', t.id]);
+    assert.equal(await inbound(reply).then((r) => r.json()).then((b) => b.status), 'duplicate');
+
+    const after = await thread(t.id, user);
+    assert.deepEqual([after.status, after.unread, after.items[1].direction, after.items[1].text.trim(), after.items[1].attachments.map((a) => a.filename)], ['replied', 1, 'in', 'Corrected B/L attached.', ['bl-corrected.pdf']]);
+    assert.deepEqual((await call('GET', '/mail/summary', undefined, user)).body, { unread: 1, awaiting: 0, overdue: 0, failed: 0 });
+    const alerts = (await call('GET', '/shipments/alerts', undefined, user)).body;
+    assert.deepEqual((alerts.items ?? alerts).filter((a) => a.kind === 'mail-reply').map((a) => a.detail.threadId), [t.id]);
+
+    // Its PDF goes into the shipment as a document.
+    const att = after.items[1].attachments[0];
+    const file = await send(`${base}/mail/attachments/${att.id}/file`, {}, user);
+    assert.deepEqual([file.status, file.headers.get('content-type'), file.headers.get('content-disposition')], [200, 'application/pdf', 'inline; filename="bl-corrected.pdf"']);
+    const imported = await call('POST', `/mail/attachments/${att.id}/import`, undefined, user);
+    assert.equal(imported.status, 200);
+    assert.ok((await call('GET', `/shipments/${s.id}`, undefined, user)).body.documents.some((d) => d.id === imported.body.documentId));
+    assert.equal((await call('POST', `/mail/attachments/${att.id}/import`, undefined, user)).status, 400);
+
+    // A reply without threading headers still finds its thread by the subject tag; a stranger's mail stays unassigned.
+    const bare = await compose({ from: 'other@example.com', to: 'docs@doccheck.example', subject: `Fwd: question [DC-${tag}]`, messageId: '<reply-2@example.com>', text: 'Also this.' });
+    assert.equal(await inbound(bare).then((r) => r.json()).then((b) => b.threadId), t.id);
+    const stray = await compose({ from: 'spam@example.com', to: 'docs@doccheck.example', subject: 'Hello', messageId: '<stray@example.com>', text: 'Buy now' });
+    assert.equal(await inbound(stray).then((r) => r.json()).then((b) => b.threadId), null);
+
+    // Answering from the app threads on the latest message and goes out.
+    await call('POST', `/mail/threads/${t.id}/read`, undefined, user);
+    const answered = await call('POST', `/mail/threads/${t.id}/reply`, { body: 'Thank you, received.' }, user);
+    assert.deepEqual([answered.status, answered.body.status, answered.body.unread, answered.body.items.at(-1).to], [200, 'awaiting', 0, ['other@example.com']]);
+    const out = await sentMail('Thank you, received.');
+    assert.equal(header(out, 'In-Reply-To'), '<reply-2@example.com>');
+    assert.match(header(out, 'Subject'), new RegExp(`^Re: Corrections needed: MAIL-1 \\[DC-${tag}\\]$`));
+
+    assert.equal((await call('POST', `/mail/threads/${t.id}/status`, { status: 'closed' }, user)).body.status, 'closed');
+    const listed = (await call('GET', '/mail/threads?filter=closed', undefined, user)).body;
+    assert.deepEqual(listed.items.map((x) => [x.id, x.shipmentReference, x.messages]), [[t.id, 'MAIL-1', 4]]);
+    assert.equal((await call('POST', `/mail/messages/${after.items[0].id}/retry`, undefined, user)).status, 400);
+
+    const other = await signUp('Not theirs');
+    assert.equal((await call('GET', `/mail/threads/${t.id}`, undefined, other)).status, 404);
+    assert.equal((await send(`${base}/mail/attachments/${att.id}/file`, {}, other)).status, 404);
+    assert.equal((await call('GET', '/mail/unassigned', undefined, other)).status, 403);
   });
 });
 

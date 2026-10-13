@@ -81,6 +81,7 @@ const staticPages = [
   '/app',
   '/app/shipments',
   '/app/shipments/new',
+  '/app/inbox',
   '/app/samples',
   '/app/data',
   '/app/goods',

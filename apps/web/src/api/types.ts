@@ -539,7 +539,7 @@ export interface ProductsQuery {
   offset?: number;
 }
 
-export type AlertKind = 'critical' | 'failed-document' | 'ocr' | 'not-validated' | 'stale-destination';
+export type AlertKind = 'critical' | 'failed-document' | 'ocr' | 'not-validated' | 'stale-destination' | 'mail-reply' | 'mail-overdue' | 'mail-failed';
 
 /** Something on one of the user's shipments that needs a look (GET /shipments/alerts). */
 export type Alert = {
@@ -554,6 +554,8 @@ export type Alert = {
   | { kind: 'ocr'; documentId: string; fileName: string; detail: { citedBy: number } }
   | { kind: 'not-validated'; detail: { reason: 'never' | 'changed' } }
   | { kind: 'stale-destination'; detail: { validated: Destination; current?: Destination } }
+  /** A conversation about the shipment: unread replies, no answer by its due date, or a message that could not be sent. */
+  | { kind: 'mail-reply' | 'mail-overdue' | 'mail-failed'; detail: { threadId: string; subject: string; count: number } }
 );
 
 export interface AlertList {
@@ -562,4 +564,104 @@ export interface AlertList {
   /** Every alert of each kind, also those past the cap. */
   counts: Record<AlertKind, number>;
   total: number;
+}
+
+// Mail ---------------------------------------------------------------------------------------------
+
+export type ThreadStatus = 'awaiting' | 'replied' | 'closed';
+export type ThreadKind = 'correction_request' | 'conversation';
+export type MailMessageStatus = 'queued' | 'sending' | 'sent' | 'failed' | 'received';
+export type ThreadFilter = 'open' | 'unread' | 'awaiting' | 'overdue' | 'failed' | 'closed' | 'all';
+
+export interface MailAttachment {
+  id: string;
+  filename: string;
+  contentType: string;
+  size: number;
+  /** The shipment document made from it, once added. */
+  documentId?: string;
+}
+
+export interface MailMessage {
+  id: string;
+  threadId?: string;
+  direction: 'out' | 'in';
+  status: MailMessageStatus;
+  from: string;
+  to: string[];
+  cc: string[];
+  subject: string;
+  text: string;
+  attempts: number;
+  error?: string;
+  /** smtp, or log when the server has no SMTP (captured, not delivered). */
+  transport?: string;
+  userName?: string;
+  sentAt?: string;
+  receivedAt?: string;
+  readAt?: string;
+  createdAt: string;
+  attachments: MailAttachment[];
+}
+
+export interface ThreadSummary {
+  id: string;
+  kind: ThreadKind;
+  status: ThreadStatus;
+  subject: string;
+  shipmentId?: string;
+  shipmentReference?: string;
+  partyId?: string;
+  partyName?: string;
+  unread: number;
+  overdue: boolean;
+  dueAt?: string;
+  failed: boolean;
+  counterpart?: string;
+  lastMessageAt: string;
+  createdAt: string;
+  messages: number;
+}
+
+export interface ThreadDetail extends ThreadSummary {
+  language?: string;
+  fingerprints: string[];
+  items: MailMessage[];
+}
+
+export interface MailSummary {
+  unread: number;
+  awaiting: number;
+  overdue: number;
+  failed: number;
+  /** Admins only. */
+  unassigned?: number;
+}
+
+export interface MailStatus {
+  sending: 'smtp' | 'log';
+  from: string;
+  replyTo: string;
+  receiving: { imap: boolean; webhook: boolean; mailboxes: { mailbox: string; polledAt: string; error?: string; lastUid: number }[] };
+  queue: { queued: number; failed: number };
+  followUpDays: number;
+}
+
+export interface MailContact {
+  email: string;
+  name?: string;
+  source: 'saved' | 'document';
+  partyId?: string;
+}
+
+export interface NewThread {
+  kind: ThreadKind;
+  shipmentId?: string;
+  partyId?: string;
+  to: string[];
+  cc: string[];
+  subject: string;
+  body: string;
+  language?: string;
+  fingerprints: string[];
 }

@@ -13,5 +13,6 @@ import { ShipmentsService } from './shipments.service';
 @Module({
   controllers: [ShipmentsController, DemoController, ProgressController],
   providers: [ShipmentsService, AlertsRepository, FindingReviewsRepository, ShipmentsRepository, DocumentProcessor, ExtractionQueue, ShipmentOwnerGuard],
+  exports: [ShipmentsService, ShipmentsRepository, FindingReviewsRepository],
 })
 export class ShipmentsModule {}

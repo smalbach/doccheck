@@ -8,9 +8,12 @@ import { DataTable, type Column } from '../../components/ui/DataTable';
 import { PageHeader } from '../../components/ui/PageHeader';
 import { INITIAL_GOODS_FILTERS } from '../../constants/insights';
 import { useDataDestination } from '../../hooks/useDataDestination';
+import { useDemo } from '../../hooks/useDemo';
 import { useQuery } from '../../hooks/useQuery';
 import { useI18n } from '../../i18n/useI18n';
 import { StatTile } from '../dashboard/StatTile';
+import { ComposeDialog } from '../mail/ComposeDialog';
+import { ThreadsCard } from '../mail/ThreadsCard';
 import { AddressList } from './AddressList';
 import { GoodsPanel } from './GoodsPanel';
 import { MoneyList } from './MoneyList';
@@ -23,6 +26,7 @@ type Related = PartyDetail['related'][number];
 /** Everything the documents say about one company: addresses, partners, products, shipments and goods. */
 export function CompanyPage({ id }: { id: string }) {
   const { t, formatNumber, formatMoney } = useI18n();
+  const demo = useDemo();
   const [filter] = useDataDestination();
   const destination = filter === 'any' ? undefined : filter;
   const { data, error } = useQuery(`party:${id}:${destination ?? ''}`, () => api.insightsParty(id, destination));
@@ -132,6 +136,7 @@ export function CompanyPage({ id }: { id: string }) {
       <Card title={t('insights.parties.detail.shipments')}>
         <DataTable compact columns={shipmentColumns} rows={data.recentShipments} rowKey={(s) => s.shipmentId} caption={t('insights.parties.detail.shipments')} />
       </Card>
+      <ThreadsCard partyId={id} actions={!demo && <ComposeDialog mode="message" partyId={id} />} />
       {data.lines > 0 && (
         <Card title={t('insights.company.goods')}>
           <GoodsPanel destination={destination} filters={goodsFilters} onFiltersChange={setGoodsFilters} scope={{ party: id }} />

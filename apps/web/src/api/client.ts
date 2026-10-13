@@ -32,6 +32,14 @@ import type {
   GoodsQuery,
   InsightsSummary,
   Paged,
+  MailContact,
+  MailMessage,
+  MailStatus,
+  MailSummary,
+  NewThread,
+  ThreadDetail,
+  ThreadFilter,
+  ThreadSummary,
   ReviewStatus,
   ContainerRow,
   ContainersQuery,
@@ -97,6 +105,22 @@ export const api = {
 
   /** Records a decision about findings of the latest run; answers with that run. */
   reviewFindings: (id: string, body: { fingerprints: string[]; status: ReviewStatus; note?: string }) => request<Validation>(`${shipmentPath(id)}/findings/review`, jsonBody(body)),
+
+  mailSummary: () => request<MailSummary>('/mail/summary'),
+  mailStatus: () => request<MailStatus>('/mail/status'),
+  mailThreads: (query: { filter?: ThreadFilter; q?: string; shipmentId?: string; partyId?: string; limit?: number; offset?: number }) =>
+    request<Paged<ThreadSummary>>(`/mail/threads${queryString({ ...query })}`),
+  mailThread: (id: string) => request<ThreadDetail>(`/mail/threads/${encodeURIComponent(id)}`),
+  createThread: (body: NewThread) => request<ThreadDetail>('/mail/threads', jsonBody(body)),
+  replyThread: (id: string, body: { body: string; to?: string[]; cc?: string[] }) => request<ThreadDetail>(`/mail/threads/${encodeURIComponent(id)}/reply`, jsonBody(body)),
+  readThread: (id: string) => request<ThreadDetail>(`/mail/threads/${encodeURIComponent(id)}/read`, { method: 'POST' }),
+  setThreadStatus: (id: string, status: 'awaiting' | 'closed') => request<ThreadDetail>(`/mail/threads/${encodeURIComponent(id)}/status`, jsonBody({ status })),
+  retryMessage: (id: string) => request<ThreadDetail>(`/mail/messages/${encodeURIComponent(id)}/retry`, { method: 'POST' }),
+  mailContacts: (partyId?: string) => request<MailContact[]>(`/mail/contacts${queryString({ partyId })}`),
+  importAttachment: (id: string) => request<{ shipmentId: string; documentId: string }>(`/mail/attachments/${encodeURIComponent(id)}/import`, { method: 'POST' }),
+  attachmentUrl: (id: string) => `/mail/attachments/${encodeURIComponent(id)}/file`,
+  unassignedMail: () => request<MailMessage[]>('/mail/unassigned'),
+  assignMessage: (id: string, threadId: string) => request<{ threadId: string }>(`/mail/messages/${encodeURIComponent(id)}/assign`, jsonBody({ threadId })),
 
   results: () => request<Results>('/results'),
 

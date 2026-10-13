@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import type { NestExpressApplication } from '@nestjs/platform-express';
+import { raw } from 'express';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { AppModule } from './app.module';
@@ -18,6 +19,8 @@ async function bootstrap() {
   // its X-Forwarded-* so the session cookie is marked Secure there and client addresses are right
   // for the sign-in and sign-up throttles.
   app.set('trust proxy', trustProxySetting());
+  // Received mail arrives raw (up to 30 MB with attachments); every other body is JSON.
+  app.use('/mail/inbound', raw({ type: () => true, limit: '30mb' }));
   app.use(sameOriginGuard);
   if (isDemo()) {
     app.use(readOnlyGuard);

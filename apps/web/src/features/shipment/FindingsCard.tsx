@@ -15,7 +15,7 @@ import { FindingCard } from './FindingCard';
 import { FindingsSummary } from './FindingsSummary';
 import { LiveFindingList } from './LiveFindingList';
 import { ResolvedFindings } from './ResolvedFindings';
-import { SupplierRequestDialog } from './SupplierRequestDialog';
+import { ComposeDialog } from '../mail/ComposeDialog';
 
 export interface FindingsCardProps {
   validation?: Validation;
@@ -33,6 +33,7 @@ export interface FindingsCardProps {
   /** Decisions, corrections and the supplier request, on the latest run outside the demo. */
   review?: {
     busy: boolean;
+    shipmentId: string;
     reference: string;
     onReview: (fingerprints: string[], status: ReviewStatus, note?: string) => Promise<void>;
     onCorrect: (doc: ShipmentDocument, field: string) => void;
@@ -85,7 +86,14 @@ export function FindingsCard({ validation, rules, documents, onOpen, notice, pro
                     ariaLabel={t('review.filter.label')}
                   />
                   {review && (
-                    <SupplierRequestDialog findings={openFindings} documents={documents} reference={review.reference} onMarkWaiting={(fps) => review.onReview(fps, 'waiting_supplier')} />
+                    <ComposeDialog
+                      mode="request"
+                      shipmentId={review.shipmentId}
+                      reference={review.reference}
+                      findings={openFindings}
+                      documents={documents}
+                      disabled={openFindings.length === 0}
+                    />
                   )}
                 </div>
               )}

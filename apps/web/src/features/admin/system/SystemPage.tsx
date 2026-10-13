@@ -2,6 +2,7 @@ import { LoadingCard } from '../../../components/layout/LoadingCard';
 import { Card } from '../../../components/ui/Card';
 import { PageHeader } from '../../../components/ui/PageHeader';
 import type { MessageKey } from '../../../i18n/keys';
+import { MailServerCard } from '../../mail/MailServerCard';
 import { useI18n } from '../../../i18n/useI18n';
 import { StatusItem } from './StatusItem';
 import { useSystemStatus } from './useSystemStatus';
@@ -41,6 +42,7 @@ export function SystemPage() {
           <StatusItem label={t('admin.status.data')}>{t('admin.status.dataValue', s.counts)}</StatusItem>
         </dl>
       </Card>
+      <MailServerCard />
     </div>
   );
 }

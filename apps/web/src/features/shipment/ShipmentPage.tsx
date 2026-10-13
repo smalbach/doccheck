@@ -10,6 +10,8 @@ import { evidencePointer } from '../../lib/findingReview';
 import { showFinding } from '../../lib/showFinding';
 import { liveValidationRun } from '../../lib/validationCaption';
 import { DocumentDataSheet } from '../document-data/DocumentDataSheet';
+import { ComposeDialog } from '../mail/ComposeDialog';
+import { ThreadsCard } from '../mail/ThreadsCard';
 import type { ViewerTarget } from '../pdf/types';
 import { DocumentsCard } from './DocumentsCard';
 import { EditShipmentDialog } from './EditShipmentDialog';
@@ -84,6 +86,7 @@ export function ShipmentPage({ id }: { id: string }) {
             !demo && !history.past && latest
               ? {
                   busy: reviewing,
+                  shipmentId: shipment.id,
                   reference: shipment.reference ?? shipment.id.slice(0, 8),
                   onReview: reviewFindings,
                   onCorrect: (doc, field) => setDataDoc({ doc, focus: evidencePointer(field) }),
@@ -96,6 +99,7 @@ export function ShipmentPage({ id }: { id: string }) {
           notice={<ValidationNotice shipment={shipment} validation={validation} past={!!history.past} onShowLatest={history.showLatest} />}
         />
       </div>
+      <ThreadsCard shipmentId={id} actions={!demo && <ComposeDialog mode="message" shipmentId={id} reference={shipment.reference ?? ''} />} />
       <ValidationHistory
         runs={history.runs}
         shownId={validation?.id}

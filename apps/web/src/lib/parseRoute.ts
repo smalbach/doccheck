@@ -11,6 +11,8 @@ export type AppRoute =
   | { name: 'new-shipment' }
   | { name: 'shipment'; id: string }
   | { name: 'samples' }
+  | { name: 'inbox'; filter?: string }
+  | { name: 'thread'; id: string }
   | { name: 'data-summary' }
   | { name: 'goods'; q?: string; origin?: string; hs?: string }
   | { name: 'companies' }
@@ -30,6 +32,7 @@ export type AppRoute =
 export type Route = PublicRoute | AppRoute;
 
 const SHIPMENT = /^\/(?:app\/)?s\/([0-9a-f-]{36})$/i;
+const THREAD = /^\/app\/inbox\/([0-9a-f-]{36})$/i;
 const COMPANY = /^\/app\/companies\/([0-9a-f-]{36})$/i;
 const PRODUCT = /^\/app\/products\/([0-9a-f-]{36})$/i;
 
@@ -72,6 +75,9 @@ export function parseRoute(hash: string): Route {
   if (path === '/reset-password') return { name: 'reset-password', token: params.get('token') ?? undefined };
   const id = SHIPMENT.exec(path)?.[1];
   if (id) return { name: 'shipment', id };
+  const thread = THREAD.exec(path)?.[1];
+  if (thread) return { name: 'thread', id: thread };
+  if (path === '/app/inbox') return { name: 'inbox', filter: params.get('filter') || undefined };
   const company = COMPANY.exec(path)?.[1];
   if (company) return { name: 'company', id: company };
   const product = PRODUCT.exec(path)?.[1];

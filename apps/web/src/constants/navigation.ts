@@ -1,4 +1,4 @@
-import { ActivityLogIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
+import { ActivityLogIcon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
 import type { ComponentType } from 'react';
 import type { MessageKey } from '../i18n/keys';
 import type { AppRoute } from '../lib/parseRoute';
@@ -11,6 +11,8 @@ export interface NavItem {
   matches: AppRoute['name'][];
   /** Hidden in the read-only demo. */
   writes?: boolean;
+  /** Shows the count of unread replies. */
+  badge?: 'mail';
 }
 
 export interface NavGroup {
@@ -26,6 +28,7 @@ export const NAVIGATION: NavGroup[] = [
     items: [
       { labelKey: 'nav.dashboard', href: '#/app', icon: DashboardIcon, matches: ['dashboard'] },
       { labelKey: 'nav.shipments', href: '#/app/shipments', icon: ArchiveIcon, matches: ['shipments', 'shipment'] },
+      { labelKey: 'nav.inbox', href: '#/app/inbox', icon: EnvelopeClosedIcon, matches: ['inbox', 'thread'], badge: 'mail' },
       { labelKey: 'nav.newShipment', href: '#/app/shipments/new', icon: PlusIcon, matches: ['new-shipment'], writes: true },
       { labelKey: 'nav.samples', href: '#/app/samples', icon: LayersIcon, matches: ['samples'] },
     ],

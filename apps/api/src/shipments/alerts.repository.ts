@@ -13,6 +13,8 @@ import { ALERT_KINDS, type Alert, type AlertKind, type AlertList } from './alert
  * - not-validated: at least one document, all extracted, and no validation yet, or one uploaded or
  *   re-extracted after the latest run.
  * - stale-destination: the latest run checked another destination than the shipment's current one.
+ * - mail-reply / mail-overdue / mail-failed: a conversation about the shipment has unread replies,
+ *   waits past its due date, or has a message that could not be sent.
  */
 const ALERTS = `
   with owned as (
@@ -54,6 +56,19 @@ const ALERTS = `
     select 'stale-destination', o.id, null, null, lv.created_at, jsonb_strip_nulls(jsonb_build_object('validated', lv.destination, 'current', o.destination))
     from owned o join lv on lv.shipment_id = o.id
     where lv.destination is not null and lv.destination is distinct from o.destination
+    union all
+    select 'mail-reply', t.shipment_id, null, null, t.last_message_at, jsonb_build_object('threadId', t.id, 'subject', t.subject, 'count', t.unread)
+    from mail_threads t join owned o on o.id = t.shipment_id
+    where t.unread > 0 and t.status <> 'closed'
+    union all
+    select 'mail-overdue', t.shipment_id, null, null, t.due_at, jsonb_build_object('threadId', t.id, 'subject', t.subject, 'count', 1)
+    from mail_threads t join owned o on o.id = t.shipment_id
+    where t.status = 'awaiting' and t.due_at < now()
+    union all
+    select 'mail-failed', t.shipment_id, null, null, max(m.created_at), jsonb_build_object('threadId', t.id, 'subject', t.subject, 'count', count(*))
+    from mail_threads t join owned o on o.id = t.shipment_id join mail_messages m on m.thread_id = t.id
+    where m.status = 'failed' and t.status <> 'closed'
+    group by t.id
   )`;
 
 @Injectable()
