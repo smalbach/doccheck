@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { randomUUID } from 'node:crypto';
 import type { TextLine } from '@doccheck/extraction';
 import type { Destination, DocumentStatus, DocumentType, Finding, Isf, Severity, Shipment, ShipmentDocument, ShipmentStatus, TransportMode } from '@doccheck/schemas';
 import type { Pool, PoolClient } from 'pg';
@@ -11,6 +12,8 @@ export interface ExtractionRow {
   promptVersion: string;
   raw: unknown;
   data: unknown;
+  /** What the model read, when values were corrected by hand since (data is then the corrected document). */
+  modelData?: unknown;
   issues: string[];
   pdfLines: TextLine[];
   inputTokens?: number;
@@ -26,6 +29,25 @@ export interface IsfRow {
   documentId?: string;
   fileName?: string;
 }
+
+export interface CorrectionRow {
+  id: string;
+  /** JSON pointer into the document. */
+  path: string;
+  oldValue: unknown;
+  newValue: unknown;
+  action: 'edit' | 'revert';
+  userName?: string;
+  createdAt: string;
+}
+
+export interface NewCorrection {
+  path: string;
+  oldValue: unknown;
+  newValue: unknown;
+}
+
+export type CorrectionResult = 'ok' | 'not-found' | 'pending' | 'changed' | 'nothing';
 
 export interface ValidationRow {
   id: string;
@@ -133,6 +155,9 @@ const toDocument = (r: Record<string, unknown>): ShipmentDocument => ({
   status: r.status as DocumentStatus,
   ...(r.error ? { error: r.error as string } : {}),
 });
+
+/** A value for a jsonb parameter; an absent value is SQL null. */
+const toJsonb = (value: unknown): string | null => (value === undefined || value === null ? null : JSON.stringify(value));
 
 const toFinding = (r: Record<string, unknown>): Finding => ({
   id: r.id as string,
@@ -489,12 +514,14 @@ export class ShipmentsRepository {
          where id = $1`,
         [documentId, doc.pageCount, doc.detectedType, doc.typeConfidence, doc.language ?? null],
       );
+      // A new extraction replaces the document: corrections made to the previous one no longer apply.
+      await client.query('delete from corrections where document_id = $1', [documentId]);
       await client.query(
         `insert into extractions (document_id, model, prompt_version, raw, data, issues, pdf_lines, input_tokens, output_tokens)
          values ($1, $2, $3, $4, $5, $6, $7, $8, $9)
          on conflict (document_id) do update set model = excluded.model, prompt_version = excluded.prompt_version, raw = excluded.raw,
            data = excluded.data, issues = excluded.issues, pdf_lines = excluded.pdf_lines, input_tokens = excluded.input_tokens,
-           output_tokens = excluded.output_tokens, created_at = now()`,
+           output_tokens = excluded.output_tokens, model_data = null, created_at = now()`,
         [
           documentId, extraction.model, extraction.promptVersion, JSON.stringify(extraction.raw), JSON.stringify(extraction.data),
           JSON.stringify(extraction.issues), JSON.stringify(extraction.pdfLines), extraction.inputTokens ?? null, extraction.outputTokens ?? null,
@@ -538,7 +565,7 @@ export class ShipmentsRepository {
 
   async findExtraction(shipmentId: string, documentId: string): Promise<(ExtractionRow & { document: ShipmentDocument }) | null> {
     const { rows } = await this.pool.query(
-      `select d.*, e.model, e.prompt_version, e.raw, e.data, e.issues, e.pdf_lines, e.input_tokens, e.output_tokens
+      `select d.*, e.model, e.prompt_version, e.raw, e.data, e.model_data, e.issues, e.pdf_lines, e.input_tokens, e.output_tokens
        from documents d join extractions e on e.document_id = d.id
        where d.shipment_id = $1 and d.id = $2`,
       [shipmentId, documentId],
@@ -549,12 +576,92 @@ export class ShipmentsRepository {
   /** Latest successfully extracted document of each type, oldest first so later uploads win. */
   async listExtractions(shipmentId: string): Promise<(ExtractionRow & { document: ShipmentDocument })[]> {
     const { rows } = await this.pool.query(
-      `select d.*, e.model, e.prompt_version, e.raw, e.data, e.issues, e.pdf_lines, e.input_tokens, e.output_tokens
+      `select d.*, e.model, e.prompt_version, e.raw, e.data, e.model_data, e.issues, e.pdf_lines, e.input_tokens, e.output_tokens
        from documents d join extractions e on e.document_id = d.id
        where d.shipment_id = $1 order by d.created_at`,
       [shipmentId],
     );
     return rows.map((r) => this.toExtraction(r));
+  }
+
+  /**
+   * Replaces the document's data with `after` and records the corrections, in one transaction, if the
+   * document is still extracted and its data is still `before` (else 'pending' or 'changed'). The
+   * model's original is kept in model_data on the first correction (`revert` brings it back, and
+   * records each reverted value). The ISF taken from this document follows, and the shipment goes
+   * back to RECEIVED: its last validation used other data.
+   */
+  async saveCorrections(
+    shipmentId: string,
+    documentId: string,
+    userId: string,
+    change: { before: unknown; after: unknown; corrections: NewCorrection[]; revert?: boolean },
+  ): Promise<CorrectionResult> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('begin');
+      const found = await client.query<{ status: string; data: unknown; model_data: unknown }>(
+        `select d.status, e.data, e.model_data from documents d join extractions e on e.document_id = d.id
+         where d.id = $1 and d.shipment_id = $2 for update of d, e`,
+        [documentId, shipmentId],
+      );
+      const row = found.rows[0];
+      const refuse = async (result: CorrectionResult) => {
+        await client.query('rollback');
+        return result;
+      };
+      if (!row) return await refuse('not-found');
+      if (row.status !== 'EXTRACTED') return await refuse('pending');
+      const same = await client.query('select $1::jsonb = $2::jsonb as same', [JSON.stringify(row.data), JSON.stringify(change.before)]);
+      if (!same.rows[0].same) return await refuse('changed');
+      if (change.revert && row.model_data === null) return await refuse('nothing');
+
+      await client.query(
+        change.revert
+          ? 'update extractions set data = model_data, model_data = null where document_id = $1'
+          : 'update extractions set model_data = coalesce(model_data, data), data = $2 where document_id = $1',
+        change.revert ? [documentId] : [documentId, JSON.stringify(change.after)],
+      );
+      for (const c of change.corrections) {
+        await client.query(
+          'insert into corrections (id, document_id, user_id, path, old_value, new_value, action) values ($1, $2, $3, $4, $5, $6, $7)',
+          [randomUUID(), documentId, userId, c.path, toJsonb(c.oldValue), toJsonb(c.newValue), change.revert ? 'revert' : 'edit'],
+        );
+      }
+      await client.query('update isf_filings set data = $2, updated_at = now() where document_id = $1', [documentId, JSON.stringify(change.after)]);
+      await client.query(
+        `update shipments set status = case
+           when exists (select 1 from documents where shipment_id = $1 and status in ('QUEUED', 'EXTRACTING')) then 'EXTRACTING'
+           else 'RECEIVED' end
+         where id = $1`,
+        [shipmentId],
+      );
+      await client.query('commit');
+      return 'ok';
+    } catch (err) {
+      await client.query('rollback');
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
+
+  /** Corrections of a document, oldest first, with who made them. */
+  async listCorrections(documentId: string): Promise<CorrectionRow[]> {
+    const { rows } = await this.pool.query(
+      `select c.*, u.name as user_name from corrections c left join users u on u.id = c.user_id
+       where c.document_id = $1 order by c.created_at, c.path`,
+      [documentId],
+    );
+    return rows.map((r) => ({
+      id: r.id,
+      path: r.path,
+      oldValue: r.old_value ?? null,
+      newValue: r.new_value ?? null,
+      action: r.action,
+      ...(r.user_name ? { userName: r.user_name } : {}),
+      createdAt: new Date(r.created_at).toISOString(),
+    }));
   }
 
   async saveValidation(v: ValidationRow): Promise<void> {
@@ -608,6 +715,7 @@ export class ShipmentsRepository {
       promptVersion: r.prompt_version as string,
       raw: r.raw,
       data: r.data,
+      ...(r.model_data ? { modelData: r.model_data } : {}),
       issues: r.issues as string[],
       pdfLines: r.pdf_lines as TextLine[],
       inputTokens: (r.input_tokens as number | null) ?? undefined,

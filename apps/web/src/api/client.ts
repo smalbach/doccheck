@@ -6,6 +6,7 @@ import type {
   AdminModels,
   AdminSettings,
   AlertList,
+  DataChange,
   Destination,
   DocumentDetail,
   Health,
@@ -65,6 +66,8 @@ export const api = {
   },
   document: (id: string, documentId: string) => request<DocumentDetail>(documentPath(id, documentId)),
   reextract: (id: string, documentId: string, type: ExtractableType) => request<ShipmentDocument>(`${documentPath(id, documentId)}/reextract`, jsonBody({ type })),
+  correctData: (id: string, documentId: string, changes: DataChange[]) => request<DocumentDetail>(`${documentPath(id, documentId)}/data`, { ...jsonBody({ changes }), method: 'PATCH' }),
+  revertData: (id: string, documentId: string) => request<DocumentDetail>(`${documentPath(id, documentId)}/data/revert`, { method: 'POST' }),
   fileUrl: (id: string, documentId: string) => `${documentPath(id, documentId)}/file`,
 
   validate: (id: string, agent: boolean) => request<{ validationId: string }>(`${shipmentPath(id)}/validate${agent ? '' : '?agent=false'}`, { method: 'POST' }),

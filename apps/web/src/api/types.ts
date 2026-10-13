@@ -183,11 +183,25 @@ export interface IsfFiling {
 /** Normalized document as returned by the extraction: a loose record, read through field paths. */
 export type ExtractedData = Record<string, unknown>;
 
+/** A value corrected by hand: its JSON pointer and what the model had read. */
+export interface CorrectedField {
+  path: string;
+  modelValue: unknown;
+}
+
 export interface DocumentDetail {
   data: ExtractedData | null;
   issues: string[];
   model?: string;
   promptVersion?: string;
+  /** Values corrected by hand, once extracted. */
+  corrected?: CorrectedField[];
+}
+
+/** One value to correct: a JSON pointer ("/lines/0/quantity/value"); null removes an optional field. */
+export interface DataChange {
+  path: string;
+  value: string | number | boolean | null;
 }
 
 export interface RuleScore {

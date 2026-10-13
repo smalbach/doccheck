@@ -968,6 +968,118 @@ describe('alerts', () => {
   });
 });
 
+describe('corrections', () => {
+  /** A CA shipment of `user` with the sample documents extracted (no PDF text, so no source lookup). */
+  const extractedShipment = async (user = cookie) => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' }, user);
+    const ids = {};
+    for (const [type, data] of Object.entries({ COMMERCIAL_INVOICE: sampleInvoice, PACKING_LIST: samplePackingList, BILL_OF_LADING: sampleBillOfLading })) {
+      const id = randomUUID();
+      await repo.insertDocument({ id, shipmentId: s.id, fileName: `${type}.pdf`, storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+      await repo.saveExtraction(id, { pageCount: 1, detectedType: type, typeConfidence: 1 }, { documentId: id, documentType: type, model: 'test', promptVersion: 'test', raw: {}, data, issues: [], pdfLines: [] });
+      ids[type] = id;
+    }
+    return { s, invoiceId: ids.COMMERCIAL_INVOICE, blId: ids.BILL_OF_LADING };
+  };
+  const dataPath = (s, documentId) => `/shipments/${s.id}/documents/${documentId}/data`;
+
+  it('saves a valid change, records it and the next validation uses it, citing it as corrected', async () => {
+    const { s, blId } = await extractedShipment();
+    assert.deepEqual((await call('POST', `/shipments/${s.id}/validate?agent=false`)).body.findings, []);
+    assert.equal((await call('GET', `/shipments/${s.id}`)).body.status, 'DONE');
+
+    const saved = await call('PATCH', dataPath(s, blId), { changes: [{ path: '/totalPackages', value: 121 }] });
+    assert.equal(saved.status, 200);
+    assert.equal(saved.body.data.totalPackages, 121);
+    assert.deepEqual(saved.body.corrected, [{ path: '/totalPackages', modelValue: sampleBillOfLading.totalPackages }]);
+    assert.equal((await call('GET', `/shipments/${s.id}`)).body.status, 'RECEIVED'); // validate again
+
+    const run = await call('POST', `/shipments/${s.id}/validate?agent=false`);
+    assert.deepEqual(run.body.findings.map((f) => f.ruleId), ['X2']);
+    const ev = run.body.findings[0].evidence.find((e) => e.documentId === blId);
+    assert.equal(ev.corrected, true);
+    assert.ok(run.body.findings[0].evidence.filter((e) => e.documentId !== blId).every((e) => !e.corrected));
+
+    const history = (await call('GET', `/shipments/${s.id}/documents/${blId}/corrections`)).body;
+    assert.deepEqual(history.map((c) => [c.path, c.oldValue, c.newValue, c.action, c.userName]), [['/totalPackages', sampleBillOfLading.totalPackages, 121, 'edit', 'Test user']]);
+  });
+
+  it('rejects an invalid change with its issues and saves nothing', async () => {
+    const { s, invoiceId } = await extractedShipment();
+    const bad = await call('PATCH', dataPath(s, invoiceId), { changes: [{ path: '/invoiceNumber', value: 'OK-1' }, { path: '/lines/0/quantity/value', value: 'twelve' }] });
+    assert.equal(bad.status, 400);
+    assert.deepEqual(bad.body.issues.map((i) => i.path), ['/lines/0/quantity/value']);
+    for (const changes of [[{ path: '/seller', value: 'x' }], [{ path: '/lines/99/sku', value: 'x' }], [{ path: '/notAField', value: 'x' }], [{ path: 'invoiceNumber', value: 'x' }], []]) {
+      assert.equal((await call('PATCH', dataPath(s, invoiceId), { changes })).status, 400, JSON.stringify(changes));
+    }
+    const detail = (await call('GET', `/shipments/${s.id}/documents/${invoiceId}`)).body;
+    assert.equal(detail.data.invoiceNumber, sampleInvoice.invoiceNumber);
+    assert.deepEqual(detail.corrected, []);
+    assert.deepEqual((await call('GET', `/shipments/${s.id}/documents/${invoiceId}/corrections`)).body, []);
+  });
+
+  it('reverts to the model values, keeping the history; re-extracting clears it', async () => {
+    const { s, invoiceId } = await extractedShipment();
+    await call('PATCH', dataPath(s, invoiceId), { changes: [{ path: '/lines/0/description', value: 'Fixed' }, { path: '/poNumber', value: null }] });
+    assert.equal((await call('GET', `/shipments/${s.id}/documents/${invoiceId}`)).body.corrected.length, 2);
+
+    const reverted = await call('POST', `${dataPath(s, invoiceId)}/revert`);
+    assert.equal(reverted.status, 200);
+    assert.deepEqual(reverted.body.data, sampleInvoice);
+    assert.deepEqual(reverted.body.corrected, []);
+    const history = (await call('GET', `/shipments/${s.id}/documents/${invoiceId}/corrections`)).body;
+    assert.deepEqual(history.map((c) => c.action).sort(), ['edit', 'edit', 'revert', 'revert']);
+    assert.equal((await call('POST', `${dataPath(s, invoiceId)}/revert`)).status, 400); // nothing left to revert
+
+    await call('PATCH', dataPath(s, invoiceId), { changes: [{ path: '/invoiceNumber', value: 'INV-X' }] });
+    await repo.saveExtraction(invoiceId, { pageCount: 1, detectedType: 'COMMERCIAL_INVOICE', typeConfidence: 1 }, { documentId: invoiceId, documentType: 'COMMERCIAL_INVOICE', model: 'test', promptVersion: 'test', raw: {}, data: sampleInvoice, issues: [], pdfLines: [] });
+    const fresh = (await call('GET', `/shipments/${s.id}/documents/${invoiceId}`)).body;
+    assert.deepEqual([fresh.data.invoiceNumber, fresh.corrected], [sampleInvoice.invoiceNumber, []]);
+    assert.deepEqual((await call('GET', `/shipments/${s.id}/documents/${invoiceId}/corrections`)).body, []);
+  });
+
+  it('updates the ISF taken from a corrected ISF PDF', async () => {
+    const isf = { seller: sampleInvoice.seller, buyer: sampleInvoice.buyer, importerOfRecordNumber: '12-345678900', consigneeNumber: '12-345678900', manufacturer: sampleInvoice.seller, shipToParty: sampleInvoice.buyer, countryOfOrigin: 'CN', htsCode: '950300', containerStuffingLocation: sampleInvoice.seller.address, consolidator: sampleInvoice.seller };
+    const { body: s } = await call('POST', '/shipments', { destination: 'US' });
+    const id = randomUUID();
+    await repo.insertDocument({ id, shipmentId: s.id, fileName: 'isf.pdf', storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+    await repo.saveExtraction(id, { pageCount: 1, detectedType: 'ISF', typeConfidence: 1 }, { documentId: id, documentType: 'ISF', model: 'test', promptVersion: 'test', raw: {}, data: isf, issues: [], pdfLines: [] }, { shipmentId: s.id, data: isf, since: null });
+    assert.equal((await call('PATCH', dataPath(s, id), { changes: [{ path: '/countryOfOrigin', value: 'VN' }] })).status, 200);
+    assert.equal((await call('GET', `/shipments/${s.id}/isf`)).body.data.countryOfOrigin, 'VN');
+    assert.equal((await call('PATCH', dataPath(s, id), { changes: [{ path: '/countryOfOrigin', value: 'Vietnam' }] })).status, 400);
+  });
+
+  it('is refused while the document extracts, and for another user\'s shipment', async () => {
+    const { s, invoiceId } = await extractedShipment();
+    const change = { changes: [{ path: '/invoiceNumber', value: 'INV-X' }] };
+    await repo.updateDocumentStatus(invoiceId, 'EXTRACTING');
+    assert.equal((await call('PATCH', dataPath(s, invoiceId), change)).status, 409);
+    assert.equal((await call('POST', `${dataPath(s, invoiceId)}/revert`)).status, 409);
+    await repo.updateDocumentStatus(invoiceId, 'EXTRACTED');
+
+    const other = await signUp('Other');
+    assert.equal((await call('PATCH', dataPath(s, invoiceId), change, other)).status, 404);
+    assert.equal((await call('GET', `/shipments/${s.id}/documents/${invoiceId}/corrections`, undefined, other)).status, 404);
+    assert.equal((await call('POST', `${dataPath(s, invoiceId)}/revert`, undefined, other)).status, 404);
+    assert.equal((await call('PATCH', dataPath(s, randomUUID()), change)).status, 404);
+    assert.equal((await call('GET', `/shipments/${s.id}/documents/${invoiceId}`)).body.data.invoiceNumber, sampleInvoice.invoiceNumber);
+  });
+
+  it('is blocked in the read-only demo', () => {
+    // The guard straight from the build: the demo suite below needs the evaluation set.
+    const { readOnlyGuard } = createRequire(import.meta.url)(join(root, 'apps/api/dist/demo/demo-mode.js'));
+    const passes = (method, path) => {
+      let next = false;
+      readOnlyGuard({ method, path }, { status: () => ({ json: () => undefined }) }, () => (next = true));
+      return next;
+    };
+    const id = randomUUID();
+    assert.equal(passes('GET', `/shipments/${id}/documents/${id}/corrections`), true);
+    assert.equal(passes('PATCH', `/shipments/${id}/documents/${id}/data`), false);
+    assert.equal(passes('POST', `/shipments/${id}/documents/${id}/data/revert`), false);
+  });
+});
+
 describe('ISF PDF upload', { skip: !isfSample && 'no ISF PDF with a cached model response' }, () => {
   const upload = async (shipmentId) => {
     const form = new FormData();
@@ -1079,7 +1191,7 @@ describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' 
   it('refuses every write except loading and validating a sample', async () => {
     assert.equal((await demoCall('GET', '/health')).body.demo, true);
     const id = randomUUID();
-    for (const [method, path] of [['POST', '/shipments'], ['DELETE', `/shipments/${id}`], ['PATCH', `/shipments/${id}`], ['PUT', `/shipments/${id}/isf`], ['DELETE', `/shipments/${id}/isf`], ['POST', `/shipments/${id}/documents`], ['POST', `/shipments/${id}/documents/${id}/reextract`]]) {
+    for (const [method, path] of [['POST', '/shipments'], ['DELETE', `/shipments/${id}`], ['PATCH', `/shipments/${id}`], ['PUT', `/shipments/${id}/isf`], ['DELETE', `/shipments/${id}/isf`], ['POST', `/shipments/${id}/documents`], ['POST', `/shipments/${id}/documents/${id}/reextract`], ['PATCH', `/shipments/${id}/documents/${id}/data`], ['POST', `/shipments/${id}/documents/${id}/data/revert`]]) {
       assert.equal((await demoCall(method, path, {})).status, 403, `${method} ${path}`);
     }
   });

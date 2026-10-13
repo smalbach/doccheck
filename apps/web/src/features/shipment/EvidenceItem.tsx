@@ -1,5 +1,6 @@
 import type { Evidence, ShipmentDocument } from '../../api/types';
 import { Button } from '../../components/ui/Button';
+import { Tag } from '../../components/ui/Tag';
 import { DOCUMENT_TYPE_KEY } from '../../constants/documentTypes';
 import { useI18n } from '../../i18n/useI18n';
 import type { ViewerTarget } from '../pdf/types';
@@ -25,6 +26,12 @@ export function EvidenceItem({ evidence, doc, onOpen }: EvidenceItemProps) {
         </>
       ) : (
         <em className="muted"> {t('shipment.findings.missing')}</em>
+      )}
+      {evidence.corrected && (
+        <>
+          {' '}
+          <Tag tone="accent">{t('shipment.findings.corrected')}</Tag>
+        </>
       )}
       {doc && source && (
         <Button variant="link" size="sm" className="evidence-link" onClick={() => onOpen({ doc, highlight: { page: source.page, bbox: source.bbox } })}

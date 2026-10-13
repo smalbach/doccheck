@@ -61,6 +61,18 @@ export const EXTRACTED_FIELDS: Partial<Record<DocumentType, FieldSpec[]>> = {
   ],
 };
 
+/** Fields of each commercial invoice line that can be corrected by hand, relative to the line. */
+export const INVOICE_LINE_FIELDS: FieldSpec[] = [
+  { labelKey: 'extracted.columns.description', path: 'description' },
+  { labelKey: 'extracted.columns.sku', path: 'sku' },
+  { labelKey: 'extracted.columns.quantity', path: 'quantity.value' },
+  { labelKey: 'extracted.columns.unit', path: 'quantity.unit' },
+  { labelKey: 'extracted.columns.unitPrice', path: 'unitPrice.amount' },
+  { labelKey: 'extracted.columns.total', path: 'lineTotal.amount' },
+  { labelKey: 'extracted.columns.origin', path: 'countryOfOrigin' },
+  { labelKey: 'extracted.columns.hs', path: 'hsCode' },
+];
+
 /** Column headings of the line table per document type (the first column is the row label). */
 export const EXTRACTED_ROW_HEADINGS: Partial<Record<DocumentType, MessageKey[]>> = {
   COMMERCIAL_INVOICE: ['extracted.columns.description', 'extracted.columns.quantity', 'extracted.columns.unitPrice', 'extracted.columns.total', 'extracted.columns.origin'],

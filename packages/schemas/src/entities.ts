@@ -43,6 +43,8 @@ export const Evidence = z.object({
   field: z.string(), // path inside the document: "lines[2].quantity"
   value: z.string(),
   source: SourceRef.optional(),
+  /** The value was corrected by hand after extraction; the PDF prints something else. */
+  corrected: z.boolean().optional(),
 });
 export type Evidence = z.infer<typeof Evidence>;
 
