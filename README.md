@@ -2,7 +2,7 @@
 
 An agent that cross-checks freight documents — commercial invoice, packing list, bill of lading and (for US ocean imports) the ISF 10+2 — and flags inconsistencies **before** they reach customs in Canada (CBSA) or the United States (CBP). Every finding cites the exact document field it comes from.
 
-> Status: **phase 4 of 6**. Schemas, rule engine, a synthetic evaluation set of 200 labeled shipments rendered to PDF, and extraction from PDF with a local model (Ollama) measured field by field. The API accepts PDFs, extracts them and runs the rules with page-level citations. Shipments, documents, extractions and findings are stored in Postgres, PDFs in S3-compatible storage, and extraction runs in a BullMQ queue. Phase 3 added country completeness rules (CBSA, CBP) and more cross-document checks. Phase 4 added regulation search with citations (CBSA D1-4-1, 19 CFR 141.86 and Part 149) and an agent that reviews ambiguous cases with the local model. The deployed demo comes next.
+> Status: **phase 5 of 6** (portfolio). Schemas, 15 deterministic rules, a synthetic evaluation set of 200 labeled shipments rendered to PDF (plus simulated scans and ISF filing confirmations), and extraction from PDF with a local model (Ollama) measured field by field. The API accepts PDFs (including scans, read with OCR, and the ISF), extracts them and runs the rules with page-level citations. Shipments, documents, extractions and findings are stored in Postgres, PDFs in S3-compatible storage, and extraction runs in a BullMQ queue. An agent reviews ambiguous cases with the local model, and findings cite CBSA memoranda and 19 CFR passages found by hybrid search. The metrics table, write-up and a results page in the web app are done; the full evaluation run and the deployed demo come next.
 
 ## How it works
 
@@ -61,7 +61,7 @@ Money and weights are decimal strings and use fixed-point arithmetic — never J
 scripts/start-local.sh          # checks Postgres, Redis, S3, Ollama and models, then builds and serves http://localhost:3000
 ```
 
-Create a shipment and drop its PDFs, or pick one of the synthetic samples (each lists the errors injected into it). Extraction runs in the background; then **Validate** shows each finding with its evidence, a link that opens the PDF with the cited line highlighted, the regulation passage that backs it and, when the agent was involved, its rationale. For frontend work, `npm run dev:web` serves the app on :5173 with hot reload and proxies the API.
+Create a shipment and drop its PDFs, or pick one of the synthetic samples (each lists the errors injected into it). `#/results` shows the evaluation numbers. Extraction runs in the background; then **Validate** shows each finding with its evidence, a link that opens the PDF with the cited line highlighted, the regulation passage that backs it and, when the agent was involved, its rationale. For frontend work, `npm run dev:web` serves the app on :5173 with hot reload and proxies the API.
 
 Needs Postgres, Ollama with `qwen3.8` and `bge-m3`, and optionally Redis and S3 storage (see below).
 
@@ -118,8 +118,8 @@ PDF rendering uses Playwright's Chromium, or the local Chrome when that build is
 
 Extraction runs on a local model through [Ollama](https://ollama.com); nothing leaves the machine. Start Ollama, pull a model and point `LLM_MODEL` at it (default `qwen3.8`).
 
-1. `pdf-text.ts` reads the PDF text layer with pdf.js and keeps each line's page and bounding box. Cells are padded to their column so tables stay aligned for the model. Pages without a text layer (scans) are rendered and read with OCR (tesseract.js, bundled English model, no system install), and come back in the same shape, so citations and highlighting work on scans too.
-2. `classify.ts` detects invoice, packing list or bill of lading from the title and vocabulary.
+1. `pdf-text.ts` reads the PDF text layer with pdf.js and keeps each line's page and bounding box. Cells are padded to their column so tables stay aligned for the model. Pages without a text layer (scans) are rendered and read with OCR (tesseract.js with bundled English and French models, no system install), and come back in the same shape, so citations and highlighting work on scans too.
+2. `classify.ts` detects invoice, packing list, bill of lading or ISF filing confirmation from the title and vocabulary.
 3. The model fills a "raw" Zod schema with values **as printed** (`"1,140.00"`, `"14-MAR-2026"`, `"2,513 LB"`). Its output is validated against the schema, with one retry on mismatch.
 4. `normalize.ts` turns printed values into canonical types in plain, tested code: decimals, ISO dates, pounds to kilograms, country names to ISO codes, units.
 5. Findings cite page and bbox: `findSource` locates each evidence value in the PDF lines.
@@ -165,7 +165,7 @@ Documents passed as JSON in the body of `/validate` take precedence over extract
 | 2 · Parsing + extraction | 4–5 | Typed extraction from PDFs, field-level accuracy measured, Postgres, object storage, queue — done |
 | 3 · Rule engine | 6–7 | Shared rules + CA and US completeness profiles, recall and precision measured — done |
 | 4 · Agent + RAG | 8–10 | Agent for ambiguous rules, regulation search with citations, local call tracing — done (evaluation running) |
-| 5 · Portfolio | 11–12 | Deployed demo, metrics table, write-up |
+| 5 · Portfolio | 11–12 | Deployed demo, metrics table, write-up — metrics, write-up and results page done; demo pending |
 
 ## Disclaimer
 

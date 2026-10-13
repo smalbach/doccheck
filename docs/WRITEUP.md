@@ -1,6 +1,6 @@
 # DocCheck: catching freight document errors before customs does
 
-Importing a container into Canada or the United States means four documents that must agree with each other and with the customs authority's rules: the commercial invoice, the packing list, the bill of lading and, for US ocean freight, the Importer Security Filing. When they disagree (a package count off by one, a weight in the wrong unit, a country of origin left blank), the entry is held, amended or penalized. Brokers catch most of this by reading documents side by side.
+Importing a container into Canada or the United States means up to four documents that must agree with each other and with the customs authority's rules: the commercial invoice, the packing list, the bill of lading and, for US ocean freight, the Importer Security Filing. When they disagree (a package count off by one, a weight in the wrong unit, a country of origin left blank), the entry is held, amended or penalized. Brokers catch most of this by reading documents side by side.
 
 DocCheck automates that read-through. It takes the PDFs, extracts typed data with a local language model, runs deterministic cross-document and country rules, and uses the model again only where a rule cannot decide alone. Every finding cites the line of the PDF it comes from and the regulation that backs it.
 
@@ -12,13 +12,13 @@ PDF ─► text with positions ─► classify ─► LLM: values as printed ─
                                                                          country profile   regulation search
 ```
 
-**Deterministic first.** Thirteen rules do most of the work: package counts and weights across documents, invoice arithmetic, currency, quantities per SKU, ISO 6346 container check digits, ISF consistency, and the invoice fields CBSA (form CI1) and CBP (19 CFR 141.86) require. They are pure functions over typed documents, unit-tested without a server, and they never call a model. Money and weights are decimal strings with fixed-point arithmetic.
+**Deterministic first.** Fifteen rules do most of the work: package counts and weights across documents, invoice arithmetic, currency, quantities per SKU, invoice and BL dates, terms of sale against freight terms, ISO 6346 container check digits, ISF consistency, invoice language for CBSA, and the invoice fields CBSA (form CI1) and CBP (19 CFR 141.86) require. They are pure functions over typed documents, unit-tested without a server, and they never call a model. Money and weights are decimal strings with fixed-point arithmetic.
 
 **The model copies, code converts.** Extraction asks the model for values exactly as printed (`"1,140.00"`, `"14-MAR-2026"`, `"2,513 LB"`) into a Zod schema, then plain code turns them into canonical types: decimals, ISO dates, kilograms, ISO country codes. A formatting rule is then a tested function instead of a prompt instruction. The first evaluation found two bugs this way: a number followed by a unit ("320 M2") and city lines copied into street addresses, both fixed in code and covered by tests.
 
 **The agent decides narrow questions.** Rather than an open-ended agent loop, the model answers specific questions with a structured verdict, confidence and rationale: are two differently written consignee names the same company, and does the BL cargo description match the invoice goods. It only acts at confidence ≥ 0.7, and "unsure" never dismisses a finding. Every decision is stored with the validation run, so a reviewer can audit what the model changed.
 
-**Citations are retrieved, not generated.** The regulation passage on each finding comes from hybrid search (embeddings plus BM25) over CBSA Memorandum D1-4-1 and 19 CFR 141.86 and Part 149, and is attached only when keyword search agrees it is relevant. The model never writes the legal basis. The PDF citation comes from the extraction layer, which keeps every text line with its page and bounding box; the web app opens the page with that line highlighted.
+**Citations are retrieved, not generated.** The regulation passage on each finding comes from hybrid search (embeddings plus BM25) over CBSA memoranda (invoices D1-4-1, marking D11-3-1, proof of origin D11-4-2, valuation D13-4-3 and D13-4-7) and 19 CFR (141.83, 141.86, 141.89, Parts 134 and 149, Part 152 subpart E), and is attached only when keyword search agrees it is relevant. The model never writes the legal basis. The PDF citation comes from the extraction layer, which keeps every text line with its page and bounding box; the web app opens the page with that line highlighted.
 
 **Local by default.** Extraction, agent and embeddings run on Ollama (`qwen3.8`, `bge-m3`) on the developer's machine; documents never leave it. A model comparison on the same pilot set decided the model: `qwen3.8` reached 96.4% field accuracy against 56.7% for `gemma4`, which dropped the BL gross weight and with it most BLs.
 
@@ -45,11 +45,11 @@ See [METRICS.md](METRICS.md) for the current numbers.
 
 ## Limitations
 
-- The evaluation set is synthetic. Real invoices bring handwriting, stamps, multi-page tables and layouts the three templates do not cover. Scans are simulated (rotation, blur, noise) and read with OCR, which is weaker on poor scans.
+- The evaluation set is synthetic. Real invoices bring handwriting, stamps, multi-page tables and layouts the three templates do not cover. Scans are simulated (rotation, blur, noise) and read with OCR (English and French models), which finds 86.6% of the expected values in the text against 99.7% from a text layer.
 - The ground-truth rule results only cover error kinds the generator injects.
-- The regulation corpus is three sources. D1-4-1 dates from 2013 and is marked under review for CARM.
+- The regulation corpus is eleven sources (five CBSA memoranda, three of them also in French, and six sections of 19 CFR), chosen for the rules DocCheck has. D1-4-1 dates from 2013 and is marked under review for CARM.
 - Not customs advice; nothing is filed with CBSA or CBP.
 
 ## Next
 
-More templates and real scanned samples, the ISF as an uploadable document, more CBSA memoranda in the corpus, and the agent's decisions measured on real documents.
+A public read-only demo, more templates and real scanned samples, extraction measured on the scans and ISF PDFs, and the agent's decisions measured on real documents.
