@@ -247,17 +247,28 @@ function party(p: RawParty | null | undefined, field: string, issues: string[]):
   return valid(Party, { name: clean(p.name), address: rawAddress(p), taxId: clean(p.taxId) ?? undefined }, field, issues);
 }
 
-/** "Nhava Sheva, IN" -> name "Nhava Sheva", country IN, when the model leaves the country in the name. */
+/**
+ * "Nhava Sheva, IN" -> name "Nhava Sheva", country IN, when the model leaves the country in the name;
+ * "Valencia (ESVLC)" -> name "Valencia", UN/LOCODE ESVLC, country ES. A place whose country is not
+ * shown is kept without one.
+ */
 function place(p: RawPlace | null | undefined, field: string, issues: string[]): Location | undefined {
   let name = clean(p?.name);
   if (!p || !name) return undefined;
   let country = countryCode(p.country);
+  let unLocode: string | undefined;
+  const code = name.match(/^(.*?)\s*\(([A-Z]{2})\s?([A-Z2-9]{3})\)$/);
+  if (code && countryCode(code[2]) && (!country || code[2] === country)) {
+    name = code[1];
+    unLocode = `${code[2]}${code[3]}`;
+    country = code[2];
+  }
   const tail = name.match(/^(.*?),\s*([^,]+)$/);
   if (tail && countryCode(tail[2]) && (!country || countryCode(tail[2]) === country)) {
     name = tail[1];
     country = countryCode(tail[2]);
   }
-  return valid(Location, { name, country: country ?? '' }, field, issues);
+  return valid(Location, prune({ name, unLocode, country: country ?? undefined }), field, issues);
 }
 
 /** Drops an HS code or SKU the model copied into the description from the same cell. */

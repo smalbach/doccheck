@@ -90,6 +90,8 @@ describe('normalization', () => {
     };
     const { data } = normalizeBillOfLading(raw);
     expect([data?.shipper.name, data?.shipper.address.country, data?.consignee.address.country]).toEqual(['X Co', undefined, 'CA']);
+    const ports = normalizeBillOfLading({ ...raw, portOfLoading: { name: 'Valencia (ESVLC)', country: '' }, portOfDischarge: { name: 'Vancouver', country: '' } }).data;
+    expect([ports?.portOfLoading, ports?.portOfDischarge]).toEqual([{ name: 'Valencia', unLocode: 'ESVLC', country: 'ES' }, { name: 'Vancouver' }]);
   });
 
   it('returns what it could read when the document fails validation', () => {

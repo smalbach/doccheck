@@ -80,6 +80,7 @@ export type Party = z.infer<typeof Party>;
 export const Location = z.object({
   name: z.string().min(1),
   unLocode: UnLocode.optional(),
-  country: CountryCode,
+  /** Absent when the document does not show it (or the model drops it with the UN/LOCODE). */
+  country: CountryCode.optional(),
 });
 export type Location = z.infer<typeof Location>;
