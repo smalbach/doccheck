@@ -21,6 +21,7 @@
     "start": "node apps/api/dist/main.js",
     "dev:web": "npm run dev -w @doccheck/web",
     "metrics": "node scripts/metrics.mjs",
+    "cache:audit": "node scripts/cache-audit.mjs",
     "eval:ocr": "npm run build -w @doccheck/extraction && node packages/extraction/dist/ocr-eval-cli.js"
   },
   "engines": {

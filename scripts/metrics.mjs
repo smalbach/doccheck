@@ -1,10 +1,11 @@
 // Builds docs/METRICS.md and the metrics block of the README from the evaluation reports:
 //   eval/reports/extraction-<model>.json   (npm run eval:extraction)
+//   eval/reports/extraction-<model>-v1-scans.json, -v1-isf.json   (same, with --data data/eval/v1-scans or v1-isf)
 //   eval/reports/agent-<model>.json        (npm run eval:agent)
 // plus the rule engine on the ground-truth documents of data/eval/v1, and on error kinds that v1 does
 // not inject (applied one at a time to the clean v1 shipments). Run `npm run build` first.
 //
-//   node scripts/metrics.mjs [--model ollama_qwen3.8]
+//   node scripts/metrics.mjs [--model ollama_qwen3.8] [--reports eval/reports]
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -12,12 +13,26 @@ import { parseArgs } from 'node:util';
 import { runRules } from '@doccheck/rules';
 import { buildDataset, EXTRA_ERROR_KINDS, injectErrors, Rng } from '@doccheck/synth';
 
-const { values } = parseArgs({ options: { model: { type: 'string', default: 'ollama_qwen3.8' } } });
+const { values } = parseArgs({ options: { model: { type: 'string', default: 'ollama_qwen3.8' }, reports: { type: 'string', default: 'eval/reports' } } });
 const pct = (x) => (x === null || x === undefined ? '—' : `${(x * 100).toFixed(1)}%`);
 const readJson = async (f) => (existsSync(f) ? JSON.parse(await readFile(f, 'utf8')) : null);
 
-const extraction = await readJson(`eval/reports/extraction-${values.model}.json`);
-const agent = await readJson(`eval/reports/agent-${values.model}.json`);
+const extraction = await readJson(join(values.reports, `extraction-${values.model}.json`));
+const agent = await readJson(join(values.reports, `agent-${values.model}.json`));
+const scans = await readJson(join(values.reports, `extraction-${values.model}-v1-scans.json`));
+const isfSet = await readJson(join(values.reports, `extraction-${values.model}-v1-isf.json`));
+
+// Every report records the model build it ran with; numbers from different builds should not be mixed.
+const builds = [
+  ['extraction v1', extraction],
+  ['extraction v1-scans', scans],
+  ['extraction v1-isf', isfSet],
+  ['agent', agent],
+]
+  .filter(([, r]) => r)
+  .map(([name, r]) => ({ name, build: r.modelVersion ?? 'not recorded' }));
+const mixedBuilds = new Set(builds.map((b) => b.build)).size > 1 || builds.some((b) => b.build === 'not recorded');
+if (mixedBuilds) console.warn(`Warning: reports come from different or unrecorded model builds: ${builds.map((b) => `${b.name} ${b.build}`).join(', ')}`);
 
 // Rules on ground truth: what the engine catches when extraction is perfect.
 const dir = 'data/eval/v1';
@@ -85,8 +100,12 @@ const extraKinds = EXTRA_ERROR_KINDS.map((kind) => {
   return { ...row, ...pr(row) };
 });
 
+const totalOf = (table) => pr(table.reduce((a, r) => ({ tp: a.tp + r.tp, fp: a.fp + r.fp, fn: a.fn + r.fn }), { tp: 0, fp: 0, fn: 0 }));
 const extRules = extraction?.rules.table ?? [];
-const extTotal = pr(extRules.reduce((a, r) => ({ tp: a.tp + r.tp, fp: a.fp + r.fp, fn: a.fn + r.fn }), { tp: 0, fp: 0, fn: 0 }));
+const extTotal = totalOf(extRules);
+const scanTotal = scans && totalOf(scans.rules.table);
+const isfX11 = isfSet?.rules.table.find((r) => r.rule === 'X11');
+const isfType = isfSet?.byType.find((t) => t.type === 'ISF');
 const agentRow = (kind) => agent?.summary.find((s) => s.kind === kind);
 
 const headline = [
@@ -96,6 +115,10 @@ const headline = [
   extraction ? `| Classification | Document type | ${pct(extraction.classificationAccuracy)} |` : null,
   `| Rules on ground truth | Recall / precision on ${covered} covered errors (of ${errors} injected) | ${pct(truthTotal.recall)} / ${pct(truthTotal.precision)} |`,
   extraction ? `| Rules on extracted PDFs | Recall / precision, end to end | ${pct(extTotal.recall)} / ${pct(extTotal.precision)} |` : null,
+  scans ? `| Extraction, scanned PDFs (OCR) | Field accuracy, ${scans.documents} PDFs | ${pct(scans.overall.accuracy)} |` : null,
+  scans ? `| Rules on scanned PDFs | Recall / precision, end to end | ${pct(scanTotal.recall)} / ${pct(scanTotal.precision)} |` : null,
+  isfType ? `| Extraction, ISF PDFs | Field accuracy, ${isfSet.documentsDetail.filter((d) => d.type === 'ISF').length} PDFs | ${pct(isfType.accuracy)} |` : null,
+  isfX11 ? `| X11 on extracted ISF PDFs | Recall / precision, end to end | ${pct(isfX11.recall)} / ${pct(isfX11.precision)} |` : null,
   agentRow('party') ? `| Agent | Same consignee written differently (${agentRow('party').cases} cases): verdict / right action | ${pct(agentRow('party').accuracy)} / ${pct(agentRow('party').effectAccuracy)} (${agentRow('party').wrong} wrong, ${agentRow('party').unsure} unsure) |` : null,
   agentRow('description') ? `| Agent | BL description vs invoice goods (${agentRow('description').cases} cases): verdict / right action | ${pct(agentRow('description').accuracy)} / ${pct(agentRow('description').effectAccuracy)} (${agentRow('description').wrong} wrong, ${agentRow('description').unsure} unsure) |` : null,
 ].filter(Boolean);
@@ -106,6 +129,7 @@ const md = [
   `Generated by \`scripts/metrics.mjs\` from the evaluation set v1: ${ids.length} synthetic shipments (CA and US), ${errors} injected errors. Models run locally through Ollama.`,
   '',
   ...headline,
+  ...(mixedBuilds ? ['', `> Reports from different or unrecorded model builds: ${builds.map((b) => `${b.name} ${b.build}`).join(', ')}. Rerun them on one build before comparing.`] : []),
   '',
   '## Rules',
   '',
@@ -149,6 +173,45 @@ const md = [
         '| --- | --- | --- | --- | --- | --- |',
         ...extraction.byField.filter((f) => f.accuracy < 1).slice(0, 10).map((f) => `| ${f.type} | \`${f.field}\` | ${pct(f.accuracy)} | ${f.wrong} | ${f.missing} | ${f.spurious} |`),
         '',
+      ]
+    : []),
+  ...(scans
+    ? [
+        '## Extraction from scans',
+        '',
+        `Image-only PDFs read with OCR (English and French models), same shipments and labels as v1. Model build ${scans.modelVersion ?? 'unknown'} · prompt \`${scans.promptVersion}\` · ${scans.shipments} shipments · ${scans.documents} PDFs · ${scans.failedDocuments} failed · classification ${pct(scans.classificationAccuracy)}`,
+        '',
+        '| Document | Accuracy (scan) | Accuracy (text layer) | Fields |',
+        '| --- | --- | --- | --- |',
+        ...scans.byType.map((t) => `| ${t.type} | ${pct(t.accuracy)} | ${pct(extraction?.byType.find((x) => x.type === t.type)?.accuracy)} | ${t.total} |`),
+        '',
+        '| Rule | Recall (scan) | Precision (scan) |',
+        '| --- | --- | --- |',
+        ...[...scans.rules.table].sort((a, b) => ruleOrder(a.rule, b.rule)).map((r) => `| ${r.rule} | ${pct(r.recall)} | ${pct(r.precision)} |`),
+        '',
+      ]
+    : []),
+  ...(isfSet
+    ? [
+        '## ISF filing confirmations',
+        '',
+        `The ${isfSet.shipments} US shipments with the ISF as a PDF${isfX11 ? `; ${isfX11.tp + isfX11.fn} of them disagree with the invoice (origin, HTS or seller) and are labeled for X11` : ''}. Model build ${isfSet.modelVersion ?? 'unknown'} · prompt \`${isfSet.promptVersion}\` · ${isfSet.documents} PDFs · ${isfSet.failedDocuments} failed · classification ${pct(isfSet.classificationAccuracy)}`,
+        '',
+        '| Document | Accuracy | Fields |',
+        '| --- | --- | --- |',
+        ...isfSet.byType.map((t) => `| ${t.type} | ${pct(t.accuracy)} | ${t.total} |`),
+        '',
+        ...(isfX11 ? [`X11 end to end: ${isfX11.tp} caught, ${isfX11.fn} missed, ${isfX11.fp} raised on shipments without an ISF error (recall ${pct(isfX11.recall)}, precision ${pct(isfX11.precision)}).`, ''] : []),
+        ...(isfSet.byField.filter((f) => f.type === 'ISF' && f.accuracy < 1).length
+          ? [
+              'Weakest ISF fields:',
+              '',
+              '| Field | Accuracy | Wrong | Missing | Spurious |',
+              '| --- | --- | --- | --- | --- |',
+              ...isfSet.byField.filter((f) => f.type === 'ISF' && f.accuracy < 1).slice(0, 10).map((f) => `| \`${f.field}\` | ${pct(f.accuracy)} | ${f.wrong} | ${f.missing} | ${f.spurious} |`),
+              '',
+            ]
+          : []),
       ]
     : []),
   ...(agent
