@@ -1,0 +1,649 @@
+{
+  "version": "v1",
+  "seed": 20261012,
+  "shipments": [
+    {
+      "id": "CA-001",
+      "destination": "CA",
+      "templates": [
+        "legacy",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "gross_weight_mismatch",
+        "second_currency",
+        "container_check_digit"
+      ]
+    },
+    {
+      "id": "CA-002",
+      "destination": "CA",
+      "templates": [
+        "legacy",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "package_count_mismatch"
+      ]
+    },
+    {
+      "id": "CA-003",
+      "destination": "CA",
+      "templates": [
+        "modern",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": true,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "gross_weight_mismatch",
+        "package_count_mismatch"
+      ]
+    },
+    {
+      "id": "CA-004",
+      "destination": "CA",
+      "templates": [
+        "legacy",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "second_currency",
+        "line_quantity_changed",
+        "gross_weight_mismatch"
+      ]
+    },
+    {
+      "id": "CA-005",
+      "destination": "CA",
+      "templates": [
+        "legacy",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": true,
+      "lines": 2,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "CA-006",
+      "destination": "CA",
+      "templates": [
+        "modern",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "package_count_mismatch"
+      ]
+    },
+    {
+      "id": "CA-007",
+      "destination": "CA",
+      "templates": [
+        "classic",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "CA-008",
+      "destination": "CA",
+      "templates": [
+        "classic",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "missing_required_field",
+        "container_check_digit"
+      ]
+    },
+    {
+      "id": "CA-009",
+      "destination": "CA",
+      "templates": [
+        "classic",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "package_count_mismatch",
+        "line_total_typo"
+      ]
+    },
+    {
+      "id": "CA-010",
+      "destination": "CA",
+      "templates": [
+        "classic",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 3,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "CA-011",
+      "destination": "CA",
+      "templates": [
+        "modern",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "line_total_typo",
+        "container_check_digit"
+      ]
+    },
+    {
+      "id": "CA-012",
+      "destination": "CA",
+      "templates": [
+        "legacy",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "CA-013",
+      "destination": "CA",
+      "templates": [
+        "legacy",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "line_quantity_changed",
+        "line_total_typo"
+      ]
+    },
+    {
+      "id": "CA-014",
+      "destination": "CA",
+      "templates": [
+        "legacy",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": true,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "consignee_address_mismatch",
+        "gross_weight_mismatch",
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "CA-015",
+      "destination": "CA",
+      "templates": [
+        "modern",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "net_exceeds_gross",
+        "second_currency",
+        "missing_required_field"
+      ]
+    },
+    {
+      "id": "CA-016",
+      "destination": "CA",
+      "templates": [
+        "legacy",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "line_total_typo",
+        "container_check_digit",
+        "line_quantity_changed"
+      ]
+    },
+    {
+      "id": "CA-017",
+      "destination": "CA",
+      "templates": [
+        "legacy",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": true,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "line_quantity_changed",
+        "line_total_typo"
+      ]
+    },
+    {
+      "id": "CA-018",
+      "destination": "CA",
+      "templates": [
+        "classic",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "CA-019",
+      "destination": "CA",
+      "templates": [
+        "classic",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "second_currency"
+      ]
+    },
+    {
+      "id": "CA-020",
+      "destination": "CA",
+      "templates": [
+        "classic",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "US-001",
+      "destination": "US",
+      "templates": [
+        "modern",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "US-002",
+      "destination": "US",
+      "templates": [
+        "legacy",
+        "legacy",
+        "legacy"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch",
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "US-003",
+      "destination": "US",
+      "templates": [
+        "legacy",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "US-004",
+      "destination": "US",
+      "templates": [
+        "legacy",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "line_quantity_changed"
+      ]
+    },
+    {
+      "id": "US-005",
+      "destination": "US",
+      "templates": [
+        "modern",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "US-006",
+      "destination": "US",
+      "templates": [
+        "classic",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "net_exceeds_gross",
+        "missing_required_field",
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "US-007",
+      "destination": "US",
+      "templates": [
+        "legacy",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "container_check_digit",
+        "line_quantity_changed",
+        "line_total_typo"
+      ]
+    },
+    {
+      "id": "US-008",
+      "destination": "US",
+      "templates": [
+        "classic",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "missing_required_field"
+      ]
+    },
+    {
+      "id": "US-009",
+      "destination": "US",
+      "templates": [
+        "classic",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 3,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "US-010",
+      "destination": "US",
+      "templates": [
+        "modern",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "US-011",
+      "destination": "US",
+      "templates": [
+        "modern",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "US-012",
+      "destination": "US",
+      "templates": [
+        "classic",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "line_total_typo"
+      ]
+    },
+    {
+      "id": "US-013",
+      "destination": "US",
+      "templates": [
+        "modern",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "US-014",
+      "destination": "US",
+      "templates": [
+        "classic",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "US-015",
+      "destination": "US",
+      "templates": [
+        "legacy",
+        "legacy",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "line_quantity_changed"
+      ]
+    },
+    {
+      "id": "US-016",
+      "destination": "US",
+      "templates": [
+        "classic",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "missing_required_field"
+      ]
+    },
+    {
+      "id": "US-017",
+      "destination": "US",
+      "templates": [
+        "legacy",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "missing_required_field",
+        "second_currency"
+      ]
+    },
+    {
+      "id": "US-018",
+      "destination": "US",
+      "templates": [
+        "modern",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "net_exceeds_gross",
+        "second_currency"
+      ]
+    },
+    {
+      "id": "US-019",
+      "destination": "US",
+      "templates": [
+        "classic",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 3,
+      "containers": 1,
+      "errors": [
+        "container_check_digit",
+        "line_quantity_changed",
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "US-020",
+      "destination": "US",
+      "templates": [
+        "legacy",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "LB",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "US-008",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "lines[*].countryOfOrigin",
+      "before": [
+        "CN"
+      ],
+      "after": null,
+      "expectedRuleIds": [
+        "U1"
+      ],
+      "description": "Country of origin missing on every invoice line."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "US-019",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "AGLU6245687",
+      "after": "AGLU6245683",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: AGLU6245687 -> AGLU6245683."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[0].quantity.value",
+      "before": "28080",
+      "after": "28090",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 1 quantity changed without updating the line total."
+    },
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[2].contents[0].quantity.value",
+      "before": "2160",
+      "after": "2136",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 import { runRules, type ShipmentContext } from '@doccheck/rules';
 import type { BillOfLading, CommercialInvoice, Destination, PackingList } from '@doccheck/schemas';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
-import { join, resolve } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { extractDocument, PROMPT_VERSION, type ExtractableType } from './extract';
 import { LlmClient, llmFromEnv, type Usage } from './llm';
+import { terminateOcr } from './ocr';
 import { scoreDocument, tally, type FieldScore } from './score';
 
 /**
@@ -182,13 +183,14 @@ async function main() {
 
   const outDir = resolve(values.out!);
   await mkdir(outDir, { recursive: true });
-  const name = `extraction-${base.provider.id.replace(/[^\w.-]+/g, '_')}`;
+  const set = basename(dataDir) === 'v1' ? '' : `-${basename(dataDir)}`;
+  const name = `extraction-${base.provider.id.replace(/[^\w.-]+/g, '_')}${set}`;
   await writeFile(join(outDir, `${name}.json`), JSON.stringify(report, null, 2) + '\n');
 
   const md = [
     `# Extraction report — ${base.provider.id}`,
     '',
-    `Model build ${report.modelVersion ?? 'unknown'} · prompt \`${PROMPT_VERSION}\` · ${ids.length} shipments · ${docResults.length} PDFs · ${errors.length} failed · ${report.cachedDocuments} from cache`,
+    `Data \`${basename(dataDir)}\` · model build ${report.modelVersion ?? 'unknown'} · prompt \`${PROMPT_VERSION}\` · ${ids.length} shipments · ${docResults.length} PDFs · ${errors.length} failed · ${report.cachedDocuments} from cache`,
     '',
     `**Field accuracy ${pct(report.overall.accuracy)}** (${report.overall.correct}/${report.overall.total}: ${report.overall.wrong} wrong, ${report.overall.missing} missing, ${report.overall.spurious} spurious) · classification ${pct(classification)}`,
     '',
@@ -223,6 +225,7 @@ async function main() {
   await writeFile(join(outDir, `${name}.md`), md);
   console.log(`\n${md}`);
   console.log(`Report: ${join(outDir, name)}.{md,json}`);
+  await terminateOcr();
 }
 
 main().catch((err) => {

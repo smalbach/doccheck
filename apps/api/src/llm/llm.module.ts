@@ -1,5 +1,5 @@
-import { Global, Inject, Injectable, Logger, Module } from '@nestjs/common';
-import { llmFromEnv, type LlmClient } from '@doccheck/extraction';
+import { Global, Inject, Injectable, Logger, Module, type OnApplicationShutdown } from '@nestjs/common';
+import { llmFromEnv, terminateOcr, type LlmClient } from '@doccheck/extraction';
 import { loadIndexFile, OllamaEmbedder, type RegulationIndex } from '@doccheck/regulations';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -54,6 +54,10 @@ export class RegulationsService {
   providers: [llmProvider, RegulationsService],
   exports: [LLM, RegulationsService],
 })
-export class LlmModule {}
+export class LlmModule implements OnApplicationShutdown {
+  async onApplicationShutdown() {
+    await terminateOcr();
+  }
+}
 
 export const InjectLlm = () => Inject(LLM);

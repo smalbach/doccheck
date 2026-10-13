@@ -1,0 +1,39 @@
+{
+  "id": "CA-016",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "34185.76",
+      "after": "43185.76",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (34185.76 -> 43185.76)."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "MDOU3277251",
+      "after": "MDOU3277257",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: MDOU3277251 -> MDOU3277257."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[1].quantity.value",
+      "before": "336",
+      "after": "3360",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 2 quantity changed without updating the line total."
+    }
+  ]
+}

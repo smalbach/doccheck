@@ -1,0 +1,27 @@
+{
+  "id": "CA-011",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "10906.76",
+      "after": "1906.76",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (10906.76 -> 1906.76)."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "AGXU8524965",
+      "after": "AGXU8524960",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: AGXU8524965 -> AGXU8524960."
+    }
+  ]
+}

@@ -12,7 +12,10 @@ npm run synth                         # writes data/eval/v1
 npm run synth -- --no-pdf --html      # JSON + HTML only, no browser needed
 npm run synth -- --seed 7 --out /tmp/eval
 npm run synth -- --labels-only        # rewrite labels.json after rule coverage changes; PDFs untouched
+npm run synth -- --scans 40           # 40 shipments as image-only "scanned" PDFs in data/eval/v1-scans
 ```
+
+Scans (`scans.ts`) render each page as a grayscale image with a slight rotation, blur, contrast change and speckle noise, at 150 dpi (office scanner) or, for 30% of shipments, 110 dpi with more blur (a poor scan), and wrap the images in a PDF with no text layer. Truth and labels are the same as the v1 shipments, so OCR can be scored with the same evaluation.
 
 | Error kind | Document | Expected rule |
 | --- | --- | --- |
@@ -27,4 +30,4 @@ npm run synth -- --labels-only        # rewrite labels.json after rule coverage 
 | `packing_list_quantity_mismatch` | packing list | X7 |
 | `missing_required_field` | invoice | C1 or U1 when the destination requires the field; none otherwise |
 
-Not done yet from the original plan: 4–6 templates per document (3 so far), tables split across pages on purpose, and degraded "scanned" variants. Add them when phase 2 extraction shows which variations matter.
+Not done yet from the original plan: 4–6 templates per document (3 so far) and tables split across pages on purpose.

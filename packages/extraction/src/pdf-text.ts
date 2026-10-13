@@ -1,7 +1,10 @@
+import { ocrPage } from './ocr';
+
 /**
  * PDF -> text lines with positions, using pdf.js (pure JS, no system dependency).
  * Lines keep their bounding box so every extracted value can be traced back to a page and a
- * region of it (SourceRef). Scanned PDFs without a text layer return no lines: OCR is a later step.
+ * region of it (SourceRef). Pages without a text layer (scans) go through OCR (tesseract) and come
+ * back in the same shape, so extraction, citations and highlighting work the same way.
  */
 
 /** [x0, y0, x1, y1] in PDF points, origin at the top-left of the page. */
@@ -18,6 +21,14 @@ export interface PdfText {
   lines: TextLine[];
   /** Layout-preserving text: one line per row, cells padded to their column so tables stay aligned. */
   text: string;
+  /** Pages read with OCR, and tesseract's mean confidence on them (0-100). */
+  ocrPages?: number[];
+  ocrConfidence?: number;
+}
+
+export interface ReadOptions {
+  /** auto: OCR pages with no text layer (default); off: never; force: every page. */
+  ocr?: 'auto' | 'off' | 'force';
 }
 
 interface Item {
@@ -31,7 +42,13 @@ interface Item {
 /** Items closer than this vertically (points) belong to the same row. */
 const ROW_TOLERANCE = 2.5;
 
-export async function readPdfText(data: Uint8Array): Promise<PdfText> {
+/** A page with fewer characters than this in its text layer is treated as a scan. */
+const MIN_TEXT_CHARS = 20;
+
+export async function readPdfText(data: Uint8Array, opts: ReadOptions = {}): Promise<PdfText> {
+  const mode = opts.ocr ?? 'auto';
+  const ocrPages: number[] = [];
+  const confidences: number[] = [];
   const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs');
   // pdf.js takes ownership of the buffer; copy so the caller can reuse theirs.
   const task = pdfjs.getDocument({ data: new Uint8Array(data), verbosity: 0 });
@@ -43,28 +60,42 @@ export async function readPdfText(data: Uint8Array): Promise<PdfText> {
       const page = await doc.getPage(p);
       const { height } = page.getViewport({ scale: 1 });
       const content = await page.getTextContent();
-      const items: Item[] = [];
+      let items: Item[] = [];
       for (const it of content.items) {
         if (!('str' in it) || it.str.trim() === '') continue;
         const h = it.height || Math.abs(it.transform[3]);
         items.push({ str: it.str, x: it.transform[4], y: height - it.transform[5] - h, w: it.width, h });
       }
-      const pageLines = groupRows(items).map((row) => toLine(p, row));
+      let tolerance = ROW_TOLERANCE;
+      const textChars = items.reduce((n, i) => n + i.str.trim().length, 0);
+      if (mode === 'force' || (mode === 'auto' && textChars < MIN_TEXT_CHARS)) {
+        const ocr = await ocrPage(page);
+        items = ocr.words;
+        ocrPages.push(p);
+        confidences.push(ocr.confidence);
+        // OCR boxes jitter more than a text layer, and a slight skew moves a row's words apart.
+        const heights = items.map((i) => i.h).sort((a, b) => a - b);
+        tolerance = Math.max(ROW_TOLERANCE, (heights[Math.floor(heights.length / 2)] ?? 8) * 0.45);
+      }
+      const pageLines = groupRows(items, tolerance).map((row) => toLine(p, row));
       lines.push(...pageLines);
       pages.push(pageLines.map((l) => l.text).join('\n'));
     }
   } finally {
     await task.destroy();
   }
-  return { pageCount: pages.length, lines, text: pages.map((t, i) => `--- page ${i + 1} ---\n${t}`).join('\n\n') };
+  const text = pages.map((t, i) => `--- page ${i + 1} ---\n${t}`).join('\n\n');
+  if (ocrPages.length === 0) return { pageCount: pages.length, lines, text };
+  const ocrConfidence = Math.round(confidences.reduce((a, b) => a + b, 0) / confidences.length);
+  return { pageCount: pages.length, lines, text, ocrPages, ocrConfidence };
 }
 
-function groupRows(items: Item[]): Item[][] {
+function groupRows(items: Item[], tolerance = ROW_TOLERANCE): Item[][] {
   const sorted = [...items].sort((a, b) => a.y - b.y || a.x - b.x);
   const rows: Item[][] = [];
   for (const it of sorted) {
     const row = rows[rows.length - 1];
-    if (row && Math.abs(row[0].y - it.y) <= ROW_TOLERANCE) row.push(it);
+    if (row && Math.abs(row[0].y - it.y) <= tolerance) row.push(it);
     else rows.push([it]);
   }
   return rows.map((r) => r.sort((a, b) => a.x - b.x));

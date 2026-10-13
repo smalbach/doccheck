@@ -1,0 +1,374 @@
+{
+  "id": "CA-006",
+  "seed": 395936551,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "scan": {
+      "rotation": -0.10394118796102703,
+      "blur": 0.6448984317481519,
+      "contrast": 1.1441166285891087,
+      "brightness": 0.9821447842288762,
+      "noise": 0.12,
+      "dpi": 110
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "QIN2605408",
+      "invoiceDate": "2026-02-19",
+      "poNumber": "PO-55662",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-03-02",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Qingdao"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 50,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "8800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.17",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10296.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "HB-M12",
+          "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+          "quantity": {
+            "value": "3000",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "2.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "6300.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "7318.15"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4139.60",
+        "raw": {
+          "value": "4139.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3968.00",
+        "raw": {
+          "value": "3968.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "16596.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-QIN2605408",
+      "invoiceRef": "QIN2605408",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-44",
+          "count": 44,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-55662/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "8800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "968.00",
+            "raw": {
+              "value": "968.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1007.60",
+            "raw": {
+              "value": "1007.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "45-50",
+          "count": 6,
+          "type": "PLT",
+          "marks": "NORTHERN/PO-55662/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "HB-M12",
+              "description": "Hex bolt M12x60",
+              "quantity": {
+                "value": "3000",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3000.00",
+            "raw": {
+              "value": "3000.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3132.00",
+            "raw": {
+              "value": "3132.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            100,
+            60
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 50,
+        "netWeight": {
+          "kg": "3968.00",
+          "raw": {
+            "value": "3968.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4139.60",
+          "raw": {
+            "value": "4139.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "5.64"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXTAO3183408",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "407344958",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "038N",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGXU8941444",
+          "seal": "AG7592734",
+          "type": "20GP",
+          "packages": 50,
+          "grossWeight": {
+            "kg": "4139.60",
+            "raw": {
+              "value": "4139.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "5.64"
+        }
+      ],
+      "totalPackages": 55,
+      "totalGrossWeight": {
+        "kg": "4139.60",
+        "raw": {
+          "value": "4139.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/PO-55662/C/NO. 1-50",
+      "cargoDescription": "SAID TO CONTAIN 50 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-03-04",
+      "shippedOnBoardDate": "2026-03-04",
+      "references": [
+        "QIN2605408",
+        "PO-55662"
+      ]
+    }
+  }
+}

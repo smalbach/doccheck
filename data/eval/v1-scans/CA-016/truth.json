@@ -1,0 +1,381 @@
+{
+  "id": "CA-016",
+  "seed": 1378679672,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "scan": {
+      "rotation": -0.437640018388629,
+      "blur": 0.1401129745529033,
+      "contrast": 0.9528569798450917,
+      "brightness": 0.9751601891824975,
+      "noise": 0.07367794131860138,
+      "dpi": 150
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NIN2607782",
+      "invoiceDate": "2026-01-22",
+      "poNumber": "PO-47083",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-01-30",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ningbo",
+          "unLocode": "CNNGB",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ningbo"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "CAD",
+      "packageCount": 317,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "1864",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "18.34",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "43185.76",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "3360",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "20.85",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "7005.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3103.90",
+        "raw": {
+          "value": "3103.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2730.00",
+        "raw": {
+          "value": "2730.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "41191.36",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-NIN2607782",
+      "invoiceRef": "NIN2607782",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-233",
+          "count": 233,
+          "type": "CTN",
+          "marks": "PRAIRIE/PO-47083/C/NO. 1-317",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "1864",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1957.20",
+            "raw": {
+              "value": "1957.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2213.50",
+            "raw": {
+              "value": "2213.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "234-317",
+          "count": 84,
+          "type": "CTN",
+          "marks": "PRAIRIE/PO-47083/C/NO. 1-317",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "336",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "772.80",
+            "raw": {
+              "value": "772.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "890.40",
+            "raw": {
+              "value": "890.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 317,
+        "netWeight": {
+          "kg": "2730.00",
+          "raw": {
+            "value": "2730.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3103.90",
+          "raw": {
+            "value": "3103.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "33.67"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNNGB8129472",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "192358492",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "notifyParty": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "079S",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Ningbo",
+        "unLocode": "CNNGB",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Winnipeg",
+        "unLocode": "CAWNP",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU3277257",
+          "seal": "MD7479624",
+          "type": "40HC",
+          "packages": 317,
+          "grossWeight": {
+            "kg": "3103.90",
+            "raw": {
+              "value": "3103.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "33.67"
+        }
+      ],
+      "totalPackages": 317,
+      "totalGrossWeight": {
+        "kg": "3103.90",
+        "raw": {
+          "value": "3103.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PRAIRIE/PO-47083/C/NO. 1-317",
+      "cargoDescription": "SAID TO CONTAIN 317 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ningbo",
+      "dateOfIssue": "2026-02-02",
+      "shippedOnBoardDate": "2026-02-02",
+      "references": [
+        "NIN2607782",
+        "PO-47083"
+      ]
+    }
+  }
+}

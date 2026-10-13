@@ -1,0 +1,327 @@
+{
+  "id": "CA-013",
+  "seed": 1427424643,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "scan": {
+      "rotation": 0.5014908146113157,
+      "blur": 0.047961991070769726,
+      "contrast": 1.0008636200334877,
+      "brightness": 1.0189606599742547,
+      "noise": 0.07514697961742059,
+      "dpi": 150
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-7065",
+      "invoiceDate": "2026-05-14",
+      "poNumber": "CO183787",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-05-26",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Genoa",
+          "unLocode": "ITGOA",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Genoa"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 18,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "710",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "9619.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "15570.00",
+        "raw": {
+          "value": "15570.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "15120.00",
+        "raw": {
+          "value": "15120.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "6919.20",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-7065",
+      "invoiceRef": "INV-2026-7065",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-18",
+          "count": 18,
+          "type": "PLT",
+          "marks": "COASTAL/CO183787/C/NO. 1-18",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "720",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "15120.00",
+            "raw": {
+              "value": "15120.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "15570.00",
+            "raw": {
+              "value": "15570.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 18,
+        "netWeight": {
+          "kg": "15120.00",
+          "raw": {
+            "value": "15120.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "15570.00",
+          "raw": {
+            "value": "15570.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "15.55"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLGOA7200975",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "425150484",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "056E",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "Genoa",
+        "unLocode": "ITGOA",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCRU2759440",
+          "seal": "PC7334089",
+          "type": "20GP",
+          "packages": 18,
+          "grossWeight": {
+            "kg": "15570.00",
+            "raw": {
+              "value": "15570.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "15.55"
+        }
+      ],
+      "totalPackages": 18,
+      "totalGrossWeight": {
+        "kg": "15570.00",
+        "raw": {
+          "value": "15570.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/CO183787/C/NO. 1-18",
+      "cargoDescription": "SAID TO CONTAIN 18 PLTS PORCELAIN TILE 60X60",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Genoa",
+      "dateOfIssue": "2026-05-29",
+      "shippedOnBoardDate": "2026-05-29",
+      "references": [
+        "INV-2026-7065",
+        "CO183787"
+      ]
+    }
+  }
+}

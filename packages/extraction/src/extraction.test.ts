@@ -59,6 +59,16 @@ describe('normalization', () => {
   });
 });
 
+describe('classification', () => {
+  it('survives an OCR-mangled title', () => {
+    expect(classifyDocument('   MMERCIAL      I    ICE\nINV NO: CI/26/0887\nTERMS: CIF MONTREAL\nCURRENCY: CAD\nITEM  DESCRIPTION  QTY  U/P CAD  AMT CAD\nN.W.: 870 KGS  G.W.: 1140 KGS').type).toBe('COMMERCIAL_INVOICE');
+  });
+
+  it('does not take an invoice reference on a packing list for a title', () => {
+    expect(classifyDocument('Packing List\nAcme Co.   Invoice No. CI/26/0799\nMarks: 1-279\nCarton No.  Packages  Description  Net Weight  Gross Weight  Dimensions (cm)').type).toBe('PACKING_LIST');
+  });
+});
+
 describe('scoring', () => {
   it('counts wrong, missing and spurious fields', () => {
     const truth = { blNumber: 'B1', totalPackages: 10, containers: [{ number: 'A' }, { number: 'B' }] };
@@ -89,4 +99,19 @@ describe.skipIf(!existsSync(join(sample, 'invoice.pdf')))('PDF text layer', () =
     const pdf = { pageCount: 1, text: '', lines: [{ page: 1, text: 'PUMP 0.75 KW   5 PCS   83.65', bbox: [0, 0, 1, 1] as [number, number, number, number] }] };
     expect(findSource(pdf, 'inv', '5')?.rawText).toContain('5 PCS');
   });
+});
+
+// Needs the scanned set (npm run synth -- --scans 40); skipped otherwise.
+const scan = join(__dirname, '../../../data/eval/v1-scans/CA-001/bill-of-lading.pdf');
+describe.skipIf(!existsSync(scan))('OCR', () => {
+  it('reads a scanned PDF with no text layer into positioned lines', async () => {
+    const { terminateOcr } = await import('./ocr');
+    const truth = JSON.parse(await readFile(join(scan, '../truth.json'), 'utf8'));
+    const pdf = await readPdfText(await readFile(scan));
+    await terminateOcr();
+    expect(pdf.ocrPages).toEqual([1]);
+    expect(pdf.text).toContain(truth.documents.billOfLading.blNumber);
+    expect(classifyDocument(pdf.text).type).toBe('BILL_OF_LADING');
+    expect(findSource(pdf, 'bl', truth.documents.billOfLading.blNumber)?.bbox).toHaveLength(4);
+  }, 60_000);
 });

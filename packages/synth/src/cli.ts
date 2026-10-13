@@ -3,6 +3,7 @@ import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { buildDataset, V1, type DatasetEntry } from './dataset';
 import { htmlToPdf, launchBrowser, renderHtml } from './pdf';
+import { renderScannedPdf, scanStyle } from './scans';
 
 /**
  * Writes the evaluation set:
@@ -13,6 +14,8 @@ import { htmlToPdf, launchBrowser, renderHtml } from './pdf';
  *
  * Usage: node dist/cli.js [--out data/eval/v1] [--seed N] [--per-country 100] [--clean 25] [--no-pdf] [--html] [--labels-only]
  * --labels-only rewrites labels.json and manifest.json in place, e.g. after rules start covering an error kind.
+ * --scans N writes N shipments (half CA, half US) as image-only PDFs that look scanned, to
+ *   data/eval/v1-scans unless --out is given. Same truth and labels as the v1 shipments.
  */
 async function main() {
   const { values } = parseArgs({
@@ -24,10 +27,34 @@ async function main() {
       'no-pdf': { type: 'boolean', default: false },
       html: { type: 'boolean', default: false },
       'labels-only': { type: 'boolean', default: false },
+      scans: { type: 'string' },
     },
   });
-  const out = resolve(values.out!);
-  const entries = buildDataset({ seed: Number(values.seed), perCountry: Number(values['per-country']), cleanPerCountry: Number(values.clean) });
+  const scans = values.scans ? Number(values.scans) : 0;
+  const out = resolve(scans && values.out === 'data/eval/v1' ? 'data/eval/v1-scans' : values.out!);
+  let entries = buildDataset({ seed: Number(values.seed), perCountry: Number(values['per-country']), cleanPerCountry: Number(values.clean) });
+
+  if (scans) {
+    entries = [...entries.filter((e) => e.shipment.destination === 'CA').slice(0, Math.ceil(scans / 2)), ...entries.filter((e) => e.shipment.destination === 'US').slice(0, Math.floor(scans / 2))];
+    await rm(out, { recursive: true, force: true });
+    const browser = await launchBrowser();
+    try {
+      for (const e of entries) {
+        const dir = join(out, e.shipment.id);
+        await mkdir(dir, { recursive: true });
+        const style = scanStyle(e.shipment.seed);
+        const { id, seed, destination, render, documents } = e.shipment;
+        await writeFile(join(dir, 'truth.json'), JSON.stringify({ id, seed, destination, render: { ...render, scan: style }, documents }, null, 2) + '\n');
+        await writeFile(join(dir, 'labels.json'), JSON.stringify({ id, errors: e.labels }, null, 2) + '\n');
+        for (const [name, html] of Object.entries(renderHtml(e.shipment))) await writeFile(join(dir, `${name}.pdf`), await renderScannedPdf(browser, html, style));
+      }
+    } finally {
+      await browser.close();
+    }
+    await writeManifest(out, Number(values.seed), entries);
+    console.log(`Wrote ${entries.length} scanned shipments to ${out}.`);
+    return;
+  }
 
   if (values['labels-only']) {
     for (const e of entries) await writeFile(join(out, e.shipment.id, 'labels.json'), JSON.stringify({ id: e.shipment.id, errors: e.labels }, null, 2) + '\n');

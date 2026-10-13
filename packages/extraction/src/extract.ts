@@ -65,12 +65,13 @@ export async function extractFromText<K extends ExtractableType>(pdf: PdfText, t
 export async function extractDocument(pdfBytes: Uint8Array, llm: LlmClient, type?: ExtractableType): Promise<ExtractionResult> {
   const pdf = await readPdfText(pdfBytes);
   if (pdf.lines.length === 0) {
-    return { documentType: 'UNKNOWN', typeConfidence: 0, pdf, raw: null, data: null, issues: ['No text layer: the PDF is probably a scan (OCR not implemented yet)'], cached: false };
+    return { documentType: 'UNKNOWN', typeConfidence: 0, pdf, raw: null, data: null, issues: ['No readable text, even with OCR: the PDF may be blank or too degraded'], cached: false };
   }
   const detected = type ? { type, confidence: 1 } : classifyDocument(pdf.text);
   if (!(detected.type in PIPELINES)) {
     return { documentType: detected.type, typeConfidence: detected.confidence, pdf, raw: null, data: null, issues: [`Unsupported document type ${detected.type}`], cached: false };
   }
   const result = await extractFromText(pdf, detected.type as ExtractableType, llm);
+  if (pdf.ocrPages) result.issues.unshift(`Read with OCR (page${pdf.ocrPages.length > 1 ? 's' : ''} ${pdf.ocrPages.join(', ')}, confidence ${pdf.ocrConfidence}%): check values against the scan`);
   return { documentType: detected.type, typeConfidence: detected.confidence, pdf, ...result };
 }

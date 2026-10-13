@@ -1,0 +1,17 @@
+{
+  "id": "US-016",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "incoterm",
+      "before": {
+        "code": "EXW",
+        "place": "Yantian"
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Terms of sale (Incoterm) missing from the invoice."
+    }
+  ]
+}

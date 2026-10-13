@@ -45,11 +45,11 @@ See [METRICS.md](METRICS.md) for the current numbers.
 
 ## Limitations
 
-- The evaluation set is synthetic. Real invoices bring scans, handwriting, multi-page tables and layouts the three templates do not cover; OCR is not implemented.
+- The evaluation set is synthetic. Real invoices bring handwriting, stamps, multi-page tables and layouts the three templates do not cover. Scans are simulated (rotation, blur, noise) and read with OCR, which is weaker on poor scans.
 - The ground-truth rule results only cover error kinds the generator injects.
 - The regulation corpus is three sources. D1-4-1 dates from 2013 and is marked under review for CARM.
 - Not customs advice; nothing is filed with CBSA or CBP.
 
 ## Next
 
-Scanned PDFs (OCR and degraded renders in the evaluation set), more templates, the ISF as an uploadable document, more CBSA memoranda in the corpus, and the agent's decisions measured on real documents.
+More templates and real scanned samples, the ISF as an uploadable document, more CBSA memoranda in the corpus, and the agent's decisions measured on real documents.

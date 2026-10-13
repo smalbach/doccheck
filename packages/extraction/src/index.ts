@@ -1,4 +1,5 @@
 export * from './pdf-text';
+export * from './ocr';
 export * from './raw-schemas';
 export * from './normalize';
 export * from './classify';

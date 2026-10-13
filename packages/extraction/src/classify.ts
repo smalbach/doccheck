@@ -2,23 +2,33 @@ import type { DocumentType } from '@doccheck/schemas';
 
 /**
  * Document type from its title and vocabulary. Freight documents announce themselves in the
- * header, so keywords cover the synthetic set; an LLM fallback can be added for unlabeled scans.
+ * header, so keywords cover the synthetic set. Titles are matched loosely because OCR mangles
+ * large or underlined headings ("MMERCIAL I ICE"), and words that appear on more than one type
+ * (net and gross weight, packages) are not counted.
  */
 const SIGNALS: { type: DocumentType; title: RegExp; words: RegExp[] }[] = [
   {
     type: 'BILL_OF_LADING',
-    title: /\b(BILL OF LADING|SEA ?WAYBILL|OCEAN BILL|CONNAISSEMENT)\b/i,
-    words: [/\bB\/L\b/i, /\bPORT OF LOADING\b/i, /\bVESSEL\b/i, /\bCONTAINER NO\b/i, /\bSHIPPED ON BOARD\b/i],
+    title: /\b(BILL OF LADING|SEA ?WAYBILL|OCEAN BILL|CONNAISSEMENT|LADING|WAYBILL)\b/i,
+    words: [/\bB\/L\b/i, /\bPORT OF LOADING\b/i, /\bVESSEL\b/i, /\bCONTAINER NO\b/i, /\bSHIPPED ON BOARD\b/i, /\bNOTIFY PARTY\b/i, /\bSEAL NO\b/i],
   },
   {
     type: 'PACKING_LIST',
-    title: /\b(PACKING LIST|LISTE DE COLISAGE)\b/i,
-    words: [/\bC\/NO\b/i, /\bCARTON NO\b/i, /\bDIMENSIONS\b/i, /\bN\.?W\.?\b/i, /\bG\.?W\.?\b/i],
+    title: /\b(PACKING LIST|LISTE DE COLISAGE|PACKING)\b/i,
+    words: [/\bC\/NO\b/i, /\bCARTON NO\b/i, /\bDIMENSIONS\b/i, /\bPACKING LIST NO\b/i, /\bMEAS\b/i, /\bCBM\b/i],
   },
   {
     type: 'COMMERCIAL_INVOICE',
-    title: /\b(COMMERCIAL INVOICE|FACTURE COMMERCIALE|PROFORMA INVOICE|INVOICE)\b/i,
-    words: [/\bUNIT PRICE\b|\bU\/P\b/i, /\bAMOUNT\b|\bAMT\b/i, /\bTERMS OF SALE\b|\bTERMS:/i, /\bSOLD TO\b|\bBUYER\b/i],
+    // "Invoice No." on a packing list or BL is a reference to the invoice, not a title.
+    title: /\b(COMMERCIAL INVOICE|FACTURE COMMERCIALE|PROFORMA INVOICE|M+ERCIAL)\b|\bINVOICE\b(?!\.?\s*(NO|N°|#|REF|NUMBER)\b)/i,
+    words: [
+      /\bUNIT PRICE\b|\bU\/P\b|\bPRIX UNITAIRE\b/i,
+      /\bAMOUNT\b|\bAMT\b|\bMONTANT\b/i,
+      /\bTERMS OF SALE\b|\bTERMS:/i,
+      /\bSOLD TO\b|\bBUYER\b|\bACHETEUR\b/i,
+      /\bCURRENCY\b|\bDEVISE\b/i,
+      /\bPAYMENT\b/i,
+    ],
   },
 ];
 

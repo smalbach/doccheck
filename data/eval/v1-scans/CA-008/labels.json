@@ -1,0 +1,30 @@
+{
+  "id": "CA-008",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "incoterm",
+      "before": {
+        "code": "EXW",
+        "place": "Bremerhaven"
+      },
+      "after": null,
+      "expectedRuleIds": [
+        "C1"
+      ],
+      "description": "Terms of sale (Incoterm) missing from the invoice."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "MDOU3642288",
+      "after": "MDOU3642282",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: MDOU3642288 -> MDOU3642282."
+    }
+  ]
+}

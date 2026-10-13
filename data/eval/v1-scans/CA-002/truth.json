@@ -1,0 +1,327 @@
+{
+  "id": "CA-002",
+  "seed": 142981889,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "scan": {
+      "rotation": -1.0634836738463491,
+      "blur": 0.6528988763689996,
+      "contrast": 0.9707945516565815,
+      "brightness": 0.9597055812366306,
+      "noise": 0.12,
+      "dpi": 110
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NIN2601955",
+      "invoiceDate": "2026-09-22",
+      "poNumber": "PO-88984",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-09-30",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ningbo",
+          "unLocode": "CNNGB",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ningbo"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "CAD",
+      "packageCount": 182,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "1456",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.21",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "25057.76",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8516.71"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1729.00",
+        "raw": {
+          "value": "1729.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1528.80",
+        "raw": {
+          "value": "1528.80",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "25057.76",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-NIN2601955",
+      "invoiceRef": "NIN2601955",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-182",
+          "count": 182,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-88984/C/NO. 1-182",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "1456",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1528.80",
+            "raw": {
+              "value": "1528.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1729.00",
+            "raw": {
+              "value": "1729.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 182,
+        "netWeight": {
+          "kg": "1528.80",
+          "raw": {
+            "value": "1528.80",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1729.00",
+          "raw": {
+            "value": "1729.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "18.92"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPNGB187541",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "202835130",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "056N",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Ningbo",
+        "unLocode": "CNNGB",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Prince Rupert",
+        "unLocode": "CAPRR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGXU1930725",
+          "seal": "AG8104531",
+          "type": "20GP",
+          "packages": 182,
+          "grossWeight": {
+            "kg": "1729.00",
+            "raw": {
+              "value": "1729.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "18.92"
+        }
+      ],
+      "totalPackages": 184,
+      "totalGrossWeight": {
+        "kg": "1729.00",
+        "raw": {
+          "value": "1729.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/PO-88984/C/NO. 1-182",
+      "cargoDescription": "SAID TO CONTAIN 182 CTNS ELECTRIC KETTLE 1.7 L",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ningbo",
+      "dateOfIssue": "2026-10-02",
+      "shippedOnBoardDate": "2026-10-02",
+      "references": [
+        "NIN2601955",
+        "PO-88984"
+      ]
+    }
+  }
+}

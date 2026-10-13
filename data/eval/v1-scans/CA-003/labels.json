@@ -1,0 +1,27 @@
+{
+  "id": "CA-003",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "10046.60",
+      "after": "11051.26",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.10 against the packing list."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 170,
+      "after": 160,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 160 packages instead of 170."
+    }
+  ]
+}
