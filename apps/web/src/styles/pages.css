@@ -53,6 +53,18 @@ a.stat-tile:hover { border-color: var(--accent); }
 .quick-action:hover { border-color: var(--accent); }
 .quick-action-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .quick-action-arrow { color: var(--muted); flex: none; }
+.alert-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.alert-item + .alert-item { border-top: 1px solid var(--line); }
+.alert-item-link { display: flex; align-items: flex-start; gap: 12px; padding: 10px 4px; color: var(--text); text-decoration: none; border-radius: var(--radius-sm); }
+.alert-item-link:hover strong { text-decoration: underline; }
+.alert-item-icon { flex: none; margin-top: 3px; }
+.alert-item-critical .alert-item-icon { color: var(--critical); }
+.alert-item-high .alert-item-icon { color: var(--high); }
+.alert-item-medium .alert-item-icon { color: var(--medium); }
+.alert-item-low .alert-item-icon { color: var(--low); }
+.alert-item-text { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.alert-item-time { flex: none; white-space: nowrap; }
+@media (max-width: 600px) { .alert-item-link { flex-wrap: wrap; } .alert-item-time { margin-left: 28px; } }
 
 /* Shipments list */
 .filters { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }

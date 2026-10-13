@@ -5,6 +5,7 @@ import { request } from './request';
 import type {
   AdminModels,
   AdminSettings,
+  AlertList,
   Destination,
   DocumentDetail,
   Health,
@@ -49,6 +50,7 @@ export const api = {
   deleteAccount: (password: string) => request<void>('/auth/me', { ...jsonBody({ password }), method: 'DELETE' }),
 
   shipments: (query: ShipmentListQuery = {}) => request<ShipmentPage>(`/shipments${queryString({ ...query })}`),
+  alerts: () => request<AlertList>('/shipments/alerts'),
   shipment: (id: string) => request<Shipment>(shipmentPath(id)),
   create: (body: { reference?: string; destination: Destination }) => request<Shipment>('/shipments', jsonBody({ ...body, transportMode: 'SEA' })),
   update: (id: string, body: ShipmentUpdate) => request<Shipment>(shipmentPath(id), { ...jsonBody(body), method: 'PATCH' }),

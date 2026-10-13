@@ -693,6 +693,117 @@ describe('insights', () => {
   });
 });
 
+describe('alerts', () => {
+  const OCR = 'Read with OCR (page 1, confidence 81%): check values against the scan';
+  const tick = () => new Promise((r) => setTimeout(r, 5)); // timestamps decide "after the latest run"
+
+  /** An extracted invoice of the shipment, read with OCR when `ocr` is set. */
+  const extracted = async (shipmentId, { ocr = false, fileName = 'invoice.pdf' } = {}) => {
+    const id = randomUUID();
+    await repo.insertDocument({ id, shipmentId, fileName, storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+    await repo.saveExtraction(id, { pageCount: 1, detectedType: 'COMMERCIAL_INVOICE', typeConfidence: 1 }, { documentId: id, documentType: 'COMMERCIAL_INVOICE', model: 'test', promptVersion: 'test', raw: {}, data: sampleInvoice, issues: ocr ? [OCR] : [], pdfLines: [] });
+    await tick();
+    return id;
+  };
+
+  /** A validation run of the shipment with findings of the given severities, each citing `documentId`. */
+  const validated = async (shipmentId, severities = [], { documentId = 'body', destination = 'CA' } = {}) => {
+    const findings = severities.map((severity, n) => ({
+      id: `${shipmentId}:T:${n}`, shipmentId, ruleId: 'T', severity, decidedBy: 'RULE', message: 'test', evidence: [{ documentId, field: 'x', value: '1' }],
+    }));
+    await repo.saveValidation({ id: randomUUID(), shipmentId, ran: ['T'], skipped: [], inputs: {}, findings, destination });
+    await tick();
+  };
+
+  it('lists what needs attention on the user\'s shipments only, newest first, with counts per kind', async () => {
+    const user = await signUp('Alerts');
+    const create = async (reference, destination = 'CA') => (await call('POST', '/shipments', { reference, destination }, user)).body;
+    const get = () => call('GET', '/shipments/alerts', undefined, user);
+    assert.deepEqual((await get()).body, { items: [], counts: { critical: 0, 'failed-document': 0, ocr: 0, 'not-validated': 0, 'stale-destination': 0 }, total: 0 });
+
+    // critical: the latest run has CRITICAL or HIGH findings; an earlier run's do not count.
+    const critical = await create('AL-critical');
+    await extracted(critical.id);
+    await validated(critical.id, ['CRITICAL', 'CRITICAL']);
+    await validated(critical.id, ['CRITICAL', 'HIGH', 'HIGH', 'MEDIUM']);
+    const calm = await create('AL-calm');
+    await extracted(calm.id);
+    await validated(calm.id, ['MEDIUM', 'LOW']);
+
+    // failed-document
+    const failed = await create('AL-failed');
+    const failedDoc = randomUUID();
+    await repo.insertDocument({ id: failedDoc, shipmentId: failed.id, fileName: 'scan.pdf', storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+    await repo.updateDocumentStatus(failedDoc, 'FAILED', 'Unreadable PDF');
+    await tick();
+
+    // ocr: never validated (also not-validated "never"); cited by the latest run; validated without citing it (no alert).
+    const ocrNew = await create('AL-ocr-new');
+    const ocrNewDoc = await extracted(ocrNew.id, { ocr: true, fileName: 'new-scan.pdf' });
+    const ocrCited = await create('AL-ocr-cited');
+    const ocrCitedDoc = await extracted(ocrCited.id, { ocr: true, fileName: 'cited-scan.pdf' });
+    await validated(ocrCited.id, ['LOW'], { documentId: ocrCitedDoc });
+    const ocrChecked = await create('AL-ocr-checked');
+    await extracted(ocrChecked.id, { ocr: true });
+    await validated(ocrChecked.id, ['LOW']);
+
+    // not-validated "changed": a document uploaded after the latest run; one still extracting holds the alert back.
+    const changed = await create('AL-changed');
+    await extracted(changed.id);
+    await validated(changed.id);
+    await extracted(changed.id);
+    const extracting = await create('AL-extracting');
+    await extracted(extracting.id);
+    await repo.insertDocument({ id: randomUUID(), shipmentId: extracting.id, fileName: 'x.pdf', storageKey: 'none', sha256: '0', status: 'QUEUED' });
+
+    // stale-destination: validated for CA, then moved to US.
+    const stale = await create('AL-stale');
+    await extracted(stale.id);
+    await validated(stale.id);
+    assert.equal((await call('PATCH', `/shipments/${stale.id}`, { destination: 'US' }, user)).status, 200);
+
+    // Another user's shipment with every problem never shows up.
+    const other = await signUp('Not mine');
+    const { body: theirs } = await call('POST', '/shipments', { destination: 'CA' }, other);
+    await extracted(theirs.id, { ocr: true });
+    await validated(theirs.id, ['CRITICAL']);
+    await repo.insertDocument({ id: randomUUID(), shipmentId: theirs.id, fileName: 'theirs.pdf', storageKey: 'none', sha256: '0', status: 'FAILED' });
+
+    const { status, body } = await get();
+    assert.equal(status, 200);
+    assert.deepEqual(body.items.map((a) => [a.kind, a.reference, a.fileName, a.detail]), [
+      ['stale-destination', 'AL-stale', undefined, { validated: 'CA', current: 'US' }],
+      ['not-validated', 'AL-changed', undefined, { reason: 'changed' }],
+      ['ocr', 'AL-ocr-cited', 'cited-scan.pdf', { citedBy: 1 }],
+      ['not-validated', 'AL-ocr-new', undefined, { reason: 'never' }],
+      ['ocr', 'AL-ocr-new', 'new-scan.pdf', { citedBy: 0 }],
+      ['failed-document', 'AL-failed', 'scan.pdf', { error: 'Unreadable PDF' }],
+      ['critical', 'AL-critical', undefined, { critical: 1, high: 2 }],
+    ]);
+    assert.deepEqual(body.counts, { critical: 1, 'failed-document': 1, ocr: 2, 'not-validated': 2, 'stale-destination': 1 });
+    assert.equal(body.total, 7);
+    assert.equal(body.items.find((a) => a.kind === 'failed-document').documentId, failedDoc);
+    assert.deepEqual(body.items.filter((a) => a.kind === 'ocr').map((a) => a.documentId), [ocrCitedDoc, ocrNewDoc]);
+    assert.ok(body.items.every((a) => a.shipmentId !== theirs.id && !Number.isNaN(Date.parse(a.at))));
+
+    // The other user sees only theirs; a visitor nothing.
+    const their = (await call('GET', '/shipments/alerts', undefined, other)).body;
+    assert.ok(their.total > 0 && their.items.every((a) => a.shipmentId === theirs.id));
+    assert.equal((await call('GET', '/shipments/alerts', undefined, '')).status, 401);
+  });
+
+  it('caps the list but counts every alert', async () => {
+    const user = await signUp('Many alerts');
+    for (let i = 0; i < 22; i++) {
+      const { body: s } = await call('POST', '/shipments', { destination: 'CA' }, user);
+      await repo.insertDocument({ id: randomUUID(), shipmentId: s.id, fileName: `${i}.pdf`, storageKey: 'none', sha256: '0', status: 'FAILED' });
+    }
+    const { body } = await call('GET', '/shipments/alerts', undefined, user);
+    assert.equal(body.items.length, 20);
+    assert.deepEqual([body.counts['failed-document'], body.total], [22, 22]);
+  });
+});
+
 describe('ISF PDF upload', { skip: !isfSample && 'no ISF PDF with a cached model response' }, () => {
   const upload = async (shipmentId) => {
     const form = new FormData();
