@@ -135,7 +135,8 @@ export class EntitiesRepository {
          select * from (
            select p.id, p.name, p.country, p.tax_id,
              array(select distinct role from appear a where a.party_id = p.id order by 1) as roles,
-             array(select distinct name from appear a where a.party_id = p.id order by 1) as names,
+             -- Byte order, so the list does not depend on the database's collation.
+             array(select n from (select distinct name as n from appear a where a.party_id = p.id) d order by n collate "C") as names,
              (select count(distinct shipment_id)::int from appear a where a.party_id = p.id) as shipments,
              (select count(*)::int from inv where p.id in (inv.seller_id, inv.buyer_id)) as invoices,
              (select count(*)::int ${theirs}) as lines,
