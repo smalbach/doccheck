@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 672,
+    "outputTokens": 942
+  },
+  "output": {
+    "packingListNumber": "PL/26/3751",
+    "invoiceRef": "CI/26/3751",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PR856979/C/NO. 1-443",
+    "packages": [
+      {
+        "range": "1-48",
+        "count": "48 CTN",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M",
+        "description": "Men's cotton T-shirt",
+        "quantity": "4,800 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "912.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "950.40",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      },
+      {
+        "range": "49-210",
+        "count": "162 CTN",
+        "packageType": "CTN",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket",
+        "quantity": "3,240 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,754.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,916.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "65 × 45 × 45"
+      },
+      {
+        "range": "211-443",
+        "count": "233 CTN",
+        "packageType": "CTN",
+        "sku": "SK-WL-3",
+        "description": "Wool socks 3-pack",
+        "quantity": "55,920 PRS",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "4,194.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,357.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": "58 × 38 × 32"
+      }
+    ],
+    "totalPackages": "443",
+    "totalNetWeight": {
+      "value": "7,860.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "8,223.50",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "41.79"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 733,
+    "outputTokens": 1005
+  },
+  "output": {
+    "invoiceNumber": "NOR2606596",
+    "invoiceDate": "01-MAR-2026",
+    "poNumber": "NO797073",
+    "seller": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400",
+        "TORONTO ON M5V 3G5"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN DC BRAMPTON",
+      "addressLines": [
+        "8 STEINWAY BLVD",
+        "BRAMPTON ON L6T 4X7"
+      ],
+      "city": "BRAMPTON",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "12-MAR-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "HAMBURG",
+      "country": "DE"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CFR",
+    "incotermPlace": "MONTREAL",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "CAD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "BV-2IN",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED HS 8481.80",
+        "quantity": "2860",
+        "unit": "PCS",
+        "unitPrice": "13.32",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "38095.20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "26",
+        "unit": "PCS",
+        "unitPrice": "73.34",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "1906.84",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "169 PKGS",
+    "grossWeight": {
+      "value": "4512.30",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "4238.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "40002.04",
+    "invoiceTotalCurrency": "CAD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "4402.00",
+        "currency": "INR"
+      }
+    ]
+  }
+}

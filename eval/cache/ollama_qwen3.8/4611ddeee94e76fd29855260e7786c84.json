@@ -1,0 +1,101 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 744,
+    "outputTokens": 979
+  },
+  "output": {
+    "invoiceNumber": "CI/26/3935",
+    "invoiceDate": "13-APR-2026",
+    "poNumber": "PO-82501",
+    "seller": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "18-APR-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "HAMBURG",
+      "country": "DE"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CIF",
+    "incotermPlace": "HALIFAX",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "BV-2IN",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED HS 8481.80",
+        "quantity": "560",
+        "unit": "PCS",
+        "unitPrice": "12.50",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "7000.00",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "38",
+        "unit": "PCS",
+        "unitPrice": "78.91",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2998.58",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "66 PKGS",
+    "grossWeight": {
+      "value": "1508.80",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1307.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "9998.58",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

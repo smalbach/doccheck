@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 768,
+    "outputTokens": 911
+  },
+  "output": {
+    "blNumber": "TDWETAO6413098",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "906750158",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3908 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "018W",
+    "placeOfReceipt": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "VANCOUVER",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "VANCOUVER",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU6598748",
+        "seal": "TW9774413",
+        "type": "20GP",
+        "packages": "180",
+        "grossWeight": {
+          "value": "4122.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "5.40"
+      }
+    ],
+    "totalPackages": "180",
+    "totalGrossWeight": {
+      "value": "4122.00",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "COASTAL/PO-7905/C/NO. 1-180",
+    "cargoDescription": "SAID TO CONTAIN 180 CTNS BALL BEARING 6204-2RS",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/8712",
+      "PO-7905"
+    ],
+    "placeOfIssue": "QINGDAO",
+    "dateOfIssue": "16-APR-2026",
+    "shippedOnBoardDate": "16-APR-2026"
+  }
+}

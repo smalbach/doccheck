@@ -1,0 +1,91 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 753,
+    "outputTokens": 848
+  },
+  "output": {
+    "invoiceNumber": "PUN2608222",
+    "invoiceDate": "Jul 31, 2026",
+    "poNumber": "PO-71886",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "Aug 5, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Nhava Sheva",
+    "paymentTerms": "Net 60",
+    "currency": "CAD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BB-6204",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "37,400",
+        "unit": "PCS",
+        "unitPrice": "0.97",
+        "unitPriceCurrency": null,
+        "lineTotal": "63,278.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      }
+    ],
+    "totalPackages": "187",
+    "grossWeight": {
+      "value": "4,282.30",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "4,114.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "36,278.00",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 692,
+    "outputTokens": 847
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-3306",
+    "invoiceDate": "08-SEP-2026",
+    "poNumber": "PO-6325",
+    "seller": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "13-SEP-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "CAI MEP",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "NEW YORK",
+    "paymentTerms": "L/C AT SIGHT",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES HS 6109.10",
+        "quantity": "22000",
+        "unit": "PCS",
+        "unitPrice": "3.50",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "70700.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      }
+    ],
+    "totalPackages": "220 PKGS",
+    "grossWeight": {
+      "value": "4180.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "4356.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "77000.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

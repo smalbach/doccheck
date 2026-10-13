@@ -1,0 +1,112 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 780,
+    "outputTokens": 1065
+  },
+  "output": {
+    "invoiceNumber": "CI/26/3751",
+    "invoiceDate": "Apr 3, 2026",
+    "poNumber": "PR856979",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "Apr 6, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": null,
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "Cai Mep",
+    "paymentTerms": "L/C at sight",
+    "currency": "CAD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "TS-CTN-M",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "48,000",
+        "unit": "PCS",
+        "unitPrice": "2.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "12,180.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket, woven polyester shell",
+        "quantity": "3,240",
+        "unit": "PCS",
+        "unitPrice": "23.42",
+        "unitPriceCurrency": null,
+        "lineTotal": "75,880.80",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6202.40"
+      },
+      {
+        "lineNo": "3",
+        "sku": "SK-WL-3",
+        "description": "Wool blend socks, knitted, 3-pair pack",
+        "quantity": "55,920",
+        "unit": "PRS",
+        "unitPrice": "2.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "133,648.80",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6115.94"
+      }
+    ],
+    "totalPackages": "443",
+    "grossWeight": {
+      "value": "8,223.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "7,860.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "220,809.60",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

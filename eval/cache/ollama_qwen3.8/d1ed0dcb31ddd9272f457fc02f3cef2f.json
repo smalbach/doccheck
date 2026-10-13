@@ -1,0 +1,118 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 834,
+    "outputTokens": 1174
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-4084",
+    "invoiceDate": "19-FEB-2026",
+    "poNumber": "PO-29321",
+    "seller": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "21-FEB-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "CAI MEP",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "CAI MEP",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "JK-PL-02",
+        "description": "WOMEN'S PADDED JACKET, WOVEN POLYESTER SHELL HS 6202.40",
+        "quantity": "1940",
+        "unit": "PCS",
+        "unitPrice": "20.60",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "39964.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "6202.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "SK-WL-3",
+        "description": "WOOL BLEND SOCKS, KNITTED, 3-PAIR PACK HS 6115.94",
+        "quantity": "44160",
+        "unit": "PRS",
+        "unitPrice": "3.03",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "313804.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "6115.94"
+      },
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES HS 6109.10",
+        "quantity": "20900",
+        "unit": "PCS",
+        "unitPrice": "2.79",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "58311.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      }
+    ],
+    "totalPackages": "480",
+    "grossWeight": {
+      "value": "9325.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "8932.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "232079.80",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

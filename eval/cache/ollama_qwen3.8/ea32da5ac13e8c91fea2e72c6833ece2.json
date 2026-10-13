@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 771,
+    "outputTokens": 956
+  },
+  "output": {
+    "blNumber": "KEYSCMT625843",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "AURORA GLOBAL LINES (AGLX)",
+    "bookingNumber": "597826569",
+    "carrierName": "AURORA GLOBAL LINES (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN DC BRAMPTON",
+      "addressLines": [
+        "8 STEINWAY BLVD",
+        "BRAMPTON ON L6T 4X7"
+      ],
+      "city": "BRAMPTON",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400",
+        "TORONTO ON M5V 3G5"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "019N",
+    "placeOfReceipt": {
+      "name": "HO CHI MINH CITY, VN",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "CAI MEP, VN",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "PRINCE RUPERT, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "TORONTO, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGLU9279510",
+        "seal": "AG3261843",
+        "type": "20GP",
+        "packages": "154",
+        "grossWeight": {
+          "value": "2772.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "20.27"
+      }
+    ],
+    "totalPackages": "154",
+    "totalGrossWeight": {
+      "value": "2772.00",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "NORTHERN/PO-12984/C/NO. 1-154",
+    "cargoDescription": "SAID TO CONTAIN 154 CTNS WOMEN'S PADDED JACKET",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-4927",
+      "PO-12984"
+    ],
+    "placeOfIssue": "CAI MEP",
+    "dateOfIssue": "01-APR-2026",
+    "shippedOnBoardDate": "01-APR-2026"
+  }
+}

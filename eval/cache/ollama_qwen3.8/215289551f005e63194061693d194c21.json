@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 728,
+    "outputTokens": 923
+  },
+  "output": {
+    "blNumber": "COMPNGB938376",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "321840780",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "137 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "093W",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU3984847",
+        "seal": "PC1715183",
+        "type": "20GP",
+        "packages": "197",
+        "grossWeight": {
+          "value": "2,043.10",
+          "unit": "KG"
+        },
+        "volumeM3": "21.81"
+      }
+    ],
+    "totalPackages": "197",
+    "totalGrossWeight": {
+      "value": "2,043.10",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PO-57140/C/NO. 1-197",
+    "cargoDescription": "SAID TO CONTAIN 197 CTNS BLENDER 600 W AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "NIN2605128",
+      "PO-57140"
+    ],
+    "placeOfIssue": "Ningbo",
+    "dateOfIssue": "2026-02-03",
+    "shippedOnBoardDate": "2026-02-03"
+  }
+}

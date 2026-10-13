@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 518,
+    "outputTokens": 579
+  },
+  "output": {
+    "packingListNumber": "PL-QIN2606393",
+    "invoiceRef": "QIN2606393",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PR669380/C/NO. 1-97",
+    "packages": [
+      {
+        "range": "1-97",
+        "count": "97 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "19,400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,134.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,221.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      }
+    ],
+    "totalPackages": "97",
+    "totalNetWeight": {
+      "value": "2,134.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,221.30",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "2.91"
+  }
+}

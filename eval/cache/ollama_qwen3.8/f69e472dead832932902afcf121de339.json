@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 661,
+    "outputTokens": 812
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-5756",
+    "invoiceDate": "Aug 18, 2026",
+    "poNumber": "HA132747",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "Aug 30, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shekou",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "New York",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+        "quantity": "4,704",
+        "unit": "PCS",
+        "unitPrice": "3.95",
+        "unitPriceCurrency": null,
+        "lineTotal": "18,580.80",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "196",
+    "grossWeight": {
+      "value": "3,092.88",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,916.48",
+      "unit": "KG"
+    },
+    "invoiceTotal": "18,580.80",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

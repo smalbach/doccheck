@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 756,
+    "outputTokens": 940
+  },
+  "output": {
+    "blNumber": "AGLXSGN4325983",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "294428472",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3928 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "095W",
+    "placeOfReceipt": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGLU4604664",
+        "seal": "AG5749985",
+        "type": "40HC",
+        "packages": "217",
+        "grossWeight": {
+          "value": "3,951.50",
+          "unit": "KG"
+        },
+        "volumeM3": "24.59"
+      }
+    ],
+    "totalPackages": "218",
+    "totalGrossWeight": {
+      "value": "3,951.50",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/PO-54661/C/NO. 1-217",
+    "cargoDescription": "SAID TO CONTAIN 217 CTNS WOMEN'S PADDED JACKET AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "SAI2603147",
+      "PO-54661"
+    ],
+    "placeOfIssue": "Ho Chi Minh City",
+    "dateOfIssue": "2026-04-21",
+    "shippedOnBoardDate": "2026-04-21"
+  }
+}

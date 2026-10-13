@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 510,
+    "outputTokens": 575
+  },
+  "output": {
+    "packingListNumber": "PL-2026-5539",
+    "invoiceRef": "INV-2026-5539",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd",
+        "Fontana, CA, 92335"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "PACIFIC/PO-70609/C/NO. 1-223",
+    "packages": [
+      {
+        "range": "1-223",
+        "count": "223 CTN",
+        "packageType": "CTN",
+        "sku": "EK-17",
+        "description": "Electric kettle 1.7 L",
+        "quantity": "1,784 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,873.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,118.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 45 × 42"
+      }
+    ],
+    "totalPackages": "223",
+    "totalNetWeight": {
+      "value": "1,873.20",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,118.50",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "23.18"
+  }
+}

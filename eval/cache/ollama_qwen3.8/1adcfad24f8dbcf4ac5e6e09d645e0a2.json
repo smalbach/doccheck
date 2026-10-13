@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 750,
+    "outputTokens": 929
+  },
+  "output": {
+    "blNumber": "PCCLNGB4811745",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "378190490",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "066E",
+    "placeOfReceipt": {
+      "name": "NINGBO",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "NINGBO",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "NEWARK",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU8914740",
+        "seal": "PC3679744",
+        "type": "20GP",
+        "packages": "110",
+        "grossWeight": {
+          "value": "1166.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "12.38"
+      }
+    ],
+    "totalPackages": "110",
+    "totalGrossWeight": {
+      "value": "1166.00",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "HARBORLINE/HA101562/C/NO. 1-110",
+    "cargoDescription": "SAID TO CONTAIN 110 CTNS BLENDER 600 W",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/3922",
+      "HA101562"
+    ],
+    "placeOfIssue": "NINGBO",
+    "dateOfIssue": "09-AUG-2026",
+    "shippedOnBoardDate": "09-AUG-2026"
+  }
+}

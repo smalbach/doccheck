@@ -1,0 +1,84 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 610,
+    "outputTokens": 716
+  },
+  "output": {
+    "packingListNumber": "PL/26/3935",
+    "invoiceRef": "CI/26/3935",
+    "seller": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/PO-82501/C/NO. 1-66",
+    "packages": [
+      {
+        "range": "1-28",
+        "count": "28 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BRASS BALL VALVE 2\"",
+        "quantity": "560 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "756.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "786.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "29-66",
+        "count": "38 CRT",
+        "packageType": "CRT",
+        "sku": null,
+        "description": "CENTRIFUGAL PUMP 0.75 KW",
+        "quantity": "38 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "551.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "722.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "66",
+    "totalNetWeight": {
+      "value": "1307.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "1508.80",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "4.67"
+  }
+}

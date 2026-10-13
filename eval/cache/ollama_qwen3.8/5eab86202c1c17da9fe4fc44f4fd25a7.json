@@ -1,0 +1,84 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 625,
+    "outputTokens": 732
+  },
+  "output": {
+    "packingListNumber": "PL-PUN2603841",
+    "invoiceRef": "PUN2603841",
+    "seller": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "marks": "PACIFIC/PO-33343/C/NO. 1-287",
+    "packages": [
+      {
+        "range": "1-240",
+        "count": "240 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BRASS BALL VALVE 2\"",
+        "quantity": "4800 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "6480.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "6744.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "241-287",
+        "count": "47 CRT",
+        "packageType": "CRT",
+        "sku": null,
+        "description": "CENTRIFUGAL PUMP 0.75 KW",
+        "quantity": "47 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "681.50",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "893.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "287",
+    "totalNetWeight": {
+      "value": "7161.50",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "7637.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "15.48"
+  }
+}

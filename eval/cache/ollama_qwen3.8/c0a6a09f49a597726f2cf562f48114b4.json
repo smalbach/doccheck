@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 525,
+    "outputTokens": 585
+  },
+  "output": {
+    "packingListNumber": "PL/26/7701",
+    "invoiceRef": "CI/26/7701",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-36707/C/NO. 1-174",
+    "packages": [
+      {
+        "range": "1-174",
+        "count": "174 CTN",
+        "packageType": "CTN",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pcs",
+        "quantity": "4,176 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,589.12",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,745.72",
+          "unit": "KG"
+        },
+        "dimensionsCm": "52 × 38 × 30"
+      }
+    ],
+    "totalPackages": "174",
+    "totalNetWeight": {
+      "value": "2,589.12",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,745.72",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "10.31"
+  }
+}

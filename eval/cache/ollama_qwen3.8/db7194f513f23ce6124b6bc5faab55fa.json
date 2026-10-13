@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 724,
+    "outputTokens": 912
+  },
+  "output": {
+    "blNumber": "AGLXCTG8370095",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "203016372",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "084S",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGLU7535485",
+        "seal": "AG9673989",
+        "type": "20GP",
+        "packages": "40",
+        "grossWeight": {
+          "value": "2,432.00",
+          "unit": "KG"
+        },
+        "volumeM3": "5.70"
+      }
+    ],
+    "totalPackages": "40",
+    "totalGrossWeight": {
+      "value": "2,432.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PR950013/C/NO. 1-40",
+    "cargoDescription": "SAID TO CONTAIN 40 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-6966",
+      "PR950013"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "2026-02-13",
+    "shippedOnBoardDate": "2026-02-13"
+  }
+}

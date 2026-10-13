@@ -1,0 +1,95 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 747,
+    "outputTokens": 871
+  },
+  "output": {
+    "blNumber": "TDWECTG1554919",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Tidewater Express Lines",
+    "bookingNumber": "274843047",
+    "carrierName": "Tidewater Express Lines",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "PACIFIC CREST",
+    "voyage": "HARMONY / 004E",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU1435590",
+        "seal": "TW7606893",
+        "type": "40GP",
+        "packages": "186",
+        "grossWeight": {
+          "value": "11,308.80",
+          "unit": "KG"
+        },
+        "volumeM3": "26.50"
+      }
+    ],
+    "totalPackages": "186",
+    "totalGrossWeight": {
+      "value": "11,308.80",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PO-64295/C/NO. 1-186",
+    "cargoDescription": "SAID TO CONTAIN 186 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/1037",
+      "PO-64295"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "Aug 16, 2026",
+    "shippedOnBoardDate": "Aug 16, 2026"
+  }
+}

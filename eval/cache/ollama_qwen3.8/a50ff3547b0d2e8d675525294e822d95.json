@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 728,
+    "outputTokens": 894
+  },
+  "output": {
+    "blNumber": "KEYSTAO538237",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "154218946",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "013S",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU1336476",
+        "seal": "PC1160610",
+        "type": "20GP",
+        "packages": "97",
+        "grossWeight": {
+          "value": "2,221.30",
+          "unit": "KG"
+        },
+        "volumeM3": "2.91"
+      }
+    ],
+    "totalPackages": "95",
+    "totalGrossWeight": {
+      "value": "2,221.30",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PR669380/C/NO. 1-97",
+    "cargoDescription": "SAID TO CONTAIN 97 CTNS BALL BEARING 6204-2RS",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "QIN2606393",
+      "PR669380"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "Jun 28, 2026",
+    "shippedOnBoardDate": "Jun 28, 2026"
+  }
+}

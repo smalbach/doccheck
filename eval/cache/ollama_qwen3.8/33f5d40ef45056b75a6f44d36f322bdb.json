@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 758,
+    "outputTokens": 930
+  },
+  "output": {
+    "blNumber": "KEYSBRV540987",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "569426797",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR",
+        "WINNIPEG MB R3P 1A2"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR",
+        "WINNIPEG MB R3P 1A2"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "023W",
+    "placeOfReceipt": {
+      "name": "BREMEN",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "BREMERHAVEN",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "VANCOUVER",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "WINNIPEG",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU7708681",
+        "seal": "PC2728275",
+        "type": "20GP",
+        "packages": "54",
+        "grossWeight": {
+          "value": "1517.40",
+          "unit": "KGS"
+        },
+        "volumeM3": "2.55"
+      }
+    ],
+    "totalPackages": "54",
+    "totalGrossWeight": {
+      "value": "1517.40",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "PRAIRIE/PR762499/C/NO. 1-54",
+    "cargoDescription": "SAID TO CONTAIN 54 CTNS BRASS BALL VALVE 2\"",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "CI/26/5833",
+      "PR762499"
+    ],
+    "placeOfIssue": "BREMERHAVEN",
+    "dateOfIssue": "10-JUN-2026",
+    "shippedOnBoardDate": "10-JUN-2026"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 743,
+    "outputTokens": 916
+  },
+  "output": {
+    "blNumber": "MRDNSHA8053924",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "957323795",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "038W",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Shanghai",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU9861180",
+        "seal": "MD9687788",
+        "type": "40HC",
+        "packages": "360",
+        "grossWeight": {
+          "value": "3,636.70",
+          "unit": "KG"
+        },
+        "volumeM3": "39.11"
+      }
+    ],
+    "totalPackages": "360",
+    "totalGrossWeight": {
+      "value": "3,636.70",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PR966415/C/NO. 1-360",
+    "cargoDescription": "SAID TO CONTAIN 360 CTNS BLENDER 600 W AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/1604",
+      "PR966415"
+    ],
+    "placeOfIssue": "Shanghai",
+    "dateOfIssue": "Mar 2, 2026",
+    "shippedOnBoardDate": "Mar 2, 2026"
+  }
+}

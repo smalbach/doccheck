@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 654,
+    "outputTokens": 812
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-5539",
+    "invoiceDate": "Jun 21, 2026",
+    "poNumber": "PO-70609",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd",
+        "Fontana, CA, 92335"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "Jun 28, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shanghai",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "Shanghai",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "EK-17",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+        "quantity": "1,784",
+        "unit": "PCS",
+        "unitPrice": "11.76",
+        "unitPriceCurrency": null,
+        "lineTotal": "20,979.84",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      }
+    ],
+    "totalPackages": "223",
+    "grossWeight": {
+      "value": "2,118.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,873.20",
+      "unit": "KG"
+    },
+    "invoiceTotal": "20,979.84",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

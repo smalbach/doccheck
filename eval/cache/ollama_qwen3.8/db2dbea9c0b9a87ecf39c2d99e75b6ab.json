@@ -1,0 +1,88 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 668,
+    "outputTokens": 814
+  },
+  "output": {
+    "invoiceNumber": "CI/26/5833",
+    "invoiceDate": "04-JUN-2026",
+    "poNumber": "PR762499",
+    "seller": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR",
+        "WINNIPEG MB R3P 1A2"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR",
+        "WINNIPEG MB R3P 1A2"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "09-JUN-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "BREMERHAVEN",
+      "country": "DE"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CIF",
+    "incotermPlace": "VANCOUVER",
+    "paymentTerms": "NET 60",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "BV-2IN",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED HS 8481.80",
+        "quantity": "1080",
+        "unit": "PCS",
+        "unitPrice": "13.09",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "14137.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "54 PKGS",
+    "grossWeight": {
+      "value": "1517.40",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1458.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "14137.20",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

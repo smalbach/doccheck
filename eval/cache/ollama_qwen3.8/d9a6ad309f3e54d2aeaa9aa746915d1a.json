@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 769,
+    "outputTokens": 941
+  },
+  "output": {
+    "blNumber": "PCCLBRV8294943",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "222005006",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN DC BRAMPTON",
+      "addressLines": [
+        "8 STEINWAY BLVD",
+        "BRAMPTON ON L6T 4X7"
+      ],
+      "city": "BRAMPTON",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400",
+        "TORONTO ON M5V 3G5"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "018N",
+    "placeOfReceipt": {
+      "name": "BREMEN",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "BREMERHAVEN",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "PRINCE RUPERT",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "TORONTO",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU4949371",
+        "seal": "PC6542709",
+        "type": "20GP",
+        "packages": "50",
+        "grossWeight": {
+          "value": "1077.40",
+          "unit": "KGS"
+        },
+        "volumeM3": "3.83"
+      }
+    ],
+    "totalPackages": "50",
+    "totalGrossWeight": {
+      "value": "1077.40",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "NORTHERN/NO290848/C/NO. 1-50",
+    "cargoDescription": "SAID TO CONTAIN 50 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "NOR2602969",
+      "NO290848"
+    ],
+    "placeOfIssue": "BREMERHAVEN",
+    "dateOfIssue": "29-MAY-2026",
+    "shippedOnBoardDate": "29-MAY-2026"
+  }
+}

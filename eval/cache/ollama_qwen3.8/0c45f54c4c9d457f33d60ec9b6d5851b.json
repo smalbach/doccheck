@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 713,
+    "outputTokens": 895
+  },
+  "output": {
+    "blNumber": "SILVTAO393712",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "615305565",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "080S",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Savannah",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Chicago",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU8478457",
+        "seal": "MD5355635",
+        "type": "20GP",
+        "packages": "16",
+        "grossWeight": {
+          "value": "8,352.00",
+          "unit": "KG"
+        },
+        "volumeM3": "11.52"
+      }
+    ],
+    "totalPackages": "16",
+    "totalGrossWeight": {
+      "value": "8,352.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "LAKESHORE/LA593451/C/NO. 1-16",
+    "cargoDescription": "SAID TO CONTAIN 16 PLTS HEX BOLT M12X60",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "INV-2026-2377",
+      "LA593451"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "2026-07-07",
+    "shippedOnBoardDate": "2026-07-07"
+  }
+}

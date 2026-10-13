@@ -1,0 +1,64 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 718,
+    "outputTokens": 528
+  },
+  "output": {
+    "packingListNumber": "CI/26/0887",
+    "invoiceRef": "CI/26/0887",
+    "seller": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026",
+        "IN"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTEE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC HTS 1P6",
+        "ca"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "HTS 1P6",
+      "country": "ca",
+      "taxId": "873456789RMO001"
+    },
+    "marks": null,
+    "packages": [
+      {
+        "range": null,
+        "count": "60",
+        "packageType": "PCS",
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY",
+        "quantity": "60",
+        "unit": "PCS",
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "60",
+    "totalNetWeight": {
+      "value": "870.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "1140.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": null
+  }
+}

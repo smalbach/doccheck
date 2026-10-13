@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 683,
+    "outputTokens": 938
+  },
+  "output": {
+    "packingListNumber": "PL/26/8506",
+    "invoiceRef": "CI/26/8506",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "marks": "BLUEBONNET/PO-64140/C/NO. 1-393",
+    "packages": [
+      {
+        "range": "1-207",
+        "count": "207 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "41,400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4,554.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,740.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      },
+      {
+        "range": "208-377",
+        "count": "170 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "3,400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4,590.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,777.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      },
+      {
+        "range": "378-393",
+        "count": "16 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "15 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "232.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "304.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      }
+    ],
+    "totalPackages": "393",
+    "totalNetWeight": {
+      "value": "9,376.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "9,821.30",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "15.65"
+  }
+}

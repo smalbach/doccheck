@@ -1,0 +1,107 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 762,
+    "outputTokens": 1028
+  },
+  "output": {
+    "invoiceNumber": "CI/26/5285",
+    "invoiceDate": "05-SEP-2026",
+    "poNumber": "CO355281",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "09-SEP-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "LA SPEZIA",
+      "country": "IT"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "LA SPEZIA",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS HS 1509.20",
+        "quantity": "940",
+        "unit": "PCS",
+        "unitPrice": "22.63",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "21272.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "CT-6060",
+        "description": "GLAZED PORCELAIN FLOOR TILES 60 X 60 CM HS 6907.21",
+        "quantity": "601",
+        "unit": "M2",
+        "unitPrice": "9.96",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "5976.00",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "250 PKGS",
+    "grossWeight": {
+      "value": "17510.50",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "16924.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "27248.20",
+    "invoiceTotalCurrency": "EUR",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "3668.00",
+        "currency": "CNY"
+      }
+    ]
+  }
+}

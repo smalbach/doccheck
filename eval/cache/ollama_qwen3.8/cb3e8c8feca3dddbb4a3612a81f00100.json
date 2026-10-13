@@ -1,0 +1,110 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 744,
+    "outputTokens": 969
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-2124",
+    "invoiceDate": "2026-02-19",
+    "poNumber": "PO-75449",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "2026-02-24",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Bremerhaven",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "53",
+        "unit": "PCS",
+        "unitPrice": "73.22",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "3,880.66",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "520",
+        "unit": "PCS",
+        "unitPrice": "12.59",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "6,546.80",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "79",
+    "grossWeight": {
+      "value": "1,737.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,470.50",
+      "unit": "KG"
+    },
+    "invoiceTotal": "10,427.46",
+    "invoiceTotalCurrency": "EUR",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "4,260.00",
+        "currency": "USD"
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 727,
+    "outputTokens": 926
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-7469",
+    "invoiceDate": "2026-05-02",
+    "poNumber": "PR936301",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "2026-05-05",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "Qingdao",
+    "paymentTerms": "Net 60",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "19,600",
+        "unit": "PCS",
+        "unitPrice": "1.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "27,244.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+        "quantity": "4,000",
+        "unit": "KG",
+        "unitPrice": "2.02",
+        "unitPriceCurrency": null,
+        "lineTotal": "8,080.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      }
+    ],
+    "totalPackages": "106",
+    "grossWeight": {
+      "value": "6,156.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "6,420.20",
+      "unit": "KG"
+    },
+    "invoiceTotal": "35,324.00",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

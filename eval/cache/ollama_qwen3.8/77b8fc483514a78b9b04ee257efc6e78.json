@@ -1,0 +1,95 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 774,
+    "outputTokens": 882
+  },
+  "output": {
+    "blNumber": "KEYSSPE829196",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "405449015",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "096W",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGLU8709278",
+        "seal": "AG1083461",
+        "type": "20GP",
+        "packages": "235",
+        "grossWeight": {
+          "value": "12,992.50",
+          "unit": "KG"
+        },
+        "volumeM3": "18.09"
+      }
+    ],
+    "totalPackages": "236",
+    "totalGrossWeight": {
+      "value": "11,043.63",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/CO968657/C/NO. 1-235",
+    "cargoDescription": "SAID TO CONTAIN 235 PKGS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "INV-2026-9336",
+      "CO968657"
+    ],
+    "placeOfIssue": "La Spezia",
+    "dateOfIssue": "Jan 21, 2026",
+    "shippedOnBoardDate": "Jan 21, 2026"
+  }
+}

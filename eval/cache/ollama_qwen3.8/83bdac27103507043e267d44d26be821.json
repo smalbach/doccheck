@@ -1,0 +1,114 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 775,
+    "outputTokens": 1052
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-4337",
+    "invoiceDate": null,
+    "poNumber": "NO397981",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "2026-09-18",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Nhava Sheva",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "2,200",
+        "unit": "PCS",
+        "unitPrice": "1.07",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,354.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "60",
+        "unit": "PCS",
+        "unitPrice": "74.99",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,949.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "IN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "1,700",
+        "unit": "PCS",
+        "unitPrice": "15.69",
+        "unitPriceCurrency": null,
+        "lineTotal": "26,673.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "156",
+    "grossWeight": {
+      "value": "3,780.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,407.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "33,526.40",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

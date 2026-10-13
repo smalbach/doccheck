@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 770,
+    "outputTokens": 913
+  },
+  "output": {
+    "blNumber": "TDWETAO9793212",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "110943719",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "notifyParty": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "051N",
+    "placeOfReceipt": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "PRINCE RUPERT",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "TORONTO",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU8327452",
+        "seal": "TW4629123",
+        "type": "20GP",
+        "packages": "12",
+        "grossWeight": {
+          "value": "6264.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "8.64"
+      }
+    ],
+    "totalPackages": "12",
+    "totalGrossWeight": {
+      "value": "6264.00",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "NORTHERN/PO-7806/C/NO. 1-12",
+    "cargoDescription": "SAID TO CONTAIN 12 PLTS HEX BOLT M12X60",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "CI/26/7543",
+      "PO-7806"
+    ],
+    "placeOfIssue": "QINGDAO",
+    "dateOfIssue": "16-JAN-2026",
+    "shippedOnBoardDate": "16-JAN-2026"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 726,
+    "outputTokens": 926
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-1069",
+    "invoiceDate": "2026-02-02",
+    "poNumber": "PO-41584",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "2026-02-11",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shekou",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Shekou",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Plush teddy bear 30 cm, polyester filling",
+        "quantity": "11,150",
+        "unit": "PCS",
+        "unitPrice": "7.78",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "86,747.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+        "quantity": "1,776",
+        "unit": "PCS",
+        "unitPrice": "4.57",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "8,116.32",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "297",
+    "grossWeight": {
+      "value": "3,442.32",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,108.12",
+      "unit": "KG"
+    },
+    "invoiceTotal": "94,863.32",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

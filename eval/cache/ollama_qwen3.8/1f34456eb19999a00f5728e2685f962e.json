@@ -1,0 +1,116 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 791,
+    "outputTokens": 1035
+  },
+  "output": {
+    "invoiceNumber": "CI/26/3447",
+    "invoiceDate": "2026-02-05",
+    "poNumber": "HA854789",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "2026-02-10",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "New York",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "31,000",
+        "unit": "PCS",
+        "unitPrice": "0.89",
+        "unitPriceCurrency": null,
+        "lineTotal": "27,590.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "51",
+        "unit": "PCS",
+        "unitPrice": "92.01",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,692.51",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+        "quantity": "5,500",
+        "unit": "KG",
+        "unitPrice": "2.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "12,925.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      }
+    ],
+    "totalPackages": "217",
+    "grossWeight": {
+      "value": "10,260.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "9,649.50",
+      "unit": "KG"
+    },
+    "invoiceTotal": "45,207.51",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 744,
+    "outputTokens": 859
+  },
+  "output": {
+    "blNumber": "MRDNBUN4671590",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "576805035",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "064E",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Buenaventura",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU9300620",
+        "seal": "MD5907840",
+        "type": "40HC",
+        "packages": "261",
+        "grossWeight": {
+          "value": "15,868.80",
+          "unit": "KG"
+        },
+        "volumeM3": "37.19"
+      }
+    ],
+    "totalPackages": "261",
+    "totalGrossWeight": {
+      "value": "15,868.80",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PO-2903/C/NO. 1-261",
+    "cargoDescription": "SAID TO CONTAIN 261 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CAF2601390",
+      "PO-2903"
+    ],
+    "placeOfIssue": "Buenaventura",
+    "dateOfIssue": "Jul 8, 2026",
+    "shippedOnBoardDate": "Jul 8, 2026"
+  }
+}

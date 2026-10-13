@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 730,
+    "outputTokens": 977
+  },
+  "output": {
+    "invoiceNumber": "CI/26/1933",
+    "invoiceDate": null,
+    "poNumber": "HA882403",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "23-MAY-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "LA SPEZIA",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "LA SPEZIA",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CT-6060",
+        "description": "GLAZED PORCELAIN FLOOR TILES 60 X 60 CM HS 6907.21",
+        "quantity": "240",
+        "unit": "M2",
+        "unitPrice": "8.89",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2133.60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS HS 1509.20",
+        "quantity": "408",
+        "unit": "PCS",
+        "unitPrice": "28.66",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "11693.28",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "108 PKGS",
+    "grossWeight": {
+      "value": "7158.60",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "6916.80",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "13826.88",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

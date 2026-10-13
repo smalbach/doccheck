@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 588,
+    "outputTokens": 749
+  },
+  "output": {
+    "packingListNumber": "PL/26/3373",
+    "invoiceRef": "CI/26/3373",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PO-61806/C/NO. 1-59",
+    "packages": [
+      {
+        "range": "1-30",
+        "count": "30 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "30 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "435.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "570.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      },
+      {
+        "range": "31-59",
+        "count": "29 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "580 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "783.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "814.90",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      }
+    ],
+    "totalPackages": "59",
+    "totalNetWeight": {
+      "value": "1,218.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,384.90",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "4.01"
+  }
+}

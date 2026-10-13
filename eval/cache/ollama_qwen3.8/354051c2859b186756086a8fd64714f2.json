@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 747,
+    "outputTokens": 937
+  },
+  "output": {
+    "blNumber": "AGLXYTN5108051",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "AURORA GLOBAL LINES (AGLX)",
+    "bookingNumber": "739610516",
+    "carrierName": "AURORA GLOBAL LINES (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL FULFILLMENT CENTER",
+      "addressLines": [
+        "13500 VALLEY BLVD",
+        "FONTANA CA 92335"
+      ],
+      "city": "FONTANA",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST",
+        "VERNON CA 90058"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "059S",
+    "placeOfReceipt": {
+      "name": "SHENZHEN, CN",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "YANTIAN, CN",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "LONG BEACH, US",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "FONTANA, US",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU7467138",
+        "seal": "AG2908902",
+        "type": "20GP",
+        "packages": "168",
+        "grossWeight": {
+          "value": "1713.60",
+          "unit": "KGS"
+        },
+        "volumeM3": "16.13"
+      }
+    ],
+    "totalPackages": "168",
+    "totalGrossWeight": {
+      "value": "1884.96",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "PACIFIC/PA611767/C/NO. 1-168",
+    "cargoDescription": "SAID TO CONTAIN 168 CTNS PLUSH TEDDY BEAR 30 CM",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "BRI2606654",
+      "PA611767"
+    ],
+    "placeOfIssue": "YANTIAN",
+    "dateOfIssue": "21-JUN-2026",
+    "shippedOnBoardDate": "21-JUN-2026"
+  }
+}

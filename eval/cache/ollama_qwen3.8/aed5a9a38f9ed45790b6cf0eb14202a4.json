@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 716,
+    "outputTokens": 888
+  },
+  "output": {
+    "blNumber": "KEYSGOA237799",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "208795318",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1268 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "043W",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "Genoa",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU8395236",
+        "seal": "MD7755588",
+        "type": "20GP",
+        "packages": "7",
+        "grossWeight": {
+          "value": "13,349",
+          "unit": "LB"
+        },
+        "volumeM3": "6.05"
+      }
+    ],
+    "totalPackages": "7",
+    "totalGrossWeight": {
+      "value": "13,349",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-71078/C/NO. 1-7",
+    "cargoDescription": "SAID TO CONTAIN 7 PLTS PORCELAIN TILE 60X60",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CER2604543",
+      "PO-71078"
+    ],
+    "placeOfIssue": "Genoa",
+    "dateOfIssue": "2026-03-15",
+    "shippedOnBoardDate": "2026-03-15"
+  }
+}

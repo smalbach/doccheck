@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 614,
+    "outputTokens": 748
+  },
+  "output": {
+    "packingListNumber": "PL/26/1604",
+    "invoiceRef": "CI/26/1604",
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR",
+        "WINNIPEG MB R3P 1A2"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PR966415/C/NO. 1-360",
+    "packages": [
+      {
+        "range": "1-197",
+        "count": "197 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BLENDER 600 W",
+        "quantity": "788 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1812.40",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "2088.20",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "198-360",
+        "count": "163 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "ELECTRIC KETTLE 1.7 L",
+        "quantity": "1304 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1369.20",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1548.50",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "360",
+    "totalNetWeight": {
+      "value": "3181.60",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "3636.70",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "39.11"
+  }
+}

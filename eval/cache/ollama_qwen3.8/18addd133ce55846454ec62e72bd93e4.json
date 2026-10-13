@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 784,
+    "outputTokens": 923
+  },
+  "output": {
+    "blNumber": "KEYSMUN621489",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "522749563",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN DC BRAMPTON",
+      "addressLines": [
+        "8 STEINWAY BLVD"
+      ],
+      "city": "BRAMPTON",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "033W",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "MUNDRA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "VANCOUVER",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "TORONTO",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU9745210",
+        "seal": "TW9260503",
+        "type": "20GP",
+        "packages": "325",
+        "grossWeight": {
+          "value": "8258.90",
+          "unit": "KGS"
+        },
+        "volumeM3": "15.58"
+      }
+    ],
+    "totalPackages": "330",
+    "totalGrossWeight": {
+      "value": "8258.90",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "NORTHERN/NO251431/C/NO. 1-325",
+    "cargoDescription": "SAID TO CONTAIN 325 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-7399",
+      "NO251431"
+    ],
+    "placeOfIssue": "MUNDRA",
+    "dateOfIssue": "16-JUL-2026",
+    "shippedOnBoardDate": "16-JUL-2026"
+  }
+}

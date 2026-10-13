@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 615,
+    "outputTokens": 737
+  },
+  "output": {
+    "packingListNumber": "PL/26/1933",
+    "invoiceRef": "CI/26/1933",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/HA882403/C/NO. 1-108",
+    "packages": [
+      {
+        "range": "1-6",
+        "count": "6 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "PORCELAIN TILE 60X60",
+        "quantity": "240 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "5040.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "5190.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "7-108",
+        "count": "102 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "EV OLIVE OIL 5 L",
+        "quantity": "408 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1876.80",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1968.60",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "108",
+    "totalNetWeight": {
+      "value": "6916.80",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "7158.60",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "9.47"
+  }
+}

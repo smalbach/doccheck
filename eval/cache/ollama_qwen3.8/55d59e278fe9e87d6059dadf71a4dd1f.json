@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 791,
+    "outputTokens": 958
+  },
+  "output": {
+    "blNumber": "COMPSPE438903",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "904583676",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "053W",
+    "placeOfReceipt": {
+      "name": "SASSUOLO",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "LA SPEZIA",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "VANCOUVER",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "VANCOUVER",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU8708203",
+        "seal": "PC1576125",
+        "type": "20GP",
+        "packages": "250",
+        "grossWeight": {
+          "value": "17510.50",
+          "unit": "KGS"
+        },
+        "volumeM3": "22.83"
+      }
+    ],
+    "totalPackages": "250",
+    "totalGrossWeight": {
+      "value": "19261.55",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "COASTAL/CO355281/C/NO. 1-250",
+    "cargoDescription": "SAID TO CONTAIN 250 PKGS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/5285",
+      "CO355281"
+    ],
+    "placeOfIssue": "LA SPEZIA",
+    "dateOfIssue": "09-SEP-2026",
+    "shippedOnBoardDate": "09-SEP-2026"
+  }
+}

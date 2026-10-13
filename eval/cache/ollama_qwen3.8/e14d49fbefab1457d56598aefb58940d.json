@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 757,
+    "outputTokens": 921
+  },
+  "output": {
+    "blNumber": "KEYSMUN772749",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "989082033",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS DC",
+      "addressLines": [
+        "9800 WALLISVILLE RD"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "091W",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "MUNDRA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU9395256",
+        "seal": "TW4131057",
+        "type": "20GP",
+        "packages": "192",
+        "grossWeight": {
+          "value": "10831",
+          "unit": "LB"
+        },
+        "volumeM3": "11.23"
+      }
+    ],
+    "totalPackages": "192",
+    "totalGrossWeight": {
+      "value": "10831",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "BLUEBONNET/PO-89006/C/NO. 1-192",
+    "cargoDescription": "SAID TO CONTAIN 192 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE REF: CI/26/9455 / PO-89006 FREIGHT COLLECT",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/9455",
+      "PO-89006"
+    ],
+    "placeOfIssue": "MUNDRA",
+    "dateOfIssue": "26-JAN-2026",
+    "shippedOnBoardDate": "26-JAN-2026"
+  }
+}

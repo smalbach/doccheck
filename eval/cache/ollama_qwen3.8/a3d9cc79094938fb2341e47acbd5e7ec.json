@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 790,
+    "outputTokens": 952
+  },
+  "output": {
+    "blNumber": "PCCLMUN7578705",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "832308852",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "notifyParty": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "022W",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "MUNDRA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU7935291",
+        "seal": "PC6159075",
+        "type": "20GP",
+        "packages": "232",
+        "grossWeight": {
+          "value": "5160.70",
+          "unit": "KGS"
+        },
+        "volumeM3": "9.22"
+      }
+    ],
+    "totalPackages": "232",
+    "totalGrossWeight": {
+      "value": "5160.70",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "BLUEBONNET/BL373962/C/NO. 1-232",
+    "cargoDescription": "SAID TO CONTAIN 232 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-5446",
+      "BL373962"
+    ],
+    "placeOfIssue": "MUNDRA",
+    "dateOfIssue": "13-FEB-2026",
+    "shippedOnBoardDate": "13-FEB-2026"
+  }
+}

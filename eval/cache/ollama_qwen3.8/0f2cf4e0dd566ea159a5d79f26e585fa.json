@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 531,
+    "outputTokens": 551
+  },
+  "output": {
+    "packingListNumber": "PL-CER2604543",
+    "invoiceRef": "CER2604543",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-71078/C/NO. 1-7",
+    "packages": [
+      {
+        "range": "1-7",
+        "count": "7 PLT",
+        "packageType": "PLT",
+        "sku": "CT-6060",
+        "description": "Porcelain tile 60x60",
+        "quantity": "280 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "5,880.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "6,055.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 80 × 90"
+      }
+    ],
+    "totalPackages": "7",
+    "totalNetWeight": {
+      "value": "5,880.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "6,055.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "6.05"
+  }
+}

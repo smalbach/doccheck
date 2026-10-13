@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 757,
+    "outputTokens": 936
+  },
+  "output": {
+    "blNumber": "TDWECMT1682324",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "256255969",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "071S",
+    "placeOfReceipt": {
+      "name": "HO CHI MINH CITY, VN",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "CAI MEP, VN",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK, US",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "CHICAGO, US",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU1703856",
+        "seal": "TW6736076",
+        "type": "20GP",
+        "packages": "220",
+        "grossWeight": {
+          "value": "9603",
+          "unit": "LB"
+        },
+        "volumeM3": "18.48"
+      }
+    ],
+    "totalPackages": "220",
+    "totalGrossWeight": {
+      "value": "9603",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "LAKESHORE/PO-6325/C/NO. 1-220",
+    "cargoDescription": "SAID TO CONTAIN 220 CTNS MEN'S COTTON T-SHIRT",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "INV-2026-3306",
+      "PO-6325"
+    ],
+    "placeOfIssue": "CAI MEP",
+    "dateOfIssue": "14-SEP-2026",
+    "shippedOnBoardDate": "14-SEP-2026"
+  }
+}

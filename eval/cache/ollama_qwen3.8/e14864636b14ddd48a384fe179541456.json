@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 653,
+    "outputTokens": 790
+  },
+  "output": {
+    "invoiceNumber": "CI/26/7543",
+    "invoiceDate": "Jan 11, 2026",
+    "poNumber": "PO-7806",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "shipmentDate": "Jan 13, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CIF",
+    "incotermPlace": "Prince Rupert",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "HB-M12",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+        "quantity": "6,000 KG",
+        "unit": "KG",
+        "unitPrice": "1.99",
+        "unitPriceCurrency": null,
+        "lineTotal": "11,940.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "7318.15"
+      }
+    ],
+    "totalPackages": "12",
+    "grossWeight": {
+      "value": "6,264.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "6,000.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "11,940.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

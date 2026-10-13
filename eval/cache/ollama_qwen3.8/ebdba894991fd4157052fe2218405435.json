@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 565,
+    "outputTokens": 590
+  },
+  "output": {
+    "packingListNumber": "PL/26/8635",
+    "invoiceRef": "CI/26/8635",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/HA284597/C/NO. 1-203",
+    "packages": [
+      {
+        "range": "1-203",
+        "count": "203 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "JIGSAW PUZZLE 1000 PCS",
+        "quantity": "4872 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3020.64",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3203.34",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "203",
+    "totalNetWeight": {
+      "value": "3020.64",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "3203.34",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "12.03"
+  }
+}

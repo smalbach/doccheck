@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 559,
+    "outputTokens": 565
+  },
+  "output": {
+    "packingListNumber": "PL/26/7543",
+    "invoiceRef": "CI/26/7543",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN RETAIL INC.",
+      "addressLines": [
+        "250 FRONT ST W, SUITE 1400"
+      ],
+      "city": "TORONTO",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "marks": "NORTHERN/PO-7806/C/NO. 1-12",
+    "packages": [
+      {
+        "range": "1-12",
+        "count": "12 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "HEX BOLT M12X60",
+        "quantity": "6000 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "6000.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "6264.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "12",
+    "totalNetWeight": {
+      "value": "6000.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "6264.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "8.64"
+  }
+}

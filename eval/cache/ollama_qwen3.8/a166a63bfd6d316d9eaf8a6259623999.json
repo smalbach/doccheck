@@ -1,0 +1,107 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 745,
+    "outputTokens": 976
+  },
+  "output": {
+    "invoiceNumber": "CI/26/3373",
+    "invoiceDate": "2026-03-03",
+    "poNumber": "PO-61806",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "2026-03-07",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Nhava Sheva",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "CAD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "30",
+        "unit": "PCS",
+        "unitPrice": "83.69",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "2,510.70",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "580",
+        "unit": "PCS",
+        "unitPrice": "16.45",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "9,541.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "59",
+    "grossWeight": {
+      "value": "1,384.90",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,218.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "12,051.70",
+    "invoiceTotalCurrency": "CAD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "4,291.00",
+        "currency": "USD"
+      }
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 698,
+    "outputTokens": 814
+  },
+  "output": {
+    "invoiceNumber": "CI/26/8712",
+    "invoiceDate": "05-APR-2026",
+    "poNumber": "PO-7905",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "15-APR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "QINGDAO",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "BB-6204",
+        "description": "BALL BEARINGS 6204-2RS, 20 X 47 X 14 MM HS 8482.10",
+        "quantity": "36000",
+        "unit": "PCS",
+        "unitPrice": "1.30",
+        "unitPriceCurrency": null,
+        "lineTotal": "46800.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      }
+    ],
+    "totalPackages": "182 PKGS",
+    "grossWeight": {
+      "value": "4122.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "3960.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "46800.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

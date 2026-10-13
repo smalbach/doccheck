@@ -1,0 +1,90 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 694,
+    "outputTokens": 827
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-3564",
+    "invoiceDate": "28-MAR-2026",
+    "poNumber": "PO-84474",
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "03-APR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "SHANGHAI",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "SHANGHAI",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "EK-17",
+        "sku": null,
+        "description": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V HS 8516.71",
+        "quantity": "1032",
+        "unit": "PCS",
+        "unitPrice": "14.03",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "14478.96",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      }
+    ],
+    "totalPackages": "129 PKGS",
+    "grossWeight": {
+      "value": "1225.50",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1083.60",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "14478.96",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

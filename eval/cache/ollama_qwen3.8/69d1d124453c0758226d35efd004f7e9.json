@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 538,
+    "outputTokens": 558
+  },
+  "output": {
+    "packingListNumber": "PL/26/5095",
+    "invoiceRef": "CI/26/5095",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/CO146982/C/NO. 1-198",
+    "packages": [
+      {
+        "range": "1-198",
+        "count": "198 CTN",
+        "packageType": "CTN",
+        "sku": "OO-EV-5",
+        "description": "EV olive oil 5 L",
+        "quantity": "782 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3,643.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,821.40",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 35"
+      }
+    ],
+    "totalPackages": "198",
+    "totalNetWeight": {
+      "value": "3,643.20",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,821.40",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "8.32"
+  }
+}

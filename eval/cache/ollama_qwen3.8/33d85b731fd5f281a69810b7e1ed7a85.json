@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 608,
+    "outputTokens": 772
+  },
+  "output": {
+    "packingListNumber": "PL/26/0370",
+    "invoiceRef": "CI/26/0370",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/PO-55944/C/NO. 1-347",
+    "packages": [
+      {
+        "range": "1-223",
+        "count": "223 CTN",
+        "packageType": "CTN",
+        "sku": "TB-200",
+        "description": "Plush teddy bear 30 cm",
+        "quantity": "11,150 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,007.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,274.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 40"
+      },
+      {
+        "range": "224-347",
+        "count": "124 CTN",
+        "packageType": "CTN",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pcs",
+        "quantity": "2,976 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,845.12",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,956.72",
+          "unit": "KG"
+        },
+        "dimensionsCm": "52 × 38 × 30"
+      }
+    ],
+    "totalPackages": "347",
+    "totalNetWeight": {
+      "value": "3,852.12",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "4,231.32",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "28.76"
+  }
+}

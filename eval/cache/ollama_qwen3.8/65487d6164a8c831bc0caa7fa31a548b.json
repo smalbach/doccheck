@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 664,
+    "outputTokens": 884
+  },
+  "output": {
+    "packingListNumber": "PL/26/3447",
+    "invoiceRef": "CI/26/3447",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/HA854789/C/NO. 1-217",
+    "packages": [
+      {
+        "range": "1-155",
+        "count": "155 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BALL BEARING 6204-2RS",
+        "quantity": "31000 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3410.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3549.50",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "156-206",
+        "count": "51 CRT",
+        "packageType": "CRT",
+        "sku": null,
+        "description": "CENTRIFUGAL PUMP 0.75 KW",
+        "quantity": "51 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "739.50",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "969.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "207-217",
+        "count": "11 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "HEX BOLT M12X60",
+        "quantity": "5500 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "5500.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "5742.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "217 PKGS",
+    "totalNetWeight": {
+      "value": "9649.50",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "10260.50",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "17.06 CBM"
+  }
+}

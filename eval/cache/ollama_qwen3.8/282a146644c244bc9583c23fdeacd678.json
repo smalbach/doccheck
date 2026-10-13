@@ -1,0 +1,88 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 664,
+    "outputTokens": 803
+  },
+  "output": {
+    "invoiceNumber": "CI/26/5095",
+    "invoiceDate": "Mar 29, 2026",
+    "poNumber": "CO146982",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "Apr 3, 2026",
+    "transportMode": "Via SEA",
+    "placeOfShipment": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "La Spezia",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "CAD",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "OO-EV-5",
+        "description": "Extra virgin olive oil, 5 L tins",
+        "quantity": "792",
+        "unit": "PCS",
+        "unitPrice": "28.01",
+        "unitPriceCurrency": null,
+        "lineTotal": "22,183.92",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "198",
+    "grossWeight": {
+      "value": "3,821.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,643.20",
+      "unit": "KG"
+    },
+    "invoiceTotal": "22,183.92",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

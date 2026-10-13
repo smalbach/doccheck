@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 761,
+    "outputTokens": 918
+  },
+  "output": {
+    "blNumber": "KEYSHAM551417",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Tidewater Express Lines",
+    "bookingNumber": "523847524",
+    "carrierName": "Tidewater Express Lines",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "PACIFIC CREST",
+    "voyage": "083S",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Hamburg",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Halifax",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU4339115",
+        "seal": "TW1530525",
+        "type": "20GP",
+        "packages": "66",
+        "grossWeight": {
+          "value": "1,508.80",
+          "unit": "KG"
+        },
+        "volumeM3": "4.67"
+      }
+    ],
+    "totalPackages": "66",
+    "totalGrossWeight": {
+      "value": "1,508.80",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-82501/C/NO. 1-66",
+    "cargoDescription": "SAID TO CONTAIN 66 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CI/26/3935",
+      "PO-82501"
+    ],
+    "placeOfIssue": "Hamburg",
+    "dateOfIssue": "Apr 20, 2026",
+    "shippedOnBoardDate": "Apr 20, 2026"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 741,
+    "outputTokens": 992
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0370",
+    "invoiceDate": "01-JUL-2026",
+    "poNumber": "PO-55944",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "08-JUL-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "YANTIAN",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": null,
+    "incotermPlace": null,
+    "paymentTerms": "L/C AT SIGHT",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "TB-200",
+        "description": "PLUSH TEDDY BEAR 30 CM, POLYESTER FILLING HS 9503.00",
+        "quantity": "11150",
+        "unit": "PCS",
+        "unitPrice": "8.85",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "98677.50",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": null,
+        "sku": "PZ-1000",
+        "description": "JIGSAW PUZZLE 1000 PIECES, CARDBOARD, BOXED HS 9503.00",
+        "quantity": "2976",
+        "unit": "PCS",
+        "unitPrice": "5.11",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "15207.36",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "347 PKGS",
+    "grossWeight": {
+      "value": "3852.12",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "4231.32",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "113884.86",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

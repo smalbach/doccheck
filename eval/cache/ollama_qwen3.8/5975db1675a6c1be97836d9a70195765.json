@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 734,
+    "outputTokens": 900
+  },
+  "output": {
+    "blNumber": "AGLXSHA8483417",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "125778527",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd",
+        "Fontana, CA, 92335"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "007S",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Shanghai",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU4127181",
+        "seal": "AG5818438",
+        "type": "20GP",
+        "packages": "223",
+        "grossWeight": {
+          "value": "2,118.50",
+          "unit": "KG"
+        },
+        "volumeM3": "23.18"
+      }
+    ],
+    "totalPackages": "223",
+    "totalGrossWeight": {
+      "value": "2,330.35",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PACIFIC/PO-70609/C/NO. 1-223",
+    "cargoDescription": "SAID TO CONTAIN 223 CTNS ELECTRIC KETTLE 1.7 L",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-5539",
+      "PO-70609"
+    ],
+    "placeOfIssue": "Shanghai",
+    "dateOfIssue": "Jun 28, 2026",
+    "shippedOnBoardDate": "Jun 28, 2026"
+  }
+}

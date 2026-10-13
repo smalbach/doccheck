@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 729,
+    "outputTokens": 879
+  },
+  "output": {
+    "blNumber": "TDWETAO9179456",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines (TDWE)",
+    "bookingNumber": "786023407",
+    "carrierName": "Tidewater Express Lines (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "026E",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU6955936",
+        "seal": "TW7930076",
+        "type": "20GP",
+        "packages": "217",
+        "grossWeight": {
+          "value": "10,260.50",
+          "unit": "KG"
+        },
+        "volumeM3": "17.06"
+      }
+    ],
+    "totalPackages": "217",
+    "totalGrossWeight": {
+      "value": "10,260.50",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "HARBORLINE/HA854789/C/NO. 1-217",
+    "cargoDescription": "SAID TO CONTAIN 217 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CI/26/3447",
+      "HA854789"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "2026-02-10",
+    "shippedOnBoardDate": "2026-02-10"
+  }
+}

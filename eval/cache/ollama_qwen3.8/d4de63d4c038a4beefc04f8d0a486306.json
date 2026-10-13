@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 789,
+    "outputTokens": 977
+  },
+  "output": {
+    "blNumber": "COMPBRV932584",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "713182172",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1478 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "053W",
+    "placeOfReceipt": {
+      "name": "BREMEN",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "BREMERHAVEN",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "HALIFAX",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU5344180",
+        "seal": "MD5010845",
+        "type": "20GP",
+        "packages": "255",
+        "grossWeight": {
+          "value": "6646.80",
+          "unit": "KGS"
+        },
+        "volumeM3": "14.37"
+      }
+    ],
+    "totalPackages": "255",
+    "totalGrossWeight": {
+      "value": "6646.80",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-67336/C/NO. 1-255",
+    "cargoDescription": "SAID TO CONTAIN 255 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE REF: CI/26/4157 / PO-67336 FREIGHT PREPAID",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "CI/26/4157",
+      "PO-67336"
+    ],
+    "placeOfIssue": "BREMERHAVEN",
+    "dateOfIssue": "13-MAR-2026",
+    "shippedOnBoardDate": "13-MAR-2026"
+  }
+}

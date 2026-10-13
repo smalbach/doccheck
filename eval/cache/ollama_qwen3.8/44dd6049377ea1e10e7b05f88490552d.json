@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 605,
+    "outputTokens": 724
+  },
+  "output": {
+    "packingListNumber": "PL-2026-2124",
+    "invoiceRef": "INV-2026-2124",
+    "seller": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-75449/C/NO. 1-79",
+    "packages": [
+      {
+        "range": "1-53",
+        "count": "53 CRT",
+        "packageType": "CRT",
+        "sku": null,
+        "description": "CENTRIFUGAL PUMP 0.75 KW",
+        "quantity": "53 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "768.50",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1007.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "54-79",
+        "count": "26 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BRASS BALL VALVE 2\"",
+        "quantity": "520 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "702.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "730.60",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "79",
+    "totalNetWeight": {
+      "value": "1470.50",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "1737.60",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "5.89"
+  }
+}

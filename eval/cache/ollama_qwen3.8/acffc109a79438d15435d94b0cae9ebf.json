@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 747,
+    "outputTokens": 925
+  },
+  "output": {
+    "blNumber": "COMPCMT868631",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "119770065",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "notifyParty": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "004S",
+    "placeOfReceipt": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Cai Mep",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU7179851",
+        "seal": "AG7949811",
+        "type": "40GP",
+        "packages": "490",
+        "grossWeight": {
+          "value": "20,558",
+          "unit": "LB"
+        },
+        "volumeM3": "43.30"
+      }
+    ],
+    "totalPackages": "490",
+    "totalGrossWeight": {
+      "value": "22,614",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "BLUEBONNET/PO-29321/C/NO. 1-490",
+    "cargoDescription": "SAID TO CONTAIN 490 CTNS WOMEN'S PADDED JACKET AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-4084",
+      "PO-29321"
+    ],
+    "placeOfIssue": "Cai Mep",
+    "dateOfIssue": "2026-02-21",
+    "shippedOnBoardDate": "2026-02-21"
+  }
+}

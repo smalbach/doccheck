@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 597,
+    "outputTokens": 733
+  },
+  "output": {
+    "packingListNumber": "PL-2026-5094",
+    "invoiceRef": "INV-2026-5094",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/PO-81072/C/NO. 1-21",
+    "packages": [
+      {
+        "range": "1-13",
+        "count": "13 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "25 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "188.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "247.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      },
+      {
+        "range": "14-21",
+        "count": "8 PLT",
+        "packageType": "PLT",
+        "sku": "HB-M12",
+        "description": "Hex bolt M12x60",
+        "quantity": "4,000 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "4,000.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,176.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 100 × 60"
+      }
+    ],
+    "totalPackages": "21",
+    "totalNetWeight": {
+      "value": "4,188.50",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "4,423.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "6.90"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 667,
+    "outputTokens": 786
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-4927",
+    "invoiceDate": "2026-03-22",
+    "poNumber": "PO-12984",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "2026-03-30",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Cai Mep",
+      "country": "VN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Cai Mep",
+    "paymentTerms": "Net 60",
+    "currency": "CAD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Women's padded jacket, woven polyester shell",
+        "quantity": "3,080",
+        "unit": "PCS",
+        "unitPrice": "20.32",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "62,585.60",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6202.40"
+      }
+    ],
+    "totalPackages": "154",
+    "grossWeight": {
+      "value": "2,772.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,618.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "62,585.60",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

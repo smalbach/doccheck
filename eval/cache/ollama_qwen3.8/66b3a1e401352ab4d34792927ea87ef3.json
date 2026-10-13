@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 753,
+    "outputTokens": 942
+  },
+  "output": {
+    "blNumber": "SILVNGB208695",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "200766554",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "053S",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU7202015",
+        "seal": "PC5931637",
+        "type": "40HC",
+        "packages": "250",
+        "grossWeight": {
+          "value": "2,618.10",
+          "unit": "KG"
+        },
+        "volumeM3": "27.88"
+      }
+    ],
+    "totalPackages": "250",
+    "totalGrossWeight": {
+      "value": "2,618.10",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-34771/C/NO. 1-250",
+    "cargoDescription": "SAID TO CONTAIN 250 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-6962",
+      "PO-34771"
+    ],
+    "placeOfIssue": "Ningbo",
+    "dateOfIssue": "2026-06-03",
+    "shippedOnBoardDate": "2026-06-03"
+  }
+}

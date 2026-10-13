@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 721,
+    "outputTokens": 954
+  },
+  "output": {
+    "invoiceNumber": "CI/26/1604",
+    "invoiceDate": "Feb 19, 2026",
+    "poNumber": "PR966415",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "Feb 28, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shanghai",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "Shanghai",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BL-600",
+        "description": "Countertop blender 600 W with glass jar",
+        "quantity": "788",
+        "unit": "PCS",
+        "unitPrice": "21.85",
+        "unitPriceCurrency": null,
+        "lineTotal": "17,217.80",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      },
+      {
+        "lineNo": "2",
+        "sku": "EK-17",
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+        "quantity": "1,304",
+        "unit": "PCS",
+        "unitPrice": "14.58",
+        "unitPriceCurrency": null,
+        "lineTotal": "19,012.32",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8516.71"
+      }
+    ],
+    "totalPackages": "360",
+    "grossWeight": {
+      "value": "3,636.70",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,181.60",
+      "unit": "KG"
+    },
+    "invoiceTotal": "36,230.12",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

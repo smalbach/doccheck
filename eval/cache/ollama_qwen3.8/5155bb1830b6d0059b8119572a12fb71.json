@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 759,
+    "outputTokens": 1015
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-9336",
+    "invoiceDate": "10-JAN-2026",
+    "poNumber": "CO968657",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "19-JAN-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "LA SPEZIA",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "VANCOUVER",
+      "country": null
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "VANCOUVER",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "USD",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CT-6060",
+        "description": "GLAZED PORCELAIN FLOOR TILES 60 X 60 CM HS 6907.21",
+        "quantity": "400",
+        "unit": "M2",
+        "unitPrice": "9.82",
+        "unitPriceCurrency": null,
+        "lineTotal": "9328.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6907.21"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS HS 1509.20",
+        "quantity": "900",
+        "unit": "PCS",
+        "unitPrice": "22.71",
+        "unitPriceCurrency": null,
+        "lineTotal": "20439.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "235 PKGS",
+    "grossWeight": {
+      "value": "12992.50",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "12540.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "24367.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

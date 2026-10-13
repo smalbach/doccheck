@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 509,
+    "outputTokens": 544
+  },
+  "output": {
+    "packingListNumber": "PL-2026-9508",
+    "invoiceRef": "INV-2026-9508",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/HA827084/C/NO. 1-18",
+    "packages": [
+      {
+        "range": "1-18",
+        "count": "18 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "18 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "261.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "342.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      }
+    ],
+    "totalPackages": "18",
+    "totalNetWeight": {
+      "value": "261.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "342.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "1.58"
+  }
+}

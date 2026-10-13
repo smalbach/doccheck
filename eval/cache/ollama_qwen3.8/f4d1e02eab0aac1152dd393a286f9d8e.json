@@ -1,0 +1,88 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 702,
+    "outputTokens": 841
+  },
+  "output": {
+    "invoiceNumber": "CI/26/3765",
+    "invoiceDate": "14-APR-2026",
+    "poNumber": "PO-93946",
+    "seller": {
+      "name": "CAFE ALTO HUILA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40",
+        "NEIVA HUILA"
+      ],
+      "city": "NEIVA HUILA",
+      "region": null,
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "22-APR-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "BUENAVENTURA",
+      "country": "CO"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "BUENAVENTURA",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "USD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CF-GRN-60",
+        "description": "GREEN COFFEE BEANS, ARABICA, NOT ROASTED, IN 60 KG JUTE BAGS HS 0901.11",
+        "quantity": "9960 KG",
+        "unit": "KG",
+        "unitPrice": "5.98",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "59560.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "166 PKGS",
+    "grossWeight": {
+      "value": "10092.80",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "9960.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "59560.80",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

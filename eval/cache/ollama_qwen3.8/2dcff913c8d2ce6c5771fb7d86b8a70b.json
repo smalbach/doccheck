@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 676,
+    "outputTokens": 897
+  },
+  "output": {
+    "invoiceNumber": "BRI2606654",
+    "invoiceDate": "15-JUN-2026",
+    "poNumber": "PA611767",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": "95-4783210"
+    },
+    "buyer": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST",
+        "VERNON CA 90058"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL FULFILLMENT CENTER",
+      "addressLines": [
+        "13500 VALLEY BLVD",
+        "FONTANA CA 92335"
+      ],
+      "city": "FONTANA",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "shipmentDate": "20-JUN-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "YANTIAN",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "LONG BEACH",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "LONG BEACH",
+    "paymentTerms": "NET 60",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "TB-200",
+        "description": "PLUSH TEDDY BEAR 30 CM, POLYESTER FILLING HS 9503.00",
+        "quantity": "8400",
+        "unit": "PCS",
+        "unitPrice": "9.68",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "81312.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "168 PKGS",
+    "grossWeight": {
+      "value": "1713.60",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1512.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "81312.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "1028.00",
+        "currency": "EUR"
+      }
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 595,
+    "outputTokens": 738
+  },
+  "output": {
+    "packingListNumber": "PL-2026-7469",
+    "invoiceRef": "INV-2026-7469",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PR936301/C/NO. 1-106",
+    "packages": [
+      {
+        "range": "1-98",
+        "count": "98 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "19,600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,156.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,244.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      },
+      {
+        "range": "99-106",
+        "count": "8 PLT",
+        "packageType": "PLT",
+        "sku": "HB-M12",
+        "description": "Hex bolt M12x60",
+        "quantity": "4,000 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "4,000.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,176.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 100 × 60"
+      }
+    ],
+    "totalPackages": "106",
+    "totalNetWeight": {
+      "value": "6,156.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "6,420.20",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "8.70"
+  }
+}

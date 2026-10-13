@@ -1,0 +1,101 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 746,
+    "outputTokens": 944
+  },
+  "output": {
+    "invoiceNumber": "CI/26/3119",
+    "invoiceDate": "2026-02-03",
+    "poNumber": "CO147714",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "2026-02-15",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Nhava Sheva",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "CAD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "42",
+        "unit": "PCS",
+        "unitPrice": "92.85",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "3,899.70",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "104",
+        "unit": "PCS",
+        "unitPrice": "16.10",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "16,744.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "95",
+    "grossWeight": {
+      "value": "2,259.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,013.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "20,643.70",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

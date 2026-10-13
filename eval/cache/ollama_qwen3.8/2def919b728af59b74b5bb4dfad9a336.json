@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 761,
+    "outputTokens": 967
+  },
+  "output": {
+    "invoiceNumber": "CI/26/5941",
+    "invoiceDate": "29-JUN-2026",
+    "poNumber": "QU336261",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "08-JUL-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "YANTIAN",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "YANTIAN",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "PZ-1000",
+        "description": "JIGSAW PUZZLE 1000 PIECES, CARDBOARD, BOXED HS 9503.00",
+        "quantity": "2376",
+        "unit": "PCS",
+        "unitPrice": "5.01",
+        "unitPriceCurrency": null,
+        "lineTotal": "11903.76",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": null,
+        "sku": "TB-200",
+        "description": "PLUSH TEDDY BEAR 30 CM, POLYESTER FILLING HS 9503.00",
+        "quantity": "2900",
+        "unit": "PCS",
+        "unitPrice": "8.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "24273.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "157 PKGS",
+    "grossWeight": {
+      "value": "2153.82",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1995.12",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "36176.76",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

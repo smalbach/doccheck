@@ -1,0 +1,66 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 572,
+    "outputTokens": 577
+  },
+  "output": {
+    "packingListNumber": "PL-PUN2607625",
+    "invoiceRef": "PUN2607625",
+    "seller": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/PO-19368/C/NO. 1-34",
+    "packages": [
+      {
+        "range": "1-34",
+        "count": "34 CRT",
+        "packageType": "CRT",
+        "sku": null,
+        "description": "CENTRIFUGAL PUMP 0.75 KW",
+        "quantity": "33 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "493.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "646.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "34",
+    "totalNetWeight": {
+      "value": "493.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "646.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "2.99"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 735,
+    "outputTokens": 851
+  },
+  "output": {
+    "blNumber": "SILVCTG653326",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "304951825",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "047E",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU6496205",
+        "seal": "MD4270924",
+        "type": "20GP",
+        "packages": "110",
+        "grossWeight": {
+          "value": "6,688.00",
+          "unit": "KG"
+        },
+        "volumeM3": "15.68"
+      }
+    ],
+    "totalPackages": "110",
+    "totalGrossWeight": {
+      "value": "6,688.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/NO553282/C/NO. 1-110",
+    "cargoDescription": "SAID TO CONTAIN 110 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-4523",
+      "NO553282"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "Feb 8, 2026",
+    "shippedOnBoardDate": "Feb 8, 2026"
+  }
+}

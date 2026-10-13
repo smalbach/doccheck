@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 697,
+    "outputTokens": 816
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0316",
+    "invoiceDate": "2026-09-19",
+    "poNumber": "LA912369",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "2026-09-24",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "Savannah",
+      "country": "US"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "Savannah",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Wool blend socks, knitted, 3-pair pack",
+        "quantity": "30,720",
+        "unit": "PRS",
+        "unitPrice": "2.30",
+        "unitPriceCurrency": null,
+        "lineTotal": "70,656.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6115.94"
+      }
+    ],
+    "totalPackages": "128",
+    "grossWeight": {
+      "value": "2,393.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,304.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "70,656.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

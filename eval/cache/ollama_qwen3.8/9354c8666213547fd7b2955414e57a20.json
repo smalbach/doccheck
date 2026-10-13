@@ -1,0 +1,113 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 815,
+    "outputTokens": 1116
+  },
+  "output": {
+    "invoiceNumber": "SAI2604858",
+    "invoiceDate": "29-MAY-2026",
+    "poNumber": "PO-88927",
+    "seller": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "09-JUN-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "HO CHI MINH CITY",
+      "country": "VN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "HO CHI MINH CITY",
+    "paymentTerms": "NET 60",
+    "currency": "CAD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "TS-CTN-M",
+        "description": "MEN'S T-SHIRT, KNITTED, 100% COTTON, ASSORTED SIZES HS 6109.10",
+        "quantity": "4300",
+        "unit": "PCS",
+        "unitPrice": "2.47",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "10621.00",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": null,
+        "sku": "JK-PL-02",
+        "description": "WOMEN'S PADDED JACKET, WOVEN POLYESTER SHELL HS 6202.40",
+        "quantity": "3140",
+        "unit": "PCS",
+        "unitPrice": "14.76",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "46346.40",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "6202.40"
+      },
+      {
+        "lineNo": null,
+        "sku": "SK-WL-3",
+        "description": "WOOL BLEND SOCKS, KNITTED, 3-PAIR PACK HS 6115.94",
+        "quantity": "17760",
+        "unit": "PRS",
+        "unitPrice": "2.37",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "42091.20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": null,
+        "hsCode": "6115.94"
+      }
+    ],
+    "totalPackages": "274 PKGS",
+    "grossWeight": {
+      "value": "5061.20",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "4818.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "99058.60",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

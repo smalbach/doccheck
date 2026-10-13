@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 742,
+    "outputTokens": 937
+  },
+  "output": {
+    "invoiceNumber": "SAI2603147",
+    "invoiceDate": "2026-04-08",
+    "poNumber": "PO-54661",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "2026-04-20",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Ho Chi Minh City",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Women's padded jacket, woven polyester shell",
+        "quantity": "3,040",
+        "unit": "PCS",
+        "unitPrice": "21.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "66,576.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6202.40"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Wool blend socks, knitted, 3-pair pack",
+        "quantity": "15,600",
+        "unit": "PRS",
+        "unitPrice": "2.25",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "35,100.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "VN",
+        "hsCode": "6115.94"
+      }
+    ],
+    "totalPackages": "217",
+    "grossWeight": {
+      "value": "3,951.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,754.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "101,676.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

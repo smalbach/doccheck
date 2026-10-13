@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 762,
+    "outputTokens": 947
+  },
+  "output": {
+    "blNumber": "KEYSNGB671543",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "361357349",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "094N",
+    "placeOfReceipt": {
+      "name": "NINGBO, CN",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "NINGBO, CN",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "HALIFAX, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU9634607",
+        "seal": "MD9325877",
+        "type": "20GP",
+        "packages": "33",
+        "grossWeight": {
+          "value": "349.80",
+          "unit": "KGS"
+        },
+        "volumeM3": "3.71"
+      }
+    ],
+    "totalPackages": "33",
+    "totalGrossWeight": {
+      "value": "349.80",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/QU634244/C/NO. 1-33",
+    "cargoDescription": "SAID TO CONTAIN 33 CTNS BLENDER 600 W",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/5404",
+      "QU634244"
+    ],
+    "placeOfIssue": "NINGBO",
+    "dateOfIssue": "06-MAY-2026",
+    "shippedOnBoardDate": "06-MAY-2026"
+  }
+}

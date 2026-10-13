@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 741,
+    "outputTokens": 914
+  },
+  "output": {
+    "blNumber": "COMPGOA755449",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines (TDWE)",
+    "bookingNumber": "958842299",
+    "carrierName": "Tidewater Express Lines (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "059E",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "Genoa",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU9370140",
+        "seal": "TW9601028",
+        "type": "20GP",
+        "packages": "131",
+        "grossWeight": {
+          "value": "14,368.10",
+          "unit": "KG"
+        },
+        "volumeM3": "17.01"
+      }
+    ],
+    "totalPackages": "131",
+    "totalGrossWeight": {
+      "value": "14,368.10",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-47474/C/NO. 1-131",
+    "cargoDescription": "SAID TO CONTAIN 131 PKGS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-9491",
+      "PO-47474"
+    ],
+    "placeOfIssue": "Genoa",
+    "dateOfIssue": "2026-04-24",
+    "shippedOnBoardDate": "2026-04-24"
+  }
+}

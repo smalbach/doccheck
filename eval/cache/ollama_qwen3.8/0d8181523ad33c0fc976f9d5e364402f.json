@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 527,
+    "outputTokens": 582
+  },
+  "output": {
+    "packingListNumber": "PL/26/8712",
+    "invoiceRef": "CI/26/8712",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/PO-7905/C/NO. 1-180",
+    "packages": [
+      {
+        "range": "1-180",
+        "count": "180 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "36,000 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3,960.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,122.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      }
+    ],
+    "totalPackages": "180",
+    "totalNetWeight": {
+      "value": "3,960.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "4,122.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "5.40"
+  }
+}

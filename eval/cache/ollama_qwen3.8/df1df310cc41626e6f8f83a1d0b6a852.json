@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 765,
+    "outputTokens": 906
+  },
+  "output": {
+    "blNumber": "PCCLTAO7822256",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "179511287",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "notifyParty": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "026N",
+    "placeOfReceipt": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCLU2576880",
+        "seal": "PC3489554",
+        "type": "20GP",
+        "packages": "42",
+        "grossWeight": {
+          "value": "7949.20",
+          "unit": "KGS"
+        },
+        "volumeM3": "10.92"
+      }
+    ],
+    "totalPackages": "42",
+    "totalGrossWeight": {
+      "value": "7949.20",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "BLUEBONNET/PO-62866/C/NO. 1-42",
+    "cargoDescription": "SAID TO CONTAIN 42 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "INV-2026-9002",
+      "PO-62866"
+    ],
+    "placeOfIssue": "QINGDAO",
+    "dateOfIssue": "24-FEB-2026",
+    "shippedOnBoardDate": "24-FEB-2026"
+  }
+}

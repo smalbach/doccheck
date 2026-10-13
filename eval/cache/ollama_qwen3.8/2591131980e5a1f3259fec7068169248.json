@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 650,
+    "outputTokens": 751
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-2513",
+    "invoiceDate": "Sep 22, 2026",
+    "poNumber": "PO-55109",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "Sep 29, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "CFR",
+    "incotermPlace": "Vancouver",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "TB-200",
+        "description": "Plush teddy bear 30 cm, polyester filling",
+        "quantity": "4,800",
+        "unit": "PCS",
+        "unitPrice": "8.31",
+        "unitPriceCurrency": null,
+        "lineTotal": "39,888.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "96",
+    "grossWeight": {
+      "value": "979.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "864.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "39,888.00",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

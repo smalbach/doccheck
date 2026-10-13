@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 743,
+    "outputTokens": 909
+  },
+  "output": {
+    "blNumber": "TDWEYTN3846156",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines",
+    "bookingNumber": "261135154",
+    "carrierName": "Tidewater Express Lines",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "PACIFIC CREST",
+    "voyage": "087E",
+    "placeOfReceipt": {
+      "name": "Shenzhen",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU6956969",
+        "seal": "TW3675165",
+        "type": "20GP",
+        "packages": "96",
+        "grossWeight": {
+          "value": "979.20",
+          "unit": "KG"
+        },
+        "volumeM3": "9.22"
+      }
+    ],
+    "totalPackages": "96",
+    "totalGrossWeight": {
+      "value": "979.20",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/PO-55109/C/NO. 1-96",
+    "cargoDescription": "SAID TO CONTAIN 96 CTNS PLUSH TEDDY BEAR 30 CM",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "INV-2026-2513",
+      "PO-55109"
+    ],
+    "placeOfIssue": "Yantian",
+    "dateOfIssue": "Oct 2, 2026",
+    "shippedOnBoardDate": "Oct 2, 2026"
+  }
+}

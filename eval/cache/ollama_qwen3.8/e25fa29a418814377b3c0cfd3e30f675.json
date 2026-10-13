@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 520,
+    "outputTokens": 583
+  },
+  "output": {
+    "packingListNumber": "PL/26/5404",
+    "invoiceRef": "CI/26/5404",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/QU634244/C/NO. 1-33",
+    "packages": [
+      {
+        "range": "1-33",
+        "count": "33 CTN",
+        "packageType": "CTN",
+        "sku": "BL-600",
+        "description": "Blender 600 W",
+        "quantity": "132 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "303.60",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "349.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "50 × 50 × 45"
+      }
+    ],
+    "totalPackages": "33",
+    "totalNetWeight": {
+      "value": "303.60",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "349.80",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "3.71"
+  }
+}

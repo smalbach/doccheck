@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 737,
+    "outputTokens": 899
+  },
+  "output": {
+    "blNumber": "SILVHAM606718",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "286935264",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "18 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "097N",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Hamburg",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU8958030",
+        "seal": "AG7132515",
+        "type": "20GP",
+        "packages": "169",
+        "grossWeight": {
+          "value": "4,512.30",
+          "unit": "KG"
+        },
+        "volumeM3": "9.04"
+      }
+    ],
+    "totalPackages": "169",
+    "totalGrossWeight": {
+      "value": "4,512.30",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/NO797073/C/NO. 1-169",
+    "cargoDescription": "SAID TO CONTAIN 169 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "NOR2606596",
+      "NO797073"
+    ],
+    "placeOfIssue": "Hamburg",
+    "dateOfIssue": "Mar 14, 2026",
+    "shippedOnBoardDate": "Mar 14, 2026"
+  }
+}

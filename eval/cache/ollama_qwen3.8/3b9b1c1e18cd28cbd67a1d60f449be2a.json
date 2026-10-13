@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 613,
+    "outputTokens": 726
+  },
+  "output": {
+    "packingListNumber": "PL-2026-6404",
+    "invoiceRef": "INV-2026-6404",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/PO-56986/C/NO. 1-61",
+    "packages": [
+      {
+        "range": "1-10",
+        "count": "10 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "HEX BOLT M12X60",
+        "quantity": "5000 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "5000.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "5220.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "11-61",
+        "count": "51 CRT",
+        "packageType": "CRT",
+        "sku": null,
+        "description": "CENTRIFUGAL PUMP 0.75 KW",
+        "quantity": "51 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "739.50",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "969.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "61",
+    "totalNetWeight": {
+      "value": "5739.50",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "6189.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "11.69"
+  }
+}

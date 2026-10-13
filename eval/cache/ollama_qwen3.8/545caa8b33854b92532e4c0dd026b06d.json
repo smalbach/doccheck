@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 745,
+    "outputTokens": 931
+  },
+  "output": {
+    "blNumber": "COMPCMT311001",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "753113211",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "086N",
+    "placeOfReceipt": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Cai Mep",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU2826357",
+        "seal": "MD1109779",
+        "type": "40GP",
+        "packages": "443",
+        "grossWeight": {
+          "value": "8,223.50",
+          "unit": "KG"
+        },
+        "volumeM3": "41.79"
+      }
+    ],
+    "totalPackages": "443",
+    "totalGrossWeight": {
+      "value": "8,223.50",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PR856979/C/NO. 1-443",
+    "cargoDescription": "SAID TO CONTAIN 443 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/3751 / PR856979"
+    ],
+    "placeOfIssue": "Cai Mep",
+    "dateOfIssue": "2026-04-08",
+    "shippedOnBoardDate": "2026-04-08"
+  }
+}

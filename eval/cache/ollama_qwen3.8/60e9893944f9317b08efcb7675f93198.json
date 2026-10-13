@@ -1,0 +1,112 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 782,
+    "outputTokens": 1020
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-6542",
+    "invoiceDate": "2026-06-29",
+    "poNumber": "PO-13992",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": null,
+    "shipmentDate": "2026-07-02",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "Houston",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "20,400",
+        "unit": "PCS",
+        "unitPrice": "1.32",
+        "unitPriceCurrency": null,
+        "lineTotal": "26,928.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "1,940",
+        "unit": "PCS",
+        "unitPrice": "14.21",
+        "unitPriceCurrency": null,
+        "lineTotal": "27,567.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "IN",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "17",
+        "unit": "PCS",
+        "unitPrice": "76.58",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,301.86",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "IN",
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "216",
+    "grossWeight": {
+      "value": "5,384.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "5,109.50",
+      "unit": "KG"
+    },
+    "invoiceTotal": "55,797.26",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "3,514.00",
+        "currency": "CNY"
+      }
+    ]
+  }
+}

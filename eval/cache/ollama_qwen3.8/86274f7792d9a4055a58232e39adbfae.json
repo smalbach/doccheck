@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 607,
+    "outputTokens": 720
+  },
+  "output": {
+    "packingListNumber": "PL-2026-9002",
+    "invoiceRef": "INV-2026-9002",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "marks": "BLUEBONNET/PO-62866/C/NO. 1-42",
+    "packages": [
+      {
+        "range": "1-14",
+        "count": "14 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "HEX BOLT M12X60",
+        "quantity": "7000 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "7000.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "7308.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "15-42",
+        "count": "28 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BALL BEARING 6204-2RS",
+        "quantity": "5600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "616.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "641.20",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "42",
+    "totalNetWeight": {
+      "value": "7616.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "7949.20",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "10.92"
+  }
+}

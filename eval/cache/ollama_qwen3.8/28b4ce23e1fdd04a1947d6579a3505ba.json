@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 571,
+    "outputTokens": 552
+  },
+  "output": {
+    "packingListNumber": "PL-CAF2601390",
+    "invoiceRef": "CAF2601390",
+    "seller": {
+      "name": "CAFE ALTO HUILA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40"
+      ],
+      "city": "NEIVA HUILA",
+      "region": null,
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PO-2903/C/NO. 1-261",
+    "packages": [
+      {
+        "range": "1-261",
+        "count": "261",
+        "packageType": "BAG",
+        "sku": null,
+        "description": "GREEN COFFEE ARABICA",
+        "quantity": "15655 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "15660.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "15868.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "261",
+    "totalNetWeight": {
+      "value": "15660.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "15868.80",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "37.19"
+  }
+}

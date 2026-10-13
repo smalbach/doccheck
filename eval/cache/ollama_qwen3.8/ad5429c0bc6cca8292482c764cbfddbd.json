@@ -1,0 +1,78 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 604,
+    "outputTokens": 682
+  },
+  "output": {
+    "invoiceNumber": "QIN2606393",
+    "invoiceDate": "Jun 13, 2026",
+    "poNumber": "PR669380",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": null,
+    "shipmentDate": "Jun 25, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Qingdao",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BB-6204",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "19,400",
+        "unit": "PCS",
+        "unitPrice": "1.26",
+        "unitPriceCurrency": null,
+        "lineTotal": "24,444.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      }
+    ],
+    "totalPackages": "97",
+    "grossWeight": {
+      "value": "2,221.30",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,134.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "24,444.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 555,
+    "outputTokens": 581
+  },
+  "output": {
+    "packingListNumber": "PL/26/3922",
+    "invoiceRef": "CI/26/3922",
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/HA101562/C/NO. 1-110",
+    "packages": [
+      {
+        "range": "1-110",
+        "count": "110 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BLENDER 600 W",
+        "quantity": "440 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1012.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1166.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "110 PKGS",
+    "totalNetWeight": {
+      "value": "1012.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "1166.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "12.38"
+  }
+}

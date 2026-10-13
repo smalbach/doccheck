@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 744,
+    "outputTokens": 893
+  },
+  "output": {
+    "blNumber": "MRDNTAO2642883",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "802925414",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "012N",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU7471558",
+        "seal": "MD4920341",
+        "type": "20GP",
+        "packages": "61",
+        "grossWeight": {
+          "value": "6,189.00",
+          "unit": "KG"
+        },
+        "volumeM3": "11.69"
+      }
+    ],
+    "totalPackages": "61",
+    "totalGrossWeight": {
+      "value": "6,189.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-56986/C/NO. 1-61",
+    "cargoDescription": "SAID TO CONTAIN 61 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-6404",
+      "PO-56986"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "2026-03-04",
+    "shippedOnBoardDate": "2026-03-04"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 739,
+    "outputTokens": 908
+  },
+  "output": {
+    "blNumber": "AGLXSPE3359686",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "811382565",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "024W",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU9173770",
+        "seal": "AG1761447",
+        "type": "20GP",
+        "packages": "108",
+        "grossWeight": {
+          "value": "15,782",
+          "unit": "LB"
+        },
+        "volumeM3": "9.47"
+      }
+    ],
+    "totalPackages": "108",
+    "totalGrossWeight": {
+      "value": "15,782",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "HARBORLINE/HA882403/C/NO. 1-108",
+    "cargoDescription": "SAID TO CONTAIN 108 PKGS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/1933 / HA882403"
+    ],
+    "placeOfIssue": "La Spezia",
+    "dateOfIssue": "2026-05-23",
+    "shippedOnBoardDate": "2026-05-23"
+  }
+}

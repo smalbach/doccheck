@@ -1,0 +1,88 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 663,
+    "outputTokens": 803
+  },
+  "output": {
+    "invoiceNumber": "CER2608658",
+    "invoiceDate": "Mar 4, 2026",
+    "poNumber": "PO-63202",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "Mar 14, 2026",
+    "transportMode": "Via SEA",
+    "placeOfShipment": {
+      "name": "Genoa",
+      "country": "IT"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "Genoa",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CT-6060",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm",
+        "quantity": "280",
+        "unit": "M2",
+        "unitPrice": "11.30",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,164.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "7",
+    "grossWeight": {
+      "value": "6,055.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "5,880.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "3,164.00",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

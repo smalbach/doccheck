@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 555,
+    "outputTokens": 719
+  },
+  "output": {
+    "packingListNumber": "PL-NOR2602969",
+    "invoiceRef": "NOR2602969",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/NO290848/C/NO. 1-50",
+    "packages": [
+      {
+        "range": "1-36",
+        "count": "36 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "36 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "522.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "684.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      },
+      {
+        "range": "37-50",
+        "count": "14 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "280 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "378.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "393.40",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      }
+    ],
+    "totalPackages": "50",
+    "totalNetWeight": {
+      "value": "900.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,077.40",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "3.83"
+  }
+}

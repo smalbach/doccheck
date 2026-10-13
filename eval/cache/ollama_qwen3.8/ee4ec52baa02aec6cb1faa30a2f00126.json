@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 655,
+    "outputTokens": 922
+  },
+  "output": {
+    "packingListNumber": "PL-2026-4337",
+    "invoiceRef": "INV-2026-4337",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/NO397981/C/NO. 1-156",
+    "packages": [
+      {
+        "range": "1-11",
+        "count": "11 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS",
+        "quantity": "2,190 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "242.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "251.90",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      },
+      {
+        "range": "12-71",
+        "count": "60 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "60 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "870.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,140.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      },
+      {
+        "range": "72-156",
+        "count": "85 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "1,700 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,295.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,388.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      }
+    ],
+    "totalPackages": "156",
+    "totalNetWeight": {
+      "value": "3,407.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,780.40",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "9.63"
+  }
+}

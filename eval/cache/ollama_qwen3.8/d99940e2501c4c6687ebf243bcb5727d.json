@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 756,
+    "outputTokens": 936
+  },
+  "output": {
+    "blNumber": "PCCLSGN5720653",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "701776813",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "007N",
+    "placeOfReceipt": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU4423406",
+        "seal": "PC9056762",
+        "type": "40GP",
+        "packages": "274",
+        "grossWeight": {
+          "value": "5,061.20",
+          "unit": "KG"
+        },
+        "volumeM3": "29.50"
+      }
+    ],
+    "totalPackages": "279",
+    "totalGrossWeight": {
+      "value": "5,061.20",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/PO-88927/C/NO. 1-274",
+    "cargoDescription": "SAID TO CONTAIN 274 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "SAI2604858",
+      "PO-88927"
+    ],
+    "placeOfIssue": "Ho Chi Minh City",
+    "dateOfIssue": "2026-06-11",
+    "shippedOnBoardDate": "2026-06-11"
+  }
+}

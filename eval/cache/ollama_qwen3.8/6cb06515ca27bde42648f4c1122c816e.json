@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 604,
+    "outputTokens": 766
+  },
+  "output": {
+    "packingListNumber": "PL-2026-1069",
+    "invoiceRef": "INV-2026-1069",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-41584/C/NO. 1-297",
+    "packages": [
+      {
+        "range": "1-223",
+        "count": "223 CTN",
+        "packageType": "CTN",
+        "sku": "TB-200",
+        "description": "Plush teddy bear 30 cm",
+        "quantity": "11,150 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,007.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,274.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 40"
+      },
+      {
+        "range": "224-297",
+        "count": "74 CTN",
+        "packageType": "CTN",
+        "sku": "PZ-1000",
+        "description": "Jigsaw puzzle 1000 pcs",
+        "quantity": "1,776 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,101.12",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,167.72",
+          "unit": "KG"
+        },
+        "dimensionsCm": "52 × 38 × 30"
+      }
+    ],
+    "totalPackages": "297",
+    "totalNetWeight": {
+      "value": "3,108.12",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,442.32",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "25.79"
+  }
+}

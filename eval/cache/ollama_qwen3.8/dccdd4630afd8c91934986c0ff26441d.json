@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 715,
+    "outputTokens": 897
+  },
+  "output": {
+    "blNumber": "TDWEYTN8754744",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines (TDWE)",
+    "bookingNumber": "134952196",
+    "carrierName": "Tidewater Express Lines (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "notifyParty": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "021N",
+    "placeOfReceipt": {
+      "name": "Shenzhen",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU2642267",
+        "seal": "TW8200444",
+        "type": "20GP",
+        "packages": "51",
+        "grossWeight": {
+          "value": "1,147",
+          "unit": "LB"
+        },
+        "volumeM3": "4.90"
+      }
+    ],
+    "totalPackages": "51",
+    "totalGrossWeight": {
+      "value": "1,147",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "BLUEBONNET/PO-40035/C/NO. 1-51",
+    "cargoDescription": "SAID TO CONTAIN 51 CTNS PLUSH TEDDY BEAR 30 CM",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/9067",
+      "PO-40035"
+    ],
+    "placeOfIssue": "Yantian",
+    "dateOfIssue": "2026-04-30",
+    "shippedOnBoardDate": "2026-04-30"
+  }
+}

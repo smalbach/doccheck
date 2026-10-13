@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 569,
+    "outputTokens": 733
+  },
+  "output": {
+    "packingListNumber": "PL-NOR2606596",
+    "invoiceRef": "NOR2606596",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/NO797073/C/NO. 1-169",
+    "packages": [
+      {
+        "range": "1-143",
+        "count": "143 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "2,860 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3,861.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,018.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      },
+      {
+        "range": "144-169",
+        "count": "26 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "26 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "377.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "494.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      }
+    ],
+    "totalPackages": "169",
+    "totalNetWeight": {
+      "value": "4,238.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "4,512.30",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "9.04"
+  }
+}

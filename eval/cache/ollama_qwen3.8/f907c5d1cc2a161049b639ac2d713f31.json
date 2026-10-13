@@ -1,0 +1,66 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 545,
+    "outputTokens": 549
+  },
+  "output": {
+    "packingListNumber": "PL-BRI2606654",
+    "invoiceRef": "BRI2606654",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL FULFILLMENT CENTER",
+      "addressLines": [
+        "13500 VALLEY BLVD"
+      ],
+      "city": "FONTANA",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "PACIFIC/PA611767/C/NO. 1-168",
+    "packages": [
+      {
+        "range": "1-168",
+        "count": "168 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "PLUSH TEDDY BEAR 30 CM",
+        "quantity": "8376 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1512.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1713.60",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "168 PKGS",
+    "totalNetWeight": {
+      "value": "1512.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "1713.60",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "16.13 CBM"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 809,
+    "outputTokens": 903
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-6404",
+    "invoiceDate": "2026-02-23",
+    "poNumber": "PO-56986",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "2026-03-02",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Qingdao",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+        "quantity": "5,000",
+        "unit": "KG",
+        "unitPrice": "2.39",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "11,950.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "51",
+        "unit": "PCS",
+        "unitPrice": "90.95",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "4,638.45",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "61",
+    "grossWeight": {
+      "value": "6,189.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "5,739.50",
+      "unit": "KG"
+    },
+    "invoiceTotal": "16,588.45",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

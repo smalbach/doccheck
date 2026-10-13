@@ -1,0 +1,83 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 616,
+    "outputTokens": 740
+  },
+  "output": {
+    "packingListNumber": "PL-2026-9491",
+    "invoiceRef": "INV-2026-9491",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-47474/C/NO. 1-131",
+    "packages": [
+      {
+        "range": "1-117",
+        "count": "117 CTN",
+        "packageType": "CTN",
+        "sku": "OO-EV-5",
+        "description": "EV olive oil 5 L",
+        "quantity": "468 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,152.80",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,258.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 35"
+      },
+      {
+        "range": "118-131",
+        "count": "14 PLT",
+        "packageType": "PLT",
+        "sku": "CT-6060",
+        "description": "Porcelain tile 60x60",
+        "quantity": "560 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "11,760.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "12,110.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 80 × 90"
+      }
+    ],
+    "totalPackages": "131",
+    "totalNetWeight": {
+      "value": "13,912.80",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "14,368.10",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "17.01"
+  }
+}

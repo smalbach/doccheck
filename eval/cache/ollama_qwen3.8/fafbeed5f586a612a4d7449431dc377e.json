@@ -1,0 +1,91 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 664,
+    "outputTokens": 807
+  },
+  "output": {
+    "invoiceNumber": "CER2604543",
+    "invoiceDate": "Mar 6, 2026",
+    "poNumber": "PO-71078",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112",
+        "Sassuolo, MO, 41049"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "Mar 12, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Genoa",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "New York",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CT-6060",
+        "description": "Glazed porcelain floor tiles 60 x 60 cm",
+        "quantity": "280",
+        "unit": "M2",
+        "unitPrice": "8.18",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,290.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "7",
+    "grossWeight": {
+      "value": "6,055.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "5,880.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "2,290.40",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 536,
+    "outputTokens": 560
+  },
+  "output": {
+    "packingListNumber": "PL-2026-4602",
+    "invoiceRef": "INV-2026-4602",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/PO-20941/C/NO. 1-5",
+    "packages": [
+      {
+        "range": "1-5",
+        "count": "5 PLT",
+        "packageType": "PLT",
+        "sku": "CT-6060",
+        "description": "Porcelain tile 60x60",
+        "quantity": "200 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "4,200.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,325.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 80 × 90"
+      }
+    ],
+    "totalPackages": "5",
+    "totalNetWeight": {
+      "value": "4,200.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "4,325.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "4.32"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 757,
+    "outputTokens": 1004
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-5446",
+    "invoiceDate": "Feb 8, 2026",
+    "poNumber": "BL373962",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "Feb 10, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Mundra",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BB-6204",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "38,600",
+        "unit": "PCS",
+        "unitPrice": "1.31",
+        "unitPriceCurrency": null,
+        "lineTotal": "50,566.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": "CP-750",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "39",
+        "unit": "PCS",
+        "unitPrice": "85.17",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,321.63",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "232",
+    "grossWeight": {
+      "value": "4,811.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "5,160.70",
+      "unit": "KG"
+    },
+    "invoiceTotal": "53,887.63",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "3,729.00",
+        "currency": "EUR"
+      }
+    ]
+  }
+}

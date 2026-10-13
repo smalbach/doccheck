@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 565,
+    "outputTokens": 590
+  },
+  "output": {
+    "packingListNumber": "PL-2026-2206",
+    "invoiceRef": "INV-2026-2206",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "marks": "LAKESHORE/LA463626/C/NO. 1-146",
+    "packages": [
+      {
+        "range": "1-146",
+        "count": "146 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "PLUSH TEDDY BEAR 30 CM",
+        "quantity": "7300 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1314.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1489.20",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "146",
+    "totalNetWeight": {
+      "value": "1314.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "1489.20",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "14.02"
+  }
+}

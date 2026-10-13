@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 752,
+    "outputTokens": 931
+  },
+  "output": {
+    "blNumber": "AGLXMUN4453582",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "377519520",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "056W",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGXU7050711",
+        "seal": "AG5638927",
+        "type": "20GP",
+        "packages": "432",
+        "grossWeight": {
+          "value": "10,447.90",
+          "unit": "KG"
+        },
+        "volumeM3": "18.99"
+      }
+    ],
+    "totalPackages": "432",
+    "totalGrossWeight": {
+      "value": "9,612.07",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PACIFIC/PA892788/C/NO. 1-432",
+    "cargoDescription": "SAID TO CONTAIN 432 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/2842 / PA892788"
+    ],
+    "placeOfIssue": "Mundra",
+    "dateOfIssue": "2026-09-07",
+    "shippedOnBoardDate": "2026-09-07"
+  }
+}

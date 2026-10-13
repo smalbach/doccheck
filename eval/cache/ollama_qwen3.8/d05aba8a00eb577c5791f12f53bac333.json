@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 683,
+    "outputTokens": 901
+  },
+  "output": {
+    "packingListNumber": "PL-2026-4084",
+    "invoiceRef": "INV-2026-4084",
+    "seller": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "marks": "BLUEBONNET/PO-29321/C/NO. 1-490",
+    "packages": [
+      {
+        "range": "1-97",
+        "count": "97 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "WOMEN'S PADDED JACKET",
+        "quantity": "1940 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1649.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1746.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "98-281",
+        "count": "184 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "WOOL SOCKS 3-PACK",
+        "quantity": "44160 PRS",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "3312.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3440.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "282-490",
+        "count": "209 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "MEN'S COTTON T-SHIRT",
+        "quantity": "20900 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3971.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "4138.20",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "490",
+    "totalNetWeight": {
+      "value": "8932.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "9325.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "43.30"
+  }
+}

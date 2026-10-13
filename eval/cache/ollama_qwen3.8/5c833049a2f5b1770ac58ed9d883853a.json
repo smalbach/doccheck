@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 538,
+    "outputTokens": 558
+  },
+  "output": {
+    "packingListNumber": "PL/26/1037",
+    "invoiceRef": "CI/26/1037",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PO-64295/C/NO. 1-186",
+    "packages": [
+      {
+        "range": "1-186",
+        "count": "186 BAG",
+        "packageType": "BAG",
+        "sku": "CF-GRN-60",
+        "description": "Green coffee arabica",
+        "quantity": "11,160 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "11,160.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "11,308.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "95 × 60 × 25"
+      }
+    ],
+    "totalPackages": "186",
+    "totalNetWeight": {
+      "value": "11,160.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "11,308.80",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "26.50"
+  }
+}

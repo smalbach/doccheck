@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 597,
+    "outputTokens": 755
+  },
+  "output": {
+    "packingListNumber": "PL/26/3119",
+    "invoiceRef": "CI/26/3119",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/CO147714/C/NO. 1-94",
+    "packages": [
+      {
+        "range": "1-42",
+        "count": "42 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "42 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "609.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "798.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      },
+      {
+        "range": "43-94",
+        "count": "52 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "1,040 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,404.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,461.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      }
+    ],
+    "totalPackages": "94",
+    "totalNetWeight": {
+      "value": "2,013.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,259.20",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "6.15"
+  }
+}

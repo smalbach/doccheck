@@ -1,0 +1,90 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 663,
+    "outputTokens": 792
+  },
+  "output": {
+    "invoiceNumber": "QIN2609888",
+    "invoiceDate": "08-JUN-2026",
+    "poNumber": "LA252349",
+    "seller": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "13-JUN-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "QINGDAO",
+    "paymentTerms": "L/C AT SIGHT",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "30",
+        "unit": "PCS",
+        "unitPrice": "93.95",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "8218.50",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "30 PKGS",
+    "grossWeight": {
+      "value": "570.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "435.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "2818.50",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 520,
+    "outputTokens": 585
+  },
+  "output": {
+    "packingListNumber": "PL-2026-4927",
+    "invoiceRef": "INV-2026-4927",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/PO-12984/C/NO. 1-154",
+    "packages": [
+      {
+        "range": "1-154",
+        "count": "154 CTN",
+        "packageType": "CTN",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket",
+        "quantity": "3,080 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,618.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,772.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "65 × 45 × 45"
+      }
+    ],
+    "totalPackages": "154",
+    "totalNetWeight": {
+      "value": "2,618.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,772.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "20.27"
+  }
+}

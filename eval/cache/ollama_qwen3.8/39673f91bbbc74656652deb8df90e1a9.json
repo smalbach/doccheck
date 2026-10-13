@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 725,
+    "outputTokens": 909
+  },
+  "output": {
+    "blNumber": "PCCLBUN4182495",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "834818924",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "017N",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Buenaventura",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU9565595",
+        "seal": "PC1929565",
+        "type": "20GP",
+        "packages": "84",
+        "grossWeight": {
+          "value": "5,107.20",
+          "unit": "KG"
+        },
+        "volumeM3": "11.97"
+      }
+    ],
+    "totalPackages": "84",
+    "totalGrossWeight": {
+      "value": "4,341.12",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PR354371/C/NO. 1-84",
+    "cargoDescription": "SAID TO CONTAIN 84 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/0345",
+      "PR354371"
+    ],
+    "placeOfIssue": "Buenaventura",
+    "dateOfIssue": "2026-06-30",
+    "shippedOnBoardDate": "2026-06-30"
+  }
+}

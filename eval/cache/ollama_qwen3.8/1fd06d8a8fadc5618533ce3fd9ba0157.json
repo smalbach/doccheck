@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 563,
+    "outputTokens": 592
+  },
+  "output": {
+    "packingListNumber": "PL-2026-3564",
+    "invoiceRef": "INV-2026-3564",
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-84474/C/NO. 1-129",
+    "packages": [
+      {
+        "range": "1-129",
+        "count": "129 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "ELECTRIC KETTLE 1.7 L",
+        "quantity": "1032 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1083.60",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1225.50",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "129 PKGS",
+    "totalNetWeight": {
+      "value": "1083.60",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "1225.50",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "13.41 CBM"
+  }
+}

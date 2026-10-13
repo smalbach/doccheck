@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 768,
+    "outputTokens": 908
+  },
+  "output": {
+    "blNumber": "KEYSTAO402061",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "196186249",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "QINGDAO HENGLI FASTENERS & MACHINERY CO., LTD.",
+      "addressLines": [
+        "55 HUANGPU RD",
+        "HUANGDAO DISTRICT",
+        "QINGDAO SHANDONG"
+      ],
+      "city": "QINGDAO",
+      "region": "SHANDONG",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "083N",
+    "placeOfReceipt": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "QINGDAO",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "CHICAGO",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCLU3239040",
+        "seal": "PC4634956",
+        "type": "20GP",
+        "packages": "155",
+        "grossWeight": {
+          "value": "12034.20",
+          "unit": "KGS"
+        },
+        "volumeM3": "16.38"
+      }
+    ],
+    "totalPackages": "155",
+    "totalGrossWeight": {
+      "value": "12034.20",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "LAKESHORE/LA805107/C/NO. 1-155",
+    "cargoDescription": "SAID TO CONTAIN 155 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "INV-2026-3046",
+      "LA805107"
+    ],
+    "placeOfIssue": "QINGDAO",
+    "dateOfIssue": "04-APR-2026",
+    "shippedOnBoardDate": "04-APR-2026"
+  }
+}

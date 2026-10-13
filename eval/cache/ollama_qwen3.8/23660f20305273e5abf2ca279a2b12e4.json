@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 610,
+    "outputTokens": 774
+  },
+  "output": {
+    "packingListNumber": "PL-SAI2603147",
+    "invoiceRef": "SAI2603147",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/PO-54661/C/NO. 1-217",
+    "packages": [
+      {
+        "range": "1-152",
+        "count": "152 CTN",
+        "packageType": "CTN",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket",
+        "quantity": "3,040 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,584.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,736.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "65 × 45 × 45"
+      },
+      {
+        "range": "153-217",
+        "count": "65 CTN",
+        "packageType": "CTN",
+        "sku": "SK-WL-3",
+        "description": "Wool socks 3-pack",
+        "quantity": "15,600 PRS",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "1,170.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,215.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": "58 × 38 × 32"
+      }
+    ],
+    "totalPackages": "217",
+    "totalNetWeight": {
+      "value": "3,754.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,951.50",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "24.59"
+  }
+}
