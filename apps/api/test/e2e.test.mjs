@@ -1358,6 +1358,50 @@ describe('insights', () => {
     assert.equal((await send(`${base}/insights/lines.csv`, {}, '')).status, 401);
     assert.equal((await send(`${base}/insights/shipments.csv`, {}, '')).status, 401);
   });
+
+  it('projects the extracted data to tables, following corrections, re-extraction and deletion', async () => {
+    const user = await signUp('Tables');
+    const docs = { COMMERCIAL_INVOICE: sampleInvoice, PACKING_LIST: samplePackingList, BILL_OF_LADING: sampleBillOfLading };
+    const a = await shipmentWith(user, 'CA', docs);
+    // Another spelling of the same seller, and the same SKU: one party, one product.
+    const respelled = { ...sampleInvoice, seller: { ...sampleInvoice.seller, name: 'ACME TOYS CO LTD' }, discounts: [{ description: 'Early payment', amount: { amount: '100.00', currency: 'USD' } }] };
+    const b = await shipmentWith(user, 'US', { COMMERCIAL_INVOICE: respelled });
+    const one = async (sql, args) => (await pool.query(sql, args)).rows[0];
+
+    const inv = await one('select * from invoices where shipment_id = $1', [a.id]);
+    assert.deepEqual(
+      [inv.invoice_number, inv.currency, inv.line_count, inv.lines_total, inv.gross_kg, inv.incoterm, inv.place_of_shipment_locode, inv.extra],
+      [sampleInvoice.invoiceNumber, 'USD', 1, '48600.00', '1250', 'FOB', 'CNYTN', null],
+    );
+    const line = await one('select * from invoice_lines where document_id = $1', [inv.document_id]);
+    assert.deepEqual([line.sku, line.quantity, line.unit_price, line.computed_total, line.hs6, line.hs4], ['TB-200', '6000', '8.10', '48600.00', '950300', '9503']);
+
+    const sellers = await pool.query("select distinct party_id from document_parties where user_id = (select user_id from shipments where id = $1) and role in ('seller', 'shipper')", [a.id]);
+    assert.equal(sellers.rowCount, 1);
+    const products = await pool.query('select distinct product_id from invoice_lines where shipment_id in ($1, $2)', [a.id, b.id]);
+    assert.equal(products.rowCount, 1);
+    assert.equal((await one('select count(*)::int as n from packing_contents where shipment_id = $1 and product_id = $2', [a.id, products.rows[0].product_id])).n, 1);
+    assert.deepEqual((await pool.query('select kind, amount from invoice_adjustments where shipment_id = $1', [b.id])).rows, [{ kind: 'discount', amount: '100.00' }]);
+
+    const bl = await one('select * from bills_of_lading where shipment_id = $1', [a.id]);
+    assert.deepEqual([bl.bl_number, bl.container_count, bl.total_packages], [sampleBillOfLading.blNumber, 1, 120]);
+    assert.deepEqual(await one('select container_number, owner_code, size_type from bl_containers where document_id = $1', [bl.document_id]), { container_number: 'CSQU3054383', owner_code: 'CSQU', size_type: '40HC' });
+    assert.ok((await one('select count(*)::int as n from packing_packages where shipment_id = $1', [a.id])).n > 0);
+
+    // A correction is projected; while the document extracts again it has no rows; then they are back.
+    const patched = await call('PATCH', `/shipments/${a.id}/documents/${inv.document_id}/data`, { changes: [{ path: '/lines/0/description', value: 'Teddy bear' }] }, user);
+    assert.equal(patched.status, 200);
+    assert.equal((await one('select description from invoice_lines where document_id = $1', [inv.document_id])).description, 'Teddy bear');
+    await repo.updateDocumentStatus(inv.document_id, 'EXTRACTING');
+    assert.equal(await one('select 1 from invoices where document_id = $1', [inv.document_id]), undefined);
+    await repo.updateDocumentStatus(inv.document_id, 'EXTRACTED');
+    assert.equal((await one('select description from invoice_lines where document_id = $1', [inv.document_id])).description, 'Teddy bear');
+
+    assert.equal((await call('DELETE', `/shipments/${a.id}`, undefined, user)).status, 204);
+    for (const table of ['invoices', 'invoice_lines', 'packing_lists', 'bills_of_lading', 'bl_containers', 'document_parties']) {
+      assert.equal((await one(`select count(*)::int as n from ${table} where shipment_id = $1`, [a.id])).n, 0, table);
+    }
+  });
 });
 
 describe('alerts', () => {
