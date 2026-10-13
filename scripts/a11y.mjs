@@ -87,7 +87,8 @@ for (const locale of locales) {
   for (const theme of ['light', 'dark']) {
     for (const width of [375, 1280]) {
       await page.setViewportSize({ width, height: 900 });
-      await page.emulateMedia({ colorScheme: theme });
+      // Reduced motion: toasts that finish during the audit would otherwise be measured mid-animation.
+      await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });
       await page.addInitScript(([l, t]) => {
         localStorage.setItem('doccheck.locale', l);
         localStorage.setItem('doccheck.theme', t);
