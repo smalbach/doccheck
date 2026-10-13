@@ -1,7 +1,8 @@
 // Builds docs/METRICS.md and the metrics block of the README from the evaluation reports:
 //   eval/reports/extraction-<model>.json   (npm run eval:extraction)
 //   eval/reports/agent-<model>.json        (npm run eval:agent)
-// plus the rule engine on the ground-truth documents of data/eval/v1. Run `npm run build` first.
+// plus the rule engine on the ground-truth documents of data/eval/v1, and on error kinds that v1 does
+// not inject (applied one at a time to the clean v1 shipments). Run `npm run build` first.
 //
 //   node scripts/metrics.mjs [--model ollama_qwen3.8]
 import { readFile, readdir, writeFile } from 'node:fs/promises';
@@ -9,6 +10,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { runRules } from '@doccheck/rules';
+import { buildDataset, EXTRA_ERROR_KINDS, injectErrors, Rng } from '@doccheck/synth';
 
 const { values } = parseArgs({ options: { model: { type: 'string', default: 'ollama_qwen3.8' } } });
 const pct = (x) => (x === null || x === undefined ? '—' : `${(x * 100).toFixed(1)}%`);
@@ -53,6 +55,36 @@ const sum = (rows) => rows.reduce((a, [, r]) => ({ tp: a.tp + r.tp, fp: a.fp + r
 const pr = (r) => ({ recall: r.tp + r.fn ? r.tp / (r.tp + r.fn) : null, precision: r.tp + r.fp ? r.tp / (r.tp + r.fp) : null });
 const truthTotal = pr(sum(truthRules));
 
+// Rules on error kinds outside v1 (X9, X12 have no injected errors there): each extra injector alone on
+// each clean shipment, same seeds as packages/synth/src/extra-errors.test.ts. Ground truth only.
+const toCtx = (s) => ({
+  shipmentId: s.id,
+  destination: s.destination,
+  invoice: { id: 'invoice', data: s.documents.invoice },
+  packingList: { id: 'packingList', data: s.documents.packingList },
+  billOfLading: { id: 'billOfLading', data: s.documents.billOfLading },
+  isf: s.documents.isf && { id: 'isf', data: s.documents.isf },
+});
+const cleans = buildDataset().map((e) => e.clean);
+const extraKinds = EXTRA_ERROR_KINDS.map((kind) => {
+  const row = { kind, rules: new Set(), injected: 0, tp: 0, fn: 0, fp: 0 };
+  cleans.forEach((clean, i) => {
+    const { shipment, labels } = injectErrors(clean, new Rng(0x9e37 + i), 1, [kind]);
+    const findings = runRules(toCtx(shipment)).findings;
+    for (const label of labels) {
+      row.injected++;
+      label.expectedRuleIds.forEach((r) => row.rules.add(r));
+      const hit = findings
+        .filter((f) => label.expectedRuleIds.includes(f.ruleId))
+        .some((f) => f.evidence.some((ev) => ev.documentId === label.document && ev.field === label.field));
+      if (hit) row.tp++;
+      else row.fn++;
+      row.fp += findings.filter((f) => !label.expectedRuleIds.includes(f.ruleId)).length;
+    }
+  });
+  return { ...row, ...pr(row) };
+});
+
 const extRules = extraction?.rules.table ?? [];
 const extTotal = pr(extRules.reduce((a, r) => ({ tp: a.tp + r.tp, fp: a.fp + r.fp, fn: a.fn + r.fn }), { tp: 0, fp: 0, fn: 0 }));
 const agentRow = (kind) => agent?.summary.find((s) => s.kind === kind);
@@ -88,6 +120,14 @@ const md = [
     const e = extRules.find((x) => x.rule === id);
     return `| ${id} | ${pct(t.recall)} | ${pct(t.precision)} | ${pct(e?.recall)} | ${pct(e?.precision)} |`;
   }),
+  '',
+  '## Rule coverage on injected errors outside v1',
+  '',
+  `Ground truth only (no extraction, no model). Error kinds that dataset v1 does not inject, applied one at a time to each of its ${cleans.length} clean shipments; v1 itself is unchanged. A hit is the labeled rule citing the altered field; anything else the engine raises counts against precision.`,
+  '',
+  '| Error kind | Rule | Injected | Caught | Missed | Other findings | Recall (truth) | Precision (truth) |',
+  '| --- | --- | --- | --- | --- | --- | --- | --- |',
+  ...extraKinds.map((k) => `| \`${k.kind}\` | ${[...k.rules].join(', ')} | ${k.injected} | ${k.tp} | ${k.fn} | ${k.fp} | ${pct(k.recall)} | ${pct(k.precision)} |`),
   '',
   ...(extraction
     ? [

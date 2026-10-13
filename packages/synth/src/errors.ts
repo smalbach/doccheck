@@ -15,7 +15,10 @@ export type ErrorKind =
   | 'container_check_digit'
   | 'consignee_address_mismatch'
   | 'packing_list_quantity_mismatch'
-  | 'missing_required_field';
+  | 'missing_required_field'
+  // Outside v1 (see EXTRA_ERROR_KINDS): only injected when asked for by name.
+  | 'onboard_date_shift'
+  | 'freight_terms_flipped';
 
 /** Ground truth for one injected error. The evaluation matches findings against these. */
 export interface ErrorLabel {
@@ -195,12 +198,47 @@ const INJECTORS: Injector[] = [
   },
 ];
 
+/**
+ * Injectors added after dataset v1 was frozen. They are kept out of ERROR_KINDS and out of the default
+ * of injectErrors so buildDataset() keeps producing the same shipments and labels (the evaluation
+ * cache depends on it). Pass them explicitly: injectErrors(s, rng, 1, ['onboard_date_shift']).
+ */
+const EXTRA_INJECTORS: Injector[] = [
+  {
+    kind: 'onboard_date_shift',
+    applies: (s) => !!s.documents.billOfLading.shippedOnBoardDate,
+    apply(s, rng) {
+      const bl = s.documents.billOfLading;
+      const before = bl.shippedOnBoardDate!;
+      const shift = rng.int(10, 40) * (rng.chance(0.5) ? 1 : -1);
+      const d = new Date(`${before}T00:00:00Z`);
+      d.setUTCDate(d.getUTCDate() + shift);
+      bl.shippedOnBoardDate = d.toISOString().slice(0, 10);
+      return { kind: this.kind, document: 'billOfLading', field: 'shippedOnBoardDate', before, after: bl.shippedOnBoardDate, expectedRuleIds: ['X9'], description: `BL shipped-on-board date moved ${Math.abs(shift)} days ${shift > 0 ? 'later' : 'earlier'} (${before} -> ${bl.shippedOnBoardDate}).` };
+    },
+  },
+  {
+    kind: 'freight_terms_flipped',
+    applies: (s) => !!s.documents.billOfLading.freightTerms,
+    apply(s) {
+      const bl = s.documents.billOfLading;
+      const before = bl.freightTerms!;
+      bl.freightTerms = before === 'PREPAID' ? 'COLLECT' : 'PREPAID';
+      return { kind: this.kind, document: 'billOfLading', field: 'freightTerms', before, after: bl.freightTerms, expectedRuleIds: ['X12'], description: `BL freight terms flipped from ${before} to ${bl.freightTerms}.` };
+    },
+  },
+];
+
+/** Kinds used by dataset v1 and the default of injectErrors. */
 export const ERROR_KINDS: ErrorKind[] = INJECTORS.map((i) => i.kind);
+/** Kinds outside v1; injectErrors only uses them when they are passed in `kinds`. */
+export const EXTRA_ERROR_KINDS: ErrorKind[] = EXTRA_INJECTORS.map((i) => i.kind);
+const ALL_INJECTORS = [...INJECTORS, ...EXTRA_INJECTORS];
 
 /** Returns a copy of the shipment with `count` errors of distinct kinds, plus a label for each. */
 export function injectErrors(shipment: SyntheticShipment, rng: Rng, count: number, kinds: ErrorKind[] = ERROR_KINDS): { shipment: SyntheticShipment; labels: ErrorLabel[] } {
   const copy = structuredClone(shipment);
-  const candidates = INJECTORS.filter((i) => kinds.includes(i.kind) && i.applies(copy));
+  const candidates = ALL_INJECTORS.filter((i) => kinds.includes(i.kind) && i.applies(copy));
   const chosen = rng.sample(candidates, count);
   const labels = chosen.map((i) => i.apply(copy, rng));
   // An error can hide another: with no consignee on the invoice there is nothing to compare the BL to.

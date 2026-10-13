@@ -30,6 +30,15 @@ Read the ground-truth columns as a consistency check, not as real-world recall: 
 | X7 | 100.0% | 100.0% | — | — |
 | X10 | 100.0% | 100.0% | 100.0% | 100.0% |
 
+## Rule coverage on injected errors outside v1
+
+Ground truth only (no extraction, no model). Error kinds that dataset v1 does not inject, applied one at a time to each of its 200 clean shipments; v1 itself is unchanged. A hit is the labeled rule citing the altered field; anything else the engine raises counts against precision.
+
+| Error kind | Rule | Injected | Caught | Missed | Other findings | Recall (truth) | Precision (truth) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `onboard_date_shift` | X9 | 200 | 199 | 1 | 0 | 99.5% | 100.0% |
+| `freight_terms_flipped` | X12 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+
 ## Extraction
 
 Model build unknown · prompt `extract-v3` · 6 shipments · 18 PDFs · 0 failed
