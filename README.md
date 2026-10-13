@@ -61,7 +61,7 @@ Money and weights are decimal strings and use fixed-point arithmetic — never J
 scripts/start-local.sh          # checks Postgres, Redis, S3, Ollama and models, then builds and serves http://localhost:3000
 ```
 
-Create a shipment and drop its PDFs, or pick one of the synthetic samples (each lists the errors injected into it). `#/results` shows the evaluation numbers. Extraction runs in the background; then **Validate** shows each finding with its evidence, a link that opens the PDF with the cited line highlighted, the regulation passage that backs it and, when the agent was involved, its rationale. `DEMO_READONLY=true` runs the same app as a public read-only demo with no model: curated samples from `data/demo` (`npm run demo:build`), model answers replayed from `eval/cache`, and every write refused except loading and validating a sample (see [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md), section 4). For frontend work, `npm run dev:web` serves the app on :5173 with hot reload and proxies the API.
+The landing page is public; create an account to get in. The app has a sidebar with a dashboard, your shipments (each account sees only its own), new shipment, samples, the rule catalog by destination, the evaluation numbers and your account. Create a shipment and drop its PDFs, or pick one of the synthetic samples (each lists the errors injected into it). Extraction runs in the background; then **Validate** shows each finding with its evidence, a link that opens the PDF with the cited line highlighted, the regulation passage that backs it and, when the agent was involved, its rationale. `DEMO_READONLY=true` runs the same app as a public read-only demo with no model: curated samples from `data/demo` (`npm run demo:build`), model answers replayed from `eval/cache`, and every write refused except loading and validating a sample (see [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md), section 4). For frontend work, `npm run dev:web` serves the app on :5173 with hot reload and proxies the API.
 
 Needs Postgres, Ollama with `qwen3.8` and `bge-m3`, and optionally Redis and S3 storage (see below).
 
@@ -143,7 +143,10 @@ After the rules run, `/validate` does a second pass:
 
 | Method | Route | Description |
 | --- | --- | --- |
-| GET | `/health` | Service status |
+| GET | `/health` | Service status (public) |
+| POST | `/auth/register`, `/auth/login`, `/auth/logout` | Accounts: `{ email, password, name }` / `{ email, password }`; the session is an httpOnly cookie. Every other route needs it |
+| GET / PATCH | `/auth/me` | The signed-in user; PATCH `{ name }` |
+| POST | `/auth/password` | `{ currentPassword, newPassword }`; signs out the other sessions |
 | GET | `/rules?destination=CA` | Active rules for a destination |
 | POST | `/shipments` | Create a shipment: `{ reference?, destination: "CA" \| "US", transportMode? }` |
 | GET | `/shipments/:id` | Shipment and status |

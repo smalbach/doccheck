@@ -82,7 +82,7 @@ export function useShipment(id: string) {
   const remove = () =>
     run('delete', async () => {
       await api.remove(id);
-      navigate('/');
+      navigate('/app/shipments');
     });
 
   const documents = useMemo(() => new Map((shipment?.documents ?? []).map((d) => [d.id, d])), [shipment]);

@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
-    proxy: Object.fromEntries(['/shipments', '/demo', '/rules', '/health', '/results'].map((p) => [p, api])),
+    // Keep the browser's Host header: the API refuses state-changing requests whose Origin is another host.
+    proxy: Object.fromEntries(['/auth', '/shipments', '/demo', '/rules', '/health', '/results'].map((p) => [p, { target: api, changeOrigin: false }])),
   },
 });

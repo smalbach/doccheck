@@ -28,7 +28,7 @@ export function SamplesCard({ samples, demo, busy, onLoad }: SamplesCardProps) {
   };
 
   return (
-    <Card title="Try a sample" aside={<ToggleChips value={filter} options={SAMPLE_FILTERS} onValueChange={changeFilter} ariaLabel="Filter samples" />}>
+    <Card title="Pick a sample" aside={<ToggleChips value={filter} options={SAMPLE_FILTERS} onValueChange={changeFilter} ariaLabel="Filter samples" />}>
       <p className="muted">
         Synthetic shipments with known, injected errors.{' '}
         {demo ? 'Loading one opens its three PDFs, already extracted by the local model.' : 'Loading one uploads its three PDFs and extracts them with the local model (about 30 s per document).'}

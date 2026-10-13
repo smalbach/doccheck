@@ -88,3 +88,24 @@
 .dialog-title { margin: 0 0 8px; font-size: 16px; }
 .dialog-description { margin: 0 0 16px; color: var(--muted); }
 .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* Avatar */
+.avatar { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 700; flex: none; overflow: hidden; }
+.avatar-fallback { line-height: 1; }
+
+/* Dropdown menu */
+.menu { min-width: 200px; background: var(--surface-raised); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 4px; z-index: 50; }
+.menu-item { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 4px; font-size: 13px; cursor: pointer; outline: none; user-select: none; }
+.menu-item[data-highlighted] { background: var(--accent-soft); color: var(--accent); }
+.menu-separator { height: 1px; background: var(--line); margin: 4px 0; }
+
+/* Tabs */
+.tabs-list { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 12px; overflow-x: auto; }
+.tabs-trigger { border: 0; background: none; padding: 8px 12px; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; white-space: nowrap; }
+.tabs-trigger[data-state='active'] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+.tabs-content:focus-visible { outline-offset: 4px; }
+
+/* Empty state */
+.empty-state { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; padding: 28px 16px; }
+.empty-state p { margin: 0; }
+.empty-state-title { font-weight: 600; }

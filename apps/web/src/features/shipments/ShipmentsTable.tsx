@@ -1,5 +1,4 @@
 import type { ShipmentSummary } from '../../api/types';
-import { Card } from '../../components/ui/Card';
 import { DataTable, type Column } from '../../components/ui/DataTable';
 import { StatusBadge } from '../../components/ui/StatusBadge';
 import { formatDateTime } from '../../lib/formatDateTime';
@@ -14,14 +13,6 @@ const COLUMNS: Column<ShipmentSummary>[] = [
   { key: 'created', header: 'Created', cell: (s) => <span className="muted">{formatDateTime(s.createdAt)}</span>, secondary: true },
 ];
 
-export function RecentShipmentsCard({ shipments }: { shipments: readonly ShipmentSummary[] }) {
-  return (
-    <Card title="Recent shipments">
-      {shipments.length === 0 ? (
-        <p className="muted">None yet.</p>
-      ) : (
-        <DataTable columns={COLUMNS} rows={shipments} rowKey={(s) => s.id} onRowClick={(s) => navigate(`/s/${s.id}`)} caption="Recent shipments" />
-      )}
-    </Card>
-  );
+export function ShipmentsTable({ shipments }: { shipments: readonly ShipmentSummary[] }) {
+  return <DataTable columns={COLUMNS} rows={shipments} rowKey={(s) => s.id} onRowClick={(s) => navigate(`/app/s/${s.id}`)} caption="Shipments" />;
 }

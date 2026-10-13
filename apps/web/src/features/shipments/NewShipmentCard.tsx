@@ -23,8 +23,8 @@ export function NewShipmentCard({ busy, disabled, onCreate }: NewShipmentCardPro
   };
 
   return (
-    <Card title="New shipment">
-      <p className="muted">Create a shipment, upload its commercial invoice, packing list and bill of lading as PDFs, then validate.</p>
+    <Card title="Shipment details">
+      <p className="muted">The destination sets which customs rules apply: CBSA (Canada) or CBP (United States). The reference is yours, e.g. a PO or booking number.</p>
       <form className="form-row" onSubmit={submit}>
         <Field label="Destination">{(id) => <Select id={id} value={destination} options={DESTINATION_OPTIONS} onValueChange={setDestination} />}</Field>
         <Field label="Reference" grow>

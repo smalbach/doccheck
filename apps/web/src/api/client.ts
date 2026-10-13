@@ -12,6 +12,7 @@ import type {
   Shipment,
   ShipmentDocument,
   ShipmentSummary,
+  User,
   Validation,
 } from './types';
 
@@ -21,6 +22,13 @@ const documentPath = (id: string, documentId: string) => `${shipmentPath(id)}/do
 /** Every call the web app makes to the API. */
 export const api = {
   health: () => request<Health>('/health'),
+
+  me: () => request<User>('/auth/me'),
+  login: (body: { email: string; password: string }) => request<User>('/auth/login', jsonBody(body)),
+  register: (body: { email: string; password: string; name: string }) => request<User>('/auth/register', jsonBody(body)),
+  logout: () => request<void>('/auth/logout', { method: 'POST' }),
+  updateProfile: (body: { name: string }) => request<User>('/auth/me', { ...jsonBody(body), method: 'PATCH' }),
+  changePassword: (body: { currentPassword: string; newPassword: string }) => request<void>('/auth/password', jsonBody(body)),
 
   shipments: () => request<ShipmentSummary[]>('/shipments'),
   shipment: (id: string) => request<Shipment>(shipmentPath(id)),

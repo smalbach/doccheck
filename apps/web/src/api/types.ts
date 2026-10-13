@@ -49,8 +49,17 @@ export interface Sample {
 export interface RuleDefinition {
   id: string;
   title: string;
+  appliesTo: Destination[] | 'ALL';
+  requires: DocumentType[];
   kind: string;
-  severity: string;
+  severity: Finding['severity'];
+}
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  createdAt: string;
 }
 
 export interface IsfFiling {

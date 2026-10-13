@@ -1,6 +1,6 @@
-import { BackLink } from '../../components/layout/BackLink';
 import { LoadingCard } from '../../components/layout/LoadingCard';
 import { Card } from '../../components/ui/Card';
+import { PageHeader } from '../../components/ui/PageHeader';
 import { pickMainProvider } from '../../lib/pickMainProvider';
 import { ExtractionSetCard } from './ExtractionSetCard';
 import { ModelComparison } from './ModelComparison';
@@ -20,13 +20,16 @@ export function ResultsPage() {
 
   return (
     <div className="page results">
-      <BackLink />
-      <h1>Evaluation results</h1>
-      <p className="muted lede">
-        Measured on synthetic shipments with known, injected errors (100 to Canada, 100 to the US), with the model running locally
-        {v1 && ` (${v1.provider}${v1.modelVersion ? `, build ${v1.modelVersion}` : ''})`}. Real documents will differ: treat these as a lower bound on what can go wrong, not a
-        guarantee.
-      </p>
+      <PageHeader
+        title="Evaluation"
+        description={
+          <>
+            Measured on synthetic shipments with known, injected errors (100 to Canada, 100 to the US), with the model running locally
+            {v1 && ` (${v1.provider}${v1.modelVersion ? `, build ${v1.modelVersion}` : ''})`}. Real documents will differ: treat these as a lower bound on what can go wrong, not a
+            guarantee.
+          </>
+        }
+      />
 
       {sets.length === 0 ? (
         <Card>
