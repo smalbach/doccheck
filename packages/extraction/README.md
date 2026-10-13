@@ -11,7 +11,8 @@ PDF ──► pdf-text (pdf.js) ──► classify ──► LLM: raw schema, va
 | File | Role |
 | --- | --- |
 | `pdf-text.ts` | Text lines with page and bbox; cells padded to their column so tables stay aligned |
-| `ocr.ts` | For pages without a text layer: render with pdf.js + @napi-rs/canvas at 288 dpi, tesseract.js (PSM 6, bundled English model), words back in PDF points |
+| `ocr.ts` | For pages without a text layer: render with pdf.js + @napi-rs/canvas at 288 dpi, tesseract.js (PSM 6, English + French models from npm), words back in PDF points |
+| `ocr-eval-cli.ts` | Text recall: share of truth values found in the text read from each PDF, without a model (`npm run eval:ocr`) |
 | `classify.ts` | Invoice / packing list / bill of lading from title and vocabulary |
 | `raw-schemas.ts` | What the model returns: strings as printed, `null` when not printed |
 | `llm.ts` | Ollama client with JSON-schema output, schema validation + one retry, on-disk cache |

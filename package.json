@@ -20,7 +20,8 @@
     "corpus:index": "npm run build -w @doccheck/regulations && node packages/regulations/dist/cli.js index",
     "start": "node apps/api/dist/main.js",
     "dev:web": "npm run dev -w @doccheck/web",
-    "metrics": "node scripts/metrics.mjs"
+    "metrics": "node scripts/metrics.mjs",
+    "eval:ocr": "npm run build -w @doccheck/extraction && node packages/extraction/dist/ocr-eval-cli.js"
   },
   "engines": {
     "node": ">=22"

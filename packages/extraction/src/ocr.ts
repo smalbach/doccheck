@@ -1,6 +1,7 @@
+import { copyFile, mkdir } from 'node:fs/promises';
 import { createRequire } from 'node:module';
-import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { dirname, join } from 'node:path';
 import type { Worker } from 'tesseract.js';
 
 /** A recognized word, in PDF points with the origin at the top-left of the page. */
@@ -20,25 +21,37 @@ interface RenderablePage {
 }
 
 /**
- * Render resolution: 4x (288 dpi). Upscaling a poor 110 dpi scan before OCR recovered more fields
- * than 2x or 3x in a comparison on the synthetic scans; on 150 dpi scans every setting was perfect.
+ * Settings chosen with `npm run eval:ocr` on the 120 synthetic scans (share of printed truth values
+ * found in the OCR text; the text layer of the same documents finds 99.7%):
+ *   English only, 4x: 82.8%   English + French, 4x: 86.6% (chosen)   English + French, 3x: 85.3%
+ *   with a contrast stretch and unsharp mask before OCR: 75.1% (sharpening amplifies scan noise)
+ * 4x renders at 288 dpi; upscaling a poor 110 dpi scan still helps tesseract.
  */
-const SCALE = 4;
+const SCALE = Number(process.env.OCR_SCALE ?? 4);
 /** Words recognized below this confidence are dropped: on scans they are mostly speckle. */
 const MIN_CONFIDENCE = 30;
 
 let worker: Promise<Worker> | undefined;
 
-/** One shared tesseract worker with the bundled English model; nothing is downloaded at run time. */
+/** One shared tesseract worker with English and French models (CBSA accepts French invoices). */
 function getWorker(): Promise<Worker> {
   worker ??= (async () => {
     const { createWorker } = await import('tesseract.js');
     const require = createRequire(__filename);
-    const langPath = join(dirname(require.resolve('@tesseract.js-data/eng/package.json')), '4.0.0_best_int');
-    const w = await createWorker('eng', 1, { langPath, gzip: true, cachePath: join(tmpdir(), 'doccheck-tesseract') });
-    // PSM 6 (one uniform block) found 16 of 22 key values on degraded scans against 11 for the
-    // default automatic segmentation, which drops faint cells; row grouping uses the word boxes anyway.
-    await w.setParameters({ tessedit_pageseg_mode: '6' as never });
+    // Language data comes from the @tesseract.js-data packages (installed with npm, nothing is
+    // downloaded at run time). Each package has its own folder and tesseract.js takes a single
+    // langPath, so the files are copied side by side into one folder first.
+    const langs = (process.env.OCR_LANGS ?? 'eng+fra').split('+');
+    const dir = join(tmpdir(), 'doccheck-tesseract');
+    await mkdir(dir, { recursive: true });
+    for (const code of langs) {
+      const file = join(dirname(require.resolve(`@tesseract.js-data/${code}/package.json`)), '4.0.0_best_int', `${code}.traineddata.gz`);
+      await copyFile(file, join(dir, `${code}.traineddata.gz`));
+    }
+    const w = await createWorker(langs.join('+'), 1, { langPath: dir, gzip: true, cacheMethod: 'none' });
+    // PSM 6 (one uniform block): on degraded scans the default automatic segmentation drops faint
+    // table cells (11 of 22 key values against 16 in a first comparison); row grouping uses the word boxes anyway.
+    await w.setParameters({ tessedit_pageseg_mode: (process.env.OCR_PSM ?? '6') as never });
     return w;
   })();
   return worker;
@@ -83,3 +96,4 @@ export async function ocrPage(page: RenderablePage): Promise<{ words: OcrWord[];
   }
   return { words, confidence: data.confidence };
 }
+

@@ -139,6 +139,14 @@ Restaurar: `pg_restore -h localhost -U postgres -d doccheck --clean doccheck.dum
 
 Cargar con `launchctl load ~/Library/LaunchAgents/com.doccheck.app.plist`. Repetir con `scripts/dev-s3.sh` para SeaweedFS.
 
+### Verlo desde el celular u otra red (ngrok)
+
+```bash
+ngrok http 3000 --url https://powerful-stallion-purely.ngrok-free.app --basic-auth "usuario:contraseña"
+```
+
+El túnel apunta al puerto de la app (3000, no 80). Sin `--basic-auth` cualquiera con la URL ve los envíos y puede subir documentos. ngrok gratuito muestra una página de aviso la primera vez ("Visit Site").
+
 ## 2. Docker (autoalojado)
 
 `Dockerfile` construye una imagen con la API, la web y el corpus de normativa. `docker-compose.yml` la levanta con Postgres (con pgvector), Redis y MinIO bajo el perfil `app`; Ollama queda en el host para usar la GPU.
