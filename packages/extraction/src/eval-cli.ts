@@ -1,5 +1,6 @@
 import { runRules, type ShipmentContext } from '@doccheck/rules';
-import type { BillOfLading, CommercialInvoice, Destination, PackingList } from '@doccheck/schemas';
+import type { BillOfLading, CommercialInvoice, Destination, Isf, PackingList } from '@doccheck/schemas';
+import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { basename, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
@@ -13,12 +14,17 @@ import { scoreDocument, tally, type FieldScore } from './score';
  *
  *   LLM_MODEL=qwen3.8 node dist/eval-cli.js --limit 10
  *   LLM_CACHE_MODE=replay node dist/eval-cli.js        # CI: cached responses only
+ *   node dist/eval-cli.js --data data/eval/v1-isf      # ISF confirmations (npm run synth -- --isf-pdfs)
+ *
+ * Only the PDFs present in a shipment folder are extracted. For the rules, a document without a
+ * PDF in the folder (the invoice in v1-isf) comes from truth.json.
  */
 
-const DOCS: { file: string; type: ExtractableType; key: 'invoice' | 'packingList' | 'billOfLading'; template: 'invoiceTemplate' | 'packingListTemplate' | 'blTemplate' }[] = [
+const DOCS: { file: string; type: ExtractableType; key: 'invoice' | 'packingList' | 'billOfLading' | 'isf'; template: string }[] = [
   { file: 'invoice.pdf', type: 'COMMERCIAL_INVOICE', key: 'invoice', template: 'invoiceTemplate' },
   { file: 'packing-list.pdf', type: 'PACKING_LIST', key: 'packingList', template: 'packingListTemplate' },
   { file: 'bill-of-lading.pdf', type: 'BILL_OF_LADING', key: 'billOfLading', template: 'blTemplate' },
+  { file: 'isf.pdf', type: 'ISF', key: 'isf', template: 'isfTemplate' },
 ];
 
 
@@ -26,7 +32,7 @@ interface Truth {
   id: string;
   destination: Destination;
   render: Record<string, string | boolean>;
-  documents: { invoice: CommercialInvoice; packingList: PackingList; billOfLading: BillOfLading };
+  documents: { invoice: CommercialInvoice; packingList: PackingList; billOfLading: BillOfLading; isf?: Isf };
 }
 
 interface DocResult {
@@ -74,7 +80,8 @@ async function main() {
     ids = [...ids.filter((i) => i.startsWith('CA')).slice(0, Math.ceil(n / 2)), ...ids.filter((i) => i.startsWith('US')).slice(0, Math.floor(n / 2))];
   }
 
-  console.log(`Extracting ${ids.length} shipments (${ids.length * 3} PDFs) with ${base.provider.id}, cache ${cacheDir}`);
+  const pdfCount = ids.reduce((n, id) => n + DOCS.filter((d) => existsSync(join(dataDir, id, d.file))).length, 0);
+  console.log(`Extracting ${ids.length} shipments (${pdfCount} PDFs) with ${base.provider.id}, cache ${cacheDir}`);
   const docResults: DocResult[] = [];
   const shipmentResults: ShipmentResult[] = [];
   const started = Date.now();
@@ -87,8 +94,9 @@ async function main() {
       const truth = JSON.parse(await readFile(join(dir, 'truth.json'), 'utf8')) as Truth;
       const labels = JSON.parse(await readFile(join(dir, 'labels.json'), 'utf8')) as { errors: { expectedRuleIds: string[] }[] };
       const extracted: Partial<Truth['documents']> = {};
+      const present = DOCS.filter((d) => existsSync(join(dir, d.file)));
 
-      for (const d of DOCS) {
+      for (const d of present) {
         const result: DocResult = { shipment: id, type: d.type, template: String(truth.render[d.template]), detectedType: '', scores: [], issues: [], cached: false };
         try {
           const pdf = await readFile(join(dir, d.file));
@@ -113,13 +121,18 @@ async function main() {
         invoice: docs.invoice && { id: 'invoice', data: docs.invoice },
         packingList: docs.packingList && { id: 'packingList', data: docs.packingList },
         billOfLading: docs.billOfLading && { id: 'billOfLading', data: docs.billOfLading },
+        isf: docs.isf && { id: 'isf', data: docs.isf },
       });
+      // Paper documents with no PDF in this set come from the truth, so the rules see a whole shipment.
+      // The ISF only counts when its PDF is in the set, so v1 reports stay comparable (X11 is not run there).
+      const fromTruth = Object.fromEntries(DOCS.filter((d) => d.key !== 'isf' && !present.includes(d)).map((d) => [d.key, truth.documents[d.key]]));
+      const truthDocs = present.some((d) => d.key === 'isf') ? truth.documents : { ...truth.documents, isf: undefined };
       const ruleIds = (docs: Partial<Truth['documents']>) => [...new Set(runRules(ctx(docs)).findings.map((f) => f.ruleId))].sort();
       shipmentResults.push({
         id,
         expectedRules: [...new Set(labels.errors.flatMap((e) => e.expectedRuleIds))].sort(),
-        rulesOnTruth: ruleIds(truth.documents),
-        rulesOnExtracted: Object.keys(extracted).length === 3 ? ruleIds(extracted) : null,
+        rulesOnTruth: ruleIds(truthDocs),
+        rulesOnExtracted: Object.keys(extracted).length === present.length ? ruleIds({ ...fromTruth, ...extracted }) : null,
       });
       done++;
       if (done % 5 === 0 || done === ids.length) console.log(`  ${done}/${ids.length} shipments (${Math.round((Date.now() - started) / 1000)} s)`);
@@ -131,7 +144,7 @@ async function main() {
 
   // ---- aggregate
   const all = docResults.flatMap((r) => r.scores);
-  const byType = DOCS.map((d) => ({ type: d.type, ...tally(docResults.filter((r) => r.type === d.type).flatMap((r) => r.scores)) }));
+  const byType = DOCS.filter((d) => docResults.some((r) => r.type === d.type)).map((d) => ({ type: d.type, ...tally(docResults.filter((r) => r.type === d.type).flatMap((r) => r.scores)) }));
   const templates = [...new Set(docResults.map((r) => `${r.type} · ${r.template}`))].sort();
   const byTemplate = templates.map((t) => ({ template: t, ...tally(docResults.filter((r) => `${r.type} · ${r.template}` === t).flatMap((r) => r.scores)) }));
   const patterns = [...new Set(all.map((s) => `${s.pattern}`))];
@@ -212,7 +225,7 @@ async function main() {
     '',
     '## Rules on extracted documents vs injected errors',
     '',
-    `${usable.length} of ${shipmentResults.length} shipments had all three documents extracted.`,
+    `${usable.length} of ${shipmentResults.length} shipments had all their PDFs extracted.`,
     '',
     '| Rule | Recall | Precision | TP | FP | FN |',
     '| --- | --- | --- | --- | --- | --- |',

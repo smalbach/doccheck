@@ -4,17 +4,17 @@ import type { RenderOptions } from './generate';
 /**
  * HTML templates for the three paper documents. Each template varies layout, labels, number and
  * date formats, so extraction cannot rely on one fixed position or spelling. The ISF is an
- * electronic filing and is only kept as JSON.
+ * electronic filing; its printed confirmation is in isf.ts and only goes into data/eval/v1-isf.
  */
 
-type Style = 'classic' | 'modern' | 'legacy';
+export type Style = 'classic' | 'modern' | 'legacy';
 
-const esc = (v: unknown) =>
+export const esc = (v: unknown) =>
   String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
-function date(iso: string | undefined, style: Style): string {
+export function date(iso: string | undefined, style: Style): string {
   if (!iso) return '';
   const [y, m, d] = iso.split('-');
   if (style === 'legacy') return `${d}-${MONTHS[Number(m) - 1]}-${y}`;
@@ -33,13 +33,13 @@ function num(v: string | undefined, style: Style): string {
 
 const w = (x: Weight | undefined, style: Style) => (x ? `${num(x.raw.value, style)} ${x.raw.unit === 'KG' && style === 'legacy' ? 'KGS' : x.raw.unit}` : '');
 
-function address(a: Address, style: Style): string {
+export function address(a: Address, style: Style): string {
   const cityLine = [a.city, a.region, a.postalCode].filter(Boolean).join(style === 'legacy' ? ' ' : ', ');
   const rows = [...a.lines, cityLine, a.country].filter(Boolean);
   return rows.map((r) => esc(style === 'legacy' ? r.toUpperCase() : r)).join('<br>');
 }
 
-function party(p: Party | undefined, style: Style): string {
+export function party(p: Party | undefined, style: Style): string {
   if (!p) return '';
   const name = style === 'legacy' ? p.name.toUpperCase() : p.name;
   const tax = p.taxId ? `<br>${style === 'legacy' ? 'TAX ID' : 'Tax ID'}: ${esc(p.taxId)}` : '';
@@ -78,7 +78,7 @@ const CSS: Record<Style, string> = {
     .num { text-align: right; } .totals td { border-top: 1px dashed #000; } pre { font-family: inherit; margin: 0; }`,
 };
 
-function page(title: string, style: Style, body: string): string {
+export function page(title: string, style: Style, body: string): string {
   return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title><style>
     @page { size: A4; margin: 14mm 12mm 16mm; } ${CSS[style]}
     thead { display: table-header-group; } tr { page-break-inside: avoid; }

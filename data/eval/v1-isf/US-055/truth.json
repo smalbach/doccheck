@@ -1,0 +1,386 @@
+{
+  "id": "US-055",
+  "seed": 1905053393,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "LB",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NIN2600194",
+      "invoiceDate": "2026-08-11",
+      "poNumber": "PA244498",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-08-13",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ningbo",
+          "unLocode": "CNNGB",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ningbo"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 200,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "1584",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "15.20",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "24076.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8516.71"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1881.00",
+        "raw": {
+          "value": "1881.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1663.20",
+        "raw": {
+          "value": "1663.20",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "24076.80",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Los Angeles",
+        "unLocode": "USLAX",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-NIN2600194",
+      "invoiceRef": "NIN2600194",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "packages": [
+        {
+          "range": "1-198",
+          "count": 198,
+          "type": "CTN",
+          "marks": "PACIFIC/PA244498/C/NO. 1-198",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "1584",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1663.20",
+            "raw": {
+              "value": "1663.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1881.00",
+            "raw": {
+              "value": "1881.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 198,
+        "netWeight": {
+          "kg": "1663.20",
+          "raw": {
+            "value": "1663.20",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1881.00",
+          "raw": {
+            "value": "1881.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "20.58"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVNGB757528",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "708941472",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "notifyParty": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "094W",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Ningbo",
+        "unLocode": "CNNGB",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Los Angeles",
+        "unLocode": "USLAX",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Fontana",
+        "unLocode": "USFON",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGXU8795592",
+          "seal": "AG4661847",
+          "type": "20GP",
+          "packages": 198,
+          "grossWeight": {
+            "kg": "1881.00",
+            "raw": {
+              "value": "4147",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "20.58"
+        }
+      ],
+      "totalPackages": 198,
+      "totalGrossWeight": {
+        "kg": "1881.00",
+        "raw": {
+          "value": "4147",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "PACIFIC/PA244498/C/NO. 1-198",
+      "cargoDescription": "SAID TO CONTAIN 198 CTNS ELECTRIC KETTLE 1.7 L",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ningbo",
+      "dateOfIssue": "2026-08-15",
+      "shippedOnBoardDate": "2026-08-15",
+      "references": [
+        "NIN2600194",
+        "PA244498"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "importerOfRecordNumber": "95-478321000",
+      "consigneeNumber": "95-478321000",
+      "manufacturer": {
+        "name": "Cixi Hongda Electric Factory",
+        "address": {
+          "lines": [
+            "22 Xinxing Rd"
+          ],
+          "city": "Cixi",
+          "region": "Zhejiang",
+          "country": "CN"
+        }
+      },
+      "shipToParty": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "851671",
+      "containerStuffingLocation": {
+        "lines": [
+          "22 Xinxing Rd"
+        ],
+        "city": "Cixi",
+        "region": "Zhejiang",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

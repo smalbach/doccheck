@@ -122,3 +122,18 @@ export const RawBillOfLading = z.object({
   shippedOnBoardDate: text,
 });
 export type RawBillOfLading = z.infer<typeof RawBillOfLading>;
+
+/** ISF (10+2) filing confirmation: the ten importer data elements as printed. */
+export const RawIsf = z.object({
+  importerOfRecordNumber: text.describe('Importer of record number exactly as printed, e.g. 36-412876500'),
+  consigneeNumber: text,
+  manufacturer: RawParty.nullable().describe('Manufacturer (or supplier)'),
+  seller: RawParty.nullable(),
+  buyer: RawParty.nullable(),
+  shipToParty: RawParty.nullable(),
+  containerStuffingLocation: RawParty.nullable().describe('Address where the container was stuffed; name only if a facility name is printed there'),
+  consolidator: RawParty.nullable().describe('Consolidator (stuffer)'),
+  countryOfOrigin: text,
+  htsCode: text.describe('Commodity HTSUS number as printed, e.g. 8481.80'),
+});
+export type RawIsf = z.infer<typeof RawIsf>;

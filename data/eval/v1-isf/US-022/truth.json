@@ -1,0 +1,505 @@
+{
+  "id": "US-022",
+  "seed": 2139960437,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/3447",
+      "invoiceDate": "2026-02-05",
+      "poNumber": "HA854789",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-02-10",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "New York"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 217,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "31000",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "0.89",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "27590.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "51",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "92.01",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4692.51",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 3,
+          "sku": "HB-M12",
+          "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+          "quantity": {
+            "value": "5500",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "2.35",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "12925.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "7318.15"
+        }
+      ],
+      "grossWeight": {
+        "kg": "10260.50",
+        "raw": {
+          "value": "10260.50",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "9649.50",
+        "raw": {
+          "value": "9649.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "45207.51",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/3447",
+      "invoiceRef": "CI/26/3447",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-155",
+          "count": 155,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA854789/C/NO. 1-217",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "31000",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3410.00",
+            "raw": {
+              "value": "3410.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3549.50",
+            "raw": {
+              "value": "3549.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "156-206",
+          "count": 51,
+          "type": "CRT",
+          "marks": "HARBORLINE/HA854789/C/NO. 1-217",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "51",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "739.50",
+            "raw": {
+              "value": "739.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "969.00",
+            "raw": {
+              "value": "969.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "207-217",
+          "count": 11,
+          "type": "PLT",
+          "marks": "HARBORLINE/HA854789/C/NO. 1-217",
+          "contents": [
+            {
+              "sku": "HB-M12",
+              "description": "Hex bolt M12x60",
+              "quantity": {
+                "value": "5500",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "5500.00",
+            "raw": {
+              "value": "5500.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "5742.00",
+            "raw": {
+              "value": "5742.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            100,
+            60
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 217,
+        "netWeight": {
+          "kg": "9649.50",
+          "raw": {
+            "value": "9649.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "10260.50",
+          "raw": {
+            "value": "10260.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "17.06"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWETAO9179456",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "786023407",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "026E",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "TWEU6955936",
+          "seal": "TW7930076",
+          "type": "20GP",
+          "packages": 217,
+          "grossWeight": {
+            "kg": "10260.50",
+            "raw": {
+              "value": "10260.50",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "17.06"
+        }
+      ],
+      "totalPackages": 217,
+      "totalGrossWeight": {
+        "kg": "10260.50",
+        "raw": {
+          "value": "10260.50",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/HA854789/C/NO. 1-217",
+      "cargoDescription": "SAID TO CONTAIN 217 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-02-10",
+      "shippedOnBoardDate": "2026-02-10",
+      "references": [
+        "CI/26/3447",
+        "HA854789"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "848210",
+      "containerStuffingLocation": {
+        "lines": [
+          "55 Huangpu Rd",
+          "Huangdao District"
+        ],
+        "city": "Qingdao",
+        "region": "Shandong",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

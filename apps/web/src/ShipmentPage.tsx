@@ -119,7 +119,7 @@ export function ShipmentPage({ id }: { id: string }) {
             tabIndex={0}
           >
             <input ref={input} type="file" accept="application/pdf" multiple hidden onChange={(e) => void upload([...(e.target.files ?? [])])} />
-            {busy === 'upload' ? 'Uploading…' : 'Drop PDFs here or click to choose: invoice, packing list, bill of lading'}
+            {busy === 'upload' ? 'Uploading…' : `Drop PDFs here or click to choose: invoice, packing list, bill of lading${shipment.destination === 'US' ? ', ISF' : ''}`}
           </div>
           {shipment.documents.length > 0 && (
             <ul className="docs">
@@ -150,7 +150,17 @@ export function ShipmentPage({ id }: { id: string }) {
               {busy === 'validate' ? (useAgent ? 'Validating and reviewing…' : 'Validating…') : 'Validate'}
             </button>
           </div>
-          {shipment.destination === 'US' && <IsfCard id={id} onError={setError} />}
+          {shipment.destination === 'US' && (
+            <IsfCard
+              id={id}
+              version={shipment.documents.filter((d) => d.detectedType === 'ISF' || pending(d)).map((d) => `${d.id}:${d.status}`).join(',')}
+              onError={setError}
+              onOpen={(documentId) => {
+                const doc = docs.get(documentId);
+                if (doc) setViewer({ doc });
+              }}
+            />
+          )}
           {validation && validation.skipped.length > 0 && (
             <p className="muted small">
               Not checked: {validation.skipped.map((s) => `${s.ruleId} (needs ${s.missing.map((m) => TYPE_LABEL[m]).join(', ')})`).join('; ')}.
@@ -207,13 +217,16 @@ export function ShipmentPage({ id }: { id: string }) {
   );
 }
 
-/** The ISF is filed electronically, so it is uploaded as JSON (the Isf schema) rather than a PDF. */
-function IsfCard({ id, onError }: { id: string; onError: (m: string) => void }) {
+/**
+ * The shipment's ISF: from its filing confirmation PDF (dropped with the other documents), from
+ * JSON (the Isf schema), or from the sample. `version` changes when an ISF PDF finishes extracting.
+ */
+function IsfCard({ id, version, onError, onOpen }: { id: string; version: string; onError: (m: string) => void; onOpen: (documentId: string) => void }) {
   const [isf, setIsf] = useState<IsfFiling | null>();
   const input = useRef<HTMLInputElement>(null);
   useEffect(() => {
     api.isf(id).then(setIsf, () => setIsf(null));
-  }, [id]);
+  }, [id, version]);
 
   const upload = async (file?: File) => {
     if (!file) return;
@@ -233,14 +246,24 @@ function IsfCard({ id, onError }: { id: string; onError: (m: string) => void }) 
           Seller {isf.data.seller.name} · origin {isf.data.countryOfOrigin} · HTS {isf.data.htsCode}
           <br />
           <span className="muted">
-            {isf.source === 'sample' ? 'From the sample' : 'Uploaded'} {new Date(isf.updatedAt).toLocaleString()} ·{' '}
+            {isf.source === 'pdf' && isf.documentId ? (
+              <>
+                From PDF{' '}
+                <button className="link small" onClick={() => onOpen(isf.documentId!)}>{isf.fileName ?? 'document'}</button>
+              </>
+            ) : isf.source === 'sample' ? (
+              'From the sample'
+            ) : (
+              'Uploaded as JSON'
+            )}{' '}
+            {new Date(isf.updatedAt).toLocaleString()} ·{' '}
             <button className="link small" onClick={() => api.deleteIsf(id).then(() => setIsf(null))}>remove</button>
           </span>
         </p>
       ) : (
         <p className="small muted">
-          No ISF on file, so X11 (ISF vs invoice) will not run.{' '}
-          <button className="link small" onClick={() => input.current?.click()}>Upload ISF JSON</button>
+          No ISF on file, so X11 (ISF vs invoice) will not run. Drop the ISF filing PDF with the documents, or{' '}
+          <button className="link small" onClick={() => input.current?.click()}>upload ISF JSON</button>
         </p>
       )}
       <input ref={input} type="file" accept="application/json,.json" hidden onChange={(e) => void upload(e.target.files?.[0])} />

@@ -1,0 +1,456 @@
+{
+  "id": "US-096",
+  "seed": 1330422325,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false,
+    "isfTemplate": "confirmation"
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "QIN2608127",
+      "invoiceDate": "2026-03-23",
+      "poNumber": "PO-45637",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-04-03",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Qingdao"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 63,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "HB-M12",
+          "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+          "quantity": {
+            "value": "3500",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "2.06",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2710.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "7318.15"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "56",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "84.80",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4748.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4718.00",
+        "raw": {
+          "value": "4718.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4312.00",
+        "raw": {
+          "value": "4312.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "11958.80",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "charges": {
+        "freight": {
+          "amount": "1382.00",
+          "currency": "CAD"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-QIN2608127",
+      "invoiceRef": "QIN2608127",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "packages": [
+        {
+          "range": "1-7",
+          "count": 7,
+          "type": "PLT",
+          "marks": "BLUEBONNET/PO-45637/C/NO. 1-63",
+          "contents": [
+            {
+              "sku": "HB-M12",
+              "description": "Hex bolt M12x60",
+              "quantity": {
+                "value": "3500",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3500.00",
+            "raw": {
+              "value": "3500.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3654.00",
+            "raw": {
+              "value": "3654.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            100,
+            60
+          ]
+        },
+        {
+          "range": "8-63",
+          "count": 56,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-45637/C/NO. 1-63",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "56",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "812.00",
+            "raw": {
+              "value": "812.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1064.00",
+            "raw": {
+              "value": "1064.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 63,
+        "netWeight": {
+          "kg": "4312.00",
+          "raw": {
+            "value": "4312.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4718.00",
+          "raw": {
+            "value": "4718.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "9.97"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSTAO521336",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "974852233",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "notifyParty": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "022E",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "TWEU9619485",
+          "seal": "TW2448884",
+          "type": "20GP",
+          "packages": 63,
+          "grossWeight": {
+            "kg": "4718.00",
+            "raw": {
+              "value": "4718.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "9.97"
+        }
+      ],
+      "totalPackages": 63,
+      "totalGrossWeight": {
+        "kg": "4953.90",
+        "raw": {
+          "value": "4953.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "BLUEBONNET/PO-45637/C/NO. 1-63",
+      "cargoDescription": "SAID TO CONTAIN 63 PKGS HEX BOLT M12X60 AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-04-04",
+      "shippedOnBoardDate": "2026-04-04",
+      "references": [
+        "QIN2608127",
+        "PO-45637"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "importerOfRecordNumber": "74-381245600",
+      "consigneeNumber": "74-381245600",
+      "manufacturer": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipToParty": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "940360",
+      "containerStuffingLocation": {
+        "lines": [
+          "55 Huangpu Rd",
+          "Huangdao District"
+        ],
+        "city": "Qingdao",
+        "region": "Shandong",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

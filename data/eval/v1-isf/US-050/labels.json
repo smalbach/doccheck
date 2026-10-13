@@ -1,0 +1,29 @@
+{
+  "id": "US-050",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "lines[*].countryOfOrigin",
+      "before": [
+        "CO"
+      ],
+      "after": null,
+      "expectedRuleIds": [
+        "U1"
+      ],
+      "description": "Country of origin missing on every invoice line."
+    },
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "4438.40",
+      "after": "4660.32",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.05 against the packing list."
+    }
+  ]
+}

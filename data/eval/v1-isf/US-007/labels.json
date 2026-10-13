@@ -1,0 +1,39 @@
+{
+  "id": "US-007",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "PCRU6568334",
+      "after": "PCRU6568332",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: PCRU6568334 -> PCRU6568332."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[0].quantity.value",
+      "before": "4872",
+      "after": "4882",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 1 quantity changed without updating the line total."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "20170.08",
+      "after": "2170.08",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (20170.08 -> 2170.08)."
+    }
+  ]
+}

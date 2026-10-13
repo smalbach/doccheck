@@ -20,6 +20,11 @@ const FIELDS: Record<string, [string, string][]> = {
     ['Port of loading', 'portOfLoading.name'], ['Port of discharge', 'portOfDischarge.name'], ['On board', 'shippedOnBoardDate'],
     ['Packages', 'totalPackages'], ['Gross weight (kg)', 'totalGrossWeight.kg'], ['Freight', 'freightTerms'],
   ],
+  ISF: [
+    ['Importer of record no.', 'importerOfRecordNumber'], ['Consignee no.', 'consigneeNumber'], ['Seller', 'seller.name'], ['Buyer', 'buyer.name'],
+    ['Manufacturer', 'manufacturer.name'], ['Ship-to party', 'shipToParty.name'], ['Country of origin', 'countryOfOrigin'], ['HTS', 'htsCode'],
+    ['Stuffing location', 'containerStuffingLocation.city'], ['Consolidator', 'consolidator.name'],
+  ],
 };
 
 const get = (o: unknown, path: string): unknown => path.split('.').reduce<unknown>((c, k) => (c == null ? undefined : (c as Data)[k]), o);
@@ -30,6 +35,7 @@ const TYPES: [string, string][] = [
   ['COMMERCIAL_INVOICE', 'Commercial invoice'],
   ['PACKING_LIST', 'Packing list'],
   ['BILL_OF_LADING', 'Bill of lading'],
+  ['ISF', 'ISF (10+2)'],
 ];
 
 export function DocumentData({ shipmentId, doc, onClose, onReextract }: { shipmentId: string; doc: ShipmentDocument; onClose: () => void; onReextract: () => void }) {

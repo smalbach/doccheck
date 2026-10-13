@@ -1,0 +1,16 @@
+{
+  "id": "US-083",
+  "errors": [
+    {
+      "kind": "isf_origin_mismatch",
+      "document": "isf",
+      "field": "countryOfOrigin",
+      "before": "CO",
+      "after": "VN",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF country of origin VN instead of CO"
+    }
+  ]
+}

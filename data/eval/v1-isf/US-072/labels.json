@@ -1,0 +1,16 @@
+{
+  "id": "US-072",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "invoiceDate",
+      "before": "2026-03-09",
+      "after": null,
+      "expectedRuleIds": [
+        "U1"
+      ],
+      "description": "Invoice date missing."
+    }
+  ]
+}

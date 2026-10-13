@@ -1,11 +1,14 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { extractDocument, PROMPT_VERSION, type ExtractableType, type LlmClient } from '@doccheck/extraction';
-import type { CommercialInvoice } from '@doccheck/schemas';
+import type { CommercialInvoice, Isf } from '@doccheck/schemas';
 import { InjectLlm } from '../llm/llm.module';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { ShipmentsRepository } from './shipments.repository';
 
-/** Extracts one stored document: PDF from storage -> local model -> extraction row in Postgres. */
+/**
+ * Extracts one stored document: PDF from storage -> local model -> extraction row in Postgres.
+ * An ISF PDF is also saved as the shipment's ISF (source 'pdf'), which X11 reads.
+ */
 @Injectable()
 export class DocumentProcessor {
   private readonly logger = new Logger(DocumentProcessor.name);
@@ -26,6 +29,13 @@ export class DocumentProcessor {
     try {
       const bytes = await this.storage.get(doc.storageKey);
       const { pdf, ...result } = await extractDocument(new Uint8Array(bytes), this.llm, type);
+      // An ISF filing confirmation becomes the shipment's ISF (US only), replacing any earlier one.
+      let isf: Isf | undefined;
+      if (result.documentType === 'ISF' && result.data) {
+        const shipment = await this.repo.findShipment(doc.shipmentId);
+        if (shipment?.destination === 'US') isf = result.data as Isf;
+        else result.issues.push('Not used: the ISF only applies to US-bound shipments');
+      }
       await this.repo.saveExtraction(
         documentId,
         {
@@ -47,6 +57,8 @@ export class DocumentProcessor {
           outputTokens: result.usage?.outputTokens,
         },
       );
+      if (isf) await this.repo.saveIsf(doc.shipmentId, isf, 'pdf', documentId);
+      else await this.repo.deleteIsfFromDocument(documentId);
       this.logger.log(`${doc.fileName}: ${result.documentType} in ${Math.round((Date.now() - started) / 1000)} s${result.data ? '' : ' (not normalized)'}`);
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);

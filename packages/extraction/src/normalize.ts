@@ -5,6 +5,7 @@ import {
   CommercialInvoice,
   Container,
   Incoterm,
+  Isf,
   Location,
   PackageGroup,
   PackingList,
@@ -14,7 +15,7 @@ import {
   type Weight,
 } from '@doccheck/schemas';
 import type { z } from 'zod';
-import type { RawBillOfLading, RawInvoice, RawPackingList, RawParty, RawPlace, RawWeight } from './raw-schemas';
+import type { RawBillOfLading, RawInvoice, RawIsf, RawPackingList, RawParty, RawPlace, RawWeight } from './raw-schemas';
 
 /**
  * Printed text -> canonical values. Pure functions, no model involved: every conversion rule
@@ -168,18 +169,21 @@ function valid<S extends z.ZodType>(schema: S, value: unknown, field: string, is
   return undefined;
 }
 
-function party(p: RawParty | null | undefined, field: string, issues: string[]): Party | undefined {
-  if (!p || !clean(p.name)) return undefined;
-  const country = countryCode(p.country);
+function rawAddress(p: RawParty): Address {
   const address: Address = {
     lines: p.addressLines.map((l) => clean(l)).filter((l): l is string => !!l),
     city: clean(p.city) ?? undefined,
     region: clean(p.region) ?? undefined,
     postalCode: clean(p.postalCode) ?? undefined,
-    country: country ?? '',
+    country: countryCode(p.country) ?? '',
   };
   address.lines = streetLines(address);
-  return valid(Party, { name: clean(p.name), address, taxId: clean(p.taxId) ?? undefined }, field, issues);
+  return address;
+}
+
+function party(p: RawParty | null | undefined, field: string, issues: string[]): Party | undefined {
+  if (!p || !clean(p.name)) return undefined;
+  return valid(Party, { name: clean(p.name), address: rawAddress(p), taxId: clean(p.taxId) ?? undefined }, field, issues);
 }
 
 /** "Nhava Sheva, IN" -> name "Nhava Sheva", country IN, when the model leaves the country in the name. */
@@ -366,6 +370,46 @@ export function normalizeBillOfLading(raw: RawBillOfLading): NormalizeResult<Bil
       dateOfIssue: isoDate(raw.dateOfIssue) ?? undefined,
       shippedOnBoardDate: isoDate(raw.shippedOnBoardDate) ?? undefined,
       references: raw.references.length ? raw.references : undefined,
+    }),
+    issues,
+  );
+}
+
+/** "8481.80" | "HTS 8481.80.1020" | "848180" -> digits only ("848180"); null when fewer than 6 digits. */
+export function htsCode(s: string | null | undefined): string | null {
+  const digits = clean(s)?.replace(/^(HTSUS|HTS|HS)\b\W*/i, '').replace(/\D/g, '');
+  return digits && digits.length >= 6 ? digits : null;
+}
+
+/** Importer of record / consignee number: "36-412876500" kept as printed, spaces dropped, uppercased. */
+function filerNumber(s: string | null | undefined, field: string, issues: string[]): string | undefined {
+  const t = clean(s)?.toUpperCase().replace(/\s+/g, '');
+  if (!t) return undefined;
+  if (/\d{6}/.test(t.replace(/\D/g, ''))) return t;
+  issues.push(`${field}: "${t}" does not look like an importer number`);
+  return undefined;
+}
+
+export function normalizeIsf(raw: RawIsf): NormalizeResult<Isf> {
+  const issues: string[] = [];
+  const hts = htsCode(raw.htsCode);
+  if (clean(raw.htsCode) && !hts) issues.push(`htsCode: could not normalize ${JSON.stringify(raw.htsCode)}`);
+  const origin = countryCode(raw.countryOfOrigin);
+  if (clean(raw.countryOfOrigin) && !origin) issues.push(`countryOfOrigin: could not normalize ${JSON.stringify(raw.countryOfOrigin)}`);
+  const stuffing = raw.containerStuffingLocation ? rawAddress(raw.containerStuffingLocation) : undefined;
+  return finish(
+    Isf,
+    prune({
+      seller: party(raw.seller, 'seller', issues),
+      buyer: party(raw.buyer, 'buyer', issues),
+      importerOfRecordNumber: filerNumber(raw.importerOfRecordNumber, 'importerOfRecordNumber', issues),
+      consigneeNumber: filerNumber(raw.consigneeNumber, 'consigneeNumber', issues),
+      manufacturer: party(raw.manufacturer, 'manufacturer', issues),
+      shipToParty: party(raw.shipToParty, 'shipToParty', issues),
+      countryOfOrigin: origin ?? undefined,
+      htsCode: hts ?? undefined,
+      containerStuffingLocation: stuffing ? valid(Address, stuffing, 'containerStuffingLocation', issues) : undefined,
+      consolidator: party(raw.consolidator, 'consolidator', issues),
     }),
     issues,
   );

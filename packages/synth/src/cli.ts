@@ -3,6 +3,7 @@ import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { buildDataset, V1, type DatasetEntry } from './dataset';
 import { htmlToPdf, launchBrowser, renderHtml } from './pdf';
+import { buildIsfDataset, renderIsf } from './isf';
 import { renderScannedPdf, scanStyle } from './scans';
 
 /**
@@ -16,6 +17,9 @@ import { renderScannedPdf, scanStyle } from './scans';
  * --labels-only rewrites labels.json and manifest.json in place, e.g. after rules start covering an error kind.
  * --scans N writes N shipments (half CA, half US) as image-only PDFs that look scanned, to
  *   data/eval/v1-scans unless --out is given. Same truth and labels as the v1 shipments.
+ * --isf-pdfs writes the ISF filing confirmation (isf.pdf) of every US shipment to data/eval/v1-isf
+ *   unless --out is given, with truth.json (all documents, ISF included) and labels.json (v1 labels
+ *   plus ISF/invoice mismatches for X11). It never touches data/eval/v1.
  */
 async function main() {
   const { values } = parseArgs({
@@ -28,10 +32,12 @@ async function main() {
       html: { type: 'boolean', default: false },
       'labels-only': { type: 'boolean', default: false },
       scans: { type: 'string' },
+      'isf-pdfs': { type: 'boolean', default: false },
     },
   });
   const scans = values.scans ? Number(values.scans) : 0;
-  const out = resolve(scans && values.out === 'data/eval/v1' ? 'data/eval/v1-scans' : values.out!);
+  const isfPdfs = values['isf-pdfs']!;
+  const out = resolve(values.out === 'data/eval/v1' ? (scans ? 'data/eval/v1-scans' : isfPdfs ? 'data/eval/v1-isf' : values.out) : values.out!);
   let entries = buildDataset({ seed: Number(values.seed), perCountry: Number(values['per-country']), cleanPerCountry: Number(values.clean) });
 
   if (scans) {
@@ -53,6 +59,32 @@ async function main() {
     }
     await writeManifest(out, Number(values.seed), entries);
     console.log(`Wrote ${entries.length} scanned shipments to ${out}.`);
+    return;
+  }
+
+  if (isfPdfs) {
+    if (out === resolve('data/eval/v1')) throw new Error('--isf-pdfs must not write into data/eval/v1');
+    const isfEntries = buildIsfDataset(entries);
+    await rm(out, { recursive: true, force: true });
+    const browser = values['no-pdf'] ? undefined : await launchBrowser();
+    try {
+      for (const e of isfEntries) {
+        const dir = join(out, e.shipment.id);
+        await mkdir(dir, { recursive: true });
+        const { id, seed, destination, render, documents } = e.shipment;
+        await writeFile(join(dir, 'truth.json'), JSON.stringify({ id, seed, destination, render, documents }, null, 2) + '\n');
+        await writeFile(join(dir, 'labels.json'), JSON.stringify({ id, errors: e.labels }, null, 2) + '\n');
+        const html = renderIsf(documents.isf, documents.billOfLading, seed);
+        if (values.html) await writeFile(join(dir, 'isf.html'), html);
+        if (browser) await writeFile(join(dir, 'isf.pdf'), await htmlToPdf(browser, html));
+      }
+    } finally {
+      await browser?.close();
+    }
+    const manifest = isfEntries.map((e) => ({ id: e.shipment.id, destination: e.shipment.destination, templates: [e.shipment.render.isfTemplate], errors: e.labels.map((l) => l.kind) }));
+    await writeFile(join(out, 'manifest.json'), JSON.stringify({ version: 'v1-isf', seed: Number(values.seed), shipments: manifest }, null, 2) + '\n');
+    const isfErrors = isfEntries.filter((e) => e.labels.some((l) => l.document === 'isf')).length;
+    console.log(`Wrote ${isfEntries.length} ISF confirmations to ${out} (${isfErrors} disagree with the invoice).`);
     return;
   }
 

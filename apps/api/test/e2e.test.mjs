@@ -8,7 +8,7 @@
 // dropped and recreated, so the database name must end in "_test".
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readdirSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { after, before, describe, it } from 'node:test';
@@ -29,6 +29,8 @@ const testUrl = (() => {
 const dbName = new URL(testUrl).pathname.slice(1);
 if (!dbName.endsWith('_test')) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
 
+// Cached model responses replayed by the API (E2E_LLM_CACHE_DIR overrides, e.g. for another model).
+const llmCacheDir = process.env.E2E_LLM_CACHE_DIR || join(root, 'eval/cache/ollama_qwen3.8');
 const port = 3990;
 const base = `http://localhost:${port}`;
 let api;
@@ -69,7 +71,7 @@ before(async () => {
       REDIS_URL: '',
       S3_ENDPOINT: '',
       STORAGE_DIR: mkdtempSync(join(tmpdir(), 'doccheck-e2e-')),
-      LLM_CACHE_DIR: join(root, 'eval/cache/ollama_qwen3.8'),
+      LLM_CACHE_DIR: llmCacheDir,
       LLM_CACHE_MODE: 'replay',
       AGENT_ENABLED: 'false',
     },
@@ -179,7 +181,7 @@ describe('ISF', () => {
 
 // PDF path: only when the evaluation set and the cached model responses for CA-001 exist locally.
 const sample = join(root, 'data/eval/v1/CA-001');
-const hasSample = existsSync(join(sample, 'invoice.pdf')) && existsSync(join(root, 'eval/cache/ollama_qwen3.8'));
+const hasSample = existsSync(join(sample, 'invoice.pdf')) && existsSync(llmCacheDir);
 describe('PDF upload', { skip: !hasSample && 'evaluation set not generated' }, () => {
   it('extracts uploaded PDFs, cites the page and serves the file', async () => {
     const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
@@ -199,10 +201,89 @@ describe('PDF upload', { skip: !hasSample && 'evaluation set not generated' }, (
     const again = await fetch(`${base}/shipments/${s.id}/documents/${invoiceId}/reextract?wait=true`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ type: 'COMMERCIAL_INVOICE' }) });
     assert.equal(again.status, 202);
     assert.deepEqual([(await again.json()).document.status, (await call('GET', `/shipments/${s.id}/documents/${invoiceId}`)).body.document.typeConfidence], ['EXTRACTED', 1]);
-    assert.equal((await call('POST', `/shipments/${s.id}/documents/${invoiceId}/reextract`, { type: 'ISF' })).status, 400);
+    assert.equal((await call('POST', `/shipments/${s.id}/documents/${invoiceId}/reextract`, { type: 'UNKNOWN' })).status, 400);
 
     const file = await fetch(`${base}/shipments/${s.id}/documents/${documents[0].document.id}/file`);
     assert.equal(file.headers.get('content-type'), 'application/pdf');
     assert.equal((await file.arrayBuffer()).byteLength, readFileSync(join(sample, 'invoice.pdf')).length);
+  });
+});
+
+// ISF as a PDF: only when data/eval/v1-isf (npm run synth -- --isf-pdfs) and a cached model response
+// for one of its filings exist. Prefers a filing that disagrees with the invoice, so X11 has a finding.
+const isfDir = join(root, 'data/eval/v1-isf');
+const isfSample = await (async () => {
+  if (!existsSync(isfDir) || !existsSync(llmCacheDir)) return undefined;
+  const { readPdfText, extractionRequest, LlmClient, OllamaProvider, PROMPT_VERSION } = await import('@doccheck/extraction');
+  // Only the provider id matters for the cache key; nothing is sent to Ollama.
+  const llm = new LlmClient(new OllamaProvider('qwen3.8'), llmCacheDir, 'replay');
+  const ids = readdirSync(isfDir).filter((id) => existsSync(join(isfDir, id, 'isf.pdf')));
+  const withX11 = (id) => JSON.parse(readFileSync(join(isfDir, id, 'labels.json'), 'utf8')).errors.some((e) => e.document === 'isf' && e.expectedRuleIds.includes('X11'));
+  for (const id of [...ids.filter(withX11), ...ids.filter((id) => !withX11(id))]) {
+    const pdf = await readPdfText(readFileSync(join(isfDir, id, 'isf.pdf')));
+    if (await llm.isCached(PROMPT_VERSION, extractionRequest(pdf, 'ISF'))) return join(isfDir, id);
+  }
+  return undefined;
+})();
+
+describe('ISF PDF upload', { skip: !isfSample && 'no ISF PDF with a cached model response' }, () => {
+  const upload = async (shipmentId) => {
+    const form = new FormData();
+    form.append('files', new Blob([readFileSync(join(isfSample, 'isf.pdf'))], { type: 'application/pdf' }), 'isf.pdf');
+    const res = await fetch(`${base}/shipments/${shipmentId}/documents?wait=true`, { method: 'POST', body: form });
+    assert.equal(res.status, 202);
+    return (await res.json()).documents[0].document;
+  };
+
+  it('extracts the filing, stores it as the shipment ISF and X11 cites the PDF', async () => {
+    const truth = JSON.parse(readFileSync(join(isfSample, 'truth.json'), 'utf8'));
+    const labels = JSON.parse(readFileSync(join(isfSample, 'labels.json'), 'utf8'));
+    const { body: s } = await call('POST', '/shipments', { destination: 'US' });
+    const doc = await upload(s.id);
+    assert.equal(doc.status, 'EXTRACTED');
+    assert.equal(doc.detectedType, 'ISF');
+
+    const isf = await call('GET', `/shipments/${s.id}/isf`);
+    assert.equal(isf.status, 200);
+    assert.equal(isf.body.source, 'pdf');
+    assert.equal(isf.body.documentId, doc.id);
+    assert.equal(isf.body.fileName, 'isf.pdf');
+    for (const k of ['countryOfOrigin', 'htsCode', 'importerOfRecordNumber']) assert.equal(isf.body.data[k], truth.documents.isf[k]);
+
+    // The paper documents come as JSON; the ISF PDF does not take the place of any of them.
+    const { invoice, packingList, billOfLading } = truth.documents;
+    const run = await call('POST', `/shipments/${s.id}/validate?agent=false`, { invoice, packingList, billOfLading });
+    assert.equal(run.status, 200);
+    assert.deepEqual(run.body.skipped, []);
+    assert.ok(run.body.ran.includes('X11'));
+    assert.equal((await call('GET', `/shipments/${s.id}/validation`)).body.inputs.isf, doc.id);
+    const x11 = run.body.findings.filter((f) => f.ruleId === 'X11');
+    assert.equal(x11.length > 0, labels.errors.some((e) => e.expectedRuleIds.includes('X11')));
+    for (const f of x11) assert.ok(f.evidence.some((e) => e.documentId === doc.id && e.source?.page === 1));
+
+    // A JSON ISF still replaces it.
+    assert.equal((await call('PUT', `/shipments/${s.id}/isf`, truth.documents.isf)).status, 200);
+    const json = await call('GET', `/shipments/${s.id}/isf`);
+    assert.equal(json.body.source, 'upload');
+    assert.equal(json.body.documentId, undefined);
+  });
+
+  it('is not used on a Canadian shipment and never counts as a missing paper document', async () => {
+    const { body: us } = await call('POST', '/shipments', { destination: 'US' });
+    const isfDoc = await upload(us.id);
+    const partial = await call('POST', `/shipments/${us.id}/validate?agent=false`);
+    assert.ok(partial.body.skipped.every((x) => !x.missing.includes('ISF')));
+    assert.ok(partial.body.skipped.some((x) => x.ruleId === 'X11' && x.missing.includes('COMMERCIAL_INVOICE')));
+
+    // Re-extracted as another type, it stops being the shipment's ISF.
+    const again = await fetch(`${base}/shipments/${us.id}/documents/${isfDoc.id}/reextract?wait=true`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ type: 'COMMERCIAL_INVOICE' }) });
+    assert.equal(again.status, 202);
+    assert.equal((await call('GET', `/shipments/${us.id}/isf`)).status, 404);
+
+    const { body: ca } = await call('POST', '/shipments', { destination: 'CA' });
+    const doc = await upload(ca.id);
+    assert.equal((await call('GET', `/shipments/${ca.id}/isf`)).status, 404);
+    const detail = await call('GET', `/shipments/${ca.id}/documents/${doc.id}`);
+    assert.ok(detail.body.issues.some((i) => i.includes('only applies to US-bound shipments')));
   });
 });

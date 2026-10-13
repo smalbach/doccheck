@@ -1,0 +1,16 @@
+{
+  "id": "US-082",
+  "errors": [
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[1].contents[0].quantity.value",
+      "before": "4120",
+      "after": "4070",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    }
+  ]
+}

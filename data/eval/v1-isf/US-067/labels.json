@@ -1,0 +1,58 @@
+{
+  "id": "US-067",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "5074.80",
+      "after": "4313.58",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 0.85 against the packing list."
+    },
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "4661.50",
+      "after": "5074.80",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Consignee missing from the invoice."
+    },
+    {
+      "kind": "isf_seller_mismatch",
+      "document": "isf",
+      "field": "seller.name",
+      "before": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "after": "Ningbo Everbright Appliance Co., Ltd.",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF seller \"Ningbo Everbright Appliance Co., Ltd.\" instead of \"Qingdao Hengli Fasteners & Machinery Co., Ltd.\""
+    }
+  ]
+}

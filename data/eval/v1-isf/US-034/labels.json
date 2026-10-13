@@ -1,0 +1,37 @@
+{
+  "id": "US-034",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "1713.60",
+      "after": "1884.96",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.10 against the packing list."
+    },
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[0].contents[0].quantity.value",
+      "before": "8400",
+      "after": "8376",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "EUR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 1028.00 EUR on an invoice in USD."
+    }
+  ]
+}

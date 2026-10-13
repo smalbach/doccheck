@@ -1,0 +1,49 @@
+{
+  "id": "US-097",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 105,
+      "after": 115,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 115 packages instead of 105."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "27594.00",
+      "after": "72594.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (27594.00 -> 72594.00)."
+    },
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "640 W Lake St",
+      "after": "708 W Lake St",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "isf_origin_mismatch",
+      "document": "isf",
+      "field": "countryOfOrigin",
+      "before": "CO",
+      "after": "VN",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF country of origin VN instead of CO"
+    }
+  ]
+}

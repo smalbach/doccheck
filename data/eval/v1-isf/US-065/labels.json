@@ -1,0 +1,37 @@
+{
+  "id": "US-065",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[1].lineTotal.amount",
+      "before": "10272.00",
+      "after": "1272.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 2 total mistyped (10272.00 -> 1272.00)."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CNY",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 2199.00 CNY on an invoice in USD."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "TWEU4243369",
+      "after": "TWEU4243362",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: TWEU4243369 -> TWEU4243362."
+    }
+  ]
+}

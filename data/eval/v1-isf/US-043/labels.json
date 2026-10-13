@@ -1,0 +1,27 @@
+{
+  "id": "US-043",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "1200 Port Ave",
+      "after": "1268 Port Ave",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "isf_hts_mismatch",
+      "document": "isf",
+      "field": "htsCode",
+      "before": "690721",
+      "after": "851660",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF HTS 851660 instead of 690721"
+    }
+  ]
+}

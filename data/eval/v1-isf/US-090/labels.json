@@ -1,0 +1,48 @@
+{
+  "id": "US-090",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "9800 Wallisville Rd",
+      "after": "9872 Wallisville Rd",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "3720.00",
+      "after": "3769.60",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "EUR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 3288.00 EUR on an invoice in USD."
+    },
+    {
+      "kind": "isf_seller_mismatch",
+      "document": "isf",
+      "field": "seller.name",
+      "before": "Cafe Alto Huila Exportadores S.A.S.",
+      "after": "Ceramiche Valle Secchia S.p.A.",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF seller \"Ceramiche Valle Secchia S.p.A.\" instead of \"Cafe Alto Huila Exportadores S.A.S.\""
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import type { DocumentType } from '@doccheck/schemas';
 
 /**
- * Document type from its title and vocabulary. Freight documents announce themselves in the
+ * Document type from its title and vocabulary (invoice, packing list, bill of lading, ISF). Freight documents announce themselves in the
  * header, so keywords cover the synthetic set. Titles are matched loosely because OCR mangles
  * large or underlined headings ("MMERCIAL I ICE"), and words that appear on more than one type
  * (net and gross weight, packages) are not counted.
@@ -28,6 +28,21 @@ const SIGNALS: { type: DocumentType; title: RegExp; words: RegExp[] }[] = [
       /\bSOLD TO\b|\bBUYER\b|\bACHETEUR\b/i,
       /\bCURRENCY\b|\bDEVISE\b/i,
       /\bPAYMENT\b/i,
+    ],
+  },
+  {
+    // ISF 10+2 filing confirmation printed by the broker. Its element names are specific to the
+    // filing; "buyer" and "seller" are not counted because invoices use them too.
+    type: 'ISF',
+    title: /\b(IMPORTER SECURITY FILING|ISF FILING|ISF CONFIRMATION|ISF)\b|\b10\s?\+\s?2\b/i,
+    words: [
+      /\bIMPORTER OF RECORD\b/i,
+      /\bCONSIGNEE (NO|NUMBER)\b/i,
+      /\bCONTAINER STUFFING\b/i,
+      /\bCONSOLIDATOR\b/i,
+      /\bSHIP[- ]TO PARTY\b/i,
+      /\bHTSUS?\b/i,
+      /\bMANUFACTURER\b/i,
     ],
   },
 ];

@@ -1,0 +1,27 @@
+{
+  "id": "US-052",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "43225.00",
+      "after": "34225.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (43225.00 -> 34225.00)."
+    },
+    {
+      "kind": "isf_hts_mismatch",
+      "document": "isf",
+      "field": "htsCode",
+      "before": "610910",
+      "after": "392690",
+      "expectedRuleIds": [
+        "X11"
+      ],
+      "description": "ISF HTS 392690 instead of 610910"
+    }
+  ]
+}

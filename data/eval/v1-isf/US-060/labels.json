@@ -1,0 +1,16 @@
+{
+  "id": "US-060",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 118,
+      "after": 108,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 108 packages instead of 118."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "US-092",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "incoterm",
+      "before": {
+        "code": "EXW",
+        "place": "Qingdao"
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Terms of sale (Incoterm) missing from the invoice."
+    }
+  ]
+}
