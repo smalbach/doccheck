@@ -1,11 +1,12 @@
-import { Controller, Get, Header, Query, Res } from '@nestjs/common';
+import { Controller, Get, Header, NotFoundException, Param, ParseUUIDPipe, Query, Res } from '@nestjs/common';
 import type { Response } from 'express';
 import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { csvAttachment, toCsv } from '../common/csv';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { CSV_MAX_ROWS, GOODS_CSV_COLUMNS, SHIPMENTS_CSV_COLUMNS } from './insights.csv';
-import { LinesCsvQuery, LinesQuery, ShipmentDataCsvQuery, ShipmentDataQuery, SummaryQuery } from './insights.dto';
+import { EntitiesRepository } from './entities.repository';
+import { EntityQuery, LinesCsvQuery, LinesQuery, PartiesQuery, ProductsQuery, ShipmentDataCsvQuery, ShipmentDataQuery, SummaryQuery } from './insights.dto';
 import { InsightsRepository } from './insights.repository';
 
 /**
@@ -14,7 +15,10 @@ import { InsightsRepository } from './insights.repository';
  */
 @Controller('insights')
 export class InsightsController {
-  constructor(private readonly repo: InsightsRepository) {}
+  constructor(
+    private readonly repo: InsightsRepository,
+    private readonly entities: EntitiesRepository,
+  ) {}
 
   @Get('summary')
   summary(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(SummaryQuery)) query: SummaryQuery) {
@@ -49,5 +53,33 @@ export class InsightsController {
     const { items } = await this.repo.shipments(user.id, { ...query, limit: CSV_MAX_ROWS, offset: 0 });
     res.setHeader('content-disposition', csvAttachment('doccheck-shipments'));
     return toCsv(SHIPMENTS_CSV_COLUMNS, items);
+  }
+
+  /** Companies across the user's shipments. ?q=text&role=supplier|customer&destination=CA&limit=50&offset=0 */
+  @Get('parties')
+  parties(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(PartiesQuery)) query: PartiesQuery) {
+    return this.entities.parties(user.id, query);
+  }
+
+  /** One company: figures, the products it sold or bought, its shipments. */
+  @Get('parties/:id')
+  async party(@CurrentUser() user: PublicUser, @Param('id', ParseUUIDPipe) id: string, @Query(new ZodValidationPipe(EntityQuery)) query: EntityQuery) {
+    const party = await this.entities.party(user.id, id, query);
+    if (!party) throw new NotFoundException('Party not found');
+    return party;
+  }
+
+  /** Products across the user's invoices. ?q=text&origin=CN&hs=9503&destination=CA&limit=50&offset=0 */
+  @Get('products')
+  products(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(ProductsQuery)) query: ProductsQuery) {
+    return this.entities.products(user.id, query);
+  }
+
+  /** One product: figures, price statistics and every purchase (its price history). */
+  @Get('products/:id')
+  async product(@CurrentUser() user: PublicUser, @Param('id', ParseUUIDPipe) id: string, @Query(new ZodValidationPipe(EntityQuery)) query: EntityQuery) {
+    const product = await this.entities.product(user.id, id, query);
+    if (!product) throw new NotFoundException('Product not found');
+    return product;
   }
 }

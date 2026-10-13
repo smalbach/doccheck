@@ -15,7 +15,7 @@ export function MoneyList({ totals, stacked }: MoneyListProps) {
   return stacked ? (
     <>
       {amounts.map((a) => (
-        <span key={a} className="nowrap">
+        <span key={a} className="nowrap block">
           {a}
         </span>
       ))}

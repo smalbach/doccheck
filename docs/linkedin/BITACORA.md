@@ -120,6 +120,36 @@ Recall de texto en 12 PDFs escaneados (mismos que tesseract, misma métrica `fin
 Conclusión por ahora: no reemplaza a tesseract en esta forma de correrlo. Próximo intento: la versión
 MLX (mantiene los tokens de tabla) o usarlo solo para packing lists.
 
+## Producto web: hitos del 13 oct (sesión de la app)
+
+Cada hito con su commit. Números medidos en esta máquina; lo marcado [entre corchetes] es opinión
+para que la revises.
+
+| Hito | Commit | Dato |
+| --- | --- | --- |
+| Cuentas y sesiones; envíos privados por usuario | `984ad83` | contraseñas scrypt, la cookie guarda solo un token cuyo hash SHA-256 vive en la base |
+| Web rehecha: Radix UI, un componente por archivo | `760c1a3`, `df48d35` | — |
+| Inglés, español y francés; tema claro/oscuro; auditoría de accesibilidad | `9fb90be`, `0c0cbf7` | axe en CI para cada página en ambos temas |
+| Rol de administrador: modelo, OCR, usuarios, estado del sistema | `0acdabd`, `6a346ba` | — |
+| Envíos con paginación y filtros en el servidor, edición, historial de validaciones | `078863c` | — |
+| Datos extraídos consolidados: totales, cada línea de factura, cifras por envío; exportar CSV | `e90d7f6`, `cebb6b8` | CSV con BOM y fórmulas neutralizadas (`=`, `+`, `@`) |
+| Alertas del panel, corrección manual con auditoría, recuperar contraseña por correo | `01bfa59`, `058437e`, `097acfd` | — |
+| Progreso en vivo (SSE): etapas, salida del modelo en streaming, hallazgos mientras valida | `f88f14a`, `b818844`, `bd14a98` | eventos en Postgres + `NOTIFY`, se reanudan con `Last-Event-ID` |
+| Panel de actividad con tiempo restante y cancelar; notificaciones al terminar | `d54e580`, `e675de1` | — |
+| Datos extraídos como tablas (facturas, líneas, packing, BL, contenedores, ISF, empresas, productos) | `fc661d6` | 13 tablas llenadas por triggers; el backfill de la base local tardó ~0.1 s |
+| Vistas de empresas y productos con historial de precios | (este commit) | en la base local, la normalización final bajó de 98 a 73 empresas; tests de la API: 76 de 76 |
+
+Decisiones para contar:
+
+- **El JSON validado sigue siendo la fuente de verdad; las tablas son una proyección.** Triggers en
+  Postgres las reconstruyen al extraer, corregir, revertir o re-extraer, así ningún camino del código
+  puede dejarlas desincronizadas. Cada tabla guarda un `extra` con los campos que aún no tienen
+  columna. [Evita migraciones de datos cuando el esquema crece.]
+- **Una empresa es una aunque la escriban distinto.** "ACME Toys Co., Ltd." y "Acme Toys Co Ltd" se
+  comparan sin mayúsculas, acentos, puntuación ni forma legal.
+- **Productos por SKU o, si no hay, por descripción normalizada**, con precio promedio ponderado por
+  cantidad y la lista de compras para ver cómo cambia el precio.
+
 ## Pendiente / próximos pasos
 
 - OCR de Baidu: probar la versión MLX o usarlo solo para packing lists.
@@ -131,3 +161,4 @@ MLX (mantiene los tokens de tabla) o usarlo solo para packing lists.
 
 - 13 oct 2026: creada con el estado al cierre de la evaluación (commit `739a696`).
 - 13 oct 2026: primera prueba del OCR de Baidu.
+- 13 oct 2026: hitos de la app web y de las tablas de datos extraídos (sesión de la app).

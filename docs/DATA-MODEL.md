@@ -42,6 +42,15 @@ Números en `numeric` (sin floats), fechas en `date`, pesos en kg con el valor y
 
 - **`current_documents`**: el documento de cada tipo que usa la validación (el último extraído).
 
+## En la app
+
+- `GET /insights/parties?role=supplier|customer&q=` y `GET /insights/parties/:id`: empresas, con roles,
+  variantes del nombre, envíos, facturas, valor y sus productos.
+- `GET /insights/products?q=&hs=&origin=` y `GET /insights/products/:id`: productos, con cantidad,
+  valor, precio mínimo, máximo, promedio ponderado y último por moneda, y cada compra (historial).
+- Pestañas **Empresas** y **Productos** en Datos extraídos; cada fila abre su ficha, con el gráfico de
+  precio.
+
 ## Ejemplos
 
 ```sql

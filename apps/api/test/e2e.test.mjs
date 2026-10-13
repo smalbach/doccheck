@@ -1402,6 +1402,54 @@ describe('insights', () => {
       assert.equal((await one(`select count(*)::int as n from ${table} where shipment_id = $1`, [a.id])).n, 0, table);
     }
   });
+
+  it('groups companies and products across shipments, with a price history', async () => {
+    const user = await signUp('Entities');
+    const get = (path, who = user) => call('GET', path, undefined, who);
+    await shipmentWith(user, 'CA', { COMMERCIAL_INVOICE: sampleInvoice, BILL_OF_LADING: sampleBillOfLading });
+    const later = {
+      ...sampleInvoice,
+      invoiceNumber: 'INV-LATER',
+      invoiceDate: '2026-11-02',
+      seller: { ...sampleInvoice.seller, name: 'ACME TOYS CO LTD' },
+      lines: [{ ...sampleInvoice.lines[0], quantity: { value: '100', unit: 'PCS' }, unitPrice: { amount: '9.00', currency: 'USD' }, lineTotal: { amount: '900.00', currency: 'USD' } }],
+    };
+    await shipmentWith(user, 'US', { COMMERCIAL_INVOICE: later });
+
+    const suppliers = (await get('/insights/parties?role=supplier')).body;
+    assert.equal(suppliers.total, 1);
+    const acme = suppliers.items[0];
+    assert.deepEqual([acme.shipments, acme.invoices, acme.lines, acme.products, acme.firstDate, acme.lastDate], [2, 2, 2, 1, '2026-10-01', '2026-11-02']);
+    assert.deepEqual(acme.roles, ['seller', 'shipper']);
+    assert.deepEqual(acme.names, ['ACME TOYS CO LTD', sampleInvoice.seller.name]);
+    assert.deepEqual(acme.values, [{ key: 'USD', amount: '49500.00' }]);
+    assert.deepEqual((await get('/insights/parties?role=customer')).body.items.map((p) => p.name), [sampleInvoice.buyer.name]);
+    assert.equal((await get('/insights/parties?q=acme%20toys%20co%20ltd')).body.total, 1);
+    assert.equal((await get('/insights/parties?destination=US&role=supplier')).body.items[0].shipments, 1);
+
+    const detail = (await get(`/insights/parties/${acme.id}`)).body;
+    assert.deepEqual(detail.topProducts.map((p) => [p.sku, p.lines]), [['TB-200', 2]]);
+    assert.deepEqual(detail.recentShipments.map((s) => s.invoiceNumber), ['INV-LATER', sampleInvoice.invoiceNumber]);
+
+    const products = (await get('/insights/products')).body;
+    assert.equal(products.total, 1);
+    const bear = products.items[0];
+    assert.deepEqual([bear.sku, bear.lines, bear.shipments, bear.sellers, bear.lastSeller, bear.lastDate], ['TB-200', 2, 2, 1, 'ACME TOYS CO LTD', '2026-11-02']);
+    // avg is weighted by quantity: (6000 × 8.10 + 100 × 9.00) / 6100
+    assert.deepEqual(bear.prices, [{ currency: 'USD', min: '8.10', max: '9.00', avg: '8.1148', last: '9.00' }]);
+    assert.deepEqual(bear.quantities, [{ key: 'PCS', amount: '6100' }]);
+    assert.equal((await get('/insights/products?q=nothing')).body.total, 0);
+    assert.equal((await get('/insights/products?hs=9503')).body.total, 1);
+
+    const history = (await get(`/insights/products/${bear.id}`)).body.history;
+    assert.deepEqual(history.map((h) => [h.invoiceDate, h.unitPrice.amount, h.seller]), [['2026-10-01', '8.10', sampleInvoice.seller.name], ['2026-11-02', '9.00', 'ACME TOYS CO LTD']]);
+
+    const other = await signUp('Not theirs');
+    assert.equal((await get(`/insights/parties/${acme.id}`, other)).status, 404);
+    assert.equal((await get(`/insights/products/${bear.id}`, other)).status, 404);
+    assert.equal((await get('/insights/products/not-a-uuid')).status, 400);
+    assert.equal((await get('/insights/parties?role=boss')).status, 400);
+  });
 });
 
 describe('alerts', () => {

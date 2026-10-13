@@ -32,3 +32,28 @@ export type LinesCsvQuery = z.infer<typeof LinesCsvQuery>;
 
 export const ShipmentDataCsvQuery = ShipmentDataQuery.omit({ limit: true, offset: true });
 export type ShipmentDataCsvQuery = z.infer<typeof ShipmentDataCsvQuery>;
+
+export const PartyRole = z.enum(['supplier', 'customer']);
+export type PartyRole = z.infer<typeof PartyRole>;
+
+export const PartiesQuery = z.object({
+  destination: Destination.optional(),
+  q: z.string().trim().max(200).optional(),
+  /** supplier: seller, shipper, exporter, manufacturer; customer: buyer, consignee, notify, ship-to. */
+  role: PartyRole.optional(),
+  ...page,
+});
+export type PartiesQuery = z.infer<typeof PartiesQuery>;
+
+export const ProductsQuery = z.object({
+  destination: Destination.optional(),
+  q: z.string().trim().max(200).optional(),
+  origin: CountryCode.optional(),
+  hs: z.string().trim().regex(/^[\d.]{2,13}$/).optional(),
+  ...page,
+});
+export type ProductsQuery = z.infer<typeof ProductsQuery>;
+
+/** The destination filter of a party's or a product's page. */
+export const EntityQuery = z.object({ destination: Destination.optional() });
+export type EntityQuery = z.infer<typeof EntityQuery>;

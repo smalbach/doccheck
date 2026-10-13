@@ -67,3 +67,94 @@ export interface Paged<T> {
   limit: number;
   offset: number;
 }
+
+/** A company of the user's documents, found again across shipments by its normalized name. */
+export interface PartySummary {
+  id: string;
+  name: string;
+  country?: string;
+  taxId?: string;
+  /** seller, buyer, consignee, shipper, notify, exporter, originator, manufacturer, ship_to, consolidator */
+  roles: string[];
+  /** How the documents spell it. */
+  names: string[];
+  shipments: number;
+  /** Invoices where it is the seller or the buyer. */
+  invoices: number;
+  lines: number;
+  values: Total[];
+  products: number;
+  firstDate?: string;
+  lastDate?: string;
+}
+
+export interface PartyProduct {
+  id: string;
+  sku?: string;
+  description: string;
+  lines: number;
+  quantities: Total[];
+  values: Total[];
+}
+
+export interface PartyShipment {
+  shipmentId: string;
+  reference?: string;
+  destination?: Destination;
+  createdAt: string;
+  roles: string[];
+  invoiceNumber?: string;
+  invoiceDate?: string;
+  invoiceTotal?: { amount: string; currency: string };
+}
+
+export interface PartyDetail extends PartySummary {
+  topProducts: PartyProduct[];
+  recentShipments: PartyShipment[];
+}
+
+/** Unit price statistics in one currency. avg is weighted by quantity. */
+export interface PriceStats {
+  currency: string;
+  min: string;
+  max: string;
+  avg: string;
+  last: string;
+}
+
+/** A product bought on the user's invoices: by SKU, or by its normalized description. */
+export interface ProductSummary {
+  id: string;
+  sku?: string;
+  description: string;
+  hsCode?: string;
+  countryOfOrigin?: string;
+  unit?: string;
+  lines: number;
+  shipments: number;
+  sellers: number;
+  lastSeller?: string;
+  lastDate?: string;
+  quantities: Total[];
+  values: Total[];
+  prices: PriceStats[];
+}
+
+/** One purchase of a product: an invoice line. */
+export interface PricePoint {
+  shipmentId: string;
+  reference?: string;
+  documentId: string;
+  invoiceNumber?: string;
+  invoiceDate?: string;
+  sellerId?: string;
+  seller?: string;
+  quantity?: { value: string; unit: string };
+  unitPrice?: { amount: string; currency: string };
+  lineTotal?: { amount: string; currency: string };
+}
+
+export interface ProductDetail extends ProductSummary {
+  /** Oldest first. */
+  history: PricePoint[];
+}

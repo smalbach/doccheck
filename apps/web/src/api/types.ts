@@ -360,6 +360,102 @@ export interface ShipmentDataQuery {
   offset?: number;
 }
 
+/** A company of the user's documents, found again across shipments by its normalized name. */
+export interface PartySummary {
+  id: string;
+  name: string;
+  country?: string;
+  taxId?: string;
+  roles: PartyRoleName[];
+  /** How the documents spell it. */
+  names: string[];
+  shipments: number;
+  invoices: number;
+  lines: number;
+  values: Total[];
+  products: number;
+  firstDate?: string;
+  lastDate?: string;
+}
+
+export type PartyRoleName = 'seller' | 'buyer' | 'consignee' | 'exporter' | 'originator' | 'shipper' | 'notify' | 'manufacturer' | 'ship_to' | 'consolidator';
+
+export interface PartyDetail extends PartySummary {
+  topProducts: { id: string; sku?: string; description: string; lines: number; quantities: Total[]; values: Total[] }[];
+  recentShipments: {
+    shipmentId: string;
+    reference?: string;
+    destination?: Destination;
+    createdAt: string;
+    roles: PartyRoleName[];
+    invoiceNumber?: string;
+    invoiceDate?: string;
+    invoiceTotal?: { amount: string; currency: string };
+  }[];
+}
+
+export interface PartiesQuery {
+  destination?: Destination;
+  q?: string;
+  role?: 'supplier' | 'customer';
+  limit?: number;
+  offset?: number;
+}
+
+/** Unit price statistics in one currency; avg is weighted by quantity. */
+export interface PriceStats {
+  currency: string;
+  min: string;
+  max: string;
+  avg: string;
+  last: string;
+}
+
+export interface ProductSummary {
+  id: string;
+  sku?: string;
+  description: string;
+  hsCode?: string;
+  countryOfOrigin?: string;
+  unit?: string;
+  lines: number;
+  shipments: number;
+  sellers: number;
+  lastSeller?: string;
+  lastDate?: string;
+  quantities: Total[];
+  values: Total[];
+  prices: PriceStats[];
+}
+
+/** One purchase of a product: an invoice line. */
+export interface PricePoint {
+  shipmentId: string;
+  reference?: string;
+  documentId: string;
+  invoiceNumber?: string;
+  invoiceDate?: string;
+  sellerId?: string;
+  seller?: string;
+  quantity?: { value: string; unit: string };
+  unitPrice?: { amount: string; currency: string };
+  lineTotal?: { amount: string; currency: string };
+}
+
+export interface ProductDetail extends ProductSummary {
+  /** Oldest first. */
+  history: PricePoint[];
+}
+
+export interface ProductsQuery {
+  destination?: Destination;
+  q?: string;
+  origin?: string;
+  hs?: string;
+  limit?: number;
+  offset?: number;
+}
+
 export type AlertKind = 'critical' | 'failed-document' | 'ocr' | 'not-validated' | 'stale-destination';
 
 /** Something on one of the user's shipments that needs a look (GET /shipments/alerts). */

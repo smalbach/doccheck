@@ -13,7 +13,7 @@ const HS = `coalesce(hs6, hs4)`;
  * read from the tables the extractions are projected to (migration 013).
  * Weights and packages come from the bill of lading first, then the packing list, then the invoice.
  */
-const BASE = `
+export const BASE = `
   with owned as (
     select id, reference, destination, created_at from shipments where user_id = $1 and ($2::text is null or destination = $2)
   ), latest as (
@@ -25,7 +25,7 @@ const BASE = `
   pl as (select p.* from packing_lists p join latest using (document_id)),
   bl as (select b.* from bills_of_lading b join latest using (document_id)),
   lines as (
-    select l.*, inv.invoice_number, inv.seller_name from invoice_lines l join inv using (document_id)
+    select l.*, inv.invoice_number, inv.invoice_date, inv.seller_id, inv.seller_name, inv.buyer_id from invoice_lines l join inv using (document_id)
   ), per_ship as (
     select o.id, o.reference, o.destination, o.created_at,
       inv.invoice_number, to_char(inv.invoice_date, 'YYYY-MM-DD') as invoice_date, inv.incoterm, inv.incoterm_place,
@@ -45,7 +45,7 @@ const BASE = `
   )`;
 
 const toTotals = (rows: { key: string; amount: string }[] | null): Total[] => (rows ?? []).map((r) => ({ key: r.key, amount: r.amount }));
-const like = (q: string) => `%${q.replace(/[\\%_]/g, (c) => `\\${c}`)}%`;
+export const like = (q: string) => `%${q.replace(/[\\%_]/g, (c) => `\\${c}`)}%`;
 const money = (amount: string | null, currency: string | null) => (amount !== null && currency ? { amount, currency } : undefined);
 const text = (v: unknown) => (typeof v === 'string' && v ? v : undefined);
 
