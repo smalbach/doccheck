@@ -62,11 +62,13 @@ export class ShipmentsService {
   /** Deletes a shipment with everything attached to it, PDFs included. Refused while documents are extracting. */
   async remove(id: string): Promise<void> {
     if (!UUID.test(id)) throw new NotFoundException(`Shipment ${id} not found`);
-    if ((await this.repo.pendingDocuments(id)) > 0) throw new ConflictException('Documents are still being extracted; delete the shipment when they are done');
-    const keys = await this.repo.deleteShipment(id);
-    if (!keys) throw new NotFoundException(`Shipment ${id} not found`);
-    // Database first: a leftover file is harmless, a document row pointing at a deleted file is not.
-    await Promise.all(keys.map((k) => this.storage.delete(k).catch(() => undefined)));
+    const res = await this.repo.deleteShipment(id);
+    if (res === 'not-found') throw new NotFoundException(`Shipment ${id} not found`);
+    if (res === 'pending') throw new ConflictException('Documents are still being extracted; delete the shipment when they are done');
+    // Database first: a document row pointing at a deleted file is worse than a leftover file, but a
+    // leftover holds customs data, so say which ones are left.
+    const failed = (await Promise.all(res.keys.map((k) => this.storage.delete(k).then(() => null, (err: Error) => `${k} (${err.message})`)))).filter(Boolean);
+    if (failed.length) this.logger.warn(`Shipment ${id} deleted, but these PDFs could not be removed from storage: ${failed.join(', ')}`);
   }
 
   async get(id: string): Promise<Shipment> {
@@ -99,7 +101,14 @@ export class ShipmentsService {
         status: 'QUEUED',
       };
       await this.storage.put(doc.storageKey, f.bytes, 'application/pdf');
-      await this.repo.insertDocument(doc);
+      try {
+        await this.repo.insertDocument(doc);
+      } catch (err) {
+        // E.g. the shipment was deleted during the upload: do not leave the PDF behind.
+        await this.storage.delete(doc.storageKey).catch(() => undefined);
+        if ((err as { code?: string }).code === '23503') throw new NotFoundException(`Shipment ${id} not found`);
+        throw err;
+      }
       documents.push(doc);
     }
     await this.repo.refreshShipmentStatus(id);

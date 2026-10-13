@@ -38,6 +38,8 @@ export interface ValidationRow {
   createdAt?: string;
 }
 
+export const ISF_CHANGED = "Not used as the shipment's ISF: it changed while this PDF was being extracted. Re-extract this PDF as ISF to use it.";
+
 const toDocument = (r: Record<string, unknown>): ShipmentDocument => ({
   id: r.id as string,
   shipmentId: r.shipment_id as string,
@@ -132,6 +134,12 @@ export class ShipmentsRepository {
     );
   }
 
+  /** Version of the shipment's ISF (its exact updated_at), or null when it has none. */
+  async isfVersion(shipmentId: string): Promise<string | null> {
+    const { rows } = await this.pool.query('select updated_at::text as v from isf_filings where shipment_id = $1', [shipmentId]);
+    return rows[0]?.v ?? null;
+  }
+
   async findIsf(shipmentId: string): Promise<IsfRow | null> {
     const { rows } = await this.pool.query(
       'select i.*, d.file_name from isf_filings i left join documents d on d.id = i.document_id where i.shipment_id = $1',
@@ -147,15 +155,30 @@ export class ShipmentsRepository {
     };
   }
 
-  /** Deletes the shipment and, by cascade, its documents, extractions, ISF, validations and findings. Returns the storage keys to remove. */
-  async deleteShipment(id: string): Promise<string[] | null> {
+  /**
+   * Deletes the shipment and, by cascade, its documents, extractions, ISF, validations and findings,
+   * unless a document is still extracting. Returns the storage keys to remove.
+   *
+   * The shipment row is locked first: an upload inserting a document waits for it (foreign key) and
+   * then fails, and one that committed first is seen here as pending.
+   */
+  async deleteShipment(id: string): Promise<{ keys: string[] } | 'not-found' | 'pending'> {
     const client = await this.pool.connect();
     try {
       await client.query('begin');
-      const docs = await client.query<{ storage_key: string }>('select storage_key from documents where shipment_id = $1', [id]);
-      const res = await client.query('delete from shipments where id = $1', [id]);
+      const found = await client.query('select 1 from shipments where id = $1 for update', [id]);
+      if (!found.rowCount) {
+        await client.query('rollback');
+        return 'not-found';
+      }
+      const docs = await client.query<{ storage_key: string; status: string }>('select storage_key, status from documents where shipment_id = $1', [id]);
+      if (docs.rows.some((r) => r.status === 'QUEUED' || r.status === 'EXTRACTING')) {
+        await client.query('rollback');
+        return 'pending';
+      }
+      await client.query('delete from shipments where id = $1', [id]);
       await client.query('commit');
-      return res.rowCount ? docs.rows.map((r) => r.storage_key) : null;
+      return { keys: docs.rows.map((r) => r.storage_key) };
     } catch (err) {
       await client.query('rollback');
       throw err;
@@ -194,15 +217,38 @@ export class ShipmentsRepository {
     await this.pool.query('update documents set status = $2, error = $3 where id = $1', [id, status, error ?? null]);
   }
 
-  /** Detected type, page count and the extraction itself, in one transaction. Re-running a job replaces it. */
+  /**
+   * Detected type, page count, the extraction itself and the shipment ISF it yields, in one transaction.
+   * Re-running a job replaces the extraction.
+   *
+   * `isf` is the ISF read from this PDF, with `since` the version of the shipment's ISF when the job
+   * started (`isfVersion`). It is stored only if that ISF has not changed meanwhile, so a JSON filing
+   * saved or deleted during a slow extraction is not overwritten; otherwise a note goes to the issues.
+   * Without `isf`, any ISF taken earlier from this document is removed.
+   */
   async saveExtraction(
     documentId: string,
     doc: Pick<ShipmentDocument, 'pageCount' | 'detectedType' | 'typeConfidence' | 'language'>,
     extraction: ExtractionRow,
-  ): Promise<void> {
+    isf?: { shipmentId: string; data: Isf; since: string | null },
+  ): Promise<{ isfSaved: boolean }> {
     const client = await this.pool.connect();
     try {
       await client.query('begin');
+      let isfSaved = false;
+      if (!isf) await client.query('delete from isf_filings where document_id = $1', [documentId]);
+      else {
+        const args = [isf.shipmentId, JSON.stringify(isf.data), documentId];
+        const res =
+          isf.since === null
+            ? await client.query(`insert into isf_filings (shipment_id, data, source, document_id) values ($1, $2, 'pdf', $3) on conflict (shipment_id) do nothing`, args)
+            : await client.query(
+                `update isf_filings set data = $2, source = 'pdf', document_id = $3, updated_at = now() where shipment_id = $1 and updated_at = $4::timestamptz`,
+                [...args, isf.since],
+              );
+        isfSaved = res.rowCount === 1;
+        if (!isfSaved) extraction = { ...extraction, issues: [...extraction.issues, ISF_CHANGED] };
+      }
       await client.query(
         `update documents set page_count = $2, detected_type = $3, type_confidence = $4, language = $5, status = 'EXTRACTED', error = null
          where id = $1`,
@@ -220,6 +266,7 @@ export class ShipmentsRepository {
         ],
       );
       await client.query('commit');
+      return { isfSaved };
     } catch (err) {
       await client.query('rollback');
       throw err;
@@ -238,6 +285,15 @@ export class ShipmentsRepository {
        where id = $1`,
       [shipmentId],
     );
+  }
+
+  /** Marks documents left QUEUED or EXTRACTING by a previous process as FAILED, so they can be re-extracted or deleted. */
+  async failInterruptedDocuments(): Promise<number> {
+    const { rows } = await this.pool.query<{ shipment_id: string }>(
+      `update documents set status = 'FAILED', error = 'Interrupted by a restart; extract it again' where status in ('QUEUED', 'EXTRACTING') returning shipment_id`,
+    );
+    for (const id of new Set(rows.map((r) => r.shipment_id))) await this.refreshShipmentStatus(id);
+    return rows.length;
   }
 
   async pendingDocuments(shipmentId: string): Promise<number> {

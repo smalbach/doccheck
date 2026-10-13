@@ -1,7 +1,9 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Logger } from '@nestjs/common';
+import type { LlmClient } from '@doccheck/extraction';
 import { existsSync } from 'node:fs';
-import { readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile, stat } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
+import { InjectLlm } from '../llm/llm.module';
 
 interface Tally {
   total: number;
@@ -16,19 +18,34 @@ interface Tally {
  */
 @Controller('results')
 export class ResultsController {
+  private readonly logger = new Logger(ResultsController.name);
   private readonly dir = [process.env.REPORTS_DIR, resolve(process.cwd(), 'eval/reports'), resolve(__dirname, '../../../../eval/reports')].find(
     (d): d is string => !!d && existsSync(d),
   );
+
+  constructor(@InjectLlm() private readonly llm: LlmClient) {}
 
   @Get()
   async summary() {
     if (!this.dir) return { extraction: [], agent: null };
     const files = (await readdir(this.dir)).filter((f) => f.endsWith('.json')).sort();
-    const read = async (f: string) => JSON.parse(await readFile(join(this.dir!, f), 'utf8'));
+    // A report being written or of an older shape is skipped, not a failure of the whole page.
+    const read = async (f: string, fields: string[]) => {
+      try {
+        const r = JSON.parse(await readFile(join(this.dir!, f), 'utf8'));
+        const missing = fields.filter((k) => r?.[k] === undefined);
+        if (!missing.length) return r;
+        this.logger.warn(`Skipping ${f}: missing ${missing.join(', ')}`);
+      } catch (err) {
+        this.logger.warn(`Skipping ${f}: ${err instanceof Error ? err.message : err}`);
+      }
+      return null;
+    };
 
     const extraction = [];
     for (const f of files.filter((f) => f.startsWith('extraction-'))) {
-      const r = await read(f);
+      const r = await read(f, ['provider', 'overall', 'byType', 'byTemplate', 'byField', 'rules']);
+      if (!r || !Array.isArray(r.byType) || !Array.isArray(r.byTemplate) || !Array.isArray(r.byField) || !Array.isArray(r.rules.table)) continue;
       // extraction-<model>.json is the v1 set; extraction-<model>-<set>.json any other set (v1-scans, v1-isf, v2).
       const set = f.match(/^extraction-.+?-(v\d[\w-]*)\.json$/)?.[1] ?? 'v1';
       extraction.push({
@@ -48,8 +65,13 @@ export class ResultsController {
         rules: r.rules,
       });
     }
-    const agentFile = files.find((f) => f.startsWith('agent-'));
-    const a = agentFile ? await read(agentFile) : null;
+    // The agent report of the model the app runs; otherwise the newest one.
+    const agents = [];
+    for (const f of files.filter((f) => f.startsWith('agent-'))) {
+      const r = await read(f, ['provider', 'summary']);
+      if (r && Array.isArray(r.summary)) agents.push({ r, mtime: (await stat(join(this.dir!, f))).mtimeMs });
+    }
+    const a = (agents.find((x) => x.r.provider === this.llm.provider.id) ?? agents.sort((x, y) => y.mtime - x.mtime)[0])?.r ?? null;
     return {
       extraction,
       agent: a && { provider: a.provider, modelVersion: a.modelVersion, promptVersion: a.promptVersion, summary: a.summary },

@@ -25,11 +25,13 @@ export class DocumentProcessor {
     if (!doc) throw new Error(`Document ${documentId} not found`);
     await this.repo.updateDocumentStatus(documentId, 'EXTRACTING');
     await this.repo.refreshShipmentStatus(doc.shipmentId);
+    // The ISF as it is now: the one read from this PDF replaces it only if nobody changes it meanwhile.
+    const isfSince = await this.repo.isfVersion(doc.shipmentId);
     const started = Date.now();
     try {
       const bytes = await this.storage.get(doc.storageKey);
       const { pdf, ...result } = await extractDocument(new Uint8Array(bytes), this.llm, type);
-      // An ISF filing confirmation becomes the shipment's ISF (US only), replacing any earlier one.
+      // An ISF filing confirmation becomes the shipment's ISF (US only), replacing the earlier one.
       let isf: Isf | undefined;
       if (result.documentType === 'ISF' && result.data) {
         const shipment = await this.repo.findShipment(doc.shipmentId);
@@ -56,9 +58,8 @@ export class DocumentProcessor {
           inputTokens: result.usage?.inputTokens,
           outputTokens: result.usage?.outputTokens,
         },
+        isf && { shipmentId: doc.shipmentId, data: isf, since: isfSince },
       );
-      if (isf) await this.repo.saveIsf(doc.shipmentId, isf, 'pdf', documentId);
-      else await this.repo.deleteIsfFromDocument(documentId);
       this.logger.log(`${doc.fileName}: ${result.documentType} in ${Math.round((Date.now() - started) / 1000)} s${result.data ? '' : ' (not normalized)'}`);
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
@@ -68,5 +69,11 @@ export class DocumentProcessor {
     } finally {
       await this.repo.refreshShipmentStatus(doc.shipmentId);
     }
+  }
+
+  /** Documents a previous process left half done (in-process extraction does not survive a restart). */
+  async failInterrupted(): Promise<void> {
+    const n = await this.repo.failInterruptedDocuments();
+    if (n) this.logger.warn(`${n} document(s) were left extracting by a previous run; marked FAILED`);
   }
 }

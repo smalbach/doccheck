@@ -1,4 +1,4 @@
-import { Injectable, Logger, type OnApplicationShutdown, type OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger, type OnApplicationBootstrap, type OnApplicationShutdown, type OnModuleInit } from '@nestjs/common';
 import { Queue, QueueEvents, Worker, type ConnectionOptions } from 'bullmq';
 import type { ExtractableType } from '@doccheck/extraction';
 import { DocumentProcessor } from './document.processor';
@@ -25,7 +25,7 @@ function redisConnection(url: string): ConnectionOptions {
  * Keys are prefixed "doccheck" so a shared Redis is not polluted.
  */
 @Injectable()
-export class ExtractionQueue implements OnModuleInit, OnApplicationShutdown {
+export class ExtractionQueue implements OnModuleInit, OnApplicationBootstrap, OnApplicationShutdown {
   private readonly logger = new Logger(ExtractionQueue.name);
   private queue?: Queue;
   private events?: QueueEvents;
@@ -57,6 +57,11 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationShutdown {
     }
     await this.queue.waitUntilReady();
     this.logger.log(`Extraction queue ready on ${connection && 'host' in connection ? `${connection.host}:${connection.port}` : url}`);
+  }
+
+  /** In-process jobs die with the process, so their documents would stay QUEUED forever (BullMQ keeps its jobs). After migrations. */
+  async onApplicationBootstrap() {
+    if (!this.queue) await this.processor.failInterrupted();
   }
 
   /** Queues the documents; with `wait` the call resolves once every one is extracted or failed. */

@@ -8,7 +8,9 @@
 // dropped and recreated, so the database name must end in "_test".
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
-import { existsSync, mkdtempSync, readdirSync, readFileSync } from 'node:fs';
+import { randomUUID } from 'node:crypto';
+import { existsSync, mkdtempSync, readdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { after, before, describe, it } from 'node:test';
@@ -31,6 +33,17 @@ if (!dbName.endsWith('_test')) throw new Error(`Refusing to reset "${dbName}": t
 
 // Cached model responses replayed by the API (E2E_LLM_CACHE_DIR overrides, e.g. for another model).
 const llmCacheDir = process.env.E2E_LLM_CACHE_DIR || join(root, 'eval/cache/ollama_qwen3.8');
+// Evaluation reports served by GET /results: a valid one, a truncated one (as while eval-cli writes it)
+// and agent reports for two models, the other one newer.
+const provider = `ollama:${process.env.LLM_MODEL || 'qwen3.8'}`;
+const reportsDir = mkdtempSync(join(tmpdir(), 'doccheck-e2e-reports-'));
+const tally = { total: 10, correct: 9, accuracy: 0.9 };
+writeFileSync(join(reportsDir, 'extraction-ollama_test.json'), JSON.stringify({ provider, overall: tally, byType: [{ type: 'ISF', ...tally }], byTemplate: [], byField: [], rules: { table: [] } }));
+writeFileSync(join(reportsDir, 'extraction-ollama_test-v1-scans.json'), '{"provider": "ollama:');
+writeFileSync(join(reportsDir, 'agent-ollama_aaa.json'), JSON.stringify({ provider: 'ollama:other', summary: [] }));
+writeFileSync(join(reportsDir, 'agent-ollama_test.json'), JSON.stringify({ provider, summary: [] }));
+utimesSync(join(reportsDir, 'agent-ollama_test.json'), new Date(0), new Date(0));
+
 const port = 3990;
 const base = `http://localhost:${port}`;
 let api;
@@ -71,6 +84,7 @@ before(async () => {
       REDIS_URL: '',
       S3_ENDPOINT: '',
       STORAGE_DIR: mkdtempSync(join(tmpdir(), 'doccheck-e2e-')),
+      REPORTS_DIR: reportsDir,
       LLM_CACHE_DIR: llmCacheDir,
       LLM_CACHE_MODE: 'replay',
       AGENT_ENABLED: 'false',
@@ -86,7 +100,22 @@ before(async () => {
   throw new Error('API did not start');
 });
 
-after(() => api?.kill());
+after(async () => {
+  api?.kill();
+  await pool?.end();
+});
+
+// The repository straight from the build, for races an HTTP test cannot time (a slow extraction
+// finishing after the user changed the ISF).
+let pool;
+let repo;
+before(async () => {
+  const require = createRequire(import.meta.url);
+  require('reflect-metadata');
+  const { ShipmentsRepository } = require(join(root, 'apps/api/dist/shipments/shipments.repository.js'));
+  pool = new pg.Pool({ connectionString: testUrl });
+  repo = new ShipmentsRepository(pool);
+});
 
 describe('shipments', () => {
   it('reports health with the database', async () => {
@@ -131,10 +160,18 @@ describe('shipments', () => {
     assert.equal((await call('DELETE', `/shipments/${s.id}`)).status, 404);
   });
 
-  it('serves evaluation results', async () => {
+  it('serves evaluation results, skipping unreadable reports, with the agent report of the app model', async () => {
     const { status, body } = await call('GET', '/results');
     assert.equal(status, 200);
-    assert.ok(Array.isArray(body.extraction));
+    assert.deepEqual(body.extraction.map((r) => r.file), ['extraction-ollama_test.json']);
+    assert.equal(body.agent.provider, provider);
+  });
+
+  it('refuses to delete a shipment while a document is extracting', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    await repo.insertDocument({ id: randomUUID(), shipmentId: s.id, fileName: 'x.pdf', storageKey: 'none', sha256: '0', status: 'QUEUED' });
+    assert.equal((await call('DELETE', `/shipments/${s.id}`)).status, 409);
+    assert.equal((await call('GET', `/shipments/${s.id}`)).status, 200);
   });
 
   it('requires a destination before validating', async () => {
@@ -183,6 +220,45 @@ describe('ISF', () => {
     assert.deepEqual(mismatch.body.findings.map((f) => f.ruleId), ['X11']);
 
     assert.equal((await call('DELETE', `/shipments/${s.id}/isf`)).status, 204);
+    assert.equal((await call('GET', `/shipments/${s.id}/isf`)).status, 404);
+  });
+
+  it('read from a PDF does not overwrite an ISF saved or deleted while the PDF was extracting', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'US' });
+    const extract = async (since) => {
+      const id = randomUUID();
+      await repo.insertDocument({ id, shipmentId: s.id, fileName: 'isf.pdf', storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+      const extraction = { documentId: id, documentType: 'ISF', model: 'test', promptVersion: 'test', raw: {}, data: isf, issues: [], pdfLines: [] };
+      const doc = { pageCount: 1, detectedType: 'ISF', typeConfidence: 1 };
+      const { isfSaved } = await repo.saveExtraction(id, doc, extraction, { shipmentId: s.id, data: { ...isf, countryOfOrigin: 'VN' }, since });
+      const issues = (await call('GET', `/shipments/${s.id}/documents/${id}`)).body.issues;
+      return { id, isfSaved, issues };
+    };
+
+    // No ISF when the job started, none now: the PDF's is stored.
+    const first = await extract(null);
+    assert.equal(first.isfSaved, true);
+    assert.equal((await call('GET', `/shipments/${s.id}/isf`)).body.documentId, first.id);
+
+    // Unchanged since the job started: replaced.
+    const second = await extract(await repo.isfVersion(s.id));
+    assert.equal(second.isfSaved, true);
+    assert.equal((await call('GET', `/shipments/${s.id}/isf`)).body.documentId, second.id);
+
+    // A JSON filing saved during the extraction wins, and the document says why its ISF was not used.
+    const since = await repo.isfVersion(s.id);
+    await call('PUT', `/shipments/${s.id}/isf`, isf);
+    const late = await extract(since);
+    assert.equal(late.isfSaved, false);
+    assert.ok(late.issues.some((i) => i.includes('changed while this PDF was being extracted')));
+    const kept = (await call('GET', `/shipments/${s.id}/isf`)).body;
+    assert.equal(kept.source, 'upload');
+    assert.equal(kept.data.countryOfOrigin, 'CN');
+
+    // Deleted during the extraction (or another PDF stored first): it does not come back.
+    const before = await repo.isfVersion(s.id);
+    await call('DELETE', `/shipments/${s.id}/isf`);
+    assert.equal((await extract(before)).isfSaved, false);
     assert.equal((await call('GET', `/shipments/${s.id}/isf`)).status, 404);
   });
 

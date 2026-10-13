@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { Component, useCallback, useEffect, useState, type ReactNode } from 'react';
 import { api, type Sample, type ShipmentSummary } from './api';
 import { ResultsPage } from './ResultsPage';
 import { ShipmentPage } from './ShipmentPage';
@@ -34,10 +34,31 @@ export function App() {
           <a href="#/results" className={route.name === 'results' ? 'on' : ''}>Results</a>
         </nav>
       </header>
-      <main>{route.name === 'shipment' ? <ShipmentPage id={route.id} /> : route.name === 'results' ? <ResultsPage /> : <Home />}</main>
+      <main>
+        <PageBoundary key={route.name === 'shipment' ? route.id : route.name}>
+          {route.name === 'shipment' ? <ShipmentPage id={route.id} /> : route.name === 'results' ? <ResultsPage /> : <Home />}
+        </PageBoundary>
+      </main>
       <footer className="foot">Portfolio project. Not customs advice; nothing is filed with CBSA or CBP. Models run locally.</footer>
     </>
   );
+}
+
+/** A page that throws while rendering shows an error instead of unmounting the whole app; navigating away resets it. */
+class PageBoundary extends Component<{ children: ReactNode }, { error?: Error }> {
+  state: { error?: Error } = {};
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+  render() {
+    if (!this.state.error) return this.props.children;
+    return (
+      <div className="card">
+        <p className="error">This page could not be shown ({this.state.error.message}).</p>
+        <a href="#/">← Shipments</a>
+      </div>
+    );
+  }
 }
 
 const ERROR_LABELS: Record<string, string> = {
