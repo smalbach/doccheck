@@ -44,3 +44,13 @@
 .verdict-yes { color: var(--ok); }
 .verdict-no { color: var(--high); }
 .verdict-unsure { color: var(--medium); }
+
+/* Validation history */
+.history-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.history-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.history-item:first-child { border-top: 0; }
+.history-item[aria-current] { background: var(--accent-soft); margin: 0 -12px; padding: 10px 12px; border-radius: 8px; }
+.history-main { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.history-when { font-weight: 600; }
+.history-counts { display: flex; gap: 8px; flex-wrap: wrap; grid-column: 1; }
+.history-item > :last-child { grid-column: 2; grid-row: 1 / span 2; }

@@ -1,21 +1,35 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api/client';
-import type { ShipmentSummary } from '../api/types';
+import type { ShipmentListQuery, ShipmentPage } from '../api/types';
 import { errorMessage } from '../lib/errorMessage';
 
-/** The signed-in user's shipments, most recent first. */
-export function useShipmentList() {
-  const [shipments, setShipments] = useState<ShipmentSummary[]>();
+/**
+ * One page of the signed-in user's shipments, most recent first. The previous page stays shown while
+ * the next one loads (`loading`), so paging and filtering do not flash a spinner.
+ */
+export function useShipmentList({ status, destination, q, limit, offset }: ShipmentListQuery = {}) {
+  const [page, setPage] = useState<ShipmentPage>();
   const [error, setError] = useState<string>();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     let active = true;
-    api.shipments().then(
-      (list) => active && setShipments(list),
-      (e: unknown) => active && setError(errorMessage(e)),
+    setLoading(true);
+    api.shipments({ status, destination, q, limit, offset }).then(
+      (result) => {
+        if (!active) return;
+        setPage(result);
+        setError(undefined);
+        setLoading(false);
+      },
+      (e: unknown) => {
+        if (!active) return;
+        setError(errorMessage(e));
+        setLoading(false);
+      },
     );
     return () => {
       active = false;
     };
-  }, []);
-  return { shipments, error };
+  }, [status, destination, q, limit, offset]);
+  return { page, error, loading };
 }

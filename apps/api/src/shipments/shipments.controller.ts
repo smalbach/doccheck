@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, Header, HttpCode, Param, Post, Put, Query, Res, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Header, HttpCode, Param, Patch, Post, Put, Query, Res, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { Isf } from '@doccheck/schemas';
 import type { Response } from 'express';
 import { FilesInterceptor } from '@nestjs/platform-express';
@@ -6,7 +6,7 @@ import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { ShipmentOwnerGuard } from './shipment-owner.guard';
-import { CreateShipmentDto, ReextractDto, ValidateShipmentDto } from './shipments.dto';
+import { CreateShipmentDto, ListShipmentsQuery, ReextractDto, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
 import { ShipmentsService } from './shipments.service';
 
 const MAX_PDF_BYTES = 20 * 1024 * 1024;
@@ -22,9 +22,16 @@ export class ShipmentsController {
     return this.shipments.create(dto, user.id);
   }
 
+  /** ?status=all|open|attention|done&destination=CA|US&q=text&limit=25&offset=0 → { items, total, limit, offset, summary } */
   @Get()
-  list(@CurrentUser() user: PublicUser) {
-    return this.shipments.list(user.id);
+  list(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(ListShipmentsQuery)) query: ListShipmentsQuery) {
+    return this.shipments.list(user.id, query);
+  }
+
+  /** { reference?, destination?, transportMode? }; a reference of null or "" clears it. */
+  @Patch(':id')
+  update(@Param('id') id: string, @Body(new ZodValidationPipe(UpdateShipmentDto)) dto: UpdateShipmentDto) {
+    return this.shipments.update(id, dto);
   }
 
   @Delete(':id')
@@ -86,6 +93,16 @@ export class ShipmentsController {
   @HttpCode(204)
   async deleteIsf(@Param('id') id: string) {
     await this.shipments.deleteIsf(id);
+  }
+
+  @Get(':id/validations')
+  validations(@Param('id') id: string) {
+    return this.shipments.validations(id);
+  }
+
+  @Get(':id/validations/:validationId')
+  pastValidation(@Param('id') id: string, @Param('validationId') validationId: string) {
+    return this.shipments.validation(id, validationId);
   }
 
   @Get(':id/validation')

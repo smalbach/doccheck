@@ -8,7 +8,7 @@ import { isDemo } from '../demo/demo-mode';
 import { InjectLlm, RegulationsService } from '../llm/llm.module';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { ExtractionQueue } from './extraction.queue';
-import type { CreateShipmentDto, ValidateShipmentDto } from './shipments.dto';
+import type { CreateShipmentDto, ListShipmentsQuery, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
 import { ShipmentsRepository } from './shipments.repository';
 
 const SLOT = {
@@ -56,8 +56,19 @@ export class ShipmentsService {
     return shipment;
   }
 
-  list(userId: string) {
-    return this.repo.listShipments(userId);
+  list(userId: string, query: ListShipmentsQuery) {
+    return this.repo.listShipments(userId, { ...query, q: query.q || undefined });
+  }
+
+  /** Edits the reference, destination or transport mode; earlier validations stay as history. */
+  async update(id: string, dto: UpdateShipmentDto): Promise<Shipment> {
+    if (!UUID.test(id)) throw new NotFoundException(`Shipment ${id} not found`);
+    const reference = dto.reference === undefined ? undefined : dto.reference || null;
+    const res = await this.repo.updateShipment(id, { ...dto, reference });
+    if (res === 'not-found') throw new NotFoundException(`Shipment ${id} not found`);
+    if (res === 'pending') throw new ConflictException('Documents are still being extracted; change the destination when they are done');
+    if (res === 'manual-isf') throw new ConflictException('The shipment has an ISF entered by hand, which only applies to the US; delete it first');
+    return this.get(id);
   }
 
   /** Deletes a shipment with everything attached to it, PDFs included. Refused while documents are extracting. */
@@ -235,7 +246,7 @@ export class ShipmentsService {
     const agent = await this.runAgent(ctx, output, opts.agent ?? process.env.AGENT_ENABLED !== 'false');
 
     const validationId = randomUUID();
-    await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent });
+    await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination: shipment.destination });
     await this.repo.setStatus(id, output.skipped.length > 0 ? 'NEEDS_INPUT' : 'DONE');
     return { validationId, ...output, agent };
   }
@@ -279,6 +290,19 @@ export class ShipmentsService {
     const validation = await this.repo.latestValidation(id);
     if (!validation) throw new NotFoundException(`Shipment ${id} has not been validated yet`);
     return { ...validation, findings: await this.repo.latestFindings(id) };
+  }
+
+  /** Every validation run, newest first, with finding counts. */
+  async validations(id: string) {
+    await this.get(id);
+    return this.repo.listValidations(id);
+  }
+
+  /** One past run, with its findings. */
+  async validation(id: string, validationId: string) {
+    const validation = UUID.test(validationId) ? await this.repo.findValidation(id, validationId) : null;
+    if (!validation) throw new NotFoundException(`Validation ${validationId} not found in shipment ${id}`);
+    return { ...validation, findings: await this.repo.validationFindings(validationId) };
   }
 
   async findings(id: string) {

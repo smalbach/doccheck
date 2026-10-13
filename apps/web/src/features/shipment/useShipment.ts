@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { api } from '../../api/client';
 import { ApiError } from '../../api/ApiError';
-import type { RuleDefinition, Shipment, Validation } from '../../api/types';
+import type { RuleDefinition, Shipment, ShipmentUpdate, Validation } from '../../api/types';
 import { useInterval } from '../../hooks/useInterval';
 import { useI18n } from '../../i18n/useI18n';
 import { errorMessage } from '../../lib/errorMessage';
@@ -75,11 +75,18 @@ export function useShipment(id: string) {
     run(
       'validate',
       async () => {
-        setValidation(await api.validate(id, useAgent));
+        await api.validate(id, useAgent);
+        // The stored run, with its id, date and destination (the validate response has the results only).
+        setValidation(await api.validation(id));
         await refresh();
       },
       (e) => (e instanceof ApiError && e.status === 409 ? t('shipment.stillExtracting') : errorMessage(e)),
     );
+
+  /** Throws on failure, for the edit dialog to show. */
+  const update = async (changes: ShipmentUpdate) => {
+    setShipment(await api.update(id, changes));
+  };
 
   const remove = () =>
     run('delete', async () => {
@@ -89,5 +96,5 @@ export function useShipment(id: string) {
 
   const documents = useMemo(() => new Map((shipment?.documents ?? []).map((d) => [d.id, d])), [shipment]);
 
-  return { shipment, validation, rules, documents, error, setError, busy, extracting, refresh, upload, validate, remove };
+  return { shipment, validation, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove };
 }

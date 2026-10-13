@@ -8,6 +8,25 @@ export const CreateShipmentDto = z.object({
 });
 export type CreateShipmentDto = z.infer<typeof CreateShipmentDto>;
 
+export const UpdateShipmentDto = z
+  .object({
+    reference: z.string().trim().max(200).nullable().optional(),
+    destination: Destination.optional(),
+    transportMode: TransportMode.optional(),
+  })
+  .strict()
+  .refine((d) => Object.keys(d).length > 0, 'Send at least one of reference, destination, transportMode');
+export type UpdateShipmentDto = z.infer<typeof UpdateShipmentDto>;
+
+export const ListShipmentsQuery = z.object({
+  status: z.enum(['all', 'open', 'attention', 'done']).default('all'),
+  destination: Destination.optional(),
+  q: z.string().trim().max(200).optional(),
+  limit: z.coerce.number().int().min(1).max(100).default(25),
+  offset: z.coerce.number().int().min(0).default(0),
+});
+export type ListShipmentsQuery = z.infer<typeof ListShipmentsQuery>;
+
 /**
  * Temporary until phases 2-3 (PDF parsing + extraction): accept already-normalized documents as JSON,
  * so the rules can be exercised end to end through the API.

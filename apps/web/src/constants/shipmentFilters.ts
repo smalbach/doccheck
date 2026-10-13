@@ -1,7 +1,7 @@
-import type { ShipmentSummary } from '../api/types';
+import type { StatusGroup } from '../api/types';
 import type { MessageKey } from '../i18n/keys';
 
-export type StatusFilter = 'all' | 'open' | 'attention' | 'done';
+export type StatusFilter = StatusGroup;
 
 export const STATUS_FILTERS: readonly { value: StatusFilter; labelKey: MessageKey }[] = [
   { value: 'all', labelKey: 'shipments.statusFilters.all' },
@@ -18,5 +18,15 @@ export const DESTINATION_FILTERS: readonly { value: DestinationFilter; labelKey:
   { value: 'US', labelKey: 'destinations.US' },
 ];
 
-/** Not validated yet, or being worked on. */
-export const OPEN_STATUSES: ReadonlySet<ShipmentSummary['status']> = new Set(['RECEIVED', 'EXTRACTING', 'VALIDATING']);
+export interface ShipmentFilterState {
+  status: StatusFilter;
+  destination: DestinationFilter;
+  query: string;
+}
+
+export const INITIAL_SHIPMENT_FILTERS: ShipmentFilterState = { status: 'all', destination: 'any', query: '' };
+
+export const SHIPMENTS_PAGE_SIZE = 25;
+
+/** Wait after the last keystroke before searching. */
+export const SEARCH_DEBOUNCE_MS = 300;

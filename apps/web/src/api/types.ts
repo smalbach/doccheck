@@ -3,6 +3,46 @@ import type { DocumentType, Evidence, Finding, Shipment, ShipmentDocument } from
 export type { DocumentType, Evidence, Finding, Shipment, ShipmentDocument };
 
 export type Destination = 'CA' | 'US';
+export type TransportMode = 'SEA' | 'AIR' | 'ROAD';
+
+/** Status groups the list filters on, computed by the API. */
+export type StatusGroup = 'all' | 'open' | 'attention' | 'done';
+
+export interface ShipmentListQuery {
+  status?: StatusGroup;
+  destination?: Destination;
+  q?: string;
+  limit?: number;
+  offset?: number;
+}
+
+export interface ShipmentPage {
+  items: ShipmentSummary[];
+  /** Shipments matching the filters. */
+  total: number;
+  limit: number;
+  offset: number;
+  /** Over all of the user's shipments, whatever the filters. */
+  summary: { all: number; open: number; attention: number; done: number; findings: number };
+}
+
+export interface ShipmentUpdate {
+  reference?: string | null;
+  destination?: Destination;
+  transportMode?: TransportMode;
+}
+
+/** One run in a shipment's validation history. */
+export interface ValidationSummary {
+  id: string;
+  createdAt: string;
+  destination?: Destination;
+  ran: number;
+  skipped: number;
+  agentStatus?: 'done' | 'skipped' | 'failed';
+  findings: number;
+  bySeverity: Partial<Record<Finding['severity'], number>>;
+}
 
 export interface ShipmentSummary extends Omit<Shipment, 'documents'> {
   documentCount: number;
@@ -26,6 +66,8 @@ export interface SkippedRule {
 export interface Validation {
   id: string;
   createdAt: string;
+  /** The destination whose rules ran (missing on runs from before it was recorded). */
+  destination?: Destination;
   ran: string[];
   skipped: SkippedRule[];
   inputs: Record<string, string>;

@@ -72,8 +72,8 @@ export class DemoController implements OnApplicationBootstrap {
     let pending = this.loading.get(key);
     if (!pending) {
       pending = this.shipments
-        .list(user.id)
-        .then(async (all): Promise<{ id: string }> => all.find((s) => s.reference === `Sample ${sampleId}`) ?? this.create(sampleId, user.id))
+        .list(user.id, { status: 'all', q: `Sample ${sampleId}`, limit: 100, offset: 0 })
+        .then(async (page): Promise<{ id: string }> => page.items.find((s) => s.reference === `Sample ${sampleId}`) ?? this.create(sampleId, user.id))
         .finally(() => this.loading.delete(key));
       this.loading.set(key, pending);
     }

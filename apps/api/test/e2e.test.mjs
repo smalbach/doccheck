@@ -199,8 +199,10 @@ describe('auth', () => {
   it('keeps shipments private to their owner', async () => {
     const other = await signUp('Other');
     const { body: mine } = await call('POST', '/shipments', { destination: 'CA', reference: 'mine' });
-    assert.ok(!(await call('GET', '/shipments', undefined, other)).body.some((s) => s.id === mine.id));
-    assert.ok((await call('GET', '/shipments')).body.some((s) => s.id === mine.id));
+    assert.ok(!(await call('GET', '/shipments?limit=100', undefined, other)).body.items.some((s) => s.id === mine.id));
+    assert.ok((await call('GET', '/shipments?limit=100')).body.items.some((s) => s.id === mine.id));
+    assert.equal((await call('PATCH', `/shipments/${mine.id}`, { reference: 'theirs' }, other)).status, 404);
+    assert.equal((await call('GET', `/shipments/${mine.id}/validations`, undefined, other)).status, 404);
     for (const [method, path] of [['GET', `/shipments/${mine.id}`], ['GET', `/shipments/${mine.id}/isf`], ['POST', `/shipments/${mine.id}/validate?agent=false`], ['DELETE', `/shipments/${mine.id}`]]) {
       assert.equal((await call(method, path, undefined, other)).status, 404, `${method} ${path}`);
     }
@@ -346,8 +348,9 @@ describe('shipments', () => {
   it('creates, lists and rejects unknown shipments', async () => {
     const created = await call('POST', '/shipments', { reference: 'E2E-1', destination: 'CA' });
     assert.equal(created.status, 201);
-    const list = await call('GET', '/shipments');
-    assert.ok(list.body.some((s) => s.id === created.body.id && s.documentCount === 0 && s.findingCount === null));
+    const list = await call('GET', '/shipments?q=E2E-1');
+    assert.ok(list.body.items.some((s) => s.id === created.body.id && s.documentCount === 0 && s.findingCount === null));
+    assert.equal((await call('GET', '/shipments?limit=500')).status, 400);
     assert.equal((await call('GET', '/shipments/not-a-uuid')).status, 404);
     assert.equal((await call('GET', '/shipments/00000000-0000-0000-0000-000000000000')).status, 404);
     assert.equal((await call('POST', '/shipments', { destination: 'MX' })).status, 400);
@@ -369,6 +372,57 @@ describe('shipments', () => {
     assert.deepEqual(stored.body.inputs, { invoice: 'body', packingList: 'body', billOfLading: 'body' });
     assert.deepEqual((await call('GET', `/shipments/${s.id}/findings`)).body.map((f) => f.ruleId), ['X2']);
     assert.equal((await call('GET', `/shipments/${s.id}`)).body.status, 'DONE');
+  });
+
+  it('pages, filters and counts the list on the server', async () => {
+    const user = await signUp('Pager');
+    const made = [];
+    for (const [reference, destination] of [['PG-a', 'CA'], ['PG-b', 'US'], ['PG-c', 'CA'], ['PG_%', 'CA']]) {
+      made.push((await call('POST', '/shipments', { reference, destination }, user)).body);
+      await new Promise((r) => setTimeout(r, 5)); // created_at has millisecond precision: keep the order unambiguous
+    }
+    await call('POST', `/shipments/${made[0].id}/validate?agent=false`, { invoice: sampleInvoice, packingList: samplePackingList, billOfLading: sampleBillOfLading }, user);
+    const page = (q) => call('GET', `/shipments?${q}`, undefined, user).then((r) => r.body);
+
+    const first = await page('limit=2');
+    assert.equal(first.total, 4);
+    assert.deepEqual(first.items.map((s) => s.reference), ['PG_%', 'PG-c']);
+    assert.deepEqual((await page('limit=2&offset=2')).items.map((s) => s.reference), ['PG-b', 'PG-a']);
+    const past = await page('limit=2&offset=10');
+    assert.deepEqual([past.items.length, past.total], [0, 4]);
+
+    assert.deepEqual((await page('destination=US')).items.map((s) => s.reference), ['PG-b']);
+    assert.deepEqual((await page('q=pg_')).items.map((s) => s.reference), ['PG_%']); // _ and % are literal
+    assert.deepEqual((await page('status=done')).items.map((s) => s.reference), ['PG-a']);
+    assert.deepEqual((await page('status=open')).total, 3);
+    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0 });
+  });
+
+  it('edits a shipment and keeps every validation run as history', async () => {
+    const { body: s } = await call('POST', '/shipments', { reference: 'Old', destination: 'CA' });
+    const docs = { invoice: sampleInvoice, packingList: samplePackingList, billOfLading: sampleBillOfLading };
+    const bl = { ...sampleBillOfLading, totalPackages: 121 };
+    const one = (await call('POST', `/shipments/${s.id}/validate?agent=false`, { ...docs, billOfLading: bl })).body;
+    const two = (await call('POST', `/shipments/${s.id}/validate?agent=false`, docs)).body;
+
+    const history = (await call('GET', `/shipments/${s.id}/validations`)).body;
+    assert.deepEqual(history.map((v) => v.id), [two.validationId, one.validationId]);
+    assert.deepEqual([history[1].findings, history[1].destination, history[0].findings], [1, 'CA', 0]);
+    const past = (await call('GET', `/shipments/${s.id}/validations/${one.validationId}`)).body;
+    assert.deepEqual(past.findings.map((f) => f.ruleId), ['X2']);
+    assert.equal((await call('GET', `/shipments/${s.id}/validations/${randomUUID()}`)).status, 404);
+
+    const edited = await call('PATCH', `/shipments/${s.id}`, { reference: 'New', destination: 'US', transportMode: 'AIR' });
+    assert.equal(edited.status, 200);
+    assert.deepEqual([edited.body.reference, edited.body.destination, edited.body.transportMode], ['New', 'US', 'AIR']);
+    assert.equal((await call('PATCH', `/shipments/${s.id}`, { reference: '' })).body.reference, undefined);
+    assert.equal((await call('PATCH', `/shipments/${s.id}`, {})).status, 400);
+    assert.equal((await call('PATCH', `/shipments/${s.id}`, { status: 'DONE' })).status, 400);
+    assert.equal((await call('GET', `/shipments/${s.id}/validation`)).body.destination, 'CA'); // the run keeps its own
+
+    await repo.insertDocument({ id: randomUUID(), shipmentId: s.id, fileName: 'x.pdf', storageKey: 'none', sha256: '0', status: 'QUEUED' });
+    assert.equal((await call('PATCH', `/shipments/${s.id}`, { destination: 'CA' })).status, 409);
+    assert.equal((await call('PATCH', `/shipments/${s.id}`, { reference: 'Still editable' })).status, 200);
   });
 
   it('deletes a shipment with its validation and findings', async () => {
@@ -480,6 +534,26 @@ describe('ISF', () => {
     await call('DELETE', `/shipments/${s.id}/isf`);
     assert.equal((await extract(before)).isfSaved, false);
     assert.equal((await call('GET', `/shipments/${s.id}/isf`)).status, 404);
+  });
+
+  it('entered by hand blocks leaving the US; one read from a PDF goes and comes back with the destination', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'US' });
+    await call('PUT', `/shipments/${s.id}/isf`, isf);
+    assert.equal((await call('PATCH', `/shipments/${s.id}`, { destination: 'CA' })).status, 409);
+    await call('DELETE', `/shipments/${s.id}/isf`);
+
+    const id = randomUUID();
+    await repo.insertDocument({ id, shipmentId: s.id, fileName: 'isf.pdf', storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+    await repo.saveExtraction(
+      id,
+      { pageCount: 1, detectedType: 'ISF', typeConfidence: 1 },
+      { documentId: id, documentType: 'ISF', model: 'test', promptVersion: 'test', raw: {}, data: isf, issues: [], pdfLines: [] },
+      { shipmentId: s.id, data: isf, since: null },
+    );
+    assert.equal((await call('PATCH', `/shipments/${s.id}`, { destination: 'CA' })).status, 200);
+    assert.equal((await call('GET', `/shipments/${s.id}/isf`)).status, 404);
+    assert.equal((await call('PATCH', `/shipments/${s.id}`, { destination: 'US' })).status, 200);
+    assert.equal((await call('GET', `/shipments/${s.id}/isf`)).body.documentId, id);
   });
 
   it('read from two PDFs is the newest upload, whatever order they finish in, and falls back to the other', async () => {
@@ -686,7 +760,7 @@ describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' 
   it('refuses every write except loading and validating a sample', async () => {
     assert.equal((await demoCall('GET', '/health')).body.demo, true);
     const id = randomUUID();
-    for (const [method, path] of [['POST', '/shipments'], ['DELETE', `/shipments/${id}`], ['PUT', `/shipments/${id}/isf`], ['DELETE', `/shipments/${id}/isf`], ['POST', `/shipments/${id}/documents`], ['POST', `/shipments/${id}/documents/${id}/reextract`]]) {
+    for (const [method, path] of [['POST', '/shipments'], ['DELETE', `/shipments/${id}`], ['PATCH', `/shipments/${id}`], ['PUT', `/shipments/${id}/isf`], ['DELETE', `/shipments/${id}/isf`], ['POST', `/shipments/${id}/documents`], ['POST', `/shipments/${id}/documents/${id}/reextract`]]) {
       assert.equal((await demoCall(method, path, {})).status, 403, `${method} ${path}`);
     }
   });

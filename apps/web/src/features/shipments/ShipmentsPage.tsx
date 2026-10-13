@@ -1,25 +1,40 @@
 import { PlusIcon } from '@radix-ui/react-icons';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { LoadingCard } from '../../components/layout/LoadingCard';
+import { Banner } from '../../components/ui/Banner';
 import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import { EmptyState } from '../../components/ui/EmptyState';
 import { PageHeader } from '../../components/ui/PageHeader';
+import { Pager } from '../../components/ui/Pager';
+import { INITIAL_SHIPMENT_FILTERS, SEARCH_DEBOUNCE_MS, SHIPMENTS_PAGE_SIZE, type ShipmentFilterState } from '../../constants/shipmentFilters';
+import { useDebouncedValue } from '../../hooks/useDebouncedValue';
 import { useDemo } from '../../hooks/useDemo';
 import { useShipmentList } from '../../hooks/useShipmentList';
 import { useI18n } from '../../i18n/useI18n';
-import { filterShipments, type ShipmentFilterState } from '../../lib/filterShipments';
 import { ShipmentFilters } from './ShipmentFilters';
 import { ShipmentsTable } from './ShipmentsTable';
 
+/** The user's shipments, filtered and paged by the API. */
 export function ShipmentsPage() {
   const { t } = useI18n();
   const demo = useDemo();
-  const { shipments, error } = useShipmentList();
-  const [filters, setFilters] = useState<ShipmentFilterState>({ status: 'all', destination: 'any', query: '' });
-  const shown = useMemo(() => filterShipments(shipments ?? [], filters), [shipments, filters]);
+  const [filters, setFilters] = useState<ShipmentFilterState>(INITIAL_SHIPMENT_FILTERS);
+  const [offset, setOffset] = useState(0);
+  const query = useDebouncedValue(filters.query.trim(), SEARCH_DEBOUNCE_MS);
+  const { page, error, loading } = useShipmentList({
+    status: filters.status,
+    destination: filters.destination === 'any' ? undefined : filters.destination,
+    q: query || undefined,
+    limit: SHIPMENTS_PAGE_SIZE,
+    offset,
+  });
 
-  if (!shipments) return <LoadingCard error={error} />;
+  if (!page) return <LoadingCard error={error} />;
+  const changeFilters = (next: ShipmentFilterState) => {
+    setFilters(next);
+    setOffset(0);
+  };
   const actions = !demo && (
     <Button asChild variant="primary">
       <a href="#/app/shipments/new">
@@ -29,9 +44,9 @@ export function ShipmentsPage() {
   );
   return (
     <div className="page">
-      <PageHeader title={t('shipments.title')} description={t('shipments.count', { count: shipments.length })} actions={actions} />
+      <PageHeader title={t('shipments.title')} description={t('shipments.count', { count: page.summary.all })} actions={actions} />
       <Card>
-        {shipments.length === 0 ? (
+        {page.summary.all === 0 ? (
           <EmptyState
             title={t('shipments.emptyTitle')}
             action={
@@ -44,11 +59,15 @@ export function ShipmentsPage() {
           </EmptyState>
         ) : (
           <>
-            <ShipmentFilters value={filters} onChange={setFilters} />
+            <ShipmentFilters value={filters} counts={page.summary} onChange={changeFilters} />
+            {error && <Banner tone="error">{error}</Banner>}
             <p className="visually-hidden" role="status">
-              {t('shipments.count', { count: shown.length })}
+              {loading ? t('common.loading') : t('shipments.matching', { count: page.total })}
             </p>
-            {shown.length === 0 ? <EmptyState title={t('shipments.noMatch')} /> : <ShipmentsTable shipments={shown} />}
+            <div aria-busy={loading} className={loading ? 'is-refreshing' : undefined}>
+              {page.items.length === 0 ? <EmptyState title={t('shipments.noMatch')} /> : <ShipmentsTable shipments={page.items} />}
+            </div>
+            <Pager offset={page.offset} limit={page.limit} total={page.total} onOffsetChange={setOffset} label={t('shipments.pages')} busy={loading} />
           </>
         )}
       </Card>

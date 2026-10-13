@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { cx } from '../../lib/cx';
 
 export interface BannerProps {
-  tone: 'error' | 'ok' | 'info';
+  tone: 'error' | 'warning' | 'ok' | 'info';
   children: ReactNode;
 }
 

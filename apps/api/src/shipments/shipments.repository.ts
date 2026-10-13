@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { TextLine } from '@doccheck/extraction';
-import type { DocumentStatus, DocumentType, Finding, Isf, Shipment, ShipmentDocument, ShipmentStatus } from '@doccheck/schemas';
+import type { Destination, DocumentStatus, DocumentType, Finding, Isf, Severity, Shipment, ShipmentDocument, ShipmentStatus, TransportMode } from '@doccheck/schemas';
 import type { Pool, PoolClient } from 'pg';
 import { PG_POOL } from '../db/db.module';
 
@@ -35,8 +35,65 @@ export interface ValidationRow {
   inputs: Record<string, string>;
   findings: Finding[];
   agent?: unknown;
+  destination?: Destination;
   createdAt?: string;
 }
+
+export interface ValidationSummary {
+  id: string;
+  createdAt: string;
+  destination?: Destination;
+  ran: number;
+  skipped: number;
+  agentStatus?: string;
+  findings: number;
+  bySeverity: Partial<Record<Severity, number>>;
+}
+
+export type StatusGroup = 'all' | 'open' | 'attention' | 'done';
+
+export interface ShipmentListQuery {
+  status: StatusGroup;
+  destination?: Destination;
+  q?: string;
+  limit: number;
+  offset: number;
+}
+
+export type ShipmentSummary = Omit<Shipment, 'documents'> & { documentCount: number; findingCount: number | null };
+
+export interface ShipmentPage {
+  items: ShipmentSummary[];
+  total: number;
+  limit: number;
+  offset: number;
+  /** Over all of the user's shipments, whatever the filters. */
+  summary: { all: number; open: number; attention: number; done: number; findings: number };
+}
+
+export interface ShipmentPatch {
+  reference?: string | null;
+  destination?: Destination;
+  transportMode?: TransportMode;
+}
+
+/** SQL conditions on a row of `listed` (status, finding_count, validated) for each status group. */
+const STATUS_GROUP: Record<Exclude<StatusGroup, 'all'>, string> = {
+  open: `status in ('RECEIVED', 'EXTRACTING', 'VALIDATING')`,
+  attention: `(status = 'NEEDS_INPUT' or (validated and finding_count > 0))`,
+  done: `(status = 'DONE' and validated and finding_count = 0)`,
+};
+
+const toValidation = (r: Record<string, unknown>): Omit<ValidationRow, 'findings'> & { createdAt: string } => ({
+  id: r.id as string,
+  shipmentId: r.shipment_id as string,
+  ran: r.ran as string[],
+  skipped: r.skipped as ValidationRow['skipped'],
+  inputs: r.inputs as Record<string, string>,
+  agent: r.agent ?? undefined,
+  ...(r.destination ? { destination: r.destination as Destination } : {}),
+  createdAt: new Date(r.created_at as string).toISOString(),
+});
 
 export const ISF_CHANGED =
   "Not used as the shipment's ISF: it changed while this PDF was being extracted (a filing entered by hand, or an ISF PDF uploaded later). Re-extract this PDF as ISF to use it.";
@@ -124,34 +181,166 @@ export class ShipmentsRepository {
     };
   }
 
-  /** Most recent first, with counts for a list view. */
-  async listShipments(userId: string, limit = 100): Promise<(Omit<Shipment, 'documents'> & { documentCount: number; findingCount: number | null })[]> {
+  /**
+   * One page of the user's shipments, most recent first, with counts for a list view; `total` is the
+   * number matching the filters and `summary` counts all of the user's shipments per group.
+   */
+  async listShipments(userId: string, q: ShipmentListQuery): Promise<ShipmentPage> {
+    const params: unknown[] = [userId];
+    const where: string[] = [];
+    if (q.destination) {
+      params.push(q.destination);
+      where.push(`destination = $${params.length}`);
+    }
+    if (q.q) {
+      params.push(`%${q.q.replace(/[\\%_]/g, (c) => `\\${c}`)}%`);
+      where.push(`(coalesce(reference, '') ilike $${params.length} or id::text ilike $${params.length})`);
+    }
+    if (q.status !== 'all') where.push(STATUS_GROUP[q.status]);
+    params.push(q.limit, q.offset);
     const { rows } = await this.pool.query(
-      `select s.*,
-         (select count(*)::int from documents d where d.shipment_id = s.id) as document_count,
-         (select count(*)::int from findings f where f.validation_id =
-            (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)) as finding_count,
-         exists (select 1 from validations v where v.shipment_id = s.id) as validated
-       from shipments s where s.user_id = $1 order by s.created_at desc limit $2`,
-      [userId, limit],
+      `with listed as (
+         select s.*,
+           (select count(*)::int from documents d where d.shipment_id = s.id) as document_count,
+           (select count(*)::int from findings f where f.validation_id =
+              (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)) as finding_count,
+           exists (select 1 from validations v where v.shipment_id = s.id) as validated
+         from shipments s where s.user_id = $1
+       ), matching as (select * from listed${where.length ? ` where ${where.join(' and ')}` : ''})
+       select matching.*, count(*) over ()::int as total from matching
+       order by created_at desc, id limit $${params.length - 1} offset $${params.length}`,
+      params,
     );
-    return rows.map((r) => ({
-      id: r.id,
-      ...(r.reference ? { reference: r.reference } : {}),
-      ...(r.destination ? { destination: r.destination } : {}),
-      ...(r.transport_mode ? { transportMode: r.transport_mode } : {}),
-      status: r.status,
-      createdAt: new Date(r.created_at).toISOString(),
-      documentCount: r.document_count,
-      findingCount: r.validated ? r.finding_count : null,
-    }));
+    const { rows: [summary] } = await this.pool.query(
+      `with listed as (
+         select s.status,
+           (select count(*)::int from findings f where f.validation_id =
+              (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)) as finding_count,
+           exists (select 1 from validations v where v.shipment_id = s.id) as validated
+         from shipments s where s.user_id = $1
+       )
+       select count(*)::int as all,
+         (count(*) filter (where ${STATUS_GROUP.open}))::int as open,
+         (count(*) filter (where ${STATUS_GROUP.attention}))::int as attention,
+         (count(*) filter (where ${STATUS_GROUP.done}))::int as done,
+         coalesce(sum(finding_count) filter (where validated), 0)::int as findings
+       from listed`,
+      [userId],
+    );
+    return {
+      items: rows.map((r) => ({
+        id: r.id,
+        ...(r.reference ? { reference: r.reference } : {}),
+        ...(r.destination ? { destination: r.destination } : {}),
+        ...(r.transport_mode ? { transportMode: r.transport_mode } : {}),
+        status: r.status,
+        createdAt: new Date(r.created_at).toISOString(),
+        documentCount: r.document_count,
+        findingCount: r.validated ? r.finding_count : null,
+      })),
+      total: rows[0]?.total ?? (q.offset > 0 ? await this.countMatching(userId, q) : 0),
+      limit: q.limit,
+      offset: q.offset,
+      summary,
+    };
+  }
+
+  /** `total` for a page past the end, where the windowed count has no row to ride on. */
+  private async countMatching(userId: string, q: ShipmentListQuery): Promise<number> {
+    const page = await this.listShipments(userId, { ...q, offset: 0, limit: 1 });
+    return page.total;
+  }
+
+  /**
+   * Changes the reference, destination or transport mode. The destination is refused while documents
+   * extract (the processor reads it to keep an ISF) and when leaving the US would drop an ISF entered
+   * by hand; an ISF taken from a PDF is dropped then, and restored from the PDFs on coming back.
+   */
+  async updateShipment(id: string, patch: ShipmentPatch): Promise<'not-found' | 'pending' | 'manual-isf' | 'ok'> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('begin');
+      const found = await client.query<{ destination: string | null }>('select destination from shipments where id = $1 for update', [id]);
+      if (!found.rowCount) {
+        await client.query('rollback');
+        return 'not-found';
+      }
+      const before = found.rows[0].destination;
+      const moves = patch.destination !== undefined && patch.destination !== before;
+      if (moves) {
+        const pending = await client.query(`select 1 from documents where shipment_id = $1 and status in ('QUEUED', 'EXTRACTING') limit 1`, [id]);
+        if (pending.rowCount) {
+          await client.query('rollback');
+          return 'pending';
+        }
+        if (before === 'US') {
+          const isf = await client.query<{ source: string }>('select source from isf_filings where shipment_id = $1', [id]);
+          if (isf.rows[0] && isf.rows[0].source !== 'pdf') {
+            await client.query('rollback');
+            return 'manual-isf';
+          }
+          await client.query('delete from isf_filings where shipment_id = $1', [id]);
+        }
+      }
+      const sets: string[] = [];
+      const params: unknown[] = [id];
+      const set = (column: string, value: unknown) => {
+        params.push(value);
+        sets.push(`${column} = $${params.length}`);
+      };
+      if (patch.reference !== undefined) set('reference', patch.reference);
+      if (patch.destination !== undefined) set('destination', patch.destination);
+      if (patch.transportMode !== undefined) set('transport_mode', patch.transportMode);
+      if (sets.length) await client.query(`update shipments set ${sets.join(', ')} where id = $1`, params);
+      if (moves && patch.destination === 'US') {
+        await client.query(
+          `insert into isf_filings (shipment_id, data, source, document_id)
+           select d.shipment_id, e.data, 'pdf', d.id
+           from documents d join extractions e on e.document_id = d.id
+           where d.shipment_id = $1 and d.detected_type = 'ISF' and d.status = 'EXTRACTED' and e.data is not null
+           order by d.created_at desc limit 1
+           on conflict (shipment_id) do nothing`,
+          [id],
+        );
+      }
+      await client.query('commit');
+      return 'ok';
+    } catch (err) {
+      await client.query('rollback');
+      throw err;
+    } finally {
+      client.release();
+    }
   }
 
   async latestValidation(shipmentId: string): Promise<(Omit<ValidationRow, 'findings'> & { createdAt: string }) | null> {
     const { rows } = await this.pool.query('select * from validations where shipment_id = $1 order by created_at desc limit 1', [shipmentId]);
-    const r = rows[0];
-    if (!r) return null;
-    return { id: r.id, shipmentId: r.shipment_id, ran: r.ran, skipped: r.skipped, inputs: r.inputs, agent: r.agent ?? undefined, createdAt: new Date(r.created_at).toISOString() };
+    return rows[0] ? toValidation(rows[0]) : null;
+  }
+
+  async findValidation(shipmentId: string, validationId: string): Promise<(Omit<ValidationRow, 'findings'> & { createdAt: string }) | null> {
+    const { rows } = await this.pool.query('select * from validations where shipment_id = $1 and id = $2', [shipmentId, validationId]);
+    return rows[0] ? toValidation(rows[0]) : null;
+  }
+
+  /** Every validation run of the shipment, newest first, with its findings counted by severity. */
+  async listValidations(shipmentId: string): Promise<ValidationSummary[]> {
+    const { rows } = await this.pool.query(
+      `select v.id, v.created_at, v.destination, jsonb_array_length(v.ran) as ran, jsonb_array_length(v.skipped) as skipped, v.agent->>'status' as agent,
+         coalesce((select jsonb_object_agg(severity, n) from (select severity, count(*)::int as n from findings f where f.validation_id = v.id group by severity) c), '{}') as by_severity
+       from validations v where v.shipment_id = $1 order by v.created_at desc`,
+      [shipmentId],
+    );
+    return rows.map((r) => ({
+      id: r.id,
+      createdAt: new Date(r.created_at).toISOString(),
+      ...(r.destination ? { destination: r.destination } : {}),
+      ran: r.ran,
+      skipped: r.skipped,
+      ...(r.agent ? { agentStatus: r.agent } : {}),
+      findings: Object.values(r.by_severity as Record<string, number>).reduce((a, b) => a + b, 0),
+      bySeverity: r.by_severity,
+    }));
   }
 
   /** Replaces the shipment's ISF. `documentId` is the PDF it was extracted from, if any. */
@@ -372,8 +561,8 @@ export class ShipmentsRepository {
     const client = await this.pool.connect();
     try {
       await client.query('begin');
-      await client.query('insert into validations (id, shipment_id, ran, skipped, inputs, agent) values ($1, $2, $3, $4, $5, $6)', [
-        v.id, v.shipmentId, JSON.stringify(v.ran), JSON.stringify(v.skipped), JSON.stringify(v.inputs), v.agent === undefined ? null : JSON.stringify(v.agent),
+      await client.query('insert into validations (id, shipment_id, ran, skipped, inputs, agent, destination) values ($1, $2, $3, $4, $5, $6, $7)', [
+        v.id, v.shipmentId, JSON.stringify(v.ran), JSON.stringify(v.skipped), JSON.stringify(v.inputs), v.agent === undefined ? null : JSON.stringify(v.agent), v.destination ?? null,
       ]);
       for (const f of v.findings) {
         await client.query(
@@ -392,6 +581,11 @@ export class ShipmentsRepository {
     } finally {
       client.release();
     }
+  }
+
+  async validationFindings(validationId: string): Promise<Finding[]> {
+    const { rows } = await this.pool.query('select * from findings where validation_id = $1 order by id', [validationId]);
+    return rows.map(toFinding);
   }
 
   /** Findings of the most recent validation run. */

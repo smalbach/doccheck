@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { RuleDefinition, ShipmentDocument, Validation } from '../../api/types';
 import { Banner } from '../../components/ui/Banner';
 import { Card } from '../../components/ui/Card';
@@ -13,9 +14,11 @@ export interface FindingsCardProps {
   rules: Readonly<Record<string, RuleDefinition>>;
   documents: ReadonlyMap<string, ShipmentDocument>;
   onOpen: (target: ViewerTarget) => void;
+  /** Above the findings: a past run is shown, or the destination changed since. */
+  notice?: ReactNode;
 }
 
-export function FindingsCard({ validation, rules, documents, onOpen }: FindingsCardProps) {
+export function FindingsCard({ validation, rules, documents, onOpen, notice }: FindingsCardProps) {
   const { t, formatDateTime } = useI18n();
   const aside = validation && (
     <span className="muted small">
@@ -24,6 +27,7 @@ export function FindingsCard({ validation, rules, documents, onOpen }: FindingsC
   );
   return (
     <Card title={t('shipment.findings.title')} aside={aside} className="findings" aria-live="polite">
+      {notice}
       {!validation ? (
         <p className="muted">{t('shipment.findings.empty')}</p>
       ) : validation.findings.length === 0 ? (

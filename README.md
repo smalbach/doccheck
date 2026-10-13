@@ -154,7 +154,9 @@ After the rules run, `/validate` does a second pass:
 | GET / PATCH | `/admin/users`, `/admin/users/:id` | Admin: accounts and `{ role }` (nobody changes their own; the last admin stays) |
 | GET | `/rules?destination=CA` | Active rules for a destination |
 | POST | `/shipments` | Create a shipment: `{ reference?, destination: "CA" \| "US", transportMode? }` |
+| GET | `/shipments` | The user's shipments, a page at a time: `?status=all\|open\|attention\|done&destination=CA\|US&q=text&limit=25&offset=0` → `{ items, total, limit, offset, summary }` (`summary` counts every shipment per status group) |
 | GET | `/shipments/:id` | Shipment and status |
+| PATCH | `/shipments/:id` | `{ reference?, destination?, transportMode? }`. The destination is refused while documents extract and, leaving the US, while the ISF was entered by hand (409); one read from a PDF is set aside and comes back with the US |
 | DELETE | `/shipments/:id` | Delete the shipment with its documents, PDFs, extractions, ISF and findings (409 while extracting) |
 | GET | `/results` | Summary of the evaluation reports in `eval/reports`, for the web app's results page |
 | PUT / GET / DELETE | `/shipments/:id/isf` | The shipment's ISF (10+2) as JSON, used by X11 on US shipments. GET says where it came from (`source`: `upload`, `sample` or `pdf` with `documentId`) |
@@ -162,6 +164,8 @@ After the rules run, `/validate` does a second pass:
 | POST | `/shipments/:id/documents/:documentId/reextract` | Extract again as a given type `{ type }` (including `ISF`) when classification got it wrong |
 | GET | `/shipments/:id/documents/:documentId` | Document status (`QUEUED`, `EXTRACTING`, `EXTRACTED`, `FAILED`) and, once extracted, values as printed, normalized document and issues |
 | POST | `/shipments/:id/validate` | Run the rules on the extracted documents (409 while any is still extracting), or on normalized JSON documents in the body `{ invoice?, packingList?, billOfLading?, isf? }`; then citations and agent review (`?agent=false` skips the model) |
+| GET | `/shipments/:id/validation` | The last validation run with its findings and the destination it ran against |
+| GET | `/shipments/:id/validations` | Every validation run, newest first, with findings counted by severity; `/validations/:validationId` is one run with its findings |
 | GET | `/shipments/:id/findings` | Findings from the last validation |
 
 Documents passed as JSON in the body of `/validate` take precedence over extracted ones, which keeps the phase 0 flow working for tests.

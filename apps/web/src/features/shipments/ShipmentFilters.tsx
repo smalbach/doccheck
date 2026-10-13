@@ -1,22 +1,24 @@
+import type { ShipmentPage } from '../../api/types';
 import { Select } from '../../components/ui/Select';
 import { TextInput } from '../../components/ui/TextInput';
 import { ToggleChips } from '../../components/ui/ToggleChips';
-import { DESTINATION_FILTERS, STATUS_FILTERS } from '../../constants/shipmentFilters';
+import { DESTINATION_FILTERS, STATUS_FILTERS, type ShipmentFilterState } from '../../constants/shipmentFilters';
 import { useI18n } from '../../i18n/useI18n';
-import type { ShipmentFilterState } from '../../lib/filterShipments';
 
 export interface ShipmentFiltersProps {
   value: ShipmentFilterState;
+  /** Shipments per status group, shown on the chips. */
+  counts: ShipmentPage['summary'];
   onChange: (value: ShipmentFilterState) => void;
 }
 
-export function ShipmentFilters({ value, onChange }: ShipmentFiltersProps) {
+export function ShipmentFilters({ value, counts, onChange }: ShipmentFiltersProps) {
   const { t } = useI18n();
   return (
     <div className="filters">
       <ToggleChips
         value={value.status}
-        options={STATUS_FILTERS.map((f) => ({ value: f.value, label: t(f.labelKey) }))}
+        options={STATUS_FILTERS.map((f) => ({ value: f.value, label: `${t(f.labelKey)} (${counts[f.value]})` }))}
         onValueChange={(status) => onChange({ ...value, status })}
         ariaLabel={t('shipments.filterStatus')}
       />

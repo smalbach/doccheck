@@ -1,5 +1,6 @@
 import type { ExtractableType } from '../constants/documentTypes';
 import { jsonBody } from './jsonBody';
+import { queryString } from './queryString';
 import { request } from './request';
 import type {
   AdminModels,
@@ -15,12 +16,15 @@ import type {
   ShipmentDocument,
   SettingKey,
   SettingValues,
-  ShipmentSummary,
+  ShipmentListQuery,
+  ShipmentPage,
+  ShipmentUpdate,
   SystemStatus,
   User,
   UserSummary,
   Role,
   Validation,
+  ValidationSummary,
 } from './types';
 
 const shipmentPath = (id: string) => `/shipments/${encodeURIComponent(id)}`;
@@ -38,9 +42,10 @@ export const api = {
   changePassword: (body: { currentPassword: string; newPassword: string }) => request<void>('/auth/password', jsonBody(body)),
   deleteAccount: (password: string) => request<void>('/auth/me', { ...jsonBody({ password }), method: 'DELETE' }),
 
-  shipments: () => request<ShipmentSummary[]>('/shipments'),
+  shipments: (query: ShipmentListQuery = {}) => request<ShipmentPage>(`/shipments${queryString({ ...query })}`),
   shipment: (id: string) => request<Shipment>(shipmentPath(id)),
   create: (body: { reference?: string; destination: Destination }) => request<Shipment>('/shipments', jsonBody({ ...body, transportMode: 'SEA' })),
+  update: (id: string, body: ShipmentUpdate) => request<Shipment>(shipmentPath(id), { ...jsonBody(body), method: 'PATCH' }),
   remove: (id: string) => request<void>(shipmentPath(id), { method: 'DELETE' }),
 
   upload: (id: string, files: File[]) => {
@@ -52,8 +57,10 @@ export const api = {
   reextract: (id: string, documentId: string, type: ExtractableType) => request<ShipmentDocument>(`${documentPath(id, documentId)}/reextract`, jsonBody({ type })),
   fileUrl: (id: string, documentId: string) => `${documentPath(id, documentId)}/file`,
 
-  validate: (id: string, agent: boolean) => request<Validation>(`${shipmentPath(id)}/validate${agent ? '' : '?agent=false'}`, { method: 'POST' }),
+  validate: (id: string, agent: boolean) => request<{ validationId: string }>(`${shipmentPath(id)}/validate${agent ? '' : '?agent=false'}`, { method: 'POST' }),
   validation: (id: string) => request<Validation>(`${shipmentPath(id)}/validation`),
+  validations: (id: string) => request<ValidationSummary[]>(`${shipmentPath(id)}/validations`),
+  pastValidation: (id: string, validationId: string) => request<Validation>(`${shipmentPath(id)}/validations/${encodeURIComponent(validationId)}`),
   rules: (destination: Destination) => request<RuleDefinition[]>(`/rules?destination=${destination}`),
 
   isf: (id: string) => request<IsfFiling>(`${shipmentPath(id)}/isf`),
