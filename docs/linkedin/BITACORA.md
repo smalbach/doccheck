@@ -117,8 +117,25 @@ Recall de texto en 12 PDFs escaneados (mismos que tesseract, misma métrica `fin
 | BL | 81.6% | 56.6% |
 | Tiempo | 20 s | 112 s |
 
-Conclusión por ahora: no reemplaza a tesseract en esta forma de correrlo. Próximo intento: la versión
-MLX (mantiene los tokens de tabla) o usarlo solo para packing lists.
+Conclusión con Ollama: no reemplaza a tesseract en esa forma de correrlo.
+
+**Segunda prueba: versión MLX para Mac** (`mlx-community/Unlimited-OCR-8bit` con `mlx-vlm` 0.7.8, prompt
+`document parsing.` aplicado con la plantilla de chat; la herramienta de línea de comandos sin plantilla
+devolvía basura). Conserva las tablas (`<tr><td>`), no entra en bucle salvo en 1 de 120 páginas, y tarda
+2.2 s por página (mediana). Mismos 120 PDFs escaneados, misma métrica:
+
+| | tesseract | Unlimited-OCR MLX 8-bit |
+| --- | --- | --- |
+| Total | 86.6% | **96.8%** |
+| Factura | 87.9% | 96.9% |
+| Packing list | 84.4% | 98.7% |
+| BL | 86.7% | 95.1% |
+| Escaneo 150 dpi | 95.1% | 98.1% |
+| Escaneo 110 dpi, borroso | 69.3% | **94.2%** |
+
+Lección: el mismo modelo dio 67.5% o 96.8% según cómo se corre (cuantización y empaquetado de Ollama
+vs MLX). Medir la forma concreta de ejecutarlo, no el nombre del modelo. Próximo paso: integrarlo como
+motor de OCR y medir la extracción completa (campos y reglas) sobre los escaneos.
 
 ## Producto web: hitos del 13 oct (sesión de la app)
 
@@ -152,7 +169,7 @@ Decisiones para contar:
 
 ## Pendiente / próximos pasos
 
-- OCR de Baidu: probar la versión MLX o usarlo solo para packing lists.
+- OCR de Baidu: integrarlo como motor (`OCR_ENGINE`) y medir la extracción completa de los escaneos.
 - Segunda pasada barata para campos obligatorios ("¿este valor está impreso bajo esta etiqueta?").
 - Probar con documentos reales.
 - Publicar la demo de solo lectura.
@@ -161,4 +178,5 @@ Decisiones para contar:
 
 - 13 oct 2026: creada con el estado al cierre de la evaluación (commit `739a696`).
 - 13 oct 2026: primera prueba del OCR de Baidu.
+- 13 oct 2026: OCR de Baidu en MLX: 96.8% contra 86.6% de tesseract.
 - 13 oct 2026: hitos de la app web y de las tablas de datos extraídos (sesión de la app).

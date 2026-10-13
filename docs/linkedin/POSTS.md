@@ -212,43 +212,45 @@ the model, the code or the metric was at fault.
 
 ---
 
-## 5. Probar el modelo de OCR nuevo antes de adoptarlo (borrador, actualizar con el resultado final)
+## 5. El mismo modelo: 67.5% o 96.8%, según cómo lo corrés
 
-Imagen: tabla comparativa de [BITACORA.md](BITACORA.md), sección "OCR de Baidu".
+Imagen: la tabla de [BITACORA.md](BITACORA.md), sección "OCR de Baidu".
 
 **ES**
 
 Baidu publicó Unlimited-OCR, un modelo de 3B parámetros para leer documentos. Lo probé en mi
-pipeline antes de adoptarlo, contra el tesseract que ya usaba, sobre los mismos escaneos y con la
-misma métrica.
+pipeline de aduanas contra el tesseract que ya usaba, sobre los mismos 120 escaneos y con la misma
+métrica.
 
-Resultado en 12 documentos: tesseract 76.4% de los valores encontrados, Unlimited-OCR 67.5% (y 5
-veces más lento en mi laptop). Gana claramente en packing lists (79.7% vs 59.4%) y pierde en facturas
-y BL.
+Primer intento, con la versión empaquetada para Ollama: 67.5% en una muestra, peor que tesseract. Las
+celdas de las tablas salían pegadas ("1.8598,568.00" en vez de "1.85 | 98,568.00"), a veces repetía
+una línea hasta llenar el contexto, y en un modo inventó texto en chino que no estaba en la página.
 
-No es que el modelo sea malo. En la versión que corre en Ollama, las etiquetas de las celdas de tabla
-se pierden y los números quedan pegados ("1.8598,568.00" en vez de "1.85 | 98,568.00"). Y en uno de
-los modos inventó texto en chino que no estaba en el documento.
+Segundo intento, mismo modelo en MLX en mi Mac: 96.8% de los valores encontrados contra 86.6% de
+tesseract. En los escaneos borrosos de 110 dpi: 94.2% contra 69.3%. Unos 2 segundos por página.
 
-Lección: un benchmark público no reemplaza medir en tus datos y con tu forma de correrlo.
+Lección: no evalúes un nombre de modelo, evaluá la forma concreta en que lo vas a correr
+(cuantización, empaquetado, plantilla de prompt). La diferencia acá fue de 29 puntos.
 
-[Actualizar con la prueba de la versión MLX si se hace.]
+[Próximo: el número de punta a punta, campos y reglas, cuando esté integrado.]
 
-#OCR #DocumentAI #Evals #LLM
+#OCR #DocumentAI #Evals #LLM #AppleSilicon
 
 **EN**
 
-Baidu released Unlimited-OCR, a 3B document-reading model. I tested it in my pipeline before
-adopting it, against the tesseract I already used, on the same scans with the same metric.
+Baidu released Unlimited-OCR, a 3B document-reading model. I tested it in my customs pipeline against
+the tesseract I already used, on the same 120 scans with the same metric.
 
-On 12 documents: tesseract found 76.4% of the expected values, Unlimited-OCR 67.5% (and was 5x slower
-on my laptop). It clearly wins on packing lists (79.7% vs 59.4%) and loses on invoices and bills of
-lading.
+First try, the build packaged for Ollama: 67.5% on a sample, worse than tesseract. Table cells ran
+together ("1.8598,568.00" instead of "1.85 | 98,568.00"), it sometimes repeated a line until the
+context filled up, and one prompt mode made up Chinese text that wasn't on the page.
 
-The model isn't bad. In the build that runs on Ollama, table cell tags are lost and numbers run
-together ("1.8598,568.00" instead of "1.85 | 98,568.00"). And one prompt mode made up Chinese text
-that wasn't on the page.
+Second try, the same model on MLX on my Mac: 96.8% of expected values found vs 86.6% for tesseract.
+On blurry 110 dpi scans: 94.2% vs 69.3%. About 2 seconds per page.
 
-Lesson: a public benchmark doesn't replace measuring on your data, the way you'll run it.
+Lesson: don't evaluate a model name, evaluate the exact way you'll run it (quantization, packaging,
+prompt template). Here that was a 29-point difference.
 
-#OCR #DocumentAI #Evals #LLM
+[Next: the end-to-end number, fields and rules, once it's integrated.]
+
+#OCR #DocumentAI #Evals #LLM #AppleSilicon
