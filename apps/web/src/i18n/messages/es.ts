@@ -207,6 +207,8 @@ export const es: Messages = {
     goodsPages: 'Páginas de mercancías',
     shipmentsSearch: 'Buscar referencia, factura, parte, B/L o contenedor',
     noShipments: 'Ningún envío coincide',
+    exportCsv: 'Exportar CSV',
+    exportCsvHint: 'Descargar todas las filas que coinciden en un archivo CSV, con los filtros actuales',
     netShort: 'neto {kg} kg',
     columns: {
       shipment: 'Envío',

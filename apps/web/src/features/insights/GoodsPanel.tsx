@@ -11,6 +11,7 @@ import { SEARCH_DEBOUNCE_MS } from '../../constants/shipmentFilters';
 import { useDebouncedValue } from '../../hooks/useDebouncedValue';
 import { useQuery } from '../../hooks/useQuery';
 import { useI18n } from '../../i18n/useI18n';
+import { ExportCsvButton } from './ExportCsvButton';
 import { GoodsTable } from './GoodsTable';
 
 export interface GoodsPanelProps {
@@ -28,14 +29,13 @@ export function GoodsPanel({ destination, filters, onFiltersChange }: GoodsPanel
   const [offset, setOffset] = useState(0);
   const settled = useDebouncedValue(filters, SEARCH_DEBOUNCE_MS);
   // Half-typed codes are not sent: the API would refuse them.
-  const query = {
+  const filtersQuery = {
     destination,
     q: settled.query.trim() || undefined,
     origin: ORIGIN.test(settled.origin.trim()) ? settled.origin.trim().toUpperCase() : undefined,
     hs: HS.test(settled.hs.trim()) ? settled.hs.trim() : undefined,
-    limit: INSIGHTS_PAGE_SIZE,
-    offset,
   };
+  const query = { ...filtersQuery, limit: INSIGHTS_PAGE_SIZE, offset };
   const { data, error, loading } = useQuery(`goods:${JSON.stringify(query)}`, () => api.insightsLines(query));
   const change = (patch: Partial<GoodsFilterState>) => {
     onFiltersChange({ ...filters, ...patch });
@@ -49,6 +49,7 @@ export function GoodsPanel({ destination, filters, onFiltersChange }: GoodsPanel
         <div className="filters-right">
           <TextInput value={filters.origin} maxLength={2} onChange={(e) => change({ origin: e.target.value })} placeholder={t('insights.originPlaceholder')} aria-label={t('insights.columns.origin')} className="mono input-short" />
           <TextInput value={filters.hs} maxLength={13} inputMode="decimal" onChange={(e) => change({ hs: e.target.value })} placeholder={t('insights.hsPlaceholder')} aria-label={t('insights.columns.hs')} className="mono input-short" />
+          <ExportCsvButton href={api.insightsLinesCsvUrl(filtersQuery)} />
         </div>
       </div>
       {!data ? (

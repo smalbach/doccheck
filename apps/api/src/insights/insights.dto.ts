@@ -25,3 +25,10 @@ export const ShipmentDataQuery = z.object({
   ...page,
 });
 export type ShipmentDataQuery = z.infer<typeof ShipmentDataQuery>;
+
+/** The filters of a CSV export: those of the list, without paging. */
+export const LinesCsvQuery = LinesQuery.omit({ limit: true, offset: true });
+export type LinesCsvQuery = z.infer<typeof LinesCsvQuery>;
+
+export const ShipmentDataCsvQuery = ShipmentDataQuery.omit({ limit: true, offset: true });
+export type ShipmentDataCsvQuery = z.infer<typeof ShipmentDataCsvQuery>;

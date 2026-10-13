@@ -207,6 +207,8 @@ export const fr: Messages = {
     goodsPages: 'Pages des marchandises',
     shipmentsSearch: 'Rechercher référence, facture, partie, connaissement ou conteneur',
     noShipments: 'Aucun envoi ne correspond',
+    exportCsv: 'Exporter en CSV',
+    exportCsvHint: 'Télécharger toutes les lignes correspondantes dans un fichier CSV, avec les filtres actuels',
     netShort: 'net {kg} kg',
     columns: {
       shipment: 'Envoi',

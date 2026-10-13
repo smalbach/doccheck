@@ -1,8 +1,11 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Header, Query, Res } from '@nestjs/common';
+import type { Response } from 'express';
 import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
+import { csvAttachment, toCsv } from '../common/csv';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
-import { LinesQuery, ShipmentDataQuery, SummaryQuery } from './insights.dto';
+import { CSV_MAX_ROWS, GOODS_CSV_COLUMNS, SHIPMENTS_CSV_COLUMNS } from './insights.csv';
+import { LinesCsvQuery, LinesQuery, ShipmentDataCsvQuery, ShipmentDataQuery, SummaryQuery } from './insights.dto';
 import { InsightsRepository } from './insights.repository';
 
 /**
@@ -28,5 +31,23 @@ export class InsightsController {
   @Get('shipments')
   shipments(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(ShipmentDataQuery)) query: ShipmentDataQuery) {
     return this.repo.shipments(user.id, query);
+  }
+
+  /** Every matching invoice line (up to CSV_MAX_ROWS) as a CSV download; the filters of /lines, no paging. */
+  @Get('lines.csv')
+  @Header('content-type', 'text/csv; charset=utf-8')
+  async linesCsv(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(LinesCsvQuery)) query: LinesCsvQuery, @Res({ passthrough: true }) res: Response) {
+    const { items } = await this.repo.lines(user.id, { ...query, limit: CSV_MAX_ROWS, offset: 0 });
+    res.setHeader('content-disposition', csvAttachment('doccheck-goods'));
+    return toCsv(GOODS_CSV_COLUMNS, items);
+  }
+
+  /** Every matching shipment (up to CSV_MAX_ROWS) as a CSV download; the filters of /shipments, no paging. */
+  @Get('shipments.csv')
+  @Header('content-type', 'text/csv; charset=utf-8')
+  async shipmentsCsv(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(ShipmentDataCsvQuery)) query: ShipmentDataCsvQuery, @Res({ passthrough: true }) res: Response) {
+    const { items } = await this.repo.shipments(user.id, { ...query, limit: CSV_MAX_ROWS, offset: 0 });
+    res.setHeader('content-disposition', csvAttachment('doccheck-shipments'));
+    return toCsv(SHIPMENTS_CSV_COLUMNS, items);
   }
 }

@@ -691,6 +691,61 @@ describe('insights', () => {
     assert.deepEqual([ships.items[0].packages, ships.items[0].blNumber, ships.items[0].containers], [120, sampleBillOfLading.blNumber, ['CSQU3054383']]);
     assert.equal((await call('GET', '/insights/summary', undefined, '')).status, 401);
   });
+
+  it('exports the goods and the shipments as CSV, with the filters, escaped and without formulas', async () => {
+    const user = await signUp('CSV');
+    const tricky = {
+      ...sampleInvoice,
+      invoiceNumber: '=HYPERLINK("x")',
+      seller: { ...sampleInvoice.seller, name: 'Acme, "Toys"\nLtd' },
+      lines: [
+        { ...sampleInvoice.lines[0], description: 'Café crème', countryOfOrigin: 'VN', sku: '+SKU-1', lineTotal: { amount: '-10.50', currency: 'EUR' } },
+        { ...sampleInvoice.lines[0], lineNo: 2, description: '@cmd', countryOfOrigin: 'CN' },
+      ],
+    };
+    const ca = await shipmentWith(user, 'CA', { COMMERCIAL_INVOICE: tricky, BILL_OF_LADING: sampleBillOfLading });
+    await shipmentWith(user, 'US', { COMMERCIAL_INVOICE: sampleInvoice });
+    await shipmentWith(await signUp('Someone else'), 'CA', { COMMERCIAL_INVOICE: tricky });
+    const csv = async (path) => {
+      const res = await send(base + path, {}, user);
+      assert.equal(res.status, 200);
+      assert.equal(res.headers.get('content-type'), 'text/csv; charset=utf-8');
+      const bytes = new Uint8Array(await res.arrayBuffer());
+      assert.deepEqual([...bytes.slice(0, 3)], [0xef, 0xbb, 0xbf]); // the UTF-8 BOM
+      return { text: new TextDecoder('utf-8', { ignoreBOM: true }).decode(bytes).slice(1), disposition: res.headers.get('content-disposition') };
+    };
+
+    const goods = await csv('/insights/lines.csv?destination=CA&origin=VN&limit=1');
+    assert.match(goods.disposition, /^attachment; filename="doccheck-goods-\d{4}-\d{2}-\d{2}\.csv"$/);
+    const rows = goods.text.split('\r\n');
+    assert.equal(rows[0], 'Shipment reference,Shipment ID,Destination,Invoice number,Seller,Line no,SKU,Description,HS code,Country of origin,Quantity,Unit,Unit price,Currency,Line total');
+    assert.equal(rows.at(-1), '');
+    assert.equal(rows.length, 3); // the header, the one VN line of this user's CA shipment, the final line break
+    const line = sampleInvoice.lines[0];
+    assert.equal(
+      rows[1],
+      `Insights CA,${ca.id},CA,"'=HYPERLINK(""x"")","Acme, ""Toys""\nLtd"` +
+        `,${line.lineNo},'+SKU-1,Café crème,${line.hsCode},VN,${line.quantity.value},${line.quantity.unit},${line.unitPrice.amount},EUR,-10.50`,
+    );
+    const all = await csv('/insights/lines.csv');
+    assert.equal(all.text.trimEnd().split('\r\n').length, 1 + tricky.lines.length + sampleInvoice.lines.length);
+    assert.match(all.text, /,'@cmd,/);
+    assert.equal((await csv('/insights/lines.csv?q=nothing-matches')).text, rows[0] + '\r\n');
+
+    const ships = await csv(`/insights/shipments.csv?q=${encodeURIComponent(sampleBillOfLading.blNumber)}`);
+    assert.match(ships.disposition, /filename="doccheck-shipments-\d{4}-\d{2}-\d{2}\.csv"/);
+    // The seller's own line break stays inside its quoted cell: rows end with CRLF only.
+    const [header, ship, ...rest] = ships.text.trimEnd().split('\r\n');
+    assert.equal(header, 'Shipment reference,Shipment ID,Destination,Invoice number,Invoice date,Seller,Buyer,Incoterm,Invoice total,Currency,Lines,Packages,Gross kg,Net kg,Volume m3,B/L number,Carrier,Vessel,Port of loading,Port of discharge,Containers');
+    assert.ok(ship.startsWith(`Insights CA,${ca.id},CA,"'=HYPERLINK(""x"")",`));
+    assert.ok(ship.endsWith(',CSQU3054383'));
+    assert.deepEqual(rest, []);
+    assert.equal((await csv('/insights/shipments.csv?destination=US')).text.trimEnd().split('\r\n').length, 2);
+
+    assert.equal((await call('GET', '/insights/lines.csv?hs=abc', undefined, user)).status, 400);
+    assert.equal((await send(`${base}/insights/lines.csv`, {}, '')).status, 401);
+    assert.equal((await send(`${base}/insights/shipments.csv`, {}, '')).status, 401);
+  });
 });
 
 describe('ISF PDF upload', { skip: !isfSample && 'no ISF PDF with a cached model response' }, () => {

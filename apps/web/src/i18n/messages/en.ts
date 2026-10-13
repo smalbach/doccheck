@@ -217,6 +217,8 @@ export const en = {
     goodsPages: 'Goods pages',
     shipmentsSearch: 'Search reference, invoice, party, B/L or container',
     noShipments: 'No shipment matches',
+    exportCsv: 'Export CSV',
+    exportCsvHint: 'Download every matching row as a CSV file, with the current filters',
     netShort: 'net {kg} kg',
     columns: {
       shipment: 'Shipment',

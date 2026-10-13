@@ -11,6 +11,7 @@ import { SEARCH_DEBOUNCE_MS } from '../../constants/shipmentFilters';
 import { useDebouncedValue } from '../../hooks/useDebouncedValue';
 import { useQuery } from '../../hooks/useQuery';
 import { useI18n } from '../../i18n/useI18n';
+import { ExportCsvButton } from './ExportCsvButton';
 import { ShipmentDataTable } from './ShipmentDataTable';
 
 /** Per shipment: invoice, parties, incoterm, value, weights, packages, containers and route. */
@@ -36,6 +37,9 @@ export function ShipmentDataPanel({ destination }: { destination?: Destination }
           aria-label={t('insights.shipmentsSearch')}
           className="filters-grow"
         />
+        <div className="filters-right">
+          <ExportCsvButton href={api.insightsShipmentsCsvUrl({ destination, q: q || undefined })} />
+        </div>
       </div>
       {!data ? (
         <LoadingCard error={error} />

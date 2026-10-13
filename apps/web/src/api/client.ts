@@ -81,6 +81,9 @@ export const api = {
   insightsSummary: (destination?: Destination) => request<InsightsSummary>(`/insights/summary${queryString({ destination })}`),
   insightsLines: (query: GoodsQuery) => request<Paged<GoodsLine>>(`/insights/lines${queryString({ ...query })}`),
   insightsShipments: (query: ShipmentDataQuery) => request<Paged<ShipmentData>>(`/insights/shipments${queryString({ ...query })}`),
+  /** CSV downloads of every matching row, for a plain link: the session cookie goes along. */
+  insightsLinesCsvUrl: (filters: Omit<GoodsQuery, 'limit' | 'offset'>) => `/insights/lines.csv${queryString({ ...filters })}`,
+  insightsShipmentsCsvUrl: (filters: Omit<ShipmentDataQuery, 'limit' | 'offset'>) => `/insights/shipments.csv${queryString({ ...filters })}`,
 
   adminSettings: () => request<AdminSettings>('/admin/settings'),
   updateSettings: (values: Partial<SettingValues>) => request<AdminSettings>('/admin/settings', jsonBody(values, 'PUT')),
