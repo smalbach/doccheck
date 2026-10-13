@@ -5,17 +5,23 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
+import { AlertsRepository } from './alerts.repository';
 import { ShipmentOwnerGuard } from './shipment-owner.guard';
 import { CreateShipmentDto, ListShipmentsQuery, ReextractDto, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
 import { ShipmentsService } from './shipments.service';
 
 const MAX_PDF_BYTES = 20 * 1024 * 1024;
+/** Alerts listed on the dashboard; the counts cover them all. */
+const MAX_ALERTS = 20;
 
 /** Every route with :id is limited to the signed-in user's shipments (ShipmentOwnerGuard). */
 @Controller('shipments')
 @UseGuards(ShipmentOwnerGuard)
 export class ShipmentsController {
-  constructor(private readonly shipments: ShipmentsService) {}
+  constructor(
+    private readonly shipments: ShipmentsService,
+    private readonly alerts: AlertsRepository,
+  ) {}
 
   @Post()
   create(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CreateShipmentDto)) dto: CreateShipmentDto) {
@@ -26,6 +32,12 @@ export class ShipmentsController {
   @Get()
   list(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(ListShipmentsQuery)) query: ListShipmentsQuery) {
     return this.shipments.list(user.id, query);
+  }
+
+  /** What needs the user's attention across their shipments → { items (newest first), counts per kind, total }. Declared before :id. */
+  @Get('alerts')
+  listAlerts(@CurrentUser() user: PublicUser) {
+    return this.alerts.list(user.id, MAX_ALERTS);
   }
 
   /** { reference?, destination?, transportMode? }; a reference of null or "" clears it. */

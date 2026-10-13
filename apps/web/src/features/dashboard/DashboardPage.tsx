@@ -8,6 +8,7 @@ import { useShipmentList } from '../../hooks/useShipmentList';
 import { useI18n } from '../../i18n/useI18n';
 import { useAuth } from '../auth/useAuth';
 import { ShipmentsTable } from '../shipments/ShipmentsTable';
+import { AlertsCard } from './AlertsCard';
 import { DashboardStats } from './DashboardStats';
 import { DemoNote } from './DemoNote';
 import { QuickActions } from './QuickActions';
@@ -27,6 +28,7 @@ export function DashboardPage() {
       <PageHeader title={t('dashboard.hello', { name: firstName })} description={t('dashboard.subtitle')} />
       {demo && <DemoNote />}
       <DashboardStats totals={page.summary} />
+      <AlertsCard />
       <QuickActions demo={demo} />
       <Card
         title={t('dashboard.recent')}
