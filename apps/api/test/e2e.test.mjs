@@ -262,6 +262,44 @@ describe('ISF', () => {
     assert.equal((await call('GET', `/shipments/${s.id}/isf`)).status, 404);
   });
 
+  it('read from two PDFs is the newest upload, whatever order they finish in, and falls back to the other', async () => {
+    const upload = async (shipmentId) => {
+      const id = randomUUID();
+      await repo.insertDocument({ id, shipmentId, fileName: `${id}.pdf`, storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+      return id;
+    };
+    const finish = (shipmentId, id, countryOfOrigin, since = null) =>
+      repo.saveExtraction(
+        id,
+        { pageCount: 1, detectedType: 'ISF', typeConfidence: 1 },
+        { documentId: id, documentType: 'ISF', model: 'test', promptVersion: 'test', raw: {}, data: { ...isf, countryOfOrigin }, issues: [], pdfLines: [] },
+        { shipmentId, data: { ...isf, countryOfOrigin }, since },
+      );
+    const stored = async (shipmentId) => (await call('GET', `/shipments/${shipmentId}/isf`)).body;
+
+    // Newer upload finishes first: the older one, finishing later, does not replace it.
+    const { body: s1 } = await call('POST', '/shipments', { destination: 'US' });
+    const older1 = await upload(s1.id);
+    const newer1 = await upload(s1.id);
+    assert.equal((await finish(s1.id, newer1, 'VN')).isfSaved, true);
+    assert.equal((await finish(s1.id, older1, 'CN')).isfSaved, false);
+    assert.equal((await stored(s1.id)).documentId, newer1);
+
+    // Older upload finishes first: the newer one replaces it, though the ISF changed since it started.
+    const { body: s2 } = await call('POST', '/shipments', { destination: 'US' });
+    const older2 = await upload(s2.id);
+    const newer2 = await upload(s2.id);
+    assert.equal((await finish(s2.id, older2, 'CN')).isfSaved, true);
+    assert.equal((await finish(s2.id, newer2, 'VN')).isfSaved, true);
+    assert.equal((await stored(s2.id)).documentId, newer2);
+
+    // The newer one turns out not to be an ISF: the older PDF's ISF comes back.
+    await repo.deleteIsfFromDocument(newer2);
+    const back = await stored(s2.id);
+    assert.equal(back.documentId, older2);
+    assert.equal(back.data.countryOfOrigin, 'CN');
+  });
+
   it('is rejected when invalid or for a Canadian shipment', async () => {
     const { body: us } = await call('POST', '/shipments', { destination: 'US' });
     assert.equal((await call('PUT', `/shipments/${us.id}/isf`, { seller: 1 })).status, 400);

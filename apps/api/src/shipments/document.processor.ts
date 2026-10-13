@@ -19,8 +19,12 @@ export class DocumentProcessor {
     @InjectLlm() private readonly llm: LlmClient,
   ) {}
 
-  /** `type` skips classification, for a document whose type the user corrected. */
-  async process(documentId: string, type?: ExtractableType): Promise<void> {
+  /**
+   * `type` skips classification, for a document whose type the user corrected. `willRetry` says the
+   * queue will run this job again if it fails: the document then stays QUEUED, so a re-extraction is
+   * refused until the retry is done instead of being overwritten by it.
+   */
+  async process(documentId: string, type?: ExtractableType, { willRetry = false } = {}): Promise<void> {
     const doc = await this.repo.findDocument(documentId);
     if (!doc) throw new Error(`Document ${documentId} not found`);
     await this.repo.updateDocumentStatus(documentId, 'EXTRACTING');
@@ -63,8 +67,8 @@ export class DocumentProcessor {
       this.logger.log(`${doc.fileName}: ${result.documentType} in ${Math.round((Date.now() - started) / 1000)} s${result.data ? '' : ' (not normalized)'}`);
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
-      await this.repo.updateDocumentStatus(documentId, 'FAILED', message);
-      this.logger.warn(`${doc.fileName}: ${message}`);
+      await this.repo.updateDocumentStatus(documentId, willRetry ? 'QUEUED' : 'FAILED', message);
+      this.logger.warn(`${doc.fileName}: ${message}${willRetry ? ' (will retry)' : ''}`);
       throw err;
     } finally {
       await this.repo.refreshShipmentStatus(doc.shipmentId);

@@ -48,7 +48,7 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationBootstrap, On
     this.queue = new Queue(QUEUE, { connection, prefix });
     this.events = new QueueEvents(QUEUE, { connection, prefix });
     if (process.env.EXTRACTION_WORKER !== 'false') {
-      this.worker = new Worker(QUEUE, (job) => this.processor.process(job.data.documentId, job.data.type), {
+      this.worker = new Worker(QUEUE, (job) => this.processor.process(job.data.documentId, job.data.type, { willRetry: job.attemptsMade + 1 < (job.opts.attempts ?? 1) }), {
         connection,
         prefix,
         concurrency: Number(process.env.EXTRACTION_CONCURRENCY ?? 1),

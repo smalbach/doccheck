@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { TextLine } from '@doccheck/extraction';
 import type { DocumentStatus, DocumentType, Finding, Isf, Shipment, ShipmentDocument, ShipmentStatus } from '@doccheck/schemas';
-import type { Pool } from 'pg';
+import type { Pool, PoolClient } from 'pg';
 import { PG_POOL } from '../db/db.module';
 
 export interface ExtractionRow {
@@ -38,7 +38,30 @@ export interface ValidationRow {
   createdAt?: string;
 }
 
-export const ISF_CHANGED = "Not used as the shipment's ISF: it changed while this PDF was being extracted. Re-extract this PDF as ISF to use it.";
+export const ISF_CHANGED =
+  "Not used as the shipment's ISF: it changed while this PDF was being extracted (a filing entered by hand, or an ISF PDF uploaded later). Re-extract this PDF as ISF to use it.";
+
+/** The stored ISF came from a PDF uploaded before document $3, so a newer upload may replace it. */
+const OLDER_PDF = `isf_filings.source = 'pdf' and isf_filings.document_id is distinct from $3
+  and (select created_at from documents where id = isf_filings.document_id) < (select created_at from documents where id = $3)`;
+
+/**
+ * Removes the ISF taken from this document and, if it was the shipment's ISF, falls back to the
+ * newest other ISF PDF of the shipment that extracted fine, so an older upload is not lost.
+ */
+async function dropIsfFromDocument(client: Pool | PoolClient, documentId: string): Promise<void> {
+  const gone = await client.query<{ shipment_id: string }>('delete from isf_filings where document_id = $1 returning shipment_id', [documentId]);
+  if (!gone.rowCount) return;
+  await client.query(
+    `insert into isf_filings (shipment_id, data, source, document_id)
+     select d.shipment_id, e.data, 'pdf', d.id
+     from documents d join extractions e on e.document_id = d.id join shipments s on s.id = d.shipment_id
+     where d.shipment_id = $1 and d.id <> $2 and d.detected_type = 'ISF' and d.status = 'EXTRACTED' and e.data is not null and s.destination = 'US'
+     order by d.created_at desc limit 1
+     on conflict (shipment_id) do nothing`,
+    [gone.rows[0].shipment_id, documentId],
+  );
+}
 
 const toDocument = (r: Record<string, unknown>): ShipmentDocument => ({
   id: r.id as string,
@@ -191,9 +214,19 @@ export class ShipmentsRepository {
     await this.pool.query('delete from isf_filings where shipment_id = $1', [shipmentId]);
   }
 
-  /** Drops the ISF taken from this document, e.g. after it was re-extracted as another type. */
+  /** Drops the ISF taken from this document, e.g. after it was re-extracted as another type; the newest other ISF PDF takes its place. */
   async deleteIsfFromDocument(documentId: string): Promise<void> {
-    await this.pool.query('delete from isf_filings where document_id = $1', [documentId]);
+    const client = await this.pool.connect();
+    try {
+      await client.query('begin');
+      await dropIsfFromDocument(client, documentId);
+      await client.query('commit');
+    } catch (err) {
+      await client.query('rollback');
+      throw err;
+    } finally {
+      client.release();
+    }
   }
 
   async setStatus(id: string, status: ShipmentStatus): Promise<void> {
@@ -222,8 +255,9 @@ export class ShipmentsRepository {
    * Re-running a job replaces the extraction.
    *
    * `isf` is the ISF read from this PDF, with `since` the version of the shipment's ISF when the job
-   * started (`isfVersion`). It is stored only if that ISF has not changed meanwhile, so a JSON filing
-   * saved or deleted during a slow extraction is not overwritten; otherwise a note goes to the issues.
+   * started (`isfVersion`). It is stored if that ISF has not changed meanwhile, or if it now comes from
+   * a PDF uploaded before this one (the newest upload wins, whatever order extractions finish in). A
+   * JSON filing saved or deleted during a slow extraction is kept; the issues then say why.
    * Without `isf`, any ISF taken earlier from this document is removed.
    */
   async saveExtraction(
@@ -236,14 +270,20 @@ export class ShipmentsRepository {
     try {
       await client.query('begin');
       let isfSaved = false;
-      if (!isf) await client.query('delete from isf_filings where document_id = $1', [documentId]);
+      if (!isf) await dropIsfFromDocument(client, documentId);
       else {
         const args = [isf.shipmentId, JSON.stringify(isf.data), documentId];
+        // With an ISF at the start, only update: if it was deleted meanwhile it stays deleted.
         const res =
           isf.since === null
-            ? await client.query(`insert into isf_filings (shipment_id, data, source, document_id) values ($1, $2, 'pdf', $3) on conflict (shipment_id) do nothing`, args)
+            ? await client.query(
+                `insert into isf_filings (shipment_id, data, source, document_id) values ($1, $2, 'pdf', $3)
+                 on conflict (shipment_id) do update set data = excluded.data, source = 'pdf', document_id = excluded.document_id, updated_at = now() where ${OLDER_PDF}`,
+                args,
+              )
             : await client.query(
-                `update isf_filings set data = $2, source = 'pdf', document_id = $3, updated_at = now() where shipment_id = $1 and updated_at = $4::timestamptz`,
+                `update isf_filings set data = $2, source = 'pdf', document_id = $3, updated_at = now()
+                 where shipment_id = $1 and (updated_at = $4::timestamptz or ${OLDER_PDF})`,
                 [...args, isf.since],
               );
         isfSaved = res.rowCount === 1;
