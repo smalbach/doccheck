@@ -2,6 +2,7 @@ import { Controller, Get, Inject } from '@nestjs/common';
 import type { Pool } from 'pg';
 import { Public } from '../auth/public.decorator';
 import { PG_POOL } from '../db/db.module';
+import { registrationOpen } from '../auth/registration-open';
 import { isDemo } from '../demo/demo-mode';
 
 @Public()
@@ -13,6 +14,6 @@ export class HealthController {
   async check() {
     // Later: Redis and queue status.
     const database = await this.pool.query('select 1').then(() => 'ok', (err: Error) => `error: ${err.message}`);
-    return { status: database === 'ok' ? 'ok' : 'degraded', service: 'doccheck-api', database, demo: isDemo(), time: new Date().toISOString() };
+    return { status: database === 'ok' ? 'ok' : 'degraded', service: 'doccheck-api', database, demo: isDemo(), registrationOpen: registrationOpen(), time: new Date().toISOString() };
   }
 }

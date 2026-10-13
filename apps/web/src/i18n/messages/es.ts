@@ -58,6 +58,8 @@ export const es: Messages = {
       wrongCredentials: 'Correo o contraseña incorrectos.',
       emailTaken: 'Ya existe una cuenta con este correo.',
       tooMany: 'Demasiados intentos fallidos. Inténtalo de nuevo en unos minutos.',
+      tooManySignups: 'Se crearon demasiadas cuentas desde esta red. Inténtalo de nuevo en una hora.',
+      registrationClosed: 'El registro está cerrado en este servidor. Pide una cuenta a un administrador.',
       nameRequired: 'Escribe tu nombre.',
       passwordTooShort: 'Usa al menos {min} caracteres para la contraseña.',
       passwordMismatch: 'Las contraseñas no coinciden.',
@@ -392,6 +394,11 @@ export const es: Messages = {
       confirmUnmeasured: 'Este modelo no se ha medido: corre npm run eval:extraction antes de confiar en sus resultados.',
       confirmMeasured: 'En el conjunto de evaluación leyó correctamente el {accuracy} de los campos.',
       confirm: 'Cambiar modelo',
+    },
+    accounts: {
+      title: 'Cuentas',
+      text: 'Mientras el registro esté abierto, cualquiera con la URL puede crear una cuenta (como máximo 5 por dirección y hora). Cerrado, solo pueden registrarse los correos de ADMIN_EMAILS; las cuentas existentes siguen funcionando.',
+      label: 'Registro abierto',
     },
     agent: {
       title: 'Revisión del agente',

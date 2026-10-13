@@ -65,11 +65,12 @@ export interface User {
   createdAt: string;
 }
 
-export type SettingKey = 'llmModel' | 'agentEnabled' | 'ocrLanguages' | 'ocrScale' | 'ocrPsm';
+export type SettingKey = 'llmModel' | 'agentEnabled' | 'registrationOpen' | 'ocrLanguages' | 'ocrScale' | 'ocrPsm';
 
 export interface SettingValues {
   llmModel: string;
   agentEnabled: boolean;
+  registrationOpen: boolean;
   ocrLanguages: string[];
   ocrScale: number;
   ocrPsm: string;
@@ -195,4 +196,5 @@ export interface Results {
 
 export interface Health {
   demo?: boolean;
+  registrationOpen?: boolean;
 }

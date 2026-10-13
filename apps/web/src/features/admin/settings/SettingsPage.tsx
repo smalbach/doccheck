@@ -3,6 +3,7 @@ import { Banner } from '../../../components/ui/Banner';
 import { PageHeader } from '../../../components/ui/PageHeader';
 import { useI18n } from '../../../i18n/useI18n';
 import { settingOf } from '../../../lib/settingOf';
+import { AccountsSettingCard } from './AccountsSettingCard';
 import { AgentSettingCard } from './AgentSettingCard';
 import { ModelSettingCard } from './ModelSettingCard';
 import { OcrSettingsCard } from './OcrSettingsCard';
@@ -37,6 +38,13 @@ export function SettingsPage() {
         busy={busy}
         onSave={(agentEnabled) => void save({ agentEnabled })}
         onReset={() => void reset('agentEnabled')}
+      />
+      <AccountsSettingCard
+        setting={settingOf(settings, 'registrationOpen')}
+        editable={editable}
+        busy={busy}
+        onSave={(registrationOpen) => void save({ registrationOpen })}
+        onReset={() => void reset('registrationOpen')}
       />
       <OcrSettingsCard
         key={`ocr-${ocrLanguages.value.join('+')}-${ocrScale.value}-${ocrPsm.value}`}

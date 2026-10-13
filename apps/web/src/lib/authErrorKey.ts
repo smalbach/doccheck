@@ -10,7 +10,7 @@ export function authErrorKey(error: unknown): MessageKey | undefined {
     case 409:
       return 'auth.errors.emailTaken';
     case 429:
-      return 'auth.errors.tooMany';
+      return error.message.includes('accounts created') ? 'auth.errors.tooManySignups' : 'auth.errors.tooMany';
     default:
       return undefined;
   }

@@ -1,4 +1,4 @@
-import { ConflictException, HttpException, HttpStatus, Inject, Injectable, Logger, UnauthorizedException, type OnApplicationBootstrap } from '@nestjs/common';
+import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, Logger, UnauthorizedException, type OnApplicationBootstrap } from '@nestjs/common';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { adminEmails } from './admin-emails';
@@ -6,6 +6,8 @@ import { AuthRepository } from './auth.repository';
 import type { ChangePasswordDto, DeleteAccountDto, LoginDto, RegisterDto } from './auth.dto';
 import type { PublicUser, UserRow } from './auth.types';
 import { LoginThrottle } from './login-throttle';
+import { registrationOpen } from './registration-open';
+import { SignupThrottle } from './signup-throttle';
 import { hashPassword, verifyPassword } from './password';
 import { SESSION_DAYS } from './session-cookie';
 
@@ -28,6 +30,7 @@ export class AuthService implements OnApplicationBootstrap {
   constructor(
     private readonly repo: AuthRepository,
     private readonly throttle: LoginThrottle,
+    private readonly signups: SignupThrottle,
     @Inject(STORAGE) private readonly storage: ObjectStorage,
   ) {}
 
@@ -44,10 +47,14 @@ export class AuthService implements OnApplicationBootstrap {
     return { user, token, expiresAt };
   }
 
-  async register(dto: RegisterDto): Promise<NewSession> {
+  async register(dto: RegisterDto, ip: string): Promise<NewSession> {
     const role = adminEmails().includes(dto.email) ? 'admin' : 'user';
+    if (role !== 'admin' && !registrationOpen()) throw new ForbiddenException('Registration is closed on this server');
+    const wait = this.signups.retryAfter(ip);
+    if (wait > 0) throw new HttpException(`Too many accounts created from this address. Try again in ${Math.ceil(wait / 60)} minute(s).`, HttpStatus.TOO_MANY_REQUESTS);
     const user = { id: randomUUID(), email: dto.email, name: dto.name, passwordHash: await hashPassword(dto.password), role } as const;
     if (!(await this.repo.createUser(user))) throw new ConflictException('An account with this email already exists');
+    this.signups.record(ip);
     return this.startSession({ id: user.id, email: user.email, name: user.name, role, createdAt: new Date().toISOString() });
   }
 

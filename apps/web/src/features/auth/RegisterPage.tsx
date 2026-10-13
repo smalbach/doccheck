@@ -3,7 +3,9 @@ import { Banner } from '../../components/ui/Banner';
 import { Button } from '../../components/ui/Button';
 import { Field } from '../../components/ui/Field';
 import { TextInput } from '../../components/ui/TextInput';
+import { useRegistrationOpen } from '../../hooks/useRegistrationOpen';
 import { useI18n } from '../../i18n/useI18n';
+import { ApiError } from '../../api/ApiError';
 import { authErrorKey } from '../../lib/authErrorKey';
 import { errorMessage } from '../../lib/errorMessage';
 import { navigate } from '../../lib/navigate';
@@ -15,6 +17,7 @@ import { useAuth } from './useAuth';
 export function RegisterPage({ next }: { next?: string }) {
   const { register } = useAuth();
   const { t } = useI18n();
+  const registrationOpen = useRegistrationOpen();
   const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string>();
@@ -30,7 +33,7 @@ export function RegisterPage({ next }: { next?: string }) {
       await register({ name: form.name.trim(), email: form.email, password: form.password });
       navigate(safeNext(next));
     } catch (err) {
-      const key = authErrorKey(err);
+      const key = err instanceof ApiError && err.status === 403 ? 'auth.errors.registrationClosed' : authErrorKey(err);
       setError(key ? t(key) : t('auth.errors.invalid', { message: errorMessage(err) }));
       setBusy(false);
     }
@@ -47,6 +50,7 @@ export function RegisterPage({ next }: { next?: string }) {
         </>
       }
     >
+      {registrationOpen === false && <Banner tone="info">{t('auth.errors.registrationClosed')}</Banner>}
       <form className="auth-form" onSubmit={(e) => void submit(e)} aria-busy={busy}>
         {error && <Banner tone="error">{error}</Banner>}
         <Field label={t('auth.name')}>{(id) => <TextInput id={id} autoComplete="name" required value={form.name} onChange={(e) => set('name')(e.target.value)} />}</Field>

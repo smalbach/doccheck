@@ -234,7 +234,7 @@ describe('admin', () => {
 
   it('changes settings, validates them and resets them to .env', async () => {
     const list = (await call('GET', '/admin/settings', undefined, admin)).body;
-    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'ocrLanguages', 'ocrScale', 'ocrPsm']);
+    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'registrationOpen', 'ocrLanguages', 'ocrScale', 'ocrPsm']);
     assert.equal(list.editable, true);
     assert.equal(list.settings.find((x) => x.key === 'agentEnabled').source, 'env');
 
@@ -258,6 +258,42 @@ describe('admin', () => {
     assert.equal(reset.find((x) => x.key === 'ocrScale').source, 'default');
     assert.equal(reset.find((x) => x.key === 'agentEnabled').value, false);
     assert.equal((await call('DELETE', '/admin/settings/nope', undefined, admin)).status, 400);
+  });
+
+  it('closes and reopens registration; admins listed in ADMIN_EMAILS can always sign up', async () => {
+    assert.equal((await call('GET', '/health', undefined, '')).body.registrationOpen, true);
+    assert.equal((await call('PUT', '/admin/settings', { registrationOpen: false }, admin)).status, 200);
+    assert.equal((await call('GET', '/health', undefined, '')).body.registrationOpen, false);
+    assert.equal((await call('POST', '/auth/register', { email: `${randomUUID()}@example.com`, password: 'closed for now', name: 'Late' }, '')).status, 403);
+    // The admin address is not refused for being closed (it already exists, hence 409).
+    assert.equal((await call('POST', '/auth/register', { email: 'admin-e2e@example.com', password: 'admin password', name: 'Admin' }, '')).status, 409);
+    // Signing in still works.
+    assert.equal((await call('POST', '/auth/login', { email: 'admin-e2e@example.com', password: 'admin password' }, '')).status, 200);
+    assert.equal((await call('DELETE', '/admin/settings/registrationOpen', undefined, admin)).status, 200);
+    assert.equal((await call('POST', '/auth/register', { email: `${randomUUID()}@example.com`, password: 'open again', name: 'Early' }, '')).status, 201);
+  });
+
+  it('limits sign-ups per address, not counting this machine', () => {
+    const { SignupThrottle } = createRequire(import.meta.url)(join(root, 'apps/api/dist/auth/signup-throttle.js'));
+    const throttle = new SignupThrottle();
+    const before = process.env.SIGNUP_LIMIT_PER_HOUR;
+    process.env.SIGNUP_LIMIT_PER_HOUR = '2';
+    try {
+      const now = Date.now();
+      for (let i = 0; i < 2; i++) {
+        assert.equal(throttle.retryAfter('203.0.113.7', now), 0);
+        throttle.record('203.0.113.7', now);
+      }
+      assert.ok(throttle.retryAfter('203.0.113.7', now) > 0);
+      assert.equal(throttle.retryAfter('198.51.100.1', now), 0);
+      assert.equal(throttle.retryAfter('203.0.113.7', now + 61 * 60 * 1000), 0);
+      for (let i = 0; i < 5; i++) throttle.record('127.0.0.1', now);
+      assert.equal(throttle.retryAfter('127.0.0.1', now), 0);
+      assert.equal(throttle.retryAfter('::1', now), 0);
+    } finally {
+      if (before === undefined) delete process.env.SIGNUP_LIMIT_PER_HOUR;
+      else process.env.SIGNUP_LIMIT_PER_HOUR = before;
+    }
   });
 
   it('manages roles without locking anyone out', async () => {

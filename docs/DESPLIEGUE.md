@@ -246,6 +246,8 @@ Para publicarla: VPS con Docker, proxy con TLS (Caddy como en la sección 3; el 
 | `LLM_CACHE_DIR`, `LLM_CACHE_MODE` | — | Caché de respuestas del modelo (`readwrite`, `replay`, `off`) |
 | `TRUST_PROXY` | `loopback` | Proxies cuyas cabeceras `X-Forwarded-*` se creen (cookie `Secure` y dirección del cliente). Valor de Express `trust proxy`: p. ej. `loopback`, una IP o `false` |
 | `ADMIN_EMAILS` | — | Correos de administradores (separados por coma). Solo así se obtiene el rol admin; registrarse nunca lo da. Un admin puede ascender a otros desde la web |
+| `REGISTRATION_OPEN` | `true` | Registro abierto; un admin lo cierra desde Configuración. Cerrado, solo se registran los correos de `ADMIN_EMAILS` |
+| `SIGNUP_LIMIT_PER_HOUR` | 5 | Cuentas nuevas por dirección y hora (las peticiones desde la misma máquina no cuentan; detrás del túnel cuenta la IP real del visitante) |
 | `OCR_LANGS`, `OCR_SCALE`, `OCR_PSM` | `eng+fra`, `4`, `6` | OCR de páginas escaneadas: idiomas instalados, escala de render (4 = 288 dpi) y modo de página de Tesseract |
 | `DEMO_BUILD_EMAIL`, `DEMO_BUILD_PASSWORD` | — | Cuenta con la que `scripts/demo-build.mjs` inicia sesión; sin ellas crea una cuenta desechable |
 

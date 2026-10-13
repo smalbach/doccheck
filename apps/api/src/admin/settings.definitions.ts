@@ -46,6 +46,13 @@ export const SETTINGS = {
     toEnv: (v) => String(v),
     fromEnv: (raw) => raw !== 'false',
   }),
+  registrationOpen: define<boolean>({
+    env: 'REGISTRATION_OPEN',
+    defaultValue: true,
+    schema: z.boolean(),
+    toEnv: (v) => String(v),
+    fromEnv: (raw) => raw !== 'false',
+  }),
   ocrLanguages: define<string[]>({
     env: 'OCR_LANGS',
     defaultValue: ['eng', 'fra'],

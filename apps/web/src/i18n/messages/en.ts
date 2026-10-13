@@ -68,6 +68,8 @@ export const en = {
       wrongCredentials: 'Wrong email or password.',
       emailTaken: 'An account with this email already exists.',
       tooMany: 'Too many failed sign-ins. Try again in a few minutes.',
+      tooManySignups: 'Too many accounts created from this network. Try again in an hour.',
+      registrationClosed: 'Registration is closed on this server. Ask an admin for an account.',
       nameRequired: 'Enter your name.',
       passwordTooShort: 'Use at least {min} characters for the password.',
       passwordMismatch: 'The passwords do not match.',
@@ -407,6 +409,11 @@ export const en = {
       confirmUnmeasured: 'This model has not been measured: run npm run eval:extraction before trusting its results.',
       confirmMeasured: 'On the evaluation set it read {accuracy} of fields correctly.',
       confirm: 'Switch model',
+    },
+    accounts: {
+      title: 'Accounts',
+      text: 'Anyone with the URL can create an account while registration is open (at most 5 per address and hour). Closed, only the addresses in ADMIN_EMAILS can sign up; existing accounts keep working.',
+      label: 'Registration open',
     },
     agent: {
       title: 'Agent review',

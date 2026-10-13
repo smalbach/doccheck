@@ -58,6 +58,8 @@ export const fr: Messages = {
       wrongCredentials: 'Courriel ou mot de passe incorrect.',
       emailTaken: 'Un compte existe déjà avec ce courriel.',
       tooMany: 'Trop de tentatives échouées. Réessayez dans quelques minutes.',
+      tooManySignups: 'Trop de comptes créés depuis ce réseau. Réessayez dans une heure.',
+      registrationClosed: 'Les inscriptions sont fermées sur ce serveur. Demandez un compte à un administrateur.',
       nameRequired: 'Indiquez votre nom.',
       passwordTooShort: 'Utilisez au moins {min} caractères pour le mot de passe.',
       passwordMismatch: 'Les mots de passe ne correspondent pas.',
@@ -392,6 +394,11 @@ export const fr: Messages = {
       confirmUnmeasured: 'Ce modèle n’a pas été mesuré : lancez npm run eval:extraction avant de vous fier à ses résultats.',
       confirmMeasured: 'Sur le jeu d’évaluation, il a lu correctement {accuracy} des champs.',
       confirm: 'Changer de modèle',
+    },
+    accounts: {
+      title: 'Comptes',
+      text: 'Tant que les inscriptions sont ouvertes, toute personne ayant l’URL peut créer un compte (au plus 5 par adresse et par heure). Fermées, seules les adresses de ADMIN_EMAILS peuvent s’inscrire ; les comptes existants continuent de fonctionner.',
+      label: 'Inscriptions ouvertes',
     },
     agent: {
       title: 'Revue par l’agent',

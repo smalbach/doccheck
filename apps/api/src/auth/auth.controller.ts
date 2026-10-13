@@ -20,7 +20,7 @@ export class AuthController {
   @Public()
   @Post('register')
   async register(@Body(new ZodValidationPipe(RegisterDto)) dto: RegisterDto, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
-    return this.open(req, res, await this.auth.register(dto));
+    return this.open(req, res, await this.auth.register(dto, req.ip ?? 'unknown'));
   }
 
   @Public()
