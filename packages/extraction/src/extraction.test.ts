@@ -5,7 +5,8 @@ import { describe, expect, it } from 'vitest';
 import type { ExtractionUpdate } from '@doccheck/schemas';
 import { classifyDocument } from './classify';
 import { extractFromText } from './extract';
-import { LlmClient, LlmError, type LlmProvider } from './llm';
+import { LlmClient, LlmError, OllamaProvider, type LlmProvider } from './llm';
+import { createServer } from 'node:http';
 import { countryCode, countryFromPostalCode, decimal, htsCode, isoDate, localeFor, normalizeBillOfLading, normalizeIsf, normalizePackingList, quantityUnit, weight, withLocale } from './normalize';
 import { readPdfText } from './pdf-text';
 import { findFieldSource, findSource } from './provenance';
@@ -279,5 +280,36 @@ describe('progress', () => {
     });
     await expect(extractFromText(pdf, 'PACKING_LIST', llm, (u) => void seen.push(u))).rejects.toThrow('not reachable');
     expect(seen.at(-1)).toMatchObject({ stage: 'extracting', status: 'failed', detail: { error: 'Ollama is not reachable' } });
+  });
+
+  it('stops a cancelled model call: the request is dropped and the call rejects with the reason', async () => {
+    // An Ollama that never answers a chat request.
+    const server = createServer((req, res) => {
+      if (req.url === '/api/tags') res.end(JSON.stringify({ models: [] }));
+    });
+    await new Promise<void>((r) => server.listen(0, '127.0.0.1', r));
+    const { port } = server.address() as { port: number };
+    const llm = new LlmClient(new OllamaProvider('test', `http://127.0.0.1:${port}`));
+    const ctrl = new AbortController();
+    const seen: ExtractionUpdate[] = [];
+    const started = Date.now();
+    setTimeout(() => ctrl.abort(new Error('Cancelled by the user')), 100);
+    await expect(extractFromText(pdf, 'PACKING_LIST', llm, (u) => void seen.push(u), ctrl.signal)).rejects.toThrow('Cancelled by the user');
+    expect(Date.now() - started).toBeLessThan(5000);
+    expect(seen.at(-1)).toMatchObject({ stage: 'extracting', status: 'failed', detail: { error: 'Cancelled by the user' } });
+    server.closeAllConnections();
+    server.close();
+  });
+
+  it('does not call the model once cancelled', async () => {
+    let calls = 0;
+    const ctrl = new AbortController();
+    ctrl.abort(new Error('Cancelled by the user'));
+    const llm = fake(async () => {
+      calls += 1;
+      return { output: rawPackingList };
+    });
+    await expect(extractFromText(pdf, 'PACKING_LIST', llm, undefined, ctrl.signal)).rejects.toThrow('Cancelled by the user');
+    expect(calls).toBe(0);
   });
 });

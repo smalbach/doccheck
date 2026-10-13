@@ -1,4 +1,5 @@
 import { useEffect, type ReactNode } from 'react';
+import { ActivityProvider } from '../../features/activity/ActivityProvider';
 import { useAuth } from '../../features/auth/useAuth';
 import { RunNotifications } from '../../features/notifications/RunNotifications';
 import { useDemo } from '../../hooks/useDemo';
@@ -14,7 +15,8 @@ import { Sidebar } from './Sidebar';
 
 /**
  * The signed-in app: sidebar on the left, page on the right, toasts when runs end. Signed-out visitors
- * are sent to sign in and brought back.
+ * are sent to sign in and brought back. The activity provider keeps the user's one live progress stream
+ * while it is shown; the activity panel and the run notifications both read it.
  */
 export function AppShell({ route, children }: { route: AppRoute; children: ReactNode }) {
   const { user, logout } = useAuth();
@@ -36,19 +38,21 @@ export function AppShell({ route, children }: { route: AppRoute; children: React
     void logout().then(() => navigate('/'));
   };
   return (
-    <div className="app-shell">
-      <SkipLink />
-      <aside className="app-sidebar">
-        <Sidebar route={route} user={user} demo={demo} onSignOut={signOut} />
-      </aside>
-      <MobileTopbar route={route} user={user} demo={demo} onSignOut={signOut} />
-      <div className="app-content">
-        <main className="app-main" id="main-content" tabIndex={-1}>
-          {children}
-        </main>
-        <AppFooter />
+    <ActivityProvider>
+      <div className="app-shell">
+        <SkipLink />
+        <aside className="app-sidebar">
+          <Sidebar route={route} user={user} demo={demo} onSignOut={signOut} />
+        </aside>
+        <MobileTopbar route={route} user={user} demo={demo} onSignOut={signOut} />
+        <div className="app-content">
+          <main className="app-main" id="main-content" tabIndex={-1}>
+            {children}
+          </main>
+          <AppFooter />
+        </div>
+        <RunNotifications {...(route.name === 'shipment' ? { watchingShipmentId: route.id } : {})} />
       </div>
-      <RunNotifications {...(route.name === 'shipment' ? { watchingShipmentId: route.id } : {})} />
-    </div>
+    </ActivityProvider>
   );
 }

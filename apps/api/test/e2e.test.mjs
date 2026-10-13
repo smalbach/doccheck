@@ -873,6 +873,293 @@ describe('progress events', () => {
   });
 });
 
+/** A one-page PDF with a text layer (no OCR needed), for extractions that never reach a real model. */
+function textPdf(lines) {
+  const content = ['BT', '/F1 12 Tf', '14 TL', '72 720 Td', ...lines.map((l) => `(${l.replace(/[()\\]/g, '\\$&')}) Tj T*`), 'ET'].join('\n');
+  const objects = [
+    '<< /Type /Catalog /Pages 2 0 R >>',
+    '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+    '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>',
+    `<< /Length ${content.length} >>\nstream\n${content}\nendstream`,
+    '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>',
+  ];
+  let pdf = '%PDF-1.4\n';
+  const offsets = objects.map((o, i) => {
+    const at = pdf.length;
+    pdf += `${i + 1} 0 obj\n${o}\nendobj\n`;
+    return at;
+  });
+  const xref = pdf.length;
+  pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n${offsets.map((o) => `${String(o).padStart(10, '0')} 00000 n \n`).join('')}`;
+  pdf += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF\n`;
+  return Buffer.from(pdf, 'latin1');
+}
+
+// Cancelling extractions. The API under test extracts in-process from cached answers, which is too
+// fast to cancel; the running case uses a worker built here from the API's own classes (as a BullMQ
+// worker in another process would be), whose model never answers until the call is aborted. The API
+// reaches it through NOTIFY, as it would reach a real worker.
+describe('cancel extraction', () => {
+  let progress;
+  let processor;
+  /** Model calls the worker's model received, and whether each was aborted. */
+  const calls = [];
+  before(async () => {
+    const require = createRequire(import.meta.url);
+    const dist = (p) => require(join(root, 'apps/api/dist', p));
+    const { ProgressRepository } = dist('progress/progress.repository.js');
+    const { ProgressService } = dist('progress/progress.service.js');
+    const { DocumentProcessor } = dist('shipments/document.processor.js');
+    const { LlmClient } = await import('@doccheck/extraction');
+    // The listener connects with DATABASE_URL.
+    process.env.DATABASE_URL = testUrl;
+    process.env.DEMO_PACING = 'false';
+    progress = new ProgressService(new ProgressRepository(pool));
+    await progress.onApplicationBootstrap();
+    const llm = new LlmClient({
+      id: 'fake:never',
+      generate: (req) =>
+        new Promise((_, reject) => {
+          const call = { aborted: false };
+          calls.push(call);
+          req.signal?.addEventListener('abort', () => {
+            call.aborted = true;
+            reject(req.signal.reason);
+          });
+        }),
+    });
+    const pdf = textPdf(['PACKING LIST PL-1', 'Invoice INV-1   Total packages 10 CTN']);
+    processor = new DocumentProcessor(repo, { get: async () => pdf }, llm, progress, new ProgressRepository(pool));
+  });
+  after(async () => {
+    await progress?.beforeApplicationShutdown();
+  });
+
+  /** A shipment with one QUEUED document whose run has started (`queued`), as an upload leaves it. */
+  const queuedDocument = async (as = cookie) => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA', reference: 'Cancel me' }, as);
+    const id = randomUUID();
+    await repo.insertDocument({ id, shipmentId: s.id, fileName: 'packing-list.pdf', storageKey: `${s.id}/${id}.pdf`, sha256: '0', status: 'QUEUED' });
+    const runId = randomUUID();
+    const queuedAt = Date.now();
+    await progress.run('extraction', s.id, { documentId: id, runId }).emit({ stage: 'queued', status: 'started', detail: { position: 1 } });
+    await progress.flush();
+    return { shipmentId: s.id, documentId: id, runId, queuedAt };
+  };
+  const cancelPath = (d) => `/shipments/${d.shipmentId}/documents/${d.documentId}/cancel`;
+
+  it('takes a queued document out of the line: FAILED, its run ends, and no worker extracts it', async () => {
+    const d = await queuedDocument();
+    const res = await call('POST', cancelPath(d));
+    assert.equal(res.status, 200);
+    assert.equal(res.body.document.status, 'FAILED');
+    assert.equal(res.body.document.error, 'Cancelled by the user');
+
+    const stream = await openStream(`/shipments/${d.shipmentId}/events`);
+    await stream.ready();
+    stream.close();
+    const events = stream.events().filter((e) => e.documentId === d.documentId);
+    assert.deepEqual(
+      events.map((e) => `${e.stage}:${e.status}`),
+      ['queued:started', 'queued:failed', 'saved:failed'],
+    );
+    assert.ok(events.every((e) => e.runId === d.runId));
+    assert.deepEqual(events.at(-1).detail, { error: 'Cancelled by the user', reason: 'cancelled' });
+
+    // The job was already handed to a worker: it finds the document cancelled and leaves it.
+    await processor.process(d.documentId, undefined, { runId: d.runId, queuedAt: d.queuedAt });
+    assert.equal((await repo.findDocument(d.documentId)).status, 'FAILED');
+    assert.equal(calls.length, 0);
+    // Nothing left to cancel.
+    assert.equal((await call('POST', cancelPath(d))).status, 409);
+    assert.equal((await call('GET', `/shipments/${d.shipmentId}`)).body.status, 'RECEIVED');
+  });
+
+  it('stops a running extraction in another process: the model call is aborted, the document ends FAILED, no retry', async () => {
+    const d = await queuedDocument();
+    const stream = await openStream(`/shipments/${d.shipmentId}/events`);
+    await stream.ready();
+    const running = processor.process(d.documentId, 'PACKING_LIST', { runId: d.runId, queuedAt: d.queuedAt, willRetry: true });
+    const outcome = running.then(
+      () => 'resolved',
+      (err) => err,
+    );
+    await stream.waitFor((events) => events.some((e) => e.documentId === d.documentId && e.stage === 'extracting' && e.status === 'started'));
+    assert.equal((await repo.findDocument(d.documentId)).status, 'EXTRACTING');
+
+    const res = await call('POST', cancelPath(d));
+    assert.equal(res.status, 200);
+    const err = await outcome;
+    assert.equal(err.message, 'Cancelled by the user');
+    assert.equal(err.constructor.name, 'ExtractionCancelledError');
+    assert.equal(calls.at(-1).aborted, true);
+    const doc = await repo.findDocument(d.documentId);
+    assert.equal(doc.status, 'FAILED');
+    assert.equal(doc.error, 'Cancelled by the user');
+
+    await stream.waitFor((events) => events.some((e) => e.documentId === d.documentId && e.stage === 'saved' && e.status === 'failed'));
+    stream.close();
+    const events = stream.events().filter((e) => e.documentId === d.documentId && e.status !== 'progress');
+    assert.deepEqual(
+      events.map((e) => `${e.stage}:${e.status}`),
+      ['queued:started', 'queued:done', 'reading:started', 'reading:done', 'classifying:skipped', 'extracting:started', 'extracting:failed', 'saved:failed'],
+    );
+    assert.equal(events.find((e) => e.stage === 'extracting' && e.status === 'failed').detail.error, 'Cancelled by the user');
+    // willRetry was set (a first attempt), but a cancelled extraction is not retried.
+    assert.deepEqual(events.at(-1).detail, { error: 'Cancelled by the user', reason: 'cancelled' });
+  });
+
+  it('stops an extraction while the model streams its answer: no delta after the cancel', async () => {
+    // An Ollama that streams the start of an answer, then keeps writing a piece every 100 ms forever.
+    const { createServer } = await import('node:http');
+    const { LlmClient, OllamaProvider } = await import('@doccheck/extraction');
+    const { ProgressRepository } = createRequire(import.meta.url)(join(root, 'apps/api/dist/progress/progress.repository.js'));
+    const { DocumentProcessor } = createRequire(import.meta.url)(join(root, 'apps/api/dist/shipments/document.processor.js'));
+    let chatRequests = 0;
+    let chatClosed = false;
+    const ollama = createServer((req, res) => {
+      if (req.url === '/api/tags') return void res.end(JSON.stringify({ models: [] }));
+      chatRequests += 1;
+      const body = [];
+      req.on('data', (c) => body.push(c));
+      req.on('end', () => assert.equal(JSON.parse(Buffer.concat(body).toString()).stream, true));
+      res.writeHead(200, { 'content-type': 'application/x-ndjson' });
+      const line = (content) => res.write(JSON.stringify({ message: { content }, done: false }) + '\n');
+      line('{"packingListNumber": "PL-1", "invoiceRef": "');
+      const timer = setInterval(() => line('x'), 100);
+      res.on('close', () => {
+        chatClosed = true;
+        clearInterval(timer);
+      });
+    });
+    await new Promise((r) => ollama.listen(0, '127.0.0.1', r));
+    try {
+      const llm = new LlmClient(new OllamaProvider('stream-test', `http://127.0.0.1:${ollama.address().port}`));
+      const streaming = new DocumentProcessor(repo, { get: async () => textPdf(['PACKING LIST PL-1', 'Invoice INV-1   Total packages 10 CTN']) }, llm, progress, new ProgressRepository(pool));
+      const d = await queuedDocument();
+      const stream = await openStream(`/shipments/${d.shipmentId}/events`);
+      await stream.ready();
+      const outcome = streaming.process(d.documentId, 'PACKING_LIST', { runId: d.runId, queuedAt: d.queuedAt }).then(
+        () => 'resolved',
+        (err) => err,
+      );
+      // The answer is being written: deltas arrive on the shipment stream.
+      await stream.waitFor((events) => events.filter((e) => e.documentId === d.documentId && e.ephemeral).length >= 2);
+
+      const res = await call('POST', cancelPath(d));
+      assert.equal(res.status, 200);
+      const err = await outcome;
+      assert.equal(err.message, 'Cancelled by the user');
+      assert.equal(chatRequests, 1);
+      const doc = await repo.findDocument(d.documentId);
+      assert.equal(doc.status, 'FAILED');
+      assert.equal(doc.error, 'Cancelled by the user');
+
+      await stream.waitFor((events) => events.some((e) => e.documentId === d.documentId && e.stage === 'saved' && e.status === 'failed'));
+      // Long enough for a few more pieces, had the model call gone on.
+      await new Promise((r) => setTimeout(r, 600));
+      stream.close();
+      assert.ok(chatClosed, 'the streaming request to the model was dropped');
+      const events = stream.events().filter((e) => e.documentId === d.documentId);
+      const failedAt = events.findIndex((e) => e.stage === 'extracting' && e.status === 'failed');
+      assert.ok(failedAt > 0);
+      assert.equal(events[failedAt].detail.error, 'Cancelled by the user');
+      assert.ok(events.slice(0, failedAt).some((e) => e.ephemeral));
+      assert.deepEqual(events.slice(failedAt).filter((e) => e.ephemeral), [], 'no delta after the cancel');
+      assert.deepEqual(
+        events.filter((e) => !e.ephemeral && e.status !== 'progress').map((e) => `${e.stage}:${e.status}`),
+        ['queued:started', 'queued:done', 'reading:started', 'reading:done', 'classifying:skipped', 'extracting:started', 'extracting:failed', 'saved:failed'],
+      );
+      assert.deepEqual(events.at(-1).detail, { error: 'Cancelled by the user', reason: 'cancelled' });
+    } finally {
+      ollama.closeAllConnections();
+      ollama.close();
+    }
+  });
+
+  it('is limited to the owner and to documents being extracted', async () => {
+    const d = await queuedDocument();
+    const other = await signUp('Not the owner');
+    assert.equal((await call('POST', cancelPath(d), undefined, other)).status, 404);
+    assert.equal((await call('POST', cancelPath(d), undefined, '')).status, 401);
+    assert.equal((await call('POST', `/shipments/${d.shipmentId}/documents/${randomUUID()}/cancel`)).status, 404);
+    assert.equal((await repo.findDocument(d.documentId)).status, 'QUEUED');
+    // Read-only demo: blocked like every other write.
+    const { readOnlyGuard } = createRequire(import.meta.url)(join(root, 'apps/api/dist/demo/demo-mode.js'));
+    let status;
+    readOnlyGuard({ method: 'POST', path: cancelPath(d) }, { status: (s) => ((status = s), { json: () => undefined }) }, () => (status = 'next'));
+    assert.equal(status, 403);
+    await call('POST', cancelPath(d));
+  });
+});
+
+describe('activity', () => {
+  it('opens /events with every run still going and the 10 latest finished ones', async () => {
+    const user = await signUp('Busy');
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA', reference: 'ACT-1' }, user);
+    // A validation that never ends (its process died), started before the finished ones.
+    const stuck = randomUUID();
+    await pool.query(
+      `insert into progress_events (shipment_id, user_id, run_id, kind, stage, status, detail) values ($1, (select user_id from shipments where id = $1), $2, 'validation', 'started', 'started', '{}')`,
+      [s.id, stuck],
+    );
+    const finished = [];
+    for (let i = 0; i < 11; i++) {
+      const v = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs(), user);
+      assert.equal(v.status, 200);
+      finished.push(v.body.validationId);
+    }
+    // Events are stored in the background: wait for the last run's end.
+    const last = await openStream(`/shipments/${s.id}/events`, { as: user });
+    await last.waitFor(savedDone(finished.at(-1)));
+    last.close();
+    const stream = await openStream('/events', { as: user });
+    await stream.ready();
+    stream.close();
+    const runs = [...new Set(stream.events().map((e) => e.runId))];
+    assert.ok(runs.includes(stuck));
+    assert.equal(runs.length, 11);
+    assert.deepEqual(runs.filter((r) => r !== stuck).sort(), finished.slice(1).sort());
+    // Whole runs: each starts with its first event.
+    for (const runId of finished.slice(1)) assert.equal(stream.events().find((e) => e.runId === runId).stage, 'started');
+  });
+
+  it('names only the user\'s own shipments and documents', async () => {
+    const user = await signUp('Labels');
+    const { body: s } = await call('POST', '/shipments', { destination: 'US', reference: 'LBL-7' }, user);
+    const docId = randomUUID();
+    await repo.insertDocument({ id: docId, shipmentId: s.id, fileName: 'invoice.pdf', storageKey: 'none', sha256: '0', status: 'QUEUED' });
+    const path = `/events/labels?shipments=${s.id},not-a-uuid&documents=${docId}`;
+    const mine = await call('GET', path, undefined, user);
+    assert.equal(mine.status, 200);
+    assert.deepEqual(mine.body, { shipments: [{ id: s.id, reference: 'LBL-7', destination: 'US' }], documents: [{ id: docId, shipmentId: s.id, fileName: 'invoice.pdf', status: 'QUEUED' }] });
+    assert.deepEqual((await call('GET', path)).body, { shipments: [], documents: [] });
+    assert.equal((await call('GET', path, undefined, '')).status, 401);
+  });
+
+  it('estimates stage durations from history, per model, without user data', async () => {
+    // Model calls of a model only seen here: 1 s, 2 s and 9 s (median 2 s), plus a cached one.
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    for (const [ms, cached] of [[1000, false], [2000, false], [9000, false], [5, true]]) {
+      await pool.query(
+        `insert into progress_events (shipment_id, user_id, run_id, kind, stage, status, duration_ms, detail) values ($1, null, $2, 'extraction', 'extracting', 'done', $3, $4)`,
+        [s.id, randomUUID(), ms, JSON.stringify({ model: 'fake:estimates', cached })],
+      );
+    }
+    const res = await call('GET', '/events/estimates');
+    assert.equal(res.status, 200);
+    assert.equal(res.body.model, provider);
+    assert.deepEqual(res.body.models['fake:estimates'], { ms: 2000, samples: 3 });
+    // Validations ran above: their stages have history.
+    assert.ok(res.body.validation.rules.samples > 0);
+    assert.ok(res.body.validation.rules.ms >= 0);
+    assert.ok(!Number.isNaN(Date.parse(res.body.computedAt)));
+    const text = JSON.stringify(res.body);
+    assert.ok(!text.includes(s.id) && !/[0-9a-f]{8}-[0-9a-f]{4}-/.test(text), 'no ids');
+    assert.equal((await call('GET', '/events/estimates', undefined, '')).status, 401);
+  });
+});
+
 // PDF path: only when the evaluation set and the cached model responses for CA-001 exist locally.
 const sample = join(root, 'data/eval/v1/CA-001');
 const hasSample = existsSync(join(sample, 'invoice.pdf')) && existsSync(llmCacheDir);

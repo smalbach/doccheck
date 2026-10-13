@@ -3,6 +3,7 @@ import { jsonBody } from './jsonBody';
 import { queryString } from './queryString';
 import { request } from './request';
 import type {
+  ActivityLabels,
   AdminModels,
   AdminSettings,
   AlertList,
@@ -31,6 +32,7 @@ import type {
   GoodsQuery,
   InsightsSummary,
   Paged,
+  ProgressEstimates,
   ShipmentData,
   ShipmentDataQuery,
 } from './types';
@@ -69,6 +71,7 @@ export const api = {
   correctData: (id: string, documentId: string, changes: DataChange[]) => request<DocumentDetail>(`${documentPath(id, documentId)}/data`, { ...jsonBody({ changes }), method: 'PATCH' }),
   revertData: (id: string, documentId: string) => request<DocumentDetail>(`${documentPath(id, documentId)}/data/revert`, { method: 'POST' }),
   fileUrl: (id: string, documentId: string) => `${documentPath(id, documentId)}/file`,
+  cancelExtraction: (id: string, documentId: string) => request<DocumentDetail>(`${documentPath(id, documentId)}/cancel`, { method: 'POST' }),
 
   validate: (id: string, agent: boolean) => request<{ validationId: string }>(`${shipmentPath(id)}/validate${agent ? '' : '?agent=false'}`, { method: 'POST' }),
   validation: (id: string) => request<Validation>(`${shipmentPath(id)}/validation`),
@@ -84,6 +87,11 @@ export const api = {
   loadSample: (sampleId: string) => request<Shipment>(`/demo/samples/${encodeURIComponent(sampleId)}`, { method: 'POST' }),
 
   results: () => request<Results>('/results'),
+
+  /** Typical stage durations on this server, for remaining-time estimates. */
+  progressEstimates: () => request<ProgressEstimates>('/events/estimates'),
+  /** Names of the user's shipments and documents among these ids (activity panel). */
+  activityLabels: (shipments: string[], documents: string[]) => request<ActivityLabels>(`/events/labels${queryString({ shipments: shipments.join(','), documents: documents.join(',') })}`),
 
   insightsSummary: (destination?: Destination) => request<InsightsSummary>(`/insights/summary${queryString({ destination })}`),
   insightsLines: (query: GoodsQuery) => request<Paged<GoodsLine>>(`/insights/lines${queryString({ ...query })}`),

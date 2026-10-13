@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ProgressEvent } from '../../api/types';
 import { useI18n } from '../../i18n/useI18n';
 import { navigate } from '../../lib/navigate';
+import { useActivityEvents } from '../activity/ActivityContext';
 import { backgroundNotifyAllowed, showBrowserNotification } from './browserNotifications';
 import { createBatcher } from './createBatcher';
 import type { FinishedRun } from './finishedRun';
@@ -13,7 +14,6 @@ import { notifyTargets } from './notifyTargets';
 import { RunToast } from './RunToast';
 import { countRunning, pageTitle, trackRun, type RunningRuns } from './runningRuns';
 import { takeFinished } from './takeFinished';
-import { useUserEvents } from './useUserEvents';
 
 /** Toasts on screen at once; an older one leaves when a fourth arrives. */
 const MAX_TOASTS = 3;
@@ -33,9 +33,10 @@ interface ShownToast {
 }
 
 /**
- * Tells the signed-in user when runs of their shipments end, from GET /events: a toast (unless the
- * shipment's page is open) and, opted in and in the background, a browser notification. Only live
- * events count, never the backlog replayed on connection. Also counts running tasks in the tab title.
+ * Tells the signed-in user when runs of their shipments end, from the app's one user-wide stream
+ * (ActivityProvider, GET /events; it must be rendered inside it): a toast (unless the shipment's page
+ * is open) and, opted in and in the background, a browser notification. Only live events count, never
+ * the backlog replayed on connection. Also counts running tasks in the tab title.
  */
 export function RunNotifications({ watchingShipmentId }: { watchingShipmentId?: string }) {
   const i18n = useI18n();
@@ -99,7 +100,7 @@ export function RunNotifications({ watchingShipmentId }: { watchingShipmentId?: 
     },
     [batcher],
   );
-  useUserEvents(onEvent);
+  useActivityEvents(onEvent);
 
   // "(2) DocCheck" while tasks run, "✓ DocCheck" after one ended in the background, until the tab is seen.
   const baseTitle = useRef(document.title);

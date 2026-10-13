@@ -111,3 +111,29 @@ describe('progress helpers', () => {
     assert.deepEqual(published.map((e) => e.ephemeral), [undefined, true]);
   });
 });
+
+describe('progress estimates', () => {
+  const { buildEstimates } = require('../dist/progress/progress-estimates.service.js');
+  const row = (stage, ms, samples, more = {}) => ({ kind: 'extraction', stage, model: '', cached: false, ms, samples, ...more });
+
+  it('uses model calls that ran the model, falling back on llm_calls, and merges stage groups', () => {
+    const rows = [
+      row('reading', 400, 2),
+      row('reading', 1000, 1, { cached: true }),
+      row('extracting', 30_000, 4, { model: 'ollama:a' }),
+      row('extracting', 5, 20, { model: 'ollama:a', cached: true }),
+      row('extracting', 3, 9, { model: 'ollama:b', cached: true }),
+      row('extracting', 9000, 1, { model: 'ollama:c' }),
+      { kind: 'validation', stage: 'rules', model: '', cached: false, ms: 700, samples: 5 },
+    ];
+    const out = buildEstimates(rows, [{ model: 'ollama:c', samples: 10, ms: 12_000 }, { model: 'ollama:d', samples: 2, ms: 50_000 }]);
+    assert.deepEqual(out.models, { 'ollama:a': { ms: 30_000, samples: 4 }, 'ollama:c': { ms: 12_000, samples: 10 }, 'ollama:d': { ms: 50_000, samples: 2 } });
+    assert.deepEqual(out.extraction.reading, { ms: 600, samples: 3 });
+    assert.deepEqual(out.validation.rules, { ms: 700, samples: 5 });
+  });
+
+  it('counts only cached (paced) calls in the read-only demo', () => {
+    const rows = [row('extracting', 2500, 6, { model: 'ollama:a', cached: true }), row('extracting', 30_000, 1, { model: 'ollama:a' })];
+    assert.deepEqual(buildEstimates(rows, [{ model: 'ollama:a', samples: 9, ms: 40_000 }], true).models, { 'ollama:a': { ms: 2500, samples: 6 } });
+  });
+});

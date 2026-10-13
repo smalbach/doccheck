@@ -1,4 +1,6 @@
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, readdir, rm } from 'node:fs/promises';
+import { createServer, type Server } from 'node:http';
+import type { AddressInfo } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -259,5 +261,110 @@ describe('cache replay as a stream', () => {
     expect(deltas.at(-1)?.detail).toMatchObject({ tokens: 120, replay: true });
     expect(seen.filter((u) => !u.ephemeral).map((u) => `${u.stage}:${u.status}`)).toEqual(['extracting:started', 'extracting:done', 'normalizing:started', 'normalizing:done']);
     expect(seen.findIndex((u) => u.stage === 'extracting' && u.status === 'done')).toBeGreaterThan(seen.lastIndexOf(deltas.at(-1)!));
+  });
+});
+
+describe('cancelling a streamed call', () => {
+  const schema = z.object({ invoiceNumber: z.string(), total: z.string() });
+  const req = { system: 'sys', user: 'doc', schema };
+  let dir: string | undefined;
+  let server: Server | undefined;
+  afterEach(async () => {
+    server?.closeAllConnections();
+    server?.close();
+    server = undefined;
+    if (dir) await rm(dir, { recursive: true, force: true });
+    dir = undefined;
+  });
+
+  /** An Ollama that streams the first pieces of an answer at once, then never finishes it. */
+  const hangingOllama = async (pieces: string[]) => {
+    const s = createServer((r, res) => {
+      if (r.url === '/api/tags') return void res.end(JSON.stringify({ models: [] }));
+      res.writeHead(200, { 'content-type': 'application/x-ndjson' });
+      for (const p of pieces) res.write(JSON.stringify({ message: { content: p }, done: false }) + '\n');
+    });
+    server = s;
+    await new Promise<void>((resolve) => s.listen(0, '127.0.0.1', resolve));
+    return `http://127.0.0.1:${(s.address() as AddressInfo).port}`;
+  };
+
+  it('rejects at once with the reason mid-stream, passes nothing on after the abort and caches nothing', async () => {
+    dir = await mkdtemp(join(tmpdir(), 'doccheck-stream-'));
+    const llm = new LlmClient(new OllamaProvider('test', await hangingOllama(['{"invoiceNumber": ', '"INV'])), dir, 'readwrite');
+    const ctrl = new AbortController();
+    const chunks: StreamChunk[] = [];
+    let afterAbort = 0;
+    const started = Date.now();
+    const call = llm.call(
+      'v1',
+      { ...req, signal: ctrl.signal },
+      {
+        onChunk: (c) => {
+          if (ctrl.signal.aborted) afterAbort += 1;
+          chunks.push(c);
+          // Cancel once the answer is being written.
+          if (chunks.length === 2) setTimeout(() => ctrl.abort(new Error('Cancelled by the user')), 50);
+        },
+      },
+    );
+    await expect(call).rejects.toThrow('Cancelled by the user');
+    expect(Date.now() - started).toBeLessThan(3000);
+    expect(chunks.map((c) => c.text).join('')).toBe('{"invoiceNumber": "INV');
+    expect(afterAbort).toBe(0);
+    expect(await readdir(dir)).toEqual([]);
+  });
+
+  it('stops a paced cache replay between chunks', async () => {
+    const ctrl = new AbortController();
+    const chunks: StreamChunk[] = [];
+    const replay = replayAsStream({ invoiceNumber: 'INV-7', total: '1,200.00' }, undefined, (c) => chunks.push(c), 2000, ctrl.signal);
+    setTimeout(() => ctrl.abort(new Error('Cancelled by the user')), 120);
+    const started = Date.now();
+    await expect(replay).rejects.toThrow('Cancelled by the user');
+    expect(Date.now() - started).toBeLessThan(500);
+    const sent = chunks.length;
+    expect(sent).toBeGreaterThan(0);
+    expect(sent).toBeLessThan(50);
+    await new Promise((r) => setTimeout(r, 200));
+    expect(chunks).toHaveLength(sent);
+  });
+
+  it('sends no delta once an extraction is cancelled, and fails the stage with the reason', async () => {
+    const llm = new LlmClient(new OllamaProvider('test', await hangingOllama(['{"packingListNumber": ', '"PL-1"'])));
+    const ctrl = new AbortController();
+    const seen: ExtractionUpdate[] = [];
+    let abortedAt = -1;
+    const pdf = { pageCount: 1, lines: [], text: 'PACKING LIST' };
+    const run = extractFromText(
+      pdf,
+      'PACKING_LIST',
+      llm,
+      (u) => {
+        seen.push(u);
+        if (u.ephemeral && abortedAt < 0) {
+          abortedAt = seen.length;
+          ctrl.abort(new Error('Cancelled by the user'));
+        }
+      },
+      ctrl.signal,
+    );
+    await expect(run).rejects.toThrow('Cancelled by the user');
+    expect(abortedAt).toBeGreaterThan(0);
+    expect(seen.slice(abortedAt).filter((u) => u.ephemeral)).toEqual([]);
+    expect(seen.at(-1)).toMatchObject({ stage: 'extracting', status: 'failed', detail: { error: 'Cancelled by the user' } });
+  });
+
+  it('drops what the throttle had pending when it is closed', async () => {
+    vi.useFakeTimers({ now: 0 });
+    const sent: string[] = [];
+    const t = throttleOutput((d) => void sent.push(d.delta ?? ''), { intervalMs: 300 });
+    t.push({ text: 'a', tokens: 1 });
+    t.push({ text: 'b', tokens: 1 });
+    await t.close();
+    t.push({ text: 'c', tokens: 1 });
+    await vi.runAllTimersAsync();
+    await t.flush();
+    expect(sent).toEqual(['a']);
   });
 });

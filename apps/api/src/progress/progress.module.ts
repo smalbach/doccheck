@@ -1,4 +1,5 @@
 import { Global, Module } from '@nestjs/common';
+import { ProgressEstimatesService } from './progress-estimates.service';
 import { ProgressRepository } from './progress.repository';
 import { ProgressService } from './progress.service';
 
@@ -8,7 +9,7 @@ import { ProgressService } from './progress.service';
  */
 @Global()
 @Module({
-  providers: [ProgressService, ProgressRepository],
-  exports: [ProgressService, ProgressRepository],
+  providers: [ProgressService, ProgressRepository, ProgressEstimatesService],
+  exports: [ProgressService, ProgressRepository, ProgressEstimatesService],
 })
 export class ProgressModule {}

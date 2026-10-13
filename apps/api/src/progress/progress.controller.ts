@@ -4,6 +4,7 @@ import type { Request, Response } from 'express';
 import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { ShipmentOwnerGuard } from '../shipments/shipment-owner.guard';
+import { ProgressEstimatesService } from './progress-estimates.service';
 import { ProgressRepository } from './progress.repository';
 import { ProgressService } from './progress.service';
 import { resumeAfter, SSE_HEARTBEAT, sseEvent, sseNamed } from './sse';
@@ -11,8 +12,17 @@ import { resumeAfter, SSE_HEARTBEAT, sseEvent, sseNamed } from './sse';
 const HEARTBEAT_MS = 20_000;
 /** What EventSource waits before reconnecting after the connection drops. */
 const RETRY_MS = 3000;
-/** Events sent to a user-wide stream opened without a position. */
-const USER_RECENT = 50;
+/** Ended runs sent to a user-wide stream opened without a position (with every run still going). */
+const USER_FINISHED_RUNS = 10;
+/** Ids accepted per list by GET /events/labels. */
+const MAX_LABEL_IDS = 100;
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+/** A comma-separated list of uuids from the query string; anything else is dropped. */
+function uuidList(value: unknown): string[] {
+  if (typeof value !== 'string') return [];
+  return [...new Set(value.split(',').map((v) => v.trim()).filter((v) => UUID.test(v)))].slice(0, MAX_LABEL_IDS);
+}
 
 /**
  * Server-sent events (docs/PROGRESS-EVENTS.md). Each stream first sends what the client missed (from
@@ -24,6 +34,7 @@ export class ProgressController {
   constructor(
     private readonly progress: ProgressService,
     private readonly repo: ProgressRepository,
+    private readonly estimates: ProgressEstimatesService,
   ) {}
 
   /**
@@ -38,13 +49,29 @@ export class ProgressController {
   }
 
   /**
-   * Every event of the user's shipments (activity panel). Without a position: their latest 50 events.
-   * Not the ephemeral ones (the model's answer as it is written): those are for the shipment page.
+   * Every event of the user's shipments (activity panel, notifications). Without a position, the backlog
+   * is every event of their runs still going and of their 10 latest ended runs. Not the ephemeral ones
+   * (the model's answer as it is written, never stored): those are for the shipment page.
    */
   @Get('events')
   user(@CurrentUser() user: PublicUser, @Query('after') after: unknown, @Req() req: Request, @Res() res: Response) {
     const from = resumeAfter(req.headers['last-event-id'], after);
-    this.stream(req, res, (e) => e.userId === user.id && !e.ephemeral, () => (from === undefined ? this.repo.userRecent(user.id, USER_RECENT) : this.repo.userAfter(user.id, from)));
+    this.stream(req, res, (e) => e.userId === user.id && !e.ephemeral, () => (from === undefined ? this.repo.userActivity(user.id, USER_FINISHED_RUNS) : this.repo.userAfter(user.id, from)));
+  }
+
+  /** Typical stage durations on this server, for remaining-time estimates (no user data; cached a minute). */
+  @Get('events/estimates')
+  estimatesOf() {
+    return this.estimates.get();
+  }
+
+  /**
+   * Names for the activity panel: ?shipments=<ids>&documents=<ids> (comma-separated, 100 each at most).
+   * Only the user's shipments and documents are returned; other ids are left out.
+   */
+  @Get('events/labels')
+  labels(@CurrentUser() user: PublicUser, @Query('shipments') shipments: unknown, @Query('documents') documents: unknown) {
+    return this.repo.labels(user.id, uuidList(shipments), uuidList(documents));
   }
 
   private stream(req: Request, res: Response, accept: (e: ProgressEvent) => boolean, backlog: () => Promise<ProgressEvent[]>) {

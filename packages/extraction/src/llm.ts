@@ -11,6 +11,8 @@ export interface StructuredRequest<S extends z.ZodType> {
   system: string;
   user: string;
   schema: S;
+  /** Aborts the call (a cancelled extraction): the request to the model is dropped and the call rejects with the signal's reason. */
+  signal?: AbortSignal;
 }
 
 export interface Usage {
@@ -113,6 +115,7 @@ export class OllamaProvider implements LlmProvider {
     try {
       res = await fetch(`${this.baseUrl}/api/chat`, {
         method: 'POST',
+        signal: req.signal,
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           model: this.model,
@@ -127,14 +130,26 @@ export class OllamaProvider implements LlmProvider {
         }),
       });
     } catch (err) {
+      req.signal?.throwIfAborted();
       throw new LlmError(`Ollama is not reachable at ${this.baseUrl} (${err instanceof Error ? err.message : String(err)})`);
     }
     if (!res.ok) throw new LlmError(`Ollama ${res.status}: ${await res.text()}`);
+    try {
+      return await this.readAnswer(res, stream, req.signal, opts);
+    } catch (err) {
+      // Aborting the fetch also errors its body mid-read: report the cancellation, not a read error.
+      req.signal?.throwIfAborted();
+      throw err;
+    }
+  }
+
+  private async readAnswer(res: Response, stream: boolean, signal: AbortSignal | undefined, opts: GenerateOptions) {
     let body: OllamaChatBody;
     if (stream && res.body) {
       let content = '';
       let last: OllamaChatBody = {};
       for await (const line of readNdjson<OllamaChatBody>(res.body)) {
+        signal?.throwIfAborted();
         if (line.error) throw new LlmError(`Ollama: ${line.error}`);
         const piece = line.message?.content ?? '';
         if (piece) {
@@ -147,6 +162,7 @@ export class OllamaProvider implements LlmProvider {
         }
         last = line;
       }
+      signal?.throwIfAborted();
       body = { ...last, message: { content } };
     } else {
       body = (await res.json()) as OllamaChatBody;
@@ -246,7 +262,7 @@ export class LlmClient {
       if (hit) {
         const parsed = req.schema.safeParse(hit.output);
         if (parsed.success) {
-          if (onChunk) await replayAsStream(parsed.data, hit.usage, onChunk, this.replayMs);
+          if (onChunk) await replayAsStream(parsed.data, hit.usage, onChunk, this.replayMs, req.signal);
           return { output: parsed.data, usage: hit.usage, cached: true };
         }
       }
@@ -254,9 +270,11 @@ export class LlmClient {
     }
 
     const generateOpts: GenerateOptions | undefined = onChunk && { onText: (text) => onChunk({ text, tokens: 1 }) };
+    req.signal?.throwIfAborted();
     let { output, usage } = await this.provider.generate(req, generateOpts);
     let parsed = req.schema.safeParse(output);
     if (!parsed.success) {
+      req.signal?.throwIfAborted();
       onChunk?.({ text: '', tokens: 0, restart: true });
       const retry = await this.provider.generate(
         {
@@ -271,6 +289,8 @@ export class LlmClient {
       if (!parsed.success) throw new LlmError(`Output does not match the schema: ${z.prettifyError(parsed.error)}`);
     }
 
+    // A cancelled call never leaves an answer in the cache, even one that completed just as it was aborted.
+    req.signal?.throwIfAborted();
     if (file && this.mode !== 'off') {
       await mkdir(this.cacheDir!, { recursive: true });
       const modelVersion = await this.provider.version?.();
@@ -291,7 +311,18 @@ const safe =
     }
   };
 
-const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+/** Waits `ms`; an aborted signal ends the wait at once (the caller checks the signal after). */
+const sleep = (ms: number, signal?: AbortSignal) =>
+  new Promise<void>((resolve) => {
+    if (signal?.aborted) return resolve();
+    const done = () => {
+      clearTimeout(timer);
+      signal?.removeEventListener('abort', done);
+      resolve();
+    };
+    const timer = setTimeout(done, ms);
+    signal?.addEventListener('abort', done, { once: true });
+  });
 
 /** Characters per replayed chunk when it is not paced. */
 const REPLAY_CHUNK_CHARS = 256;
@@ -301,8 +332,15 @@ const REPLAY_TICK_MS = 40;
 /**
  * Plays a cached answer back as a stream: its JSON (indented, as people read it) in chunks, with the
  * cached output token count spread over them. `totalMs` spreads it over that long; 0 sends it at once.
+ * An aborted `signal` stops the replay: no chunk is sent after it, and the call rejects with its reason.
  */
-export async function replayAsStream(output: unknown, usage: Usage | undefined, onChunk: (chunk: StreamChunk) => void, totalMs = 0): Promise<void> {
+export async function replayAsStream(
+  output: unknown,
+  usage: Usage | undefined,
+  onChunk: (chunk: StreamChunk) => void,
+  totalMs = 0,
+  signal?: AbortSignal,
+): Promise<void> {
   const text = JSON.stringify(output, null, 2) ?? '';
   if (!text) return;
   const count = totalMs > 0 ? Math.max(1, Math.min(text.length, Math.round(totalMs / REPLAY_TICK_MS))) : Math.ceil(text.length / REPLAY_CHUNK_CHARS);
@@ -316,7 +354,8 @@ export async function replayAsStream(output: unknown, usage: Usage | undefined, 
     // Cumulative rounding: the chunks add up to the cached token count exactly.
     const tokens = Math.round((to * totalTokens) / text.length) - sentTokens;
     sentTokens += tokens;
-    if (totalMs > 0 && i > 0) await sleep(totalMs / count);
+    if (totalMs > 0 && i > 0) await sleep(totalMs / count, signal);
+    signal?.throwIfAborted();
     onChunk({ text: text.slice(from, to), tokens, replay: true });
     from = to;
   }

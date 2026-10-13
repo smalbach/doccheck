@@ -21,6 +21,8 @@ export interface OutputThrottle {
   push(chunk: StreamChunk): void;
   /** Sends what is pending and waits until every delta was handed to `send`. Later pushes are ignored. */
   flush(): Promise<void>;
+  /** Drops what is pending (the call was cancelled) and waits for deltas already handed to `send`. Later pushes are ignored. */
+  close(): Promise<void>;
 }
 
 /**
@@ -92,6 +94,14 @@ export function throttleOutput(send: (delta: OutputDelta) => void | Promise<void
     },
     flush() {
       if (!closed) emit();
+      closed = true;
+      return chain;
+    },
+    close() {
+      clearTimeout(timer);
+      timer = undefined;
+      pending = '';
+      restart = false;
       closed = true;
       return chain;
     },

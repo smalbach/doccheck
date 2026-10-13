@@ -107,6 +107,16 @@ export class ShipmentsController {
     return this.shipments.reextract(id, documentId, dto.type, wait === 'true');
   }
 
+  /**
+   * Stops a document's extraction (QUEUED or EXTRACTING, else 409): it ends FAILED with "Cancelled by
+   * the user". Blocked in the read-only demo like every other write.
+   */
+  @Post(':id/documents/:documentId/cancel')
+  @HttpCode(200)
+  cancel(@Param('id') id: string, @Param('documentId') documentId: string) {
+    return this.shipments.cancelExtraction(id, documentId);
+  }
+
   /** The uploaded PDF, for the viewer. */
   @Get(':id/documents/:documentId/file')
   @Header('content-type', 'application/pdf')

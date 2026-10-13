@@ -549,13 +549,33 @@ export class ShipmentsRepository {
     );
   }
 
-  /** Marks documents left QUEUED or EXTRACTING by a previous process as FAILED, so they can be re-extracted or deleted. */
-  async failInterruptedDocuments(): Promise<number> {
-    const { rows } = await this.pool.query<{ shipment_id: string }>(
-      `update documents set status = 'FAILED', error = 'Interrupted by a restart; extract it again' where status in ('QUEUED', 'EXTRACTING') returning shipment_id`,
+  /**
+   * Marks documents left QUEUED or EXTRACTING by a previous process as FAILED, so they can be
+   * re-extracted or deleted. Returns them, with the error they got.
+   */
+  async failInterruptedDocuments(): Promise<{ id: string; shipmentId: string; error: string }[]> {
+    const error = 'Interrupted by a restart; extract it again';
+    const { rows } = await this.pool.query<{ id: string; shipment_id: string }>(
+      `update documents set status = 'FAILED', error = $1 where status in ('QUEUED', 'EXTRACTING') returning id, shipment_id`,
+      [error],
     );
     for (const id of new Set(rows.map((r) => r.shipment_id))) await this.refreshShipmentStatus(id);
-    return rows.length;
+    return rows.map((r) => ({ id: r.id, shipmentId: r.shipment_id, error }));
+  }
+
+  /**
+   * Takes a document for extraction: EXTRACTING, unless it is not waiting any more (cancelled, or
+   * extracted meanwhile). EXTRACTING is accepted too: a BullMQ job whose worker died runs again.
+   */
+  async claimDocument(id: string): Promise<boolean> {
+    const { rowCount } = await this.pool.query(`update documents set status = 'EXTRACTING', error = null where id = $1 and status in ('QUEUED', 'EXTRACTING')`, [id]);
+    return rowCount === 1;
+  }
+
+  /** Cancels a document still waiting in line: FAILED with `error`. False when it is not QUEUED (any more). */
+  async cancelQueuedDocument(id: string, error: string): Promise<boolean> {
+    const { rowCount } = await this.pool.query(`update documents set status = 'FAILED', error = $2 where id = $1 and status = 'QUEUED'`, [id, error]);
+    return rowCount === 1;
   }
 
   async pendingDocuments(shipmentId: string): Promise<number> {
