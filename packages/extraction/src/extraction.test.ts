@@ -9,6 +9,7 @@ import { LlmClient, LlmError, OllamaProvider, type LlmProvider } from './llm';
 import { createServer } from 'node:http';
 import { countryCode, countryFromPostalCode, decimal, htsCode, isoDate, localeFor, normalizeBillOfLading, normalizeIsf, normalizePackingList, quantityUnit, weight, withLocale } from './normalize';
 import { readPdfText } from './pdf-text';
+import { parseUnlimitedOcr } from './ocr';
 import { findFieldSource, findSource } from './provenance';
 import type { RawBillOfLading, RawIsf, RawParty } from './raw-schemas';
 import { scoreDocument, tally } from './score';
@@ -313,5 +314,36 @@ describe('progress', () => {
     });
     await expect(extractFromText(pdf, 'PACKING_LIST', llm, undefined, ctrl.signal)).rejects.toThrow('Cancelled by the user');
     expect(calls).toBe(0);
+  });
+});
+
+describe('Unlimited-OCR output', () => {
+  // Abridged from a real answer of the model on a scanned invoice (coordinates 0-1000).
+  const out = [
+    '<|det|>text [366, 47, 632, 65]<|/det|>Commercial Invoice',
+    '<|det|>table [58, 294, 949, 395]<|/det|><table><tr><td>#</td><td>Description</td><td>Quantity</td><td>Unit Price (USD)</td></tr><tr><td>1</td><td>Wool blend socks</td><td>53,280 PRS</td><td>1.85</td></tr><tr><td>2</td><td>Women&#x27;s padded jacket</td><td>4,540 PCS</td><td>22.89</td></tr></table>',
+    '<|det|>text [57, 469, 486, 481]<|/det|>Shipping Supervisor',
+    '<|det|>text [57, 469, 486, 481]<|/det|>Shipping Supervisor',
+  ].join('\n');
+
+  it('turns regions into lines and table rows into " | "-separated cells, in PDF points', () => {
+    const words = parseUnlimitedOcr(out, 600, 800);
+    expect(words.map((w) => w.str)).toEqual([
+      'Commercial Invoice',
+      '# | Description | Quantity | Unit Price (USD)',
+      "1 | Wool blend socks | 53,280 PRS | 1.85",
+      "2 | Women's padded jacket | 4,540 PCS | 22.89",
+      'Shipping Supervisor',
+    ]);
+    expect(words[0]).toMatchObject({ x: 219.6, y: 37.6 });
+    // Three table rows share the table's height evenly.
+    expect(words[2].y).toBeCloseTo(((294 + (395 - 294) / 3) / 1000) * 800, 5);
+  });
+
+  it('keeps numbers in separate cells findable', () => {
+    const lines = parseUnlimitedOcr(out, 600, 800).map((w, i) => ({ page: 1, text: w.str, bbox: [0, i, 1, i + 1] as [number, number, number, number] }));
+    const pdf = { pageCount: 1, text: '', lines };
+    expect(findSource(pdf, 'inv', '1.85')?.rawText).toContain('Wool');
+    expect(findSource(pdf, 'inv', '53280')?.rawText).toContain('PRS');
   });
 });

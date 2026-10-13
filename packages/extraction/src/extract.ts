@@ -139,6 +139,6 @@ export async function extractDocument(pdfBytes: Uint8Array, llm: LlmClient, type
     return { documentType: detected.type, typeConfidence: detected.confidence, pdf, raw: null, data: null, issues: [`Unsupported document type ${detected.type}`], cached: false };
   }
   const result = await extractFromText(pdf, detected.type as ExtractableType, llm, onProgress, signal);
-  if (pdf.ocrPages) result.issues.unshift(`Read with OCR (page${pdf.ocrPages.length > 1 ? 's' : ''} ${pdf.ocrPages.join(', ')}, confidence ${pdf.ocrConfidence}%): check values against the scan`);
+  if (pdf.ocrPages) result.issues.unshift(`Read with OCR (page${pdf.ocrPages.length > 1 ? 's' : ''} ${pdf.ocrPages.join(', ')}${pdf.ocrConfidence !== undefined ? `, confidence ${pdf.ocrConfidence}%` : ''}): check values against the scan`);
   return { documentType: detected.type, typeConfidence: detected.confidence, pdf, ...result };
 }

@@ -63,6 +63,12 @@ Local: Postgres 18 en el 5432, base `doccheck`, credenciales en `.env` (no versi
   - `scripts/demo-build.mjs` (`npm run demo:build`): elige un envío por tipo de error y país más dos limpios (24), los corre por la API con el modelo para llenar las cachés, los copia a `data/demo` y borra los envíos de calentamiento. Pendiente: correrlo cuando terminen las evaluaciones.
   - Docker: la imagen incluye `data/demo` y `eval/cache`; perfil `demo` en compose (app + Postgres).
   - Tests e2e nuevos (14 en total): escrituras bloqueadas, solo muestras en caché, misma muestra = mismo envío, validación sin Ollama.
+- **OCR de Baidu (Unlimited-OCR) como motor opcional (`OCR_ENGINE=unlimited`).** 3B parámetros, MIT.
+  - Vía Ollama (`richardyoung/unlimited-ocr`, Q4): pierde las etiquetas de celda de las tablas (los números quedan pegados), entra en bucle sin límite de tokens, y el modo "Free OCR." inventó texto. 67.5% de recall de texto en 12 escaneos contra 76.4% de tesseract. Descartado.
+  - Vía MLX (`mlx-community/Unlimited-OCR-8bit`, `mlx-vlm` 0.7.8, prompt `document parsing.` con la plantilla de chat; sin plantilla devuelve basura): tablas con `<tr><td>`, 2.2 s por página (mediana), 1 de 120 páginas en bucle. Recall de texto en los 120 escaneos: 96.8% contra 86.6% de tesseract; a 110 dpi 94.2% contra 69.3%.
+  - Integración: `scripts/ocr-server.py` (Python, carga el modelo una vez, `POST /ocr` con PNG, solo 127.0.0.1) y `ocrPage` en `packages/extraction/src/ocr.ts` elige el motor. `parseUnlimitedOcr` convierte cada región en líneas y cada fila de tabla en celdas separadas por " | ", con su recuadro en puntos PDF, así citas y resaltado funcionan igual. Sin confianza por palabra (el aviso de OCR omite el porcentaje).
+  - Solo Mac con Apple Silicon: tesseract sigue siendo el valor por defecto (Docker, CI, demo). Entorno: `uv venv --python 3.12 ~/.cache/doccheck/mlx-ocr` + `mlx-vlm>=0.6.8`; `npm run ocr:server`.
+  - Los reportes con otro motor llevan sufijo (`extraction-...-v1-scans-unlimited.json`) y registran `ocrEngine`.
 
 - `apps/web`: Vite + React, sin router ni librería de UI (dos pantallas, rutas por hash). La API sirve el build desde el mismo origen (`npm start` en :3000); en desarrollo Vite en :5173 hace proxy.
 - Pantallas: inicio (crear envío, muestras sintéticas con sus errores, envíos recientes) y envío (subir PDFs, estado de extracción con polling, validar con o sin agente, hallazgos ordenados por severidad con evidencia, cita de la norma y razón del agente).

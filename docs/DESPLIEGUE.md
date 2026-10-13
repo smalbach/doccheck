@@ -379,6 +379,7 @@ APP_URL=https://doccheck.midominio.com          # dirección pública de la web:
 | `APP_URL` | `http://localhost:5173` fuera de producción | Dirección pública de la web, para los enlaces de los correos |
 | `SIGNUP_LIMIT_PER_HOUR` | 5 | Cuentas nuevas por dirección y hora (las peticiones desde la misma máquina no cuentan; detrás del túnel cuenta la IP real del visitante) |
 | `OCR_LANGS`, `OCR_SCALE`, `OCR_PSM` | `eng+fra`, `4`, `6` | OCR de páginas escaneadas: idiomas instalados, escala de render (4 = 288 dpi) y modo de página de Tesseract |
+| `OCR_ENGINE`, `OCR_URL` | `tesseract`, `http://127.0.0.1:8765` | Motor de OCR: `tesseract` (en el proceso, corre en cualquier lado) o `unlimited` (Baidu Unlimited-OCR en Mac con Apple Silicon, servido por `scripts/ocr-server.py`; ver NOTAS) |
 | `DEMO_BUILD_EMAIL`, `DEMO_BUILD_PASSWORD` | — | Cuenta con la que `scripts/demo-build.mjs` inicia sesión; sin ellas crea una cuenta desechable |
 
 ## Problemas conocidos

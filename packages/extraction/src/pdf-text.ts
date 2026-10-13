@@ -22,7 +22,7 @@ export interface PdfText {
   lines: TextLine[];
   /** Layout-preserving text: one line per row, cells padded to their column so tables stay aligned. */
   text: string;
-  /** Pages read with OCR, and tesseract's mean confidence on them (0-100). */
+  /** Pages read with OCR, and the engine's mean confidence on them (0-100; tesseract only). */
   ocrPages?: number[];
   ocrConfidence?: number;
 }
@@ -82,7 +82,7 @@ export async function readPdfText(data: Uint8Array, opts: ReadOptions = {}): Pro
         opts.signal?.throwIfAborted();
         items = ocr.words;
         ocrPages.push(p);
-        confidences.push(ocr.confidence);
+        if (ocr.confidence !== undefined) confidences.push(ocr.confidence);
         // OCR boxes jitter more than a text layer, and a slight skew moves a row's words apart.
         const heights = items.map((i) => i.h).sort((a, b) => a - b);
         tolerance = Math.max(ROW_TOLERANCE, (heights[Math.floor(heights.length / 2)] ?? 8) * 0.45);
@@ -99,7 +99,8 @@ export async function readPdfText(data: Uint8Array, opts: ReadOptions = {}): Pro
   }
   const text = pages.map((t, i) => `--- page ${i + 1} ---\n${t}`).join('\n\n');
   if (ocrPages.length === 0) return { pageCount: pages.length, lines, text };
-  const ocrConfidence = Math.round(confidences.reduce((a, b) => a + b, 0) / confidences.length);
+  // Unlimited-OCR reports no confidence; tesseract does.
+  const ocrConfidence = confidences.length ? Math.round(confidences.reduce((a, b) => a + b, 0) / confidences.length) : undefined;
   await ocrStage?.done({ pages: pages.length, ocrPages: ocrPages.length, confidence: ocrConfidence });
   return { pageCount: pages.length, lines, text, ocrPages, ocrConfidence };
 }

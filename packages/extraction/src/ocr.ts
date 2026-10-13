@@ -64,8 +64,77 @@ export async function terminateOcr(): Promise<void> {
   if (w) await (await w).terminate();
 }
 
+/**
+ * OCR engine: tesseract (default, in-process, runs anywhere) or unlimited (Baidu Unlimited-OCR on
+ * Apple Silicon, served by scripts/ocr-server.py at OCR_URL). On the 120 synthetic scans, unlimited
+ * finds 96.8% of the printed truth values against 86.6% for tesseract (94.2% vs 69.3% at 110 dpi).
+ */
+export type OcrEngine = 'tesseract' | 'unlimited';
+export const ocrEngine = (env: NodeJS.ProcessEnv = process.env): OcrEngine => (env.OCR_ENGINE === 'unlimited' ? 'unlimited' : 'tesseract');
+
+/** Renders a PDF page and recognizes its text with the configured engine. */
+export async function ocrPage(page: RenderablePage): Promise<{ words: OcrWord[]; confidence?: number }> {
+  return ocrEngine() === 'unlimited' ? ocrPageUnlimited(page) : ocrPageTesseract(page);
+}
+
+const unescapeHtml = (s: string) =>
+  s.replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+
+/**
+ * Unlimited-OCR output -> one OcrWord per text line, in PDF points. Each region is
+ * "<|det|>type [x1, y1, x2, y2]<|/det|>content" with coordinates 0-1000 of the page. A table becomes
+ * one line per row, cells joined by " | " (its box is split evenly between rows), so the extraction
+ * model reads columns and the rows still group with the text beside them. A region repeated verbatim
+ * (the model sometimes loops) is kept once.
+ */
+export function parseUnlimitedOcr(text: string, pageWidth: number, pageHeight: number): OcrWord[] {
+  const words: OcrWord[] = [];
+  const seen = new Set<string>();
+  for (const m of text.matchAll(/<\|det\|>(\w+) \[(\d+), (\d+), (\d+), (\d+)\]<\|\/det\|>([\s\S]*?)(?=<\|det\|>|$)/g)) {
+    const [x1, y1, x2, y2] = [m[2], m[3], m[4], m[5]].map(Number);
+    const body = m[6].trim();
+    if (!body || seen.has(body)) continue;
+    seen.add(body);
+    const rows = body.includes('<tr')
+      ? [...body.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].map((r) =>
+          [...r[1].matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/g)].map((c) => unescapeHtml(c[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim())).join(' | '),
+        )
+      : [unescapeHtml(body.replace(/<[^>]+>/g, ' ').replace(/[ \t]+/g, ' ').trim())];
+    // A text region can span several lines of its own.
+    const lines = rows.flatMap((r) => r.split('\n')).map((l) => l.trim());
+    lines.forEach((line, i) => {
+      if (!line.replace(/[\s|]/g, '')) return;
+      const top = y1 + ((y2 - y1) * i) / lines.length;
+      const bottom = y1 + ((y2 - y1) * (i + 1)) / lines.length;
+      words.push({ str: line, x: (x1 / 1000) * pageWidth, y: (top / 1000) * pageHeight, w: ((x2 - x1) / 1000) * pageWidth, h: ((bottom - top) / 1000) * pageHeight, confidence: 100 });
+    });
+  }
+  return words;
+}
+
+/** Scale the page is rendered at for Unlimited-OCR: 144 dpi, the size it was measured with. */
+const UNLIMITED_SCALE = 2;
+
+async function ocrPageUnlimited(page: RenderablePage): Promise<{ words: OcrWord[] }> {
+  const { createCanvas } = await import('@napi-rs/canvas');
+  const points = page.getViewport({ scale: 1 });
+  const viewport = page.getViewport({ scale: UNLIMITED_SCALE });
+  const canvas = createCanvas(Math.ceil(viewport.width), Math.ceil(viewport.height));
+  await page.render({ canvas, viewport }).promise;
+  const url = (process.env.OCR_URL || 'http://127.0.0.1:8765').replace(/\/$/, '');
+  let res: Response;
+  try {
+    res = await fetch(`${url}/ocr`, { method: 'POST', headers: { 'content-type': 'image/png' }, body: await canvas.encode('png') });
+  } catch (err) {
+    throw new Error(`OCR server is not reachable at ${url} (start it with scripts/ocr-server.py): ${err instanceof Error ? err.message : String(err)}`);
+  }
+  const body = (await res.json().catch(() => ({}))) as { text?: string; error?: string };
+  if (!res.ok || typeof body.text !== 'string') throw new Error(`OCR server ${res.status}: ${body.error ?? 'no text'}`);
+  return { words: parseUnlimitedOcr(body.text, points.width, points.height) };
+}
+
 /** Renders a PDF page and recognizes its words with tesseract. */
-export async function ocrPage(page: RenderablePage): Promise<{ words: OcrWord[]; confidence: number }> {
+async function ocrPageTesseract(page: RenderablePage): Promise<{ words: OcrWord[]; confidence: number }> {
   const { createCanvas } = await import('@napi-rs/canvas');
   // Read per page so an admin change applies without a restart; the same value maps boxes back to points.
   const scale = Number(process.env.OCR_SCALE ?? DEFAULT_SCALE);

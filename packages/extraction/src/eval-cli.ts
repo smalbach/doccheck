@@ -6,7 +6,7 @@ import { basename, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { extractDocument, PROMPT_VERSION, type ExtractableType } from './extract';
 import { LlmClient, llmFromEnv, type Usage } from './llm';
-import { terminateOcr } from './ocr';
+import { ocrEngine, terminateOcr } from './ocr';
 import { scoreDocument, tally, type FieldScore } from './score';
 
 /**
@@ -187,6 +187,8 @@ async function main() {
     provider: base.provider.id,
     modelVersion: await base.provider.version?.(),
     promptVersion: PROMPT_VERSION,
+    /** OCR engine for pages without a text layer (OCR_ENGINE). */
+    ocrEngine: ocrEngine(),
     shipments: ids.length,
     documents: docResults.length,
     failedDocuments: errors.length,
@@ -205,14 +207,15 @@ async function main() {
 
   const outDir = resolve(values.out!);
   await mkdir(outDir, { recursive: true });
-  const set = basename(dataDir) === 'v1' ? '' : `-${basename(dataDir)}`;
+  // Another OCR engine gets its own report, so it sits next to the tesseract one: ...-v1-scans-unlimited.
+  const set = `${basename(dataDir) === 'v1' ? '' : `-${basename(dataDir)}`}${ocrEngine() === 'tesseract' ? '' : `-${ocrEngine()}`}`;
   const name = `extraction-${base.provider.id.replace(/[^\w.-]+/g, '_')}${set}`;
   await writeFile(join(outDir, `${name}.json`), JSON.stringify(report, null, 2) + '\n');
 
   const md = [
     `# Extraction report — ${base.provider.id}`,
     '',
-    `Data \`${basename(dataDir)}\` · model build ${report.modelVersion ?? 'unknown'} · prompt \`${PROMPT_VERSION}\` · ${ids.length} shipments · ${docResults.length} PDFs · ${errors.length} failed · ${report.cachedDocuments} from cache`,
+    `Data \`${basename(dataDir)}\` · model build ${report.modelVersion ?? 'unknown'} · prompt \`${PROMPT_VERSION}\` · OCR ${report.ocrEngine} · ${ids.length} shipments · ${docResults.length} PDFs · ${errors.length} failed · ${report.cachedDocuments} from cache`,
     '',
     `**Field accuracy ${pct(report.overall.accuracy)}** (${report.overall.correct}/${report.overall.total}: ${report.overall.wrong} wrong, ${report.overall.missing} missing, ${report.overall.spurious} spurious) · classification ${pct(classification)} · ${report.validDocuments}/${docResults.length} documents valid (rules can run on them)`,
     '',

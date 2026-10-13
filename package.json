@@ -24,7 +24,8 @@
     "cache:audit": "node scripts/cache-audit.mjs",
     "a11y": "node scripts/a11y.mjs",
     "eval:ocr": "npm run build -w @doccheck/extraction && node packages/extraction/dist/ocr-eval-cli.js",
-    "demo:build": "node scripts/demo-build.mjs"
+    "demo:build": "node scripts/demo-build.mjs",
+    "ocr:server": "~/.cache/doccheck/mlx-ocr/bin/python scripts/ocr-server.py"
   },
   "engines": {
     "node": ">=22"
