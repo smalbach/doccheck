@@ -1,0 +1,133 @@
+# Bitácora de DocCheck (material para LinkedIn)
+
+Registro vivo de lo que se construyó, por qué y con qué resultado. Cada número sale de un archivo del
+repositorio (citado al lado) para que cualquier afirmación del post se pueda verificar. Se actualiza a
+medida que avanza el proyecto; los borradores de publicaciones están en [POSTS.md](POSTS.md).
+
+## Qué es, en una frase
+
+DocCheck revisa los documentos de un embarque (factura comercial, packing list, bill of lading e ISF)
+antes de que lleguen a la aduana de Canadá (CBSA) o de EE. UU. (CBP): un modelo local lee los PDF,
+código probado convierte los valores, 15 reglas deterministas cruzan los documentos y un agente decide
+solo los casos ambiguos. Cada hallazgo cita la línea exacta del PDF y el párrafo de la norma.
+
+## Stack
+
+- TypeScript en un monorepo (npm workspaces), Zod para los esquemas, NestJS para la API, React + Vite +
+  Radix UI para la web, Vitest y `node --test` para pruebas, GitHub Actions para CI.
+- Postgres (datos y trazas de cada llamada al modelo), Redis + BullMQ (cola de extracción), S3
+  compatible (SeaweedFS en local) para los PDF.
+- Modelos locales con Ollama: `qwen3.8` (27B, Q4_K_M) para extracción y agente, `bge-m3` para
+  embeddings. Nada sale de la máquina.
+- OCR con tesseract.js (inglés + francés); en prueba: Baidu Unlimited-OCR vía Ollama.
+- Búsqueda híbrida propia (embeddings + BM25) sobre memorandos de CBSA y el 19 CFR.
+
+## Cronología (según el historial de git)
+
+| Fecha | Hito |
+| --- | --- |
+| 12 oct, tarde | Fases 0–5 en el primer commit: esquemas, generador sintético, extracción, motor de reglas, agente + RAG, demo web |
+| 12 oct, noche | ISF, OCR para escaneos, reglas X9/X12, corpus normativo ampliado, página de resultados, set v2 de formatos nuevos, modo demo de solo lectura |
+| 12–13 oct | Evaluación completa con el modelo local: ~14 h de cómputo en una laptop (se durmió de noche y se pausó) |
+| 13 oct | Cuentas y sesiones, web rehecha (Radix, i18n en/es/fr, tema claro/oscuro, auditoría de accesibilidad en CI), rol de administrador, datos extraídos en tablas, progreso en vivo (SSE), despliegue de la demo |
+| 13 oct, tarde | Arreglo de escaneos (57.6% → 81.5%), cierre de la evaluación y write-up |
+
+## Resultados medidos
+
+Fuente: [docs/METRICS.md](../METRICS.md) y `eval/reports/`. Datos sintéticos (no hay un set público de
+documentos de carga etiquetados), modelo `qwen3.8` build `aaee06c39dcf`.
+
+| Set | PDFs | Campos bien leídos | Reglas de punta a punta (recall / precisión) |
+| --- | --- | --- | --- |
+| Texto (v1) | 600 | 99.7% | 99.0% / 99.7% |
+| Confirmaciones ISF | 100 | 99.9% | X11: 20 de 20 |
+| Escaneos simulados (OCR) | 120 | 81.5% | 81.8% / 67.5% |
+| Formatos nunca vistos (v2) | 180 | 98.7% | 95.3% / 97.6% |
+| Agente, 80 casos con respuesta conocida | — | 0 decisiones equivocadas | — |
+
+## Decisiones de diseño que vale la pena contar
+
+1. **El modelo copia, el código convierte.** El modelo devuelve los valores tal como están impresos
+   ("1,140.00", "14-MAR-2026", "2,513 LB") y funciones probadas los pasan a decimales, fechas ISO y
+   kilos. Un error de formato es un test que falla, no un prompt que ajustar.
+2. **Reglas deterministas primero, agente solo para preguntas acotadas.** El modelo responde
+   "¿son la misma empresa?" con veredicto, confianza y razón; solo actúa con confianza ≥ 0.7 y "no
+   estoy seguro" nunca descarta un hallazgo.
+3. **Las citas se buscan, no se generan.** El párrafo de la norma viene de una búsqueda híbrida sobre
+   el corpus oficial; el modelo nunca redacta la base legal.
+4. **Evaluar antes de construir.** 200 embarques sintéticos con 293 errores inyectados y etiquetados;
+   cada respuesta del modelo queda en caché, así la evaluación se repite en segundos sin modelo.
+5. **Local por defecto, y una demo pública sin GPU.** La demo repite respuestas cacheadas, así cabe en
+   un servidor chico.
+
+## Aprendizajes (con evidencia)
+
+- **El error peligroso no es leer mal, es rellenar lo que está en blanco.** Cuando a una factura le
+  falta el consignatario o el país de origen, el modelo copia el comprador o el país del vendedor,
+  aunque el prompt se lo prohíbe. Así el control de campos obligatorios no salta. También inventa el
+  puerto de entrada en 11 de 100 facturas canadienses que no lo imprimen. (WRITEUP.md, "Results")
+- **Mirar por qué un número es bajo antes de tocar el modelo.** Los escaneos daban 57.6%: casi la
+  mitad de los documentos se descartaba entera porque un solo valor (a menudo el país, perdido por el
+  OCR) no pasaba la validación. Con las mismas respuestas del modelo y cambios solo en código: 81.5%.
+- **Un set con formatos nuevos encuentra bugs antes de gastar GPU.** El set v2 (formatos europeos,
+  tablas de 40 líneas, nombres en seis idiomas) destapó tres fallas de normalización sin llamar al
+  modelo: "48 600,00" se leía 48, "14.03.2026" no era fecha, y el resaltado no encontraba números
+  europeos.
+- **Fijar el build del modelo, no la etiqueta.** `qwen3.8:latest` cambió a mitad del día; ahora cada
+  respuesta, traza y reporte guarda el digest exacto.
+- **Las evaluaciones largas necesitan el mismo cuidado que producción.** Un reporte escrito por un
+  proceso que arrancó antes de que existieran tres reglas las mostraba en 0%. Ahora los reportes se
+  regeneran desde la caché con el código final antes de publicarse.
+
+## Cómo se construyó: varios agentes de IA en paralelo
+
+Construido con Claude Code. En vez de una sola conversación, hubo varias sesiones trabajando a la vez
+sobre el mismo repositorio, coordinándose entre ellas con mensajes:
+
+- Una sesión llevaba datos, extracción, evaluación y el write-up; otra la web, cuentas, administración
+  y despliegue. Antes de tocar archivos de la otra, avisaban ("tomo apps/web hasta que avise") y
+  revisaban los cambios ajenos (una detectó que el modo demo iba a bloquear el login y lo avisó antes
+  del commit).
+- Subagentes en worktrees de git para tareas aisladas (corpus normativo, ISF en PDF), luego fusionadas.
+- Lo que no delegué: decidir qué medir, leer cada reporte bajo y decidir si el problema era el
+  modelo, el código o la métrica.
+
+<!-- Completar con tu experiencia: cuánto tiempo tuyo llevó, qué te sorprendió, qué harías distinto. -->
+
+## OCR de Baidu (Unlimited-OCR), 13 oct
+
+Modelo publicado por Baidu (3B parámetros, MIT). Probado vía Ollama con la versión de la comunidad
+`richardyoung/unlimited-ocr` (Q4_K_M, arquitectura deepseek2-ocr), sin integrarlo todavía al pipeline.
+
+- Modos: `<|grounding|>Convert the document to markdown.` devuelve una línea por bloque con su recuadro
+  (0–1000) y es el útil. "Free OCR." inventó texto ("Commercial Coffee", fechas en chino).
+- Sin límite de salida entra en bucle repitiendo una línea hasta llenar el contexto (15 169 tokens);
+  penalizar repeticiones lo corta pero cambia dígitos ("SAI2607606" leído "SAI2607066"). Se usa
+  límite de tokens y se descartan las líneas repetidas.
+- Las tablas salen como HTML sin las etiquetas de celda (Ollama parece quitar `<td>` por ser tokens
+  especiales): "VN53,280 PRS1.8598,568.00".
+
+Recall de texto en 12 PDFs escaneados (mismos que tesseract, misma métrica `findSource`):
+
+| Documento | tesseract | Unlimited-OCR |
+| --- | --- | --- |
+| Total | 76.4% | 67.5% |
+| Factura | 83.0% | 67.9% |
+| Packing list | 59.4% | 79.7% |
+| BL | 81.6% | 56.6% |
+| Tiempo | 20 s | 112 s |
+
+Conclusión por ahora: no reemplaza a tesseract en esta forma de correrlo. Próximo intento: la versión
+MLX (mantiene los tokens de tabla) o usarlo solo para packing lists.
+
+## Pendiente / próximos pasos
+
+- OCR de Baidu: probar la versión MLX o usarlo solo para packing lists.
+- Segunda pasada barata para campos obligatorios ("¿este valor está impreso bajo esta etiqueta?").
+- Probar con documentos reales.
+- Publicar la demo de solo lectura.
+
+## Registro de cambios de esta bitácora
+
+- 13 oct 2026: creada con el estado al cierre de la evaluación (commit `739a696`).
+- 13 oct 2026: primera prueba del OCR de Baidu.
