@@ -1,6 +1,6 @@
 import { Injectable, Logger, type OnApplicationBootstrap, type OnApplicationShutdown } from '@nestjs/common';
 import { isDemo } from '../demo/demo-mode';
-import { MAX_ATTEMPTS, retryDelayMs } from './mail.config';
+import { MAX_ATTEMPTS, retryDelayMs, UNASSIGNED_RETENTION_DAYS } from './mail.config';
 import { MailRepository } from './mail.repository';
 import { MailTransport } from './mail-transport';
 
@@ -14,6 +14,7 @@ import { MailTransport } from './mail-transport';
 export class OutboxWorker implements OnApplicationBootstrap, OnApplicationShutdown {
   private readonly logger = new Logger(OutboxWorker.name);
   private timer?: NodeJS.Timeout;
+  private pruner?: NodeJS.Timeout;
   private running?: Promise<void>;
 
   constructor(
@@ -26,10 +27,15 @@ export class OutboxWorker implements OnApplicationBootstrap, OnApplicationShutdo
     const every = Math.max(500, Number(process.env.MAIL_OUTBOX_MS ?? 3000) || 3000);
     void this.repo.recoverStuck().then((n) => n && this.logger.warn(`${n} message(s) left sending by a previous process were queued again`));
     this.timer = setInterval(() => this.kick(), every);
+    // Received mail nobody claimed does not pile up forever.
+    const prune = () => void this.repo.pruneUnassigned(UNASSIGNED_RETENTION_DAYS).then((n) => n && this.logger.log(`Deleted ${n} unassigned message(s) older than ${UNASSIGNED_RETENTION_DAYS} days`)).catch(() => undefined);
+    prune();
+    this.pruner = setInterval(prune, 6 * 3600_000);
   }
 
   async onApplicationShutdown() {
     clearInterval(this.timer);
+    clearInterval(this.pruner);
     await this.running;
   }
 

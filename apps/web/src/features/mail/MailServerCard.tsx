@@ -7,7 +7,7 @@ import { useI18n } from '../../i18n/useI18n';
 export function MailServerCard() {
   const { t, formatDateTime } = useI18n();
   const { data: s } = useQuery('mail-status', () => api.mailStatus());
-  if (!s) return null;
+  if (!s?.receiving || !s.queue) return null;
   const onOff = (on: boolean) => t(on ? 'mail.server.on' : 'mail.server.off');
   return (
     <Card title={t('mail.server.title')}>
@@ -40,7 +40,7 @@ export function MailServerCard() {
           <dt>{t('mail.server.queueLabel')}</dt>
           <dd>
             {t('mail.server.queue', { queued: s.queue.queued, failed: s.queue.failed })}
-            <span className="block small muted">{t('mail.server.followUp', { count: s.followUpDays })}</span>
+            <span className="block small muted">{t('mail.server.followUp', { count: s.followUpDays ?? 3 })}</span>
           </dd>
         </div>
       </dl>

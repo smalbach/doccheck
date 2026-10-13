@@ -26,8 +26,8 @@ export class MailController {
 
   /** How mail goes out and comes in on this server. */
   @Get('status')
-  status() {
-    return this.mail.status();
+  status(@CurrentUser() user: PublicUser) {
+    return this.mail.status(user.role === 'admin');
   }
 
   /** ?filter=open|unread|awaiting|overdue|failed|closed|all&q=&shipmentId=&partyId=&limit=&offset= */
@@ -39,7 +39,7 @@ export class MailController {
   /** Starts a conversation (or a request for corrected documents) and queues its first message. */
   @Post('threads')
   create(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(NewThreadDto)) dto: NewThreadDto) {
-    return this.mail.createThread(user.id, dto);
+    return this.mail.createThread(user.id, dto, user.role === 'admin');
   }
 
   @Get('threads/:id')
@@ -50,7 +50,7 @@ export class MailController {
   @Post('threads/:id/reply')
   @HttpCode(200)
   reply(@CurrentUser() user: PublicUser, @Param('id', ParseUUIDPipe) id: string, @Body(new ZodValidationPipe(ReplyDto)) dto: ReplyDto) {
-    return this.mail.reply(user.id, id, dto);
+    return this.mail.reply(user.id, id, dto, user.role === 'admin');
   }
 
   @Post('threads/:id/read')
@@ -70,7 +70,7 @@ export class MailController {
   @Post('messages/:id/retry')
   @HttpCode(200)
   retry(@CurrentUser() user: PublicUser, @Param('id', ParseUUIDPipe) id: string) {
-    return this.mail.retry(user.id, id);
+    return this.mail.retry(user.id, id, user.role === 'admin');
   }
 
   @Get('contacts')
@@ -119,15 +119,32 @@ export class MailController {
   @Post('inbound')
   @HttpCode(202)
   async inbound(@Req() req: Request) {
-    const secret = process.env.MAIL_INBOUND_SECRET;
-    const given = Buffer.from(String(req.headers['x-inbound-secret'] ?? ''));
-    if (!secret || given.length !== Buffer.byteLength(secret) || !timingSafeEqual(given, Buffer.from(secret))) throw MailService.forbidden();
+    // The secret was checked before the body was read (inboundSecretGuard, main.ts); checked again here.
+    if (!inboundSecretMatches(req.headers['x-inbound-secret'])) throw MailService.forbidden();
     let raw = Buffer.isBuffer(req.body) ? req.body : Buffer.from(typeof req.body === 'string' ? req.body : '');
     if (/json/i.test(String(req.headers['content-type']))) {
-      const parsed = JSON.parse(raw.toString('utf8')) as { raw?: string };
-      raw = Buffer.from(parsed.raw ?? '', 'base64');
+      let parsed: { raw?: unknown };
+      try {
+        parsed = JSON.parse(raw.toString('utf8')) as { raw?: unknown };
+      } catch {
+        throw MailService.badRequest();
+      }
+      raw = Buffer.from(typeof parsed.raw === 'string' ? parsed.raw : '', 'base64');
     }
     if (raw.length === 0) throw MailService.badRequest();
     return this.inbox.ingest(raw);
   }
+}
+
+/** X-Inbound-Secret equals MAIL_INBOUND_SECRET (unset: inbound mail is off), compared in constant time. */
+export function inboundSecretMatches(header: unknown): boolean {
+  const secret = process.env.MAIL_INBOUND_SECRET;
+  const given = Buffer.from(String(header ?? ''));
+  return !!secret && given.length === Buffer.byteLength(secret) && timingSafeEqual(given, Buffer.from(secret));
+}
+
+/** Refuses a webhook call without the secret before its (up to 25 MB) body is read. */
+export function inboundSecretGuard(req: Request, res: Response, next: () => void) {
+  if (inboundSecretMatches(req.headers['x-inbound-secret'])) return next();
+  res.status(403).json({ statusCode: 403, message: 'Inbound mail is not enabled, or the secret is wrong' });
 }

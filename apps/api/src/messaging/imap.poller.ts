@@ -1,7 +1,7 @@
 import { Injectable, Logger, type OnApplicationBootstrap, type OnApplicationShutdown } from '@nestjs/common';
 import { ImapFlow } from 'imapflow';
 import { isDemo } from '../demo/demo-mode';
-import { imapPollMs } from './mail.config';
+import { imapPollMs, MAX_MESSAGE_BYTES } from './mail.config';
 import { MailInbox } from './mail-inbox';
 import { MailRepository } from './mail.repository';
 
@@ -78,11 +78,24 @@ export class ImapPoller implements OnApplicationBootstrap, OnApplicationShutdown
       let last = cursor.lastUid;
       let stored = 0;
       if (Number(box.uidNext) - 1 > last) {
-        for await (const msg of client.fetch(`${last + 1}:*`, { uid: true, source: true }, { uid: true })) {
-          if (msg.uid <= last || !msg.source) continue;
-          const result = await this.inbox.ingest(msg.source);
-          if (result.status === 'stored') stored++;
-          last = msg.uid;
+        // Sizes first: an oversized message is skipped without downloading it.
+        const pending: { uid: number; size: number }[] = [];
+        for await (const msg of client.fetch(`${last + 1}:*`, { uid: true, size: true }, { uid: true })) {
+          if (msg.uid > last) pending.push({ uid: msg.uid, size: msg.size ?? 0 });
+        }
+        for (const { uid, size } of pending.sort((a, b) => a.uid - b.uid)) {
+          // One bad message must not stop the mailbox: it is logged and passed, and the cursor moves on.
+          try {
+            if (size > MAX_MESSAGE_BYTES) this.logger.warn(`IMAP: message ${uid} skipped (${Math.round(size / 1024 / 1024)} MB)`);
+            else {
+              const msg = await client.fetchOne(String(uid), { source: true }, { uid: true });
+              if (msg && msg.source && (await this.inbox.ingest(msg.source)).status === 'stored') stored++;
+            }
+          } catch (err) {
+            this.logger.warn(`IMAP: message ${uid} could not be stored: ${err instanceof Error ? err.message : err}`);
+          }
+          last = uid;
+          await this.repo.saveCursor(mailbox, uidValidity, last, null);
         }
       }
       await this.repo.saveCursor(mailbox, uidValidity, last, null);

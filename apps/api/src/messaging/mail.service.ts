@@ -7,15 +7,15 @@ import { ShipmentsRepository } from '../shipments/shipments.repository';
 import { ShipmentsService } from '../shipments/shipments.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { ImapPoller } from './imap.poller';
-import { followUpDays, mailFrom, messageIdDomain, replyAddress } from './mail.config';
+import type { PoolClient } from 'pg';
+import { addressOf, adminsOnly, followUpDays, mailFrom, messageIdDomain, replyAddress, SEND_LIMITS } from './mail.config';
 import type { NewThreadDto, ReplyDto, ThreadsQuery } from './mail.dto';
 import { MailRepository } from './mail.repository';
 import { MailTransport } from './mail-transport';
 import type { ThreadDetail } from './mail.types';
 import { OutboxWorker } from './outbox.worker';
 
-/** Messages a user may queue per hour: a guard against a runaway client, not a quota. */
-const HOURLY_LIMIT = 60;
+const EMAIL = /^[^\s@,;<>"]+@[^\s@,;<>"]+\.[^\s@,;<>"]+$/;
 
 const newToken = () => {
   const alphabet = 'abcdefghijkmnpqrstuvwxyz23456789';
@@ -38,7 +38,7 @@ export class MailService {
   ) {}
 
   /** Starts a conversation, or a request for corrected documents, and queues its first message. */
-  async createThread(userId: string, dto: NewThreadDto): Promise<ThreadDetail> {
+  async createThread(userId: string, dto: NewThreadDto, admin = false): Promise<ThreadDetail> {
     if (dto.shipmentId) await this.ownShipment(userId, dto.shipmentId);
     const partyId = dto.partyId ?? (dto.shipmentId ? await this.sellerOf(dto.shipmentId) : undefined);
     if (dto.partyId) await this.ownParty(userId, dto.partyId);
@@ -50,10 +50,10 @@ export class MailService {
       if (unknown.length) throw new BadRequestException(`Not findings of the latest validation: ${unknown.join(', ')}`);
       findings = [...new Set(dto.fingerprints)].map((fingerprint) => ({ fingerprint, ruleId: byFingerprint.get(fingerprint)! }));
     }
-    await this.throttle(userId);
     const threadId = randomUUID();
     const token = newToken();
     await this.repo.transaction(async (db) => {
+      await this.reserve(db, userId, admin);
       await this.repo.insertThread(
         { id: threadId, userId, shipmentId: dto.shipmentId, partyId, token, kind: dto.kind, subject: dto.subject, status: 'awaiting', language: dto.language, fingerprints: findings.map((f) => f.fingerprint), dueAt: dueDate() },
         db,
@@ -64,28 +64,29 @@ export class MailService {
       );
     });
     await this.repo.saveContacts(userId, partyId, [...dto.to, ...dto.cc]);
-    if (findings.length) await this.reviews.save(dto.shipmentId!, userId, findings, 'waiting_supplier', `Requested from ${dto.to.join(', ')}`);
+    if (findings.length) await this.reviews.save(dto.shipmentId!, userId, findings, 'waiting_supplier', `→ ${dto.to.join(', ')}`);
     void this.outbox.kick();
     return this.thread(userId, threadId);
   }
 
   /** Answers in a thread: to whoever wrote last unless `to` says otherwise, threaded by headers. */
-  async reply(userId: string, threadId: string, dto: ReplyDto): Promise<ThreadDetail> {
+  async reply(userId: string, threadId: string, dto: ReplyDto, admin = false): Promise<ThreadDetail> {
     const thread = await this.ownThread(userId, threadId);
     const messages = await this.repo.messages(threadId);
     const last = messages.at(-1);
     const lastIn = [...messages].reverse().find((m) => m.direction === 'in');
     const firstOut = messages.find((m) => m.direction === 'out');
-    const to = dto.to ?? (lastIn ? [lastIn.from] : (firstOut?.to ?? []));
-    if (to.length === 0) throw new BadRequestException('Say who to write to');
+    // By default, the address the last reply came from (never the From text, which can list others).
+    const to = dto.to ?? (lastIn ? [addressOf(lastIn.from)] : (firstOut?.to ?? []));
+    if (to.length === 0 || !to.every((a) => EMAIL.test(a))) throw new BadRequestException('Say who to write to');
     const { rows } = await this.pool.query<{ message_id: string | null; references: string[] }>(
       'select message_id, "references" from mail_messages where id = $1',
       [last?.id ?? null],
     );
     const parent = rows[0];
     const references = parent?.message_id ? [...(parent.references ?? []), parent.message_id].slice(-20) : [];
-    await this.throttle(userId);
     await this.repo.transaction(async (db) => {
+      await this.reserve(db, userId, admin);
       await this.repo.insertMessage(
         {
           id: randomUUID(),
@@ -115,7 +116,7 @@ export class MailService {
     const thread = await this.ownThread(userId, threadId);
     const fresh = (await this.repo.findThread(threadId))!;
     const items = await this.repo.messages(threadId);
-    return { ...fresh.summary, ...(thread.language ? { language: thread.language } : {}), fingerprints: thread.fingerprints, items };
+    return { ...fresh.summary, ...(thread.language ? { language: thread.language } : {}), replyTo: replyAddress(thread.token), fingerprints: thread.fingerprints, items };
   }
 
   list(userId: string, q: ThreadsQuery) {
@@ -134,9 +135,12 @@ export class MailService {
     return this.thread(userId, threadId);
   }
 
-  async retry(userId: string, messageId: string) {
+  async retry(userId: string, messageId: string, admin = false) {
     const message = await this.repo.messageById(messageId);
     if (!message || message.threadUserId !== userId) throw new NotFoundException('Message not found');
+    if (message.status !== 'failed') throw new BadRequestException('Only a failed message can be sent again');
+    // Sending again counts like sending: the limits apply.
+    await this.repo.transaction((db) => this.reserve(db, userId, admin));
     if (!(await this.repo.requeue(messageId))) throw new BadRequestException('Only a failed message can be sent again');
     void this.outbox.kick();
     return this.thread(userId, message.threadId!);
@@ -150,7 +154,9 @@ export class MailService {
     return this.repo.contacts(userId, partyId);
   }
 
-  async status() {
+  /** Everyone learns whether mail is really delivered; admins also see the queue and the mailboxes. */
+  async status(admin: boolean) {
+    if (!admin) return { sending: this.transport.mode };
     const { rows: [queue] } = await this.pool.query(
       `select (count(*) filter (where status in ('queued', 'sending')))::int as queued, (count(*) filter (where status = 'failed'))::int as failed from mail_messages where direction = 'out'`,
     );
@@ -226,9 +232,23 @@ export class MailService {
     return rows[0]?.seller_id ?? undefined;
   }
 
-  private async throttle(userId: string) {
-    const { rows } = await this.pool.query(`select count(*)::int as n from mail_messages where user_id = $1 and direction = 'out' and created_at > now() - interval '1 hour'`, [userId]);
-    if (rows[0].n >= HOURLY_LIMIT) throw new HttpException(`At most ${HOURLY_LIMIT} messages an hour`, HttpStatus.TOO_MANY_REQUESTS);
+  /**
+   * Inside the transaction that queues a message: one at a time per user (advisory lock), so
+   * parallel requests cannot all pass the counts; then the hourly and daily limits.
+   */
+  private async reserve(db: PoolClient, userId: string, admin: boolean) {
+    if (adminsOnly() && !admin) throw new ForbiddenException('Only admins can send email on this server');
+    await db.query('select pg_advisory_xact_lock(hashtext($1))', [`mail:${userId}`]);
+    const limits: [string | null, string, number][] = [
+      [userId, '1 hour', SEND_LIMITS.userHour],
+      [userId, '1 day', SEND_LIMITS.userDay],
+      [null, '1 hour', SEND_LIMITS.serverHour],
+    ];
+    for (const [who, interval, max] of limits) {
+      if ((await this.repo.sentSince(db, who, interval)) >= max) {
+        throw new HttpException(`At most ${max} messages per ${interval.replace('1 ', '')}${who ? '' : ' on this server'}`, HttpStatus.TOO_MANY_REQUESTS);
+      }
+    }
   }
 
   static badRequest() {

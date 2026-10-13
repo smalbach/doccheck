@@ -140,7 +140,11 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
           <Dialog.Title className="dialog-title">{request ? t('mail.compose.requestTitle') : t('mail.compose.messageTitle')}</Dialog.Title>
           <Dialog.Description className="dialog-description">{t('mail.compose.requestText')}</Dialog.Description>
           <form className="stack-form" onSubmit={(e) => void submit(e)} aria-busy={sending} noValidate>
-            {logOnly && <Banner tone="warning">{t('mail.compose.logOnly')}</Banner>}
+            {logOnly && (
+              <div className="mail-dev-note">
+                <Banner tone="warning">{t('mail.compose.logOnly')}</Banner>
+              </div>
+            )}
             <Field label={`${t('mail.compose.to')} (${t('mail.compose.toHint')})`}>
               {(id) => <TextInput id={id} type="text" inputMode="email" value={to} onChange={(e) => setTo(e.target.value)} autoComplete="off" />}
             </Field>

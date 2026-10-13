@@ -33,6 +33,7 @@ export interface NewMessage {
   inReplyTo: string | null;
   references: string[];
   receivedAt?: string | null;
+  senderCheck?: 'pass' | 'fail' | 'none';
 }
 
 /** An outgoing message claimed by the outbox, with what sending it needs. */
@@ -105,6 +106,7 @@ const toMessage = (r: Record<string, unknown>, attachments: MailAttachment[]): M
   ...(r.sent_at ? { sentAt: iso(r.sent_at) } : {}),
   ...(r.received_at ? { receivedAt: iso(r.received_at) } : {}),
   ...(r.read_at ? { readAt: iso(r.read_at) } : {}),
+  ...(r.sender_check === 'fail' ? { senderUnverified: true } : {}),
   createdAt: iso(r.created_at)!,
   attachments,
 });
@@ -146,11 +148,11 @@ export class MailRepository {
 
   async insertMessage(m: NewMessage, db: PoolClient | Pool = this.pool): Promise<void> {
     await db.query(
-      `insert into mail_messages (id, thread_id, user_id, direction, status, from_addr, to_addrs, cc_addrs, subject, text_body, message_id, in_reply_to, "references", next_attempt_at, received_at)
-       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
+      `insert into mail_messages (id, thread_id, user_id, direction, status, from_addr, to_addrs, cc_addrs, subject, text_body, message_id, in_reply_to, "references", next_attempt_at, received_at, sender_check)
+       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)`,
       [
         m.id, m.threadId, m.userId, m.direction, m.status, m.from, m.to, m.cc, m.subject, m.text, m.messageId, m.inReplyTo, m.references,
-        m.status === 'queued' ? new Date().toISOString() : null, m.receivedAt ?? null,
+        m.status === 'queued' ? new Date().toISOString() : null, m.receivedAt ?? null, m.senderCheck ?? null,
       ],
     );
   }
@@ -391,6 +393,21 @@ export class MailRepository {
         [userId, partyId ?? null, email.toLowerCase()],
       );
     }
+  }
+
+  /** How many messages `userId` (or everyone, with null) queued since `interval` ago. */
+  async sentSince(db: PoolClient | Pool, userId: string | null, interval: string): Promise<number> {
+    const { rows } = await db.query(
+      `select count(*)::int as n from mail_messages where direction = 'out' and created_at > now() - $2::interval and ($1::uuid is null or user_id = $1)`,
+      [userId, interval],
+    );
+    return rows[0].n;
+  }
+
+  /** Drops received mail no conversation claimed after `days`. */
+  async pruneUnassigned(days: number): Promise<number> {
+    const { rowCount } = await this.pool.query(`delete from mail_messages where thread_id is null and created_at < now() - make_interval(days => $1)`, [days]);
+    return rowCount ?? 0;
   }
 
   // IMAP cursor ------------------------------------------------------------------------------------

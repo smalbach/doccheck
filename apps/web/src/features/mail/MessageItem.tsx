@@ -24,6 +24,11 @@ export function MessageItem({ message: m, shipmentId, readOnly, onRetry, onAdded
       <header className="mail-message-head">
         <strong>{out ? (m.userName ?? t('mail.you')) : m.from}</strong>
         <Tag tone={m.status === 'failed' ? 'neutral' : out ? 'ok' : 'accent'}>{t(`mail.messageStatus.${m.status}`)}</Tag>
+        {m.senderUnverified && (
+          <span title={t('mail.unverifiedHint')}>
+            <Tag>{t('mail.unverified')}</Tag>
+          </span>
+        )}
         <time className="muted small" dateTime={at}>
           {formatDateTime(at)}
         </time>
@@ -44,7 +49,7 @@ export function MessageItem({ message: m, shipmentId, readOnly, onRetry, onAdded
           )}
         </div>
       )}
-      {m.transport === 'log' && <p className="muted small">{t('mail.captured')}</p>}
+      {m.transport === 'log' && <p className="muted small mail-dev-note">{t('mail.captured')}</p>}
       <div className="mail-body">{m.text}</div>
       <AttachmentList attachments={m.attachments} shipmentId={shipmentId} readOnly={readOnly} onAdded={onAdded} onError={onError} />
     </article>

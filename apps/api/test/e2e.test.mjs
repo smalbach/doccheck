@@ -106,6 +106,7 @@ before(async () => {
       MAIL_CAPTURE_DIR: mailDir,
       MAIL_FROM: 'DocCheck <docs@doccheck.example>',
       MAIL_OUTBOX_MS: '200',
+      MAIL_USER_HOURLY: '8',
       MAIL_INBOUND_SECRET: 'inbound-secret',
       IMAP_URL: '',
       APP_URL: 'http://app.example/',
@@ -1858,10 +1859,35 @@ describe('mail', () => {
     assert.deepEqual(listed.items.map((x) => [x.id, x.shipmentReference, x.messages]), [[t.id, 'MAIL-1', 4]]);
     assert.equal((await call('POST', `/mail/messages/${after.items[0].id}/retry`, undefined, user)).status, 400);
 
+    // Hostile mail: a NUL in the subject is stored, a fake bounce (not a delivery report) marks nothing,
+    // and a forged From with a second address is answered at the first address only.
+    const nul = Buffer.from(`From: "Evil, Inc" <evil@example.com>, other@evil.example\r\nTo: docs+${tag}@doccheck.example\r\nSubject: =?utf-8?Q?a=00b?=\r\nMessage-ID: <nul@example.com>\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: quoted-printable\r\n\r\nhi=00there\r\n`);
+    assert.equal(await inbound(nul).then((r) => r.json()).then((b) => b.status), 'stored');
+    const fakeBounce = await compose({ from: 'MAILER-DAEMON@example.com', to: 'docs@doccheck.example', subject: 'Undelivered', messageId: '<fake-bounce@example.com>', text: `Message-ID: <${ourId}>` });
+    await inbound(fakeBounce);
+    const hostile = await thread(t.id, user);
+    assert.equal(hostile.items[0].status, 'sent');
+    assert.equal(hostile.items.find((m) => m.subject === 'ab')?.from, 'Evil, Inc <evil@example.com>');
+    const toFirst = await call('POST', `/mail/threads/${t.id}/reply`, { body: 'Who are you?' }, user);
+    assert.deepEqual(toFirst.body.items.at(-1).to, ['evil@example.com']);
+
     const other = await signUp('Not theirs');
     assert.equal((await call('GET', `/mail/threads/${t.id}`, undefined, other)).status, 404);
     assert.equal((await send(`${base}/mail/attachments/${att.id}/file`, {}, other)).status, 404);
     assert.equal((await call('GET', '/mail/unassigned', undefined, other)).status, 403);
+    assert.deepEqual((await call('GET', '/mail/status', undefined, other)).body, { sending: 'log' });
+  });
+
+  it('refuses webhook calls without the secret before reading them, and limits sending even in parallel', async () => {
+    const big = Buffer.alloc(2 * 1024 * 1024, 120);
+    assert.equal((await send(`${base}/mail/inbound`, { method: 'POST', headers: { 'content-type': 'message/rfc822' }, body: big }, '')).status, 403);
+    assert.equal((await send(`${base}/mail/inbound`, { method: 'POST', headers: { 'content-type': 'application/json', 'x-inbound-secret': 'inbound-secret' }, body: '{not json' }, '')).status, 400);
+
+    const user = await signUp('Bulk');
+    const tries = await Promise.all(
+      Array.from({ length: 12 }, (_, i) => call('POST', '/mail/threads', { to: [`x${i}@example.com`], subject: `Hello ${i}`, body: 'Hi' }, user)),
+    );
+    assert.deepEqual([tries.filter((r) => r.status === 201).length, tries.filter((r) => r.status === 429).length], [8, 4]);
   });
 });
 

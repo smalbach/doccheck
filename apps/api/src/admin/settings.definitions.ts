@@ -67,7 +67,8 @@ export const SETTINGS = {
   ocrUrl: define<string>({
     env: 'OCR_URL',
     defaultValue: 'http://127.0.0.1:8765',
-    schema: z.string().max(200).regex(/^https?:\/\/[^\s/?#]+(:\d+)?\/?$/, 'Expected http(s)://host:port'),
+    // No user:password@ part: the URL is shown and logged.
+    schema: z.string().max(200).regex(/^https?:\/\/[^\s/?#@]+(:\d+)?\/?$/, 'Expected http(s)://host:port'),
     toEnv: (v) => v.replace(/\/$/, ''),
     fromEnv: (raw) => raw,
   }),
@@ -101,5 +102,5 @@ export type SettingKey = keyof typeof SETTINGS;
 export const SETTING_KEYS = Object.keys(SETTINGS) as SettingKey[];
 
 export function isSettingKey(key: string): key is SettingKey {
-  return key in SETTINGS;
+  return Object.hasOwn(SETTINGS, key);
 }

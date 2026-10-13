@@ -29,6 +29,8 @@ export interface MailMessage {
   sentAt?: string;
   receivedAt?: string;
   readAt?: string;
+  /** The receiving server reported a failed DMARC, DKIM or SPF check: the From may be forged. */
+  senderUnverified?: boolean;
   createdAt: string;
   attachments: MailAttachment[];
 }
@@ -57,6 +59,8 @@ export interface ThreadSummary {
 
 export interface ThreadDetail extends ThreadSummary {
   language?: string;
+  /** Where the other side's replies go (with this thread's +token). */
+  replyTo: string;
   fingerprints: string[];
   messages: number;
   items: MailMessage[];

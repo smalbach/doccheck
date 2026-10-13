@@ -264,6 +264,8 @@ export const en = {
     shipment: 'Shipment {reference}',
     company: 'Company',
     messageStatus: { queued: 'Queued', sending: 'Sending', sent: 'Sent', failed: 'Not sent', received: 'Received' },
+    unverified: 'Sender not verified',
+    unverifiedHint: 'The receiving server says this message failed its sender checks (DMARC, DKIM or SPF): it may not come from this address.',
     captured: 'Not delivered: this server has no SMTP, so the email was only recorded.',
     attempts: { one: 'after {count} attempt', other: 'after {count} attempts' },
     retry: 'Send again',

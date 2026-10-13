@@ -254,6 +254,8 @@ export const fr: Messages = {
     shipment: 'Envoi {reference}',
     company: 'Entreprise',
     messageStatus: { queued: 'En file', sending: 'Envoi', sent: 'Envoyé', failed: 'Non envoyé', received: 'Reçu' },
+    unverified: 'Expéditeur non vérifié',
+    unverifiedHint: 'Le serveur de réception indique que ce message a échoué aux vérifications de l’expéditeur (DMARC, DKIM ou SPF) : il peut ne pas venir de cette adresse.',
     captured: 'Non remis : ce serveur n’a pas de SMTP, le courriel a seulement été enregistré.',
     attempts: { one: 'après {count} tentative', other: 'après {count} tentatives' },
     retry: 'Renvoyer',

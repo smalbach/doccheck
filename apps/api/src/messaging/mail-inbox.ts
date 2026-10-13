@@ -2,7 +2,7 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import { simpleParser, type AddressObject, type ParsedMail } from 'mailparser';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
-import { addressOf, MAX_ATTACHMENT_BYTES, TOKEN_IN_ADDRESS, TOKEN_IN_SUBJECT } from './mail.config';
+import { MAX_ATTACHMENT_BYTES, MAX_ATTACHMENTS, MAX_ATTACHMENTS_BYTES, TOKEN_IN_ADDRESS, TOKEN_IN_SUBJECT, addressOf } from './mail.config';
 import { MailRepository } from './mail.repository';
 
 /** Kinds of attachment kept from received mail: documents and pictures of them. */
@@ -10,7 +10,11 @@ const KEPT = /^(application\/pdf|image\/(png|jpe?g|gif|webp|tiff)|text\/csv|appl
 
 export type IngestResult = { status: 'stored'; messageId: string; threadId: string | null } | { status: 'duplicate' };
 
-const stripId = (v: string) => v.trim().replace(/^<|>$/g, '');
+/** Postgres text cannot hold NUL, and a mail can decode one from quoted-printable: drop them. */
+const clean = (v: string) => v.replace(/\u0000/g, '');
+const stripId = (v: string) => clean(v).trim().replace(/^<|>$/g, '').slice(0, 998);
+/** A Message-ID quoted in a delivery report's original headers (bounded: never scans unbounded input). */
+const QUOTED_ID = /^Message-ID:[ \t]*<([^>\r\n]{1,998})>/gim;
 const addresses = (a: AddressObject | AddressObject[] | undefined) =>
   (Array.isArray(a) ? a : a ? [a] : []).flatMap((x) => x.value.map((v) => (v.address ?? '').toLowerCase()).filter(Boolean));
 
@@ -36,34 +40,44 @@ export class MailInbox {
 
     const threadId = await this.findThread(mail);
     const id = randomUUID();
-    const from = mail.from?.value[0]?.address?.toLowerCase() ?? 'unknown';
+    // One sender, written by us from the parsed address: the From text itself can list several.
+    const sender = mail.from?.value[0];
+    const from = clean(sender?.address?.toLowerCase() ?? 'unknown');
+    const fromText = sender?.name ? `${clean(sender.name).replace(/["<>\r\n]/g, '').slice(0, 200)} <${from}>` : from;
     const references = [...(Array.isArray(mail.references) ? mail.references : mail.references ? [mail.references] : [])].map(stripId);
-    const bounce = this.isBounce(mail, from);
+    const bounce = this.isBounce(mail);
     await this.repo.insertMessage({
       id,
       threadId,
       userId: null,
       direction: 'in',
       status: 'received',
-      from: mail.from?.text ?? from,
-      to: addresses(mail.to),
-      cc: addresses(mail.cc),
-      subject: mail.subject ?? '',
-      text: (mail.text ?? '').slice(0, 200_000),
+      from: fromText,
+      to: addresses(mail.to).map(clean),
+      cc: addresses(mail.cc).map(clean),
+      subject: clean(mail.subject ?? '').slice(0, 998),
+      text: clean(mail.text ?? '').slice(0, 200_000),
       messageId,
       inReplyTo: mail.inReplyTo ? stripId(mail.inReplyTo) : null,
       references,
-      receivedAt: (mail.date ?? new Date()).toISOString(),
+      receivedAt: (mail.date && !Number.isNaN(mail.date.getTime()) ? mail.date : new Date()).toISOString(),
+      senderCheck: senderCheck(mail),
     });
-    for (const a of mail.attachments) {
+    // Mail no conversation claims keeps its text only: anyone can write to the mailbox.
+    let kept = 0;
+    let bytes = 0;
+    for (const a of threadId ? mail.attachments : []) {
       if (!KEPT.test(a.contentType) || a.size > MAX_ATTACHMENT_BYTES || a.related) continue;
+      if (kept >= MAX_ATTACHMENTS || bytes + a.size > MAX_ATTACHMENTS_BYTES) break;
+      kept++;
+      bytes += a.size;
       const attachmentId = randomUUID();
-      const filename = (a.filename || `attachment-${attachmentId.slice(0, 8)}`).replace(/[\\/\u0000-\u001f]/g, '_').slice(0, 200);
+      const filename = clean(a.filename || `attachment-${attachmentId.slice(0, 8)}`).replace(/[\\/\u0000-\u001f]/g, '_').slice(0, 200);
       const key = `mail/${id}/${attachmentId}`;
       await this.storage.put(key, a.content, a.contentType);
       await this.repo.insertAttachment({ id: attachmentId, messageId: id, filename, contentType: a.contentType.toLowerCase(), size: a.size, storageKey: key });
     }
-    if (bounce) await this.markBounced(mail, raw);
+    if (bounce) await this.markBounced(mail);
     if (threadId) await this.repo.touchThreadIn(threadId);
     else this.logger.log(`Received mail no thread claims, from ${from}: ${mail.subject ?? ''}`);
     return { status: 'stored', messageId: id, threadId };
@@ -86,16 +100,29 @@ export class MailInbox {
     return token ? this.repo.threadByToken(token) : null;
   }
 
-  private isBounce(mail: ParsedMail, from: string) {
-    const type = String(mail.headers.get('content-type') && (mail.headers.get('content-type') as { value?: string }).value);
-    return /mailer-daemon|postmaster/i.test(from) || /multipart\/report/i.test(type);
+  /** A delivery status notification: multipart/report; report-type=delivery-status (not who the sender says it is). */
+  private isBounce(mail: ParsedMail) {
+    const type = mail.headers.get('content-type') as { value?: string; params?: Record<string, string> } | undefined;
+    return /^multipart\/report$/i.test(type?.value ?? '') && /delivery-status/i.test(type?.params?.['report-type'] ?? '');
   }
 
-  /** A delivery failure report: the original Message-ID it quotes is marked failed. */
-  private async markBounced(mail: ParsedMail, raw: Buffer) {
-    const quoted = [...raw.toString('utf8').matchAll(/Message-ID:\s*<([^>]+)>/gi)].map((m) => m[1]).filter((id) => id !== stripId(mail.messageId ?? ''));
+  /** The original message a delivery report returns (its headers part, first 64 KB) is marked failed. */
+  private async markBounced(mail: ParsedMail) {
+    const original = mail.attachments.find((a) => /^(message\/rfc822|text\/rfc822-headers|message\/global-headers)$/i.test(a.contentType));
+    if (!original) return;
+    const head = original.content.subarray(0, 64 * 1024).toString('utf8').split(/\r?\n\r?\n/)[0] ?? '';
+    const quoted = [...head.matchAll(QUOTED_ID)].map((m) => m[1]!).slice(0, 5);
     for (const id of quoted) {
       if (await this.repo.markBounced(id, `Bounced: ${mail.subject ?? 'delivery failed'}`)) this.logger.warn(`Message ${id} bounced`);
     }
   }
+}
+
+/** What the receiving server said about the sender (Authentication-Results): fail when DMARC, DKIM or SPF failed. */
+function senderCheck(mail: ParsedMail): 'pass' | 'fail' | 'none' {
+  const raw = mail.headers.get('authentication-results');
+  const text = (Array.isArray(raw) ? raw : raw ? [raw] : []).map((x) => (typeof x === 'string' ? x : JSON.stringify(x))).join(' ').slice(0, 4000);
+  if (!text) return 'none';
+  if (/\b(dmarc|dkim|spf)=(fail|softfail|permerror)\b/i.test(text)) return 'fail';
+  return /\bdmarc=pass\b|\bdkim=pass\b/i.test(text) ? 'pass' : 'none';
 }

@@ -36,8 +36,25 @@ export const followUpDays = () => {
 
 export const imapPollMs = () => Math.max(15_000, Number(process.env.IMAP_POLL_MS ?? 60_000) || 60_000);
 
-/** Attachments kept from received mail: at most this many bytes each. */
+/** Attachments kept from received mail: at most this many bytes each, this many and this much per message. */
 export const MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024;
+export const MAX_ATTACHMENTS = 10;
+export const MAX_ATTACHMENTS_BYTES = 40 * 1024 * 1024;
+/** Received messages larger than this are skipped (IMAP) or refused (webhook). */
+export const MAX_MESSAGE_BYTES = 25 * 1024 * 1024;
+
+/** Outgoing messages per user per hour and per day, and for the whole server per hour. */
+export const SEND_LIMITS = {
+  userHour: Number(process.env.MAIL_USER_HOURLY ?? 60) || 60,
+  userDay: Number(process.env.MAIL_USER_DAILY ?? 300) || 300,
+  serverHour: Number(process.env.MAIL_SERVER_HOURLY ?? 1000) || 1000,
+};
+
+/** Who may send email from the app: everyone (default) or admins only (MAIL_ALLOWED_SENDERS=admins). */
+export const adminsOnly = () => process.env.MAIL_ALLOWED_SENDERS === 'admins';
+
+/** Received mail no conversation claimed is deleted after this many days. */
+export const UNASSIGNED_RETENTION_DAYS = 30;
 
 /** Retries of an outgoing message: after 1, 2, 4, 8 minutes, then failed. */
 export const MAX_ATTEMPTS = 5;

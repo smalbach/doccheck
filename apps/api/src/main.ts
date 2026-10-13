@@ -9,6 +9,7 @@ import { AppModule } from './app.module';
 import { sameOriginGuard } from './auth/same-origin';
 import { isDemo, readOnlyGuard } from './demo/demo-mode';
 import { loadEnv } from './env';
+import { inboundSecretGuard } from './messaging/mail.controller';
 import { trustProxySetting } from './trust-proxy';
 
 async function bootstrap() {
@@ -19,8 +20,9 @@ async function bootstrap() {
   // its X-Forwarded-* so the session cookie is marked Secure there and client addresses are right
   // for the sign-in and sign-up throttles.
   app.set('trust proxy', trustProxySetting());
-  // Received mail arrives raw (up to 30 MB with attachments); every other body is JSON.
-  app.use('/mail/inbound', raw({ type: () => true, limit: '30mb' }));
+  // Received mail arrives raw (up to 25 MB with attachments); every other body is JSON. The secret is
+  // checked first, so nobody without it can make the server read a large body.
+  app.use('/mail/inbound', inboundSecretGuard, raw({ type: () => true, limit: '25mb' }));
   app.use(sameOriginGuard);
   if (isDemo()) {
     app.use(readOnlyGuard);

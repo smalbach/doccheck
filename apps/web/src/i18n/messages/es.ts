@@ -254,6 +254,8 @@ export const es: Messages = {
     shipment: 'Envío {reference}',
     company: 'Empresa',
     messageStatus: { queued: 'En cola', sending: 'Enviando', sent: 'Enviado', failed: 'No enviado', received: 'Recibido' },
+    unverified: 'Remitente sin verificar',
+    unverifiedHint: 'El servidor que lo recibió dice que este mensaje no pasó las comprobaciones del remitente (DMARC, DKIM o SPF): puede no venir de esta dirección.',
     captured: 'No entregado: este servidor no tiene SMTP, así que el correo solo quedó registrado.',
     attempts: { one: 'tras {count} intento', other: 'tras {count} intentos' },
     retry: 'Reenviar',
