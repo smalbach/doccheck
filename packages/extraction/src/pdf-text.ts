@@ -1,3 +1,4 @@
+import { startStage, type ExtractionDetail, type ProgressCallback, type StageHandle } from '@doccheck/schemas';
 import { ocrPage } from './ocr';
 
 /**
@@ -29,6 +30,8 @@ export interface PdfText {
 export interface ReadOptions {
   /** auto: OCR pages with no text layer (default); off: never; force: every page. */
   ocr?: 'auto' | 'off' | 'force';
+  /** Reports the `ocr` stage (one progress event per page recognized), only when a page needs OCR. */
+  onProgress?: ProgressCallback<ExtractionDetail>;
 }
 
 interface Item {
@@ -55,6 +58,7 @@ export async function readPdfText(data: Uint8Array, opts: ReadOptions = {}): Pro
   const doc = await task.promise;
   const lines: TextLine[] = [];
   const pages: string[] = [];
+  let ocrStage: StageHandle<ExtractionDetail, 'ocr'> | undefined;
   try {
     for (let p = 1; p <= doc.numPages; p++) {
       const page = await doc.getPage(p);
@@ -69,6 +73,8 @@ export async function readPdfText(data: Uint8Array, opts: ReadOptions = {}): Pro
       let tolerance = ROW_TOLERANCE;
       const textChars = items.reduce((n, i) => n + i.str.trim().length, 0);
       if (mode === 'force' || (mode === 'auto' && textChars < MIN_TEXT_CHARS)) {
+        ocrStage ??= await startStage(opts.onProgress, 'ocr', { pages: doc.numPages });
+        await ocrStage.progress({ page: p, pages: doc.numPages });
         const ocr = await ocrPage(page);
         items = ocr.words;
         ocrPages.push(p);
@@ -81,12 +87,16 @@ export async function readPdfText(data: Uint8Array, opts: ReadOptions = {}): Pro
       lines.push(...pageLines);
       pages.push(pageLines.map((l) => l.text).join('\n'));
     }
+  } catch (err) {
+    await ocrStage?.fail(err);
+    throw err;
   } finally {
     await task.destroy();
   }
   const text = pages.map((t, i) => `--- page ${i + 1} ---\n${t}`).join('\n\n');
   if (ocrPages.length === 0) return { pageCount: pages.length, lines, text };
   const ocrConfidence = Math.round(confidences.reduce((a, b) => a + b, 0) / confidences.length);
+  await ocrStage?.done({ pages: pages.length, ocrPages: ocrPages.length, confidence: ocrConfidence });
   return { pageCount: pages.length, lines, text, ocrPages, ocrConfidence };
 }
 

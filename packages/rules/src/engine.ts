@@ -19,22 +19,44 @@ const present = (ctx: ShipmentContext): Set<DocumentType> => {
   return s;
 };
 
-export function runRules(ctx: ShipmentContext, params: Partial<RuleParams> = {}): EngineOutput {
+/** One rule evaluated, for progress reporting: `index` (1-based) of `total` rules that apply to the destination. */
+export interface RuleProgress {
+  rule: string;
+  index: number;
+  total: number;
+  skipped: boolean;
+  findings: number;
+}
+
+export interface RunOptions {
+  /** Called after each rule, in order. Errors it throws are ignored. */
+  onRule?: (progress: RuleProgress) => void;
+}
+
+export function runRules(ctx: ShipmentContext, params: Partial<RuleParams> = {}, { onRule }: RunOptions = {}): EngineOutput {
   const profile = PROFILES[ctx.destination];
   const p = { ...DEFAULT_PARAMS, ...params };
   const have = present(ctx);
   const output: EngineOutput = { findings: [], ran: [], skipped: [] };
+  const rules = ALL_RULES.filter(({ definition: def }) => profile.rules.includes(def.id) && (def.appliesTo === 'ALL' || def.appliesTo.includes(ctx.destination)));
+  const notify = (progress: RuleProgress) => {
+    try {
+      onRule?.(progress);
+    } catch {
+      // Progress must not break the run.
+    }
+  };
 
-  for (const rule of ALL_RULES) {
+  for (const [i, rule] of rules.entries()) {
     const def = rule.definition;
-    if (!profile.rules.includes(def.id)) continue;
-    if (def.appliesTo !== 'ALL' && !def.appliesTo.includes(ctx.destination)) continue;
     const missing = def.requires.filter((t) => !have.has(t));
     if (missing.length > 0) {
       output.skipped.push({ ruleId: def.id, missing });
+      notify({ rule: def.id, index: i + 1, total: rules.length, skipped: true, findings: 0 });
       continue;
     }
     output.ran.push(def.id);
+    const before = output.findings.length;
     rule.run(ctx, p).forEach((r, i) => {
       output.findings.push({
         id: `${ctx.shipmentId}:${def.id}:${i}`,
@@ -47,6 +69,7 @@ export function runRules(ctx: ShipmentContext, params: Partial<RuleParams> = {})
         suggestedFix: r.suggestedFix,
       });
     });
+    notify({ rule: def.id, index: i + 1, total: rules.length, skipped: false, findings: output.findings.length - before });
   }
   return output;
 }

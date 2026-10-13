@@ -11,11 +11,13 @@ import { DocumentsCard } from './DocumentsCard';
 import { EditShipmentDialog } from './EditShipmentDialog';
 import { ExportMenu } from './ExportMenu';
 import { FindingsCard } from './FindingsCard';
+import { ProgressAnnouncer } from './ProgressAnnouncer';
 import { ShipmentHeader } from './ShipmentHeader';
 import { useShipment } from './useShipment';
 import { useValidationHistory } from './useValidationHistory';
 import { ValidationHistory } from './ValidationHistory';
 import { ValidationNotice } from './ValidationNotice';
+import { ValidationProgress } from './ValidationProgress';
 
 // pdf.js is large: load it only when a document is opened.
 const PdfViewerSheet = lazy(() => import('../pdf/PdfViewerSheet').then((m) => ({ default: m.PdfViewerSheet })));
@@ -23,7 +25,7 @@ const PdfViewerSheet = lazy(() => import('../pdf/PdfViewerSheet').then((m) => ({
 export function ShipmentPage({ id }: { id: string }) {
   const { t } = useI18n();
   const demo = useDemo();
-  const { shipment, validation: latest, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove } = useShipment(id);
+  const { shipment, validation: latest, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove, progress, lastLive } = useShipment(id);
   const history = useValidationHistory(id, latest?.id);
   const [viewer, setViewer] = useState<ViewerTarget>();
   const [dataDoc, setDataDoc] = useState<ShipmentDocument>();
@@ -47,6 +49,7 @@ export function ShipmentPage({ id }: { id: string }) {
         }
       />
       {error && <Banner tone="error">{error}</Banner>}
+      <ProgressAnnouncer event={lastLive} progress={progress} documents={documents} />
 
       <div className="shipment-columns">
         <DocumentsCard
@@ -56,6 +59,7 @@ export function ShipmentPage({ id }: { id: string }) {
           readOnly={demo}
           busy={busy}
           extracting={extracting}
+          runs={progress.documents}
           onUpload={(files) => void upload(files)}
           onValidate={(useAgent) => void validate(useAgent)}
           onOpen={setViewer}
@@ -67,6 +71,7 @@ export function ShipmentPage({ id }: { id: string }) {
           rules={rules}
           documents={documents}
           onOpen={setViewer}
+          progress={<ValidationProgress run={progress.validation} validating={busy === 'validate'} shownId={validation?.id} />}
           notice={<ValidationNotice shipment={shipment} validation={validation} past={!!history.past} onShowLatest={history.showLatest} />}
         />
       </div>

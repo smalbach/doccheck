@@ -6,3 +6,4 @@ export * from './isf';
 export * from './entities';
 export * from './fixtures';
 export * from './json-pointer';
+export * from './progress';

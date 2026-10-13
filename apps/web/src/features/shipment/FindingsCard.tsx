@@ -16,9 +16,11 @@ export interface FindingsCardProps {
   onOpen: (target: ViewerTarget) => void;
   /** Above the findings: a past run is shown, or the destination changed since. */
   notice?: ReactNode;
+  /** At the top: the validation running now, or how long the shown one took (ValidationProgress). */
+  progress?: ReactNode;
 }
 
-export function FindingsCard({ validation, rules, documents, onOpen, notice }: FindingsCardProps) {
+export function FindingsCard({ validation, rules, documents, onOpen, notice, progress }: FindingsCardProps) {
   const { t, formatDateTime } = useI18n();
   const aside = validation && (
     <span className="muted small">
@@ -27,6 +29,7 @@ export function FindingsCard({ validation, rules, documents, onOpen, notice }: F
   );
   return (
     <Card title={t('shipment.findings.title')} aside={aside} className="findings" aria-live="polite">
+      {progress}
       {notice}
       {!validation ? (
         <p className="muted">{t('shipment.findings.empty')}</p>

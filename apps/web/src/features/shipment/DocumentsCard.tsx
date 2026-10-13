@@ -3,6 +3,7 @@ import type { Shipment, ShipmentDocument, Validation } from '../../api/types';
 import { Card } from '../../components/ui/Card';
 import { useI18n } from '../../i18n/useI18n';
 import { isPendingDocument } from '../../lib/isPendingDocument';
+import type { RunTimeline } from '../../lib/progressTimeline';
 import type { ViewerTarget } from '../pdf/types';
 import { DocumentList } from './DocumentList';
 import { IsfCard } from './IsfCard';
@@ -18,6 +19,8 @@ export interface DocumentsCardProps {
   readOnly: boolean;
   busy?: ShipmentBusy;
   extracting: boolean;
+  /** Latest extraction run per document id, from the progress events. */
+  runs: Readonly<Record<string, RunTimeline>>;
   onUpload: (files: File[]) => void;
   onValidate: (useAgent: boolean) => void;
   onOpen: (target: ViewerTarget) => void;
@@ -26,7 +29,7 @@ export interface DocumentsCardProps {
 }
 
 /** Documents of the shipment, the upload area, the Validate action and the ISF on file. */
-export function DocumentsCard({ shipment, validation, documents, readOnly, busy, extracting, onUpload, onValidate, onOpen, onShowData, onError }: DocumentsCardProps) {
+export function DocumentsCard({ shipment, validation, documents, readOnly, busy, extracting, runs, onUpload, onValidate, onOpen, onShowData, onError }: DocumentsCardProps) {
   const { t } = useI18n();
   const [useAgent, setUseAgent] = useState(true);
   const extracted = shipment.documents.filter((d) => d.status === 'EXTRACTED').length;
@@ -39,7 +42,7 @@ export function DocumentsCard({ shipment, validation, documents, readOnly, busy,
   return (
     <Card title={t('shipment.documents')}>
       {!readOnly && <UploadDropzone uploading={busy === 'upload'} acceptsIsf={shipment.destination === 'US'} onFiles={onUpload} />}
-      <DocumentList documents={shipment.documents} onOpen={(doc) => onOpen({ doc })} onShowData={onShowData} />
+      <DocumentList documents={shipment.documents} onOpen={(doc) => onOpen({ doc })} onShowData={onShowData} runs={runs} />
       <ValidateBar
         useAgent={useAgent}
         onUseAgentChange={setUseAgent}

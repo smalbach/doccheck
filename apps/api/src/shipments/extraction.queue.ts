@@ -1,9 +1,14 @@
 import { Injectable, Logger, type OnApplicationBootstrap, type OnApplicationShutdown, type OnModuleInit } from '@nestjs/common';
 import { Queue, QueueEvents, Worker, type ConnectionOptions } from 'bullmq';
 import type { ExtractableType } from '@doccheck/extraction';
-import { DocumentProcessor } from './document.processor';
+import { randomUUID } from 'node:crypto';
+import { ProgressService } from '../progress/progress.service';
+import { DocumentProcessor, type ProcessOptions } from './document.processor';
 
 const QUEUE = 'extraction';
+
+/** Job payload. runId and queuedAt tie the job's progress events together (kept across retries). */
+type ExtractionJob = { documentId: string; type?: ExtractableType } & Required<Pick<ProcessOptions, 'runId' | 'queuedAt'>>;
 
 function redisConnection(url: string): ConnectionOptions {
   const u = new URL(url);
@@ -31,7 +36,10 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationBootstrap, On
   private events?: QueueEvents;
   private worker?: Worker;
 
-  constructor(private readonly processor: DocumentProcessor) {}
+  constructor(
+    private readonly processor: DocumentProcessor,
+    private readonly progress: ProgressService,
+  ) {}
 
   get mode(): 'bullmq' | 'inline' {
     return this.queue ? 'bullmq' : 'inline';
@@ -48,7 +56,7 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationBootstrap, On
     this.queue = new Queue(QUEUE, { connection, prefix });
     this.events = new QueueEvents(QUEUE, { connection, prefix });
     if (process.env.EXTRACTION_WORKER !== 'false') {
-      this.worker = new Worker(QUEUE, (job) => this.processor.process(job.data.documentId, job.data.type, { willRetry: job.attemptsMade + 1 < (job.opts.attempts ?? 1) }), {
+      this.worker = new Worker<ExtractionJob>(QUEUE, (job) => this.processor.process(job.data.documentId, job.data.type, { willRetry: job.attemptsMade + 1 < (job.opts.attempts ?? 1), runId: job.data.runId, queuedAt: job.data.queuedAt }), {
         connection,
         prefix,
         concurrency: Number(process.env.EXTRACTION_CONCURRENCY ?? 1),
@@ -64,25 +72,32 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationBootstrap, On
     if (!this.queue) await this.processor.failInterrupted();
   }
 
-  /** Queues the documents; with `wait` the call resolves once every one is extracted or failed. */
-  async enqueue(documentIds: string[], wait = false, type?: ExtractableType): Promise<void> {
+  /**
+   * Queues the documents of a shipment; with `wait` the call resolves once every one is extracted or
+   * failed. Each document gets a progress run, starting with a `queued` event and its place in line.
+   */
+  async enqueue(shipmentId: string, documentIds: string[], wait = false, type?: ExtractableType): Promise<void> {
+    const queuedAt = Date.now();
+    const ahead = this.queue ? await this.queue.getWaitingCount().catch(() => 0) : 0;
+    const jobs: ExtractionJob[] = documentIds.map((documentId) => ({ documentId, type, runId: randomUUID(), queuedAt }));
+    await Promise.all(jobs.map((j, i) => this.progress.run('extraction', shipmentId, { documentId: j.documentId, runId: j.runId }).emit({ stage: 'queued', status: 'started', detail: { position: ahead + i + 1 } })));
     if (!this.queue) {
       const run = async () => {
-        for (const id of documentIds) await this.processor.process(id, type).catch(() => undefined);
+        for (const j of jobs) await this.processor.process(j.documentId, j.type, { runId: j.runId, queuedAt: j.queuedAt }).catch(() => undefined);
       };
       if (wait) await run();
       else void run();
       return;
     }
-    const jobs = await this.queue.addBulk(
-      documentIds.map((documentId) => ({
+    const added = await this.queue.addBulk(
+      jobs.map((data) => ({
         name: 'extract',
-        data: { documentId, type },
+        data,
         // A re-extraction needs its own job id: BullMQ ignores a job id it already has.
-        opts: { jobId: type ? `${documentId}-${type}-${Date.now()}` : documentId, attempts: 2, backoff: { type: 'exponential', delay: 5000 }, removeOnComplete: 1000, removeOnFail: 5000 },
+        opts: { jobId: type ? `${data.documentId}-${type}-${Date.now()}` : data.documentId, attempts: 2, backoff: { type: 'exponential', delay: 5000 }, removeOnComplete: 1000, removeOnFail: 5000 },
       })),
     );
-    if (wait) await Promise.all(jobs.map((j) => j.waitUntilFinished(this.events!).catch(() => undefined)));
+    if (wait) await Promise.all(added.map((j) => j.waitUntilFinished(this.events!).catch(() => undefined)));
   }
 
   async onApplicationShutdown() {

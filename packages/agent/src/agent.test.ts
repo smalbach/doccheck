@@ -2,10 +2,10 @@ import { LlmClient, type LlmProvider } from '@doccheck/extraction';
 import { chunkDocument, loadCorpus, parseDocument, RegulationIndex, tokenize } from '@doccheck/regulations';
 import { join } from 'node:path';
 import { runRules, type ShipmentContext } from '@doccheck/rules';
-import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
+import { sampleBillOfLading, sampleInvoice, samplePackingList, type ValidationUpdate } from '@doccheck/schemas';
 import { describe, expect, it } from 'vitest';
 import { attachRegulations, citationQuery } from './cite';
-import { reviewFindings } from './review';
+import { countAgentQuestions, reviewFindings } from './review';
 
 const ctx = (): ShipmentContext =>
   structuredClone({
@@ -141,5 +141,36 @@ describe('agent review', () => {
     const review = await reviewFindings(c, runRules(c).findings, llm);
     expect(review.findings.map((f) => [f.ruleId, f.decidedBy])).toEqual([['X1', 'RULE'], ['A1', 'AGENT']]);
     expect(review.findings[0].agentRationale).toBe('Cannot tell.');
+  });
+
+  it('reports each question asked and answered, numbered against the total known up front', async () => {
+    const c = ctx();
+    c.billOfLading!.data.consignee = { ...sampleBillOfLading.consignee, name: 'Maple Retailers' };
+    const findings = runRules(c).findings;
+    expect(countAgentQuestions(c, findings)).toBe(2);
+    expect(countAgentQuestions({ ...c, billOfLading: undefined }, findings)).toBe(0);
+    const llm = scripted([
+      { sameParty: 'yes', confidence: 0.9, rationale: 'Same company.' },
+      { consistent: 'yes', confidence: 0.9, rationale: 'Toys.' },
+    ]);
+    const seen: ValidationUpdate[] = [];
+    await reviewFindings(c, findings, llm, undefined, (u) => void seen.push(u));
+    expect(seen.map((u) => [u.status, u.detail && 'index' in u.detail ? u.detail.index : undefined, u.detail && 'answer' in u.detail ? u.detail.answer?.verdict : undefined])).toEqual([
+      ['started', undefined, undefined],
+      ['progress', 1, undefined],
+      ['progress', 1, 'yes'],
+      ['progress', 2, undefined],
+      ['progress', 2, 'yes'],
+      ['done', undefined, undefined],
+    ]);
+    expect(seen[0].detail).toEqual({ model: 'scripted', total: 2 });
+    expect(seen[2].detail).toMatchObject({ ruleId: 'X1', question: 'Same consignee written differently?', total: 2, answer: { confidence: 0.9, rationale: 'Same company.', effect: 'dismissed' } });
+    expect(seen[5]).toMatchObject({ durationMs: expect.any(Number), detail: { decisions: 2 } });
+  });
+
+  it('reports a failed model call on the agent stage', async () => {
+    const seen: ValidationUpdate[] = [];
+    await expect(reviewFindings(ctx(), [], scripted([{ nonsense: true }, { nonsense: true }]), undefined, (u) => void seen.push(u))).rejects.toThrow();
+    expect(seen.at(-1)).toMatchObject({ stage: 'agent', status: 'failed', detail: { error: expect.stringContaining('schema') } });
   });
 });

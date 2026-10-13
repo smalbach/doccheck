@@ -42,6 +42,21 @@ describe('rule engine', () => {
     expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X12', 'C1', 'C2']);
   });
 
+  it('reports each rule in order, skipped ones included, and survives a broken hook', () => {
+    const ctx = clean();
+    ctx.billOfLading!.data.totalPackages = 121;
+    delete ctx.packingList;
+    const seen: { rule: string; index: number; total: number; skipped: boolean; findings: number }[] = [];
+    const out = runRules(ctx, {}, { onRule: (p) => void seen.push(p) });
+    expect(seen.map((p) => p.index)).toEqual(seen.map((_, i) => i + 1));
+    expect(seen.every((p) => p.total === seen.length)).toBe(true);
+    expect(seen.length).toBe(out.ran.length + out.skipped.length);
+    expect(seen.filter((p) => p.skipped).map((p) => p.rule)).toEqual(out.skipped.map((s) => s.ruleId));
+    expect(seen.reduce((n, p) => n + p.findings, 0)).toBe(out.findings.length);
+    const thrown = runRules(ctx, {}, { onRule: () => { throw new Error('boom'); } });
+    expect(thrown.findings).toEqual(out.findings);
+  });
+
   it('X2: flags a package count mismatch', () => {
     const ctx = clean();
     ctx.billOfLading!.data.totalPackages = 121;

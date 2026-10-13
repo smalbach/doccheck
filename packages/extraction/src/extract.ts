@@ -1,4 +1,4 @@
-import type { BillOfLading, CommercialInvoice, DocumentType, Isf, PackingList } from '@doccheck/schemas';
+import { report, withStage, type BillOfLading, type CommercialInvoice, type DocumentType, type ExtractionDetail, type Isf, type PackingList, type ProgressCallback } from '@doccheck/schemas';
 import type { z } from 'zod';
 import { classifyDocument } from './classify';
 import type { LlmClient, Usage } from './llm';
@@ -69,24 +69,53 @@ export function extractionRequest(pdf: PdfText, type: ExtractableType) {
   };
 }
 
-export async function extractFromText<K extends ExtractableType>(pdf: PdfText, type: K, llm: LlmClient): Promise<Omit<ExtractionResult<Canonical[K]>, 'documentType' | 'typeConfidence' | 'pdf'>> {
+/** The model call (stage `extracting`), then normalization (stage `normalizing`). */
+export async function extractFromText<K extends ExtractableType>(
+  pdf: PdfText,
+  type: K,
+  llm: LlmClient,
+  onProgress?: ProgressCallback<ExtractionDetail>,
+): Promise<Omit<ExtractionResult<Canonical[K]>, 'documentType' | 'typeConfidence' | 'pdf'>> {
   const pipeline = PIPELINES[type];
-  const { output, usage, cached } = await llm.call(PROMPT_VERSION, extractionRequest(pdf, type));
-  const { data, partial, issues } = pipeline.normalize(output as never);
+  const model = llm.provider.id;
+  const { output, usage, cached } = await withStage(
+    onProgress,
+    'extracting',
+    () => llm.call(PROMPT_VERSION, extractionRequest(pdf, type)),
+    (r) => ({ model, documentType: type, cached: r.cached, inputTokens: r.usage?.inputTokens, outputTokens: r.usage?.outputTokens }),
+    { model, documentType: type },
+  );
+  const { data, partial, issues } = await withStage(
+    onProgress,
+    'normalizing',
+    async () => pipeline.normalize(output as never),
+    (r) => ({ normalized: r.data !== null, issues: r.issues.length }),
+  );
   return { raw: output, data, partial, issues, usage, cached };
 }
 
+export interface ExtractOptions {
+  /** Stage updates: reading, ocr (scans only), classifying, extracting, normalizing. */
+  onProgress?: ProgressCallback<ExtractionDetail>;
+}
+
 /** PDF bytes -> classified, extracted and normalized document. `type` skips classification. */
-export async function extractDocument(pdfBytes: Uint8Array, llm: LlmClient, type?: ExtractableType): Promise<ExtractionResult> {
-  const pdf = await readPdfText(pdfBytes);
+export async function extractDocument(pdfBytes: Uint8Array, llm: LlmClient, type?: ExtractableType, { onProgress }: ExtractOptions = {}): Promise<ExtractionResult> {
+  const pdf = await withStage(onProgress, 'reading', () => readPdfText(pdfBytes, { onProgress }), (p) => ({ pages: p.pageCount, ...(p.ocrPages ? { ocrPages: p.ocrPages } : {}) }));
   if (pdf.lines.length === 0) {
     return { documentType: 'UNKNOWN', typeConfidence: 0, pdf, raw: null, data: null, issues: ['No readable text, even with OCR: the PDF may be blank or too degraded'], cached: false };
   }
-  const detected = type ? { type, confidence: 1 } : classifyDocument(pdf.text);
+  let detected: { type: DocumentType; confidence: number };
+  if (type) {
+    detected = { type, confidence: 1 };
+    await report(onProgress, { stage: 'classifying', status: 'skipped', detail: { reason: 'type-given', documentType: type, confidence: 1 } });
+  } else {
+    detected = await withStage(onProgress, 'classifying', async () => classifyDocument(pdf.text), (d) => ({ documentType: d.type, confidence: d.confidence }));
+  }
   if (!(detected.type in PIPELINES)) {
     return { documentType: detected.type, typeConfidence: detected.confidence, pdf, raw: null, data: null, issues: [`Unsupported document type ${detected.type}`], cached: false };
   }
-  const result = await extractFromText(pdf, detected.type as ExtractableType, llm);
+  const result = await extractFromText(pdf, detected.type as ExtractableType, llm, onProgress);
   if (pdf.ocrPages) result.issues.unshift(`Read with OCR (page${pdf.ocrPages.length > 1 ? 's' : ''} ${pdf.ocrPages.join(', ')}, confidence ${pdf.ocrConfidence}%): check values against the scan`);
   return { documentType: detected.type, typeConfidence: detected.confidence, pdf, ...result };
 }

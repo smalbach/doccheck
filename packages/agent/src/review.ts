@@ -2,7 +2,7 @@ import type { LlmClient } from '@doccheck/extraction';
 import type { RegulationIndex } from '@doccheck/regulations';
 import { excerpt } from '@doccheck/regulations';
 import { PROFILES, type ShipmentContext } from '@doccheck/rules';
-import type { Finding, Party } from '@doccheck/schemas';
+import { report, startStage, type AgentAnswer, type Finding, type Party, type ProgressCallback, type ValidationDetail } from '@doccheck/schemas';
 import { z } from 'zod';
 import { INVOICE_REQUIREMENTS } from './cite';
 
@@ -79,6 +79,27 @@ export interface ReviewResult {
 /** Minimum confidence for the agent to dismiss a rule finding or add one of its own. */
 const ACT_CONFIDENCE = 0.7;
 
+/** Progress reports carry the rationale cut to this length, so events stay small. */
+const RATIONALE_CHARS = 500;
+
+/** Agent progress: the `agent` stage of a validation. */
+export type AgentProgress = ProgressCallback<Pick<ValidationDetail, 'agent'>>;
+
+/** X1 consignee-name findings the model will be asked about. */
+const isPartyQuestion = (ctx: ShipmentContext, f: Finding) => f.ruleId === 'X1' && f.evidence[0]?.field === 'consignee.name' && !!ctx.invoice?.data.consignee && !!ctx.billOfLading;
+
+/** How many questions reviewFindings will ask the model (known before the first one, for progress). */
+export function countAgentQuestions(ctx: ShipmentContext, findings: readonly Finding[]): number {
+  return findings.filter((f) => isPartyQuestion(ctx, f)).length + (ctx.invoice && ctx.billOfLading ? 1 : 0);
+}
+
+const answerOf = (verdict: AgentAnswer['verdict'], confidence: number, rationale: string, effect: AgentAnswer['effect']): AgentAnswer => ({
+  verdict,
+  confidence,
+  rationale: rationale.length > RATIONALE_CHARS ? `${rationale.slice(0, RATIONALE_CHARS - 1)}…` : rationale,
+  effect,
+});
+
 /**
  * Second pass over the rule findings:
  *  - X1 name mismatches: the model decides whether both names are the same company; a confident
@@ -86,20 +107,47 @@ const ACT_CONFIDENCE = 0.7;
  *  - A1: the model checks the BL cargo description against the invoice goods.
  * Every decision is returned, including the ones that change nothing, so a reviewer can audit them.
  */
-export async function reviewFindings(ctx: ShipmentContext, findings: Finding[], llm: LlmClient, index?: RegulationIndex): Promise<ReviewResult> {
+export async function reviewFindings(ctx: ShipmentContext, findings: Finding[], llm: LlmClient, index?: RegulationIndex, onProgress?: AgentProgress): Promise<ReviewResult> {
+  const total = countAgentQuestions(ctx, findings);
+  const stage = await startStage(onProgress, 'agent', { model: llm.provider.id, total });
+  try {
+    const result = await review(ctx, findings, llm, index, { onProgress, total });
+    await stage.done({ decisions: result.decisions.length, total });
+    return result;
+  } catch (err) {
+    await stage.fail(err);
+    throw err;
+  }
+}
+
+async function review(ctx: ShipmentContext, findings: Finding[], llm: LlmClient, index: RegulationIndex | undefined, progress: { onProgress?: AgentProgress; total: number }): Promise<ReviewResult> {
   const decisions: AgentDecision[] = [];
   const out: Finding[] = [];
   const authority = PROFILES[ctx.destination].authority;
+  /** Reports a question as asked, runs it, then reports the decision it led to. */
+  const ask = async <T>(ruleId: string, question: string, run: () => Promise<T>, decide: (result: T) => AgentDecision): Promise<T> => {
+    const at = { index: decisions.length + 1, total: progress.total, ruleId, question };
+    await report(progress.onProgress, { stage: 'agent', status: 'progress', detail: at });
+    const result = await run();
+    const d = decide(result);
+    decisions.push(d);
+    await report(progress.onProgress, { stage: 'agent', status: 'progress', detail: { ...at, answer: answerOf(d.verdict, d.confidence, d.rationale, d.effect) } });
+    return result;
+  };
 
   for (const f of findings) {
-    const isNameMismatch = f.ruleId === 'X1' && f.evidence[0]?.field === 'consignee.name';
-    if (!isNameMismatch || !ctx.invoice?.data.consignee || !ctx.billOfLading) {
+    if (!isPartyQuestion(ctx, f)) {
       out.push(f);
       continue;
     }
-    const { output } = await judgeSameParty(llm, ctx.invoice.data.consignee, ctx.billOfLading.data.consignee, 'The consignee names differ between two documents of the same shipment.');
+    const question = 'Same consignee written differently?';
+    const { output } = await ask(
+      'X1',
+      question,
+      () => judgeSameParty(llm, ctx.invoice!.data.consignee!, ctx.billOfLading!.data.consignee, 'The consignee names differ between two documents of the same shipment.'),
+      ({ output: o }) => ({ ruleId: 'X1', question, verdict: o.sameParty, confidence: o.confidence, rationale: o.rationale, effect: o.sameParty === 'yes' && o.confidence >= ACT_CONFIDENCE ? 'dismissed' : 'kept' }),
+    );
     const dismiss = output.sameParty === 'yes' && output.confidence >= ACT_CONFIDENCE;
-    decisions.push({ ruleId: 'X1', question: 'Same consignee written differently?', verdict: output.sameParty, confidence: output.confidence, rationale: output.rationale, effect: dismiss ? 'dismissed' : 'kept' });
     if (!dismiss) out.push({ ...f, agentRationale: output.rationale });
   }
 
@@ -112,9 +160,14 @@ export async function reviewFindings(ctx: ShipmentContext, findings: Finding[], 
       if (hit) regulation = excerpt(hit.chunk.text, 'detailed description', 400);
     }
     const lines = inv.lines.map((l) => `${l.description} (${l.quantity.value} ${l.quantity.unit})`);
-    const { output } = await judgeDescription(llm, bl.cargoDescription, lines, regulation);
+    const question = 'BL cargo description consistent with the invoice?';
+    const { output } = await ask(
+      'A1',
+      question,
+      () => judgeDescription(llm, bl.cargoDescription, lines, regulation),
+      ({ output: o }) => ({ ruleId: 'A1', question, verdict: o.consistent, confidence: o.confidence, rationale: o.rationale, effect: o.consistent === 'no' && o.confidence >= ACT_CONFIDENCE ? 'added' : 'none' }),
+    );
     const add = output.consistent === 'no' && output.confidence >= ACT_CONFIDENCE;
-    decisions.push({ ruleId: 'A1', question: 'BL cargo description consistent with the invoice?', verdict: output.consistent, confidence: output.confidence, rationale: output.rationale, effect: add ? 'added' : 'none' });
     if (add) {
       out.push({
         id: `${ctx.shipmentId}:A1:0`,

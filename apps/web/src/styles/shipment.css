@@ -54,3 +54,24 @@
 .history-when { font-weight: 600; }
 .history-counts { display: flex; gap: 8px; flex-wrap: wrap; grid-column: 1; }
 .history-item > :last-child { grid-column: 2; grid-row: 1 / span 2; }
+
+/* Live progress: the steps of an extraction or a validation */
+.run-steps { grid-column: 1 / -1; font-size: 12px; }
+.run-steps .disclosure { margin-top: 2px; font-size: 12px; }
+.stepper { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 12px; }
+.step { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); }
+.step-marker { display: inline-flex; width: 14px; height: 14px; align-items: center; justify-content: center; flex: none; }
+.step-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); opacity: 0.5; }
+.step-spinner { width: 11px; height: 11px; }
+.step-running { color: var(--text); font-weight: 600; }
+.step-done .step-marker { color: var(--ok); }
+.step-failed, .step-failed .step-marker { color: var(--critical); }
+.step-meta { font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+.step-error { margin: 4px 0 0; overflow-wrap: anywhere; }
+.run-panel { border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 8px; padding: 10px 12px; margin: 0 0 12px; background: var(--bg); }
+.run-panel-title { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 13px; }
+.run-summary .disclosure { margin: 0 0 10px; }
+.run-questions { margin: 8px 0 0; padding-left: 18px; font-size: 12px; }
+.run-questions li { margin: 2px 0; }
+/* Without motion a running step keeps its partial ring, still. */
+@media (prefers-reduced-motion: reduce) { .step-spinner { animation: none; } }

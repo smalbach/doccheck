@@ -2,7 +2,10 @@ import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import type { ExtractionUpdate } from '@doccheck/schemas';
 import { classifyDocument } from './classify';
+import { extractFromText } from './extract';
+import { LlmClient, LlmError, type LlmProvider } from './llm';
 import { countryCode, countryFromPostalCode, decimal, htsCode, isoDate, localeFor, normalizeBillOfLading, normalizeIsf, normalizePackingList, quantityUnit, weight, withLocale } from './normalize';
 import { readPdfText } from './pdf-text';
 import { findFieldSource, findSource } from './provenance';
@@ -251,4 +254,30 @@ describe.skipIf(!existsSync(scan))('OCR', () => {
     expect(classifyDocument(pdf.text).type).toBe('BILL_OF_LADING');
     expect(findSource(pdf, 'bl', truth.documents.billOfLading.blNumber)?.bbox).toHaveLength(4);
   }, 60_000);
+});
+
+describe('progress', () => {
+  const pkg = { range: '1-10', count: '10', packageType: 'CTN', sku: null, description: 'Toys', quantity: '100', unit: 'PCS', netWeight: null, grossWeight: null, dimensionsCm: null };
+  const rawPackingList = { packingListNumber: 'PL-1', invoiceRef: 'INV-1', seller: null, consignee: null, marks: null, packages: [pkg], totalPackages: '10', totalNetWeight: null, totalGrossWeight: null, totalVolumeM3: null };
+  const pdf = { pageCount: 1, lines: [], text: 'PACKING LIST' };
+  const fake = (generate: LlmProvider['generate']) => new LlmClient({ id: 'fake:test', generate });
+
+  it('reports the model call with its model, then normalization', async () => {
+    const seen: ExtractionUpdate[] = [];
+    const out = await extractFromText(pdf, 'PACKING_LIST', fake(async () => ({ output: rawPackingList, usage: { inputTokens: 10, outputTokens: 5 } })), (u) => void seen.push(u));
+    expect(out.data).not.toBeNull();
+    expect(seen.map((u) => `${u.stage}:${u.status}`)).toEqual(['extracting:started', 'extracting:done', 'normalizing:started', 'normalizing:done']);
+    expect(seen[0].detail).toEqual({ model: 'fake:test', documentType: 'PACKING_LIST' });
+    expect(seen[1]).toMatchObject({ durationMs: expect.any(Number), detail: { model: 'fake:test', cached: false, inputTokens: 10, outputTokens: 5 } });
+    expect(seen[3].detail).toEqual({ normalized: true, issues: 0 });
+  });
+
+  it('reports a failed model call on the extracting stage', async () => {
+    const seen: ExtractionUpdate[] = [];
+    const llm = fake(async () => {
+      throw new LlmError('Ollama is not reachable');
+    });
+    await expect(extractFromText(pdf, 'PACKING_LIST', llm, (u) => void seen.push(u))).rejects.toThrow('not reachable');
+    expect(seen.at(-1)).toMatchObject({ stage: 'extracting', status: 'failed', detail: { error: 'Ollama is not reachable' } });
+  });
 });

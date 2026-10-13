@@ -4,11 +4,13 @@ import { attachRegulations, reviewFindings, type AgentDecision } from '@doccheck
 import { findFieldSource, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
 import { runRules, type EngineOutput, type ShipmentContext } from '@doccheck/rules';
 import {
-  applyPointerChanges, BillOfLading, CommercialInvoice, diffPointers, fieldPointer, Isf, PackingList, readPointer, toPointer,
-  type PointerChange, type Shipment, type ShipmentDocument,
+  applyPointerChanges, BillOfLading, CommercialInvoice, diffPointers, fieldPointer, Isf, PackingList, readPointer, startStage, toPointer,
+  type Destination, type PointerChange, type Shipment, type ShipmentDocument,
 } from '@doccheck/schemas';
 import { isDemo } from '../demo/demo-mode';
 import { InjectLlm, RegulationsService } from '../llm/llm.module';
+import type { ProgressRun } from '../progress/progress-run';
+import { ProgressService } from '../progress/progress.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { ExtractionQueue } from './extraction.queue';
 import type { CreateShipmentDto, ListShipmentsQuery, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
@@ -60,6 +62,7 @@ export class ShipmentsService {
     private readonly regulations: RegulationsService,
     @Inject(STORAGE) private readonly storage: ObjectStorage,
     @InjectLlm() private readonly llm: LlmClient,
+    private readonly progress: ProgressService,
   ) {}
 
   async create(dto: CreateShipmentDto, userId: string): Promise<Shipment> {
@@ -144,7 +147,7 @@ export class ShipmentsService {
       documents.push(doc);
     }
     await this.repo.refreshShipmentStatus(id);
-    await this.queue.enqueue(documents.map((d) => d.id), wait);
+    await this.queue.enqueue(id, documents.map((d) => d.id), wait);
     if (!wait) return { queue: this.queue.mode, documents };
     return { queue: this.queue.mode, documents: await Promise.all(documents.map((d) => this.document(id, d.id))) };
   }
@@ -178,7 +181,7 @@ export class ShipmentsService {
     if (type !== 'ISF') await this.repo.deleteIsfFromDocument(documentId);
     await this.repo.updateDocumentStatus(documentId, 'QUEUED');
     await this.repo.refreshShipmentStatus(id);
-    await this.queue.enqueue([documentId], wait, type);
+    await this.queue.enqueue(id, [documentId], wait, type);
     return this.document(id, documentId);
   }
 
@@ -259,6 +262,8 @@ export class ShipmentsService {
   /**
    * Runs the rules and stores the run. Documents in the body (normalized JSON) win; otherwise
    * the latest extracted document of each type is used, and its evidence gets page and bbox.
+   * Each stage is reported as a progress event of a run whose id is the validation's id, so a client
+   * listening on GET /shipments/:id/events sees it live; this call still answers when it is all done.
    */
   async validate(id: string, docs: ValidateShipmentDto = {}, opts: { agent?: boolean } = {}): Promise<EngineOutput & { validationId: string; agent: AgentOutcome }> {
     const shipment = await this.get(id);
@@ -268,6 +273,21 @@ export class ShipmentsService {
     const pending = await this.repo.pendingDocuments(id);
     if (pending > 0) throw new ConflictException(`${pending} document(s) are still being extracted; validate when they are done`);
     await this.repo.setStatus(id, 'VALIDATING');
+
+    const validationId = randomUUID();
+    const useAgent = opts.agent ?? process.env.AGENT_ENABLED !== 'false';
+    const run = this.progress.run('validation', id, { runId: validationId });
+    await run.emit({ stage: 'started', status: 'started', detail: { agent: useAgent, destination: shipment.destination } });
+    try {
+      return await this.runValidation(id, shipment.destination, docs, useAgent, run);
+    } catch (err) {
+      await run.fail(err, 'saved');
+      throw err;
+    }
+  }
+
+  private async runValidation(id: string, destination: Destination, docs: ValidateShipmentDto, useAgent: boolean, run: ProgressRun<'validation'>) {
+    const validationId = run.runId;
 
     type Source = { documentId: string; data: unknown; modelData?: unknown; corrected: string[]; pdf: PdfText; ocr: boolean };
     const extracted = new Map<string, Source>();
@@ -295,7 +315,7 @@ export class ShipmentsService {
 
     const ctx: ShipmentContext = {
       shipmentId: id,
-      destination: shipment.destination,
+      destination,
       invoice: pick<CommercialInvoice>('invoice', docs.invoice, 'invoice'),
       packingList: pick<PackingList>('packingList', docs.packingList, 'packing-list'),
       billOfLading: pick<BillOfLading>('billOfLading', docs.billOfLading, 'bill-of-lading'),
@@ -312,7 +332,9 @@ export class ShipmentsService {
       ctx.isf = { id: isfPdf?.documentId ?? 'isf', data: storedIsf.data };
       inputs.isf = isfPdf?.documentId ?? 'stored';
     }
-    const output = runRules(ctx);
+    const rules = await startStage(run.report, 'rules');
+    const output = runRules(ctx, {}, { onRule: ({ rule, index, total, skipped, findings }) => void rules.progress({ rule, index, total, skipped, findings }) });
+    await rules.done({ ran: output.ran.length, skipped: output.skipped.length, total: output.ran.length + output.skipped.length, findings: output.findings.length });
 
     const sources = [...extracted.values(), ...(isfPdf ? [isfPdf] : [])];
     const sourceById = new Map(sources.map((e) => [e.documentId, e]));
@@ -334,11 +356,12 @@ export class ShipmentsService {
       }
     }
 
-    const agent = await this.runAgent(ctx, output, opts.agent ?? process.env.AGENT_ENABLED !== 'false');
+    const agent = await this.runAgent(ctx, output, useAgent, run);
 
-    const validationId = randomUUID();
-    await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination: shipment.destination });
+    const saved = await startStage(run.report, 'saved');
+    await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination });
     await this.repo.setStatus(id, output.skipped.length > 0 ? 'NEEDS_INPUT' : 'DONE');
+    await saved.done({ validationId, findings: output.findings.length, skipped: output.skipped.length, agent: agent.status });
     return { validationId, ...output, agent };
   }
 
@@ -346,16 +369,26 @@ export class ShipmentsService {
    * Second pass: regulation citations, then the local model on ambiguous cases. Best effort: if the
    * model or the index is unavailable the rule findings are returned as they are, and the outcome says why.
    */
-  private async runAgent(ctx: ShipmentContext, output: EngineOutput, enabled: boolean): Promise<AgentOutcome> {
+  private async runAgent(ctx: ShipmentContext, output: EngineOutput, enabled: boolean, run: ProgressRun<'validation'>): Promise<AgentOutcome> {
     const outcome: AgentOutcome = { status: 'skipped', citations: 0, decisions: [] };
+    const citations = await startStage(run.report, 'citations');
+    let citing = true;
     try {
       const index = await this.regulations.get();
       if (index) {
         await attachRegulations(output.findings, ctx.destination, index);
         outcome.citations = output.findings.filter((f) => f.regulation).length;
+        await citations.done({ citations: outcome.citations });
+      } else {
+        await citations.skip({ reason: 'no-index' });
       }
-      if (!enabled) return outcome;
-      const review = await reviewFindings(ctx, output.findings, this.llm, index ?? undefined);
+      citing = false;
+      if (!enabled) {
+        await run.emit({ stage: 'agent', status: 'skipped', detail: { reason: 'disabled' } });
+        return outcome;
+      }
+      // The agent stage reports itself (started, one progress event per question asked and answered, done or failed).
+      const review = await reviewFindings(ctx, output.findings, this.llm, index ?? undefined, run.report);
       output.findings = review.findings;
       outcome.decisions = review.decisions;
       outcome.status = 'done';
@@ -364,6 +397,11 @@ export class ShipmentsService {
       outcome.error = err instanceof Error ? err.message : String(err);
       if (isDemo() && /Cache miss/.test(outcome.error)) outcome.error = 'The agent has no cached answer for this shipment in the read-only demo; the rule findings stand as they are.';
       this.logger.warn(`Agent review failed for ${ctx.shipmentId}: ${outcome.error}`);
+      // A failure while citing: the agent never started. (The agent stage reports its own failure.)
+      if (citing) {
+        await citations.fail(err);
+        await run.emit({ stage: 'agent', status: 'skipped', detail: { reason: enabled ? 'citations-failed' : 'disabled' } });
+      }
     }
     return outcome;
   }

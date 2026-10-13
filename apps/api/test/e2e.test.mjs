@@ -712,6 +712,155 @@ describe('ISF', () => {
   });
 });
 
+/**
+ * Opens a server-sent events stream with the session of `as` and collects its messages in the
+ * background. `events()` are the progress events, `ready()` resolves on the `ready` message (backlog
+ * sent), `waitFor(fn)` once fn(events) is true.
+ */
+async function openStream(path, { as = cookie, lastEventId } = {}) {
+  const ctrl = new AbortController();
+  const res = await send(base + path, { headers: lastEventId === undefined ? {} : { 'last-event-id': String(lastEventId) }, signal: ctrl.signal }, as);
+  const messages = [];
+  let notify = () => {};
+  const changed = () => new Promise((r) => (notify = r));
+  if (res.ok) {
+    void (async () => {
+      const decoder = new TextDecoder();
+      let buffer = '';
+      try {
+        for await (const chunk of res.body) {
+          buffer += decoder.decode(chunk, { stream: true });
+          let end;
+          while ((end = buffer.indexOf('\n\n')) >= 0) {
+            const block = buffer.slice(0, end);
+            buffer = buffer.slice(end + 2);
+            const msg = {};
+            for (const line of block.split('\n')) {
+              if (line.startsWith(':')) msg.comment = true;
+              const [, field, value] = /^(\w+): ?(.*)$/.exec(line) ?? [];
+              if (field) msg[field] = value;
+            }
+            messages.push(msg);
+          }
+          notify();
+        }
+      } catch {}
+      notify();
+    })();
+  } else await res.body?.cancel();
+  const events = () => messages.filter((m) => m.data && !m.event).map((m) => JSON.parse(m.data));
+  const waitFor = async (fn, ms = 10_000) => {
+    const deadline = Date.now() + ms;
+    while (!fn(events(), messages)) {
+      if (Date.now() > deadline) throw new Error(`Timed out waiting on ${path}; got ${JSON.stringify(events().map((e) => `${e.stage}:${e.status}`))}`);
+      await Promise.race([changed(), new Promise((r) => setTimeout(r, 100))]);
+    }
+    return events();
+  };
+  return { res, messages, events, waitFor, ready: () => waitFor((_, m) => m.some((x) => x.event === 'ready')), close: () => ctrl.abort() };
+}
+
+const savedDone = (runId) => (events) => events.some((e) => e.runId === runId && e.stage === 'saved' && e.status === 'done');
+const docs = () => ({ invoice: sampleInvoice, packingList: samplePackingList, billOfLading: { ...sampleBillOfLading, totalPackages: 121 } });
+
+describe('progress events', () => {
+  it('streams the stages of a validation live, in order, with the validation id as run id', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    const stream = await openStream(`/shipments/${s.id}/events`);
+    assert.equal(stream.res.status, 200);
+    assert.match(stream.res.headers.get('content-type'), /^text\/event-stream/);
+    assert.equal(stream.res.headers.get('x-accel-buffering'), 'no');
+    await stream.ready();
+    assert.deepEqual(stream.events(), []);
+
+    const run = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs());
+    assert.equal(run.status, 200);
+    const events = await stream.waitFor(savedDone(run.body.validationId));
+    stream.close();
+
+    assert.ok(events.every((e) => e.kind === 'validation' && e.runId === run.body.validationId && e.shipmentId === s.id && !e.documentId));
+    assert.deepEqual(events.map((e) => e.id), [...events.map((e) => e.id)].sort((a, b) => a - b));
+    const stages = events.filter((e) => e.status !== 'progress').map((e) => `${e.stage}:${e.status}`);
+    assert.equal(stages[0], 'started:started');
+    assert.deepEqual(stages.slice(1, 3), ['rules:started', 'rules:done']);
+    assert.match(stages[3], /^citations:started$/);
+    assert.match(stages[4], /^citations:(done|skipped|failed)$/); // failed when no embedding model is reachable
+    assert.deepEqual(stages.slice(5), ['agent:skipped', 'saved:started', 'saved:done']);
+    assert.deepEqual(events.find((e) => e.stage === 'started').detail, { agent: false, destination: 'CA' });
+    assert.equal(events.find((e) => e.stage === 'agent').detail.reason, 'disabled');
+
+    const rules = events.filter((e) => e.stage === 'rules' && e.status === 'progress');
+    assert.equal(rules.length, run.body.ran.length + run.body.skipped.length);
+    assert.deepEqual(rules.map((e) => e.detail.index), rules.map((_, i) => i + 1));
+    assert.equal(rules.find((e) => e.detail.rule === 'X2').detail.findings, 1);
+    const done = events.find((e) => e.stage === 'rules' && e.status === 'done');
+    assert.deepEqual(done.detail, { ran: run.body.ran.length, skipped: run.body.skipped.length, total: rules.length, findings: 1 });
+    assert.equal(typeof done.durationMs, 'number');
+    assert.deepEqual(events.at(-1).detail, { validationId: run.body.validationId, findings: 1, skipped: 0, agent: 'skipped' });
+    assert.ok(events.every((e) => !Number.isNaN(Date.parse(e.at))));
+  });
+
+  it('replays what a client missed after Last-Event-ID or ?after=, and the latest run without either', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    const first = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs());
+    const second = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs());
+
+    const all = await openStream(`/shipments/${s.id}/events?after=0`);
+    const events = await all.waitFor(savedDone(second.body.validationId));
+    all.close();
+    assert.deepEqual([...new Set(events.map((e) => e.runId))], [first.body.validationId, second.body.validationId]);
+
+    const cut = events[4].id;
+    const resumed = await openStream(`/shipments/${s.id}/events`, { lastEventId: cut });
+    await resumed.ready();
+    resumed.close();
+    assert.deepEqual(resumed.events().map((e) => e.id), events.filter((e) => e.id > cut).map((e) => e.id));
+    // The SSE id of each message is the event id, which EventSource sends back as Last-Event-ID.
+    assert.deepEqual(resumed.messages.filter((m) => m.id).map((m) => Number(m.id)), resumed.events().map((e) => e.id));
+
+    const after = await openStream(`/shipments/${s.id}/events?after=${cut}`);
+    await after.ready();
+    after.close();
+    assert.deepEqual(after.events().map((e) => e.id), resumed.events().map((e) => e.id));
+
+    const fresh = await openStream(`/shipments/${s.id}/events`);
+    await fresh.ready();
+    fresh.close();
+    assert.deepEqual([...new Set(fresh.events().map((e) => e.runId))], [second.body.validationId]);
+  });
+
+  it('answers 404 to another user and 401 without a session', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    const other = await signUp('Stranger');
+    assert.equal((await openStream(`/shipments/${s.id}/events`, { as: other })).res.status, 404);
+    assert.equal((await openStream('/shipments/00000000-0000-0000-0000-000000000000/events')).res.status, 404);
+    assert.equal((await openStream(`/shipments/${s.id}/events`, { as: '' })).res.status, 401);
+    assert.equal((await openStream('/events', { as: '' })).res.status, 401);
+  });
+
+  it('streams every shipment of the user on /events, and only theirs', async () => {
+    const other = await signUp('Neighbour');
+    const mine = (await call('POST', '/shipments', { destination: 'CA' })).body;
+    const theirs = (await call('POST', '/shipments', { destination: 'CA' }, other)).body;
+    const myStream = await openStream('/events');
+    const theirStream = await openStream('/events', { as: other });
+    await Promise.all([myStream.ready(), theirStream.ready()]);
+
+    const a = await call('POST', `/shipments/${theirs.id}/validate?agent=false`, docs(), other);
+    const b = await call('POST', `/shipments/${mine.id}/validate?agent=false`, docs());
+    await myStream.waitFor(savedDone(b.body.validationId));
+    await theirStream.waitFor(savedDone(a.body.validationId));
+    myStream.close();
+    theirStream.close();
+    const live = (stream, ready) => stream.events().filter((e) => e.id > ready);
+    const readyId = (stream) => JSON.parse(stream.messages.find((m) => m.event === 'ready').data).lastId;
+    assert.deepEqual([...new Set(live(theirStream, readyId(theirStream)).map((e) => e.shipmentId))], [theirs.id]);
+    assert.ok(live(myStream, readyId(myStream)).every((e) => e.shipmentId !== theirs.id));
+    assert.ok(myStream.events().some((e) => e.shipmentId === mine.id));
+    assert.ok(theirStream.events().every((e) => e.userId === theirStream.events()[0].userId));
+  });
+});
+
 // PDF path: only when the evaluation set and the cached model responses for CA-001 exist locally.
 const sample = join(root, 'data/eval/v1/CA-001');
 const hasSample = existsSync(join(sample, 'invoice.pdf')) && existsSync(llmCacheDir);
@@ -724,6 +873,23 @@ describe('PDF upload', { skip: !hasSample && 'evaluation set not generated' }, (
     assert.equal(up.status, 202);
     const { documents } = await up.json();
     assert.deepEqual(documents.map((d) => d.document.status), ['EXTRACTED', 'EXTRACTED', 'EXTRACTED']);
+
+    // Every document's extraction was streamed, stage by stage, ending with saved.
+    const stream = await openStream(`/shipments/${s.id}/events`);
+    await stream.ready();
+    stream.close();
+    for (const { document: d } of documents) {
+      const events = stream.events().filter((e) => e.documentId === d.id);
+      assert.ok(events.every((e) => e.kind === 'extraction' && e.runId === events[0].runId));
+      assert.deepEqual(
+        events.filter((e) => e.status !== 'progress').map((e) => `${e.stage}:${e.status}`),
+        ['queued', 'queued', 'reading', 'reading', 'classifying', 'classifying', 'extracting', 'extracting', 'normalizing', 'normalizing', 'saved', 'saved'].map((stage, i) => `${stage}:${i % 2 ? 'done' : 'started'}`),
+      );
+      assert.equal(events[0].detail.position > 0, true);
+      assert.deepEqual(events.find((e) => e.stage === 'extracting' && e.status === 'started').detail, { model: provider, documentType: d.detectedType });
+      assert.equal(events.find((e) => e.stage === 'extracting' && e.status === 'done').detail.cached, true);
+      assert.deepEqual(events.at(-1).detail, { documentType: d.detectedType, normalized: true, pages: 1 });
+    }
 
     const run = await call('POST', `/shipments/${s.id}/validate?agent=false`);
     const expected = JSON.parse(readFileSync(join(sample, 'labels.json'), 'utf8')).errors.flatMap((e) => e.expectedRuleIds).sort();
@@ -1162,7 +1328,7 @@ describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' 
     writeFileSync(join(dir, 'manifest.json'), JSON.stringify({ ...manifest, shipments: [ca1, { ...ca1, id: 'CA-999' }] }));
     demo = spawn('node', [join(root, 'apps/api/dist/main.js')], {
       cwd: root,
-      env: { ...process.env, PORT: String(demoPort), DATABASE_URL: testUrl, REDIS_URL: '', S3_ENDPOINT: '', STORAGE_DIR: mkdtempSync(join(tmpdir(), 'doccheck-e2e-')), DEMO_READONLY: 'true', EVAL_DIR: dir, LLM_CACHE_DIR: llmCacheDir, OLLAMA_BASE_URL: 'http://127.0.0.1:9' },
+      env: { ...process.env, PORT: String(demoPort), DATABASE_URL: testUrl, REDIS_URL: '', S3_ENDPOINT: '', STORAGE_DIR: mkdtempSync(join(tmpdir(), 'doccheck-e2e-')), DEMO_READONLY: 'true', DEMO_PACING: 'false', EVAL_DIR: dir, LLM_CACHE_DIR: llmCacheDir, OLLAMA_BASE_URL: 'http://127.0.0.1:9' },
       stdio: ['ignore', 'ignore', 'inherit'],
     });
     for (let i = 0; i < 60; i++) {
