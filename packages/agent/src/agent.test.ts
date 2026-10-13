@@ -23,7 +23,7 @@ function scripted(outputs: unknown[]): LlmClient {
 }
 
 const CORPUS = parseDocument(`---
-id: "memo"
+id: "cbsa-d1-4-1-en"
 title: "Memo"
 authority: "CBSA"
 language: "en"
@@ -59,20 +59,60 @@ describe('citations', () => {
 
 describe('citations on the real corpus', () => {
   // Keyword retrieval only (constant embeddings), so the test needs no model; the expected passages
-  // are the CI1 field or 141.86 paragraph each rule is about.
-  const EXPECTED: [string, 'CA' | 'US', string][] = [
-    ['X2', 'CA', 'Field 11: Number of packages'],
-    ['X6', 'CA', 'Field 10: Currency of settlement'],
-    ['X9', 'CA', 'Field 2: Date of direct shipment'],
-    ['X12', 'CA', 'Field 9: Conditions of sale'],
-    ['X5', 'US', '(5) The purchase price of each item'],
-    ['X12', 'US', '(8) All charges upon the merchandise'],
-  ];
-  it.each(EXPECTED)('%s (%s) quotes "%s"', async (ruleId, destination, start) => {
+  // are the CI1 field, 141.86 paragraph or 149.3 element each rule is about. The corpus also has
+  // marking, origin and valuation documents that must not take these citations.
+  const realIndex = async () => {
     const docs = await loadCorpus(join(__dirname, '../../../data/corpus'));
-    const index = await RegulationIndex.build(docs.flatMap((d) => chunkDocument(d)), { id: 'flat', embed: async (t) => t.map(() => [1, 0]) });
-    const [f] = await attachRegulations([{ id: ruleId, shipmentId: 's', ruleId, severity: 'LOW', decidedBy: 'RULE', message: '', evidence: [{ documentId: 'd', field: '', value: '' }] }], destination, index);
+    return RegulationIndex.build(docs.flatMap((d) => chunkDocument(d)), { id: 'flat', embed: async (t) => t.map(() => [1, 0]) });
+  };
+  const EXPECTED: [string, 'CA' | 'US', string, string][] = [
+    ['X2', 'CA', '', 'Field 11: Number of packages'],
+    ['X5', 'CA', '', 'Field 17: Invoice total'],
+    ['X6', 'CA', '', 'Field 10: Currency of settlement'],
+    ['X9', 'CA', '', 'Field 2: Date of direct shipment'],
+    ['X12', 'CA', '', 'Field 9: Conditions of sale'],
+    ['X1', 'US', '', '(2) The time when, the place where, and the person by whom'],
+    ['X3', 'US', '', '(4) The quantities in the weights and measures'],
+    ['X5', 'US', '', '(5) The purchase price of each item'],
+    ['X6', 'US', '', '(5) The purchase price of each item'],
+    ['X12', 'US', '', '(8) All charges upon the merchandise'],
+    ['X11', 'US', 'countryOfOrigin', '(7) Country of origin.'],
+    ['X11', 'US', 'htsCode', '(8) Commodity HTSUS number.'],
+    ['X11', 'US', 'seller.name', '(1) Seller.'],
+    ['X11', 'US', 'buyer.name', '(2) Buyer.'],
+  ];
+  it.each(EXPECTED)('%s (%s) %s quotes "%s"', async (ruleId, destination, field, start) => {
+    const [f] = await attachRegulations([{ id: ruleId, shipmentId: 's', ruleId, severity: 'LOW', decidedBy: 'RULE', message: '', evidence: [{ documentId: 'd', field, value: '' }] }], destination, await realIndex());
     expect(f.regulation?.excerpt.startsWith(start)).toBe(true);
+  });
+
+  it('cites the invoice field for a missing country of origin, not the marking or origin memoranda', async () => {
+    const index = await realIndex();
+    for (const [destination, ruleId, url, start] of [
+      ['CA', 'C1', 'd1-4-1-eng', 'Field 7: Country of origin'],
+      ['US', 'U1', 'section-141.86', '(10) The country of origin'],
+    ] as const) {
+      const c = { ...ctx(), destination };
+      delete c.invoice!.data.lines[0].countryOfOrigin;
+      const findings = await attachRegulations(runRules(c).findings.filter((f) => f.ruleId === ruleId && /^Country of origin/.test(f.message)), destination, index);
+      expect(findings).toHaveLength(1);
+      expect(findings[0].regulation?.url).toContain(url);
+      expect(findings[0].regulation?.excerpt.startsWith(start)).toBe(true);
+    }
+  });
+
+  it('gives the A1 model the description paragraph of 141.86, not 141.89', async () => {
+    const prompts: string[] = [];
+    const provider: LlmProvider = {
+      id: 'scripted',
+      generate: async (req) => {
+        prompts.push(JSON.stringify(req));
+        return { output: { consistent: 'yes', confidence: 0.9, rationale: 'Toys.' } };
+      },
+    };
+    await reviewFindings({ ...ctx(), destination: 'US' }, [], new LlmClient(provider), await realIndex());
+    expect(prompts).toHaveLength(1);
+    expect(prompts[0]).toContain('(3) A detailed description of the merchandise');
   });
 });
 

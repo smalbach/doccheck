@@ -14,6 +14,17 @@ const SOURCES = [
   { id: 'cbsa-d1-4-1-fr', authority: 'cbsa', language: 'fr', kind: 'cbsa-html', title: "Mémorandum D1-4-1 : Exigences de l'ASFC relatives aux factures", url: 'https://www.cbsa-asfc.gc.ca/publications/dm-md/d1/d1-4-1-fra.html' },
   { id: 'cfr-19-141-86', authority: 'cbp', language: 'en', kind: 'ecfr', title: '19 CFR 141.86: Contents of invoices and general requirements', query: 'part=141&section=141.86', page: 'https://www.ecfr.gov/current/title-19/chapter-I/part-141/subpart-F/section-141.86' },
   { id: 'cfr-19-149', authority: 'cbp', language: 'en', kind: 'ecfr', title: '19 CFR Part 149: Importer Security Filing', query: 'part=149', page: 'https://www.ecfr.gov/current/title-19/chapter-I/part-149' },
+  { id: 'cbsa-d11-3-1-en', authority: 'cbsa', language: 'en', kind: 'cbsa-html', title: 'Memorandum D11-3-1: Marking of Imported Goods', url: 'https://www.cbsa-asfc.gc.ca/publications/dm-md/d11/d11-3-1-eng.html' },
+  { id: 'cbsa-d11-3-1-fr', authority: 'cbsa', language: 'fr', kind: 'cbsa-html', title: 'Mémorandum D11-3-1 : Marquage des marchandises importées', url: 'https://www.cbsa-asfc.gc.ca/publications/dm-md/d11/d11-3-1-fra.html' },
+  // English only: the French URL (d11-4-2-fra) serves a different memorandum.
+  { id: 'cbsa-d11-4-2-en', authority: 'cbsa', language: 'en', kind: 'cbsa-html', title: 'Memorandum D11-4-2: Proof of Origin of Imported Goods', url: 'https://www.cbsa-asfc.gc.ca/publications/dm-md/d11/d11-4-2-eng.html' },
+  { id: 'cbsa-d13-4-3-en', authority: 'cbsa', language: 'en', kind: 'cbsa-html', title: 'Memorandum D13-4-3: Customs Valuation: Price Paid or Payable', url: 'https://www.cbsa-asfc.gc.ca/publications/dm-md/d13/d13-4-3-eng.html' },
+  { id: 'cbsa-d13-4-7-en', authority: 'cbsa', language: 'en', kind: 'cbsa-html', title: 'Memorandum D13-4-7: Adjustments to the Price Paid or Payable (Customs Act, Section 48)', url: 'https://www.cbsa-asfc.gc.ca/publications/dm-md/d13/d13-4-7-eng.html' },
+  { id: 'cbsa-d13-4-7-fr', authority: 'cbsa', language: 'fr', kind: 'cbsa-html', title: 'Mémorandum D13-4-7 : Ajustements au prix payé ou à payer (Loi sur les douanes, article 48)', url: 'https://www.cbsa-asfc.gc.ca/publications/dm-md/d13/d13-4-7-fra.html' },
+  { id: 'cfr-19-134', authority: 'cbp', language: 'en', kind: 'ecfr', title: '19 CFR Part 134: Country of Origin Marking', query: 'part=134', page: 'https://www.ecfr.gov/current/title-19/chapter-I/part-134' },
+  { id: 'cfr-19-152-e', authority: 'cbp', language: 'en', kind: 'ecfr', title: '19 CFR Part 152 Subpart E: Valuation of Merchandise', query: 'part=152&subpart=E', page: 'https://www.ecfr.gov/current/title-19/chapter-I/part-152/subpart-E' },
+  { id: 'cfr-19-141-83', authority: 'cbp', language: 'en', kind: 'ecfr', title: '19 CFR 141.83: Type of invoice required', query: 'part=141&section=141.83', page: 'https://www.ecfr.gov/current/title-19/chapter-I/part-141/subpart-F/section-141.83' },
+  { id: 'cfr-19-141-89', authority: 'cbp', language: 'en', kind: 'ecfr', title: '19 CFR 141.89: Additional information for certain classes of merchandise', query: 'part=141&section=141.89', page: 'https://www.ecfr.gov/current/title-19/chapter-I/part-141/subpart-F/section-141.89' },
 ];
 
 const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', sect: '§', eacute: 'é', egrave: 'è', agrave: 'à', ccedil: 'ç', rsquo: '’', lsquo: '‘', ldquo: '“', rdquo: '”', ndash: '–', mdash: '—' };

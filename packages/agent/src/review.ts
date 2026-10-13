@@ -4,6 +4,7 @@ import { excerpt } from '@doccheck/regulations';
 import { PROFILES, type ShipmentContext } from '@doccheck/rules';
 import type { Finding, Party } from '@doccheck/schemas';
 import { z } from 'zod';
+import { INVOICE_REQUIREMENTS } from './cite';
 
 /** Bump when a prompt changes so cached decisions are not reused. */
 export const AGENT_PROMPT_VERSION = 'agent-v2';
@@ -107,7 +108,7 @@ export async function reviewFindings(ctx: ShipmentContext, findings: Finding[], 
   if (inv && bl && ctx.invoice && ctx.billOfLading) {
     let regulation: string | undefined;
     if (index) {
-      const [hit] = await index.search(authority === 'CBSA' ? 'detailed description of the goods' : 'detailed description of the merchandise', { authority, language: 'en', limit: 1 });
+      const [hit] = await index.search(authority === 'CBSA' ? 'detailed description of the goods' : 'detailed description of the merchandise', { authority, documents: [...INVOICE_REQUIREMENTS[authority]], language: 'en', limit: 1 });
       if (hit) regulation = excerpt(hit.chunk.text, 'detailed description', 400);
     }
     const lines = inv.lines.map((l) => `${l.description} (${l.quantity.value} ${l.quantity.unit})`);
