@@ -7,10 +7,11 @@ import { DocumentProcessor } from './document.processor';
 import { ShipmentOwnerGuard } from './shipment-owner.guard';
 import { ExtractionQueue } from './extraction.queue';
 import { ShipmentsRepository } from './shipments.repository';
+import { FindingReviewsRepository } from './reviews.repository';
 import { ShipmentsService } from './shipments.service';
 
 @Module({
   controllers: [ShipmentsController, DemoController, ProgressController],
-  providers: [ShipmentsService, AlertsRepository, ShipmentsRepository, DocumentProcessor, ExtractionQueue, ShipmentOwnerGuard],
+  providers: [ShipmentsService, AlertsRepository, FindingReviewsRepository, ShipmentsRepository, DocumentProcessor, ExtractionQueue, ShipmentOwnerGuard],
 })
 export class ShipmentsModule {}

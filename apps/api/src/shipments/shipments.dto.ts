@@ -1,3 +1,4 @@
+import { CLOSING_STATUSES, REVIEW_STATUSES } from './reviews.types';
 import { z } from 'zod';
 import { BillOfLading, CommercialInvoice, Destination, Isf, PackingList, TransportMode } from '@doccheck/schemas';
 
@@ -52,3 +53,13 @@ export const CorrectDataDto = z
   })
   .strict();
 export type CorrectDataDto = z.infer<typeof CorrectDataDto>;
+
+export const ReviewFindingsDto = z
+  .object({
+    /** Fingerprints of findings of the latest validation run. */
+    fingerprints: z.array(z.string().regex(/^[0-9a-f]{32}$/)).min(1).max(200),
+    status: z.enum(REVIEW_STATUSES),
+    note: z.string().trim().max(2000).optional(),
+  })
+  .refine((d) => !CLOSING_STATUSES.includes(d.status) || (d.note ?? '').length >= 3, { message: 'Say why: a note is required to accept a finding or mark it a false positive', path: ['note'] });
+export type ReviewFindingsDto = z.infer<typeof ReviewFindingsDto>;

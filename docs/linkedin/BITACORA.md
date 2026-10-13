@@ -155,6 +155,8 @@ para que la revises.
 | Panel de actividad con tiempo restante y cancelar; notificaciones al terminar | `d54e580`, `e675de1` | — |
 | Datos extraídos como tablas (facturas, líneas, packing, BL, contenedores, ISF, empresas, productos) | `fc661d6` | 13 tablas llenadas por triggers; el backfill de la base local tardó ~0.1 s |
 | Vistas de empresas y productos con historial de precios | (este commit) | en la base local, la normalización final bajó de 98 a 73 empresas; tests de la API: 76 de 76 |
+| Menú Datos: un módulo por página; fichas completas de empresa y producto; contenedores | `ec31499` | — |
+| Qué hacer con un finding: estados con motivo e historial, corregir desde la evidencia, carta al proveedor en en/es/fr, resueltos y nuevos entre validaciones | (este commit) | tests de la API 77 de 77, web 55 de 55 |
 
 Decisiones para contar:
 
@@ -180,3 +182,4 @@ Decisiones para contar:
 - 13 oct 2026: primera prueba del OCR de Baidu.
 - 13 oct 2026: OCR de Baidu en MLX: 96.8% contra 86.6% de tesseract.
 - 13 oct 2026: hitos de la app web y de las tablas de datos extraídos (sesión de la app).
+- 13 oct 2026: menú Datos y flujo de resolución de findings (sesión de la app).

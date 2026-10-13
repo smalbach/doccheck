@@ -6,6 +6,7 @@ import { Sheet } from '../../components/ui/Sheet';
 import { useDemo } from '../../hooks/useDemo';
 import { useI18n } from '../../i18n/useI18n';
 import { textBeingWritten } from '../../lib/liveOutput';
+import { evidencePointer } from '../../lib/findingReview';
 import { showFinding } from '../../lib/showFinding';
 import { liveValidationRun } from '../../lib/validationCaption';
 import { DocumentDataSheet } from '../document-data/DocumentDataSheet';
@@ -28,10 +29,10 @@ const PdfViewerSheet = lazy(() => import('../pdf/PdfViewerSheet').then((m) => ({
 export function ShipmentPage({ id }: { id: string }) {
   const { t } = useI18n();
   const demo = useDemo();
-  const { shipment, validation: latest, validationLoaded, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove, progress, lastLive } = useShipment(id);
+  const { reviewFindings, reviewing, shipment, validation: latest, validationLoaded, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove, progress, lastLive } = useShipment(id);
   const history = useValidationHistory(id, latest?.id);
   const [viewer, setViewer] = useState<ViewerTarget>();
-  const [dataDoc, setDataDoc] = useState<ShipmentDocument>();
+  const [dataDoc, setDataDoc] = useState<{ doc: ShipmentDocument; focus?: string }>();
 
   if (!shipment) return <LoadingCard error={error} />;
   // A past run picked in the history replaces the latest one in Findings and in the export.
@@ -69,7 +70,7 @@ export function ShipmentPage({ id }: { id: string }) {
           onUpload={(files) => void upload(files)}
           onValidate={(useAgent) => void validate(useAgent)}
           onOpen={setViewer}
-          onShowData={setDataDoc}
+          onShowData={(doc) => setDataDoc({ doc })}
           onError={setError}
         />
         <FindingsCard
@@ -79,6 +80,16 @@ export function ShipmentPage({ id }: { id: string }) {
           onOpen={setViewer}
           live={live}
           run={progress.validation}
+          review={
+            !demo && !history.past && latest
+              ? {
+                  busy: reviewing,
+                  reference: shipment.reference ?? shipment.id.slice(0, 8),
+                  onReview: reviewFindings,
+                  onCorrect: (doc, field) => setDataDoc({ doc, focus: evidencePointer(field) }),
+                }
+              : undefined
+          }
           progress={
             <ValidationProgress run={progress.validation} validating={busy === 'validate'} shownId={validation?.id} rules={rules} onShowFinding={(findingId) => void showFinding(findingId)} />
           }
@@ -97,7 +108,8 @@ export function ShipmentPage({ id }: { id: string }) {
       {dataDoc && (
         <DocumentDataSheet
           shipmentId={id}
-          doc={dataDoc}
+          doc={dataDoc.doc}
+          focus={dataDoc.focus}
           readOnly={demo}
           onClose={() => setDataDoc(undefined)}
           onReextracted={() => {

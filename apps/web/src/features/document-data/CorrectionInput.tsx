@@ -24,6 +24,7 @@ export function CorrectionInput({ field, value, error, corrected, modelValue, on
         <>
           <TextInput
             id={id}
+            data-pointer={field.pointer}
             value={value}
             inputMode={field.numeric ? 'numeric' : undefined}
             aria-invalid={!!error}

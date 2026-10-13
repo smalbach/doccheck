@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { api } from '../../api/client';
 import { ApiError } from '../../api/ApiError';
-import type { ProgressEvent, RuleDefinition, Shipment, ShipmentUpdate, Validation } from '../../api/types';
+import type { ProgressEvent, ReviewStatus, RuleDefinition, Shipment, ShipmentUpdate, Validation } from '../../api/types';
 import { useInterval } from '../../hooks/useInterval';
 import { useI18n } from '../../i18n/useI18n';
 import { errorMessage } from '../../lib/errorMessage';
@@ -145,5 +145,22 @@ export function useShipment(id: string) {
 
   const documents = useMemo(() => new Map((shipment?.documents ?? []).map((d) => [d.id, d])), [shipment]);
 
-  return { shipment, validation, validationLoaded, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove, progress: events.progress, lastLive: events.lastLive };
+  /** A decision about findings of the latest run; the answer is that run with the decision in it. */
+  const [reviewing, setReviewing] = useState(false);
+  const reviewFindings = async (fingerprints: string[], status: ReviewStatus, note?: string) => {
+    setReviewing(true);
+    try {
+      setValidation(await api.reviewFindings(id, { fingerprints, status, ...(note ? { note } : {}) }));
+      setError(undefined);
+      // The list and the dashboard count open findings: the shipment's group may change.
+      void refresh();
+    } catch (e) {
+      setError(errorMessage(e));
+      throw e;
+    } finally {
+      setReviewing(false);
+    }
+  };
+
+  return { reviewFindings, reviewing, shipment, validation, validationLoaded, rules, documents, error, setError, busy, extracting, refresh, upload, validate, update, remove, progress: events.progress, lastLive: events.lastLive };
 }

@@ -17,6 +17,8 @@ export interface DocumentDataSheetProps {
   shipmentId: string;
   doc: ShipmentDocument;
   readOnly: boolean;
+  /** Opened from a finding: start in edit mode on this field (a JSON pointer, or a parent of one). */
+  focus?: string;
   onClose: () => void;
   onReextracted: () => void;
   /** Values were corrected or reverted: the shipment needs validating again. */
@@ -24,11 +26,11 @@ export interface DocumentDataSheetProps {
 }
 
 /** What the extraction read from one document: issues first, then the key fields and the rows; values can be corrected by hand. */
-export function DocumentDataSheet({ shipmentId, doc, readOnly, onClose, onReextracted, onCorrected }: DocumentDataSheetProps) {
+export function DocumentDataSheet({ shipmentId, doc, focus, readOnly, onClose, onReextracted, onCorrected }: DocumentDataSheetProps) {
   const { t } = useI18n();
   const { detail, setDetail, error: loadError } = useDocumentDetail(shipmentId, doc.id);
   const [actionError, setActionError] = useState<string>();
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(!!focus && !readOnly);
   const [notice, setNotice] = useState<MessageKey>();
   const error = actionError ?? (loadError && t('extracted.loadError', { message: loadError }));
   const corrected = useMemo(() => new Map((detail?.corrected ?? []).map((c) => [c.path, c.modelValue])), [detail]);
@@ -65,6 +67,7 @@ export function DocumentDataSheet({ shipmentId, doc, readOnly, onClose, onReextr
                 type={doc.detectedType}
                 data={detail.data}
                 corrected={corrected}
+                focus={focus}
                 onSaved={(next) => changed(next, 'extracted.saved')}
                 onCancel={() => setEditing(false)}
               />

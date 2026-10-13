@@ -42,7 +42,8 @@ export interface ShipmentPage {
   limit: number;
   offset: number;
   /** Over all of the user's shipments, whatever the filters. */
-  summary: { all: number; open: number; attention: number; done: number; findings: number };
+  /** findings: open ones (not accepted nor false positive); waiting: asked of the supplier. */
+  summary: { all: number; open: number; attention: number; done: number; findings: number; waiting: number };
 }
 
 export interface ShipmentUpdate {
@@ -91,8 +92,32 @@ export interface Validation {
   skipped: SkippedRule[];
   inputs: Record<string, string>;
   agent?: { status: 'done' | 'skipped' | 'failed'; citations: number; decisions: AgentDecision[]; error?: string };
-  findings: Finding[];
+  findings: ValidationFinding[];
+  /** Latest run only: the run before it, and its findings that are gone (resolved). */
+  previous?: { id: string; createdAt: string };
+  resolved?: ValidationFinding[];
 }
+
+/** open: nothing decided (or undone); waiting_supplier: corrected documents asked for; accepted, false_positive: closed. */
+export type ReviewStatus = 'open' | 'waiting_supplier' | 'accepted' | 'false_positive';
+
+export interface FindingReview {
+  status: ReviewStatus;
+  note?: string;
+  userName?: string;
+  at: string;
+}
+
+/** A finding as a validation run returns it; the latest run adds the user's decisions. */
+export type ValidationFinding = Finding & {
+  /** The rule and the evidence's fields and values: the same finding in another run has the same one. */
+  fingerprint?: string;
+  review?: FindingReview;
+  /** Newest first. */
+  history?: FindingReview[];
+  /** Not in the previous run. */
+  isNew?: boolean;
+};
 
 export interface SampleError {
   kind: string;

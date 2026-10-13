@@ -4,6 +4,7 @@ import type { TextLine } from '@doccheck/extraction';
 import type { Destination, DocumentStatus, DocumentType, Finding, Isf, Severity, Shipment, ShipmentDocument, ShipmentStatus, TransportMode } from '@doccheck/schemas';
 import type { Pool, PoolClient } from 'pg';
 import { PG_POOL } from '../db/db.module';
+import type { FingerprintedFinding } from './reviews.types';
 
 export interface ExtractionRow {
   documentId: string;
@@ -90,7 +91,8 @@ export interface ShipmentPage {
   limit: number;
   offset: number;
   /** Over all of the user's shipments, whatever the filters. */
-  summary: { all: number; open: number; attention: number; done: number; findings: number };
+  /** findings: open ones (not accepted nor marked false positive); waiting: asked of the supplier. */
+  summary: { all: number; open: number; attention: number; done: number; findings: number; waiting: number };
 }
 
 export interface ShipmentPatch {
@@ -159,8 +161,9 @@ const toDocument = (r: Record<string, unknown>): ShipmentDocument => ({
 /** A value for a jsonb parameter; an absent value is SQL null. */
 const toJsonb = (value: unknown): string | null => (value === undefined || value === null ? null : JSON.stringify(value));
 
-const toFinding = (r: Record<string, unknown>): Finding => ({
+const toFinding = (r: Record<string, unknown>): FingerprintedFinding => ({
   id: r.id as string,
+  fingerprint: r.fingerprint as string,
   shipmentId: r.shipment_id as string,
   ruleId: r.rule_id as string,
   severity: r.severity as Finding['severity'],
@@ -228,7 +231,8 @@ export class ShipmentsRepository {
          select s.*,
            (select count(*)::int from documents d where d.shipment_id = s.id) as document_count,
            (select count(*)::int from findings f where f.validation_id =
-              (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)) as finding_count,
+              (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)
+              and not dc_finding_closed(f.shipment_id, f.fingerprint)) as finding_count,
            exists (select 1 from validations v where v.shipment_id = s.id) as validated
          from shipments s where s.user_id = $1
        ), matching as (select * from listed${where.length ? ` where ${where.join(' and ')}` : ''})
@@ -240,7 +244,11 @@ export class ShipmentsRepository {
       `with listed as (
          select s.status,
            (select count(*)::int from findings f where f.validation_id =
-              (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)) as finding_count,
+              (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)
+              and not dc_finding_closed(f.shipment_id, f.fingerprint)) as finding_count,
+           (select count(*)::int from findings f join finding_status st on st.shipment_id = f.shipment_id and st.fingerprint = f.fingerprint
+            where f.validation_id = (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)
+              and st.status = 'waiting_supplier') as waiting_count,
            exists (select 1 from validations v where v.shipment_id = s.id) as validated
          from shipments s where s.user_id = $1
        )
@@ -248,7 +256,8 @@ export class ShipmentsRepository {
          (count(*) filter (where ${STATUS_GROUP.open}))::int as open,
          (count(*) filter (where ${STATUS_GROUP.attention}))::int as attention,
          (count(*) filter (where ${STATUS_GROUP.done}))::int as done,
-         coalesce(sum(finding_count) filter (where validated), 0)::int as findings
+         coalesce(sum(finding_count) filter (where validated), 0)::int as findings,
+         coalesce(sum(waiting_count) filter (where validated), 0)::int as waiting
        from listed`,
       [userId],
     );
@@ -710,13 +719,13 @@ export class ShipmentsRepository {
     }
   }
 
-  async validationFindings(validationId: string): Promise<Finding[]> {
+  async validationFindings(validationId: string): Promise<FingerprintedFinding[]> {
     const { rows } = await this.pool.query('select * from findings where validation_id = $1 order by id', [validationId]);
     return rows.map(toFinding);
   }
 
   /** Findings of the most recent validation run. */
-  async latestFindings(shipmentId: string): Promise<Finding[]> {
+  async latestFindings(shipmentId: string): Promise<FingerprintedFinding[]> {
     const { rows } = await this.pool.query(
       `select f.* from findings f
        where f.validation_id = (select id from validations where shipment_id = $1 order by created_at desc limit 1)

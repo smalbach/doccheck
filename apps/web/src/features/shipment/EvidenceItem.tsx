@@ -9,10 +9,12 @@ export interface EvidenceItemProps {
   evidence: Evidence;
   doc?: ShipmentDocument;
   onOpen: (target: ViewerTarget) => void;
+  /** Opens the document's data at this field, to correct it (absent: read only). */
+  onCorrect?: (doc: ShipmentDocument, field: string) => void;
 }
 
 /** One cited value: which document and field, what it says, and a link to the line in the PDF. */
-export function EvidenceItem({ evidence, doc, onOpen }: EvidenceItemProps) {
+export function EvidenceItem({ evidence, doc, onOpen, onCorrect }: EvidenceItemProps) {
   const { t } = useI18n();
   const { source } = evidence;
   const docLabel = doc ? t(DOCUMENT_TYPE_KEY[doc.detectedType]) : evidence.documentId;
@@ -38,6 +40,11 @@ export function EvidenceItem({ evidence, doc, onOpen }: EvidenceItemProps) {
           aria-label={t('shipment.findings.openPage', { page: source.page, document: docLabel })}
         >
           {t('shipment.findings.page', { page: source.page })} ↗
+        </Button>
+      )}
+      {doc && onCorrect && doc.status === 'EXTRACTED' && (
+        <Button variant="link" size="sm" className="evidence-link" title={t('review.correctHint')} onClick={() => onCorrect(doc, evidence.field)}>
+          {t('review.correct')}
         </Button>
       )}
     </li>

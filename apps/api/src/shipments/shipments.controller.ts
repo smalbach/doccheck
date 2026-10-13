@@ -7,7 +7,7 @@ import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { AlertsRepository } from './alerts.repository';
 import { ShipmentOwnerGuard } from './shipment-owner.guard';
-import { CorrectDataDto, CreateShipmentDto, ListShipmentsQuery, ReextractDto, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
+import { CorrectDataDto, CreateShipmentDto, ListShipmentsQuery, ReextractDto, ReviewFindingsDto, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
 import { ShipmentsService } from './shipments.service';
 
 const MAX_PDF_BYTES = 20 * 1024 * 1024;
@@ -175,5 +175,15 @@ export class ShipmentsController {
   @Get(':id/findings')
   findings(@Param('id') id: string) {
     return this.shipments.findings(id);
+  }
+
+  /**
+   * Records a decision about findings of the latest run: open, waiting_supplier, accepted or
+   * false_positive (the last two need a note). Responds with the latest run, as GET :id/validation.
+   */
+  @Post(':id/findings/review')
+  @HttpCode(200)
+  review(@CurrentUser() user: PublicUser, @Param('id') id: string, @Body(new ZodValidationPipe(ReviewFindingsDto)) dto: ReviewFindingsDto) {
+    return this.shipments.reviewFindings(id, user.id, dto);
   }
 }

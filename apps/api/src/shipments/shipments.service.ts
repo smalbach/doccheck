@@ -15,7 +15,9 @@ import { ProgressService } from '../progress/progress.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { DocumentProcessor } from './document.processor';
 import { ExtractionQueue } from './extraction.queue';
-import type { CreateShipmentDto, ListShipmentsQuery, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
+import { FindingReviewsRepository } from './reviews.repository';
+import type { ReviewedFinding } from './reviews.types';
+import type { CreateShipmentDto, ListShipmentsQuery, ReviewFindingsDto, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
 import { ShipmentsRepository, type CorrectionResult, type ExtractionRow, type NewCorrection } from './shipments.repository';
 
 /** Citation progress events carry the passage's title cut to this length. */
@@ -70,6 +72,7 @@ export class ShipmentsService {
     private readonly progress: ProgressService,
     private readonly progressRepo: ProgressRepository,
     private readonly processor: DocumentProcessor,
+    private readonly reviews: FindingReviewsRepository,
   ) {}
 
   async create(dto: CreateShipmentDto, userId: string): Promise<Shipment> {
@@ -451,12 +454,44 @@ export class ShipmentsService {
     return { name: doc.fileName, bytes: await this.storage.get(doc.storageKey) };
   }
 
-  /** Latest validation run: rules that ran or were skipped, agent outcome and findings. */
+  /**
+   * Latest validation run: rules that ran or were skipped, agent outcome and findings, each with the
+   * user's decisions about it and whether it is new since the previous run; `resolved` lists the
+   * previous run's findings that are gone.
+   */
   async latestValidation(id: string) {
     await this.get(id);
     const validation = await this.repo.latestValidation(id);
     if (!validation) throw new NotFoundException(`Shipment ${id} has not been validated yet`);
-    return { ...validation, findings: await this.repo.latestFindings(id) };
+    const [findings, history, previous] = await Promise.all([
+      this.repo.latestFindings(id),
+      this.reviews.history(id),
+      this.reviews.previousValidation(id, validation.id),
+    ]);
+    const before = previous ? await this.repo.validationFindings(previous.id) : [];
+    const current = new Set(findings.map((f) => f.fingerprint));
+    const earlier = new Set(before.map((f) => f.fingerprint));
+    const reviewed: ReviewedFinding[] = findings.map((f) => {
+      const list = history.get(f.fingerprint) ?? [];
+      return { ...f, ...(list[0] ? { review: list[0] } : {}), history: list, isNew: previous !== null && !earlier.has(f.fingerprint) };
+    });
+    return {
+      ...validation,
+      findings: reviewed,
+      ...(previous ? { previous, resolved: before.filter((f) => !current.has(f.fingerprint)) } : {}),
+    };
+  }
+
+  /** Records a decision about findings of the latest run; responds with that run, as latestValidation. */
+  async reviewFindings(id: string, userId: string, dto: ReviewFindingsDto) {
+    await this.get(id);
+    const findings = await this.repo.latestFindings(id);
+    const byFingerprint = new Map(findings.map((f) => [f.fingerprint, f]));
+    const unknown = dto.fingerprints.filter((fp) => !byFingerprint.has(fp));
+    if (unknown.length) throw new BadRequestException(`Not findings of the latest validation: ${unknown.join(', ')}`);
+    const picked = [...new Set(dto.fingerprints)].map((fp) => ({ fingerprint: fp, ruleId: byFingerprint.get(fp)!.ruleId }));
+    await this.reviews.save(id, userId, picked, dto.status, dto.note || undefined);
+    return this.latestValidation(id);
   }
 
   /** Every validation run, newest first, with finding counts. */

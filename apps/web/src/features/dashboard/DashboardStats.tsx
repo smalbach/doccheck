@@ -13,7 +13,7 @@ export function DashboardStats({ totals }: { totals: ShipmentPage['summary'] }) 
         value={totals.attention}
         href="#/app/shipments"
         tone={totals.attention ? 'attention' : 'neutral'}
-        hint={t('dashboard.stats.attentionHint', { count: totals.findings })}
+        hint={[t('dashboard.stats.attentionHint', { count: totals.findings }), totals.waiting ? t('dashboard.stats.waitingHint', { count: totals.waiting }) : ''].filter(Boolean).join(' · ')}
       />
       <StatTile label={t('dashboard.stats.clean')} value={totals.done} href="#/app/shipments" tone="ok" hint={t('dashboard.stats.cleanHint')} />
     </div>

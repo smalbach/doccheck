@@ -32,6 +32,7 @@ import type {
   GoodsQuery,
   InsightsSummary,
   Paged,
+  ReviewStatus,
   ContainerRow,
   ContainersQuery,
   PartiesQuery,
@@ -93,6 +94,9 @@ export const api = {
 
   samples: () => request<Sample[]>('/demo/samples'),
   loadSample: (sampleId: string) => request<Shipment>(`/demo/samples/${encodeURIComponent(sampleId)}`, { method: 'POST' }),
+
+  /** Records a decision about findings of the latest run; answers with that run. */
+  reviewFindings: (id: string, body: { fingerprints: string[]; status: ReviewStatus; note?: string }) => request<Validation>(`${shipmentPath(id)}/findings/review`, jsonBody(body)),
 
   results: () => request<Results>('/results'),
 

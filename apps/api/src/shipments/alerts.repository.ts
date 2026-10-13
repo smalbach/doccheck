@@ -5,7 +5,7 @@ import { ALERT_KINDS, type Alert, type AlertKind, type AlertList } from './alert
 
 /**
  * Every alert of the user's shipments ($1), one row each, with the moment it arose (`at`).
- * - critical: the latest validation has CRITICAL or HIGH findings.
+ * - critical: the latest validation has CRITICAL or HIGH findings not accepted nor marked false positive.
  * - failed-document: a document whose extraction failed.
  * - ocr: an extracted document read with OCR (an issue starting "Read with OCR") that the latest
  *   validation's findings cite as evidence, or whose shipment was never validated. Once validated
@@ -25,7 +25,7 @@ const ALERTS = `
     select 'critical' as kind, lv.shipment_id, null::uuid as document_id, null::text as file_name, lv.created_at as at,
       jsonb_build_object('critical', count(*) filter (where f.severity = 'CRITICAL'), 'high', count(*) filter (where f.severity = 'HIGH')) as detail
     from lv join findings f on f.validation_id = lv.id
-    where f.severity in ('CRITICAL', 'HIGH')
+    where f.severity in ('CRITICAL', 'HIGH') and not dc_finding_closed(lv.shipment_id, f.fingerprint)
     group by lv.shipment_id, lv.created_at
     union all
     select 'failed-document', d.shipment_id, d.id, d.file_name, d.created_at, jsonb_strip_nulls(jsonb_build_object('error', d.error))

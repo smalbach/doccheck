@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { api } from '../../api/client';
 import { ApiError } from '../../api/ApiError';
 import type { DocumentDetail, DocumentType, ExtractedData } from '../../api/types';
@@ -18,12 +18,14 @@ export interface CorrectionFormProps {
   data: ExtractedData;
   /** Values corrected by hand: pointer → what the model read. */
   corrected: ReadonlyMap<string, unknown>;
+  /** A field to focus first: its pointer, or one that starts it ("/lines/2/quantity" focuses its value). */
+  focus?: string;
   onSaved: (detail: DocumentDetail) => void;
   onCancel: () => void;
 }
 
 /** Edit mode of the extracted data: the key fields and invoice lines as inputs; Save sends only what changed. */
-export function CorrectionForm({ shipmentId, documentId, type, data, corrected, onSaved, onCancel }: CorrectionFormProps) {
+export function CorrectionForm({ shipmentId, documentId, type, data, corrected, focus, onSaved, onCancel }: CorrectionFormProps) {
   const { t } = useI18n();
   const fields = useMemo(() => buildCorrectionFields(type, data), [type, data]);
   const groups = useMemo(() => groupCorrectionFields(fields), [fields]);
@@ -31,6 +33,16 @@ export function CorrectionForm({ shipmentId, documentId, type, data, corrected, 
   const [issues, setIssues] = useState<Map<string, string>>(new Map());
   const [error, setError] = useState<string>();
   const [busy, setBusy] = useState(false);
+  const form = useRef<HTMLFormElement>(null);
+  const target = focus ? (fields.find((f) => f.pointer === focus) ?? fields.find((f) => f.pointer.startsWith(`${focus}/`))) : undefined;
+  // Opened from a finding: bring its field into view and focus it, once.
+  useEffect(() => {
+    if (!target) return;
+    const el = form.current?.querySelector<HTMLElement>(`[data-pointer="${CSS.escape(target.pointer)}"]`);
+    el?.scrollIntoView({ block: 'center' });
+    el?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Issues on values without an input (a required field the change removed, a line number...).
   const shown = new Set(fields.map((f) => f.pointer));
@@ -74,7 +86,7 @@ export function CorrectionForm({ shipmentId, documentId, type, data, corrected, 
   );
 
   return (
-    <form className="correction-form" onSubmit={(e) => void save(e)} noValidate>
+    <form ref={form} className="correction-form" onSubmit={(e) => void save(e)} noValidate>
       <p className="muted small">{t('extracted.editHint')}</p>
       {groups.map((g) =>
         g.line === undefined ? (

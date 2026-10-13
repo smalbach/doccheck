@@ -515,7 +515,7 @@ describe('shipments', () => {
     assert.deepEqual((await page('q=pg_')).items.map((s) => s.reference), ['PG_%']); // _ and % are literal
     assert.deepEqual((await page('status=done')).items.map((s) => s.reference), ['PG-a']);
     assert.deepEqual((await page('status=open')).total, 3);
-    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0 });
+    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0 });
   });
 
   it('edits a shipment and keeps every validation run as history', async () => {
@@ -1694,6 +1694,68 @@ describe('corrections', () => {
     assert.equal(passes('GET', `/shipments/${id}/documents/${id}/corrections`), true);
     assert.equal(passes('PATCH', `/shipments/${id}/documents/${id}/data`), false);
     assert.equal(passes('POST', `/shipments/${id}/documents/${id}/data/revert`), false);
+  });
+});
+
+describe('finding reviews', () => {
+  /** A CA shipment whose B/L says 121 packages (X2, HIGH), validated once clean and once with the finding. */
+  const withFinding = async (user) => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' }, user);
+    const ids = {};
+    for (const [type, data] of Object.entries({ COMMERCIAL_INVOICE: sampleInvoice, PACKING_LIST: samplePackingList, BILL_OF_LADING: sampleBillOfLading })) {
+      const id = randomUUID();
+      await repo.insertDocument({ id, shipmentId: s.id, fileName: `${type}.pdf`, storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+      await repo.saveExtraction(id, { pageCount: 1, detectedType: type, typeConfidence: 1 }, { documentId: id, documentType: type, model: 'test', promptVersion: 'test', raw: {}, data, issues: [], pdfLines: [] });
+      ids[type] = id;
+    }
+    await call('POST', `/shipments/${s.id}/validate?agent=false`, undefined, user);
+    await call('PATCH', `/shipments/${s.id}/documents/${ids.BILL_OF_LADING}/data`, { changes: [{ path: '/totalPackages', value: 121 }] }, user);
+    await call('POST', `/shipments/${s.id}/validate?agent=false`, undefined, user);
+    return { s, blId: ids.BILL_OF_LADING };
+  };
+
+  it('records decisions, keeps them across runs, and counts only open findings', async () => {
+    const user = await signUp('Reviews');
+    const { s, blId } = await withFinding(user);
+    const latest = (await call('GET', `/shipments/${s.id}/validation`, undefined, user)).body;
+    assert.deepEqual(latest.findings.map((f) => [f.ruleId, f.isNew, f.review, f.history]), [['X2', true, undefined, []]]);
+    assert.deepEqual(latest.resolved, []);
+    const fp = latest.findings[0].fingerprint;
+    assert.match(fp, /^[0-9a-f]{32}$/);
+    const review = (body) => call('POST', `/shipments/${s.id}/findings/review`, body, user);
+    const summary = async () => (await call('GET', '/shipments', undefined, user)).body;
+    assert.equal((await summary()).items[0].findingCount, 1);
+
+    assert.equal((await review({ fingerprints: [fp], status: 'accepted' })).status, 400); // needs a note
+    assert.equal((await review({ fingerprints: ['0'.repeat(32)], status: 'open' })).status, 400);
+    assert.equal((await review({ fingerprints: [fp], status: 'done' })).status, 400);
+
+    const waiting = await review({ fingerprints: [fp], status: 'waiting_supplier', note: 'Asked the shipper' });
+    assert.equal(waiting.status, 200);
+    assert.deepEqual([waiting.body.findings[0].review.status, waiting.body.findings[0].review.note, waiting.body.findings[0].review.userName], ['waiting_supplier', 'Asked the shipper', 'Reviews']);
+    assert.deepEqual([(await summary()).summary.findings, (await summary()).summary.waiting], [1, 1]);
+
+    const accepted = (await review({ fingerprints: [fp], status: 'accepted', note: 'One pallet is a spare' })).body;
+    assert.deepEqual(accepted.findings[0].history.map((h) => h.status), ['accepted', 'waiting_supplier']);
+    const after = await summary();
+    assert.deepEqual([after.items[0].findingCount, after.summary.findings, after.summary.waiting, after.summary.done], [0, 0, 0, 1]);
+    const alerts = (await call('GET', '/shipments/alerts', undefined, user)).body;
+    assert.equal((alerts.items ?? alerts).filter((a) => a.kind === 'critical').length, 0);
+
+    // The same finding in a new run keeps its decision and is not new.
+    const again = (await call('POST', `/shipments/${s.id}/validate?agent=false`, undefined, user), (await call('GET', `/shipments/${s.id}/validation`, undefined, user)).body);
+    assert.deepEqual([again.findings[0].fingerprint, again.findings[0].review.status, again.findings[0].isNew], [fp, 'accepted', false]);
+
+    // Reopened, it counts again; once the value is fixed it shows as resolved.
+    await review({ fingerprints: [fp], status: 'open' });
+    assert.equal((await summary()).items[0].findingCount, 1);
+    await call('POST', `/shipments/${s.id}/documents/${blId}/data/revert`, undefined, user);
+    await call('POST', `/shipments/${s.id}/validate?agent=false`, undefined, user);
+    const fixed = (await call('GET', `/shipments/${s.id}/validation`, undefined, user)).body;
+    assert.deepEqual([fixed.findings.length, fixed.resolved.map((f) => f.ruleId)], [0, ['X2']]);
+
+    const other = await signUp('Not theirs');
+    assert.equal((await call('POST', `/shipments/${s.id}/findings/review`, { fingerprints: [fp], status: 'open' }, other)).status, 404);
   });
 });
 
