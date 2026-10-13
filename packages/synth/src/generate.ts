@@ -177,6 +177,8 @@ function shortName(party: Party): string {
 /** Builds one clean, internally consistent shipment. Every shared rule must pass on it. */
 export function generateShipment(id: string, destination: Destination, seed: number, opts: GenerateOptions = {}): SyntheticShipment {
   const rng = new Rng(seed);
+  // Catalog parties always carry their country (the schema allows it to be absent for scans).
+  const countryOf = (p: Party) => p.address.country!;
   const templates = opts.templates ?? TEMPLATES;
   const buyer = rng.pick((opts.buyers ?? BUYERS).filter((b) => b.destination === destination));
   const seller = rng.pick(opts.sellers ?? SELLERS);
@@ -293,7 +295,7 @@ export function generateShipment(id: string, destination: Destination, seed: num
     notifyParty: buyer.party,
     vessel: rng.pick(VESSELS),
     voyage: `${pad(rng.int(1, 99), 3)}${rng.pick(['E', 'W', 'N', 'S'])}`,
-    placeOfReceipt: { name: seller.party.address.city ?? portOfLoading.name, country: seller.party.address.country },
+    placeOfReceipt: { name: seller.party.address.city ?? portOfLoading.name, country: countryOf(seller.party) },
     portOfLoading,
     portOfDischarge,
     placeOfDelivery: buyer.placeOfDelivery,
@@ -320,7 +322,7 @@ export function generateShipment(id: string, destination: Destination, seed: num
       consigneeNumber: irs,
       manufacturer,
       shipToParty: buyer.shipTo ?? buyer.party,
-      countryOfOrigin: seller.party.address.country,
+      countryOfOrigin: countryOf(seller.party),
       htsCode: lines[0].product.hsCode.replace('.', ''),
       containerStuffingLocation: manufacturer.address,
       consolidator: forwarder,

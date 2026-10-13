@@ -42,7 +42,7 @@ export function normalizePostalCode(s: string): string {
  * Street lines only. Drops lines that just repeat the locality ("Laval, QC, H7S 1P6", "CA"), which
  * extraction sometimes copies into the street lines although city, region and postal code have fields.
  */
-export function streetLines(a: { lines: string[]; city?: string; region?: string; postalCode?: string; country: string }): string[] {
+export function streetLines(a: { lines: string[]; city?: string; region?: string; postalCode?: string; country?: string }): string[] {
   const locality = new Set(base([a.city, a.region, a.postalCode, a.country].filter(Boolean).join(' ')).split(' ').filter(Boolean));
   return a.lines.filter((line) => {
     const tokens = base(line).split(' ').filter(Boolean);

@@ -62,7 +62,8 @@ export const Address = z.object({
   city: z.string().optional(),
   region: z.string().optional(),
   postalCode: z.string().optional(),
-  country: CountryCode,
+  /** Absent when the document does not show it legibly (a scan can lose the country line). */
+  country: CountryCode.optional(),
 });
 export type Address = z.infer<typeof Address>;
 

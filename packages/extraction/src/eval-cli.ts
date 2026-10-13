@@ -40,6 +40,8 @@ interface DocResult {
   type: ExtractableType;
   template: string;
   detectedType: string;
+  /** The normalized document passed schema validation, so the rules can use it. */
+  valid: boolean;
   scores: FieldScore[];
   issues: string[];
   error?: string;
@@ -97,7 +99,7 @@ async function main() {
       const present = DOCS.filter((d) => existsSync(join(dir, d.file)));
 
       for (const d of present) {
-        const result: DocResult = { shipment: id, type: d.type, template: String(truth.render[d.template]), detectedType: '', scores: [], issues: [], cached: false };
+        const result: DocResult = { shipment: id, type: d.type, template: String(truth.render[d.template]), detectedType: '', valid: false, scores: [], issues: [], cached: false };
         try {
           const pdf = await readFile(join(dir, d.file));
           const out = await extractDocument(pdf, llm);
@@ -106,7 +108,10 @@ async function main() {
           result.usage = out.usage;
           result.cached = out.cached;
           // Score against the expected type even if classification failed: that is a miss on every field.
-          result.scores = scoreDocument(d.type, truth.documents[d.key], out.documentType === d.type ? out.data : null);
+          // A document that fails validation is scored on what was read (out.partial) and counted as
+          // invalid separately: field accuracy measures reading, validity whether the rules can run.
+          result.valid = out.documentType === d.type && !!out.data;
+          result.scores = scoreDocument(d.type, truth.documents[d.key], out.documentType === d.type ? (out.data ?? out.partial ?? null) : null);
           if (out.documentType === d.type && out.data) (extracted as Record<string, unknown>)[d.key] = out.data;
         } catch (err) {
           result.error = err instanceof Error ? err.message : String(err);
@@ -144,7 +149,10 @@ async function main() {
 
   // ---- aggregate
   const all = docResults.flatMap((r) => r.scores);
-  const byType = DOCS.filter((d) => docResults.some((r) => r.type === d.type)).map((d) => ({ type: d.type, ...tally(docResults.filter((r) => r.type === d.type).flatMap((r) => r.scores)) }));
+  const byType = DOCS.filter((d) => docResults.some((r) => r.type === d.type)).map((d) => {
+    const docs = docResults.filter((r) => r.type === d.type);
+    return { type: d.type, documents: docs.length, validDocuments: docs.filter((r) => r.valid).length, ...tally(docs.flatMap((r) => r.scores)) };
+  });
   const templates = [...new Set(docResults.map((r) => `${r.type} · ${r.template}`))].sort();
   const byTemplate = templates.map((t) => ({ template: t, ...tally(docResults.filter((r) => `${r.type} · ${r.template}` === t).flatMap((r) => r.scores)) }));
   const patterns = [...new Set(all.map((s) => `${s.pattern}`))];
@@ -184,6 +192,7 @@ async function main() {
     failedDocuments: errors.length,
     cachedDocuments: docResults.filter((r) => r.cached).length,
     classificationAccuracy: classification,
+    validDocuments: docResults.filter((r) => r.valid).length,
     overall: tally(all),
     byType,
     byTemplate,
@@ -205,11 +214,11 @@ async function main() {
     '',
     `Data \`${basename(dataDir)}\` · model build ${report.modelVersion ?? 'unknown'} · prompt \`${PROMPT_VERSION}\` · ${ids.length} shipments · ${docResults.length} PDFs · ${errors.length} failed · ${report.cachedDocuments} from cache`,
     '',
-    `**Field accuracy ${pct(report.overall.accuracy)}** (${report.overall.correct}/${report.overall.total}: ${report.overall.wrong} wrong, ${report.overall.missing} missing, ${report.overall.spurious} spurious) · classification ${pct(classification)}`,
+    `**Field accuracy ${pct(report.overall.accuracy)}** (${report.overall.correct}/${report.overall.total}: ${report.overall.wrong} wrong, ${report.overall.missing} missing, ${report.overall.spurious} spurious) · classification ${pct(classification)} · ${report.validDocuments}/${docResults.length} documents valid (rules can run on them)`,
     '',
-    '| Document | Accuracy | Correct | Wrong | Missing | Spurious |',
-    '| --- | --- | --- | --- | --- | --- |',
-    ...byType.map((t) => `| ${t.type} | ${pct(t.accuracy)} | ${t.correct} | ${t.wrong} | ${t.missing} | ${t.spurious} |`),
+    '| Document | Accuracy | Correct | Wrong | Missing | Spurious | Valid documents |',
+    '| --- | --- | --- | --- | --- | --- | --- |',
+    ...byType.map((t) => `| ${t.type} | ${pct(t.accuracy)} | ${t.correct} | ${t.wrong} | ${t.missing} | ${t.spurious} | ${t.validDocuments}/${t.documents} |`),
     '',
     '## By template',
     '',

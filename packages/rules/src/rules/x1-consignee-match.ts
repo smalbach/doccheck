@@ -41,10 +41,12 @@ export const x1ConsigneeMatch: Rule = {
 
     const postalDiffers =
       inv.address.postalCode && bl.address.postalCode && normalizePostalCode(inv.address.postalCode) !== normalizePostalCode(bl.address.postalCode);
-    if (street(inv) !== street(bl) || postalDiffers || inv.address.country !== bl.address.country) {
+    // A country that one document does not show legibly is not a difference.
+    const countryDiffers = !!inv.address.country && !!bl.address.country && inv.address.country !== bl.address.country;
+    if (street(inv) !== street(bl) || postalDiffers || countryDiffers) {
       const field = street(inv) !== street(bl) ? 'consignee.address.lines[0]' : postalDiffers ? 'consignee.address.postalCode' : 'consignee.address.country';
       const value = (p: Party) =>
-        field === 'consignee.address.lines[0]' ? streetLines(p.address).join(', ') : field === 'consignee.address.postalCode' ? p.address.postalCode ?? '' : p.address.country;
+        field === 'consignee.address.lines[0]' ? streetLines(p.address).join(', ') : field === 'consignee.address.postalCode' ? p.address.postalCode ?? '' : p.address.country ?? '';
       results.push({
         message: `Consignee ${inv.name} has a different address on the invoice ("${value(inv)}") and on the BL ("${value(bl)}").`,
         evidence: [

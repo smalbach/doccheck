@@ -3,7 +3,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { classifyDocument } from './classify';
-import { countryCode, decimal, htsCode, isoDate, localeFor, normalizeBillOfLading, normalizeIsf, normalizePackingList, quantityUnit, weight, withLocale } from './normalize';
+import { countryCode, countryFromPostalCode, decimal, htsCode, isoDate, localeFor, normalizeBillOfLading, normalizeIsf, normalizePackingList, quantityUnit, weight, withLocale } from './normalize';
 import { readPdfText } from './pdf-text';
 import { findFieldSource, findSource } from './provenance';
 import type { RawBillOfLading, RawIsf, RawParty } from './raw-schemas';
@@ -72,6 +72,35 @@ describe('normalization', () => {
     expect(data?.consignee.address.country).toBe('CA');
     expect(data?.freightTerms).toBe('COLLECT');
     expect(issues[0]).toMatch(/containers\[0\]/);
+  });
+
+  it('keeps a party whose country is unreadable, and infers it from a CA or US postal code', () => {
+    expect([countryFromPostalCode('H7S 1P6'), countryFromPostalCode('77041', 'TX'), countryFromPostalCode('518112', 'Guangdong'), countryFromPostalCode('20457')]).toEqual(['CA', 'US', null, null]);
+    const party = { name: 'X Co', addressLines: ['1 Main St'], city: null, region: null, postalCode: null, country: '', taxId: null };
+    const raw: RawBillOfLading = {
+      blNumber: 'B1', documentTitle: 'BILL OF LADING', issuer: null, bookingNumber: null, carrierName: null, scac: null,
+      shipper: party, consignee: { ...party, region: 'QC', postalCode: 'H7S 1P6' }, notifyParty: null, vessel: null, voyage: null, placeOfReceipt: null,
+      portOfLoading: { name: 'Ningbo', country: 'CN' }, portOfDischarge: { name: 'Vancouver', country: 'CA' }, placeOfDelivery: null,
+      containers: [], totalPackages: '10', totalGrossWeight: { value: '500', unit: 'KG' }, marksAndNumbers: null, cargoDescription: 'TOYS',
+      freightTerms: null, references: [], placeOfIssue: null, dateOfIssue: null, shippedOnBoardDate: null,
+    };
+    const { data } = normalizeBillOfLading(raw);
+    expect([data?.shipper.name, data?.shipper.address.country, data?.consignee.address.country]).toEqual(['X Co', undefined, 'CA']);
+  });
+
+  it('returns what it could read when the document fails validation', () => {
+    const party = { name: 'X Co', addressLines: ['1 Main St'], city: null, region: null, postalCode: null, country: 'CN', taxId: null };
+    const raw: RawBillOfLading = {
+      blNumber: 'B1', documentTitle: 'BILL OF LADING', issuer: null, bookingNumber: null, carrierName: null, scac: null,
+      shipper: party, consignee: party, notifyParty: null, vessel: 'MERIDIAN STAR', voyage: null, placeOfReceipt: null,
+      portOfLoading: { name: 'Ningbo', country: 'CN' }, portOfDischarge: { name: 'Vancouver', country: 'CA' }, placeOfDelivery: null,
+      containers: [], totalPackages: '10', totalGrossWeight: { value: 'illegible', unit: null }, marksAndNumbers: null, cargoDescription: 'TOYS',
+      freightTerms: null, references: [], placeOfIssue: null, dateOfIssue: null, shippedOnBoardDate: null,
+    };
+    const { data, partial, issues } = normalizeBillOfLading(raw);
+    expect(data).toBeNull();
+    expect(issues.some((i) => i.startsWith('totalGrossWeight'))).toBe(true);
+    expect(partial).toMatchObject({ blNumber: 'B1', vessel: 'MERIDIAN STAR', totalPackages: 10 });
   });
 });
 

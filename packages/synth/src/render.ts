@@ -35,7 +35,7 @@ const w = (x: Weight | undefined, style: Style) => (x ? `${num(x.raw.value, styl
 
 export function address(a: Address, style: Style): string {
   const cityLine = [a.city, a.region, a.postalCode].filter(Boolean).join(style === 'legacy' ? ' ' : ', ');
-  const rows = [...a.lines, cityLine, a.country].filter(Boolean);
+  const rows = [...a.lines, cityLine, a.country].filter((r): r is string => !!r);
   return rows.map((r) => esc(style === 'legacy' ? r.toUpperCase() : r)).join('<br>');
 }
 

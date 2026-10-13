@@ -24,6 +24,12 @@ import type { RawBillOfLading, RawInvoice, RawIsf, RawPackingList, RawParty, Raw
 
 export interface NormalizeResult<T> {
   data: T | null;
+  /**
+   * When `data` is null: what could be normalized anyway, field by field. Not valid against the
+   * schema (a required value is missing or unreadable), so the rules never run on it; it is kept
+   * to show and score what was read.
+   */
+  partial?: unknown;
   /** Fields that were printed but could not be normalized, or required fields that are missing. */
   issues: string[];
 }
@@ -212,13 +218,25 @@ function valid<S extends z.ZodType>(schema: S, value: unknown, field: string, is
   return undefined;
 }
 
+/**
+ * Canadian and US addresses identify their country by the postal code alone ("H7S 1P6", "TX 77041"),
+ * which helps when the country line is missing or unreadable on a scan.
+ */
+export function countryFromPostalCode(postalCode: string | null | undefined, region?: string | null): string | null {
+  const pc = clean(postalCode)?.toUpperCase();
+  if (!pc) return null;
+  if (/^[ABCEGHJ-NPRSTVXY]\d[A-Z] ?\d[A-Z]\d$/.test(pc)) return 'CA';
+  if (/^\d{5}(-\d{4})?$/.test(pc) && /^[A-Z]{2}$/.test(clean(region)?.toUpperCase() ?? '')) return 'US';
+  return null;
+}
+
 function rawAddress(p: RawParty): Address {
   const address: Address = {
     lines: p.addressLines.map((l) => clean(l)).filter((l): l is string => !!l),
     city: clean(p.city) ?? undefined,
     region: clean(p.region) ?? undefined,
     postalCode: clean(p.postalCode) ?? undefined,
-    country: countryCode(p.country) ?? '',
+    country: countryCode(p.country) ?? countryFromPostalCode(p.postalCode, p.region) ?? undefined,
   };
   address.lines = streetLines(address);
   return address;
@@ -263,7 +281,7 @@ const prune = <T extends object>(o: T): T => Object.fromEntries(Object.entries(o
 function finish<S extends z.ZodType>(schema: S, value: unknown, issues: string[]): NormalizeResult<z.infer<S>> {
   const r = schema.safeParse(value);
   if (r.success) return { data: r.data, issues };
-  return { data: null, issues: [...issues, ...r.error.issues.map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`)] };
+  return { data: null, partial: value, issues: [...issues, ...r.error.issues.map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`)] };
 }
 
 /** Issuer conventions from seller.country. */

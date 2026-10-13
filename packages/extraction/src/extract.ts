@@ -53,6 +53,8 @@ export interface ExtractionResult<T = CommercialInvoice | PackingList | BillOfLa
   raw: unknown;
   /** Normalized document; null when a required field is missing or unreadable. */
   data: T | null;
+  /** When `data` is null: the values that could be normalized (see NormalizeResult.partial). */
+  partial?: unknown;
   issues: string[];
   usage?: Usage;
   cached: boolean;
@@ -70,8 +72,8 @@ export function extractionRequest(pdf: PdfText, type: ExtractableType) {
 export async function extractFromText<K extends ExtractableType>(pdf: PdfText, type: K, llm: LlmClient): Promise<Omit<ExtractionResult<Canonical[K]>, 'documentType' | 'typeConfidence' | 'pdf'>> {
   const pipeline = PIPELINES[type];
   const { output, usage, cached } = await llm.call(PROMPT_VERSION, extractionRequest(pdf, type));
-  const { data, issues } = pipeline.normalize(output as never);
-  return { raw: output, data, issues, usage, cached };
+  const { data, partial, issues } = pipeline.normalize(output as never);
+  return { raw: output, data, partial, issues, usage, cached };
 }
 
 /** PDF bytes -> classified, extracted and normalized document. `type` skips classification. */

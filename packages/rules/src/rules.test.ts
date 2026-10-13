@@ -96,6 +96,15 @@ describe('rule engine', () => {
     expect(x1[0].evidence.map((e) => e.field)).toEqual(['consignee.address.lines[0]', 'consignee.address.lines[0]']);
   });
 
+  it('X1: a country one document does not show is not a difference', () => {
+    const ctx = clean();
+    const { country: _c, ...address } = sampleBillOfLading.consignee.address;
+    ctx.billOfLading!.data.consignee = { ...sampleBillOfLading.consignee, address };
+    expect(ruleIds(ctx)).toEqual([]);
+    ctx.billOfLading!.data.consignee.address.country = 'US';
+    expect(ruleIds(ctx)).toEqual(['X1']);
+  });
+
   it('X1: ignores locality lines copied into the street lines', () => {
     const ctx = clean();
     const a = sampleBillOfLading.consignee.address;
