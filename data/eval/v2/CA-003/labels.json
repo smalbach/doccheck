@@ -1,0 +1,37 @@
+{
+  "id": "CA-003",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "95 rue Champlain",
+      "after": "175 rue Champlain",
+      "expectedRuleIds": [],
+      "description": "Consignee street address on the BL differs from the invoice. Not detectable: the invoice has no consignee to compare with."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "after": null,
+      "expectedRuleIds": [
+        "C1"
+      ],
+      "description": "Consignee missing from the invoice."
+    }
+  ]
+}

@@ -29,8 +29,8 @@ export class ResultsController {
     const extraction = [];
     for (const f of files.filter((f) => f.startsWith('extraction-'))) {
       const r = await read(f);
-      // extraction-<model>.json is the v1 set; extraction-<model>-<set>.json any other set (v1-scans, v1-isf).
-      const set = f.match(/^extraction-.+?-(v1[\w-]*)\.json$/)?.[1] ?? 'v1';
+      // extraction-<model>.json is the v1 set; extraction-<model>-<set>.json any other set (v1-scans, v1-isf, v2).
+      const set = f.match(/^extraction-.+?-(v\d[\w-]*)\.json$/)?.[1] ?? 'v1';
       extraction.push({
         set,
         file: f,

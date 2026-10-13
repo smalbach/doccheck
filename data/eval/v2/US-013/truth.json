@@ -1,0 +1,884 @@
+{
+  "id": "US-013",
+  "seed": 726625678,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "euro",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-2284",
+      "invoiceDate": "2026-07-17",
+      "poNumber": "PO-17037",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-07-23",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ambarlı"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 20,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750-OR",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour orange",
+          "quantity": {
+            "value": "3",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "245.88",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750-GN",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour green",
+          "quantity": {
+            "value": "4",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "327.84",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CP-750-BE",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour beige",
+          "quantity": {
+            "value": "1",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CP-750-BR",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour brown",
+          "quantity": {
+            "value": "2",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "163.92",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CP-750-BK",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour black",
+          "quantity": {
+            "value": "1",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CP-750-NV",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour navy",
+          "quantity": {
+            "value": "2",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "163.92",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 7,
+          "sku": "CP-750-GY",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour grey",
+          "quantity": {
+            "value": "2",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "163.92",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 8,
+          "sku": "CP-750-WH",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour white",
+          "quantity": {
+            "value": "1",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 9,
+          "sku": "CP-750-YL",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour yellow",
+          "quantity": {
+            "value": "3",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "245.88",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 10,
+          "sku": "CP-750-RD",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour red",
+          "quantity": {
+            "value": "1",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "81.96",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "380.00",
+        "raw": {
+          "value": "380.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "290.00",
+        "raw": {
+          "value": "290.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "1639.20",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-2284",
+      "invoiceRef": "INV-2026-2284",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-3",
+          "count": 3,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-17037/C/NO. 1-20",
+          "contents": [
+            {
+              "sku": "CP-750-OR",
+              "description": "Centrifugal pump 0.75 kW colour orange",
+              "quantity": {
+                "value": "3",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "43.50",
+            "raw": {
+              "value": "43.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "57.00",
+            "raw": {
+              "value": "57.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "4-7",
+          "count": 4,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-17037/C/NO. 1-20",
+          "contents": [
+            {
+              "sku": "CP-750-GN",
+              "description": "Centrifugal pump 0.75 kW colour green",
+              "quantity": {
+                "value": "4",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "58.00",
+            "raw": {
+              "value": "58.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "76.00",
+            "raw": {
+              "value": "76.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "8-8",
+          "count": 1,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-17037/C/NO. 1-20",
+          "contents": [
+            {
+              "sku": "CP-750-BE",
+              "description": "Centrifugal pump 0.75 kW colour beige",
+              "quantity": {
+                "value": "1",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14.50",
+            "raw": {
+              "value": "14.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "9-10",
+          "count": 2,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-17037/C/NO. 1-20",
+          "contents": [
+            {
+              "sku": "CP-750-BR",
+              "description": "Centrifugal pump 0.75 kW colour brown",
+              "quantity": {
+                "value": "2",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.00",
+            "raw": {
+              "value": "29.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "11-11",
+          "count": 1,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-17037/C/NO. 1-20",
+          "contents": [
+            {
+              "sku": "CP-750-BK",
+              "description": "Centrifugal pump 0.75 kW colour black",
+              "quantity": {
+                "value": "1",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14.50",
+            "raw": {
+              "value": "14.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "12-13",
+          "count": 2,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-17037/C/NO. 1-20",
+          "contents": [
+            {
+              "sku": "CP-750-NV",
+              "description": "Centrifugal pump 0.75 kW colour navy",
+              "quantity": {
+                "value": "2",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.00",
+            "raw": {
+              "value": "29.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "14-15",
+          "count": 2,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-17037/C/NO. 1-20",
+          "contents": [
+            {
+              "sku": "CP-750-GY",
+              "description": "Centrifugal pump 0.75 kW colour grey",
+              "quantity": {
+                "value": "2",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.00",
+            "raw": {
+              "value": "29.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "16-16",
+          "count": 1,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-17037/C/NO. 1-20",
+          "contents": [
+            {
+              "sku": "CP-750-WH",
+              "description": "Centrifugal pump 0.75 kW colour white",
+              "quantity": {
+                "value": "1",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14.50",
+            "raw": {
+              "value": "14.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "17-19",
+          "count": 3,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-17037/C/NO. 1-20",
+          "contents": [
+            {
+              "sku": "CP-750-YL",
+              "description": "Centrifugal pump 0.75 kW colour yellow",
+              "quantity": {
+                "value": "3",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "43.50",
+            "raw": {
+              "value": "43.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "57.00",
+            "raw": {
+              "value": "57.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "20-20",
+          "count": 1,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-17037/C/NO. 1-20",
+          "contents": [
+            {
+              "sku": "CP-750-RD",
+              "description": "Centrifugal pump 0.75 kW colour red",
+              "quantity": {
+                "value": "1",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14.50",
+            "raw": {
+              "value": "14.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 20,
+        "netWeight": {
+          "kg": "290.00",
+          "raw": {
+            "value": "290.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "380.00",
+          "raw": {
+            "value": "380.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "1.76"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSAMR810398",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "671312735",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9878 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "notifyParty": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "045N",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGLU2000772",
+          "seal": "AG8780636",
+          "type": "20GP",
+          "packages": 20,
+          "grossWeight": {
+            "kg": "380.00",
+            "raw": {
+              "value": "380.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "1.76"
+        }
+      ],
+      "totalPackages": 20,
+      "totalGrossWeight": {
+        "kg": "380.00",
+        "raw": {
+          "value": "380.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "BLUEBONNET/PO-17037/C/NO. 1-20",
+      "cargoDescription": "SAID TO CONTAIN 20 CRTS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-07-25",
+      "shippedOnBoardDate": "2026-07-25",
+      "references": [
+        "INV-2026-2284",
+        "PO-17037"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "importerOfRecordNumber": "74-381245600",
+      "consigneeNumber": "74-381245600",
+      "manufacturer": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipToParty": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "TR",
+      "htsCode": "841370",
+      "containerStuffingLocation": {
+        "lines": [
+          "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+        ],
+        "city": "Başakşehir",
+        "region": "İstanbul",
+        "postalCode": "34490",
+        "country": "TR"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

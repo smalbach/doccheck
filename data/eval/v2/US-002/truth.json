@@ -1,0 +1,1344 @@
+{
+  "id": "US-002",
+  "seed": 231287900,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "grid",
+    "packingListTemplate": "euro",
+    "blTemplate": "legacy",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-2941",
+      "invoiceDate": "2026-06-05",
+      "poNumber": "PO-8742",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-06-16",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Shekou",
+          "unLocode": "CNSHK",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Houston"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 233,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "PZ-1000-GY",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour grey",
+          "quantity": {
+            "value": "456",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.14",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1431.84",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "PZ-1000-NV",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour navy",
+          "quantity": {
+            "value": "768",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.14",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2411.52",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 3,
+          "sku": "PZ-1000-WH",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour white",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.14",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "75.36",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 4,
+          "sku": "PZ-1000-BE",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour beige",
+          "quantity": {
+            "value": "624",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.14",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1959.36",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 5,
+          "sku": "PZ-1000-BK",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour black",
+          "quantity": {
+            "value": "432",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.14",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1356.48",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 6,
+          "sku": "PZ-1000-RD",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour red",
+          "quantity": {
+            "value": "480",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.14",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1507.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 7,
+          "sku": "TB-200-BK",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour black",
+          "quantity": {
+            "value": "950",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "7267.50",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 8,
+          "sku": "TB-200-BE",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour beige",
+          "quantity": {
+            "value": "400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3060.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 9,
+          "sku": "TB-200-NV",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour navy",
+          "quantity": {
+            "value": "300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2295.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 10,
+          "sku": "TB-200-GN",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour green",
+          "quantity": {
+            "value": "100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "765.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 11,
+          "sku": "TB-200-RD",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour red",
+          "quantity": {
+            "value": "650",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4972.50",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 12,
+          "sku": "TB-200-GY",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour grey",
+          "quantity": {
+            "value": "50",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "382.50",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 13,
+          "sku": "TB-200-BL",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour blue",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1530.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 14,
+          "sku": "TB-200-OR",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour orange",
+          "quantity": {
+            "value": "1000",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "7650.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 15,
+          "sku": "TB-200-WH",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour white",
+          "quantity": {
+            "value": "800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "6120.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 16,
+          "sku": "TB-200-BR",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour brown",
+          "quantity": {
+            "value": "800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "6120.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 17,
+          "sku": "TB-200-PK",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour pink",
+          "quantity": {
+            "value": "100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "765.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 18,
+          "sku": "TB-200-YL",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour yellow",
+          "quantity": {
+            "value": "450",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3442.50",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3013.68",
+        "raw": {
+          "value": "3013.68",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2770.08",
+        "raw": {
+          "value": "2770.08",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "53111.76",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-2941",
+      "invoiceRef": "INV-2026-2941",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "packages": [
+        {
+          "range": "1-19",
+          "count": 19,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "PZ-1000-GY",
+              "description": "Jigsaw puzzle 1000 pcs colour grey",
+              "quantity": {
+                "value": "456",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "282.72",
+            "raw": {
+              "value": "282.72",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "299.82",
+            "raw": {
+              "value": "299.82",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "20-51",
+          "count": 32,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "PZ-1000-NV",
+              "description": "Jigsaw puzzle 1000 pcs colour navy",
+              "quantity": {
+                "value": "768",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "476.16",
+            "raw": {
+              "value": "476.16",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "504.96",
+            "raw": {
+              "value": "504.96",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "52-52",
+          "count": 1,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "PZ-1000-WH",
+              "description": "Jigsaw puzzle 1000 pcs colour white",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14.88",
+            "raw": {
+              "value": "14.88",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "15.78",
+            "raw": {
+              "value": "15.78",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "53-78",
+          "count": 26,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "PZ-1000-BE",
+              "description": "Jigsaw puzzle 1000 pcs colour beige",
+              "quantity": {
+                "value": "624",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "386.88",
+            "raw": {
+              "value": "386.88",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "410.28",
+            "raw": {
+              "value": "410.28",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "79-96",
+          "count": 18,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "PZ-1000-BK",
+              "description": "Jigsaw puzzle 1000 pcs colour black",
+              "quantity": {
+                "value": "432",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "267.84",
+            "raw": {
+              "value": "267.84",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "284.04",
+            "raw": {
+              "value": "284.04",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "97-116",
+          "count": 20,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "PZ-1000-RD",
+              "description": "Jigsaw puzzle 1000 pcs colour red",
+              "quantity": {
+                "value": "480",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "297.60",
+            "raw": {
+              "value": "297.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "315.60",
+            "raw": {
+              "value": "315.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "117-135",
+          "count": 19,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-BK",
+              "description": "Plush teddy bear 30 cm colour black",
+              "quantity": {
+                "value": "950",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "171.00",
+            "raw": {
+              "value": "171.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "193.80",
+            "raw": {
+              "value": "193.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "136-143",
+          "count": 8,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-BE",
+              "description": "Plush teddy bear 30 cm colour beige",
+              "quantity": {
+                "value": "400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "72.00",
+            "raw": {
+              "value": "72.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "81.60",
+            "raw": {
+              "value": "81.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "144-149",
+          "count": 6,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-NV",
+              "description": "Plush teddy bear 30 cm colour navy",
+              "quantity": {
+                "value": "300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "54.00",
+            "raw": {
+              "value": "54.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "61.20",
+            "raw": {
+              "value": "61.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "150-151",
+          "count": 2,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-GN",
+              "description": "Plush teddy bear 30 cm colour green",
+              "quantity": {
+                "value": "100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "18.00",
+            "raw": {
+              "value": "18.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "20.40",
+            "raw": {
+              "value": "20.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "152-164",
+          "count": 13,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-RD",
+              "description": "Plush teddy bear 30 cm colour red",
+              "quantity": {
+                "value": "650",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "117.00",
+            "raw": {
+              "value": "117.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "132.60",
+            "raw": {
+              "value": "132.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "165-165",
+          "count": 1,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-GY",
+              "description": "Plush teddy bear 30 cm colour grey",
+              "quantity": {
+                "value": "50",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "9.00",
+            "raw": {
+              "value": "9.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "10.20",
+            "raw": {
+              "value": "10.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "166-169",
+          "count": 4,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-BL",
+              "description": "Plush teddy bear 30 cm colour blue",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.00",
+            "raw": {
+              "value": "36.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "40.80",
+            "raw": {
+              "value": "40.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "170-189",
+          "count": 20,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-OR",
+              "description": "Plush teddy bear 30 cm colour orange",
+              "quantity": {
+                "value": "1000",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "180.00",
+            "raw": {
+              "value": "180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "204.00",
+            "raw": {
+              "value": "204.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "190-205",
+          "count": 16,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-WH",
+              "description": "Plush teddy bear 30 cm colour white",
+              "quantity": {
+                "value": "800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "144.00",
+            "raw": {
+              "value": "144.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "163.20",
+            "raw": {
+              "value": "163.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "206-221",
+          "count": 16,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-BR",
+              "description": "Plush teddy bear 30 cm colour brown",
+              "quantity": {
+                "value": "800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "144.00",
+            "raw": {
+              "value": "144.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "163.20",
+            "raw": {
+              "value": "163.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "222-223",
+          "count": 2,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-PK",
+              "description": "Plush teddy bear 30 cm colour pink",
+              "quantity": {
+                "value": "100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "18.00",
+            "raw": {
+              "value": "18.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "20.40",
+            "raw": {
+              "value": "20.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "224-232",
+          "count": 9,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-8742/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "TB-200-YL",
+              "description": "Plush teddy bear 30 cm colour yellow",
+              "quantity": {
+                "value": "450",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "81.00",
+            "raw": {
+              "value": "81.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "91.80",
+            "raw": {
+              "value": "91.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 232,
+        "netWeight": {
+          "kg": "2770.08",
+          "raw": {
+            "value": "2770.08",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3013.68",
+          "raw": {
+            "value": "3013.68",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "18.01"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXSHK6876680",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "162867576",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "notifyParty": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "064W",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Shekou",
+        "unLocode": "CNSHK",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGXU4644664",
+          "seal": "AG5429864",
+          "type": "20GP",
+          "packages": 232,
+          "grossWeight": {
+            "kg": "3013.68",
+            "raw": {
+              "value": "6644",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "18.01"
+        }
+      ],
+      "totalPackages": 232,
+      "totalGrossWeight": {
+        "kg": "3013.68",
+        "raw": {
+          "value": "6644",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "BLUEBONNET/PO-8742/C/NO. 1-232",
+      "cargoDescription": "SAID TO CONTAIN 232 CTNS JIGSAW PUZZLE 1000 PCS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Shekou",
+      "dateOfIssue": "2026-06-18",
+      "shippedOnBoardDate": "2026-06-18",
+      "references": [
+        "INV-2026-2941",
+        "PO-8742"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "importerOfRecordNumber": "74-381245600",
+      "consigneeNumber": "74-381245600",
+      "manufacturer": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipToParty": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "950300",
+      "containerStuffingLocation": {
+        "lines": [
+          "No. 18 Longgang Industrial Ave",
+          "Buji Subdistrict"
+        ],
+        "city": "Shenzhen",
+        "region": "Guangdong",
+        "postalCode": "518112",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

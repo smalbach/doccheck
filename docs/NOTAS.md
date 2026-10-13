@@ -48,6 +48,14 @@ Local: Postgres 18 en el 5432, base `doccheck`, credenciales en `.env` (no versi
   - API: un PDF clasificado ISF se guarda como ISF del envío (`source: 'pdf'`, columna nueva `document_id`, migración `006_isf_document.sql`); no ocupa el lugar de factura/PL/BL. El último que llega gana (PDF o `PUT /isf`). Re-extraerlo como otro tipo lo quita. En envíos CA se extrae pero no se usa (aviso en issues). Los hallazgos X11 citan página y bbox del PDF del ISF (el HTS se busca también con puntos, "9403.60").
   - Web: la tarjeta ISF dice "From PDF <archivo>" con enlace al visor; "extracted data" muestra los campos del ISF.
   - Pendiente con modelo (Ollama ocupado): `npm run eval:extraction -- --data data/eval/v1-isf` para medir la extracción real del ISF; el test e2e "ISF PDF upload" corre solo cuando exista esa respuesta en caché.
+- **Set v2 (formatos no vistos).** `npm run synth -- --set v2` escribe `data/eval/v2`: 60 envíos (30 CA, 30 US; 16 limpios), semilla 20261013.
+  - Dos layouts nuevos por documento en `render-v2.ts`: `euro` (membrete, montos "48.600,00", pesos y cantidades "1 140,50 kg" con espacio duro, fechas "14.03.2026") y `grid` (formulario de cajas numeradas tipo CI1, fechas "4 March 2026"). Salen en 4 de cada 7 sorteos; los 3 de v1 quedan como control.
+  - Variantes de producto (color, talla o lote) en líneas separadas: 6 a 40 líneas por factura, 13 PDFs de dos páginas.
+  - 7 vendedores y 4 compradores con tildes y nombres no ingleses (`catalog-v2.ts`), mezclados con los de v1.
+  - v1 no cambia: las opciones nuevas valen v1 por defecto y los sorteos extra usan otro generador. Un test compara cada `truth.json` de v1 con lo publicado.
+  - v2 destapó tres fallas antes de correr el modelo, ya corregidas con tests: `decimal("48 600,00")` daba 48 (agrupación con espacio), `isoDate("14.03.2026")` daba null (quitaba los puntos) y `findSource` no encontraba números europeos (recall de texto 93,5% → 99,6%; v1 sigue en 99,7%).
+  - Sin modelo: clasificación 180/180. La evaluación con qwen3.8 queda encolada después de la del ISF (`npm run eval:extraction -- --data data/eval/v2`); `metrics.mjs` agrega la sección "Unseen formats" y la página Results la muestra sola.
+  - Ambigüedad conocida, fuera de v2 a propósito: "1.200" sin decimales (¿mil doscientos o uno coma dos?) y fechas US "03/04/2026" (mes primero). El normalizador asume día primero; hace falta contexto (país del emisor) para resolverlas.
 
 - `apps/web`: Vite + React, sin router ni librería de UI (dos pantallas, rutas por hash). La API sirve el build desde el mismo origen (`npm start` en :3000); en desarrollo Vite en :5173 hace proxy.
 - Pantallas: inicio (crear envío, muestras sintéticas con sus errores, envíos recientes) y envío (subir PDFs, estado de extracción con polling, validar con o sin agente, hallazgos ordenados por severidad con evidencia, cita de la norma y razón del agente).

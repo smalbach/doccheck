@@ -1,0 +1,639 @@
+{
+  "id": "CA-005",
+  "seed": 1134464514,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "grid",
+    "packingListTemplate": "euro",
+    "blTemplate": "euro",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-0869",
+      "invoiceDate": "2026-02-02",
+      "poNumber": "PO-40468",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-02-14",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Buenaventura",
+          "unLocode": "COBUN",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Buenaventura"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 176,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60-L1",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot A-164",
+          "quantity": {
+            "value": "2220",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.49",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "12187.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CF-GRN-60-L2",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot B-861",
+          "quantity": {
+            "value": "480",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.49",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2635.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CF-GRN-60-L3",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot C-571",
+          "quantity": {
+            "value": "180",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.49",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "988.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CF-GRN-60-L4",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot D-348",
+          "quantity": {
+            "value": "2520",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.49",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "13834.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CF-GRN-60-L5",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot E-373",
+          "quantity": {
+            "value": "2220",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.49",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "21187.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CF-GRN-60-L6",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot F-845",
+          "quantity": {
+            "value": "2280",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.49",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "12517.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 7,
+          "sku": "CF-GRN-60-L7",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot G-390",
+          "quantity": {
+            "value": "660",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.49",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3623.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "10700.80",
+        "raw": {
+          "value": "10700.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "10560.00",
+        "raw": {
+          "value": "10560.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "57974.40",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-0869",
+      "invoiceRef": "INV-2026-0869",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-37",
+          "count": 37,
+          "type": "BAG",
+          "marks": "COASTAL/PO-40468/C/NO. 1-176",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L1",
+              "description": "Green coffee arabica lot A-164",
+              "quantity": {
+                "value": "2220",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2220.00",
+            "raw": {
+              "value": "2220.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2249.60",
+            "raw": {
+              "value": "2249.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "38-45",
+          "count": 8,
+          "type": "BAG",
+          "marks": "COASTAL/PO-40468/C/NO. 1-176",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L2",
+              "description": "Green coffee arabica lot B-861",
+              "quantity": {
+                "value": "480",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "480.00",
+            "raw": {
+              "value": "480.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "486.40",
+            "raw": {
+              "value": "486.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "46-48",
+          "count": 3,
+          "type": "BAG",
+          "marks": "COASTAL/PO-40468/C/NO. 1-176",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L3",
+              "description": "Green coffee arabica lot C-571",
+              "quantity": {
+                "value": "180",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "180.00",
+            "raw": {
+              "value": "180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "182.40",
+            "raw": {
+              "value": "182.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "49-90",
+          "count": 42,
+          "type": "BAG",
+          "marks": "COASTAL/PO-40468/C/NO. 1-176",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L4",
+              "description": "Green coffee arabica lot D-348",
+              "quantity": {
+                "value": "2520",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2520.00",
+            "raw": {
+              "value": "2520.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2553.60",
+            "raw": {
+              "value": "2553.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "91-127",
+          "count": 37,
+          "type": "BAG",
+          "marks": "COASTAL/PO-40468/C/NO. 1-176",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L5",
+              "description": "Green coffee arabica lot E-373",
+              "quantity": {
+                "value": "2220",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2220.00",
+            "raw": {
+              "value": "2220.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2249.60",
+            "raw": {
+              "value": "2249.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "128-165",
+          "count": 38,
+          "type": "BAG",
+          "marks": "COASTAL/PO-40468/C/NO. 1-176",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L6",
+              "description": "Green coffee arabica lot F-845",
+              "quantity": {
+                "value": "2280",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2280.00",
+            "raw": {
+              "value": "2280.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2310.40",
+            "raw": {
+              "value": "2310.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "166-176",
+          "count": 11,
+          "type": "BAG",
+          "marks": "COASTAL/PO-40468/C/NO. 1-176",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L7",
+              "description": "Green coffee arabica lot G-390",
+              "quantity": {
+                "value": "660",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "660.00",
+            "raw": {
+              "value": "660.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "668.80",
+            "raw": {
+              "value": "668.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 176,
+        "netWeight": {
+          "kg": "10560.00",
+          "raw": {
+            "value": "10560.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "10700.80",
+          "raw": {
+            "value": "10700.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "25.08"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVBUN916639",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "604259966",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "053N",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Buenaventura",
+        "unLocode": "COBUN",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGXU6803512",
+          "seal": "AG1066650",
+          "type": "40HC",
+          "packages": 176,
+          "grossWeight": {
+            "kg": "10700.80",
+            "raw": {
+              "value": "10700.80",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "25.08"
+        }
+      ],
+      "totalPackages": 176,
+      "totalGrossWeight": {
+        "kg": "10700.80",
+        "raw": {
+          "value": "10700.80",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/PO-40468/C/NO. 1-176",
+      "cargoDescription": "SAID TO CONTAIN 176 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Buenaventura",
+      "dateOfIssue": "2026-02-17",
+      "shippedOnBoardDate": "2026-02-17",
+      "references": [
+        "INV-2026-0869",
+        "PO-40468"
+      ]
+    }
+  }
+}

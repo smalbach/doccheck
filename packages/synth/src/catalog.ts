@@ -124,6 +124,8 @@ const P = {
   },
 } satisfies Record<string, Product>;
 
+export const PRODUCTS = P;
+
 export const SELLERS: Seller[] = [
   {
     party: { name: 'Brightstar Toys Manufacturing Co., Ltd.', address: { lines: ['No. 18 Longgang Industrial Ave', 'Buji Subdistrict'], city: 'Shenzhen', region: 'Guangdong', postalCode: '518112', country: 'CN' }, contact: { name: 'Lily Chen', email: 'export@brightstar-toys.example' } },

@@ -1,0 +1,693 @@
+{
+  "id": "CA-009",
+  "seed": 1773894422,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "grid",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": true
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SOC2602473",
+      "invoiceDate": "2026-01-22",
+      "poNumber": "QU511530",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "shipmentDate": "2026-01-28",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Le Havre",
+          "unLocode": "FRLEH",
+          "country": "FR"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Le Havre"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 116,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "PZ-1000-GN",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour green",
+          "quantity": {
+            "value": "312",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.16",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1297.92",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "PZ-1000-NV",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour navy",
+          "quantity": {
+            "value": "672",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.16",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "2795.52",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 3,
+          "sku": "PZ-1000-YL",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour yellow",
+          "quantity": {
+            "value": "192",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.16",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "798.72",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 4,
+          "sku": "PZ-1000-BK",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour black",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.16",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "99.84",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 5,
+          "sku": "PZ-1000-RD",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour red",
+          "quantity": {
+            "value": "768",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.16",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "3194.88",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 6,
+          "sku": "PZ-1000-BL",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour blue",
+          "quantity": {
+            "value": "168",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.16",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "698.88",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 7,
+          "sku": "PZ-1000-BR",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour brown",
+          "quantity": {
+            "value": "168",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.16",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "698.88",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 8,
+          "sku": "PZ-1000-PK",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour pink",
+          "quantity": {
+            "value": "480",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.16",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1996.80",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1830.48",
+        "raw": {
+          "value": "1830.48",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1726.08",
+        "raw": {
+          "value": "1726.08",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "11581.44",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "fr"
+    },
+    "packingList": {
+      "packingListNumber": "PL-SOC2602473",
+      "invoiceRef": "SOC2602473",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-13",
+          "count": 13,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU511530/C/NO. 1-116",
+          "contents": [
+            {
+              "sku": "PZ-1000-GN",
+              "description": "Jigsaw puzzle 1000 pcs colour green",
+              "quantity": {
+                "value": "312",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "193.44",
+            "raw": {
+              "value": "193.44",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "205.14",
+            "raw": {
+              "value": "205.14",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "14-41",
+          "count": 28,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU511530/C/NO. 1-116",
+          "contents": [
+            {
+              "sku": "PZ-1000-NV",
+              "description": "Jigsaw puzzle 1000 pcs colour navy",
+              "quantity": {
+                "value": "672",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "416.64",
+            "raw": {
+              "value": "416.64",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "441.84",
+            "raw": {
+              "value": "441.84",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "42-49",
+          "count": 8,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU511530/C/NO. 1-116",
+          "contents": [
+            {
+              "sku": "PZ-1000-YL",
+              "description": "Jigsaw puzzle 1000 pcs colour yellow",
+              "quantity": {
+                "value": "192",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "119.04",
+            "raw": {
+              "value": "119.04",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "126.24",
+            "raw": {
+              "value": "126.24",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "50-50",
+          "count": 1,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU511530/C/NO. 1-116",
+          "contents": [
+            {
+              "sku": "PZ-1000-BK",
+              "description": "Jigsaw puzzle 1000 pcs colour black",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14.88",
+            "raw": {
+              "value": "14.88",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "15.78",
+            "raw": {
+              "value": "15.78",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "51-82",
+          "count": 32,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU511530/C/NO. 1-116",
+          "contents": [
+            {
+              "sku": "PZ-1000-RD",
+              "description": "Jigsaw puzzle 1000 pcs colour red",
+              "quantity": {
+                "value": "768",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "476.16",
+            "raw": {
+              "value": "476.16",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "504.96",
+            "raw": {
+              "value": "504.96",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "83-89",
+          "count": 7,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU511530/C/NO. 1-116",
+          "contents": [
+            {
+              "sku": "PZ-1000-BL",
+              "description": "Jigsaw puzzle 1000 pcs colour blue",
+              "quantity": {
+                "value": "168",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "104.16",
+            "raw": {
+              "value": "104.16",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "110.46",
+            "raw": {
+              "value": "110.46",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "90-96",
+          "count": 7,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU511530/C/NO. 1-116",
+          "contents": [
+            {
+              "sku": "PZ-1000-BR",
+              "description": "Jigsaw puzzle 1000 pcs colour brown",
+              "quantity": {
+                "value": "144",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "104.16",
+            "raw": {
+              "value": "104.16",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "110.46",
+            "raw": {
+              "value": "110.46",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "97-116",
+          "count": 20,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU511530/C/NO. 1-116",
+          "contents": [
+            {
+              "sku": "PZ-1000-PK",
+              "description": "Jigsaw puzzle 1000 pcs colour pink",
+              "quantity": {
+                "value": "480",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "297.60",
+            "raw": {
+              "value": "297.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "315.60",
+            "raw": {
+              "value": "315.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 116,
+        "netWeight": {
+          "kg": "1726.08",
+          "raw": {
+            "value": "1726.08",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1830.48",
+          "raw": {
+            "value": "1830.48",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "6.88"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSLEH258312",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "604337182",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "081S",
+      "placeOfReceipt": {
+        "name": "Lyon",
+        "country": "FR"
+      },
+      "portOfLoading": {
+        "name": "Le Havre",
+        "unLocode": "FRLEH",
+        "country": "FR"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCLU9818820",
+          "seal": "PC4372839",
+          "type": "20GP",
+          "packages": 116,
+          "grossWeight": {
+            "kg": "1830.48",
+            "raw": {
+              "value": "1830.48",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "6.88"
+        }
+      ],
+      "totalPackages": 116,
+      "totalGrossWeight": {
+        "kg": "1555.91",
+        "raw": {
+          "value": "1555.91",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/QU511530/C/NO. 1-116",
+      "cargoDescription": "SAID TO CONTAIN 116 CTNS JIGSAW PUZZLE 1000 PCS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Le Havre",
+      "dateOfIssue": "2026-01-30",
+      "shippedOnBoardDate": "2026-01-30",
+      "references": [
+        "SOC2602473",
+        "QU511530"
+      ]
+    }
+  }
+}

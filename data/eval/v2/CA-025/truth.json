@@ -1,0 +1,801 @@
+{
+  "id": "CA-025",
+  "seed": 1688997400,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "grid",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-4066",
+      "invoiceDate": "2026-08-12",
+      "poNumber": "PO-19650",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "exporter": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "shipmentDate": "2026-08-18",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Le Havre",
+          "unLocode": "FRLEH",
+          "country": "FR"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Le Havre"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 50,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200-NV",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour navy",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1922.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TB-200-BK",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour black",
+          "quantity": {
+            "value": "50",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "480.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 3,
+          "sku": "TB-200-WH",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour white",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1922.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 4,
+          "sku": "TB-200-PK",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour pink",
+          "quantity": {
+            "value": "100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "961.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 5,
+          "sku": "TB-200-BL",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour blue",
+          "quantity": {
+            "value": "550",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "5285.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 6,
+          "sku": "TB-200-RD",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour red",
+          "quantity": {
+            "value": "50",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "480.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 7,
+          "sku": "TB-200-YL",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour yellow",
+          "quantity": {
+            "value": "400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "3844.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 8,
+          "sku": "TB-200-BR",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour brown",
+          "quantity": {
+            "value": "150",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1441.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 9,
+          "sku": "TB-200-OR",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour orange",
+          "quantity": {
+            "value": "650",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "6246.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 10,
+          "sku": "TB-200-GY",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour grey",
+          "quantity": {
+            "value": "150",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1441.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "510.00",
+        "raw": {
+          "value": "510.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "450.00",
+        "raw": {
+          "value": "450.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "24025.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-4066",
+      "invoiceRef": "INV-2026-4066",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-4",
+          "count": 4,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-19650/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200-NV",
+              "description": "Plush teddy bear 30 cm colour navy",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.00",
+            "raw": {
+              "value": "36.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "40.80",
+            "raw": {
+              "value": "40.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "5-5",
+          "count": 1,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-19650/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200-BK",
+              "description": "Plush teddy bear 30 cm colour black",
+              "quantity": {
+                "value": "50",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "9.00",
+            "raw": {
+              "value": "9.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "10.20",
+            "raw": {
+              "value": "10.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "6-9",
+          "count": 4,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-19650/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200-WH",
+              "description": "Plush teddy bear 30 cm colour white",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.00",
+            "raw": {
+              "value": "36.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "40.80",
+            "raw": {
+              "value": "40.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "10-11",
+          "count": 2,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-19650/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200-PK",
+              "description": "Plush teddy bear 30 cm colour pink",
+              "quantity": {
+                "value": "100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "18.00",
+            "raw": {
+              "value": "18.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "20.40",
+            "raw": {
+              "value": "20.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "12-22",
+          "count": 11,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-19650/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200-BL",
+              "description": "Plush teddy bear 30 cm colour blue",
+              "quantity": {
+                "value": "550",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "99.00",
+            "raw": {
+              "value": "99.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "112.20",
+            "raw": {
+              "value": "112.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "23-23",
+          "count": 1,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-19650/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200-RD",
+              "description": "Plush teddy bear 30 cm colour red",
+              "quantity": {
+                "value": "50",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "9.00",
+            "raw": {
+              "value": "9.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "10.20",
+            "raw": {
+              "value": "10.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "24-31",
+          "count": 8,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-19650/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200-YL",
+              "description": "Plush teddy bear 30 cm colour yellow",
+              "quantity": {
+                "value": "400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "72.00",
+            "raw": {
+              "value": "72.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "81.60",
+            "raw": {
+              "value": "81.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "32-34",
+          "count": 3,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-19650/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200-BR",
+              "description": "Plush teddy bear 30 cm colour brown",
+              "quantity": {
+                "value": "150",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "27.00",
+            "raw": {
+              "value": "27.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "30.60",
+            "raw": {
+              "value": "30.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "35-47",
+          "count": 13,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-19650/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200-OR",
+              "description": "Plush teddy bear 30 cm colour orange",
+              "quantity": {
+                "value": "650",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "117.00",
+            "raw": {
+              "value": "117.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "132.60",
+            "raw": {
+              "value": "132.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "48-50",
+          "count": 3,
+          "type": "CTN",
+          "marks": "NORTHERN/PO-19650/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200-GY",
+              "description": "Plush teddy bear 30 cm colour grey",
+              "quantity": {
+                "value": "150",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "27.00",
+            "raw": {
+              "value": "27.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "30.60",
+            "raw": {
+              "value": "30.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 50,
+        "netWeight": {
+          "kg": "450.00",
+          "raw": {
+            "value": "450.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "510.00",
+          "raw": {
+            "value": "510.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.80"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSLEH320247",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "704164483",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "019S",
+      "placeOfReceipt": {
+        "name": "Lyon",
+        "country": "FR"
+      },
+      "portOfLoading": {
+        "name": "Le Havre",
+        "unLocode": "FRLEH",
+        "country": "FR"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU4926653",
+          "seal": "MD1056769",
+          "type": "20GP",
+          "packages": 50,
+          "grossWeight": {
+            "kg": "510.00",
+            "raw": {
+              "value": "510.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.80"
+        }
+      ],
+      "totalPackages": 50,
+      "totalGrossWeight": {
+        "kg": "510.00",
+        "raw": {
+          "value": "510.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/PO-19650/C/NO. 1-50",
+      "cargoDescription": "SAID TO CONTAIN 50 CTNS PLUSH TEDDY BEAR 30 CM AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Le Havre",
+      "dateOfIssue": "2026-08-21",
+      "shippedOnBoardDate": "2026-08-21",
+      "references": [
+        "INV-2026-4066",
+        "PO-19650"
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "US-004",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[6].lineTotal.amount",
+      "before": "4773.60",
+      "after": "7473.60",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 7 total mistyped (4773.60 -> 7473.60)."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[4].quantity.value",
+      "before": "1920",
+      "after": "192",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 5 quantity changed without updating the line total."
+    }
+  ]
+}

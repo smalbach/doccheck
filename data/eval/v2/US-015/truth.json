@@ -1,0 +1,719 @@
+{
+  "id": "US-015",
+  "seed": 8358093,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "grid",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/9492",
+      "invoiceDate": "2026-09-05",
+      "poNumber": "PO-64924",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-09-09",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ambarlı"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 51,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750-GY",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour grey",
+          "quantity": {
+            "value": "7",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "74.90",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "524.30",
+            "currency": "EUR"
+          },
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750-OR",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour orange",
+          "quantity": {
+            "value": "7",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "74.90",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "524.30",
+            "currency": "EUR"
+          },
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CP-750-WH",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour white",
+          "quantity": {
+            "value": "12",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "74.90",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "898.80",
+            "currency": "EUR"
+          },
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CP-750-YL",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour yellow",
+          "quantity": {
+            "value": "2",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "74.90",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "149.80",
+            "currency": "EUR"
+          },
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CP-750-NV",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour navy",
+          "quantity": {
+            "value": "2",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "74.90",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "149.80",
+            "currency": "EUR"
+          },
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CP-750-BE",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour beige",
+          "quantity": {
+            "value": "12",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "74.90",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "898.80",
+            "currency": "EUR"
+          },
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 7,
+          "sku": "CP-750-GN",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour green",
+          "quantity": {
+            "value": "9",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "74.90",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "674.10",
+            "currency": "EUR"
+          },
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "969.00",
+        "raw": {
+          "value": "969.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "739.50",
+        "raw": {
+          "value": "739.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "3819.90",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/9492",
+      "invoiceRef": "CI/26/9492",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-7",
+          "count": 7,
+          "type": "CRT",
+          "marks": "HARBORLINE/PO-64924/C/NO. 1-51",
+          "contents": [
+            {
+              "sku": "CP-750-GY",
+              "description": "Centrifugal pump 0.75 kW colour grey",
+              "quantity": {
+                "value": "7",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "101.50",
+            "raw": {
+              "value": "101.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "133.00",
+            "raw": {
+              "value": "133.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "8-14",
+          "count": 7,
+          "type": "CRT",
+          "marks": "HARBORLINE/PO-64924/C/NO. 1-51",
+          "contents": [
+            {
+              "sku": "CP-750-OR",
+              "description": "Centrifugal pump 0.75 kW colour orange",
+              "quantity": {
+                "value": "7",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "101.50",
+            "raw": {
+              "value": "101.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "133.00",
+            "raw": {
+              "value": "133.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "15-26",
+          "count": 12,
+          "type": "CRT",
+          "marks": "HARBORLINE/PO-64924/C/NO. 1-51",
+          "contents": [
+            {
+              "sku": "CP-750-WH",
+              "description": "Centrifugal pump 0.75 kW colour white",
+              "quantity": {
+                "value": "12",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "174.00",
+            "raw": {
+              "value": "174.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "228.00",
+            "raw": {
+              "value": "228.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "27-28",
+          "count": 2,
+          "type": "CRT",
+          "marks": "HARBORLINE/PO-64924/C/NO. 1-51",
+          "contents": [
+            {
+              "sku": "CP-750-YL",
+              "description": "Centrifugal pump 0.75 kW colour yellow",
+              "quantity": {
+                "value": "2",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.00",
+            "raw": {
+              "value": "29.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "29-30",
+          "count": 2,
+          "type": "CRT",
+          "marks": "HARBORLINE/PO-64924/C/NO. 1-51",
+          "contents": [
+            {
+              "sku": "CP-750-NV",
+              "description": "Centrifugal pump 0.75 kW colour navy",
+              "quantity": {
+                "value": "2",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.00",
+            "raw": {
+              "value": "29.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "31-42",
+          "count": 12,
+          "type": "CRT",
+          "marks": "HARBORLINE/PO-64924/C/NO. 1-51",
+          "contents": [
+            {
+              "sku": "CP-750-BE",
+              "description": "Centrifugal pump 0.75 kW colour beige",
+              "quantity": {
+                "value": "12",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "174.00",
+            "raw": {
+              "value": "174.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "228.00",
+            "raw": {
+              "value": "228.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "43-51",
+          "count": 9,
+          "type": "CRT",
+          "marks": "HARBORLINE/PO-64924/C/NO. 1-51",
+          "contents": [
+            {
+              "sku": "CP-750-GN",
+              "description": "Centrifugal pump 0.75 kW colour green",
+              "quantity": {
+                "value": "9",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "130.50",
+            "raw": {
+              "value": "130.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "171.00",
+            "raw": {
+              "value": "171.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 51,
+        "netWeight": {
+          "kg": "739.50",
+          "raw": {
+            "value": "739.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "969.00",
+          "raw": {
+            "value": "969.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.49"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLAMR5319141",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "221616843",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1280 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "034N",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCLU2164760",
+          "seal": "PC8172392",
+          "type": "20GP",
+          "packages": 51,
+          "grossWeight": {
+            "kg": "969.00",
+            "raw": {
+              "value": "969.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.49"
+        }
+      ],
+      "totalPackages": 51,
+      "totalGrossWeight": {
+        "kg": "969.00",
+        "raw": {
+          "value": "969.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/PO-64924/C/NO. 1-51",
+      "cargoDescription": "SAID TO CONTAIN 51 CRTS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-09-12",
+      "shippedOnBoardDate": "2026-09-12",
+      "references": [
+        "CI/26/9492",
+        "PO-64924"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "TR",
+      "htsCode": "841370",
+      "containerStuffingLocation": {
+        "lines": [
+          "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+        ],
+        "city": "Başakşehir",
+        "region": "İstanbul",
+        "postalCode": "34490",
+        "country": "TR"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

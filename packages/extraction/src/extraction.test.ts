@@ -17,6 +17,10 @@ describe('normalization', () => {
     expect(decimal('12,5')).toBe('12.5');
     expect(decimal('1,234')).toBe('1234');
     expect(decimal('320 M2')).toBe('320');
+    expect(decimal('48 600,00')).toBe('48600.00');
+    expect(decimal('1\u00a0140,50 kg')).toBe('1140.50');
+    expect(decimal('2 514 lb')).toBe('2514');
+    expect(decimal('12 40')).toBe('12');
     expect(decimal('(12.50)')).toBe('-12.50');
     expect(decimal('n/a')).toBeNull();
   });
@@ -26,6 +30,8 @@ describe('normalization', () => {
     expect(isoDate('14-MAR-2026')).toBe('2026-03-14');
     expect(isoDate('Mar 14, 2026')).toBe('2026-03-14');
     expect(isoDate('14/03/2026')).toBe('2026-03-14');
+    expect(isoDate('14.03.2026')).toBe('2026-03-14');
+    expect(isoDate('4 March 2026')).toBe('2026-03-04');
     expect(isoDate('soon')).toBeNull();
   });
 
@@ -169,6 +175,15 @@ describe.skipIf(!existsSync(join(sample, 'invoice.pdf')))('PDF text layer', () =
   it('matches a number after a longer number that contains it', () => {
     const pdf = { pageCount: 1, text: '', lines: [{ page: 1, text: 'PUMP 0.75 KW   5 PCS   83.65', bbox: [0, 0, 1, 1] as [number, number, number, number] }] };
     expect(findSource(pdf, 'inv', '5')?.rawText).toContain('5 PCS');
+  });
+
+  it('matches European number formats', () => {
+    const line = (text: string) => ({ page: 1, text, bbox: [0, 0, 1, 1] as [number, number, number, number] });
+    const pdf = { pageCount: 1, text: '', lines: [line('Net weight 1 011,84 kg'), line('Invoice total EUR 48.600,00'), line('Quantity 1 200 PRS')] };
+    expect(findSource(pdf, 'inv', '1011.84')?.rawText).toContain('kg');
+    expect(findSource(pdf, 'inv', '48600.00')?.rawText).toContain('EUR');
+    expect(findSource(pdf, 'inv', '1200')?.rawText).toContain('PRS');
+    expect(findSource(pdf, 'inv', '600')).toBeUndefined();
   });
 });
 

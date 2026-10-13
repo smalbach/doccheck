@@ -1,0 +1,1557 @@
+{
+  "id": "CA-029",
+  "seed": 1444699142,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "euro",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-9489",
+      "invoiceDate": "2026-09-09",
+      "poNumber": "ÉP423950",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "buyer": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "consignee": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "exporter": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "shipmentDate": "2026-09-11",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Bremerhaven",
+          "unLocode": "DEBRV",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Bremerhaven"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 274,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17-BR",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour brown",
+          "quantity": {
+            "value": "40",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "495.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 2,
+          "sku": "EK-17-GN",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour green",
+          "quantity": {
+            "value": "136",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1683.68",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 3,
+          "sku": "EK-17-RD",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour red",
+          "quantity": {
+            "value": "152",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1881.76",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 4,
+          "sku": "EK-17-NV",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour navy",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "297.12",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 5,
+          "sku": "EK-17-GY",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour grey",
+          "quantity": {
+            "value": "72",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "891.36",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 6,
+          "sku": "EK-17-OR",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour orange",
+          "quantity": {
+            "value": "64",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "792.32",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 7,
+          "sku": "EK-17-PK",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour pink",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "297.12",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 8,
+          "sku": "EK-17-BL",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour blue",
+          "quantity": {
+            "value": "16",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "198.08",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 9,
+          "sku": "EK-17-WH",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour white",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "297.12",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 10,
+          "sku": "EK-17-YL",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour yellow",
+          "quantity": {
+            "value": "128",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1584.64",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 11,
+          "sku": "EK-17-BK",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour black",
+          "quantity": {
+            "value": "136",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1683.68",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 12,
+          "sku": "EK-17-BE",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour beige",
+          "quantity": {
+            "value": "8",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "99.04",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 13,
+          "sku": "BL-600-NV",
+          "description": "Countertop blender 600 W with glass jar, colour navy",
+          "quantity": {
+            "value": "44",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1089.88",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 14,
+          "sku": "BL-600-BR",
+          "description": "Countertop blender 600 W with glass jar, colour brown",
+          "quantity": {
+            "value": "52",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1288.04",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 15,
+          "sku": "BL-600-BE",
+          "description": "Countertop blender 600 W with glass jar, colour beige",
+          "quantity": {
+            "value": "80",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1981.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 16,
+          "sku": "BL-600-WH",
+          "description": "Countertop blender 600 W with glass jar, colour white",
+          "quantity": {
+            "value": "88",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "2179.76",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 17,
+          "sku": "BL-600-GY",
+          "description": "Countertop blender 600 W with glass jar, colour grey",
+          "quantity": {
+            "value": "96",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "2377.92",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 18,
+          "sku": "BL-600-YL",
+          "description": "Countertop blender 600 W with glass jar, colour yellow",
+          "quantity": {
+            "value": "4",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "99.08",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 19,
+          "sku": "BL-600-GN",
+          "description": "Countertop blender 600 W with glass jar, colour green",
+          "quantity": {
+            "value": "72",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1783.44",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 20,
+          "sku": "BL-600-OR",
+          "description": "Countertop blender 600 W with glass jar, colour orange",
+          "quantity": {
+            "value": "16",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "396.32",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 21,
+          "sku": "BL-600-BL",
+          "description": "Countertop blender 600 W with glass jar, colour blue",
+          "quantity": {
+            "value": "96",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "2377.92",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 22,
+          "sku": "BL-600-BK",
+          "description": "Countertop blender 600 W with glass jar, colour black",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "594.48",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 23,
+          "sku": "BL-600-RD",
+          "description": "Countertop blender 600 W with glass jar, colour red",
+          "quantity": {
+            "value": "68",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1684.36",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 24,
+          "sku": "BL-600-PK",
+          "description": "Countertop blender 600 W with glass jar, colour pink",
+          "quantity": {
+            "value": "44",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.77",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1089.88",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2791.10",
+        "raw": {
+          "value": "2791.10",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2438.40",
+        "raw": {
+          "value": "2438.40",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "27143.80",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-9489",
+      "invoiceRef": "INV-2026-9489",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-5",
+          "count": 5,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-BR",
+              "description": "Electric kettle 1.7 L colour brown",
+              "quantity": {
+                "value": "40",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "42.00",
+            "raw": {
+              "value": "42.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "47.50",
+            "raw": {
+              "value": "47.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "6-22",
+          "count": 17,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-GN",
+              "description": "Electric kettle 1.7 L colour green",
+              "quantity": {
+                "value": "136",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "142.80",
+            "raw": {
+              "value": "142.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "161.50",
+            "raw": {
+              "value": "161.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "23-41",
+          "count": 19,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-RD",
+              "description": "Electric kettle 1.7 L colour red",
+              "quantity": {
+                "value": "152",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "159.60",
+            "raw": {
+              "value": "159.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "180.50",
+            "raw": {
+              "value": "180.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "42-44",
+          "count": 3,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-NV",
+              "description": "Electric kettle 1.7 L colour navy",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "25.20",
+            "raw": {
+              "value": "25.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "28.50",
+            "raw": {
+              "value": "28.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "45-53",
+          "count": 9,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-GY",
+              "description": "Electric kettle 1.7 L colour grey",
+              "quantity": {
+                "value": "72",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "75.60",
+            "raw": {
+              "value": "75.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "85.50",
+            "raw": {
+              "value": "85.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "54-61",
+          "count": 8,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-OR",
+              "description": "Electric kettle 1.7 L colour orange",
+              "quantity": {
+                "value": "64",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "67.20",
+            "raw": {
+              "value": "67.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "76.00",
+            "raw": {
+              "value": "76.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "62-64",
+          "count": 3,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-PK",
+              "description": "Electric kettle 1.7 L colour pink",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "25.20",
+            "raw": {
+              "value": "25.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "28.50",
+            "raw": {
+              "value": "28.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "65-66",
+          "count": 2,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-BL",
+              "description": "Electric kettle 1.7 L colour blue",
+              "quantity": {
+                "value": "16",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "16.80",
+            "raw": {
+              "value": "16.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "67-69",
+          "count": 3,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-WH",
+              "description": "Electric kettle 1.7 L colour white",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "25.20",
+            "raw": {
+              "value": "25.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "28.50",
+            "raw": {
+              "value": "28.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "70-85",
+          "count": 16,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-YL",
+              "description": "Electric kettle 1.7 L colour yellow",
+              "quantity": {
+                "value": "128",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "134.40",
+            "raw": {
+              "value": "134.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "152.00",
+            "raw": {
+              "value": "152.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "86-102",
+          "count": 17,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-BK",
+              "description": "Electric kettle 1.7 L colour black",
+              "quantity": {
+                "value": "136",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "142.80",
+            "raw": {
+              "value": "142.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "161.50",
+            "raw": {
+              "value": "161.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "103-103",
+          "count": 1,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "EK-17-BE",
+              "description": "Electric kettle 1.7 L colour beige",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "8.40",
+            "raw": {
+              "value": "8.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "9.50",
+            "raw": {
+              "value": "9.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "104-114",
+          "count": 11,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-NV",
+              "description": "Blender 600 W colour navy",
+              "quantity": {
+                "value": "44",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "101.20",
+            "raw": {
+              "value": "101.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "116.60",
+            "raw": {
+              "value": "116.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "115-127",
+          "count": 13,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-BR",
+              "description": "Blender 600 W colour brown",
+              "quantity": {
+                "value": "52",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "119.60",
+            "raw": {
+              "value": "119.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "137.80",
+            "raw": {
+              "value": "137.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "128-147",
+          "count": 20,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-BE",
+              "description": "Blender 600 W colour beige",
+              "quantity": {
+                "value": "80",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "184.00",
+            "raw": {
+              "value": "184.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "212.00",
+            "raw": {
+              "value": "212.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "148-169",
+          "count": 22,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-WH",
+              "description": "Blender 600 W colour white",
+              "quantity": {
+                "value": "88",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "202.40",
+            "raw": {
+              "value": "202.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "233.20",
+            "raw": {
+              "value": "233.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "170-193",
+          "count": 24,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-GY",
+              "description": "Blender 600 W colour grey",
+              "quantity": {
+                "value": "96",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "220.80",
+            "raw": {
+              "value": "220.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "254.40",
+            "raw": {
+              "value": "254.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "194-194",
+          "count": 1,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-YL",
+              "description": "Blender 600 W colour yellow",
+              "quantity": {
+                "value": "4",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "9.20",
+            "raw": {
+              "value": "9.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "10.60",
+            "raw": {
+              "value": "10.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "195-212",
+          "count": 18,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-GN",
+              "description": "Blender 600 W colour green",
+              "quantity": {
+                "value": "72",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "165.60",
+            "raw": {
+              "value": "165.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "190.80",
+            "raw": {
+              "value": "190.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "213-216",
+          "count": 4,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-OR",
+              "description": "Blender 600 W colour orange",
+              "quantity": {
+                "value": "16",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.80",
+            "raw": {
+              "value": "36.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "42.40",
+            "raw": {
+              "value": "42.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "217-240",
+          "count": 24,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-BL",
+              "description": "Blender 600 W colour blue",
+              "quantity": {
+                "value": "96",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "220.80",
+            "raw": {
+              "value": "220.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "254.40",
+            "raw": {
+              "value": "254.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "241-246",
+          "count": 6,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-BK",
+              "description": "Blender 600 W colour black",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "55.20",
+            "raw": {
+              "value": "55.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "63.60",
+            "raw": {
+              "value": "63.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "247-263",
+          "count": 17,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-RD",
+              "description": "Blender 600 W colour red",
+              "quantity": {
+                "value": "68",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "156.40",
+            "raw": {
+              "value": "156.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "180.20",
+            "raw": {
+              "value": "180.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "264-274",
+          "count": 11,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+          "contents": [
+            {
+              "sku": "BL-600-PK",
+              "description": "Blender 600 W colour pink",
+              "quantity": {
+                "value": "44",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "101.20",
+            "raw": {
+              "value": "101.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "116.60",
+            "raw": {
+              "value": "116.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 274,
+        "netWeight": {
+          "kg": "2438.40",
+          "raw": {
+            "value": "2438.40",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2791.10",
+          "raw": {
+            "value": "2791.10",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "29.94"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXBRV5068467",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "775312085",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "notifyParty": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "088N",
+      "placeOfReceipt": {
+        "name": "Stuttgart",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Bremerhaven",
+        "unLocode": "DEBRV",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Moncton",
+        "unLocode": "CAMNT",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGLU8867463",
+          "seal": "AG8004546",
+          "type": "40HC",
+          "packages": 274,
+          "grossWeight": {
+            "kg": "2791.10",
+            "raw": {
+              "value": "2791.10",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "29.94"
+        }
+      ],
+      "totalPackages": 274,
+      "totalGrossWeight": {
+        "kg": "2791.10",
+        "raw": {
+          "value": "2791.10",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "ÉPICERIE/ÉP423950/C/NO. 1-274",
+      "cargoDescription": "SAID TO CONTAIN 274 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Bremerhaven",
+      "dateOfIssue": "2026-09-11",
+      "shippedOnBoardDate": "2026-09-11",
+      "references": [
+        "INV-2026-9489",
+        "ÉP423950"
+      ]
+    }
+  }
+}

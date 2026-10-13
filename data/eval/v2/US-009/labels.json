@@ -1,0 +1,39 @@
+{
+  "id": "US-009",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "9200 Bolsa Ave",
+      "after": "9212 Bolsa Ave",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "TWEU8004830",
+      "after": "TWEU8004839",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: TWEU8004830 -> TWEU8004839."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[0].quantity.value",
+      "before": "100",
+      "after": "10",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 1 quantity changed without updating the line total."
+    }
+  ]
+}

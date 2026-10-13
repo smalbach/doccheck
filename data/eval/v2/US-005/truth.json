@@ -1,0 +1,676 @@
+{
+  "id": "US-005",
+  "seed": 1588518201,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "euro",
+    "packingListTemplate": "euro",
+    "blTemplate": "euro",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-3802",
+      "poNumber": "HA517689",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-09-21",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Nhava Sheva"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 151,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204-YL",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour yellow",
+          "quantity": {
+            "value": "3800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.38",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "5244.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BB-6204-BL",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour blue",
+          "quantity": {
+            "value": "2400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.38",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3312.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 3,
+          "sku": "BB-6204-WH",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour white",
+          "quantity": {
+            "value": "740",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.38",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10212.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 4,
+          "sku": "BB-6204-GY",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour grey",
+          "quantity": {
+            "value": "1600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.38",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2208.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 5,
+          "sku": "BB-6204-BR",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour brown",
+          "quantity": {
+            "value": "7600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.38",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10488.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 6,
+          "sku": "BB-6204-NV",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour navy",
+          "quantity": {
+            "value": "7400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.38",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10212.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3457.90",
+        "raw": {
+          "value": "3457.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3322.00",
+        "raw": {
+          "value": "3322.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "41676.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "charges": {
+        "freight": {
+          "amount": "2495.00",
+          "currency": "INR"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-3802",
+      "invoiceRef": "INV-2026-3802",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-19",
+          "count": 19,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA517689/C/NO. 1-151",
+          "contents": [
+            {
+              "sku": "BB-6204-YL",
+              "description": "Ball bearing 6204-2RS colour yellow",
+              "quantity": {
+                "value": "3800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "418.00",
+            "raw": {
+              "value": "418.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "435.10",
+            "raw": {
+              "value": "435.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "20-31",
+          "count": 12,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA517689/C/NO. 1-151",
+          "contents": [
+            {
+              "sku": "BB-6204-BL",
+              "description": "Ball bearing 6204-2RS colour blue",
+              "quantity": {
+                "value": "2400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "264.00",
+            "raw": {
+              "value": "264.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "274.80",
+            "raw": {
+              "value": "274.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "32-68",
+          "count": 37,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA517689/C/NO. 1-151",
+          "contents": [
+            {
+              "sku": "BB-6204-WH",
+              "description": "Ball bearing 6204-2RS colour white",
+              "quantity": {
+                "value": "7400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "814.00",
+            "raw": {
+              "value": "814.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "847.30",
+            "raw": {
+              "value": "847.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "69-76",
+          "count": 8,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA517689/C/NO. 1-151",
+          "contents": [
+            {
+              "sku": "BB-6204-GY",
+              "description": "Ball bearing 6204-2RS colour grey",
+              "quantity": {
+                "value": "1600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "176.00",
+            "raw": {
+              "value": "176.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "183.20",
+            "raw": {
+              "value": "183.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "77-114",
+          "count": 38,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA517689/C/NO. 1-151",
+          "contents": [
+            {
+              "sku": "BB-6204-BR",
+              "description": "Ball bearing 6204-2RS colour brown",
+              "quantity": {
+                "value": "7600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "836.00",
+            "raw": {
+              "value": "836.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "870.20",
+            "raw": {
+              "value": "870.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "115-151",
+          "count": 37,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA517689/C/NO. 1-151",
+          "contents": [
+            {
+              "sku": "BB-6204-NV",
+              "description": "Ball bearing 6204-2RS colour navy",
+              "quantity": {
+                "value": "7400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "814.00",
+            "raw": {
+              "value": "814.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "847.30",
+            "raw": {
+              "value": "847.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 151,
+        "netWeight": {
+          "kg": "3322.00",
+          "raw": {
+            "value": "3322.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3457.90",
+          "raw": {
+            "value": "3457.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.53"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXNSA6433575",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "310158055",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "026E",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGXU2890294",
+          "seal": "AG8017918",
+          "type": "20GP",
+          "packages": 151,
+          "grossWeight": {
+            "kg": "3457.90",
+            "raw": {
+              "value": "7623",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "4.53"
+        }
+      ],
+      "totalPackages": 151,
+      "totalGrossWeight": {
+        "kg": "3457.90",
+        "raw": {
+          "value": "7623",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/HA517689/C/NO. 1-151",
+      "cargoDescription": "SAID TO CONTAIN 151 CTNS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-09-24",
+      "shippedOnBoardDate": "2026-09-24",
+      "references": [
+        "INV-2026-3802",
+        "HA517689"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "IN",
+      "htsCode": "848210",
+      "containerStuffingLocation": {
+        "lines": [
+          "Plot 41, MIDC Bhosari"
+        ],
+        "city": "Pune",
+        "region": "Maharashtra",
+        "postalCode": "411026",
+        "country": "IN"
+      },
+      "consolidator": {
+        "name": "Compass Freight Forwarding Co.",
+        "address": {
+          "lines": [
+            "18 Changjiang Rd"
+          ],
+          "city": "Shanghai",
+          "country": "CN"
+        }
+      }
+    }
+  }
+}

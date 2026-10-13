@@ -1,0 +1,900 @@
+{
+  "id": "CA-015",
+  "seed": 1428886173,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "grid",
+    "packingListTemplate": "euro",
+    "blTemplate": "euro",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-5245",
+      "invoiceDate": "2026-02-27",
+      "poNumber": "CO360671",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-03-02",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Vancouver"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 169,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN-BL",
+          "description": "Brass ball valves 2 inch, threaded, colour blue",
+          "quantity": {
+            "value": "300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "5202.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN-YL",
+          "description": "Brass ball valves 2 inch, threaded, colour yellow",
+          "quantity": {
+            "value": "380",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "6589.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 3,
+          "sku": "BV-2IN-NV",
+          "description": "Brass ball valves 2 inch, threaded, colour navy",
+          "quantity": {
+            "value": "40",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "693.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 4,
+          "sku": "BV-2IN-GY",
+          "description": "Brass ball valves 2 inch, threaded, colour grey",
+          "quantity": {
+            "value": "140",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2427.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 5,
+          "sku": "BV-2IN-BE",
+          "description": "Brass ball valves 2 inch, threaded, colour beige",
+          "quantity": {
+            "value": "460",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "7976.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 6,
+          "sku": "BV-2IN-GN",
+          "description": "Brass ball valves 2 inch, threaded, colour green",
+          "quantity": {
+            "value": "560",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "9710.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 7,
+          "sku": "BV-2IN-OR",
+          "description": "Brass ball valves 2 inch, threaded, colour orange",
+          "quantity": {
+            "value": "540",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "9363.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 8,
+          "sku": "BV-2IN-BR",
+          "description": "Brass ball valves 2 inch, threaded, colour brown",
+          "quantity": {
+            "value": "160",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2774.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 9,
+          "sku": "BV-2IN-BK",
+          "description": "Brass ball valves 2 inch, threaded, colour black",
+          "quantity": {
+            "value": "220",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3814.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 10,
+          "sku": "BV-2IN-WH",
+          "description": "Brass ball valves 2 inch, threaded, colour white",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3468.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 11,
+          "sku": "BV-2IN-RD",
+          "description": "Brass ball valves 2 inch, threaded, colour red",
+          "quantity": {
+            "value": "300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "5202.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 12,
+          "sku": "BV-2IN-PK",
+          "description": "Brass ball valves 2 inch, threaded, colour pink",
+          "quantity": {
+            "value": "80",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1387.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4748.90",
+        "raw": {
+          "value": "4748.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4563.00",
+        "raw": {
+          "value": "4563.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "58609.20",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-5245",
+      "invoiceRef": "INV-2026-5245",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-15",
+          "count": 15,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-BL",
+              "description": "Brass ball valve 2\" colour blue",
+              "quantity": {
+                "value": "300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "405.00",
+            "raw": {
+              "value": "405.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "421.50",
+            "raw": {
+              "value": "421.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "16-34",
+          "count": 19,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-YL",
+              "description": "Brass ball valve 2\" colour yellow",
+              "quantity": {
+                "value": "380",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "513.00",
+            "raw": {
+              "value": "513.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "533.90",
+            "raw": {
+              "value": "533.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "35-36",
+          "count": 2,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-NV",
+              "description": "Brass ball valve 2\" colour navy",
+              "quantity": {
+                "value": "40",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "54.00",
+            "raw": {
+              "value": "54.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "56.20",
+            "raw": {
+              "value": "56.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "37-43",
+          "count": 7,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-GY",
+              "description": "Brass ball valve 2\" colour grey",
+              "quantity": {
+                "value": "140",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "189.00",
+            "raw": {
+              "value": "189.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "196.70",
+            "raw": {
+              "value": "196.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "44-66",
+          "count": 23,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-BE",
+              "description": "Brass ball valve 2\" colour beige",
+              "quantity": {
+                "value": "460",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "621.00",
+            "raw": {
+              "value": "621.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "646.30",
+            "raw": {
+              "value": "646.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "67-94",
+          "count": 28,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-GN",
+              "description": "Brass ball valve 2\" colour green",
+              "quantity": {
+                "value": "560",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "756.00",
+            "raw": {
+              "value": "756.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "786.80",
+            "raw": {
+              "value": "786.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "95-121",
+          "count": 27,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-OR",
+              "description": "Brass ball valve 2\" colour orange",
+              "quantity": {
+                "value": "540",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "729.00",
+            "raw": {
+              "value": "729.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "758.70",
+            "raw": {
+              "value": "758.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "122-129",
+          "count": 8,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-BR",
+              "description": "Brass ball valve 2\" colour brown",
+              "quantity": {
+                "value": "160",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "216.00",
+            "raw": {
+              "value": "216.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "224.80",
+            "raw": {
+              "value": "224.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "130-140",
+          "count": 11,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-BK",
+              "description": "Brass ball valve 2\" colour black",
+              "quantity": {
+                "value": "220",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "297.00",
+            "raw": {
+              "value": "297.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "309.10",
+            "raw": {
+              "value": "309.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "141-150",
+          "count": 10,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-WH",
+              "description": "Brass ball valve 2\" colour white",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "270.00",
+            "raw": {
+              "value": "270.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "281.00",
+            "raw": {
+              "value": "281.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "151-165",
+          "count": 15,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-RD",
+              "description": "Brass ball valve 2\" colour red",
+              "quantity": {
+                "value": "300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "405.00",
+            "raw": {
+              "value": "405.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "421.50",
+            "raw": {
+              "value": "421.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "166-169",
+          "count": 4,
+          "type": "CTN",
+          "marks": "COASTAL/CO360671/C/NO. 1-169",
+          "contents": [
+            {
+              "sku": "BV-2IN-PK",
+              "description": "Brass ball valve 2\" colour pink",
+              "quantity": {
+                "value": "80",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "108.00",
+            "raw": {
+              "value": "108.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "112.40",
+            "raw": {
+              "value": "112.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 169,
+        "netWeight": {
+          "kg": "4563.00",
+          "raw": {
+            "value": "4563.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4748.90",
+          "raw": {
+            "value": "4748.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "7.99"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSNSA687165",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "428427737",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3946 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "094E",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU9370171",
+          "seal": "MD9867017",
+          "type": "20GP",
+          "packages": 169,
+          "grossWeight": {
+            "kg": "4748.90",
+            "raw": {
+              "value": "4748.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "7.99"
+        }
+      ],
+      "totalPackages": 169,
+      "totalGrossWeight": {
+        "kg": "4748.90",
+        "raw": {
+          "value": "4748.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/CO360671/C/NO. 1-169",
+      "cargoDescription": "SAID TO CONTAIN 169 CTNS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-03-02",
+      "shippedOnBoardDate": "2026-03-02",
+      "references": [
+        "INV-2026-5245",
+        "CO360671"
+      ]
+    }
+  }
+}

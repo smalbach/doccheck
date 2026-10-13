@@ -1,0 +1,38 @@
+{
+  "id": "US-018",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "15500 Gothard St",
+      "after": "15502 Gothard St",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[1].contents[0].quantity.value",
+      "before": "24",
+      "after": "14",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[14].lineTotal.amount",
+      "before": "8882.50",
+      "after": "8828.50",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 15 total mistyped (8882.50 -> 8828.50)."
+    }
+  ]
+}

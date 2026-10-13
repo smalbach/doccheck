@@ -1,0 +1,27 @@
+{
+  "id": "US-024",
+  "errors": [
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[22].contents[0].quantity.value",
+      "before": "4",
+      "after": "16",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[4].lineTotal.amount",
+      "before": "3381.40",
+      "after": "3831.40",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 5 total mistyped (3381.40 -> 3831.40)."
+    }
+  ]
+}

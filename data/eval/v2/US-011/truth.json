@@ -1,0 +1,648 @@
+{
+  "id": "US-011",
+  "seed": 1528525013,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-5682",
+      "invoiceDate": "2026-04-25",
+      "poNumber": "PO-62826",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "buyer": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "exporter": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "shipmentDate": "2026-05-02",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Callao",
+          "unLocode": "PECLL",
+          "country": "PE"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Callao"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 174,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60-L1",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot A-577",
+          "quantity": {
+            "value": "1380",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "5975.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CF-GRN-60-L2",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot B-824",
+          "quantity": {
+            "value": "660",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2857.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CF-GRN-60-L3",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot C-618",
+          "quantity": {
+            "value": "360",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1558.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CF-GRN-60-L4",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot D-933",
+          "quantity": {
+            "value": "3060",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "13249.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CF-GRN-60-L5",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot E-750",
+          "quantity": {
+            "value": "2640",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "11431.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CF-GRN-60-L6",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot F-299",
+          "quantity": {
+            "value": "2340",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10132.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "10579.20",
+        "raw": {
+          "value": "10579.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "10440.00",
+        "raw": {
+          "value": "10440.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "45205.20",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-5682",
+      "invoiceRef": "INV-2026-5682",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Nguyễn Family Foods – Cold Storage",
+        "address": {
+          "lines": [
+            "15500 Gothard St"
+          ],
+          "city": "Huntington Beach",
+          "region": "CA",
+          "postalCode": "92647",
+          "country": "US"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-23",
+          "count": 23,
+          "type": "BAG",
+          "marks": "NGUYỄN/PO-62826/C/NO. 1-174",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L1",
+              "description": "Green coffee arabica lot A-577",
+              "quantity": {
+                "value": "1380",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1380.00",
+            "raw": {
+              "value": "1380.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1398.40",
+            "raw": {
+              "value": "1398.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "24-34",
+          "count": 11,
+          "type": "BAG",
+          "marks": "NGUYỄN/PO-62826/C/NO. 1-174",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L2",
+              "description": "Green coffee arabica lot B-824",
+              "quantity": {
+                "value": "660",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "660.00",
+            "raw": {
+              "value": "660.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "668.80",
+            "raw": {
+              "value": "668.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "35-40",
+          "count": 6,
+          "type": "BAG",
+          "marks": "NGUYỄN/PO-62826/C/NO. 1-174",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L3",
+              "description": "Green coffee arabica lot C-618",
+              "quantity": {
+                "value": "360",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "360.00",
+            "raw": {
+              "value": "360.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "364.80",
+            "raw": {
+              "value": "364.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "41-91",
+          "count": 51,
+          "type": "BAG",
+          "marks": "NGUYỄN/PO-62826/C/NO. 1-174",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L4",
+              "description": "Green coffee arabica lot D-933",
+              "quantity": {
+                "value": "3060",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3060.00",
+            "raw": {
+              "value": "3060.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3100.80",
+            "raw": {
+              "value": "3100.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "92-135",
+          "count": 44,
+          "type": "BAG",
+          "marks": "NGUYỄN/PO-62826/C/NO. 1-174",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L5",
+              "description": "Green coffee arabica lot E-750",
+              "quantity": {
+                "value": "2640",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2640.00",
+            "raw": {
+              "value": "2640.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2675.20",
+            "raw": {
+              "value": "2675.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "136-174",
+          "count": 39,
+          "type": "BAG",
+          "marks": "NGUYỄN/PO-62826/C/NO. 1-174",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L6",
+              "description": "Green coffee arabica lot F-299",
+              "quantity": {
+                "value": "2340",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2340.00",
+            "raw": {
+              "value": "2340.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2371.20",
+            "raw": {
+              "value": "2371.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 174,
+        "netWeight": {
+          "kg": "10440.00",
+          "raw": {
+            "value": "10440.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "10579.20",
+          "raw": {
+            "value": "10579.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "24.79"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPCLL779012",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "348278293",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Nguyễn Family Foods – Cold Storage",
+        "address": {
+          "lines": [
+            "15500 Gothard St"
+          ],
+          "city": "Huntington Beach",
+          "region": "CA",
+          "postalCode": "92647",
+          "country": "US"
+        }
+      },
+      "notifyParty": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "047S",
+      "placeOfReceipt": {
+        "name": "San Martín de Pangoa",
+        "country": "PE"
+      },
+      "portOfLoading": {
+        "name": "Callao",
+        "unLocode": "PECLL",
+        "country": "PE"
+      },
+      "portOfDischarge": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Los Angeles",
+        "unLocode": "USLAX",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGXU1596135",
+          "seal": "AG4475937",
+          "type": "40HC",
+          "packages": 174,
+          "grossWeight": {
+            "kg": "10579.20",
+            "raw": {
+              "value": "10579.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "24.79"
+        }
+      ],
+      "totalPackages": 174,
+      "totalGrossWeight": {
+        "kg": "11108.16",
+        "raw": {
+          "value": "11108.16",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NGUYỄN/PO-62826/C/NO. 1-174",
+      "cargoDescription": "SAID TO CONTAIN 174 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Callao",
+      "dateOfIssue": "2026-05-03",
+      "shippedOnBoardDate": "2026-05-03",
+      "references": [
+        "INV-2026-5682",
+        "PO-62826"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "buyer": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "importerOfRecordNumber": "33-765432100",
+      "consigneeNumber": "33-765432100",
+      "manufacturer": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "shipToParty": {
+        "name": "Nguyễn Family Foods – Cold Storage",
+        "address": {
+          "lines": [
+            "15500 Gothard St"
+          ],
+          "city": "Huntington Beach",
+          "region": "CA",
+          "postalCode": "92647",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "PE",
+      "htsCode": "090111",
+      "containerStuffingLocation": {
+        "lines": [
+          "Av. Túpac Amaru 315"
+        ],
+        "city": "San Martín de Pangoa",
+        "region": "Junín",
+        "country": "PE"
+      },
+      "consolidator": {
+        "name": "Compass Freight Forwarding Co.",
+        "address": {
+          "lines": [
+            "18 Changjiang Rd"
+          ],
+          "city": "Shanghai",
+          "country": "CN"
+        }
+      }
+    }
+  }
+}

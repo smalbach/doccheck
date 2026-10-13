@@ -1,0 +1,965 @@
+{
+  "id": "US-026",
+  "seed": 1582706130,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "euro",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/0341",
+      "invoiceDate": "2026-06-25",
+      "poNumber": "PO-65036",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "consignee": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-07-02",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Shekou",
+          "unLocode": "CNSHK",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Shekou"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 253,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200-PK",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour pink",
+          "quantity": {
+            "value": "1000",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "8100.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TB-200-WH",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour white",
+          "quantity": {
+            "value": "900",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "7290.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 3,
+          "sku": "TB-200-YL",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour yellow",
+          "quantity": {
+            "value": "500",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4050.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 4,
+          "sku": "TB-200-BK",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour black",
+          "quantity": {
+            "value": "1350",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10935.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 5,
+          "sku": "TB-200-NV",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour navy",
+          "quantity": {
+            "value": "1400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "11340.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 6,
+          "sku": "TB-200-GN",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour green",
+          "quantity": {
+            "value": "800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "6480.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 7,
+          "sku": "TB-200-BR",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour brown",
+          "quantity": {
+            "value": "1600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "12960.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 8,
+          "sku": "TB-200-BE",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour beige",
+          "quantity": {
+            "value": "1200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "9720.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 9,
+          "sku": "TB-200-OR",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour orange",
+          "quantity": {
+            "value": "1300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10530.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 10,
+          "sku": "TB-200-BL",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour blue",
+          "quantity": {
+            "value": "1000",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "8100.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 11,
+          "sku": "TB-200-RD",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour red",
+          "quantity": {
+            "value": "1600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.10",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "12960.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2580.60",
+        "raw": {
+          "value": "2580.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2277.00",
+        "raw": {
+          "value": "2277.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "102465.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/0341",
+      "invoiceRef": "CI/26/0341",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "packages": [
+        {
+          "range": "1-20",
+          "count": 20,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-PK",
+              "description": "Plush teddy bear 30 cm colour pink",
+              "quantity": {
+                "value": "1000",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "180.00",
+            "raw": {
+              "value": "180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "204.00",
+            "raw": {
+              "value": "204.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "21-38",
+          "count": 18,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-WH",
+              "description": "Plush teddy bear 30 cm colour white",
+              "quantity": {
+                "value": "900",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "162.00",
+            "raw": {
+              "value": "162.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "183.60",
+            "raw": {
+              "value": "183.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "39-48",
+          "count": 10,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-YL",
+              "description": "Plush teddy bear 30 cm colour yellow",
+              "quantity": {
+                "value": "500",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "90.00",
+            "raw": {
+              "value": "90.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "102.00",
+            "raw": {
+              "value": "102.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "49-75",
+          "count": 27,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-BK",
+              "description": "Plush teddy bear 30 cm colour black",
+              "quantity": {
+                "value": "1350",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "243.00",
+            "raw": {
+              "value": "243.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "275.40",
+            "raw": {
+              "value": "275.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "76-103",
+          "count": 28,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-NV",
+              "description": "Plush teddy bear 30 cm colour navy",
+              "quantity": {
+                "value": "1400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "252.00",
+            "raw": {
+              "value": "252.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "285.60",
+            "raw": {
+              "value": "285.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "104-119",
+          "count": 16,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-GN",
+              "description": "Plush teddy bear 30 cm colour green",
+              "quantity": {
+                "value": "800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "144.00",
+            "raw": {
+              "value": "144.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "163.20",
+            "raw": {
+              "value": "163.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "120-151",
+          "count": 32,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-BR",
+              "description": "Plush teddy bear 30 cm colour brown",
+              "quantity": {
+                "value": "1600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "288.00",
+            "raw": {
+              "value": "288.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "326.40",
+            "raw": {
+              "value": "326.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "152-175",
+          "count": 24,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-BE",
+              "description": "Plush teddy bear 30 cm colour beige",
+              "quantity": {
+                "value": "1200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "216.00",
+            "raw": {
+              "value": "216.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "244.80",
+            "raw": {
+              "value": "244.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "176-201",
+          "count": 26,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-OR",
+              "description": "Plush teddy bear 30 cm colour orange",
+              "quantity": {
+                "value": "1300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "234.00",
+            "raw": {
+              "value": "234.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "265.20",
+            "raw": {
+              "value": "265.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "202-221",
+          "count": 20,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-BL",
+              "description": "Plush teddy bear 30 cm colour blue",
+              "quantity": {
+                "value": "1000",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "180.00",
+            "raw": {
+              "value": "180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "204.00",
+            "raw": {
+              "value": "204.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "222-253",
+          "count": 32,
+          "type": "CTN",
+          "marks": "PACIFIC/PO-65036/C/NO. 1-253",
+          "contents": [
+            {
+              "sku": "TB-200-RD",
+              "description": "Plush teddy bear 30 cm colour red",
+              "quantity": {
+                "value": "1600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "288.00",
+            "raw": {
+              "value": "288.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "326.40",
+            "raw": {
+              "value": "326.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 253,
+        "netWeight": {
+          "kg": "2277.00",
+          "raw": {
+            "value": "2277.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2580.60",
+          "raw": {
+            "value": "2580.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "24.29"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWESHK8217995",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "285008579",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2158 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "notifyParty": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "067N",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Shekou",
+        "unLocode": "CNSHK",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Fontana",
+        "unLocode": "USFON",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "TWEU9137924",
+          "seal": "TW7160337",
+          "type": "40GP",
+          "packages": 253,
+          "grossWeight": {
+            "kg": "2580.60",
+            "raw": {
+              "value": "5689",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "24.29"
+        }
+      ],
+      "totalPackages": 253,
+      "totalGrossWeight": {
+        "kg": "2193.51",
+        "raw": {
+          "value": "4836",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "PACIFIC/PO-65036/C/NO. 1-253",
+      "cargoDescription": "SAID TO CONTAIN 253 CTNS PLUSH TEDDY BEAR 30 CM AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Shekou",
+      "dateOfIssue": "2026-07-02",
+      "shippedOnBoardDate": "2026-07-02",
+      "references": [
+        "CI/26/0341",
+        "PO-65036"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "importerOfRecordNumber": "95-478321000",
+      "consigneeNumber": "95-478321000",
+      "manufacturer": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipToParty": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "950300",
+      "containerStuffingLocation": {
+        "lines": [
+          "No. 18 Longgang Industrial Ave",
+          "Buji Subdistrict"
+        ],
+        "city": "Shenzhen",
+        "region": "Guangdong",
+        "postalCode": "518112",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Compass Freight Forwarding Co.",
+        "address": {
+          "lines": [
+            "18 Changjiang Rd"
+          ],
+          "city": "Shanghai",
+          "country": "CN"
+        }
+      }
+    }
+  }
+}

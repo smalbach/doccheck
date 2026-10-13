@@ -1,0 +1,1074 @@
+{
+  "id": "CA-010",
+  "seed": 1325262768,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "euro",
+    "packingListTemplate": "grid",
+    "blTemplate": "grid",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "COO2601551",
+      "invoiceDate": "2026-03-30",
+      "poNumber": "NO844554",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "shipmentDate": "2026-04-06",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Callao",
+          "unLocode": "PECLL",
+          "country": "PE"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Prince Rupert"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "CAD",
+      "packageCount": 54,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60-L1",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot A-323",
+          "quantity": {
+            "value": "120",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "589.20",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CF-GRN-60-L2",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot B-835",
+          "quantity": {
+            "value": "60",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "294.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CF-GRN-60-L3",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot C-690",
+          "quantity": {
+            "value": "300",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1473.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CF-GRN-60-L4",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot D-742",
+          "quantity": {
+            "value": "360",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1767.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CF-GRN-60-L5",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot E-279",
+          "quantity": {
+            "value": "180",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "883.80",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CF-GRN-60-L6",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot F-246",
+          "quantity": {
+            "value": "180",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "883.80",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 7,
+          "sku": "CF-GRN-60-L7",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot G-273",
+          "quantity": {
+            "value": "360",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1767.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 8,
+          "sku": "CF-GRN-60-L8",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot H-235",
+          "quantity": {
+            "value": "60",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "294.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 9,
+          "sku": "CF-GRN-60-L9",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot I-638",
+          "quantity": {
+            "value": "300",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1473.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 10,
+          "sku": "CF-GRN-60-L10",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot J-965",
+          "quantity": {
+            "value": "240",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1178.40",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 11,
+          "sku": "CF-GRN-60-L11",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot K-688",
+          "quantity": {
+            "value": "60",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "294.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 12,
+          "sku": "CF-GRN-60-L12",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot L-145",
+          "quantity": {
+            "value": "120",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "589.20",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 13,
+          "sku": "CF-GRN-60-L13",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot M-550",
+          "quantity": {
+            "value": "300",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1473.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 14,
+          "sku": "CF-GRN-60-L14",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot N-194",
+          "quantity": {
+            "value": "360",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1767.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 15,
+          "sku": "CF-GRN-60-L15",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot O-772",
+          "quantity": {
+            "value": "180",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.91",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "883.80",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3222.40",
+        "raw": {
+          "value": "3222.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3180.00",
+        "raw": {
+          "value": "3180.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "15613.80",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "2687.00",
+          "currency": "USD"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-COO2601551",
+      "invoiceRef": "COO2601551",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-2",
+          "count": 2,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L1",
+              "description": "Green coffee arabica lot A-323",
+              "quantity": {
+                "value": "120",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "120.00",
+            "raw": {
+              "value": "120.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "121.60",
+            "raw": {
+              "value": "121.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "3-3",
+          "count": 1,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L2",
+              "description": "Green coffee arabica lot B-835",
+              "quantity": {
+                "value": "60",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "60.00",
+            "raw": {
+              "value": "60.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "60.80",
+            "raw": {
+              "value": "60.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "4-8",
+          "count": 5,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L3",
+              "description": "Green coffee arabica lot C-690",
+              "quantity": {
+                "value": "300",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "300.00",
+            "raw": {
+              "value": "300.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "304.00",
+            "raw": {
+              "value": "304.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "9-14",
+          "count": 6,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L4",
+              "description": "Green coffee arabica lot D-742",
+              "quantity": {
+                "value": "360",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "360.00",
+            "raw": {
+              "value": "360.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "364.80",
+            "raw": {
+              "value": "364.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "15-17",
+          "count": 3,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L5",
+              "description": "Green coffee arabica lot E-279",
+              "quantity": {
+                "value": "180",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "180.00",
+            "raw": {
+              "value": "180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "182.40",
+            "raw": {
+              "value": "182.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "18-20",
+          "count": 3,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L6",
+              "description": "Green coffee arabica lot F-246",
+              "quantity": {
+                "value": "180",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "180.00",
+            "raw": {
+              "value": "180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "182.40",
+            "raw": {
+              "value": "182.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "21-26",
+          "count": 6,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L7",
+              "description": "Green coffee arabica lot G-273",
+              "quantity": {
+                "value": "360",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "360.00",
+            "raw": {
+              "value": "360.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "364.80",
+            "raw": {
+              "value": "364.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "27-27",
+          "count": 1,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L8",
+              "description": "Green coffee arabica lot H-235",
+              "quantity": {
+                "value": "60",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "60.00",
+            "raw": {
+              "value": "60.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "60.80",
+            "raw": {
+              "value": "60.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "28-32",
+          "count": 5,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L9",
+              "description": "Green coffee arabica lot I-638",
+              "quantity": {
+                "value": "300",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "300.00",
+            "raw": {
+              "value": "300.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "304.00",
+            "raw": {
+              "value": "304.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "33-36",
+          "count": 4,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L10",
+              "description": "Green coffee arabica lot J-965",
+              "quantity": {
+                "value": "240",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "240.00",
+            "raw": {
+              "value": "240.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "243.20",
+            "raw": {
+              "value": "243.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "37-37",
+          "count": 1,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L11",
+              "description": "Green coffee arabica lot K-688",
+              "quantity": {
+                "value": "60",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "60.00",
+            "raw": {
+              "value": "60.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "60.80",
+            "raw": {
+              "value": "60.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "38-39",
+          "count": 2,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L12",
+              "description": "Green coffee arabica lot L-145",
+              "quantity": {
+                "value": "120",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "120.00",
+            "raw": {
+              "value": "120.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "121.60",
+            "raw": {
+              "value": "121.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "40-44",
+          "count": 5,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L13",
+              "description": "Green coffee arabica lot M-550",
+              "quantity": {
+                "value": "300",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "300.00",
+            "raw": {
+              "value": "300.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "304.00",
+            "raw": {
+              "value": "304.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "45-50",
+          "count": 6,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L14",
+              "description": "Green coffee arabica lot N-194",
+              "quantity": {
+                "value": "360",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "360.00",
+            "raw": {
+              "value": "360.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "364.80",
+            "raw": {
+              "value": "364.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "51-53",
+          "count": 3,
+          "type": "BAG",
+          "marks": "NORTHERN/NO844554/C/NO. 1-53",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L15",
+              "description": "Green coffee arabica lot O-772",
+              "quantity": {
+                "value": "180",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "180.00",
+            "raw": {
+              "value": "180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "182.40",
+            "raw": {
+              "value": "182.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 53,
+        "netWeight": {
+          "kg": "3180.00",
+          "raw": {
+            "value": "3180.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3222.40",
+          "raw": {
+            "value": "3222.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "7.55"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSCLL695533",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "923621591",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "010N",
+      "placeOfReceipt": {
+        "name": "San Martín de Pangoa",
+        "country": "PE"
+      },
+      "portOfLoading": {
+        "name": "Callao",
+        "unLocode": "PECLL",
+        "country": "PE"
+      },
+      "portOfDischarge": {
+        "name": "Prince Rupert",
+        "unLocode": "CAPRR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU1916564",
+          "seal": "MD9847059",
+          "type": "20GP",
+          "packages": 53,
+          "grossWeight": {
+            "kg": "3222.40",
+            "raw": {
+              "value": "3222.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "7.55"
+        }
+      ],
+      "totalPackages": 53,
+      "totalGrossWeight": {
+        "kg": "3222.40",
+        "raw": {
+          "value": "3222.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/NO844554/C/NO. 1-53",
+      "cargoDescription": "SAID TO CONTAIN 53 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Callao",
+      "dateOfIssue": "2026-04-07",
+      "shippedOnBoardDate": "2026-04-07",
+      "references": [
+        "COO2601551",
+        "NO844554"
+      ]
+    }
+  }
+}

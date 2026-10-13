@@ -1,0 +1,16 @@
+{
+  "id": "US-021",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "AGXU8713125",
+      "after": "AGXU8713120",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: AGXU8713125 -> AGXU8713120."
+    }
+  ]
+}

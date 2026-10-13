@@ -1,0 +1,1287 @@
+{
+  "id": "CA-017",
+  "seed": 400809914,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "grid",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": true
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/8937",
+      "invoiceDate": "2026-09-19",
+      "poNumber": "PO-19112",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "buyer": {
+        "name": "Les Importations Bélanger & Frères inc.",
+        "address": {
+          "lines": [
+            "2875 boul. Laurier, bureau 300"
+          ],
+          "city": "Québec",
+          "region": "QC",
+          "postalCode": "G1V 2M2",
+          "country": "CA"
+        },
+        "taxId": "881234567RM0001"
+      },
+      "consignee": {
+        "name": "Les Importations Bélanger & Frères inc.",
+        "address": {
+          "lines": [
+            "2875 boul. Laurier, bureau 300"
+          ],
+          "city": "Québec",
+          "region": "QC",
+          "postalCode": "G1V 2M2",
+          "country": "CA"
+        },
+        "taxId": "881234567RM0001"
+      },
+      "exporter": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "shipmentDate": "2026-09-26",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hamburg",
+          "unLocode": "DEHAM",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Halifax"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "CAD",
+      "packageCount": 197,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BL-600-BR",
+          "description": "Countertop blender 600 W with glass jar, colour brown",
+          "quantity": {
+            "value": "48",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.52",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1080.96",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BL-600-BE",
+          "description": "Countertop blender 600 W with glass jar, colour beige",
+          "quantity": {
+            "value": "44",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.52",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "990.88",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 3,
+          "sku": "BL-600-RD",
+          "description": "Countertop blender 600 W with glass jar, colour red",
+          "quantity": {
+            "value": "100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.52",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "2252.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 4,
+          "sku": "BL-600-GY",
+          "description": "Countertop blender 600 W with glass jar, colour grey",
+          "quantity": {
+            "value": "88",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.52",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1981.76",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 5,
+          "sku": "BL-600-PK",
+          "description": "Countertop blender 600 W with glass jar, colour pink",
+          "quantity": {
+            "value": "52",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.52",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1171.04",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 6,
+          "sku": "BL-600-BL",
+          "description": "Countertop blender 600 W with glass jar, colour blue",
+          "quantity": {
+            "value": "148",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.52",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "3332.96",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 7,
+          "sku": "BL-600-BK",
+          "description": "Countertop blender 600 W with glass jar, colour black",
+          "quantity": {
+            "value": "80",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.52",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "180.16",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 8,
+          "sku": "BL-600-WH",
+          "description": "Countertop blender 600 W with glass jar, colour white",
+          "quantity": {
+            "value": "104",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.52",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "2342.08",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 9,
+          "sku": "BL-600-OR",
+          "description": "Countertop blender 600 W with glass jar, colour orange",
+          "quantity": {
+            "value": "72",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.52",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1621.44",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        },
+        {
+          "lineNo": 10,
+          "sku": "EK-17-PK",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour pink",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "388.08",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 11,
+          "sku": "EK-17-YL",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour yellow",
+          "quantity": {
+            "value": "16",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "258.72",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 12,
+          "sku": "EK-17-NV",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour navy",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "388.08",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 13,
+          "sku": "EK-17-BK",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour black",
+          "quantity": {
+            "value": "32",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "517.44",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 14,
+          "sku": "EK-17-BE",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour beige",
+          "quantity": {
+            "value": "16",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "258.72",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 15,
+          "sku": "EK-17-WH",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour white",
+          "quantity": {
+            "value": "8",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "129.36",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 16,
+          "sku": "EK-17-GY",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour grey",
+          "quantity": {
+            "value": "48",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "776.16",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 17,
+          "sku": "EK-17-BL",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour blue",
+          "quantity": {
+            "value": "16",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "258.72",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 18,
+          "sku": "EK-17-BR",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour brown",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "388.08",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 19,
+          "sku": "EK-17-GN",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, colour green",
+          "quantity": {
+            "value": "40",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "646.80",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2054.10",
+        "raw": {
+          "value": "2054.10",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1787.60",
+        "raw": {
+          "value": "1787.60",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "18963.44",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "fr"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/8937",
+      "invoiceRef": "CI/26/8937",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Les Importations Bélanger & Frères inc.",
+        "address": {
+          "lines": [
+            "2875 boul. Laurier, bureau 300"
+          ],
+          "city": "Québec",
+          "region": "QC",
+          "postalCode": "G1V 2M2",
+          "country": "CA"
+        },
+        "taxId": "881234567RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-12",
+          "count": 12,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "BL-600-BR",
+              "description": "Blender 600 W colour brown",
+              "quantity": {
+                "value": "48",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "110.40",
+            "raw": {
+              "value": "110.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "127.20",
+            "raw": {
+              "value": "127.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "13-23",
+          "count": 11,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "BL-600-BE",
+              "description": "Blender 600 W colour beige",
+              "quantity": {
+                "value": "44",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "101.20",
+            "raw": {
+              "value": "101.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "116.60",
+            "raw": {
+              "value": "116.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "24-48",
+          "count": 25,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "BL-600-RD",
+              "description": "Blender 600 W colour red",
+              "quantity": {
+                "value": "100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "230.00",
+            "raw": {
+              "value": "230.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "265.00",
+            "raw": {
+              "value": "265.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "49-70",
+          "count": 22,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "BL-600-GY",
+              "description": "Blender 600 W colour grey",
+              "quantity": {
+                "value": "88",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "202.40",
+            "raw": {
+              "value": "202.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "233.20",
+            "raw": {
+              "value": "233.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "71-83",
+          "count": 13,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "BL-600-PK",
+              "description": "Blender 600 W colour pink",
+              "quantity": {
+                "value": "52",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "119.60",
+            "raw": {
+              "value": "119.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "137.80",
+            "raw": {
+              "value": "137.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "84-120",
+          "count": 37,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "BL-600-BL",
+              "description": "Blender 600 W colour blue",
+              "quantity": {
+                "value": "148",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "340.40",
+            "raw": {
+              "value": "340.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "392.20",
+            "raw": {
+              "value": "392.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "121-122",
+          "count": 2,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "BL-600-BK",
+              "description": "Blender 600 W colour black",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "18.40",
+            "raw": {
+              "value": "18.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "21.20",
+            "raw": {
+              "value": "21.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "123-148",
+          "count": 26,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "BL-600-WH",
+              "description": "Blender 600 W colour white",
+              "quantity": {
+                "value": "104",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "239.20",
+            "raw": {
+              "value": "239.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "275.60",
+            "raw": {
+              "value": "275.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "149-166",
+          "count": 18,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "BL-600-OR",
+              "description": "Blender 600 W colour orange",
+              "quantity": {
+                "value": "72",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "165.60",
+            "raw": {
+              "value": "165.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "190.80",
+            "raw": {
+              "value": "190.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        },
+        {
+          "range": "167-169",
+          "count": 3,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "EK-17-PK",
+              "description": "Electric kettle 1.7 L colour pink",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "25.20",
+            "raw": {
+              "value": "25.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "28.50",
+            "raw": {
+              "value": "28.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "170-171",
+          "count": 2,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "EK-17-YL",
+              "description": "Electric kettle 1.7 L colour yellow",
+              "quantity": {
+                "value": "16",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "16.80",
+            "raw": {
+              "value": "16.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "172-174",
+          "count": 3,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "EK-17-NV",
+              "description": "Electric kettle 1.7 L colour navy",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "25.20",
+            "raw": {
+              "value": "25.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "28.50",
+            "raw": {
+              "value": "28.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "175-178",
+          "count": 4,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "EK-17-BK",
+              "description": "Electric kettle 1.7 L colour black",
+              "quantity": {
+                "value": "32",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "33.60",
+            "raw": {
+              "value": "33.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "179-180",
+          "count": 2,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "EK-17-BE",
+              "description": "Electric kettle 1.7 L colour beige",
+              "quantity": {
+                "value": "16",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "16.80",
+            "raw": {
+              "value": "16.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "181-181",
+          "count": 1,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "EK-17-WH",
+              "description": "Electric kettle 1.7 L colour white",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "8.40",
+            "raw": {
+              "value": "8.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "9.50",
+            "raw": {
+              "value": "9.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "182-187",
+          "count": 6,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "EK-17-GY",
+              "description": "Electric kettle 1.7 L colour grey",
+              "quantity": {
+                "value": "48",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "50.40",
+            "raw": {
+              "value": "50.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "57.00",
+            "raw": {
+              "value": "57.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "188-189",
+          "count": 2,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "EK-17-BL",
+              "description": "Electric kettle 1.7 L colour blue",
+              "quantity": {
+                "value": "16",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "16.80",
+            "raw": {
+              "value": "16.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "190-192",
+          "count": 3,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "EK-17-BR",
+              "description": "Electric kettle 1.7 L colour brown",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "25.20",
+            "raw": {
+              "value": "25.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "28.50",
+            "raw": {
+              "value": "28.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "193-197",
+          "count": 5,
+          "type": "CTN",
+          "marks": "LES/PO-19112/C/NO. 1-197",
+          "contents": [
+            {
+              "sku": "EK-17-GN",
+              "description": "Electric kettle 1.7 L colour green",
+              "quantity": {
+                "value": "40",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "42.00",
+            "raw": {
+              "value": "42.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "47.50",
+            "raw": {
+              "value": "47.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 197,
+        "netWeight": {
+          "kg": "1787.60",
+          "raw": {
+            "value": "1787.60",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2054.10",
+          "raw": {
+            "value": "2054.10",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "21.90"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPHAM521182",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "712234674",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Les Importations Bélanger & Frères inc.",
+        "address": {
+          "lines": [
+            "2937 boul. Laurier, bureau 300"
+          ],
+          "city": "Québec",
+          "region": "QC",
+          "postalCode": "G1V 2M2",
+          "country": "CA"
+        },
+        "taxId": "881234567RM0001"
+      },
+      "notifyParty": {
+        "name": "Les Importations Bélanger & Frères inc.",
+        "address": {
+          "lines": [
+            "2875 boul. Laurier, bureau 300"
+          ],
+          "city": "Québec",
+          "region": "QC",
+          "postalCode": "G1V 2M2",
+          "country": "CA"
+        },
+        "taxId": "881234567RM0001"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "042W",
+      "placeOfReceipt": {
+        "name": "Stuttgart",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Hamburg",
+        "unLocode": "DEHAM",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Québec",
+        "unLocode": "CAQUE",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCLU9212900",
+          "seal": "PC7984824",
+          "type": "20GP",
+          "packages": 197,
+          "grossWeight": {
+            "kg": "2054.10",
+            "raw": {
+              "value": "2054.10",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "21.90"
+        }
+      ],
+      "totalPackages": 207,
+      "totalGrossWeight": {
+        "kg": "2054.10",
+        "raw": {
+          "value": "2054.10",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "LES/PO-19112/C/NO. 1-197",
+      "cargoDescription": "SAID TO CONTAIN 197 CTNS BLENDER 600 W AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Hamburg",
+      "dateOfIssue": "2026-09-27",
+      "shippedOnBoardDate": "2026-09-27",
+      "references": [
+        "CI/26/8937",
+        "PO-19112"
+      ]
+    }
+  }
+}

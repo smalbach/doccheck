@@ -1,0 +1,25 @@
+{
+  "id": "CA-006",
+  "errors": [
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "10370.00",
+      "after": "10820.50",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "invoiceDate",
+      "before": "2026-04-03",
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Invoice date missing."
+    }
+  ]
+}

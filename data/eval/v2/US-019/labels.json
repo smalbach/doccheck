@@ -1,0 +1,39 @@
+{
+  "id": "US-019",
+  "errors": [
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[12].quantity.value",
+      "before": "1900",
+      "after": "1910",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 13 quantity changed without updating the line total."
+    },
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "640 W Lake St",
+      "after": "714 W Lake St",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[1].lineTotal.amount",
+      "before": "2373.00",
+      "after": "3273.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 2 total mistyped (2373.00 -> 3273.00)."
+    }
+  ]
+}

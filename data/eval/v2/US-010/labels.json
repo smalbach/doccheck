@@ -1,0 +1,38 @@
+{
+  "id": "US-010",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "3800.90",
+      "after": "3686.87",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 0.97 against the packing list."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CNY",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 3301.00 CNY on an invoice in USD."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[4].quantity.value",
+      "before": "2",
+      "after": "3",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 5 quantity changed without updating the line total."
+    }
+  ]
+}

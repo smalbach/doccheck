@@ -1,0 +1,37 @@
+{
+  "id": "CA-018",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[7].lineTotal.amount",
+      "before": "323.28",
+      "after": "233.28",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 8 total mistyped (323.28 -> 233.28)."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "AGXU3501484",
+      "after": "AGXU3501489",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: AGXU3501484 -> AGXU3501489."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "INR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 4030.00 INR on an invoice in CAD."
+    }
+  ]
+}

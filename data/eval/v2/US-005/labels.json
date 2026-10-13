@@ -1,0 +1,38 @@
+{
+  "id": "US-005",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "invoiceDate",
+      "before": "2026-09-09",
+      "after": null,
+      "expectedRuleIds": [
+        "U1"
+      ],
+      "description": "Invoice date missing."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[2].quantity.value",
+      "before": "7400",
+      "after": "740",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 3 quantity changed without updating the line total."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "INR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 2495.00 INR on an invoice in USD."
+    }
+  ]
+}

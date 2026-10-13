@@ -1,0 +1,26 @@
+{
+  "id": "CA-010",
+  "errors": [
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "USD",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 2687.00 USD on an invoice in CAD."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 53,
+      "after": 54,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 54 packages instead of 53."
+    }
+  ]
+}

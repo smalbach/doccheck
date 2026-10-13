@@ -1,7 +1,7 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { buildDataset, V1, type DatasetEntry } from './dataset';
+import { buildDataset, V1, V2, type DatasetEntry } from './dataset';
 import { htmlToPdf, launchBrowser, renderHtml } from './pdf';
 import { buildIsfDataset, renderIsf } from './isf';
 import { renderScannedPdf, scanStyle } from './scans';
@@ -20,6 +20,8 @@ import { renderScannedPdf, scanStyle } from './scans';
  * --isf-pdfs writes the ISF filing confirmation (isf.pdf) of every US shipment to data/eval/v1-isf
  *   unless --out is given, with truth.json (all documents, ISF included) and labels.json (v1 labels
  *   plus ISF/invoice mismatches for X11). It never touches data/eval/v1.
+ * --set v2 writes set v2 (new layouts, multi-page line tables, non-English names; see V2 in
+ *   dataset.ts) to data/eval/v2 unless --out is given. Seed and sizes come from V2 unless overridden.
  */
 async function main() {
   const { values } = parseArgs({
@@ -33,12 +35,22 @@ async function main() {
       'labels-only': { type: 'boolean', default: false },
       scans: { type: 'string' },
       'isf-pdfs': { type: 'boolean', default: false },
+      set: { type: 'string', default: 'v1' },
     },
   });
+  const preset = values.set === 'v2' ? V2 : V1;
+  if (values.set !== 'v1' && values.set !== 'v2') throw new Error(`Unknown set ${values.set}`);
+  if (preset !== V1) {
+    // The defaults above are v1's; take the preset's unless they were given on the command line.
+    if (values.seed === String(V1.seed)) values.seed = String(preset.seed);
+    if (values['per-country'] === String(V1.perCountry)) values['per-country'] = String(preset.perCountry);
+    if (values.clean === String(V1.cleanPerCountry)) values.clean = String(preset.cleanPerCountry);
+    if (values.out === 'data/eval/v1') values.out = `data/eval/${preset.version}`;
+  }
   const scans = values.scans ? Number(values.scans) : 0;
   const isfPdfs = values['isf-pdfs']!;
   const out = resolve(values.out === 'data/eval/v1' ? (scans ? 'data/eval/v1-scans' : isfPdfs ? 'data/eval/v1-isf' : values.out) : values.out!);
-  let entries = buildDataset({ seed: Number(values.seed), perCountry: Number(values['per-country']), cleanPerCountry: Number(values.clean) });
+  let entries = buildDataset({ ...preset, seed: Number(values.seed), perCountry: Number(values['per-country']), cleanPerCountry: Number(values.clean) });
 
   if (scans) {
     entries = [...entries.filter((e) => e.shipment.destination === 'CA').slice(0, Math.ceil(scans / 2)), ...entries.filter((e) => e.shipment.destination === 'US').slice(0, Math.floor(scans / 2))];
@@ -95,6 +107,7 @@ async function main() {
     return;
   }
 
+  if (preset !== V1 && out === resolve('data/eval/v1')) throw new Error(`--set ${values.set} must not write into data/eval/v1`);
   await rm(out, { recursive: true, force: true });
   await mkdir(out, { recursive: true });
   const browser = values['no-pdf'] ? undefined : await launchBrowser();
@@ -119,7 +132,7 @@ async function main() {
     await browser?.close();
   }
 
-  await writeManifest(out, Number(values.seed), entries);
+  await writeManifest(out, Number(values.seed), entries, preset.version);
 
   const faulty = entries.filter((e) => e.labels.length > 0).length;
   const kinds = new Map<string, number>();
@@ -128,7 +141,7 @@ async function main() {
   console.log([...kinds].sort().map(([k, n]) => `  ${k.padEnd(32)} ${n}`).join('\n'));
 }
 
-async function writeManifest(out: string, seed: number, entries: DatasetEntry[]) {
+async function writeManifest(out: string, seed: number, entries: DatasetEntry[], version = 'v1') {
   const manifest = entries.map((e) => ({
     id: e.shipment.id,
     destination: e.shipment.destination,
@@ -139,7 +152,7 @@ async function writeManifest(out: string, seed: number, entries: DatasetEntry[])
     containers: e.shipment.documents.billOfLading.containers.length,
     errors: e.labels.map((l) => l.kind),
   }));
-  await writeFile(join(out, 'manifest.json'), JSON.stringify({ version: 'v1', seed, shipments: manifest }, null, 2) + '\n');
+  await writeFile(join(out, 'manifest.json'), JSON.stringify({ version, seed, shipments: manifest }, null, 2) + '\n');
 }
 
 main().catch((err) => {

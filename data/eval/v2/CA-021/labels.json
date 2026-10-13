@@ -1,0 +1,28 @@
+{
+  "id": "CA-021",
+  "errors": [
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[9].quantity.value",
+      "before": "2200",
+      "after": "2201",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 10 quantity changed without updating the line total."
+    },
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "2811.60",
+      "after": "3092.76",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.10 against the packing list."
+    }
+  ]
+}

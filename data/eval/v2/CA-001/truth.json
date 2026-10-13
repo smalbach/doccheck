@@ -1,0 +1,693 @@
+{
+  "id": "CA-001",
+  "seed": 90935297,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "grid",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": true
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/1295",
+      "invoiceDate": "2026-01-20",
+      "poNumber": "PO-72566",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-01-22",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Buenaventura",
+          "unLocode": "COBUN",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Buenaventura"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "CAD",
+      "packageCount": 166,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60-L1",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot A-509",
+          "quantity": {
+            "value": "240",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1351.20",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CF-GRN-60-L2",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot B-810",
+          "quantity": {
+            "value": "2460",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "13849.80",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CF-GRN-60-L3",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot C-299",
+          "quantity": {
+            "value": "1980",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "11147.40",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CF-GRN-60-L4",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot D-295",
+          "quantity": {
+            "value": "1500",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "8445.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CF-GRN-60-L5",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot E-621",
+          "quantity": {
+            "value": "1500",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "8445.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CF-GRN-60-L6",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot F-961",
+          "quantity": {
+            "value": "180",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1013.40",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 7,
+          "sku": "CF-GRN-60-L7",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot G-806",
+          "quantity": {
+            "value": "480",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "2702.40",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 8,
+          "sku": "CF-GRN-60-L8",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot H-425",
+          "quantity": {
+            "value": "1620",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "9120.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "10092.80",
+        "raw": {
+          "value": "10092.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "9960.00",
+        "raw": {
+          "value": "9960.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "56074.80",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "fr"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/1295",
+      "invoiceRef": "CI/26/1295",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-4",
+          "count": 4,
+          "type": "BAG",
+          "marks": "QUINCAILLERIE/PO-72566/C/NO. 1-166",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L1",
+              "description": "Green coffee arabica lot A-509",
+              "quantity": {
+                "value": "240",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "240.00",
+            "raw": {
+              "value": "240.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "243.20",
+            "raw": {
+              "value": "243.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "5-45",
+          "count": 41,
+          "type": "BAG",
+          "marks": "QUINCAILLERIE/PO-72566/C/NO. 1-166",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L2",
+              "description": "Green coffee arabica lot B-810",
+              "quantity": {
+                "value": "2460",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2460.00",
+            "raw": {
+              "value": "2460.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2492.80",
+            "raw": {
+              "value": "2492.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "46-78",
+          "count": 33,
+          "type": "BAG",
+          "marks": "QUINCAILLERIE/PO-72566/C/NO. 1-166",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L3",
+              "description": "Green coffee arabica lot C-299",
+              "quantity": {
+                "value": "1980",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1980.00",
+            "raw": {
+              "value": "1980.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2006.40",
+            "raw": {
+              "value": "2006.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "79-103",
+          "count": 25,
+          "type": "BAG",
+          "marks": "QUINCAILLERIE/PO-72566/C/NO. 1-166",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L4",
+              "description": "Green coffee arabica lot D-295",
+              "quantity": {
+                "value": "1500",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1500.00",
+            "raw": {
+              "value": "1500.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1520.00",
+            "raw": {
+              "value": "1520.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "104-128",
+          "count": 25,
+          "type": "BAG",
+          "marks": "QUINCAILLERIE/PO-72566/C/NO. 1-166",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L5",
+              "description": "Green coffee arabica lot E-621",
+              "quantity": {
+                "value": "1500",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1500.00",
+            "raw": {
+              "value": "1500.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1520.00",
+            "raw": {
+              "value": "1520.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "129-131",
+          "count": 3,
+          "type": "BAG",
+          "marks": "QUINCAILLERIE/PO-72566/C/NO. 1-166",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L6",
+              "description": "Green coffee arabica lot F-961",
+              "quantity": {
+                "value": "180",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "180.00",
+            "raw": {
+              "value": "180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "182.40",
+            "raw": {
+              "value": "182.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "132-139",
+          "count": 8,
+          "type": "BAG",
+          "marks": "QUINCAILLERIE/PO-72566/C/NO. 1-166",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L7",
+              "description": "Green coffee arabica lot G-806",
+              "quantity": {
+                "value": "480",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "480.00",
+            "raw": {
+              "value": "480.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "486.40",
+            "raw": {
+              "value": "486.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "140-166",
+          "count": 27,
+          "type": "BAG",
+          "marks": "QUINCAILLERIE/PO-72566/C/NO. 1-166",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L8",
+              "description": "Green coffee arabica lot H-425",
+              "quantity": {
+                "value": "1620",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1620.00",
+            "raw": {
+              "value": "1620.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1641.60",
+            "raw": {
+              "value": "1641.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 166,
+        "netWeight": {
+          "kg": "9960.00",
+          "raw": {
+            "value": "9960.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "10092.80",
+          "raw": {
+            "value": "10092.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "23.66"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXBUN5508191",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "751263155",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "070N",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Buenaventura",
+        "unLocode": "COBUN",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGXU4343249",
+          "seal": "AG7063849",
+          "type": "20GP",
+          "packages": 166,
+          "grossWeight": {
+            "kg": "10092.80",
+            "raw": {
+              "value": "10092.80",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "23.65"
+        }
+      ],
+      "totalPackages": 166,
+      "totalGrossWeight": {
+        "kg": "10092.80",
+        "raw": {
+          "value": "10092.80",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/PO-72566/C/NO. 1-166",
+      "cargoDescription": "SAID TO CONTAIN 166 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Buenaventura",
+      "dateOfIssue": "2026-01-22",
+      "shippedOnBoardDate": "2026-01-22",
+      "references": [
+        "CI/26/1295",
+        "PO-72566"
+      ]
+    }
+  }
+}

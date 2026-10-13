@@ -1,0 +1,1345 @@
+{
+  "id": "CA-019",
+  "seed": 1211201903,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "euro",
+    "packingListTemplate": "euro",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/9436",
+      "invoiceDate": "2026-03-16",
+      "poNumber": "ÉP209706",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "consignee": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-03-24",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "La Spezia",
+          "unLocode": "ITSPE",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Halifax"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 65,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060-GY",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour grey",
+          "quantity": {
+            "value": "40",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.87",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "394.80",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CT-6060-BK",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour black",
+          "quantity": {
+            "value": "40",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.87",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "394.80",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CT-6060-BE",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour beige",
+          "quantity": {
+            "value": "160",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.87",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1579.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CT-6060-PK",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour pink",
+          "quantity": {
+            "value": "160",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.87",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1579.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CT-6060-BL",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour blue",
+          "quantity": {
+            "value": "80",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.87",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "789.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CT-6060-OR",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour orange",
+          "quantity": {
+            "value": "120",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.87",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1184.40",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 7,
+          "sku": "OO-EV-5-L1",
+          "description": "Extra virgin olive oil, 5 L tins, lot A-299",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "642.72",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 8,
+          "sku": "OO-EV-5-L2",
+          "description": "Extra virgin olive oil, 5 L tins, lot B-330",
+          "quantity": {
+            "value": "20",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "535.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 9,
+          "sku": "OO-EV-5-L3",
+          "description": "Extra virgin olive oil, 5 L tins, lot C-516",
+          "quantity": {
+            "value": "16",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "428.48",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 10,
+          "sku": "OO-EV-5-L4",
+          "description": "Extra virgin olive oil, 5 L tins, lot D-276",
+          "quantity": {
+            "value": "8",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "214.24",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 11,
+          "sku": "OO-EV-5-L5",
+          "description": "Extra virgin olive oil, 5 L tins, lot E-431",
+          "quantity": {
+            "value": "20",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "535.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 12,
+          "sku": "OO-EV-5-L6",
+          "description": "Extra virgin olive oil, 5 L tins, lot F-862",
+          "quantity": {
+            "value": "20",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "535.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 13,
+          "sku": "OO-EV-5-L7",
+          "description": "Extra virgin olive oil, 5 L tins, lot G-540",
+          "quantity": {
+            "value": "12",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "321.36",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 14,
+          "sku": "OO-EV-5-L8",
+          "description": "Extra virgin olive oil, 5 L tins, lot H-178",
+          "quantity": {
+            "value": "4",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "107.12",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 15,
+          "sku": "OO-EV-5-L9",
+          "description": "Extra virgin olive oil, 5 L tins, lot I-208",
+          "quantity": {
+            "value": "16",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "428.48",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 16,
+          "sku": "OO-EV-5-L10",
+          "description": "Extra virgin olive oil, 5 L tins, lot J-412",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "642.72",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 17,
+          "sku": "OO-EV-5-L11",
+          "description": "Extra virgin olive oil, 5 L tins, lot K-946",
+          "quantity": {
+            "value": "12",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "321.36",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 18,
+          "sku": "OO-EV-5-L12",
+          "description": "Extra virgin olive oil, 5 L tins, lot L-212",
+          "quantity": {
+            "value": "8",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "214.24",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 19,
+          "sku": "OO-EV-5-L13",
+          "description": "Extra virgin olive oil, 5 L tins, lot M-568",
+          "quantity": {
+            "value": "8",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "214.24",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 20,
+          "sku": "OO-EV-5-L14",
+          "description": "Extra virgin olive oil, 5 L tins, lot N-403",
+          "quantity": {
+            "value": "8",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.78",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "214.24",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        }
+      ],
+      "grossWeight": {
+        "kg": "13940.00",
+        "raw": {
+          "value": "13940.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "13520.00",
+        "raw": {
+          "value": "13520.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "11278.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/9436",
+      "invoiceRef": "CI/26/9436",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-1",
+          "count": 1,
+          "type": "PLT",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "CT-6060-GY",
+              "description": "Porcelain tile 60x60 colour grey",
+              "quantity": {
+                "value": "40",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "840.00",
+            "raw": {
+              "value": "840.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "865.00",
+            "raw": {
+              "value": "865.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "2-2",
+          "count": 1,
+          "type": "PLT",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "CT-6060-BK",
+              "description": "Porcelain tile 60x60 colour black",
+              "quantity": {
+                "value": "40",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "840.00",
+            "raw": {
+              "value": "840.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "865.00",
+            "raw": {
+              "value": "865.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "3-6",
+          "count": 4,
+          "type": "PLT",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "CT-6060-BE",
+              "description": "Porcelain tile 60x60 colour beige",
+              "quantity": {
+                "value": "160",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3360.00",
+            "raw": {
+              "value": "3360.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3460.00",
+            "raw": {
+              "value": "3460.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "7-10",
+          "count": 4,
+          "type": "PLT",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "CT-6060-PK",
+              "description": "Porcelain tile 60x60 colour pink",
+              "quantity": {
+                "value": "160",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3360.00",
+            "raw": {
+              "value": "3360.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3460.00",
+            "raw": {
+              "value": "3460.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "11-12",
+          "count": 2,
+          "type": "PLT",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "CT-6060-BL",
+              "description": "Porcelain tile 60x60 colour blue",
+              "quantity": {
+                "value": "80",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1680.00",
+            "raw": {
+              "value": "1680.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1730.00",
+            "raw": {
+              "value": "1730.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "13-15",
+          "count": 3,
+          "type": "PLT",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "CT-6060-OR",
+              "description": "Porcelain tile 60x60 colour orange",
+              "quantity": {
+                "value": "120",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2520.00",
+            "raw": {
+              "value": "2520.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2595.00",
+            "raw": {
+              "value": "2595.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "16-21",
+          "count": 6,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L1",
+              "description": "EV olive oil 5 L lot A-299",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "110.40",
+            "raw": {
+              "value": "110.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "115.80",
+            "raw": {
+              "value": "115.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "22-26",
+          "count": 5,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L2",
+              "description": "EV olive oil 5 L lot B-330",
+              "quantity": {
+                "value": "20",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "92.00",
+            "raw": {
+              "value": "92.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "96.50",
+            "raw": {
+              "value": "96.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "27-30",
+          "count": 4,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L3",
+              "description": "EV olive oil 5 L lot C-516",
+              "quantity": {
+                "value": "16",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "73.60",
+            "raw": {
+              "value": "73.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "77.20",
+            "raw": {
+              "value": "77.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "31-32",
+          "count": 2,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L4",
+              "description": "EV olive oil 5 L lot D-276",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.80",
+            "raw": {
+              "value": "36.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.60",
+            "raw": {
+              "value": "38.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "33-37",
+          "count": 5,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L5",
+              "description": "EV olive oil 5 L lot E-431",
+              "quantity": {
+                "value": "20",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "92.00",
+            "raw": {
+              "value": "92.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "96.50",
+            "raw": {
+              "value": "96.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "38-42",
+          "count": 5,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L6",
+              "description": "EV olive oil 5 L lot F-862",
+              "quantity": {
+                "value": "20",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "92.00",
+            "raw": {
+              "value": "92.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "96.50",
+            "raw": {
+              "value": "96.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "43-45",
+          "count": 3,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L7",
+              "description": "EV olive oil 5 L lot G-540",
+              "quantity": {
+                "value": "12",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "55.20",
+            "raw": {
+              "value": "55.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "57.90",
+            "raw": {
+              "value": "57.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "46-46",
+          "count": 1,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L8",
+              "description": "EV olive oil 5 L lot H-178",
+              "quantity": {
+                "value": "4",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "18.40",
+            "raw": {
+              "value": "18.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.30",
+            "raw": {
+              "value": "19.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "47-50",
+          "count": 4,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L9",
+              "description": "EV olive oil 5 L lot I-208",
+              "quantity": {
+                "value": "16",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "73.60",
+            "raw": {
+              "value": "73.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "77.20",
+            "raw": {
+              "value": "77.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "51-56",
+          "count": 6,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L10",
+              "description": "EV olive oil 5 L lot J-412",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "110.40",
+            "raw": {
+              "value": "110.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "115.80",
+            "raw": {
+              "value": "115.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "57-59",
+          "count": 3,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L11",
+              "description": "EV olive oil 5 L lot K-946",
+              "quantity": {
+                "value": "12",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "55.20",
+            "raw": {
+              "value": "55.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "57.90",
+            "raw": {
+              "value": "57.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "60-61",
+          "count": 2,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L12",
+              "description": "EV olive oil 5 L lot L-212",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.80",
+            "raw": {
+              "value": "36.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.60",
+            "raw": {
+              "value": "38.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "62-63",
+          "count": 2,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L13",
+              "description": "EV olive oil 5 L lot M-568",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.80",
+            "raw": {
+              "value": "36.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.60",
+            "raw": {
+              "value": "38.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "64-65",
+          "count": 2,
+          "type": "CTN",
+          "marks": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L14",
+              "description": "EV olive oil 5 L lot N-403",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.80",
+            "raw": {
+              "value": "36.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.60",
+            "raw": {
+              "value": "38.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 65,
+        "netWeight": {
+          "kg": "13520.00",
+          "raw": {
+            "value": "13520.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "13940.00",
+          "raw": {
+            "value": "13940.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "15.06"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVSPE914056",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "452578289",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "notifyParty": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "048E",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "La Spezia",
+        "unLocode": "ITSPE",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Moncton",
+        "unLocode": "CAMNT",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGLU4480809",
+          "seal": "AG4394412",
+          "type": "20GP",
+          "packages": 65,
+          "grossWeight": {
+            "kg": "13940.00",
+            "raw": {
+              "value": "13940.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "15.06"
+        }
+      ],
+      "totalPackages": 65,
+      "totalGrossWeight": {
+        "kg": "13940.00",
+        "raw": {
+          "value": "13940.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "ÉPICERIE/ÉP209706/C/NO. 1-65",
+      "cargoDescription": "SAID TO CONTAIN 65 PKGS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "La Spezia",
+      "dateOfIssue": "2026-03-24",
+      "shippedOnBoardDate": "2026-03-24",
+      "references": [
+        "CI/26/9436",
+        "ÉP209706"
+      ]
+    }
+  }
+}

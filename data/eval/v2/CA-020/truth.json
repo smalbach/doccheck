@@ -1,0 +1,640 @@
+{
+  "id": "CA-020",
+  "seed": 1594862351,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "grid",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "IND2609016",
+      "invoiceDate": "2026-01-31",
+      "poNumber": "PO-52527",
+      "seller": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "buyer": {
+        "name": "Les Importations Bélanger & Frères inc.",
+        "address": {
+          "lines": [
+            "2875 boul. Laurier, bureau 300"
+          ],
+          "city": "Québec",
+          "region": "QC",
+          "postalCode": "G1V 2M2",
+          "country": "CA"
+        },
+        "taxId": "881234567RM0001"
+      },
+      "consignee": {
+        "name": "Entrepôt Bélanger – Lévis",
+        "address": {
+          "lines": [
+            "1200 rue de l'Église"
+          ],
+          "city": "Lévis",
+          "region": "QC",
+          "postalCode": "G6V 6N1",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "shipmentDate": "2026-02-09",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Valencia",
+          "unLocode": "ESVLC",
+          "country": "ES"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Halifax"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 17,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060-BE",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour beige",
+          "quantity": {
+            "value": "120",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "7.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "781.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "ES",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CT-6060-BL",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour blue",
+          "quantity": {
+            "value": "120",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "7.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "871.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "ES",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CT-6060-GY",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour grey",
+          "quantity": {
+            "value": "120",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "7.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "871.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "ES",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CT-6060-BK",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour black",
+          "quantity": {
+            "value": "40",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "7.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "290.40",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "ES",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CT-6060-GN",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour green",
+          "quantity": {
+            "value": "120",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "7.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "871.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "ES",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CT-6060-OR",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour orange",
+          "quantity": {
+            "value": "80",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "7.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "580.80",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "ES",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 7,
+          "sku": "CT-6060-BR",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm, colour brown",
+          "quantity": {
+            "value": "80",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "7.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "580.80",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "ES",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "14705.00",
+        "raw": {
+          "value": "14705.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "14280.00",
+        "raw": {
+          "value": "14280.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "4936.80",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-IND2609016",
+      "invoiceRef": "IND2609016",
+      "seller": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "consignee": {
+        "name": "Entrepôt Bélanger – Lévis",
+        "address": {
+          "lines": [
+            "1200 rue de l'Église"
+          ],
+          "city": "Lévis",
+          "region": "QC",
+          "postalCode": "G6V 6N1",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-3",
+          "count": 3,
+          "type": "PLT",
+          "marks": "LES/PO-52527/C/NO. 1-17",
+          "contents": [
+            {
+              "sku": "CT-6060-BE",
+              "description": "Porcelain tile 60x60 colour beige",
+              "quantity": {
+                "value": "120",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2520.00",
+            "raw": {
+              "value": "2520.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2595.00",
+            "raw": {
+              "value": "2595.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "4-6",
+          "count": 3,
+          "type": "PLT",
+          "marks": "LES/PO-52527/C/NO. 1-17",
+          "contents": [
+            {
+              "sku": "CT-6060-BL",
+              "description": "Porcelain tile 60x60 colour blue",
+              "quantity": {
+                "value": "120",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2520.00",
+            "raw": {
+              "value": "2520.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2595.00",
+            "raw": {
+              "value": "2595.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "7-9",
+          "count": 3,
+          "type": "PLT",
+          "marks": "LES/PO-52527/C/NO. 1-17",
+          "contents": [
+            {
+              "sku": "CT-6060-GY",
+              "description": "Porcelain tile 60x60 colour grey",
+              "quantity": {
+                "value": "120",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2520.00",
+            "raw": {
+              "value": "2520.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2595.00",
+            "raw": {
+              "value": "2595.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "10-10",
+          "count": 1,
+          "type": "PLT",
+          "marks": "LES/PO-52527/C/NO. 1-17",
+          "contents": [
+            {
+              "sku": "CT-6060-BK",
+              "description": "Porcelain tile 60x60 colour black",
+              "quantity": {
+                "value": "40",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "840.00",
+            "raw": {
+              "value": "840.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "865.00",
+            "raw": {
+              "value": "865.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "11-13",
+          "count": 3,
+          "type": "PLT",
+          "marks": "LES/PO-52527/C/NO. 1-17",
+          "contents": [
+            {
+              "sku": "CT-6060-GN",
+              "description": "Porcelain tile 60x60 colour green",
+              "quantity": {
+                "value": "120",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2520.00",
+            "raw": {
+              "value": "2520.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2595.00",
+            "raw": {
+              "value": "2595.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "14-15",
+          "count": 2,
+          "type": "PLT",
+          "marks": "LES/PO-52527/C/NO. 1-17",
+          "contents": [
+            {
+              "sku": "CT-6060-OR",
+              "description": "Porcelain tile 60x60 colour orange",
+              "quantity": {
+                "value": "80",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1680.00",
+            "raw": {
+              "value": "1680.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1730.00",
+            "raw": {
+              "value": "1730.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "16-17",
+          "count": 2,
+          "type": "PLT",
+          "marks": "LES/PO-52527/C/NO. 1-17",
+          "contents": [
+            {
+              "sku": "CT-6060-BR",
+              "description": "Porcelain tile 60x60 colour brown",
+              "quantity": {
+                "value": "80",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1680.00",
+            "raw": {
+              "value": "1680.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1730.00",
+            "raw": {
+              "value": "1730.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 17,
+        "netWeight": {
+          "kg": "14280.00",
+          "raw": {
+            "value": "14280.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "14705.00",
+          "raw": {
+            "value": "14705.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "14.69"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXVLC3921006",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "943254336",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "consignee": {
+        "name": "Entrepôt Bélanger – Lévis",
+        "address": {
+          "lines": [
+            "1200 rue de l'Église"
+          ],
+          "city": "Lévis",
+          "region": "QC",
+          "postalCode": "G6V 6N1",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Les Importations Bélanger & Frères inc.",
+        "address": {
+          "lines": [
+            "2875 boul. Laurier, bureau 300"
+          ],
+          "city": "Québec",
+          "region": "QC",
+          "postalCode": "G1V 2M2",
+          "country": "CA"
+        },
+        "taxId": "881234567RM0001"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "076E",
+      "placeOfReceipt": {
+        "name": "Vila-real",
+        "country": "ES"
+      },
+      "portOfLoading": {
+        "name": "Valencia",
+        "unLocode": "ESVLC",
+        "country": "ES"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Québec",
+        "unLocode": "CAQUE",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGLU2732964",
+          "seal": "AG5393293",
+          "type": "20GP",
+          "packages": 17,
+          "grossWeight": {
+            "kg": "14705.00",
+            "raw": {
+              "value": "14705.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "14.69"
+        }
+      ],
+      "totalPackages": 17,
+      "totalGrossWeight": {
+        "kg": "14705.00",
+        "raw": {
+          "value": "14705.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "LES/PO-52527/C/NO. 1-17",
+      "cargoDescription": "SAID TO CONTAIN 17 PLTS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Valencia",
+      "dateOfIssue": "2026-02-12",
+      "shippedOnBoardDate": "2026-02-12",
+      "references": [
+        "IND2609016",
+        "PO-52527"
+      ]
+    }
+  }
+}

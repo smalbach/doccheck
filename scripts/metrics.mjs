@@ -21,12 +21,14 @@ const extraction = await readJson(join(values.reports, `extraction-${values.mode
 const agent = await readJson(join(values.reports, `agent-${values.model}.json`));
 const scans = await readJson(join(values.reports, `extraction-${values.model}-v1-scans.json`));
 const isfSet = await readJson(join(values.reports, `extraction-${values.model}-v1-isf.json`));
+const v2 = await readJson(join(values.reports, `extraction-${values.model}-v2.json`));
 
 // Every report records the model build it ran with; numbers from different builds should not be mixed.
 const builds = [
   ['extraction v1', extraction],
   ['extraction v1-scans', scans],
   ['extraction v1-isf', isfSet],
+  ['extraction v2', v2],
   ['agent', agent],
 ]
   .filter(([, r]) => r)
@@ -212,6 +214,35 @@ const md = [
               '',
             ]
           : []),
+      ]
+    : []),
+  ...(v2
+    ? [
+        '## Unseen formats (set v2)',
+        '',
+        `Layouts, number and date formats the prompt was not tuned on: a European letterhead layout ("48.600,00", "1 140,50 kg", "14.03.2026") and a numbered-box form, line tables of up to 40 rows that run onto a second page, and parties with accented, non-English names. The three v1 layouts stay in the mix as a control. Model build ${v2.modelVersion ?? 'unknown'} · prompt \`${v2.promptVersion}\` · ${v2.shipments} shipments · ${v2.documents} PDFs · ${v2.failedDocuments} failed · classification ${pct(v2.classificationAccuracy)}`,
+        '',
+        '| Document | v2 overall | v2 new layouts | v2 v1 layouts | v1 set |',
+        '| --- | --- | --- | --- | --- |',
+        ...v2.byType.map((t) => {
+          const of = (re) => {
+            const rows = v2.byTemplate.filter((x) => x.template.startsWith(`${t.type} · `) && re.test(x.template));
+            const total = rows.reduce((a, r) => a + r.total, 0);
+            return total ? rows.reduce((a, r) => a + r.correct, 0) / total : null;
+          };
+          return `| ${t.type} | ${pct(t.accuracy)} | ${pct(of(/· (euro|grid)$/))} | ${pct(of(/· (classic|modern|legacy)$/))} | ${pct(extraction?.byType.find((x) => x.type === t.type)?.accuracy)} |`;
+        }),
+        '',
+        '| Rule | Recall (v2) | Precision (v2) |',
+        '| --- | --- | --- |',
+        ...[...v2.rules.table].sort((a, b) => ruleOrder(a.rule, b.rule)).map((r) => `| ${r.rule} | ${pct(r.recall)} | ${pct(r.precision)} |`),
+        '',
+        'Weakest fields:',
+        '',
+        '| Document | Field | Accuracy | Wrong | Missing | Spurious |',
+        '| --- | --- | --- | --- | --- | --- |',
+        ...v2.byField.filter((f) => f.accuracy < 1).slice(0, 10).map((f) => `| ${f.type} | \`${f.field}\` | ${pct(f.accuracy)} | ${f.wrong} | ${f.missing} | ${f.spurious} |`),
+        '',
       ]
     : []),
   ...(agent

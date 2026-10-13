@@ -1,12 +1,18 @@
 import type { Destination } from '@doccheck/schemas';
 import { injectErrors, type ErrorLabel } from './errors';
-import { generateShipment, type SyntheticShipment } from './generate';
+import { BUYERS, SELLERS } from './catalog';
+import { BUYERS_V2, SELLERS_V2 } from './catalog-v2';
+import { generateShipment, TEMPLATES, type GenerateOptions, type SyntheticShipment } from './generate';
+import { V2_TEMPLATES } from './render-v2';
 import { Rng } from './rng';
 
 export interface DatasetOptions {
   seed: number;
   perCountry: number;
   cleanPerCountry: number;
+  /** Set name written to the manifest. */
+  version?: string;
+  generate?: GenerateOptions;
 }
 
 export interface DatasetEntry {
@@ -20,6 +26,29 @@ export interface DatasetEntry {
 /** v1 target from the plan: 200 shipments, 100 per country, 50 clean and 150 with 1–3 errors. */
 export const V1: DatasetOptions = { seed: 20261012, perCountry: 100, cleanPerCountry: 25 };
 
+/**
+ * v2: formats the extraction prompt was not tuned on. Two new layouts per document (European number
+ * and date formats; a numbered-box form), long multi-page line tables from product variants, and
+ * parties with accented, non-English names. The v1 layouts stay in the mix (3 of 7 draws) as a
+ * control group.
+ */
+export const V2: DatasetOptions = {
+  seed: 20261013,
+  perCountry: 30,
+  cleanPerCountry: 8,
+  version: 'v2',
+  generate: {
+    sellers: [...SELLERS_V2, ...SELLERS],
+    buyers: [...BUYERS_V2, ...BUYERS],
+    templates: {
+      invoice: [...V2_TEMPLATES, ...V2_TEMPLATES, ...TEMPLATES.invoice],
+      packingList: [...V2_TEMPLATES, ...V2_TEMPLATES, ...TEMPLATES.packingList],
+      billOfLading: [...V2_TEMPLATES, ...V2_TEMPLATES, ...TEMPLATES.billOfLading],
+    },
+    variants: { min: 6, max: 16 },
+  },
+};
+
 export function buildDataset(opts: DatasetOptions = V1): DatasetEntry[] {
   const root = new Rng(opts.seed);
   const entries: DatasetEntry[] = [];
@@ -30,7 +59,7 @@ export function buildDataset(opts: DatasetOptions = V1): DatasetEntry[] {
     for (let i = 0; i < opts.perCountry; i++) {
       const id = `${destination}-${String(i + 1).padStart(3, '0')}`;
       const seed = countryRng.int(1, 0x7fffffff);
-      const clean = generateShipment(id, destination, seed);
+      const clean = generateShipment(id, destination, seed, opts.generate);
       if (cleanSlots.has(i)) {
         entries.push({ shipment: clean, clean, labels: [] });
         continue;

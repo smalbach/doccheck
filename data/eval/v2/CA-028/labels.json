@@ -1,0 +1,39 @@
+{
+  "id": "CA-028",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "AGXU6080481",
+      "after": "AGXU6080484",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: AGXU6080481 -> AGXU6080484."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "after": null,
+      "expectedRuleIds": [
+        "C1"
+      ],
+      "description": "Consignee missing from the invoice."
+    }
+  ]
+}

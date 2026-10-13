@@ -1,0 +1,16 @@
+{
+  "id": "US-002",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 232,
+      "after": 233,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 233 packages instead of 232."
+    }
+  ]
+}

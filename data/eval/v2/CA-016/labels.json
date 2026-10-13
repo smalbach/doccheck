@@ -1,0 +1,27 @@
+{
+  "id": "CA-016",
+  "errors": [
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[8].quantity.value",
+      "before": "2",
+      "after": "3",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 9 quantity changed without updating the line total."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "INR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 4035.00 INR on an invoice in EUR."
+    }
+  ]
+}

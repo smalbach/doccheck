@@ -1,0 +1,769 @@
+{
+  "id": "US-007",
+  "seed": 714740805,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "grid",
+    "packingListTemplate": "classic",
+    "blTemplate": "grid",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CAF2609908",
+      "invoiceDate": "2026-08-24",
+      "poNumber": "PO-23575",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-08-30",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cartagena",
+          "unLocode": "COCTG",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Cartagena"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 112,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60-L1",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot A-463",
+          "quantity": {
+            "value": "660",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.55",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3003.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CF-GRN-60-L2",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot B-365",
+          "quantity": {
+            "value": "300",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.55",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1365.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CF-GRN-60-L3",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot C-955",
+          "quantity": {
+            "value": "900",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.55",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4095.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CF-GRN-60-L4",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot D-155",
+          "quantity": {
+            "value": "1020",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.55",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4641.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CF-GRN-60-L5",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot E-227",
+          "quantity": {
+            "value": "720",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.55",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3276.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CF-GRN-60-L6",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot F-550",
+          "quantity": {
+            "value": "780",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.55",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3549.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 7,
+          "sku": "CF-GRN-60-L7",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot G-669",
+          "quantity": {
+            "value": "1440",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.55",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "6552.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 8,
+          "sku": "CF-GRN-60-L8",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot H-451",
+          "quantity": {
+            "value": "900",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.55",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4095.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6809.60",
+        "raw": {
+          "value": "6809.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "6720.00",
+        "raw": {
+          "value": "6720.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "30576.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-CAF2609908",
+      "invoiceRef": "CAF2609908",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-11",
+          "count": 11,
+          "type": "BAG",
+          "marks": "BLUEBONNET/PO-23575/C/NO. 1-112",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L1",
+              "description": "Green coffee arabica lot A-463",
+              "quantity": {
+                "value": "610",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "660.00",
+            "raw": {
+              "value": "660.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "668.80",
+            "raw": {
+              "value": "668.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "12-16",
+          "count": 5,
+          "type": "BAG",
+          "marks": "BLUEBONNET/PO-23575/C/NO. 1-112",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L2",
+              "description": "Green coffee arabica lot B-365",
+              "quantity": {
+                "value": "300",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "300.00",
+            "raw": {
+              "value": "300.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "304.00",
+            "raw": {
+              "value": "304.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "17-31",
+          "count": 15,
+          "type": "BAG",
+          "marks": "BLUEBONNET/PO-23575/C/NO. 1-112",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L3",
+              "description": "Green coffee arabica lot C-955",
+              "quantity": {
+                "value": "900",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "900.00",
+            "raw": {
+              "value": "900.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "912.00",
+            "raw": {
+              "value": "912.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "32-48",
+          "count": 17,
+          "type": "BAG",
+          "marks": "BLUEBONNET/PO-23575/C/NO. 1-112",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L4",
+              "description": "Green coffee arabica lot D-155",
+              "quantity": {
+                "value": "1020",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1020.00",
+            "raw": {
+              "value": "1020.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1033.60",
+            "raw": {
+              "value": "1033.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "49-60",
+          "count": 12,
+          "type": "BAG",
+          "marks": "BLUEBONNET/PO-23575/C/NO. 1-112",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L5",
+              "description": "Green coffee arabica lot E-227",
+              "quantity": {
+                "value": "720",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "720.00",
+            "raw": {
+              "value": "720.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "729.60",
+            "raw": {
+              "value": "729.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "61-73",
+          "count": 13,
+          "type": "BAG",
+          "marks": "BLUEBONNET/PO-23575/C/NO. 1-112",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L6",
+              "description": "Green coffee arabica lot F-550",
+              "quantity": {
+                "value": "780",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "780.00",
+            "raw": {
+              "value": "780.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "790.40",
+            "raw": {
+              "value": "790.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "74-97",
+          "count": 24,
+          "type": "BAG",
+          "marks": "BLUEBONNET/PO-23575/C/NO. 1-112",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L7",
+              "description": "Green coffee arabica lot G-669",
+              "quantity": {
+                "value": "1440",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1440.00",
+            "raw": {
+              "value": "1440.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1459.20",
+            "raw": {
+              "value": "1459.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "98-112",
+          "count": 15,
+          "type": "BAG",
+          "marks": "BLUEBONNET/PO-23575/C/NO. 1-112",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L8",
+              "description": "Green coffee arabica lot H-451",
+              "quantity": {
+                "value": "900",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "900.00",
+            "raw": {
+              "value": "900.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "912.00",
+            "raw": {
+              "value": "912.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 112,
+        "netWeight": {
+          "kg": "6720.00",
+          "raw": {
+            "value": "6720.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6809.60",
+          "raw": {
+            "value": "6809.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "15.96"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWECTG9037690",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "360606509",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "notifyParty": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "099E",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Cartagena",
+        "unLocode": "COCTG",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "TWEU3087256",
+          "seal": "TW6007022",
+          "type": "20GP",
+          "packages": 112,
+          "grossWeight": {
+            "kg": "6809.60",
+            "raw": {
+              "value": "15013",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "15.96"
+        }
+      ],
+      "totalPackages": 112,
+      "totalGrossWeight": {
+        "kg": "6809.60",
+        "raw": {
+          "value": "15013",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "BLUEBONNET/PO-23575/C/NO. 1-112",
+      "cargoDescription": "SAID TO CONTAIN 112 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cartagena",
+      "dateOfIssue": "2026-09-01",
+      "shippedOnBoardDate": "2026-09-01",
+      "references": [
+        "CAF2609908",
+        "PO-23575"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "importerOfRecordNumber": "74-381245600",
+      "consigneeNumber": "74-381245600",
+      "manufacturer": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipToParty": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "CO",
+      "htsCode": "090111",
+      "containerStuffingLocation": {
+        "lines": [
+          "Carrera 5 # 12-40"
+        ],
+        "city": "Neiva",
+        "region": "Huila",
+        "country": "CO"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

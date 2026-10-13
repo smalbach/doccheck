@@ -1,0 +1,1110 @@
+{
+  "id": "CA-002",
+  "seed": 1079577593,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "grid",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SAI2607696",
+      "invoiceDate": "2026-04-30",
+      "poNumber": "NO408189",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-05-10",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Cai Mep"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "CAD",
+      "packageCount": 42,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M-RD-XXL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour red, size XXL",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "626.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TS-CTN-M-WH-XS",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour white, size XS",
+          "quantity": {
+            "value": "300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "939.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 3,
+          "sku": "TS-CTN-M-BL-XXL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour blue, size XXL",
+          "quantity": {
+            "value": "400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1252.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 4,
+          "sku": "TS-CTN-M-WH-XL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour white, size XL",
+          "quantity": {
+            "value": "400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1252.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 5,
+          "sku": "TS-CTN-M-YL-XXL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour yellow, size XXL",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "626.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 6,
+          "sku": "TS-CTN-M-BE-XXL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour beige, size XXL",
+          "quantity": {
+            "value": "500",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1565.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 7,
+          "sku": "TS-CTN-M-OR-XS",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour orange, size XS",
+          "quantity": {
+            "value": "100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "313.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 8,
+          "sku": "TS-CTN-M-BL-L",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour blue, size L",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "266.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 9,
+          "sku": "TS-CTN-M-YL-S",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour yellow, size S",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "626.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 10,
+          "sku": "TS-CTN-M-GN-L",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour green, size L",
+          "quantity": {
+            "value": "100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "313.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 11,
+          "sku": "TS-CTN-M-BR-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour brown, size M",
+          "quantity": {
+            "value": "500",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1565.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 12,
+          "sku": "TS-CTN-M-BL-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour blue, size M",
+          "quantity": {
+            "value": "300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "939.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 13,
+          "sku": "TS-CTN-M-RD-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour red, size M",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "626.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 14,
+          "sku": "TS-CTN-M-WH-S",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour white, size S",
+          "quantity": {
+            "value": "300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "939.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 15,
+          "sku": "TS-CTN-M-GY-L",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour grey, size L",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "626.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 16,
+          "sku": "TS-CTN-M-YL-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour yellow, size M",
+          "quantity": {
+            "value": "100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.13",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "313.00",
+            "currency": "CAD"
+          },
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "831.60",
+        "raw": {
+          "value": "831.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "798.00",
+        "raw": {
+          "value": "798.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "13146.00",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-SAI2607696",
+      "invoiceRef": "SAI2607696",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-2",
+          "count": 2,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-RD-XXL",
+              "description": "Men's cotton T-shirt colour red, size XXL",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "39.60",
+            "raw": {
+              "value": "39.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "3-5",
+          "count": 3,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-WH-XS",
+              "description": "Men's cotton T-shirt colour white, size XS",
+              "quantity": {
+                "value": "300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "57.00",
+            "raw": {
+              "value": "57.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "59.40",
+            "raw": {
+              "value": "59.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "6-9",
+          "count": 4,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-BL-XXL",
+              "description": "Men's cotton T-shirt colour blue, size XXL",
+              "quantity": {
+                "value": "400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "76.00",
+            "raw": {
+              "value": "76.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "79.20",
+            "raw": {
+              "value": "79.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "10-13",
+          "count": 4,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-WH-XL",
+              "description": "Men's cotton T-shirt colour white, size XL",
+              "quantity": {
+                "value": "400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "76.00",
+            "raw": {
+              "value": "76.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "79.20",
+            "raw": {
+              "value": "79.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "14-15",
+          "count": 2,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-YL-XXL",
+              "description": "Men's cotton T-shirt colour yellow, size XXL",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "39.60",
+            "raw": {
+              "value": "39.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "16-20",
+          "count": 5,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-BE-XXL",
+              "description": "Men's cotton T-shirt colour beige, size XXL",
+              "quantity": {
+                "value": "500",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "95.00",
+            "raw": {
+              "value": "95.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "99.00",
+            "raw": {
+              "value": "99.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "21-21",
+          "count": 1,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-OR-XS",
+              "description": "Men's cotton T-shirt colour orange, size XS",
+              "quantity": {
+                "value": "100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.80",
+            "raw": {
+              "value": "19.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "22-23",
+          "count": 2,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-BL-L",
+              "description": "Men's cotton T-shirt colour blue, size L",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "39.60",
+            "raw": {
+              "value": "39.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "24-25",
+          "count": 2,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-YL-S",
+              "description": "Men's cotton T-shirt colour yellow, size S",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "39.60",
+            "raw": {
+              "value": "39.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "26-26",
+          "count": 1,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-GN-L",
+              "description": "Men's cotton T-shirt colour green, size L",
+              "quantity": {
+                "value": "100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.80",
+            "raw": {
+              "value": "19.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "27-31",
+          "count": 5,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-BR-M",
+              "description": "Men's cotton T-shirt colour brown, size M",
+              "quantity": {
+                "value": "500",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "95.00",
+            "raw": {
+              "value": "95.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "99.00",
+            "raw": {
+              "value": "99.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "32-34",
+          "count": 3,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-BL-M",
+              "description": "Men's cotton T-shirt colour blue, size M",
+              "quantity": {
+                "value": "300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "57.00",
+            "raw": {
+              "value": "57.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "59.40",
+            "raw": {
+              "value": "59.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "35-36",
+          "count": 2,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-RD-M",
+              "description": "Men's cotton T-shirt colour red, size M",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "39.60",
+            "raw": {
+              "value": "39.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "37-39",
+          "count": 3,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-WH-S",
+              "description": "Men's cotton T-shirt colour white, size S",
+              "quantity": {
+                "value": "300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "57.00",
+            "raw": {
+              "value": "57.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "59.40",
+            "raw": {
+              "value": "59.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "40-41",
+          "count": 2,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-GY-L",
+              "description": "Men's cotton T-shirt colour grey, size L",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "39.60",
+            "raw": {
+              "value": "39.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "42-42",
+          "count": 1,
+          "type": "CTN",
+          "marks": "NORTHERN/NO408189/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-YL-M",
+              "description": "Men's cotton T-shirt colour yellow, size M",
+              "quantity": {
+                "value": "100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.80",
+            "raw": {
+              "value": "19.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 42,
+        "netWeight": {
+          "kg": "798.00",
+          "raw": {
+            "value": "798.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "831.60",
+          "raw": {
+            "value": "831.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "3.53"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNCMT9802372",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "368921719",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "095E",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Toronto",
+        "unLocode": "CATOR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU5224230",
+          "seal": "MD7338237",
+          "type": "20GP",
+          "packages": 42,
+          "grossWeight": {
+            "kg": "831.60",
+            "raw": {
+              "value": "831.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "3.53"
+        }
+      ],
+      "totalPackages": 42,
+      "totalGrossWeight": {
+        "kg": "831.60",
+        "raw": {
+          "value": "831.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NORTHERN/NO408189/C/NO. 1-42",
+      "cargoDescription": "SAID TO CONTAIN 42 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-05-11",
+      "shippedOnBoardDate": "2026-05-11",
+      "references": [
+        "SAI2607696",
+        "NO408189"
+      ]
+    }
+  }
+}

@@ -1,0 +1,671 @@
+{
+  "id": "US-009",
+  "seed": 133189591,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "grid",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/3200",
+      "invoiceDate": "2026-02-26",
+      "poNumber": "NG100990",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "consignee": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-03-04",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Nhava Sheva"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 29,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN-PK",
+          "description": "Brass ball valves 2 inch, threaded, colour pink",
+          "quantity": {
+            "value": "10",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1633.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN-OR",
+          "description": "Brass ball valves 2 inch, threaded, colour orange",
+          "quantity": {
+            "value": "20",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "326.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 3,
+          "sku": "BV-2IN-BE",
+          "description": "Brass ball valves 2 inch, threaded, colour beige",
+          "quantity": {
+            "value": "100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1633.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 4,
+          "sku": "BV-2IN-YL",
+          "description": "Brass ball valves 2 inch, threaded, colour yellow",
+          "quantity": {
+            "value": "140",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2286.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 5,
+          "sku": "BV-2IN-BR",
+          "description": "Brass ball valves 2 inch, threaded, colour brown",
+          "quantity": {
+            "value": "140",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2286.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 6,
+          "sku": "BV-2IN-RD",
+          "description": "Brass ball valves 2 inch, threaded, colour red",
+          "quantity": {
+            "value": "80",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.33",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1306.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "814.90",
+        "raw": {
+          "value": "814.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "783.00",
+        "raw": {
+          "value": "783.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "9471.40",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/3200",
+      "invoiceRef": "CI/26/3200",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "packages": [
+        {
+          "range": "1-5",
+          "count": 5,
+          "type": "CTN",
+          "marks": "NGUYỄN/NG100990/C/NO. 1-29",
+          "contents": [
+            {
+              "sku": "BV-2IN-PK",
+              "description": "Brass ball valve 2\" colour pink",
+              "quantity": {
+                "value": "100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "135.00",
+            "raw": {
+              "value": "135.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "140.50",
+            "raw": {
+              "value": "140.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "6-6",
+          "count": 1,
+          "type": "CTN",
+          "marks": "NGUYỄN/NG100990/C/NO. 1-29",
+          "contents": [
+            {
+              "sku": "BV-2IN-OR",
+              "description": "Brass ball valve 2\" colour orange",
+              "quantity": {
+                "value": "20",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "27.00",
+            "raw": {
+              "value": "27.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "28.10",
+            "raw": {
+              "value": "28.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "7-11",
+          "count": 5,
+          "type": "CTN",
+          "marks": "NGUYỄN/NG100990/C/NO. 1-29",
+          "contents": [
+            {
+              "sku": "BV-2IN-BE",
+              "description": "Brass ball valve 2\" colour beige",
+              "quantity": {
+                "value": "100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "135.00",
+            "raw": {
+              "value": "135.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "140.50",
+            "raw": {
+              "value": "140.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "12-18",
+          "count": 7,
+          "type": "CTN",
+          "marks": "NGUYỄN/NG100990/C/NO. 1-29",
+          "contents": [
+            {
+              "sku": "BV-2IN-YL",
+              "description": "Brass ball valve 2\" colour yellow",
+              "quantity": {
+                "value": "140",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "189.00",
+            "raw": {
+              "value": "189.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "196.70",
+            "raw": {
+              "value": "196.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "19-25",
+          "count": 7,
+          "type": "CTN",
+          "marks": "NGUYỄN/NG100990/C/NO. 1-29",
+          "contents": [
+            {
+              "sku": "BV-2IN-BR",
+              "description": "Brass ball valve 2\" colour brown",
+              "quantity": {
+                "value": "140",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "189.00",
+            "raw": {
+              "value": "189.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "196.70",
+            "raw": {
+              "value": "196.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "26-29",
+          "count": 4,
+          "type": "CTN",
+          "marks": "NGUYỄN/NG100990/C/NO. 1-29",
+          "contents": [
+            {
+              "sku": "BV-2IN-RD",
+              "description": "Brass ball valve 2\" colour red",
+              "quantity": {
+                "value": "80",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "108.00",
+            "raw": {
+              "value": "108.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "112.40",
+            "raw": {
+              "value": "112.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 29,
+        "netWeight": {
+          "kg": "783.00",
+          "raw": {
+            "value": "783.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "814.90",
+          "raw": {
+            "value": "814.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "1.37"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWENSA3028250",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "582054028",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9212 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "notifyParty": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "055E",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Los Angeles",
+        "unLocode": "USLAX",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "TWEU8004839",
+          "seal": "TW7981965",
+          "type": "20GP",
+          "packages": 29,
+          "grossWeight": {
+            "kg": "814.90",
+            "raw": {
+              "value": "814.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "1.37"
+        }
+      ],
+      "totalPackages": 29,
+      "totalGrossWeight": {
+        "kg": "814.90",
+        "raw": {
+          "value": "814.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NGUYỄN/NG100990/C/NO. 1-29",
+      "cargoDescription": "SAID TO CONTAIN 29 CTNS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-03-05",
+      "shippedOnBoardDate": "2026-03-05",
+      "references": [
+        "CI/26/3200",
+        "NG100990"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "importerOfRecordNumber": "33-765432100",
+      "consigneeNumber": "33-765432100",
+      "manufacturer": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipToParty": {
+        "name": "Nguyễn Family Foods – Cold Storage",
+        "address": {
+          "lines": [
+            "15500 Gothard St"
+          ],
+          "city": "Huntington Beach",
+          "region": "CA",
+          "postalCode": "92647",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "IN",
+      "htsCode": "848180",
+      "containerStuffingLocation": {
+        "lines": [
+          "Plot 41, MIDC Bhosari"
+        ],
+        "city": "Pune",
+        "region": "Maharashtra",
+        "postalCode": "411026",
+        "country": "IN"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

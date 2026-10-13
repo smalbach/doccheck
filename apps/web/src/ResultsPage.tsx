@@ -31,7 +31,7 @@ interface Results {
 }
 
 const pct = (x: number | null | undefined) => (x === null || x === undefined ? '—' : `${(x * 100).toFixed(1)}%`);
-const SET_LABEL: Record<string, string> = { v1: 'PDFs with a text layer', 'v1-scans': 'Scanned PDFs (OCR)', 'v1-isf': 'ISF filings' };
+const SET_LABEL: Record<string, string> = { v1: 'PDFs with a text layer', 'v1-scans': 'Scanned PDFs (OCR)', 'v1-isf': 'ISF filings', v2: 'Unseen layouts and formats (v2)' };
 const TYPE_LABEL: Record<string, string> = { COMMERCIAL_INVOICE: 'Commercial invoice', PACKING_LIST: 'Packing list', BILL_OF_LADING: 'Bill of lading', ISF: 'ISF' };
 
 /** Evaluation results on the synthetic set, from eval/reports through GET /results. */

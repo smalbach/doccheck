@@ -1,0 +1,827 @@
+{
+  "id": "US-003",
+  "seed": 986452523,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "grid",
+    "packingListTemplate": "euro",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-5220",
+      "invoiceDate": "2026-02-13",
+      "poNumber": "PO-3478",
+      "seller": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "shipmentDate": "2026-02-23",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Lisboa",
+          "unLocode": "PTLIS",
+          "country": "PT"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Lisboa"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 58,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5-L1",
+          "description": "Extra virgin olive oil, 5 L tins, lot A-615",
+          "quantity": {
+            "value": "4",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.74",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "94.96",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 2,
+          "sku": "OO-EV-5-L2",
+          "description": "Extra virgin olive oil, 5 L tins, lot B-962",
+          "quantity": {
+            "value": "36",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.74",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "854.64",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 3,
+          "sku": "OO-EV-5-L3",
+          "description": "Extra virgin olive oil, 5 L tins, lot C-137",
+          "quantity": {
+            "value": "32",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.74",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "759.68",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 4,
+          "sku": "OO-EV-5-L4",
+          "description": "Extra virgin olive oil, 5 L tins, lot D-299",
+          "quantity": {
+            "value": "36",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.74",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "854.64",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 5,
+          "sku": "OO-EV-5-L5",
+          "description": "Extra virgin olive oil, 5 L tins, lot E-581",
+          "quantity": {
+            "value": "44",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.74",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1044.56",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 6,
+          "sku": "OO-EV-5-L6",
+          "description": "Extra virgin olive oil, 5 L tins, lot F-263",
+          "quantity": {
+            "value": "12",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.74",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "284.88",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 7,
+          "sku": "OO-EV-5-L7",
+          "description": "Extra virgin olive oil, 5 L tins, lot G-846",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.74",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "569.76",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 8,
+          "sku": "OO-EV-5-L8",
+          "description": "Extra virgin olive oil, 5 L tins, lot H-163",
+          "quantity": {
+            "value": "8",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.74",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "189.92",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 9,
+          "sku": "OO-EV-5-L9",
+          "description": "Extra virgin olive oil, 5 L tins, lot I-220",
+          "quantity": {
+            "value": "36",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.74",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "854.64",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1119.40",
+        "raw": {
+          "value": "1119.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1067.20",
+        "raw": {
+          "value": "1067.20",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "5507.68",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-5220",
+      "invoiceRef": "INV-2026-5220",
+      "seller": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-1",
+          "count": 1,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-3478/C/NO. 1-58",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L1",
+              "description": "EV olive oil 5 L lot A-615",
+              "quantity": {
+                "value": "4",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "18.40",
+            "raw": {
+              "value": "18.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.30",
+            "raw": {
+              "value": "19.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "2-10",
+          "count": 9,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-3478/C/NO. 1-58",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L2",
+              "description": "EV olive oil 5 L lot B-962",
+              "quantity": {
+                "value": "36",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "165.60",
+            "raw": {
+              "value": "165.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "173.70",
+            "raw": {
+              "value": "173.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "11-18",
+          "count": 8,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-3478/C/NO. 1-58",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L3",
+              "description": "EV olive oil 5 L lot C-137",
+              "quantity": {
+                "value": "32",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "147.20",
+            "raw": {
+              "value": "147.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "154.40",
+            "raw": {
+              "value": "154.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "19-27",
+          "count": 9,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-3478/C/NO. 1-58",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L4",
+              "description": "EV olive oil 5 L lot D-299",
+              "quantity": {
+                "value": "36",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "165.60",
+            "raw": {
+              "value": "165.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "173.70",
+            "raw": {
+              "value": "173.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "28-38",
+          "count": 11,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-3478/C/NO. 1-58",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L5",
+              "description": "EV olive oil 5 L lot E-581",
+              "quantity": {
+                "value": "44",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "202.40",
+            "raw": {
+              "value": "202.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "212.30",
+            "raw": {
+              "value": "212.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "39-41",
+          "count": 3,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-3478/C/NO. 1-58",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L6",
+              "description": "EV olive oil 5 L lot F-263",
+              "quantity": {
+                "value": "12",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "55.20",
+            "raw": {
+              "value": "55.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "57.90",
+            "raw": {
+              "value": "57.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "42-47",
+          "count": 6,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-3478/C/NO. 1-58",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L7",
+              "description": "EV olive oil 5 L lot G-846",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "110.40",
+            "raw": {
+              "value": "110.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "115.80",
+            "raw": {
+              "value": "115.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "48-49",
+          "count": 2,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-3478/C/NO. 1-58",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L8",
+              "description": "EV olive oil 5 L lot H-163",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.80",
+            "raw": {
+              "value": "36.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.60",
+            "raw": {
+              "value": "38.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "50-58",
+          "count": 9,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-3478/C/NO. 1-58",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L9",
+              "description": "EV olive oil 5 L lot I-220",
+              "quantity": {
+                "value": "36",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "165.60",
+            "raw": {
+              "value": "165.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "173.70",
+            "raw": {
+              "value": "173.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 58,
+        "netWeight": {
+          "kg": "1067.20",
+          "raw": {
+            "value": "1067.20",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1119.40",
+          "raw": {
+            "value": "1119.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "2.44"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLLIS9661362",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "942591150",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "082W",
+      "placeOfReceipt": {
+        "name": "Beja",
+        "country": "PT"
+      },
+      "portOfLoading": {
+        "name": "Lisboa",
+        "unLocode": "PTLIS",
+        "country": "PT"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCLU1899549",
+          "seal": "PC4291667",
+          "type": "20GP",
+          "packages": 58,
+          "grossWeight": {
+            "kg": "1119.40",
+            "raw": {
+              "value": "1119.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "2.44"
+        }
+      ],
+      "totalPackages": 58,
+      "totalGrossWeight": {
+        "kg": "1119.40",
+        "raw": {
+          "value": "1119.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/PO-3478/C/NO. 1-58",
+      "cargoDescription": "SAID TO CONTAIN 58 CTNS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Lisboa",
+      "dateOfIssue": "2026-02-23",
+      "shippedOnBoardDate": "2026-02-23",
+      "references": [
+        "INV-2026-5220",
+        "PO-3478"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "PT",
+      "htsCode": "150920",
+      "containerStuffingLocation": {
+        "lines": [
+          "Rua da Fábrica, 7"
+        ],
+        "city": "Beja",
+        "postalCode": "7800-309",
+        "country": "PT"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

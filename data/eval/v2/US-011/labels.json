@@ -1,0 +1,36 @@
+{
+  "id": "US-011",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Nguyễn Family Foods – Cold Storage",
+        "address": {
+          "lines": [
+            "15500 Gothard St"
+          ],
+          "city": "Huntington Beach",
+          "region": "CA",
+          "postalCode": "92647",
+          "country": "US"
+        }
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Consignee missing from the invoice."
+    },
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "10579.20",
+      "after": "11108.16",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.05 against the packing list."
+    }
+  ]
+}

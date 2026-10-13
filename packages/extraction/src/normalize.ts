@@ -35,13 +35,14 @@ const clean = (s: string | null | undefined): string | null => {
   return t ? t : null;
 };
 
-/** "48,600.00" | "48600" | "USD 1,234.50" | "1.234,50" -> "48600.00" style decimal string. */
+/** "48,600.00" | "48600" | "USD 1,234.50" | "1.234,50" | "48 600,00" -> "48600.00" style decimal string. */
 export function decimal(s: string | null | undefined): string | null {
   let t = clean(s);
   if (!t) return null;
   // Keep the first number only, so a unit after it ("320 M2", "1,140.00 KGS") never leaks digits in.
   const negative = /^[(-]/.test(t.replace(/^[A-Z$€£¥\s]+/i, ''));
-  t = t.match(/\d[\d.,]*/)?.[0] ?? '';
+  // A space (or no-break space) followed by exactly three digits groups thousands, as in "48 600,00".
+  t = (t.match(/\d(?:[\d.,]|[ \u00a0\u202f](?=\d{3}(?!\d)))*/)?.[0] ?? '').replace(/[ \u00a0\u202f]/g, '');
   const lastComma = t.lastIndexOf(',');
   const lastDot = t.lastIndexOf('.');
   if (lastComma > lastDot) {
@@ -69,12 +70,16 @@ const MONTHS: Record<string, number> = {
   JANV: 1, FEV: 2, FÉV: 2, AVR: 4, MAI: 5, JUIN: 6, JUIL: 7, AOU: 8, AOÛ: 8,
 };
 
-/** "2026-03-14" | "14-MAR-2026" | "Mar 14, 2026" | "14 March 2026" | "14/03/2026" (day first) -> "2026-03-14". */
+/** "2026-03-14" | "14-MAR-2026" | "Mar 14, 2026" | "14 March 2026" | "14/03/2026" | "14.03.2026" (day first) -> "2026-03-14". */
 export function isoDate(s: string | null | undefined): string | null {
-  const t = clean(s)?.toUpperCase().replace(/\./g, '');
-  if (!t) return null;
+  const raw = clean(s)?.toUpperCase();
+  if (!raw) return null;
   const iso = (y: number, m: number, d: number) =>
     m >= 1 && m <= 12 && d >= 1 && d <= 31 ? `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}` : null;
+  // "14.03.2026": dots are the separators here, not abbreviation marks.
+  const dotted = raw.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+  if (dotted) return iso(+dotted[3], +dotted[2], +dotted[1]);
+  const t = raw.replace(/\./g, '');
   let m = t.match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$/);
   if (m) return iso(+m[1], +m[2], +m[3]);
   m = t.match(/^(\d{1,2})[-/ ]([A-ZÉÛ]{3,9})[-/ ,]+(\d{4})$/);

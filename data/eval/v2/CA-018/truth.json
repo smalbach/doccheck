@@ -1,0 +1,753 @@
+{
+  "id": "CA-018",
+  "seed": 714676327,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "grid",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": true
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/1259",
+      "invoiceDate": "2026-06-12",
+      "poNumber": "QU483031",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-06-23",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hamburg",
+          "unLocode": "DEHAM",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Montreal"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "CAD",
+      "packageCount": 27,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750-OR",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour orange",
+          "quantity": {
+            "value": "3",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.82",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "242.46",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750-BL",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour blue",
+          "quantity": {
+            "value": "5",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.82",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "404.10",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CP-750-GN",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour green",
+          "quantity": {
+            "value": "2",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.82",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "161.64",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CP-750-GY",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour grey",
+          "quantity": {
+            "value": "3",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.82",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "242.46",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CP-750-YL",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour yellow",
+          "quantity": {
+            "value": "2",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.82",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "161.64",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CP-750-BR",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour brown",
+          "quantity": {
+            "value": "1",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.82",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "80.82",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 7,
+          "sku": "CP-750-NV",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour navy",
+          "quantity": {
+            "value": "4",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.82",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "323.28",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 8,
+          "sku": "CP-750-BE",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour beige",
+          "quantity": {
+            "value": "4",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.82",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "233.28",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 9,
+          "sku": "CP-750-RD",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour red",
+          "quantity": {
+            "value": "3",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.82",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "242.46",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "513.00",
+        "raw": {
+          "value": "513.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "391.50",
+        "raw": {
+          "value": "391.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "2182.14",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "fr",
+      "charges": {
+        "freight": {
+          "amount": "4030.00",
+          "currency": "INR"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/1259",
+      "invoiceRef": "CI/26/1259",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-3",
+          "count": 3,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-OR",
+              "description": "Centrifugal pump 0.75 kW colour orange",
+              "quantity": {
+                "value": "3",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "43.50",
+            "raw": {
+              "value": "43.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "57.00",
+            "raw": {
+              "value": "57.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "4-8",
+          "count": 5,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-BL",
+              "description": "Centrifugal pump 0.75 kW colour blue",
+              "quantity": {
+                "value": "5",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "72.50",
+            "raw": {
+              "value": "72.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "95.00",
+            "raw": {
+              "value": "95.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "9-10",
+          "count": 2,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-GN",
+              "description": "Centrifugal pump 0.75 kW colour green",
+              "quantity": {
+                "value": "2",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.00",
+            "raw": {
+              "value": "29.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "11-13",
+          "count": 3,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-GY",
+              "description": "Centrifugal pump 0.75 kW colour grey",
+              "quantity": {
+                "value": "3",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "43.50",
+            "raw": {
+              "value": "43.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "57.00",
+            "raw": {
+              "value": "57.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "14-15",
+          "count": 2,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-YL",
+              "description": "Centrifugal pump 0.75 kW colour yellow",
+              "quantity": {
+                "value": "2",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.00",
+            "raw": {
+              "value": "29.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "16-16",
+          "count": 1,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-BR",
+              "description": "Centrifugal pump 0.75 kW colour brown",
+              "quantity": {
+                "value": "1",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14.50",
+            "raw": {
+              "value": "14.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "17-20",
+          "count": 4,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-NV",
+              "description": "Centrifugal pump 0.75 kW colour navy",
+              "quantity": {
+                "value": "4",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "58.00",
+            "raw": {
+              "value": "58.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "76.00",
+            "raw": {
+              "value": "76.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "21-24",
+          "count": 4,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-BE",
+              "description": "Centrifugal pump 0.75 kW colour beige",
+              "quantity": {
+                "value": "4",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "58.00",
+            "raw": {
+              "value": "58.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "76.00",
+            "raw": {
+              "value": "76.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "25-27",
+          "count": 3,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-RD",
+              "description": "Centrifugal pump 0.75 kW colour red",
+              "quantity": {
+                "value": "3",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "43.50",
+            "raw": {
+              "value": "43.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "57.00",
+            "raw": {
+              "value": "57.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 27,
+        "netWeight": {
+          "kg": "391.50",
+          "raw": {
+            "value": "391.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "513.00",
+          "raw": {
+            "value": "513.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "2.38"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXHAM1480533",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "438680005",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "089S",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Hamburg",
+        "unLocode": "DEHAM",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGXU3501489",
+          "seal": "AG1150840",
+          "type": "20GP",
+          "packages": 27,
+          "grossWeight": {
+            "kg": "513.00",
+            "raw": {
+              "value": "513.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "2.38"
+        }
+      ],
+      "totalPackages": 27,
+      "totalGrossWeight": {
+        "kg": "513.00",
+        "raw": {
+          "value": "513.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+      "cargoDescription": "SAID TO CONTAIN 27 CRTS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Hamburg",
+      "dateOfIssue": "2026-06-25",
+      "shippedOnBoardDate": "2026-06-25",
+      "references": [
+        "CI/26/1259",
+        "QU483031"
+      ]
+    }
+  }
+}

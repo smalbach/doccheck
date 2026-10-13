@@ -1,0 +1,626 @@
+{
+  "id": "CA-003",
+  "seed": 1981803058,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "grid",
+    "packingListTemplate": "euro",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/9839",
+      "invoiceDate": "2026-04-24",
+      "poNumber": "PO-24076",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "buyer": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "exporter": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "shipmentDate": "2026-05-01",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Fos-sur-Mer",
+          "unLocode": "FRFOS",
+          "country": "FR"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Fos-sur-Mer"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 68,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "PZ-1000-BR",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour brown",
+          "quantity": {
+            "value": "288",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.64",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1336.32",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "PZ-1000-BE",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour beige",
+          "quantity": {
+            "value": "48",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.64",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "222.72",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 3,
+          "sku": "PZ-1000-PK",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour pink",
+          "quantity": {
+            "value": "288",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.64",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1336.32",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 4,
+          "sku": "PZ-1000-GN",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour green",
+          "quantity": {
+            "value": "312",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.64",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1447.68",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 5,
+          "sku": "PZ-1000-OR",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour orange",
+          "quantity": {
+            "value": "192",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.64",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "890.88",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 6,
+          "sku": "PZ-1000-WH",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour white",
+          "quantity": {
+            "value": "144",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.64",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "668.16",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 7,
+          "sku": "PZ-1000-RD",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour red",
+          "quantity": {
+            "value": "360",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.64",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1670.40",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1073.04",
+        "raw": {
+          "value": "1073.04",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1011.84",
+        "raw": {
+          "value": "1011.84",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "7572.48",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/9839",
+      "invoiceRef": "CI/26/9839",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-12",
+          "count": 12,
+          "type": "CTN",
+          "marks": "ÉPICERIE/PO-24076/C/NO. 1-68",
+          "contents": [
+            {
+              "sku": "PZ-1000-BR",
+              "description": "Jigsaw puzzle 1000 pcs colour brown",
+              "quantity": {
+                "value": "288",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "178.56",
+            "raw": {
+              "value": "178.56",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "189.36",
+            "raw": {
+              "value": "189.36",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "13-14",
+          "count": 2,
+          "type": "CTN",
+          "marks": "ÉPICERIE/PO-24076/C/NO. 1-68",
+          "contents": [
+            {
+              "sku": "PZ-1000-BE",
+              "description": "Jigsaw puzzle 1000 pcs colour beige",
+              "quantity": {
+                "value": "48",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.76",
+            "raw": {
+              "value": "29.76",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "31.56",
+            "raw": {
+              "value": "31.56",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "15-26",
+          "count": 12,
+          "type": "CTN",
+          "marks": "ÉPICERIE/PO-24076/C/NO. 1-68",
+          "contents": [
+            {
+              "sku": "PZ-1000-PK",
+              "description": "Jigsaw puzzle 1000 pcs colour pink",
+              "quantity": {
+                "value": "288",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "178.56",
+            "raw": {
+              "value": "178.56",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "189.36",
+            "raw": {
+              "value": "189.36",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "27-39",
+          "count": 13,
+          "type": "CTN",
+          "marks": "ÉPICERIE/PO-24076/C/NO. 1-68",
+          "contents": [
+            {
+              "sku": "PZ-1000-GN",
+              "description": "Jigsaw puzzle 1000 pcs colour green",
+              "quantity": {
+                "value": "312",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "193.44",
+            "raw": {
+              "value": "193.44",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "205.14",
+            "raw": {
+              "value": "205.14",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "40-47",
+          "count": 8,
+          "type": "CTN",
+          "marks": "ÉPICERIE/PO-24076/C/NO. 1-68",
+          "contents": [
+            {
+              "sku": "PZ-1000-OR",
+              "description": "Jigsaw puzzle 1000 pcs colour orange",
+              "quantity": {
+                "value": "192",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "119.04",
+            "raw": {
+              "value": "119.04",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "126.24",
+            "raw": {
+              "value": "126.24",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "48-53",
+          "count": 6,
+          "type": "CTN",
+          "marks": "ÉPICERIE/PO-24076/C/NO. 1-68",
+          "contents": [
+            {
+              "sku": "PZ-1000-WH",
+              "description": "Jigsaw puzzle 1000 pcs colour white",
+              "quantity": {
+                "value": "144",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "89.28",
+            "raw": {
+              "value": "89.28",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "94.68",
+            "raw": {
+              "value": "94.68",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "54-68",
+          "count": 15,
+          "type": "CTN",
+          "marks": "ÉPICERIE/PO-24076/C/NO. 1-68",
+          "contents": [
+            {
+              "sku": "PZ-1000-RD",
+              "description": "Jigsaw puzzle 1000 pcs colour red",
+              "quantity": {
+                "value": "360",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "223.20",
+            "raw": {
+              "value": "223.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "236.70",
+            "raw": {
+              "value": "236.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 68,
+        "netWeight": {
+          "kg": "1011.84",
+          "raw": {
+            "value": "1011.84",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1073.04",
+          "raw": {
+            "value": "1073.04",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.03"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSFOS891412",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "871578475",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "175 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "notifyParty": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "029E",
+      "placeOfReceipt": {
+        "name": "Lyon",
+        "country": "FR"
+      },
+      "portOfLoading": {
+        "name": "Fos-sur-Mer",
+        "unLocode": "FRFOS",
+        "country": "FR"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Moncton",
+        "unLocode": "CAMNT",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCRU4784951",
+          "seal": "PC5924823",
+          "type": "20GP",
+          "packages": 68,
+          "grossWeight": {
+            "kg": "1073.04",
+            "raw": {
+              "value": "1073.04",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.03"
+        }
+      ],
+      "totalPackages": 68,
+      "totalGrossWeight": {
+        "kg": "1073.04",
+        "raw": {
+          "value": "1073.04",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "ÉPICERIE/PO-24076/C/NO. 1-68",
+      "cargoDescription": "SAID TO CONTAIN 68 CTNS JIGSAW PUZZLE 1000 PCS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Fos-sur-Mer",
+      "dateOfIssue": "2026-05-02",
+      "shippedOnBoardDate": "2026-05-02",
+      "references": [
+        "CI/26/9839",
+        "PO-24076"
+      ]
+    }
+  }
+}

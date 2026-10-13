@@ -1,0 +1,49 @@
+{
+  "id": "CA-023",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 62,
+      "after": 60,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 60 packages instead of 62."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Épicerie Fine Évangéline Coopérative Ltée",
+        "address": {
+          "lines": [
+            "95 rue Champlain"
+          ],
+          "city": "Dieppe",
+          "region": "NB",
+          "postalCode": "E1A 1N5",
+          "country": "CA"
+        },
+        "taxId": "892345678RM0001"
+      },
+      "after": null,
+      "expectedRuleIds": [
+        "C1"
+      ],
+      "description": "Consignee missing from the invoice."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "USD",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 2826.00 USD on an invoice in CAD."
+    }
+  ]
+}

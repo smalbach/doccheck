@@ -1,0 +1,1417 @@
+{
+  "id": "US-018",
+  "seed": 1277658474,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "grid",
+    "packingListTemplate": "grid",
+    "blTemplate": "euro",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/0865",
+      "invoiceDate": "2026-09-14",
+      "poNumber": "PO-42245",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "buyer": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "consignee": {
+        "name": "Nguyễn Family Foods – Cold Storage",
+        "address": {
+          "lines": [
+            "15500 Gothard St"
+          ],
+          "city": "Huntington Beach",
+          "region": "CA",
+          "postalCode": "92647",
+          "country": "US"
+        }
+      },
+      "exporter": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "shipmentDate": "2026-09-25",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Fos-sur-Mer",
+          "unLocode": "FRFOS",
+          "country": "FR"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Fos-sur-Mer"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 261,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "PZ-1000-PK",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour pink",
+          "quantity": {
+            "value": "408",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1738.08",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "PZ-1000-WH",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour white",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "102.24",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 3,
+          "sku": "PZ-1000-BL",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour blue",
+          "quantity": {
+            "value": "360",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1533.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 4,
+          "sku": "PZ-1000-OR",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour orange",
+          "quantity": {
+            "value": "24",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "102.24",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 5,
+          "sku": "PZ-1000-BR",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour brown",
+          "quantity": {
+            "value": "168",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "715.68",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 6,
+          "sku": "PZ-1000-NV",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour navy",
+          "quantity": {
+            "value": "504",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "2147.04",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 7,
+          "sku": "PZ-1000-YL",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour yellow",
+          "quantity": {
+            "value": "48",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "204.48",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 8,
+          "sku": "PZ-1000-GN",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour green",
+          "quantity": {
+            "value": "288",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1226.88",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 9,
+          "sku": "TB-200-BL",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour blue",
+          "quantity": {
+            "value": "550",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "5142.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 10,
+          "sku": "TB-200-BR",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour brown",
+          "quantity": {
+            "value": "450",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "4207.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 11,
+          "sku": "TB-200-RD",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour red",
+          "quantity": {
+            "value": "700",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "6545.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 12,
+          "sku": "TB-200-BE",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour beige",
+          "quantity": {
+            "value": "950",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "8882.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 13,
+          "sku": "TB-200-GY",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour grey",
+          "quantity": {
+            "value": "550",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "5142.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 14,
+          "sku": "TB-200-GN",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour green",
+          "quantity": {
+            "value": "950",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "8882.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 15,
+          "sku": "TB-200-YL",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour yellow",
+          "quantity": {
+            "value": "950",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "8828.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 16,
+          "sku": "TB-200-BK",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour black",
+          "quantity": {
+            "value": "500",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "4675.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 17,
+          "sku": "TB-200-OR",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour orange",
+          "quantity": {
+            "value": "1000",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "9350.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 18,
+          "sku": "TB-200-WH",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour white",
+          "quantity": {
+            "value": "850",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "7947.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 19,
+          "sku": "TB-200-NV",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour navy",
+          "quantity": {
+            "value": "900",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "8415.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 20,
+          "sku": "TB-200-PK",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour pink",
+          "quantity": {
+            "value": "900",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.35",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "8415.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3086.28",
+        "raw": {
+          "value": "3086.28",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2795.88",
+        "raw": {
+          "value": "2795.88",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "94257.74",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/0865",
+      "invoiceRef": "CI/26/0865",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Nguyễn Family Foods – Cold Storage",
+        "address": {
+          "lines": [
+            "15500 Gothard St"
+          ],
+          "city": "Huntington Beach",
+          "region": "CA",
+          "postalCode": "92647",
+          "country": "US"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-17",
+          "count": 17,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "PZ-1000-PK",
+              "description": "Jigsaw puzzle 1000 pcs colour pink",
+              "quantity": {
+                "value": "408",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "252.96",
+            "raw": {
+              "value": "252.96",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "268.26",
+            "raw": {
+              "value": "268.26",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "18-18",
+          "count": 1,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "PZ-1000-WH",
+              "description": "Jigsaw puzzle 1000 pcs colour white",
+              "quantity": {
+                "value": "14",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14.88",
+            "raw": {
+              "value": "14.88",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "15.78",
+            "raw": {
+              "value": "15.78",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "19-33",
+          "count": 15,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "PZ-1000-BL",
+              "description": "Jigsaw puzzle 1000 pcs colour blue",
+              "quantity": {
+                "value": "360",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "223.20",
+            "raw": {
+              "value": "223.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "236.70",
+            "raw": {
+              "value": "236.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "34-34",
+          "count": 1,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "PZ-1000-OR",
+              "description": "Jigsaw puzzle 1000 pcs colour orange",
+              "quantity": {
+                "value": "24",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14.88",
+            "raw": {
+              "value": "14.88",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "15.78",
+            "raw": {
+              "value": "15.78",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "35-41",
+          "count": 7,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "PZ-1000-BR",
+              "description": "Jigsaw puzzle 1000 pcs colour brown",
+              "quantity": {
+                "value": "168",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "104.16",
+            "raw": {
+              "value": "104.16",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "110.46",
+            "raw": {
+              "value": "110.46",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "42-62",
+          "count": 21,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "PZ-1000-NV",
+              "description": "Jigsaw puzzle 1000 pcs colour navy",
+              "quantity": {
+                "value": "504",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "312.48",
+            "raw": {
+              "value": "312.48",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "331.38",
+            "raw": {
+              "value": "331.38",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "63-64",
+          "count": 2,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "PZ-1000-YL",
+              "description": "Jigsaw puzzle 1000 pcs colour yellow",
+              "quantity": {
+                "value": "48",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.76",
+            "raw": {
+              "value": "29.76",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "31.56",
+            "raw": {
+              "value": "31.56",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "65-76",
+          "count": 12,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "PZ-1000-GN",
+              "description": "Jigsaw puzzle 1000 pcs colour green",
+              "quantity": {
+                "value": "288",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "178.56",
+            "raw": {
+              "value": "178.56",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "189.36",
+            "raw": {
+              "value": "189.36",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "77-87",
+          "count": 11,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-BL",
+              "description": "Plush teddy bear 30 cm colour blue",
+              "quantity": {
+                "value": "550",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "99.00",
+            "raw": {
+              "value": "99.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "112.20",
+            "raw": {
+              "value": "112.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "88-96",
+          "count": 9,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-BR",
+              "description": "Plush teddy bear 30 cm colour brown",
+              "quantity": {
+                "value": "450",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "81.00",
+            "raw": {
+              "value": "81.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "91.80",
+            "raw": {
+              "value": "91.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "97-110",
+          "count": 14,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-RD",
+              "description": "Plush teddy bear 30 cm colour red",
+              "quantity": {
+                "value": "700",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "126.00",
+            "raw": {
+              "value": "126.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "142.80",
+            "raw": {
+              "value": "142.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "111-129",
+          "count": 19,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-BE",
+              "description": "Plush teddy bear 30 cm colour beige",
+              "quantity": {
+                "value": "950",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "171.00",
+            "raw": {
+              "value": "171.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "193.80",
+            "raw": {
+              "value": "193.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "130-140",
+          "count": 11,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-GY",
+              "description": "Plush teddy bear 30 cm colour grey",
+              "quantity": {
+                "value": "550",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "99.00",
+            "raw": {
+              "value": "99.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "112.20",
+            "raw": {
+              "value": "112.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "141-159",
+          "count": 19,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-GN",
+              "description": "Plush teddy bear 30 cm colour green",
+              "quantity": {
+                "value": "950",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "171.00",
+            "raw": {
+              "value": "171.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "193.80",
+            "raw": {
+              "value": "193.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "160-178",
+          "count": 19,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-YL",
+              "description": "Plush teddy bear 30 cm colour yellow",
+              "quantity": {
+                "value": "950",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "171.00",
+            "raw": {
+              "value": "171.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "193.80",
+            "raw": {
+              "value": "193.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "179-188",
+          "count": 10,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-BK",
+              "description": "Plush teddy bear 30 cm colour black",
+              "quantity": {
+                "value": "500",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "90.00",
+            "raw": {
+              "value": "90.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "102.00",
+            "raw": {
+              "value": "102.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "189-208",
+          "count": 20,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-OR",
+              "description": "Plush teddy bear 30 cm colour orange",
+              "quantity": {
+                "value": "1000",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "180.00",
+            "raw": {
+              "value": "180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "204.00",
+            "raw": {
+              "value": "204.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "209-225",
+          "count": 17,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-WH",
+              "description": "Plush teddy bear 30 cm colour white",
+              "quantity": {
+                "value": "850",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "153.00",
+            "raw": {
+              "value": "153.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "173.40",
+            "raw": {
+              "value": "173.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "226-243",
+          "count": 18,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-NV",
+              "description": "Plush teddy bear 30 cm colour navy",
+              "quantity": {
+                "value": "900",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "162.00",
+            "raw": {
+              "value": "162.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "183.60",
+            "raw": {
+              "value": "183.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "244-261",
+          "count": 18,
+          "type": "CTN",
+          "marks": "NGUYỄN/PO-42245/C/NO. 1-261",
+          "contents": [
+            {
+              "sku": "TB-200-PK",
+              "description": "Plush teddy bear 30 cm colour pink",
+              "quantity": {
+                "value": "900",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "162.00",
+            "raw": {
+              "value": "162.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "183.60",
+            "raw": {
+              "value": "183.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 261,
+        "netWeight": {
+          "kg": "2795.88",
+          "raw": {
+            "value": "2795.88",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3086.28",
+          "raw": {
+            "value": "3086.28",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "22.27"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLFOS8428390",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "440384581",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Nguyễn Family Foods – Cold Storage",
+        "address": {
+          "lines": [
+            "15502 Gothard St"
+          ],
+          "city": "Huntington Beach",
+          "region": "CA",
+          "postalCode": "92647",
+          "country": "US"
+        }
+      },
+      "notifyParty": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "037W",
+      "placeOfReceipt": {
+        "name": "Lyon",
+        "country": "FR"
+      },
+      "portOfLoading": {
+        "name": "Fos-sur-Mer",
+        "unLocode": "FRFOS",
+        "country": "FR"
+      },
+      "portOfDischarge": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Los Angeles",
+        "unLocode": "USLAX",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCRU5351004",
+          "seal": "PC6401358",
+          "type": "20GP",
+          "packages": 261,
+          "grossWeight": {
+            "kg": "3086.28",
+            "raw": {
+              "value": "3086.28",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "22.27"
+        }
+      ],
+      "totalPackages": 261,
+      "totalGrossWeight": {
+        "kg": "3086.28",
+        "raw": {
+          "value": "3086.28",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "NGUYỄN/PO-42245/C/NO. 1-261",
+      "cargoDescription": "SAID TO CONTAIN 261 CTNS JIGSAW PUZZLE 1000 PCS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Fos-sur-Mer",
+      "dateOfIssue": "2026-09-27",
+      "shippedOnBoardDate": "2026-09-27",
+      "references": [
+        "CI/26/0865",
+        "PO-42245"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "buyer": {
+        "name": "Nguyễn Family Foods Inc.",
+        "address": {
+          "lines": [
+            "9200 Bolsa Ave"
+          ],
+          "city": "Westminster",
+          "region": "CA",
+          "postalCode": "92683",
+          "country": "US"
+        },
+        "taxId": "33-7654321"
+      },
+      "importerOfRecordNumber": "33-765432100",
+      "consigneeNumber": "33-765432100",
+      "manufacturer": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "shipToParty": {
+        "name": "Nguyễn Family Foods – Cold Storage",
+        "address": {
+          "lines": [
+            "15500 Gothard St"
+          ],
+          "city": "Huntington Beach",
+          "region": "CA",
+          "postalCode": "92647",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "FR",
+      "htsCode": "950300",
+      "containerStuffingLocation": {
+        "lines": [
+          "14 rue de l'Industrie"
+        ],
+        "city": "Lyon",
+        "postalCode": "69007",
+        "country": "FR"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

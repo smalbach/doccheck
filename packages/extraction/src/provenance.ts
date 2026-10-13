@@ -1,17 +1,22 @@
 import type { SourceRef } from '@doccheck/schemas';
 import type { PdfText } from './pdf-text';
 
-/** Ways a canonical value may be printed: "48600.00" -> "48,600.00", "48600", "48,600". */
+/**
+ * Ways a canonical value may be printed: "48600.00" -> "48,600.00", "48600", "48,600", and the
+ * European "48.600,00", "48 600,00", "48600,00".
+ */
 function printedForms(value: string): string[] {
   const forms = new Set([value]);
   const m = value.match(/^(-?)(\d+)(?:\.(\d+))?$/);
   if (m) {
-    const grouped = m[2].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const group = (sep: string) => m[2].replace(/\B(?=(\d{3})+(?!\d))/g, sep);
     const frac = m[3];
-    forms.add(`${m[1]}${grouped}${frac ? `.${frac}` : ''}`);
+    forms.add(`${m[1]}${group(',')}${frac ? `.${frac}` : ''}`);
+    if (frac) for (const sep of ['.', ' ', '']) forms.add(`${m[1]}${group(sep)},${frac}`);
     if (!frac || /^0+$/.test(frac)) {
       forms.add(`${m[1]}${m[2]}`);
-      forms.add(`${m[1]}${grouped}`);
+      forms.add(`${m[1]}${group(',')}`);
+      forms.add(`${m[1]}${group(' ')}`);
     }
   }
   return [...forms].sort((a, b) => b.length - a.length);

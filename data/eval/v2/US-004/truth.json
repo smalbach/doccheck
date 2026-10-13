@@ -1,0 +1,989 @@
+{
+  "id": "US-004",
+  "seed": 588621969,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "euro",
+    "packingListTemplate": "grid",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-6402",
+      "invoiceDate": "2026-08-02",
+      "poNumber": "PO-80048",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Peña Hermanos Distributors LLC",
+        "address": {
+          "lines": [
+            "8250 NW 27th St"
+          ],
+          "city": "Doral",
+          "region": "FL",
+          "postalCode": "33122",
+          "country": "US"
+        },
+        "taxId": "65-1234987"
+      },
+      "consignee": {
+        "name": "Peña Hermanos Distributors LLC",
+        "address": {
+          "lines": [
+            "8250 NW 27th St"
+          ],
+          "city": "Doral",
+          "region": "FL",
+          "postalCode": "33122",
+          "country": "US"
+        },
+        "taxId": "65-1234987"
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-08-05",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Buenaventura",
+          "unLocode": "COBUN",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Buenaventura"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 260,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60-L1",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot A-279",
+          "quantity": {
+            "value": "1920",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "8486.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CF-GRN-60-L2",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot B-508",
+          "quantity": {
+            "value": "1200",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "5304.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CF-GRN-60-L3",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot C-561",
+          "quantity": {
+            "value": "480",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2121.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CF-GRN-60-L4",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot D-105",
+          "quantity": {
+            "value": "1380",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "6099.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CF-GRN-60-L5",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot E-773",
+          "quantity": {
+            "value": "192",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "8486.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CF-GRN-60-L6",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot F-718",
+          "quantity": {
+            "value": "1740",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "7690.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 7,
+          "sku": "CF-GRN-60-L7",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot G-619",
+          "quantity": {
+            "value": "1080",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "7473.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 8,
+          "sku": "CF-GRN-60-L8",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot H-390",
+          "quantity": {
+            "value": "360",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1591.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 9,
+          "sku": "CF-GRN-60-L9",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot I-457",
+          "quantity": {
+            "value": "840",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3712.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 10,
+          "sku": "CF-GRN-60-L10",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot J-720",
+          "quantity": {
+            "value": "1620",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "7160.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 11,
+          "sku": "CF-GRN-60-L11",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot K-552",
+          "quantity": {
+            "value": "1620",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "7160.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        },
+        {
+          "lineNo": 12,
+          "sku": "CF-GRN-60-L12",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot L-187",
+          "quantity": {
+            "value": "1440",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.42",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "6364.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "15808.00",
+        "raw": {
+          "value": "15808.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "15600.00",
+        "raw": {
+          "value": "15600.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "68952.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Miami",
+        "unLocode": "USMIA",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-6402",
+      "invoiceRef": "INV-2026-6402",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Peña Hermanos Distributors LLC",
+        "address": {
+          "lines": [
+            "8250 NW 27th St"
+          ],
+          "city": "Doral",
+          "region": "FL",
+          "postalCode": "33122",
+          "country": "US"
+        },
+        "taxId": "65-1234987"
+      },
+      "packages": [
+        {
+          "range": "1-32",
+          "count": 32,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L1",
+              "description": "Green coffee arabica lot A-279",
+              "quantity": {
+                "value": "1920",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1920.00",
+            "raw": {
+              "value": "1920.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1945.60",
+            "raw": {
+              "value": "1945.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "33-52",
+          "count": 20,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L2",
+              "description": "Green coffee arabica lot B-508",
+              "quantity": {
+                "value": "1200",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1200.00",
+            "raw": {
+              "value": "1200.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1216.00",
+            "raw": {
+              "value": "1216.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "53-60",
+          "count": 8,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L3",
+              "description": "Green coffee arabica lot C-561",
+              "quantity": {
+                "value": "480",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "480.00",
+            "raw": {
+              "value": "480.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "486.40",
+            "raw": {
+              "value": "486.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "61-83",
+          "count": 23,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L4",
+              "description": "Green coffee arabica lot D-105",
+              "quantity": {
+                "value": "1380",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1380.00",
+            "raw": {
+              "value": "1380.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1398.40",
+            "raw": {
+              "value": "1398.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "84-115",
+          "count": 32,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L5",
+              "description": "Green coffee arabica lot E-773",
+              "quantity": {
+                "value": "1920",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1920.00",
+            "raw": {
+              "value": "1920.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1945.60",
+            "raw": {
+              "value": "1945.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "116-144",
+          "count": 29,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L6",
+              "description": "Green coffee arabica lot F-718",
+              "quantity": {
+                "value": "1740",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1740.00",
+            "raw": {
+              "value": "1740.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1763.20",
+            "raw": {
+              "value": "1763.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "145-162",
+          "count": 18,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L7",
+              "description": "Green coffee arabica lot G-619",
+              "quantity": {
+                "value": "1080",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1080.00",
+            "raw": {
+              "value": "1080.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1094.40",
+            "raw": {
+              "value": "1094.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "163-168",
+          "count": 6,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L8",
+              "description": "Green coffee arabica lot H-390",
+              "quantity": {
+                "value": "360",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "360.00",
+            "raw": {
+              "value": "360.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "364.80",
+            "raw": {
+              "value": "364.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "169-182",
+          "count": 14,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L9",
+              "description": "Green coffee arabica lot I-457",
+              "quantity": {
+                "value": "840",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "840.00",
+            "raw": {
+              "value": "840.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "851.20",
+            "raw": {
+              "value": "851.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "183-209",
+          "count": 27,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L10",
+              "description": "Green coffee arabica lot J-720",
+              "quantity": {
+                "value": "1620",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1620.00",
+            "raw": {
+              "value": "1620.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1641.60",
+            "raw": {
+              "value": "1641.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "210-236",
+          "count": 27,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L11",
+              "description": "Green coffee arabica lot K-552",
+              "quantity": {
+                "value": "1620",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1620.00",
+            "raw": {
+              "value": "1620.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1641.60",
+            "raw": {
+              "value": "1641.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        },
+        {
+          "range": "237-260",
+          "count": 24,
+          "type": "BAG",
+          "marks": "PEÑA/PO-80048/C/NO. 1-260",
+          "contents": [
+            {
+              "sku": "CF-GRN-60-L12",
+              "description": "Green coffee arabica lot L-187",
+              "quantity": {
+                "value": "1440",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1440.00",
+            "raw": {
+              "value": "1440.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1459.20",
+            "raw": {
+              "value": "1459.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 260,
+        "netWeight": {
+          "kg": "15600.00",
+          "raw": {
+            "value": "15600.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "15808.00",
+          "raw": {
+            "value": "15808.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "37.05"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSBUN867820",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "438558770",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Peña Hermanos Distributors LLC",
+        "address": {
+          "lines": [
+            "8250 NW 27th St"
+          ],
+          "city": "Doral",
+          "region": "FL",
+          "postalCode": "33122",
+          "country": "US"
+        },
+        "taxId": "65-1234987"
+      },
+      "notifyParty": {
+        "name": "Peña Hermanos Distributors LLC",
+        "address": {
+          "lines": [
+            "8250 NW 27th St"
+          ],
+          "city": "Doral",
+          "region": "FL",
+          "postalCode": "33122",
+          "country": "US"
+        },
+        "taxId": "65-1234987"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "023S",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Buenaventura",
+        "unLocode": "COBUN",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Miami",
+        "unLocode": "USMIA",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Miami",
+        "unLocode": "USMIA",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCLU4204537",
+          "seal": "PC2393876",
+          "type": "40HC",
+          "packages": 260,
+          "grossWeight": {
+            "kg": "15808.00",
+            "raw": {
+              "value": "15808.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "37.05"
+        }
+      ],
+      "totalPackages": 260,
+      "totalGrossWeight": {
+        "kg": "15808.00",
+        "raw": {
+          "value": "15808.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PEÑA/PO-80048/C/NO. 1-260",
+      "cargoDescription": "SAID TO CONTAIN 260 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Buenaventura",
+      "dateOfIssue": "2026-08-08",
+      "shippedOnBoardDate": "2026-08-08",
+      "references": [
+        "INV-2026-6402",
+        "PO-80048"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Peña Hermanos Distributors LLC",
+        "address": {
+          "lines": [
+            "8250 NW 27th St"
+          ],
+          "city": "Doral",
+          "region": "FL",
+          "postalCode": "33122",
+          "country": "US"
+        },
+        "taxId": "65-1234987"
+      },
+      "importerOfRecordNumber": "65-123498700",
+      "consigneeNumber": "65-123498700",
+      "manufacturer": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipToParty": {
+        "name": "Peña Hermanos Distributors LLC",
+        "address": {
+          "lines": [
+            "8250 NW 27th St"
+          ],
+          "city": "Doral",
+          "region": "FL",
+          "postalCode": "33122",
+          "country": "US"
+        },
+        "taxId": "65-1234987"
+      },
+      "countryOfOrigin": "CO",
+      "htsCode": "090111",
+      "containerStuffingLocation": {
+        "lines": [
+          "Carrera 5 # 12-40"
+        ],
+        "city": "Neiva",
+        "region": "Huila",
+        "country": "CO"
+      },
+      "consolidator": {
+        "name": "Keystone Cargo Consolidators GmbH",
+        "address": {
+          "lines": [
+            "Am Sandtorkai 41"
+          ],
+          "city": "Hamburg",
+          "postalCode": "20457",
+          "country": "DE"
+        }
+      }
+    }
+  }
+}

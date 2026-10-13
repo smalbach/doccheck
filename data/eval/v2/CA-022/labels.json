@@ -1,0 +1,27 @@
+{
+  "id": "CA-022",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 256,
+      "after": 261,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 261 packages instead of 256."
+    },
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[7].contents[0].quantity.value",
+      "before": "8",
+      "after": "7",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    }
+  ]
+}

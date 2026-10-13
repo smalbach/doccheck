@@ -1,0 +1,967 @@
+{
+  "id": "CA-021",
+  "seed": 1182357145,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "grid",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/8891",
+      "invoiceDate": "2026-05-04",
+      "poNumber": "QU866556",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-05-12",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ho Chi Minh City",
+          "unLocode": "VNSGN",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ho Chi Minh City"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "CAD",
+      "packageCount": 142,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M-PK-S",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour pink, size S",
+          "quantity": {
+            "value": "1500",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "3945.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TS-CTN-M-OR-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour orange, size M",
+          "quantity": {
+            "value": "700",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1841.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 3,
+          "sku": "TS-CTN-M-NV-S",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour navy, size S",
+          "quantity": {
+            "value": "100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "263.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 4,
+          "sku": "TS-CTN-M-PK-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour pink, size M",
+          "quantity": {
+            "value": "2200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "5786.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 5,
+          "sku": "TS-CTN-M-NV-XS",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour navy, size XS",
+          "quantity": {
+            "value": "1700",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "4471.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 6,
+          "sku": "TS-CTN-M-WH-XL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour white, size XL",
+          "quantity": {
+            "value": "900",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "2367.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 7,
+          "sku": "TS-CTN-M-BE-XL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour beige, size XL",
+          "quantity": {
+            "value": "300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "789.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 8,
+          "sku": "TS-CTN-M-YL-XXL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour yellow, size XXL",
+          "quantity": {
+            "value": "400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "1052.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 9,
+          "sku": "TS-CTN-M-BR-XL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour brown, size XL",
+          "quantity": {
+            "value": "800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "2104.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 10,
+          "sku": "TS-CTN-M-NV-XXL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour navy, size XXL",
+          "quantity": {
+            "value": "2201",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "5786.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 11,
+          "sku": "TS-CTN-M-BL-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour blue, size M",
+          "quantity": {
+            "value": "1800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "4734.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 12,
+          "sku": "TS-CTN-M-BK-S",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour black, size S",
+          "quantity": {
+            "value": "1400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "3682.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 13,
+          "sku": "TS-CTN-M-NV-XL",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour navy, size XL",
+          "quantity": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.63",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "526.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2811.60",
+        "raw": {
+          "value": "2811.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2698.00",
+        "raw": {
+          "value": "2698.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "37346.00",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/8891",
+      "invoiceRef": "CI/26/8891",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-15",
+          "count": 15,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-PK-S",
+              "description": "Men's cotton T-shirt colour pink, size S",
+              "quantity": {
+                "value": "1500",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "285.00",
+            "raw": {
+              "value": "285.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "297.00",
+            "raw": {
+              "value": "297.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "16-22",
+          "count": 7,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-OR-M",
+              "description": "Men's cotton T-shirt colour orange, size M",
+              "quantity": {
+                "value": "700",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "133.00",
+            "raw": {
+              "value": "133.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "138.60",
+            "raw": {
+              "value": "138.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "23-23",
+          "count": 1,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-NV-S",
+              "description": "Men's cotton T-shirt colour navy, size S",
+              "quantity": {
+                "value": "100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.80",
+            "raw": {
+              "value": "19.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "24-45",
+          "count": 22,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-PK-M",
+              "description": "Men's cotton T-shirt colour pink, size M",
+              "quantity": {
+                "value": "2200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "418.00",
+            "raw": {
+              "value": "418.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "435.60",
+            "raw": {
+              "value": "435.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "46-62",
+          "count": 17,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-NV-XS",
+              "description": "Men's cotton T-shirt colour navy, size XS",
+              "quantity": {
+                "value": "1700",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "323.00",
+            "raw": {
+              "value": "323.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "336.60",
+            "raw": {
+              "value": "336.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "63-71",
+          "count": 9,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-WH-XL",
+              "description": "Men's cotton T-shirt colour white, size XL",
+              "quantity": {
+                "value": "900",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "171.00",
+            "raw": {
+              "value": "171.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "178.20",
+            "raw": {
+              "value": "178.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "72-74",
+          "count": 3,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-BE-XL",
+              "description": "Men's cotton T-shirt colour beige, size XL",
+              "quantity": {
+                "value": "300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "57.00",
+            "raw": {
+              "value": "57.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "59.40",
+            "raw": {
+              "value": "59.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "75-78",
+          "count": 4,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-YL-XXL",
+              "description": "Men's cotton T-shirt colour yellow, size XXL",
+              "quantity": {
+                "value": "400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "76.00",
+            "raw": {
+              "value": "76.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "79.20",
+            "raw": {
+              "value": "79.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "79-86",
+          "count": 8,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-BR-XL",
+              "description": "Men's cotton T-shirt colour brown, size XL",
+              "quantity": {
+                "value": "800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "152.00",
+            "raw": {
+              "value": "152.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "158.40",
+            "raw": {
+              "value": "158.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "87-108",
+          "count": 22,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-NV-XXL",
+              "description": "Men's cotton T-shirt colour navy, size XXL",
+              "quantity": {
+                "value": "2200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "418.00",
+            "raw": {
+              "value": "418.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "435.60",
+            "raw": {
+              "value": "435.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "109-126",
+          "count": 18,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-BL-M",
+              "description": "Men's cotton T-shirt colour blue, size M",
+              "quantity": {
+                "value": "1800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "342.00",
+            "raw": {
+              "value": "342.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "356.40",
+            "raw": {
+              "value": "356.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "127-140",
+          "count": 14,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-BK-S",
+              "description": "Men's cotton T-shirt colour black, size S",
+              "quantity": {
+                "value": "1400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "266.00",
+            "raw": {
+              "value": "266.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "277.20",
+            "raw": {
+              "value": "277.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "141-142",
+          "count": 2,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+          "contents": [
+            {
+              "sku": "TS-CTN-M-NV-XL",
+              "description": "Men's cotton T-shirt colour navy, size XL",
+              "quantity": {
+                "value": "200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "39.60",
+            "raw": {
+              "value": "39.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 142,
+        "netWeight": {
+          "kg": "2698.00",
+          "raw": {
+            "value": "2698.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2811.60",
+          "raw": {
+            "value": "2811.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "11.93"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVSGN597772",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "494760711",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "018W",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Ho Chi Minh City",
+        "unLocode": "VNSGN",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU2425354",
+          "seal": "MD1992247",
+          "type": "20GP",
+          "packages": 142,
+          "grossWeight": {
+            "kg": "2811.60",
+            "raw": {
+              "value": "2811.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "11.93"
+        }
+      ],
+      "totalPackages": 142,
+      "totalGrossWeight": {
+        "kg": "3092.76",
+        "raw": {
+          "value": "3092.76",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/QU866556/C/NO. 1-142",
+      "cargoDescription": "SAID TO CONTAIN 142 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ho Chi Minh City",
+      "dateOfIssue": "2026-05-15",
+      "shippedOnBoardDate": "2026-05-15",
+      "references": [
+        "CI/26/8891",
+        "QU866556"
+      ]
+    }
+  }
+}

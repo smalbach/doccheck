@@ -1,0 +1,724 @@
+{
+  "id": "US-012",
+  "seed": 267328998,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "euro",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-6419",
+      "invoiceDate": "2026-01-14",
+      "poNumber": "PA154879",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "consignee": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-01-18",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Ambarlı"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 27,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750-OR",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour orange",
+          "quantity": {
+            "value": "2",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.47",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "160.94",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750-NV",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour navy",
+          "quantity": {
+            "value": "5",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.47",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "402.35",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CP-750-GN",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour green",
+          "quantity": {
+            "value": "2",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.47",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "160.94",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 4,
+          "sku": "CP-750-RD",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour red",
+          "quantity": {
+            "value": "1",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.47",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "80.47",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 5,
+          "sku": "CP-750-BL",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour blue",
+          "quantity": {
+            "value": "5",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.47",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "402.35",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 6,
+          "sku": "CP-750-PK",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour pink",
+          "quantity": {
+            "value": "6",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.47",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "482.82",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 7,
+          "sku": "CP-750-WH",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body, colour white",
+          "quantity": {
+            "value": "6",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "80.47",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "482.82",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "513.00",
+        "raw": {
+          "value": "513.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "391.50",
+        "raw": {
+          "value": "391.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "2172.69",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-6419",
+      "invoiceRef": "INV-2026-6419",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "packages": [
+        {
+          "range": "1-2",
+          "count": 2,
+          "type": "CRT",
+          "marks": "PACIFIC/PA154879/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-OR",
+              "description": "Centrifugal pump 0.75 kW colour orange",
+              "quantity": {
+                "value": "2",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.00",
+            "raw": {
+              "value": "29.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "3-7",
+          "count": 5,
+          "type": "CRT",
+          "marks": "PACIFIC/PA154879/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-NV",
+              "description": "Centrifugal pump 0.75 kW colour navy",
+              "quantity": {
+                "value": "5",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "72.50",
+            "raw": {
+              "value": "72.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "95.00",
+            "raw": {
+              "value": "95.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "8-9",
+          "count": 2,
+          "type": "CRT",
+          "marks": "PACIFIC/PA154879/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-GN",
+              "description": "Centrifugal pump 0.75 kW colour green",
+              "quantity": {
+                "value": "2",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.00",
+            "raw": {
+              "value": "29.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.00",
+            "raw": {
+              "value": "38.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "10-10",
+          "count": 1,
+          "type": "CRT",
+          "marks": "PACIFIC/PA154879/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-RD",
+              "description": "Centrifugal pump 0.75 kW colour red",
+              "quantity": {
+                "value": "1",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14.50",
+            "raw": {
+              "value": "14.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "19.00",
+            "raw": {
+              "value": "19.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "11-15",
+          "count": 5,
+          "type": "CRT",
+          "marks": "PACIFIC/PA154879/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-BL",
+              "description": "Centrifugal pump 0.75 kW colour blue",
+              "quantity": {
+                "value": "5",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "72.50",
+            "raw": {
+              "value": "72.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "95.00",
+            "raw": {
+              "value": "95.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "16-21",
+          "count": 6,
+          "type": "CRT",
+          "marks": "PACIFIC/PA154879/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-PK",
+              "description": "Centrifugal pump 0.75 kW colour pink",
+              "quantity": {
+                "value": "6",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "87.00",
+            "raw": {
+              "value": "87.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "114.00",
+            "raw": {
+              "value": "114.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "22-27",
+          "count": 6,
+          "type": "CRT",
+          "marks": "PACIFIC/PA154879/C/NO. 1-27",
+          "contents": [
+            {
+              "sku": "CP-750-WH",
+              "description": "Centrifugal pump 0.75 kW colour white",
+              "quantity": {
+                "value": "6",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "87.00",
+            "raw": {
+              "value": "87.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "114.00",
+            "raw": {
+              "value": "114.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 27,
+        "netWeight": {
+          "kg": "391.50",
+          "raw": {
+            "value": "391.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "513.00",
+          "raw": {
+            "value": "513.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "2.38"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXAMR7534235",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "679208593",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "notifyParty": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "009W",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "Long Beach",
+        "unLocode": "USLGB",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Fontana",
+        "unLocode": "USFON",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGLU4910617",
+          "seal": "AG9820236",
+          "type": "20GP",
+          "packages": 27,
+          "grossWeight": {
+            "kg": "513.00",
+            "raw": {
+              "value": "513.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "2.38"
+        }
+      ],
+      "totalPackages": 27,
+      "totalGrossWeight": {
+        "kg": "513.00",
+        "raw": {
+          "value": "513.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PACIFIC/PA154879/C/NO. 1-27",
+      "cargoDescription": "SAID TO CONTAIN 27 CRTS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-01-19",
+      "shippedOnBoardDate": "2026-01-19",
+      "references": [
+        "INV-2026-6419",
+        "PA154879"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Pacific Trail Outfitters Corp.",
+        "address": {
+          "lines": [
+            "2150 E 37th St"
+          ],
+          "city": "Vernon",
+          "region": "CA",
+          "postalCode": "90058",
+          "country": "US"
+        },
+        "taxId": "95-4783210"
+      },
+      "importerOfRecordNumber": "95-478321000",
+      "consigneeNumber": "95-478321000",
+      "manufacturer": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipToParty": {
+        "name": "Pacific Trail Fulfillment Center",
+        "address": {
+          "lines": [
+            "13500 Valley Blvd"
+          ],
+          "city": "Fontana",
+          "region": "CA",
+          "postalCode": "92335",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "TR",
+      "htsCode": "841370",
+      "containerStuffingLocation": {
+        "lines": [
+          "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+        ],
+        "city": "Başakşehir",
+        "region": "İstanbul",
+        "postalCode": "34490",
+        "country": "TR"
+      },
+      "consolidator": {
+        "name": "Compass Freight Forwarding Co.",
+        "address": {
+          "lines": [
+            "18 Changjiang Rd"
+          ],
+          "city": "Shanghai",
+          "country": "CN"
+        }
+      }
+    }
+  }
+}

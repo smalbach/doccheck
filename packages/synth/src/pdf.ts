@@ -1,14 +1,15 @@
 import type { Browser } from 'playwright';
 import type { SyntheticShipment } from './generate';
 import { renderBillOfLading, renderInvoice, renderPackingList } from './render';
+import { isV2Template, renderBillOfLadingV2, renderInvoiceV2, renderPackingListV2 } from './render-v2';
 
 export type PaperDocument = 'invoice' | 'packing-list' | 'bill-of-lading';
 
 export function renderHtml(s: SyntheticShipment): Record<PaperDocument, string> {
   return {
-    invoice: renderInvoice(s.documents.invoice, s.render),
-    'packing-list': renderPackingList(s.documents.packingList, s.render),
-    'bill-of-lading': renderBillOfLading(s.documents.billOfLading, s.render),
+    invoice: (isV2Template(s.render.invoiceTemplate) ? renderInvoiceV2 : renderInvoice)(s.documents.invoice, s.render),
+    'packing-list': (isV2Template(s.render.packingListTemplate) ? renderPackingListV2 : renderPackingList)(s.documents.packingList, s.render),
+    'bill-of-lading': (isV2Template(s.render.blTemplate) ? renderBillOfLadingV2 : renderBillOfLading)(s.documents.billOfLading, s.render),
   };
 }
 

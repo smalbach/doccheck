@@ -1,0 +1,27 @@
+{
+  "id": "CA-012",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "MDOU8081873",
+      "after": "MDOU8081872",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: MDOU8081873 -> MDOU8081872."
+    },
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[11].contents[0].quantity.value",
+      "before": "500",
+      "after": "476",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    }
+  ]
+}

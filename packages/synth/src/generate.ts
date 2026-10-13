@@ -12,7 +12,8 @@ import type {
   Party,
   Weight,
 } from '@doccheck/schemas';
-import { BUYERS, CARRIERS, CONTAINER_TYPES, FORWARDERS, SELLERS, type Product } from './catalog';
+import { BUYERS, CARRIERS, CONTAINER_TYPES, FORWARDERS, SELLERS, type Buyer, type Product, type Seller } from './catalog';
+import { VARIANT_COLOURS, VARIANT_SIZES } from './catalog-v2';
 import { Rng } from './rng';
 
 /** How a shipment is drawn as PDFs. Chosen at generation time so the truth file records it. */
@@ -49,6 +50,18 @@ export const TEMPLATES = {
   packingList: ['classic', 'modern', 'legacy'],
   billOfLading: ['classic', 'modern', 'legacy'],
 } as const;
+
+/**
+ * Knobs for sets after v1. Every option defaults to v1 behaviour, and the extra random draws come
+ * from a separate generator, so v1 shipments stay byte-identical.
+ */
+export interface GenerateOptions {
+  sellers?: Seller[];
+  buyers?: Buyer[];
+  templates?: { invoice: readonly string[]; packingList: readonly string[]; billOfLading: readonly string[] };
+  /** Split each product into colour/size/lot variants, so line tables run over several pages. */
+  variants?: { min: number; max: number };
+}
 
 const LB_PER_KG = '2.20462';
 const VESSELS = ['PACIFIC CREST HARMONY', 'MERIDIAN STAR', 'AURORA BOREAS', 'TIDEWATER SPIRIT', 'NORTHERN VEGA', 'CAPE ALBATROSS'];
@@ -92,6 +105,8 @@ interface LineDraft {
   lineTotal: string;
   netPerPackage: string;
   grossPerPackage: string;
+  /** Product name without the variant, for the bill of lading's summary description. */
+  baseDescription?: string;
 }
 
 function draftLine(product: Product, rng: Rng): LineDraft {
@@ -134,15 +149,37 @@ function stuffContainers(lines: LineDraft[], ownerCode: string, rng: Rng, blUnit
   }).filter((c) => c.packages > 0);
 }
 
+/** One line per variant of the product: the same goods in another colour, size or lot. */
+function splitVariants(lines: LineDraft[], rng: Rng, range: { min: number; max: number }): LineDraft[] {
+  return lines.flatMap((l) => {
+    const p = l.product;
+    const apparel = /^6[12]/.test(p.hsCode);
+    const food = /^(09|15)/.test(p.hsCode);
+    const n = rng.int(range.min, range.max);
+    const labels = apparel
+      ? rng.sample(VARIANT_COLOURS.flatMap(([c, colour]) => VARIANT_SIZES.map((size) => [`${c}-${size}`, `colour ${colour}, size ${size}`] as const)), n)
+      : food
+        ? Array.from({ length: n }, (_, i) => [`L${i + 1}`, `lot ${String.fromCharCode(65 + i)}-${rng.int(100, 999)}`] as const)
+        : rng.sample([...VARIANT_COLOURS], Math.min(n, VARIANT_COLOURS.length)).map(([c, colour]) => [c, `colour ${colour}`] as const);
+    return labels.map(([code, label]) => {
+      const product: Product = { ...p, sku: `${p.sku}-${code}`, description: `${p.description}, ${label}`, shortDescription: `${p.shortDescription} ${label}` };
+      const packages = rng.int(1, Math.max(2, Math.ceil((l.packages * 1.5) / n)));
+      const quantity = String(packages * p.unitsPerPackage);
+      return { ...l, product, packages, quantity, lineTotal: times(quantity, l.unitPrice), baseDescription: p.shortDescription };
+    });
+  });
+}
+
 function shortName(party: Party): string {
   return party.name.split(/[\s,.]+/).filter((w) => w.length > 2)[0].toUpperCase();
 }
 
 /** Builds one clean, internally consistent shipment. Every shared rule must pass on it. */
-export function generateShipment(id: string, destination: Destination, seed: number): SyntheticShipment {
+export function generateShipment(id: string, destination: Destination, seed: number, opts: GenerateOptions = {}): SyntheticShipment {
   const rng = new Rng(seed);
-  const buyer = rng.pick(BUYERS.filter((b) => b.destination === destination));
-  const seller = rng.pick(SELLERS);
+  const templates = opts.templates ?? TEMPLATES;
+  const buyer = rng.pick((opts.buyers ?? BUYERS).filter((b) => b.destination === destination));
+  const seller = rng.pick(opts.sellers ?? SELLERS);
   const carrier = rng.pick(CARRIERS);
   const forwarder = rng.pick(FORWARDERS);
   const portOfLoading = rng.pick(seller.ports);
@@ -150,15 +187,16 @@ export function generateShipment(id: string, destination: Destination, seed: num
   const currency = seller.currencies.includes('EUR') && rng.chance(0.6) ? 'EUR' : rng.pick(buyer.currencies);
 
   const render: RenderOptions = {
-    invoiceTemplate: rng.pick(TEMPLATES.invoice),
-    packingListTemplate: rng.pick(TEMPLATES.packingList),
-    blTemplate: rng.pick(TEMPLATES.billOfLading),
+    invoiceTemplate: rng.pick(templates.invoice),
+    packingListTemplate: rng.pick(templates.packingList),
+    blTemplate: rng.pick(templates.billOfLading),
     blWeightUnit: destination === 'US' && rng.chance(0.4) ? 'LB' : 'KG',
     bilingual: destination === 'CA' && buyer.party.address.region === 'QC' && rng.chance(0.7),
   };
 
   const products = rng.sample(seller.products, rng.int(1, Math.min(4, seller.products.length)));
-  const lines = products.map((p) => draftLine(p, rng));
+  let lines = products.map((p) => draftLine(p, rng));
+  if (opts.variants) lines = splitVariants(lines, new Rng(seed ^ 0x2c1b3c6d), opts.variants);
   const totalPackages = lines.reduce((acc, l) => acc + l.packages, 0);
   const netKg = add(lines.map((l) => times(l.netPerPackage, l.packages)));
   const grossKg = add(lines.map((l) => times(l.grossPerPackage, l.packages)));
@@ -242,7 +280,8 @@ export function generateShipment(id: string, destination: Destination, seed: num
     ? `${shortName(forwarder).slice(0, 4)}${portOfLoading.unLocode!.slice(2)}${rng.int(100000, 999999)}`
     : `${carrier.blPrefix}${portOfLoading.unLocode!.slice(2)}${rng.int(1000000, 9999999)}`;
   const onBoard = addDays(shipmentDate, rng.int(0, 3));
-  const describe = lines.length === 1 ? lines[0].product.shortDescription.toUpperCase() : `${lines[0].product.shortDescription.toUpperCase()} AND OTHER GOODS AS PER INVOICE`;
+  const goods = (lines[0].baseDescription ?? lines[0].product.shortDescription).toUpperCase();
+  const describe = lines.length === 1 ? goods : `${goods} AND OTHER GOODS AS PER INVOICE`;
 
   const billOfLading: BillOfLading = {
     blNumber,

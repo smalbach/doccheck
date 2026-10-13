@@ -1,0 +1,846 @@
+{
+  "id": "CA-028",
+  "seed": 90970193,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "euro",
+    "packingListTemplate": "grid",
+    "blTemplate": "grid",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-2733",
+      "invoiceDate": "2026-02-26",
+      "poNumber": "CO955063",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-03-04",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "La Spezia",
+          "unLocode": "ITSPE",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Vancouver"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 82,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5-L1",
+          "description": "Extra virgin olive oil, 5 L tins, lot A-580",
+          "quantity": {
+            "value": "12",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "302.76",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 2,
+          "sku": "OO-EV-5-L2",
+          "description": "Extra virgin olive oil, 5 L tins, lot B-943",
+          "quantity": {
+            "value": "8",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "201.84",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 3,
+          "sku": "OO-EV-5-L3",
+          "description": "Extra virgin olive oil, 5 L tins, lot C-686",
+          "quantity": {
+            "value": "8",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "201.84",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 4,
+          "sku": "OO-EV-5-L4",
+          "description": "Extra virgin olive oil, 5 L tins, lot D-878",
+          "quantity": {
+            "value": "44",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1110.12",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 5,
+          "sku": "OO-EV-5-L5",
+          "description": "Extra virgin olive oil, 5 L tins, lot E-511",
+          "quantity": {
+            "value": "32",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "807.36",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 6,
+          "sku": "OO-EV-5-L6",
+          "description": "Extra virgin olive oil, 5 L tins, lot F-150",
+          "quantity": {
+            "value": "36",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "908.28",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 7,
+          "sku": "OO-EV-5-L7",
+          "description": "Extra virgin olive oil, 5 L tins, lot G-337",
+          "quantity": {
+            "value": "44",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1110.12",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 8,
+          "sku": "OO-EV-5-L8",
+          "description": "Extra virgin olive oil, 5 L tins, lot H-550",
+          "quantity": {
+            "value": "60",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1513.80",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 9,
+          "sku": "OO-EV-5-L9",
+          "description": "Extra virgin olive oil, 5 L tins, lot I-632",
+          "quantity": {
+            "value": "16",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "403.68",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 10,
+          "sku": "OO-EV-5-L10",
+          "description": "Extra virgin olive oil, 5 L tins, lot J-327",
+          "quantity": {
+            "value": "8",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "201.84",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 11,
+          "sku": "OO-EV-5-L11",
+          "description": "Extra virgin olive oil, 5 L tins, lot K-123",
+          "quantity": {
+            "value": "60",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.23",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1513.80",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1582.60",
+        "raw": {
+          "value": "1582.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1508.80",
+        "raw": {
+          "value": "1508.80",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "8275.44",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-2733",
+      "invoiceRef": "INV-2026-2733",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-3",
+          "count": 3,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L1",
+              "description": "EV olive oil 5 L lot A-580",
+              "quantity": {
+                "value": "12",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "55.20",
+            "raw": {
+              "value": "55.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "57.90",
+            "raw": {
+              "value": "57.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "4-5",
+          "count": 2,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L2",
+              "description": "EV olive oil 5 L lot B-943",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.80",
+            "raw": {
+              "value": "36.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.60",
+            "raw": {
+              "value": "38.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "6-7",
+          "count": 2,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L3",
+              "description": "EV olive oil 5 L lot C-686",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.80",
+            "raw": {
+              "value": "36.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.60",
+            "raw": {
+              "value": "38.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "8-18",
+          "count": 11,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L4",
+              "description": "EV olive oil 5 L lot D-878",
+              "quantity": {
+                "value": "44",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "202.40",
+            "raw": {
+              "value": "202.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "212.30",
+            "raw": {
+              "value": "212.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "19-26",
+          "count": 8,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L5",
+              "description": "EV olive oil 5 L lot E-511",
+              "quantity": {
+                "value": "32",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "147.20",
+            "raw": {
+              "value": "147.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "154.40",
+            "raw": {
+              "value": "154.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "27-35",
+          "count": 9,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L6",
+              "description": "EV olive oil 5 L lot F-150",
+              "quantity": {
+                "value": "36",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "165.60",
+            "raw": {
+              "value": "165.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "173.70",
+            "raw": {
+              "value": "173.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "36-46",
+          "count": 11,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L7",
+              "description": "EV olive oil 5 L lot G-337",
+              "quantity": {
+                "value": "44",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "202.40",
+            "raw": {
+              "value": "202.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "212.30",
+            "raw": {
+              "value": "212.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "47-61",
+          "count": 15,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L8",
+              "description": "EV olive oil 5 L lot H-550",
+              "quantity": {
+                "value": "60",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "276.00",
+            "raw": {
+              "value": "276.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "289.50",
+            "raw": {
+              "value": "289.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "62-65",
+          "count": 4,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L9",
+              "description": "EV olive oil 5 L lot I-632",
+              "quantity": {
+                "value": "16",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "73.60",
+            "raw": {
+              "value": "73.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "77.20",
+            "raw": {
+              "value": "77.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "66-67",
+          "count": 2,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L10",
+              "description": "EV olive oil 5 L lot J-327",
+              "quantity": {
+                "value": "8",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "36.80",
+            "raw": {
+              "value": "36.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "38.60",
+            "raw": {
+              "value": "38.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "68-82",
+          "count": 15,
+          "type": "CTN",
+          "marks": "COASTAL/CO955063/C/NO. 1-82",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L11",
+              "description": "EV olive oil 5 L lot K-123",
+              "quantity": {
+                "value": "60",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "276.00",
+            "raw": {
+              "value": "276.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "289.50",
+            "raw": {
+              "value": "289.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 82,
+        "netWeight": {
+          "kg": "1508.80",
+          "raw": {
+            "value": "1508.80",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1582.60",
+          "raw": {
+            "value": "1582.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "3.44"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXSPE7680442",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "880643769",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "067S",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "La Spezia",
+        "unLocode": "ITSPE",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGXU6080484",
+          "seal": "AG8271980",
+          "type": "20GP",
+          "packages": 82,
+          "grossWeight": {
+            "kg": "1582.60",
+            "raw": {
+              "value": "1582.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "3.44"
+        }
+      ],
+      "totalPackages": 82,
+      "totalGrossWeight": {
+        "kg": "1582.60",
+        "raw": {
+          "value": "1582.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/CO955063/C/NO. 1-82",
+      "cargoDescription": "SAID TO CONTAIN 82 CTNS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "La Spezia",
+      "dateOfIssue": "2026-03-04",
+      "shippedOnBoardDate": "2026-03-04",
+      "references": [
+        "INV-2026-2733",
+        "CO955063"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "US-008",
+  "errors": [
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "5265.00",
+      "after": "5545.20",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[19].lineTotal.amount",
+      "before": "2121.00",
+      "after": "1221.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 20 total mistyped (2121.00 -> 1221.00)."
+    }
+  ]
+}

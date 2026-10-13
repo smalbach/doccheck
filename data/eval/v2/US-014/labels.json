@@ -1,0 +1,39 @@
+{
+  "id": "US-014",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "2379.00",
+      "after": "2497.95",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.05 against the packing list."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "PCRU7370282",
+      "after": "PCRU7370284",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: PCRU7370282 -> PCRU7370284."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[6].quantity.value",
+      "before": "700",
+      "after": "690",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 7 quantity changed without updating the line total."
+    }
+  ]
+}

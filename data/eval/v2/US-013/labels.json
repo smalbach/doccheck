@@ -1,0 +1,27 @@
+{
+  "id": "US-013",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "9800 Wallisville Rd",
+      "after": "9878 Wallisville Rd",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "AGLU2000773",
+      "after": "AGLU2000772",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: AGLU2000773 -> AGLU2000772."
+    }
+  ]
+}

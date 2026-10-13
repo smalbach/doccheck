@@ -1,0 +1,27 @@
+{
+  "id": "CA-030",
+  "errors": [
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "EUR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 836.00 EUR on an invoice in CAD."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[7].quantity.value",
+      "before": "8",
+      "after": "9",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 8 quantity changed without updating the line total."
+    }
+  ]
+}

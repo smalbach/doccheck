@@ -1,0 +1,44 @@
+{
+  "id": "CA-002",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[7].lineTotal.amount",
+      "before": "626.00",
+      "after": "266.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 8 total mistyped (626.00 -> 266.00)."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "lines[*].countryOfOrigin",
+      "before": [
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN",
+        "VN"
+      ],
+      "after": null,
+      "expectedRuleIds": [
+        "C1"
+      ],
+      "description": "Country of origin missing on every invoice line."
+    }
+  ]
+}

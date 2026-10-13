@@ -1,0 +1,16 @@
+{
+  "id": "CA-026",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[6].lineTotal.amount",
+      "before": "390.24",
+      "after": "930.24",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 7 total mistyped (390.24 -> 930.24)."
+    }
+  ]
+}

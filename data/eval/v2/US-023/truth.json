@@ -1,0 +1,1345 @@
+{
+  "id": "US-023",
+  "seed": 65104395,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "grid",
+    "packingListTemplate": "euro",
+    "blTemplate": "legacy",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "BRI2603388",
+      "invoiceDate": "2026-06-08",
+      "poNumber": "PO-80686",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-06-16",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Shekou",
+          "unLocode": "CNSHK",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Shekou"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 278,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200-OR",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour orange",
+          "quantity": {
+            "value": "300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.98",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2694.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TB-200-GY",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour grey",
+          "quantity": {
+            "value": "950",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.98",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "8531.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 3,
+          "sku": "TB-200-BE",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour beige",
+          "quantity": {
+            "value": "700",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.98",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "6286.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 4,
+          "sku": "TB-200-NV",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour navy",
+          "quantity": {
+            "value": "1350",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.98",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "12123.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 5,
+          "sku": "TB-200-RD",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour red",
+          "quantity": {
+            "value": "950",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.98",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "8531.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 6,
+          "sku": "TB-200-BL",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour blue",
+          "quantity": {
+            "value": "650",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.98",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "5837.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 7,
+          "sku": "TB-200-YL",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour yellow",
+          "quantity": {
+            "value": "1150",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.98",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10327.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 8,
+          "sku": "TB-200-BK",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour black",
+          "quantity": {
+            "value": "1400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.98",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "12572.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 9,
+          "sku": "TB-200-PK",
+          "description": "Plush teddy bear 30 cm, polyester filling, colour pink",
+          "quantity": {
+            "value": "300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.98",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2694.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 10,
+          "sku": "PZ-1000-GY",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour grey",
+          "quantity": {
+            "value": "312",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.39",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1369.68",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 11,
+          "sku": "PZ-1000-BR",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour brown",
+          "quantity": {
+            "value": "552",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.39",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2423.28",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 12,
+          "sku": "PZ-1000-OR",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour orange",
+          "quantity": {
+            "value": "576",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.39",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2528.64",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 13,
+          "sku": "PZ-1000-YL",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour yellow",
+          "quantity": {
+            "value": "168",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.39",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "737.52",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 14,
+          "sku": "PZ-1000-BK",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour black",
+          "quantity": {
+            "value": "168",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.39",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "737.52",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 15,
+          "sku": "PZ-1000-NV",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour navy",
+          "quantity": {
+            "value": "48",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.39",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "210.72",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 16,
+          "sku": "PZ-1000-WH",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour white",
+          "quantity": {
+            "value": "576",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.39",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2528.64",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 17,
+          "sku": "PZ-1000-BE",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour beige",
+          "quantity": {
+            "value": "48",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.39",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "210.72",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 18,
+          "sku": "PZ-1000-GN",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour green",
+          "quantity": {
+            "value": "504",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.39",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2212.56",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3521.94",
+        "raw": {
+          "value": "3521.94",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3225.24",
+        "raw": {
+          "value": "3225.24",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "82554.28",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-BRI2603388",
+      "invoiceRef": "BRI2603388",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "packages": [
+        {
+          "range": "1-6",
+          "count": 6,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "TB-200-OR",
+              "description": "Plush teddy bear 30 cm colour orange",
+              "quantity": {
+                "value": "300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "54.00",
+            "raw": {
+              "value": "54.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "61.20",
+            "raw": {
+              "value": "61.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "7-25",
+          "count": 19,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "TB-200-GY",
+              "description": "Plush teddy bear 30 cm colour grey",
+              "quantity": {
+                "value": "950",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "171.00",
+            "raw": {
+              "value": "171.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "193.80",
+            "raw": {
+              "value": "193.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "26-39",
+          "count": 14,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "TB-200-BE",
+              "description": "Plush teddy bear 30 cm colour beige",
+              "quantity": {
+                "value": "700",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "126.00",
+            "raw": {
+              "value": "126.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "142.80",
+            "raw": {
+              "value": "142.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "40-66",
+          "count": 27,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "TB-200-NV",
+              "description": "Plush teddy bear 30 cm colour navy",
+              "quantity": {
+                "value": "1350",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "243.00",
+            "raw": {
+              "value": "243.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "275.40",
+            "raw": {
+              "value": "275.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "67-85",
+          "count": 19,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "TB-200-RD",
+              "description": "Plush teddy bear 30 cm colour red",
+              "quantity": {
+                "value": "950",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "171.00",
+            "raw": {
+              "value": "171.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "193.80",
+            "raw": {
+              "value": "193.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "86-98",
+          "count": 13,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "TB-200-BL",
+              "description": "Plush teddy bear 30 cm colour blue",
+              "quantity": {
+                "value": "650",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "117.00",
+            "raw": {
+              "value": "117.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "132.60",
+            "raw": {
+              "value": "132.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "99-121",
+          "count": 23,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "TB-200-YL",
+              "description": "Plush teddy bear 30 cm colour yellow",
+              "quantity": {
+                "value": "1150",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "207.00",
+            "raw": {
+              "value": "207.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "234.60",
+            "raw": {
+              "value": "234.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "122-149",
+          "count": 28,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "TB-200-BK",
+              "description": "Plush teddy bear 30 cm colour black",
+              "quantity": {
+                "value": "1400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "252.00",
+            "raw": {
+              "value": "252.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "285.60",
+            "raw": {
+              "value": "285.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "150-155",
+          "count": 6,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "TB-200-PK",
+              "description": "Plush teddy bear 30 cm colour pink",
+              "quantity": {
+                "value": "300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "54.00",
+            "raw": {
+              "value": "54.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "61.20",
+            "raw": {
+              "value": "61.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "156-168",
+          "count": 13,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "PZ-1000-GY",
+              "description": "Jigsaw puzzle 1000 pcs colour grey",
+              "quantity": {
+                "value": "312",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "193.44",
+            "raw": {
+              "value": "193.44",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "205.14",
+            "raw": {
+              "value": "205.14",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "169-191",
+          "count": 23,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "PZ-1000-BR",
+              "description": "Jigsaw puzzle 1000 pcs colour brown",
+              "quantity": {
+                "value": "552",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "342.24",
+            "raw": {
+              "value": "342.24",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "362.94",
+            "raw": {
+              "value": "362.94",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "192-215",
+          "count": 24,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "PZ-1000-OR",
+              "description": "Jigsaw puzzle 1000 pcs colour orange",
+              "quantity": {
+                "value": "576",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "357.12",
+            "raw": {
+              "value": "357.12",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "378.72",
+            "raw": {
+              "value": "378.72",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "216-222",
+          "count": 7,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "PZ-1000-YL",
+              "description": "Jigsaw puzzle 1000 pcs colour yellow",
+              "quantity": {
+                "value": "168",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "104.16",
+            "raw": {
+              "value": "104.16",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "110.46",
+            "raw": {
+              "value": "110.46",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "223-229",
+          "count": 7,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "PZ-1000-BK",
+              "description": "Jigsaw puzzle 1000 pcs colour black",
+              "quantity": {
+                "value": "168",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "104.16",
+            "raw": {
+              "value": "104.16",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "110.46",
+            "raw": {
+              "value": "110.46",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "230-231",
+          "count": 2,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "PZ-1000-NV",
+              "description": "Jigsaw puzzle 1000 pcs colour navy",
+              "quantity": {
+                "value": "48",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.76",
+            "raw": {
+              "value": "29.76",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "31.56",
+            "raw": {
+              "value": "31.56",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "232-255",
+          "count": 24,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "PZ-1000-WH",
+              "description": "Jigsaw puzzle 1000 pcs colour white",
+              "quantity": {
+                "value": "576",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "357.12",
+            "raw": {
+              "value": "357.12",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "378.72",
+            "raw": {
+              "value": "378.72",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "256-257",
+          "count": 2,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "PZ-1000-BE",
+              "description": "Jigsaw puzzle 1000 pcs colour beige",
+              "quantity": {
+                "value": "48",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "29.76",
+            "raw": {
+              "value": "29.76",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "31.56",
+            "raw": {
+              "value": "31.56",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "258-278",
+          "count": 21,
+          "type": "CTN",
+          "marks": "LAKESHORE/PO-80686/C/NO. 1-278",
+          "contents": [
+            {
+              "sku": "PZ-1000-GN",
+              "description": "Jigsaw puzzle 1000 pcs colour green",
+              "quantity": {
+                "value": "504",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "312.48",
+            "raw": {
+              "value": "312.48",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "331.38",
+            "raw": {
+              "value": "331.38",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 278,
+        "netWeight": {
+          "kg": "3225.24",
+          "raw": {
+            "value": "3225.24",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3521.94",
+          "raw": {
+            "value": "3521.94",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "22.17"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVSHK852542",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "872105028",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "notifyParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "009S",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Shekou",
+        "unLocode": "CNSHK",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Chicago",
+        "unLocode": "USCHI",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "AGXU1923602",
+          "seal": "AG8367611",
+          "type": "20GP",
+          "packages": 278,
+          "grossWeight": {
+            "kg": "3521.94",
+            "raw": {
+              "value": "7765",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "22.17"
+        }
+      ],
+      "totalPackages": 278,
+      "totalGrossWeight": {
+        "kg": "3521.94",
+        "raw": {
+          "value": "7765",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "LAKESHORE/PO-80686/C/NO. 1-278",
+      "cargoDescription": "SAID TO CONTAIN 278 CTNS PLUSH TEDDY BEAR 30 CM AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Shekou",
+      "dateOfIssue": "2026-06-18",
+      "shippedOnBoardDate": "2026-06-18",
+      "references": [
+        "BRI2603388",
+        "PO-80686"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "importerOfRecordNumber": "36-412876500",
+      "consigneeNumber": "36-412876500",
+      "manufacturer": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipToParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "950300",
+      "containerStuffingLocation": {
+        "lines": [
+          "No. 18 Longgang Industrial Ave",
+          "Buji Subdistrict"
+        ],
+        "city": "Shenzhen",
+        "region": "Guangdong",
+        "postalCode": "518112",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,773 @@
+{
+  "id": "US-027",
+  "seed": 312123398,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "euro",
+    "packingListTemplate": "euro",
+    "blTemplate": "legacy",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-4803",
+      "invoiceDate": "2026-08-30",
+      "poNumber": "LA686465",
+      "seller": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "exporter": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "shipmentDate": "2026-09-07",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Lisboa",
+          "unLocode": "PTLIS",
+          "country": "PT"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Lisboa"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 83,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5-L1",
+          "description": "Extra virgin olive oil, 5 L tins, lot A-323",
+          "quantity": {
+            "value": "44",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1116.72",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 2,
+          "sku": "OO-EV-5-L2",
+          "description": "Extra virgin olive oil, 5 L tins, lot B-799",
+          "quantity": {
+            "value": "20",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "507.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 3,
+          "sku": "OO-EV-5-L3",
+          "description": "Extra virgin olive oil, 5 L tins, lot C-986",
+          "quantity": {
+            "value": "40",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1015.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 4,
+          "sku": "OO-EV-5-L4",
+          "description": "Extra virgin olive oil, 5 L tins, lot D-890",
+          "quantity": {
+            "value": "68",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1725.84",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 5,
+          "sku": "OO-EV-5-L5",
+          "description": "Extra virgin olive oil, 5 L tins, lot E-510",
+          "quantity": {
+            "value": "64",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1624.32",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 6,
+          "sku": "OO-EV-5-L6",
+          "description": "Extra virgin olive oil, 5 L tins, lot F-735",
+          "quantity": {
+            "value": "36",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "913.68",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 7,
+          "sku": "OO-EV-5-L7",
+          "description": "Extra virgin olive oil, 5 L tins, lot G-922",
+          "quantity": {
+            "value": "32",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "812.16",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 8,
+          "sku": "OO-EV-5-L8",
+          "description": "Extra virgin olive oil, 5 L tins, lot H-884",
+          "quantity": {
+            "value": "28",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "25.38",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "710.64",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1601.90",
+        "raw": {
+          "value": "1601.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1527.20",
+        "raw": {
+          "value": "1527.20",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "8426.16",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-4803",
+      "invoiceRef": "INV-2026-4803",
+      "seller": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "packages": [
+        {
+          "range": "1-11",
+          "count": 11,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA686465/C/NO. 1-83",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L1",
+              "description": "EV olive oil 5 L lot A-323",
+              "quantity": {
+                "value": "44",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "202.40",
+            "raw": {
+              "value": "202.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "212.30",
+            "raw": {
+              "value": "212.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "12-16",
+          "count": 5,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA686465/C/NO. 1-83",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L2",
+              "description": "EV olive oil 5 L lot B-799",
+              "quantity": {
+                "value": "20",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "92.00",
+            "raw": {
+              "value": "92.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "96.50",
+            "raw": {
+              "value": "96.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "17-26",
+          "count": 10,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA686465/C/NO. 1-83",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L3",
+              "description": "EV olive oil 5 L lot C-986",
+              "quantity": {
+                "value": "40",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "184.00",
+            "raw": {
+              "value": "184.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "193.00",
+            "raw": {
+              "value": "193.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "27-43",
+          "count": 17,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA686465/C/NO. 1-83",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L4",
+              "description": "EV olive oil 5 L lot D-890",
+              "quantity": {
+                "value": "68",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "312.80",
+            "raw": {
+              "value": "312.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "328.10",
+            "raw": {
+              "value": "328.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "44-59",
+          "count": 16,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA686465/C/NO. 1-83",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L5",
+              "description": "EV olive oil 5 L lot E-510",
+              "quantity": {
+                "value": "64",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "294.40",
+            "raw": {
+              "value": "294.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "308.80",
+            "raw": {
+              "value": "308.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "60-68",
+          "count": 9,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA686465/C/NO. 1-83",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L6",
+              "description": "EV olive oil 5 L lot F-735",
+              "quantity": {
+                "value": "36",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "165.60",
+            "raw": {
+              "value": "165.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "173.70",
+            "raw": {
+              "value": "173.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "69-76",
+          "count": 8,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA686465/C/NO. 1-83",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L7",
+              "description": "EV olive oil 5 L lot G-922",
+              "quantity": {
+                "value": "32",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "147.20",
+            "raw": {
+              "value": "147.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "154.40",
+            "raw": {
+              "value": "154.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "77-83",
+          "count": 7,
+          "type": "CTN",
+          "marks": "LAKESHORE/LA686465/C/NO. 1-83",
+          "contents": [
+            {
+              "sku": "OO-EV-5-L8",
+              "description": "EV olive oil 5 L lot H-884",
+              "quantity": {
+                "value": "28",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "128.80",
+            "raw": {
+              "value": "128.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "135.10",
+            "raw": {
+              "value": "135.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 83,
+        "netWeight": {
+          "kg": "1527.20",
+          "raw": {
+            "value": "1527.20",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1601.90",
+          "raw": {
+            "value": "1601.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "3.49"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWELIS2609769",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "524177483",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "consignee": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "notifyParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "071S",
+      "placeOfReceipt": {
+        "name": "Beja",
+        "country": "PT"
+      },
+      "portOfLoading": {
+        "name": "Lisboa",
+        "unLocode": "PTLIS",
+        "country": "PT"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Chicago",
+        "unLocode": "USCHI",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "TWEU4233062",
+          "seal": "TW3365550",
+          "type": "20GP",
+          "packages": 83,
+          "grossWeight": {
+            "kg": "1601.90",
+            "raw": {
+              "value": "3532",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "3.49"
+        }
+      ],
+      "totalPackages": 83,
+      "totalGrossWeight": {
+        "kg": "1601.90",
+        "raw": {
+          "value": "3532",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "LAKESHORE/LA686465/C/NO. 1-83",
+      "cargoDescription": "SAID TO CONTAIN 83 CTNS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Lisboa",
+      "dateOfIssue": "2026-09-10",
+      "shippedOnBoardDate": "2026-09-10",
+      "references": [
+        "INV-2026-4803",
+        "LA686465"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "buyer": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "importerOfRecordNumber": "36-412876500",
+      "consigneeNumber": "36-412876500",
+      "manufacturer": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "shipToParty": {
+        "name": "Lakeshore Coffee Importers LLC",
+        "address": {
+          "lines": [
+            "640 W Lake St"
+          ],
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60661",
+          "country": "US"
+        },
+        "taxId": "36-4128765"
+      },
+      "countryOfOrigin": "PT",
+      "htsCode": "150920",
+      "containerStuffingLocation": {
+        "lines": [
+          "Rua da Fábrica, 7"
+        ],
+        "city": "Beja",
+        "postalCode": "7800-309",
+        "country": "PT"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}
