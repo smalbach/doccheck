@@ -212,7 +212,7 @@ the model, the code or the metric was at fault.
 
 ---
 
-## 5. El mismo modelo: 67.5% o 96.8%, según cómo lo corrés
+## 5. El mismo modelo: 67.5% o 96.8%, según cómo lo corres
 
 Imagen: la tabla de [BITACORA.md](BITACORA.md), sección "OCR de Baidu".
 
@@ -229,7 +229,7 @@ una línea hasta llenar el contexto, y en un modo inventó texto en chino que no
 Segundo intento, mismo modelo en MLX en mi Mac: 96.8% de los valores encontrados contra 86.6% de
 tesseract. En los escaneos borrosos de 110 dpi: 94.2% contra 69.3%. Unos 2 segundos por página.
 
-Lección: no evalúes un nombre de modelo, evaluá la forma concreta en que lo vas a correr
+Lección: no evalúes un nombre de modelo, evalúa la forma concreta en que lo vas a correr
 (cuantización, empaquetado, plantilla de prompt). La diferencia acá fue de 29 puntos.
 
 [Próximo: el número de punta a punta, campos y reglas, cuando esté integrado.]
