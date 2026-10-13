@@ -5,8 +5,9 @@
   "shipments": 100,
   "documents": 100,
   "failedDocuments": 0,
-  "cachedDocuments": 0,
+  "cachedDocuments": 100,
   "classificationAccuracy": 1,
+  "validDocuments": 100,
   "overall": {
     "total": 1400,
     "correct": 1398,
@@ -18,6 +19,8 @@
   "byType": [
     {
       "type": "ISF",
+      "documents": 100,
+      "validDocuments": 100,
       "total": 1400,
       "correct": 1398,
       "wrong": 0,
@@ -267,7 +270,7 @@
   "usage": {
     "inputTokens": 83440,
     "outputTokens": 74431,
-    "seconds": 2937
+    "seconds": 1
   },
   "documentsDetail": [
     {
@@ -275,9 +278,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 816,
         "outputTokens": 748
@@ -288,9 +292,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 837,
         "outputTokens": 728
@@ -301,9 +306,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 843,
         "outputTokens": 766
@@ -314,9 +320,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 805,
         "outputTokens": 745
@@ -327,9 +334,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 841,
         "outputTokens": 761
@@ -340,9 +348,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 825,
         "outputTokens": 736
@@ -353,9 +362,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 847,
         "outputTokens": 733
@@ -366,9 +376,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 813,
         "outputTokens": 674
@@ -379,9 +390,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 839,
         "outputTokens": 747
@@ -392,9 +404,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 827,
         "outputTokens": 739
@@ -405,9 +418,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 836,
         "outputTokens": 754
@@ -418,9 +432,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 798,
         "outputTokens": 723
@@ -431,9 +446,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 841,
         "outputTokens": 759
@@ -444,9 +460,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 817,
         "outputTokens": 748
@@ -457,9 +474,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 800,
         "outputTokens": 723
@@ -470,9 +488,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 826,
         "outputTokens": 749
@@ -483,9 +502,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 841,
         "outputTokens": 759
@@ -496,9 +516,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 858,
         "outputTokens": 769
@@ -509,9 +530,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 868,
         "outputTokens": 807
@@ -522,9 +544,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 805,
         "outputTokens": 666
@@ -535,9 +558,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 854,
         "outputTokens": 770
@@ -548,9 +572,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 813,
         "outputTokens": 674
@@ -561,9 +586,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 846,
         "outputTokens": 733
@@ -574,9 +600,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 832,
         "outputTokens": 745
@@ -587,9 +614,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 838,
         "outputTokens": 758
@@ -600,9 +628,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 827,
         "outputTokens": 739
@@ -613,9 +642,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 877,
         "outputTokens": 811
@@ -626,9 +656,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 860,
         "outputTokens": 774
@@ -639,9 +670,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 838,
         "outputTokens": 747
@@ -652,9 +684,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 836,
         "outputTokens": 758
@@ -665,9 +698,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 807,
         "outputTokens": 670
@@ -678,9 +712,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 838,
         "outputTokens": 752
@@ -691,9 +726,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 846,
         "outputTokens": 762
@@ -704,9 +740,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 820,
         "outputTokens": 702
@@ -717,9 +754,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 825,
         "outputTokens": 698
@@ -730,9 +768,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 846,
         "outputTokens": 781
@@ -743,9 +782,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 866,
         "outputTokens": 796
@@ -756,9 +796,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 835,
         "outputTokens": 736
@@ -769,9 +810,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 814,
         "outputTokens": 689
@@ -782,9 +824,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 817,
         "outputTokens": 744
@@ -795,9 +838,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 844,
         "outputTokens": 774
@@ -808,9 +852,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 863,
         "outputTokens": 772
@@ -821,9 +866,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 852,
         "outputTokens": 789
@@ -834,9 +880,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 878,
         "outputTokens": 811
@@ -847,9 +894,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 800,
         "outputTokens": 744
@@ -860,9 +908,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 848,
         "outputTokens": 767
@@ -873,9 +922,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 813,
         "outputTokens": 678
@@ -886,9 +936,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 836,
         "outputTokens": 728
@@ -899,9 +950,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 865,
         "outputTokens": 807
@@ -912,9 +964,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 824,
         "outputTokens": 739
@@ -925,9 +978,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 798,
         "outputTokens": 723
@@ -938,9 +992,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 875,
         "outputTokens": 807
@@ -951,9 +1006,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 815,
         "outputTokens": 678
@@ -964,9 +1020,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 847,
         "outputTokens": 767
@@ -977,6 +1034,7 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [
         {
           "field": "manufacturer.address.city",
@@ -992,7 +1050,7 @@
         }
       ],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 809,
         "outputTokens": 735
@@ -1003,9 +1061,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 846,
         "outputTokens": 733
@@ -1016,9 +1075,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 816,
         "outputTokens": 691
@@ -1029,9 +1089,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 853,
         "outputTokens": 755
@@ -1042,9 +1103,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 797,
         "outputTokens": 739
@@ -1055,9 +1117,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 859,
         "outputTokens": 770
@@ -1068,9 +1131,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 852,
         "outputTokens": 789
@@ -1081,9 +1145,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 804,
         "outputTokens": 671
@@ -1094,9 +1159,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 818,
         "outputTokens": 734
@@ -1107,9 +1173,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 850,
         "outputTokens": 673
@@ -1120,9 +1187,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 867,
         "outputTokens": 807
@@ -1133,9 +1201,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 877,
         "outputTokens": 807
@@ -1146,9 +1215,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 792,
         "outputTokens": 658
@@ -1159,9 +1229,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 815,
         "outputTokens": 760
@@ -1172,9 +1243,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 837,
         "outputTokens": 758
@@ -1185,9 +1257,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 819,
         "outputTokens": 748
@@ -1198,9 +1271,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 804,
         "outputTokens": 733
@@ -1211,9 +1285,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 814,
         "outputTokens": 759
@@ -1224,9 +1299,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 847,
         "outputTokens": 762
@@ -1237,9 +1313,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 834,
         "outputTokens": 770
@@ -1250,9 +1327,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 878,
         "outputTokens": 811
@@ -1263,9 +1341,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 827,
         "outputTokens": 736
@@ -1276,9 +1355,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 803,
         "outputTokens": 669
@@ -1289,9 +1369,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 857,
         "outputTokens": 774
@@ -1302,9 +1383,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 825,
         "outputTokens": 694
@@ -1315,9 +1397,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 824,
         "outputTokens": 694
@@ -1328,9 +1411,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 856,
         "outputTokens": 800
@@ -1341,9 +1425,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 858,
         "outputTokens": 789
@@ -1354,9 +1439,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 831,
         "outputTokens": 744
@@ -1367,9 +1453,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 853,
         "outputTokens": 789
@@ -1380,9 +1467,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 856,
         "outputTokens": 800
@@ -1393,9 +1481,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 825,
         "outputTokens": 698
@@ -1406,9 +1495,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 846,
         "outputTokens": 778
@@ -1419,9 +1509,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 829,
         "outputTokens": 743
@@ -1432,9 +1523,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 865,
         "outputTokens": 803
@@ -1445,9 +1537,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 841,
         "outputTokens": 761
@@ -1458,9 +1551,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 822,
         "outputTokens": 744
@@ -1471,9 +1565,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 816,
         "outputTokens": 691
@@ -1484,9 +1579,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 807,
         "outputTokens": 670
@@ -1497,9 +1593,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 835,
         "outputTokens": 744
@@ -1510,9 +1607,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 825,
         "outputTokens": 733
@@ -1523,9 +1621,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 801,
         "outputTokens": 669
@@ -1536,9 +1635,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 852,
         "outputTokens": 770
@@ -1549,9 +1649,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 855,
         "outputTokens": 785
@@ -1562,9 +1663,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 816,
         "outputTokens": 678
@@ -1575,9 +1677,10 @@
       "type": "ISF",
       "template": "confirmation",
       "detectedType": "ISF",
+      "valid": true,
       "scores": [],
       "issues": [],
-      "cached": false,
+      "cached": true,
       "usage": {
         "inputTokens": 851,
         "outputTokens": 755

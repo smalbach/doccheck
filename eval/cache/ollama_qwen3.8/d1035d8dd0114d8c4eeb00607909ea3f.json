@@ -1,0 +1,209 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1205,
+    "outputTokens": 2055
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-2284",
+    "invoiceDate": "Jul 17, 2026",
+    "poNumber": "PO-17037",
+    "seller": {
+      "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "addressLines": [
+        "İkitelli OSB, Demirciler Sitesi C Blok No: 9",
+        "Başakşehir, İstanbul, 34490"
+      ],
+      "city": "İstanbul",
+      "region": "Başakşehir",
+      "postalCode": "34490",
+      "country": "TR",
+      "taxId": "6810123456"
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd",
+        "Houston, TX, 77013"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "Jul 23, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ambarlı",
+      "country": "TR"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Ambarlı",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "TR",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CP-750-OR",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour orange",
+        "quantity": "3",
+        "unit": "PCS",
+        "unitPrice": "81.96",
+        "unitPriceCurrency": null,
+        "lineTotal": "245.88",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "2",
+        "sku": "CP-750-GN",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour green",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "81.96",
+        "unitPriceCurrency": null,
+        "lineTotal": "327.84",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "3",
+        "sku": "CP-750-BE",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour beige",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "81.96",
+        "unitPriceCurrency": null,
+        "lineTotal": "81.96",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "4",
+        "sku": "CP-750-BR",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour brown",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "81.96",
+        "unitPriceCurrency": null,
+        "lineTotal": "163.92",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "5",
+        "sku": "CP-750-BK",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour black",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "81.96",
+        "unitPriceCurrency": null,
+        "lineTotal": "81.96",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "6",
+        "sku": "CP-750-NV",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour navy",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "81.96",
+        "unitPriceCurrency": null,
+        "lineTotal": "163.92",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "7",
+        "sku": "CP-750-GY",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour grey",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "81.96",
+        "unitPriceCurrency": null,
+        "lineTotal": "163.92",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "8",
+        "sku": "CP-750-WH",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour white",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "81.96",
+        "unitPriceCurrency": null,
+        "lineTotal": "81.96",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "9",
+        "sku": "CP-750-YL",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour yellow",
+        "quantity": "3",
+        "unit": "PCS",
+        "unitPrice": "81.96",
+        "unitPriceCurrency": null,
+        "lineTotal": "245.88",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "10",
+        "sku": "CP-750-RD",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour red",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "81.96",
+        "unitPriceCurrency": null,
+        "lineTotal": "81.96",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "20",
+    "grossWeight": {
+      "value": "380.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "290.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "1,639.20",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

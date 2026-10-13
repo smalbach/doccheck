@@ -1,14 +1,14 @@
 # Extraction report — ollama:qwen3.8
 
-Data `v1` · model build aaee06c39dcf · prompt `extract-v3` · 200 shipments · 600 PDFs · 0 failed · 581 from cache
+Data `v1` · model build aaee06c39dcf · prompt `extract-v3` · 200 shipments · 600 PDFs · 0 failed · 600 from cache
 
-**Field accuracy 99.8%** (13172/13205: 17 wrong, 9 missing, 7 spurious) · classification 100.0%
+**Field accuracy 99.7%** (13172/13213: 17 wrong, 9 missing, 15 spurious) · classification 100.0% · 600/600 documents valid (rules can run on them)
 
-| Document | Accuracy | Correct | Wrong | Missing | Spurious |
-| --- | --- | --- | --- | --- | --- |
-| COMMERCIAL_INVOICE | 99.9% | 5846 | 1 | 1 | 7 |
-| PACKING_LIST | 99.6% | 3337 | 5 | 8 | 0 |
-| BILL_OF_LADING | 99.7% | 3989 | 11 | 0 | 0 |
+| Document | Accuracy | Correct | Wrong | Missing | Spurious | Valid documents |
+| --- | --- | --- | --- | --- | --- | --- |
+| COMMERCIAL_INVOICE | 99.7% | 5846 | 1 | 1 | 15 | 200/200 |
+| PACKING_LIST | 99.6% | 3337 | 5 | 8 | 0 | 200/200 |
+| BILL_OF_LADING | 99.7% | 3989 | 11 | 0 | 0 | 200/200 |
 
 ## By template
 
@@ -17,9 +17,9 @@ Data `v1` · model build aaee06c39dcf · prompt `extract-v3` · 200 shipments ·
 | BILL_OF_LADING · classic | 100.0% | 1520 |
 | BILL_OF_LADING · legacy | 100.0% | 1240 |
 | BILL_OF_LADING · modern | 99.1% | 1240 |
-| COMMERCIAL_INVOICE · classic | 99.9% | 2200 |
-| COMMERCIAL_INVOICE · legacy | 99.7% | 1799 |
-| COMMERCIAL_INVOICE · modern | 99.9% | 1856 |
+| COMMERCIAL_INVOICE · classic | 99.7% | 2204 |
+| COMMERCIAL_INVOICE · legacy | 99.6% | 1801 |
+| COMMERCIAL_INVOICE · modern | 99.8% | 1858 |
 | PACKING_LIST · classic | 99.9% | 1269 |
 | PACKING_LIST · legacy | 99.2% | 963 |
 | PACKING_LIST · modern | 99.6% | 1118 |
@@ -28,7 +28,7 @@ Data `v1` · model build aaee06c39dcf · prompt `extract-v3` · 200 shipments ·
 
 | Document | Field | Accuracy | Wrong | Missing | Spurious |
 | --- | --- | --- | --- | --- | --- |
-| COMMERCIAL_INVOICE | `portOfEntry.name` | 96.1% | 0 | 1 | 3 |
+| COMMERCIAL_INVOICE | `portOfEntry.name` | 89.2% | 0 | 1 | 11 |
 | BILL_OF_LADING | `vessel` | 97.0% | 6 | 0 | 0 |
 | PACKING_LIST | `packages[*].type` | 98.5% | 5 | 0 | 0 |
 | PACKING_LIST | `packages[*].netWeight.kg` | 98.8% | 0 | 4 | 0 |
@@ -57,4 +57,4 @@ Data `v1` · model build aaee06c39dcf · prompt `extract-v3` · 200 shipments ·
 | X6 | 100.0% | 100.0% | 27 | 0 | 0 |
 | X7 | 100.0% | 100.0% | 50 | 0 | 0 |
 
-Tokens: 408,511 in / 497,684 out · 2115 s wall clock (cached documents count the tokens of the original call).
+Tokens: 408,511 in / 497,684 out · 2 s wall clock (cached documents count the tokens of the original call).

@@ -1,0 +1,220 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1295,
+    "outputTokens": 2183
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0341",
+    "invoiceDate": "Jun 25, 2026",
+    "poNumber": "PO-65036",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "shipmentDate": "Jul 2, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shekou",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "Shekou",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "TB-200-PK",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour pink",
+        "quantity": "1,000",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "8,100.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": "TB-200-WH",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour white",
+        "quantity": "900",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "7,290.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "3",
+        "sku": "TB-200-YL",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour yellow",
+        "quantity": "500",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,050.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "4",
+        "sku": "TB-200-BK",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour black",
+        "quantity": "1,350",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "10,935.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "5",
+        "sku": "TB-200-NV",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour navy",
+        "quantity": "1,400",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "11,340.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "6",
+        "sku": "TB-200-GN",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour green",
+        "quantity": "800",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,480.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "7",
+        "sku": "TB-200-BR",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour brown",
+        "quantity": "1,600",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "12,960.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "8",
+        "sku": "TB-200-BE",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour beige",
+        "quantity": "1,200",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "9,720.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "9",
+        "sku": "TB-200-OR",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour orange",
+        "quantity": "1,300",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "10,530.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "10",
+        "sku": "TB-200-BL",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour blue",
+        "quantity": "1,000",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "8,100.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "11",
+        "sku": "TB-200-RD",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour red",
+        "quantity": "1,600",
+        "unit": "PCS",
+        "unitPrice": "8.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "12,960.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "253",
+    "grossWeight": {
+      "value": "2,580.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,277.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "102,465.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

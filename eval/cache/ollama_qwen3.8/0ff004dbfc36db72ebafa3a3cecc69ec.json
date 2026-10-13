@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 771,
+    "outputTokens": 881
+  },
+  "output": {
+    "blNumber": "KEYSAMR810398",
+    "documentTitle": "BILL OF LADING FOR COMBINED TRANSPORT OR PORT TO PORT",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "671312735",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "addressLines": [
+        "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+      ],
+      "city": "Başakşehir",
+      "region": "İstanbul",
+      "postalCode": "34490",
+      "country": "TR",
+      "taxId": "6810123456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9878 Wallisville Rd"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "045N",
+    "placeOfReceipt": {
+      "name": "Başakşehir",
+      "country": "TR"
+    },
+    "portOfLoading": {
+      "name": "Ambarlı",
+      "country": "TRAMR"
+    },
+    "portOfDischarge": {
+      "name": "Houston",
+      "country": "USHOU"
+    },
+    "placeOfDelivery": {
+      "name": "Houston",
+      "country": "USHOU"
+    },
+    "containers": [
+      {
+        "number": "AGLU2000772",
+        "seal": "AG8780636",
+        "type": "20GP",
+        "packages": "20",
+        "grossWeight": {
+          "value": "380,00",
+          "unit": "kg"
+        },
+        "volumeM3": "1,76"
+      }
+    ],
+    "totalPackages": "20",
+    "totalGrossWeight": {
+      "value": "380,00",
+      "unit": "kg"
+    },
+    "marksAndNumbers": "BLUEBONNET/PO-17037/C/NO. 1-20",
+    "cargoDescription": "SAID TO CONTAIN 20 CRTS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-2284",
+      "PO-17037"
+    ],
+    "placeOfIssue": "Ambarlı",
+    "dateOfIssue": "25.07.2026",
+    "shippedOnBoardDate": "25.07.2026"
+  }
+}

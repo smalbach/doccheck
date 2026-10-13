@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 783,
+    "outputTokens": 982
+  },
+  "output": {
+    "blNumber": "COMPSGN773816",
+    "documentTitle": "HOUSE B/L",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "628527877",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "SAIGON APPAREL JOINT STOCK COMPANY",
+      "addressLines": [
+        "LOT B4, TAN THUAN EXPORT PROCESSING ZONE",
+        "DISTRICT 7",
+        "HO CHI MINH CITY 700000"
+      ],
+      "city": "HO CHI MINH CITY",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "714 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "083E",
+    "placeOfReceipt": {
+      "name": "HO CHI MINH CITY, VN",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "HO CHI MINH CITY, VN",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "SAVANNAH, US",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "CHICAGO, US",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU5361192",
+        "seal": "MD6400179",
+        "type": "20GP",
+        "packages": "187",
+        "grossWeight": {
+          "value": "3702.60",
+          "unit": "KGS"
+        },
+        "volumeM3": "15.71"
+      }
+    ],
+    "totalPackages": "187",
+    "totalGrossWeight": {
+      "value": "3702.60",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "LAKESHORE/PO-62442/C/NO. 1-187",
+    "cargoDescription": "SAID TO CONTAIN 187 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE REF: INV-2026-1095 / PO-62442 FREIGHT COLLECT",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-1095",
+      "PO-62442"
+    ],
+    "placeOfIssue": "HO CHI MINH CITY",
+    "dateOfIssue": "13-MAY-2026",
+    "shippedOnBoardDate": "13-MAY-2026"
+  }
+}

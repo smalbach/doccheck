@@ -1,0 +1,180 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1134,
+    "outputTokens": 1769
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-4803",
+    "invoiceDate": "30.08.2026",
+    "poNumber": "LA686465",
+    "seller": {
+      "name": "Azeites do Alentejo, Lda.",
+      "addressLines": [
+        "Rua da Fábrica, 7"
+      ],
+      "city": "Beja",
+      "region": null,
+      "postalCode": "7800-309",
+      "country": "PT",
+      "taxId": "PT509876543"
+    },
+    "buyer": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "07.09.2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Lisboa",
+      "country": "PT"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Lisboa",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "EUR",
+    "countryOfOrigin": "PT",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "OO-EV-5-L1",
+        "description": "Extra virgin olive oil, 5 L tins, lot A-323",
+        "quantity": "44",
+        "unit": "PCS",
+        "unitPrice": "25,38",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.116,72",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "PT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "2",
+        "sku": "OO-EV-5-L2",
+        "description": "Extra virgin olive oil, 5 L tins, lot B-799",
+        "quantity": "20",
+        "unit": "PCS",
+        "unitPrice": "25,38",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "507,60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "PT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "3",
+        "sku": "OO-EV-5-L3",
+        "description": "Extra virgin olive oil, 5 L tins, lot C-986",
+        "quantity": "40",
+        "unit": "PCS",
+        "unitPrice": "25,38",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.015,20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "PT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "4",
+        "sku": "OO-EV-5-L4",
+        "description": "Extra virgin olive oil, 5 L tins, lot D-890",
+        "quantity": "68",
+        "unit": "PCS",
+        "unitPrice": "25,38",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.725,84",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "PT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "5",
+        "sku": "OO-EV-5-L5",
+        "description": "Extra virgin olive oil, 5 L tins, lot E-510",
+        "quantity": "64",
+        "unit": "PCS",
+        "unitPrice": "25,38",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "1.624,32",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "PT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "6",
+        "sku": "OO-EV-5-L6",
+        "description": "Extra virgin olive oil, 5 L tins, lot F-735",
+        "quantity": "36",
+        "unit": "PCS",
+        "unitPrice": "25,38",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "913,68",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "PT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "7",
+        "sku": "OO-EV-5-L7",
+        "description": "Extra virgin olive oil, 5 L tins, lot G-922",
+        "quantity": "32",
+        "unit": "PCS",
+        "unitPrice": "25,38",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "812,16",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "PT",
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": "8",
+        "sku": "OO-EV-5-L8",
+        "description": "Extra virgin olive oil, 5 L tins, lot H-884",
+        "quantity": "28",
+        "unit": "PCS",
+        "unitPrice": "25,38",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "710,64",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "PT",
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "83",
+    "grossWeight": {
+      "value": "1 601,90",
+      "unit": "kg"
+    },
+    "netWeight": {
+      "value": "1 527,20",
+      "unit": "kg"
+    },
+    "invoiceTotal": "8.426,16",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

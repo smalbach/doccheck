@@ -1,0 +1,378 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 2093,
+    "outputTokens": 3828
+  },
+  "output": {
+    "invoiceNumber": "CI/26/3135",
+    "invoiceDate": "21 February 2026",
+    "poNumber": "PO-62662",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "28197 Bremen"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "07201 Elizabeth NJ"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "07201 Elizabeth NJ"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "26 February 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Hamburg",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "New York",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BV-2IN-RD",
+        "description": "Brass ball valves 2 inch, threaded, colour red",
+        "quantity": "180",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,766.60",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "2",
+        "sku": "BV-2IN-GN",
+        "description": "Brass ball valves 2 inch, threaded, colour green",
+        "quantity": "280",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,303.60",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "3",
+        "sku": "BV-2IN-BL",
+        "description": "Brass ball valves 2 inch, threaded, colour blue",
+        "quantity": "20",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "307.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "4",
+        "sku": "BV-2IN-WH",
+        "description": "Brass ball valves 2 inch, threaded, colour white",
+        "quantity": "120",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,844.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "5",
+        "sku": "BV-2IN-BE",
+        "description": "Brass ball valves 2 inch, threaded, colour beige",
+        "quantity": "220",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,831.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "6",
+        "sku": "BV-2IN-OR",
+        "description": "Brass ball valves 2 inch, threaded, colour orange",
+        "quantity": "20",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "307.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "7",
+        "sku": "BV-2IN-BR",
+        "description": "Brass ball valves 2 inch, threaded, colour brown",
+        "quantity": "220",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,381.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "8",
+        "sku": "BV-2IN-NV",
+        "description": "Brass ball valves 2 inch, threaded, colour navy",
+        "quantity": "180",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,766.60",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "9",
+        "sku": "BV-2IN-GY",
+        "description": "Brass ball valves 2 inch, threaded, colour grey",
+        "quantity": "300",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,611.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "10",
+        "sku": "BV-2IN-PK",
+        "description": "Brass ball valves 2 inch, threaded, colour pink",
+        "quantity": "260",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,996.20",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "11",
+        "sku": "BV-2IN-BK",
+        "description": "Brass ball valves 2 inch, threaded, colour black",
+        "quantity": "40",
+        "unit": "PCS",
+        "unitPrice": "15.37",
+        "unitPriceCurrency": null,
+        "lineTotal": "614.80",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "12",
+        "sku": "CP-750-BL",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour blue",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "288.64",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "13",
+        "sku": "CP-750-GN",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour green",
+        "quantity": "3",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "216.48",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "14",
+        "sku": "CP-750-BE",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour beige",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "72.16",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "15",
+        "sku": "CP-750-YL",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour yellow",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "144.32",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "16",
+        "sku": "CP-750-BK",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour black",
+        "quantity": "3",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "216.48",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "17",
+        "sku": "CP-750-WH",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour white",
+        "quantity": "3",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "216.48",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "18",
+        "sku": "CP-750-RD",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour red",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "288.64",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "19",
+        "sku": "CP-750-NV",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour navy",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "288.64",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "20",
+        "sku": "CP-750-BR",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour brown",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "288.64",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "21",
+        "sku": "CP-750-OR",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour orange",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "144.32",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "22",
+        "sku": "CP-750-GY",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour grey",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "288.64",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "23",
+        "sku": "CP-750-PK",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour pink",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "72.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "288.64",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "130",
+    "grossWeight": {
+      "value": "3,307.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,035.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "31,022.88",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

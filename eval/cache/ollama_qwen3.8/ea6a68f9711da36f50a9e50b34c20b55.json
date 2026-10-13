@@ -1,0 +1,249 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1681,
+    "outputTokens": 2630
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-1095",
+    "invoiceDate": "5 May 2026",
+    "poNumber": "PO-62442",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "700000 Ho Chi Minh City"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "buyer": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "60661 Chicago IL"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "60661 Chicago IL"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "shipmentDate": "13 May 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ho Chi Minh City",
+      "country": "VN"
+    },
+    "portOfEntry": {
+      "name": "Savannah",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "Ho Chi Minh City",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "TS-CTN-M-PK-L",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour pink, size L",
+        "quantity": "1,200",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,068.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": "TS-CTN-M-OR-XXL",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour orange, size XXL",
+        "quantity": "700",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "3,273.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "3",
+        "sku": "TS-CTN-M-GN-XS",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour green, size XS",
+        "quantity": "2,000",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,780.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "4",
+        "sku": "TS-CTN-M-OR-L",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour orange, size L",
+        "quantity": "2,000",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,780.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "5",
+        "sku": "TS-CTN-M-BK-XXL",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour black, size XXL",
+        "quantity": "1,900",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,441.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "6",
+        "sku": "TS-CTN-M-GY-XS",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour grey, size XS",
+        "quantity": "1,300",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,407.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "7",
+        "sku": "TS-CTN-M-PK-S",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour pink, size S",
+        "quantity": "2,200",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "7,458.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "8",
+        "sku": "TS-CTN-M-PK-XL",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour pink, size XL",
+        "quantity": "500",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,695.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "9",
+        "sku": "TS-CTN-M-BK-XL",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour black, size XL",
+        "quantity": "1,500",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "5,085.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "10",
+        "sku": "TS-CTN-M-YL-S",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour yellow, size S",
+        "quantity": "1,300",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,407.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "11",
+        "sku": "TS-CTN-M-RD-S",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour red, size S",
+        "quantity": "1,700",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "5,763.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "12",
+        "sku": "TS-CTN-M-BE-L",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour beige, size L",
+        "quantity": "500",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,695.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "13",
+        "sku": "TS-CTN-M-GN-S",
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes, colour green, size S",
+        "quantity": "1,910",
+        "unit": "PCS",
+        "unitPrice": "3.39",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,441.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      }
+    ],
+    "totalPackages": "187",
+    "grossWeight": {
+      "value": "3,702.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,553.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "63,393.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,398 @@
+{
+  "id": "US-012",
+  "seed": 1820239384,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-7465",
+      "invoiceDate": "2026-06-26",
+      "poNumber": "PO-18529",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-07-03",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Shanghai",
+          "unLocode": "CNSHA",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Shanghai"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 23,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "92",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.09",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4200.28",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "243.80",
+        "raw": {
+          "value": "243.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "211.60",
+        "raw": {
+          "value": "211.60",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "2400.28",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-7465",
+      "invoiceRef": "INV-2026-7465",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-23",
+          "count": 23,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-18529/C/NO. 1-23",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "92",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "211.60",
+            "raw": {
+              "value": "211.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "243.80",
+            "raw": {
+              "value": "243.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 23,
+        "netWeight": {
+          "kg": "211.60",
+          "raw": {
+            "value": "211.60",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "243.80",
+          "raw": {
+            "value": "243.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "2.59"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPSHA260632",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "917946681",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "093W",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Shanghai",
+        "unLocode": "CNSHA",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "MDOU8897297",
+          "seal": "MD6134776",
+          "type": "20GP",
+          "packages": 23,
+          "grossWeight": {
+            "kg": "243.80",
+            "raw": {
+              "value": "537",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "2.59"
+        }
+      ],
+      "totalPackages": 23,
+      "totalGrossWeight": {
+        "kg": "243.80",
+        "raw": {
+          "value": "537",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/PO-18529/C/NO. 1-23",
+      "cargoDescription": "SAID TO CONTAIN 23 CTNS BLENDER 600 W",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Shanghai",
+      "dateOfIssue": "2026-07-06",
+      "shippedOnBoardDate": "2026-07-06",
+      "references": [
+        "INV-2026-7465",
+        "PO-18529"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Cixi Hongda Electric Factory",
+        "address": {
+          "lines": [
+            "22 Xinxing Rd"
+          ],
+          "city": "Cixi",
+          "region": "Zhejiang",
+          "country": "CN"
+        }
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "850940",
+      "containerStuffingLocation": {
+        "lines": [
+          "22 Xinxing Rd"
+        ],
+        "city": "Cixi",
+        "region": "Zhejiang",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Compass Freight Forwarding Co.",
+        "address": {
+          "lines": [
+            "18 Changjiang Rd"
+          ],
+          "city": "Shanghai",
+          "country": "CN"
+        }
+      }
+    }
+  }
+}

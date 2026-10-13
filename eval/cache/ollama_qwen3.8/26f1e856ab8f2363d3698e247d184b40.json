@@ -1,0 +1,680 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 2416,
+    "outputTokens": 5849
+  },
+  "output": {
+    "packingListNumber": "PL-2026-9801",
+    "invoiceRef": "INV-2026-9801",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "411026 Pune Maharashtra"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8250 NW 27th St",
+        "33122 Doral FL"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "marks": "PEÑA/PO-61291/C/NO. 1-167",
+    "packages": [
+      {
+        "range": "1-1",
+        "count": "1",
+        "packageType": "CRT",
+        "sku": "CP-750-OR",
+        "description": "Centrifugal pump 0.75 kW colour orange",
+        "quantity": "1 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "14.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "2-4",
+        "count": "3",
+        "packageType": "CRT",
+        "sku": "CP-750-GN",
+        "description": "Centrifugal pump 0.75 kW colour green",
+        "quantity": "3 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "43.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "57.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "5-9",
+        "count": "5",
+        "packageType": "CRT",
+        "sku": "CP-750-YL",
+        "description": "Centrifugal pump 0.75 kW colour yellow",
+        "quantity": "5 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "72.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "95.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "10-11",
+        "count": "2",
+        "packageType": "CRT",
+        "sku": "CP-750-BK",
+        "description": "Centrifugal pump 0.75 kW colour black",
+        "quantity": "2 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "29.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "12-13",
+        "count": "2",
+        "packageType": "CRT",
+        "sku": "CP-750-GY",
+        "description": "Centrifugal pump 0.75 kW colour grey",
+        "quantity": "2 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "29.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "14-15",
+        "count": "2",
+        "packageType": "CRT",
+        "sku": "CP-750-NV",
+        "description": "Centrifugal pump 0.75 kW colour navy",
+        "quantity": "2 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "29.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "16-16",
+        "count": "1",
+        "packageType": "CRT",
+        "sku": "CP-750-BL",
+        "description": "Centrifugal pump 0.75 kW colour blue",
+        "quantity": "1 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "14.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "17-18",
+        "count": "2",
+        "packageType": "CRT",
+        "sku": "CP-750-WH",
+        "description": "Centrifugal pump 0.75 kW colour white",
+        "quantity": "2 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "29.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "19-20",
+        "count": "2",
+        "packageType": "CRT",
+        "sku": "CP-750-BE",
+        "description": "Centrifugal pump 0.75 kW colour beige",
+        "quantity": "2 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "29.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "21-25",
+        "count": "5",
+        "packageType": "CRT",
+        "sku": "CP-750-PK",
+        "description": "Centrifugal pump 0.75 kW colour pink",
+        "quantity": "5 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "72.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "95.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "26-29",
+        "count": "4",
+        "packageType": "CRT",
+        "sku": "CP-750-RD",
+        "description": "Centrifugal pump 0.75 kW colour red",
+        "quantity": "4 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "58.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "76.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "30-34",
+        "count": "5",
+        "packageType": "CRT",
+        "sku": "CP-750-BR",
+        "description": "Centrifugal pump 0.75 kW colour brown",
+        "quantity": "5 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "72.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "95.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "35-37",
+        "count": "3",
+        "packageType": "CTN",
+        "sku": "BV-2IN-BL",
+        "description": "Brass ball valve 2\" colour blue",
+        "quantity": "60 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "81.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "84.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "38-38",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "BV-2IN-WH",
+        "description": "Brass ball valve 2\" colour white",
+        "quantity": "20 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "27.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "28.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "39-39",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "BV-2IN-RD",
+        "description": "Brass ball valve 2\" colour red",
+        "quantity": "20 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "27.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "28.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "40-40",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "BV-2IN-PK",
+        "description": "Brass ball valve 2\" colour pink",
+        "quantity": "20 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "27.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "28.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "41-41",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "BV-2IN-GN",
+        "description": "Brass ball valve 2\" colour green",
+        "quantity": "20 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "27.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "28.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "42-45",
+        "count": "4",
+        "packageType": "CTN",
+        "sku": "BV-2IN-BE",
+        "description": "Brass ball valve 2\" colour beige",
+        "quantity": "80 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "108.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "112.40",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "46-47",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "BV-2IN-GY",
+        "description": "Brass ball valve 2\" colour grey",
+        "quantity": "40 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "54.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "56.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "48-48",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "BV-2IN-NV",
+        "description": "Brass ball valve 2\" colour navy",
+        "quantity": "20 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "27.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "28.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "49-50",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "BV-2IN-BR",
+        "description": "Brass ball valve 2\" colour brown",
+        "quantity": "40 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "54.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "56.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "51-52",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "BV-2IN-BK",
+        "description": "Brass ball valve 2\" colour black",
+        "quantity": "40 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "54.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "56.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "53-55",
+        "count": "3",
+        "packageType": "CTN",
+        "sku": "BV-2IN-YL",
+        "description": "Brass ball valve 2\" colour yellow",
+        "quantity": "60 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "81.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "84.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "56-56",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "BB-6204-NV",
+        "description": "Ball bearing 6204-2RS colour navy",
+        "quantity": "200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "22.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "22.90",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "57-63",
+        "count": "7",
+        "packageType": "CTN",
+        "sku": "BB-6204-RD",
+        "description": "Ball bearing 6204-2RS colour red",
+        "quantity": "1,400 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "154.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "160.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "64-71",
+        "count": "8",
+        "packageType": "CTN",
+        "sku": "BB-6204-YL",
+        "description": "Ball bearing 6204-2RS colour yellow",
+        "quantity": "1,600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "176.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "183.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "72-82",
+        "count": "11",
+        "packageType": "CTN",
+        "sku": "BB-6204-WH",
+        "description": "Ball bearing 6204-2RS colour white",
+        "quantity": "2,200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "242.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "251.90",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "83-88",
+        "count": "6",
+        "packageType": "CTN",
+        "sku": "BB-6204-PK",
+        "description": "Ball bearing 6204-2RS colour pink",
+        "quantity": "1,200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "132.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "137.40",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "89-89",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "BB-6204-BL",
+        "description": "Ball bearing 6204-2RS colour blue",
+        "quantity": "200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "22.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "22.90",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "90-99",
+        "count": "10",
+        "packageType": "CTN",
+        "sku": "BB-6204-GY",
+        "description": "Ball bearing 6204-2RS colour grey",
+        "quantity": "2,000 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "220.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "229.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "100-115",
+        "count": "16",
+        "packageType": "CTN",
+        "sku": "BB-6204-BK",
+        "description": "Ball bearing 6204-2RS colour black",
+        "quantity": "3,200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "352.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "366.40",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "116-126",
+        "count": "11",
+        "packageType": "CTN",
+        "sku": "BB-6204-BE",
+        "description": "Ball bearing 6204-2RS colour beige",
+        "quantity": "2,200 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "242.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "251.90",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "127-140",
+        "count": "14",
+        "packageType": "CTN",
+        "sku": "BB-6204-BR",
+        "description": "Ball bearing 6204-2RS colour brown",
+        "quantity": "2,800 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "308.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "320.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "141-154",
+        "count": "14",
+        "packageType": "CTN",
+        "sku": "BB-6204-GN",
+        "description": "Ball bearing 6204-2RS colour green",
+        "quantity": "2,800 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "308.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "320.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "155-167",
+        "count": "13",
+        "packageType": "CTN",
+        "sku": "BB-6204-OR",
+        "description": "Ball bearing 6204-2RS colour orange",
+        "quantity": "2,600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "286.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "297.70",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "167",
+    "totalNetWeight": {
+      "value": "3,524.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,800.90",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "7.34"
+  }
+}

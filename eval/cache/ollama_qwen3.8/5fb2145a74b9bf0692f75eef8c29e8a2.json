@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 754,
+    "outputTokens": 902
+  },
+  "output": {
+    "blNumber": "PCCLFOS8428390",
+    "documentTitle": "NON-NEGOTIABLE SEA WAYBILL",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "440384581",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Société Lyonnaise de Jouets S.A.R.L.",
+      "addressLines": [
+        "14 rue de l'Industrie",
+        "69007 Lyon"
+      ],
+      "city": "Lyon",
+      "region": null,
+      "postalCode": "69007",
+      "country": "FR",
+      "taxId": "FR40123456789"
+    },
+    "consignee": {
+      "name": "Nguyễn Family Foods – Cold Storage",
+      "addressLines": [
+        "15502 Gothard St",
+        "92647 Huntington Beach CA"
+      ],
+      "city": "Huntington Beach",
+      "region": "CA",
+      "postalCode": "92647",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Nguyễn Family Foods Inc.",
+      "addressLines": [
+        "9200 Bolsa Ave",
+        "92683 Westminster CA"
+      ],
+      "city": "Westminster",
+      "region": "CA",
+      "postalCode": "92683",
+      "country": "US",
+      "taxId": "33-7654321"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "037W",
+    "placeOfReceipt": {
+      "name": "Lyon",
+      "country": "FR"
+    },
+    "portOfLoading": {
+      "name": "Fos-sur-Mer",
+      "country": "FRFOS"
+    },
+    "portOfDischarge": {
+      "name": "Long Beach",
+      "country": "USLGB"
+    },
+    "placeOfDelivery": {
+      "name": "Los Angeles",
+      "country": "USLAX"
+    },
+    "containers": [
+      {
+        "number": "PCRU5351004",
+        "seal": "PC6401358",
+        "type": "20GP",
+        "packages": "261",
+        "grossWeight": {
+          "value": "3 086,28",
+          "unit": "kg"
+        },
+        "volumeM3": "22,27"
+      }
+    ],
+    "totalPackages": "261",
+    "totalGrossWeight": {
+      "value": "3 086,28",
+      "unit": "kg"
+    },
+    "marksAndNumbers": "NGUYỄN/PO-42245/C/NO. 1-261",
+    "cargoDescription": "SAID TO CONTAIN 261 CTNS JIGSAW PUZZLE 1000 PCS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "CI/26/0865",
+      "PO-42245"
+    ],
+    "placeOfIssue": "Fos-sur-Mer",
+    "dateOfIssue": "27.09.2026",
+    "shippedOnBoardDate": "27.09.2026"
+  }
+}

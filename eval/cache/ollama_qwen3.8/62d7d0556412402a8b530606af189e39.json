@@ -1,0 +1,261 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1440,
+    "outputTokens": 2831
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-5245",
+    "invoiceDate": "16-JAN-2026",
+    "poNumber": "PO-68997",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112",
+        "SASSUOLO MO 41049"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "buyer": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST",
+        "VERNON CA 90058"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL FULFILLMENT CENTER",
+      "addressLines": [
+        "13500 VALLEY BLVD",
+        "FONTANA CA 92335"
+      ],
+      "city": "FONTANA",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "18-JAN-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "LA SPEZIA",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "LOS ANGELES",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "LA SPEZIA",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "USD",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L1",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT A-330 HS 1509.20",
+        "quantity": "44",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1315.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L2",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT B-266 HS 1509.20",
+        "quantity": "28",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "837.20",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L3",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT C-787 HS 1509.20",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "119.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L4",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT D-649 HS 1509.20",
+        "quantity": "32",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "956.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L5",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT E-170 HS 1509.20",
+        "quantity": "8",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "239.20",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L6",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT F-585 HS 1509.20",
+        "quantity": "56",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1674.40",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L7",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT G-402 HS 1509.20",
+        "quantity": "32",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "956.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L8",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT H-875 HS 1509.20",
+        "quantity": "40",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1196.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L9",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT I-549 HS 1509.20",
+        "quantity": "16",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "478.40",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L10",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT J-292 HS 1509.20",
+        "quantity": "20",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "598.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L11",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT K-693 HS 1509.20",
+        "quantity": "40",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1196.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L12",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT L-543 HS 1509.20",
+        "quantity": "32",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "956.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L13",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT M-171 HS 1509.20",
+        "quantity": "4",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "119.60",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      },
+      {
+        "lineNo": null,
+        "sku": "OO-EV-5-L14",
+        "description": "EXTRA VIRGIN OLIVE OIL, 5 L TINS, LOT N-177 HS 1509.20",
+        "quantity": "12",
+        "unit": "PCS",
+        "unitPrice": "29.90",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "358.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "1509.20"
+      }
+    ],
+    "totalPackages": "92",
+    "grossWeight": {
+      "value": "1692.80",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1775.60",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "11003.20",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 733,
+    "outputTokens": 914
+  },
+  "output": {
+    "blNumber": "COMPCLL779012",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "348278293",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "addressLines": [
+        "Av. Túpac Amaru 315",
+        "San Martín de Pangoa, Junín"
+      ],
+      "city": "San Martín de Pangoa",
+      "region": "Junín",
+      "postalCode": null,
+      "country": "PE",
+      "taxId": "20123456789"
+    },
+    "consignee": {
+      "name": "Nguyễn Family Foods – Cold Storage",
+      "addressLines": [
+        "15500 Gothard St",
+        "Huntington Beach, CA, 92647"
+      ],
+      "city": "Huntington Beach",
+      "region": "CA",
+      "postalCode": "92647",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Nguyễn Family Foods Inc.",
+      "addressLines": [
+        "9200 Bolsa Ave",
+        "Westminster, CA, 92683"
+      ],
+      "city": "Westminster",
+      "region": "CA",
+      "postalCode": "92683",
+      "country": "US",
+      "taxId": "33-7654321"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "047S",
+    "placeOfReceipt": {
+      "name": "San Martín de Pangoa",
+      "country": "PE"
+    },
+    "portOfLoading": {
+      "name": "Callao",
+      "country": "PE"
+    },
+    "portOfDischarge": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGXU1596135",
+        "seal": "AG4475937",
+        "type": "40HC",
+        "packages": "174",
+        "grossWeight": {
+          "value": "10,579.20",
+          "unit": "KG"
+        },
+        "volumeM3": "24.79"
+      }
+    ],
+    "totalPackages": "174",
+    "totalGrossWeight": {
+      "value": "11,108.16",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NGUYỄN/PO-62826/C/NO. 1-174",
+    "cargoDescription": "SAID TO CONTAIN 174 BAGS GREEN COFFEE ARABICA AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-5682",
+      "PO-62826"
+    ],
+    "placeOfIssue": "Callao",
+    "dateOfIssue": "2026-05-03",
+    "shippedOnBoardDate": "2026-05-03"
+  }
+}

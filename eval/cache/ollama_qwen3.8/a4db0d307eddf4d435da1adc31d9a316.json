@@ -1,0 +1,146 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 988,
+    "outputTokens": 1450
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-5682",
+    "invoiceDate": "2026-04-25",
+    "poNumber": "PO-62826",
+    "seller": {
+      "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "addressLines": [
+        "Av. Túpac Amaru 315",
+        "San Martín de Pangoa, Junín"
+      ],
+      "city": "San Martín de Pangoa",
+      "region": "Junín",
+      "postalCode": null,
+      "country": "PE",
+      "taxId": "20123456789"
+    },
+    "buyer": {
+      "name": "Nguyễn Family Foods Inc.",
+      "addressLines": [
+        "9200 Bolsa Ave",
+        "Westminster, CA, 92683"
+      ],
+      "city": "Westminster",
+      "region": "CA",
+      "postalCode": "92683",
+      "country": "US",
+      "taxId": "33-7654321"
+    },
+    "consignee": null,
+    "shipmentDate": "2026-05-02",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Callao",
+      "country": "PE"
+    },
+    "portOfEntry": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Callao",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "PE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot A-577",
+        "quantity": "1,380 KG",
+        "unit": "KG",
+        "unitPrice": "4.33",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "5,975.40",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot B-824",
+        "quantity": "660 KG",
+        "unit": "KG",
+        "unitPrice": "4.33",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "2,857.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot C-618",
+        "quantity": "360 KG",
+        "unit": "KG",
+        "unitPrice": "4.33",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,558.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "4",
+        "sku": null,
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot D-933",
+        "quantity": "3,060 KG",
+        "unit": "KG",
+        "unitPrice": "4.33",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "13,249.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "5",
+        "sku": null,
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot E-750",
+        "quantity": "2,640 KG",
+        "unit": "KG",
+        "unitPrice": "4.33",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "11,431.20",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      },
+      {
+        "lineNo": "6",
+        "sku": null,
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, lot F-299",
+        "quantity": "2,340 KG",
+        "unit": "KG",
+        "unitPrice": "4.33",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "10,132.20",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "PE",
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "174",
+    "grossWeight": {
+      "value": "10,579.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "10,440.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "45,205.20",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

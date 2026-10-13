@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 761,
+    "outputTokens": 878
+  },
+  "output": {
+    "blNumber": "KEYSTAO182777",
+    "documentTitle": "BILL OF LADING FOR COMBINED TRANSPORT OR PORT TO PORT",
+    "issuer": "Tidewater Express",
+    "bookingNumber": "182017696",
+    "carrierName": "Tidewater Express",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8250 NW 27th St"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "notifyParty": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8250 NW 27th St"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "067E",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Miami",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Miami",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU1821340",
+        "seal": "TW5039623",
+        "type": "20GP",
+        "packages": "35",
+        "grossWeight": {
+          "value": "11 228,00",
+          "unit": "kg"
+        },
+        "volumeM3": "16,35"
+      }
+    ],
+    "totalPackages": "35",
+    "totalGrossWeight": {
+      "value": "11 228,00",
+      "unit": "kg"
+    },
+    "marksAndNumbers": "PEÑA/PO-59638/C/NO. 1-35",
+    "cargoDescription": "SAID TO CONTAIN 35 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "COLLECT",
+    "references": [
+      "QIN2609597",
+      "PO-59638"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "03.06.2026",
+    "shippedOnBoardDate": "03.06.2026"
+  }
+}

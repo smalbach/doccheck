@@ -117,10 +117,12 @@ const headline = [
   extraction ? `| Classification | Document type | ${pct(extraction.classificationAccuracy)} |` : null,
   `| Rules on ground truth | Recall / precision on ${covered} covered errors (of ${errors} injected) | ${pct(truthTotal.recall)} / ${pct(truthTotal.precision)} |`,
   extraction ? `| Rules on extracted PDFs | Recall / precision, end to end | ${pct(extTotal.recall)} / ${pct(extTotal.precision)} |` : null,
-  scans ? `| Extraction, scanned PDFs (OCR) | Field accuracy, ${scans.documents} PDFs | ${pct(scans.overall.accuracy)} |` : null,
+  scans ? `| Extraction, scanned PDFs (OCR) | Field accuracy, ${scans.documents} PDFs (${scans.validDocuments ?? '?'} complete enough for the rules) | ${pct(scans.overall.accuracy)} |` : null,
   scans ? `| Rules on scanned PDFs | Recall / precision, end to end | ${pct(scanTotal.recall)} / ${pct(scanTotal.precision)} |` : null,
   isfType ? `| Extraction, ISF PDFs | Field accuracy, ${isfSet.documentsDetail.filter((d) => d.type === 'ISF').length} PDFs | ${pct(isfType.accuracy)} |` : null,
   isfX11 ? `| X11 on extracted ISF PDFs | Recall / precision, end to end | ${pct(isfX11.recall)} / ${pct(isfX11.precision)} |` : null,
+  v2 ? `| Extraction, unseen formats (v2) | Field accuracy, ${v2.documents} PDFs (${v2.validDocuments ?? '?'} complete enough for the rules) | ${pct(v2.overall.accuracy)} |` : null,
+  v2 ? `| Rules on v2 PDFs | Recall / precision, end to end | ${pct(totalOf(v2.rules.table).recall)} / ${pct(totalOf(v2.rules.table).precision)} |` : null,
   agentRow('party') ? `| Agent | Same consignee written differently (${agentRow('party').cases} cases): verdict / right action | ${pct(agentRow('party').accuracy)} / ${pct(agentRow('party').effectAccuracy)} (${agentRow('party').wrong} wrong, ${agentRow('party').unsure} unsure) |` : null,
   agentRow('description') ? `| Agent | BL description vs invoice goods (${agentRow('description').cases} cases): verdict / right action | ${pct(agentRow('description').accuracy)} / ${pct(agentRow('description').effectAccuracy)} (${agentRow('description').wrong} wrong, ${agentRow('description').unsure} unsure) |` : null,
 ].filter(Boolean);

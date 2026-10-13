@@ -1,0 +1,337 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1981,
+    "outputTokens": 3456
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0865",
+    "invoiceDate": "14 September 2026",
+    "poNumber": "PO-42245",
+    "seller": {
+      "name": "Société Lyonnaise de Jouets S.A.R.L.",
+      "addressLines": [
+        "14 rue de l'Industrie",
+        "69007 Lyon"
+      ],
+      "city": "Lyon",
+      "region": null,
+      "postalCode": "69007",
+      "country": "FR",
+      "taxId": "FR40123456789"
+    },
+    "buyer": {
+      "name": "Nguyễn Family Foods Inc.",
+      "addressLines": [
+        "9200 Bolsa Ave"
+      ],
+      "city": "Westminster",
+      "region": "CA",
+      "postalCode": "92683",
+      "country": "US",
+      "taxId": "33-7654321"
+    },
+    "consignee": {
+      "name": "Nguyễn Family Foods – Cold Storage",
+      "addressLines": [
+        "15500 Gothard St"
+      ],
+      "city": "Huntington Beach",
+      "region": "CA",
+      "postalCode": "92647",
+      "country": "US",
+      "taxId": null
+    },
+    "shipmentDate": "25 September 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Fos-sur-Mer",
+      "country": "FR"
+    },
+    "portOfEntry": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "Fos-sur-Mer",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "EUR",
+    "countryOfOrigin": "FR",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "PZ-1000-PK",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour pink",
+        "quantity": "408",
+        "unit": "PCS",
+        "unitPrice": "4.26",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,738.08",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": "PZ-1000-WH",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour white",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "4.26",
+        "unitPriceCurrency": null,
+        "lineTotal": "102.24",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "3",
+        "sku": "PZ-1000-BL",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour blue",
+        "quantity": "360",
+        "unit": "PCS",
+        "unitPrice": "4.26",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,533.60",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "4",
+        "sku": "PZ-1000-OR",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour orange",
+        "quantity": "24",
+        "unit": "PCS",
+        "unitPrice": "4.26",
+        "unitPriceCurrency": null,
+        "lineTotal": "102.24",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "5",
+        "sku": "PZ-1000-BR",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour brown",
+        "quantity": "168",
+        "unit": "PCS",
+        "unitPrice": "4.26",
+        "unitPriceCurrency": null,
+        "lineTotal": "715.68",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "6",
+        "sku": "PZ-1000-NV",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour navy",
+        "quantity": "504",
+        "unit": "PCS",
+        "unitPrice": "4.26",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,147.04",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "7",
+        "sku": "PZ-1000-YL",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour yellow",
+        "quantity": "48",
+        "unit": "PCS",
+        "unitPrice": "4.26",
+        "unitPriceCurrency": null,
+        "lineTotal": "204.48",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "8",
+        "sku": "PZ-1000-GN",
+        "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed, colour green",
+        "quantity": "288",
+        "unit": "PCS",
+        "unitPrice": "4.26",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,226.88",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "9",
+        "sku": "TB-200-BL",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour blue",
+        "quantity": "550",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "5,142.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "10",
+        "sku": "TB-200-BR",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour brown",
+        "quantity": "450",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,207.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "11",
+        "sku": "TB-200-RD",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour red",
+        "quantity": "700",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,545.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "12",
+        "sku": "TB-200-BE",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour beige",
+        "quantity": "950",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "8,882.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "13",
+        "sku": "TB-200-GY",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour grey",
+        "quantity": "550",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "5,142.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "14",
+        "sku": "TB-200-GN",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour green",
+        "quantity": "950",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "8,882.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "15",
+        "sku": "TB-200-YL",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour yellow",
+        "quantity": "950",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "8,828.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "16",
+        "sku": "TB-200-BK",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour black",
+        "quantity": "500",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,675.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "17",
+        "sku": "TB-200-OR",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour orange",
+        "quantity": "1,000",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "9,350.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "18",
+        "sku": "TB-200-WH",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour white",
+        "quantity": "850",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "7,947.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "19",
+        "sku": "TB-200-NV",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour navy",
+        "quantity": "900",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "8,415.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "20",
+        "sku": "TB-200-PK",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour pink",
+        "quantity": "900",
+        "unit": "PCS",
+        "unitPrice": "9.35",
+        "unitPriceCurrency": null,
+        "lineTotal": "8,415.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "FR",
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "261",
+    "grossWeight": {
+      "value": "3,086.28",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,795.88",
+      "unit": "KG"
+    },
+    "invoiceTotal": "94,257.74",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

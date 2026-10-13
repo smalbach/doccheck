@@ -1,0 +1,37 @@
+{
+  "id": "CA-001",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "1140.00",
+      "after": "969.00",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 0.85 against the packing list."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "INR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 2079.00 INR on an invoice in CAD."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "MDOU1619400",
+      "after": "MDOU1619406",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: MDOU1619400 -> MDOU1619406."
+    }
+  ]
+}

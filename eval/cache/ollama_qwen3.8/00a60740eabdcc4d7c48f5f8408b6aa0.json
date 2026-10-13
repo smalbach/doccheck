@@ -1,0 +1,422 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 2474,
+    "outputTokens": 4504
+  },
+  "output": {
+    "invoiceNumber": "QIN2601407",
+    "invoiceDate": "20 July 2026",
+    "poNumber": "PO-14016",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "shipmentDate": "1 August 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "Qingdao",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "HB-M12-GY",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour grey",
+        "quantity": "1,500",
+        "unit": "KG",
+        "unitPrice": "2.51",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "3,765.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "2",
+        "sku": "HB-M12-OR",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour orange",
+        "quantity": "500",
+        "unit": "KG",
+        "unitPrice": "2.51",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,255.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "3",
+        "sku": "HB-M12-YL",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour yellow",
+        "quantity": "1,500",
+        "unit": "KG",
+        "unitPrice": "2.51",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "3,765.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "4",
+        "sku": "HB-M12-PK",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour pink",
+        "quantity": "1,000",
+        "unit": "KG",
+        "unitPrice": "2.51",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "2,510.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "5",
+        "sku": "HB-M12-BE",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour beige",
+        "quantity": "2,000",
+        "unit": "KG",
+        "unitPrice": "2.51",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "5,020.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "6",
+        "sku": "HB-M12-WH",
+        "description": "Hex bolts M12 x 60, carbon steel, zinc plated, colour white",
+        "quantity": "1,000",
+        "unit": "KG",
+        "unitPrice": "2.51",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "2,510.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "7318.15"
+      },
+      {
+        "lineNo": "7",
+        "sku": "CP-750-BL",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour blue",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "140.46",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "8",
+        "sku": "CP-750-PK",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour pink",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "70.23",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "9",
+        "sku": "CP-750-BE",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour beige",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "140.46",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "10",
+        "sku": "CP-750-NV",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour navy",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "140.46",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "11",
+        "sku": "CP-750-YL",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour yellow",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "140.46",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "12",
+        "sku": "CP-750-BK",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour black",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "70.23",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "13",
+        "sku": "CP-750-OR",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour orange",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "140.46",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "14",
+        "sku": "CP-750-GN",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour green",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "70.23",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "15",
+        "sku": "CP-750-RD",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour red",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "70.23",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "16",
+        "sku": "CP-750-GY",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour grey",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "140.46",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "17",
+        "sku": "CP-750-WH",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour white",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "70.23",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "18",
+        "sku": "CP-750-BR",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body, colour brown",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "70.23",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "140.46",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": "19",
+        "sku": "BB-6204-YL",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour yellow",
+        "quantity": "800",
+        "unit": "PCS",
+        "unitPrice": "1.35",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,080.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "20",
+        "sku": "BB-6204-GY",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour grey",
+        "quantity": "1,000",
+        "unit": "PCS",
+        "unitPrice": "1.35",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,350.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "21",
+        "sku": "BB-6204-RD",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour red",
+        "quantity": "1,800",
+        "unit": "PCS",
+        "unitPrice": "1.35",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "2,430.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "22",
+        "sku": "BB-6204-NV",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour navy",
+        "quantity": "1,600",
+        "unit": "PCS",
+        "unitPrice": "1.35",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "2,160.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "23",
+        "sku": "BB-6204-PK",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour pink",
+        "quantity": "2,400",
+        "unit": "PCS",
+        "unitPrice": "1.35",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "3,240.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "24",
+        "sku": "BB-6204-BL",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour blue",
+        "quantity": "1,600",
+        "unit": "PCS",
+        "unitPrice": "1.35",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "2,160.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "25",
+        "sku": "BB-6204-OR",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour orange",
+        "quantity": "1,400",
+        "unit": "PCS",
+        "unitPrice": "1.35",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,890.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "26",
+        "sku": "BB-6204-BK",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm, colour black",
+        "quantity": "600",
+        "unit": "PCS",
+        "unitPrice": "1.35",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "810.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8482.10"
+      }
+    ],
+    "totalPackages": "90",
+    "grossWeight": {
+      "value": "9,473.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "9,007.50",
+      "unit": "KG"
+    },
+    "invoiceTotal": "35,279.37",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "1,340.00",
+        "currency": "EUR"
+      }
+    ]
+  }
+}

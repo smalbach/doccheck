@@ -1,0 +1,157 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 834,
+    "outputTokens": 1344
+  },
+  "output": {
+    "packingListNumber": "PL-2026-5682",
+    "invoiceRef": "INV-2026-5682",
+    "seller": {
+      "name": "COOPERATIVA AGRARIA CAFETALERA PANGOA LTDA.",
+      "addressLines": [
+        "AV. TÚPAC AMARU 315",
+        "SAN MARTÍN DE PANGOA JUNÍN"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": "PE",
+      "taxId": "20123456789"
+    },
+    "consignee": {
+      "name": "NGUYỄN FAMILY FOODS – COLD STORAGE",
+      "addressLines": [
+        "15500 GOTHARD ST"
+      ],
+      "city": "HUNTINGTON BEACH",
+      "region": "CA",
+      "postalCode": "92647",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "NGUYỄN/PO-62826/C/NO. 1-174",
+    "packages": [
+      {
+        "range": "1-23",
+        "count": "23",
+        "packageType": "BAG",
+        "sku": null,
+        "description": "GREEN COFFEE ARABICA LOT A-577",
+        "quantity": "1380 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "1380.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "1398.40",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "24-34",
+        "count": "11",
+        "packageType": "BAG",
+        "sku": null,
+        "description": "GREEN COFFEE ARABICA LOT B-824",
+        "quantity": "660 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "660.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "668.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "35-40",
+        "count": "6",
+        "packageType": "BAG",
+        "sku": null,
+        "description": "GREEN COFFEE ARABICA LOT C-618",
+        "quantity": "360 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "360.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "364.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "41-91",
+        "count": "51",
+        "packageType": "BAG",
+        "sku": null,
+        "description": "GREEN COFFEE ARABICA LOT D-933",
+        "quantity": "3060 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "3060.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3100.80",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "92-135",
+        "count": "44",
+        "packageType": "BAG",
+        "sku": null,
+        "description": "GREEN COFFEE ARABICA LOT E-750",
+        "quantity": "2640 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "2640.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "2675.20",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "136-174",
+        "count": "39",
+        "packageType": "BAG",
+        "sku": null,
+        "description": "GREEN COFFEE ARABICA LOT F-299",
+        "quantity": "2340 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "2340.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "2371.20",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "174",
+    "totalNetWeight": {
+      "value": "10440.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "10579.20",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "24.79"
+  }
+}

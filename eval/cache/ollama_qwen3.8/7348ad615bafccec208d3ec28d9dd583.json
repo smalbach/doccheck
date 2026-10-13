@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 771,
+    "outputTokens": 956
+  },
+  "output": {
+    "blNumber": "TDWENSA3028250",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "582054028",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026",
+        "IN"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "NGUYỄN FAMILY FOODS INC.",
+      "addressLines": [
+        "9212 BOLSA AVE",
+        "WESTMINSTER CA 92683",
+        "US"
+      ],
+      "city": "WESTMINSTER",
+      "region": "CA",
+      "postalCode": "92683",
+      "country": "US",
+      "taxId": "33-7654321"
+    },
+    "notifyParty": {
+      "name": "NGUYỄN FAMILY FOODS INC.",
+      "addressLines": [
+        "9200 BOLSA AVE",
+        "WESTMINSTER CA 92683",
+        "US"
+      ],
+      "city": "WESTMINSTER",
+      "region": "CA",
+      "postalCode": "92683",
+      "country": "US",
+      "taxId": "33-7654321"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "055E",
+    "placeOfReceipt": {
+      "name": "PUNE, IN",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "NHAVA SHEVA, IN",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "LONG BEACH, US",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "LOS ANGELES, US",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU8004839",
+        "seal": "TW7981965",
+        "type": "20GP",
+        "packages": "29",
+        "grossWeight": {
+          "value": "814.90",
+          "unit": "KGS"
+        },
+        "volumeM3": "1.37"
+      }
+    ],
+    "totalPackages": "29",
+    "totalGrossWeight": {
+      "value": "814.90",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "NGUYỄN/NG100990/C/NO. 1-29",
+    "cargoDescription": "SAID TO CONTAIN 29 CTNS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/3200",
+      "NG100990"
+    ],
+    "placeOfIssue": "NHAVA SHEVA",
+    "dateOfIssue": "05-MAR-2026",
+    "shippedOnBoardDate": "05-MAR-2026"
+  }
+}

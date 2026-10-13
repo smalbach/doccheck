@@ -1,0 +1,208 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1322,
+    "outputTokens": 2042
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-2916",
+    "invoiceDate": "17 June 2026",
+    "poNumber": "PO-8694",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "518112 Shenzhen Guangdong"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "21 June 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Shekou",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "Shekou",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "TB-200-BR",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour brown",
+        "quantity": "250",
+        "unit": "PCS",
+        "unitPrice": "7.88",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,970.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "2",
+        "sku": "TB-200-WH",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour white",
+        "quantity": "250",
+        "unit": "PCS",
+        "unitPrice": "7.88",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,970.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "3",
+        "sku": "TB-200-GN",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour green",
+        "quantity": "100",
+        "unit": "PCS",
+        "unitPrice": "7.88",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "788.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "4",
+        "sku": "TB-200-RD",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour red",
+        "quantity": "100",
+        "unit": "PCS",
+        "unitPrice": "7.88",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "788.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "5",
+        "sku": "TB-200-BL",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour blue",
+        "quantity": "200",
+        "unit": "PCS",
+        "unitPrice": "7.88",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,576.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "6",
+        "sku": "TB-200-YL",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour yellow",
+        "quantity": "200",
+        "unit": "PCS",
+        "unitPrice": "7.88",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,576.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "7",
+        "sku": "TB-200-GY",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour grey",
+        "quantity": "200",
+        "unit": "PCS",
+        "unitPrice": "7.88",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,576.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "8",
+        "sku": "TB-200-BK",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour black",
+        "quantity": "150",
+        "unit": "PCS",
+        "unitPrice": "7.88",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "1,182.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "9",
+        "sku": "TB-200-BE",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour beige",
+        "quantity": "50",
+        "unit": "PCS",
+        "unitPrice": "7.88",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "394.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      },
+      {
+        "lineNo": "10",
+        "sku": "TB-200-PK",
+        "description": "Plush teddy bear 30 cm, polyester filling, colour pink",
+        "quantity": "100",
+        "unit": "PCS",
+        "unitPrice": "7.88",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "788.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "32",
+    "grossWeight": {
+      "value": "326.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "288.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "12,608.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

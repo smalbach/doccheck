@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 756,
+    "outputTokens": 875
+  },
+  "output": {
+    "blNumber": "TDWELIS2609769",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "524177483",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "AZEITES DO ALENTEJO, LDA.",
+      "addressLines": [
+        "RUA DA FÁBRICA, 7"
+      ],
+      "city": "BEJA",
+      "region": null,
+      "postalCode": "7800-309",
+      "country": "PT",
+      "taxId": "PT509876543"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "071S",
+    "placeOfReceipt": {
+      "name": "BEJA",
+      "country": "PT"
+    },
+    "portOfLoading": {
+      "name": "LISBOA",
+      "country": "PT"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "CHICAGO",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU4233062",
+        "seal": "TW3365550",
+        "type": "20GP",
+        "packages": "83",
+        "grossWeight": {
+          "value": "3532",
+          "unit": "LB"
+        },
+        "volumeM3": "3.49"
+      }
+    ],
+    "totalPackages": "83",
+    "totalGrossWeight": {
+      "value": "3532",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "LAKESHORE/LA686465/C/NO. 1-83",
+    "cargoDescription": "SAID TO CONTAIN 83 CTNS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-4803",
+      "LA686465"
+    ],
+    "placeOfIssue": "LISBOA",
+    "dateOfIssue": "10-SEP-2026",
+    "shippedOnBoardDate": "10-SEP-2026"
+  }
+}

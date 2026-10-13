@@ -1,0 +1,170 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 1078,
+    "outputTokens": 1777
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-6419",
+    "invoiceDate": "14-JAN-2026",
+    "poNumber": "PA154879",
+    "seller": {
+      "name": "ÖZDEMIR VANA SANAYI VE TICARET A.Ş.",
+      "addressLines": [
+        "İKITELLI OSB, DEMIRCILER SITESI C BLOK NO: 9",
+        "BAŞAKŞEHIR İSTANBUL 34490"
+      ],
+      "city": "BAŞAKŞEHIR İSTANBUL",
+      "region": null,
+      "postalCode": "34490",
+      "country": "TR",
+      "taxId": "6810123456"
+    },
+    "buyer": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST",
+        "VERNON CA 90058"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST",
+        "VERNON CA 90058"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "shipmentDate": "18-JAN-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "AMBARLI",
+      "country": "TR"
+    },
+    "portOfEntry": {
+      "name": "LONG BEACH",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "AMBARLI",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "EUR",
+    "countryOfOrigin": "TR",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CP-750-OR",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR ORANGE HS 8413.70",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "80.47",
+        "unitPriceCurrency": null,
+        "lineTotal": "160.94",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-NV",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR NAVY HS 8413.70",
+        "quantity": "5",
+        "unit": "PCS",
+        "unitPrice": "80.47",
+        "unitPriceCurrency": null,
+        "lineTotal": "402.35",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-GN",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR GREEN HS 8413.70",
+        "quantity": "2",
+        "unit": "PCS",
+        "unitPrice": "80.47",
+        "unitPriceCurrency": null,
+        "lineTotal": "160.94",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-RD",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR RED HS 8413.70",
+        "quantity": "1",
+        "unit": "PCS",
+        "unitPrice": "80.47",
+        "unitPriceCurrency": null,
+        "lineTotal": "80.47",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-BL",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR BLUE HS 8413.70",
+        "quantity": "5",
+        "unit": "PCS",
+        "unitPrice": "80.47",
+        "unitPriceCurrency": null,
+        "lineTotal": "402.35",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-PK",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR PINK HS 8413.70",
+        "quantity": "6",
+        "unit": "PCS",
+        "unitPrice": "80.47",
+        "unitPriceCurrency": null,
+        "lineTotal": "482.82",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750-WH",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY, COLOUR WHITE HS 8413.70",
+        "quantity": "6",
+        "unit": "PCS",
+        "unitPrice": "80.47",
+        "unitPriceCurrency": null,
+        "lineTotal": "482.82",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "27",
+    "grossWeight": {
+      "value": "513.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "391.50",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "2172.69",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

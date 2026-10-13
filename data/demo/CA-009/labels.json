@@ -1,0 +1,27 @@
+{
+  "id": "CA-009",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 219,
+      "after": 220,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 220 packages instead of 219."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "78445.80",
+      "after": "87445.80",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (78445.80 -> 87445.80)."
+    }
+  ]
+}

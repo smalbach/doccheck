@@ -1,0 +1,461 @@
+{
+  "id": "US-018",
+  "seed": 847936901,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-5446",
+      "invoiceDate": "2026-02-08",
+      "poNumber": "BL373962",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-02-10",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Mundra",
+          "unLocode": "INMUN",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Mundra"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 232,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "38600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.31",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "50566.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "39",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "85.17",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3321.63",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4811.50",
+        "raw": {
+          "value": "4811.50",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5160.70",
+        "raw": {
+          "value": "5160.70",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "53887.63",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "charges": {
+        "freight": {
+          "amount": "3729.00",
+          "currency": "EUR"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-5446",
+      "invoiceRef": "INV-2026-5446",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "packages": [
+        {
+          "range": "1-193",
+          "count": 193,
+          "type": "CTN",
+          "marks": "BLUEBONNET/BL373962/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "38600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4246.00",
+            "raw": {
+              "value": "4246.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4419.70",
+            "raw": {
+              "value": "4419.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "194-232",
+          "count": 39,
+          "type": "CRT",
+          "marks": "BLUEBONNET/BL373962/C/NO. 1-232",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "39",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "565.50",
+            "raw": {
+              "value": "565.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "741.00",
+            "raw": {
+              "value": "741.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 232,
+        "netWeight": {
+          "kg": "4811.50",
+          "raw": {
+            "value": "4811.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5160.70",
+          "raw": {
+            "value": "5160.70",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "9.22"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLMUN7578705",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "832308852",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "notifyParty": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "022W",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Mundra",
+        "unLocode": "INMUN",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCRU7935291",
+          "seal": "PC6159075",
+          "type": "20GP",
+          "packages": 232,
+          "grossWeight": {
+            "kg": "5160.70",
+            "raw": {
+              "value": "5160.70",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "9.22"
+        }
+      ],
+      "totalPackages": 232,
+      "totalGrossWeight": {
+        "kg": "5160.70",
+        "raw": {
+          "value": "5160.70",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "BLUEBONNET/BL373962/C/NO. 1-232",
+      "cargoDescription": "SAID TO CONTAIN 232 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Mundra",
+      "dateOfIssue": "2026-02-13",
+      "shippedOnBoardDate": "2026-02-13",
+      "references": [
+        "INV-2026-5446",
+        "BL373962"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "importerOfRecordNumber": "74-381245600",
+      "consigneeNumber": "74-381245600",
+      "manufacturer": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipToParty": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "countryOfOrigin": "IN",
+      "htsCode": "848210",
+      "containerStuffingLocation": {
+        "lines": [
+          "Plot 41, MIDC Bhosari"
+        ],
+        "city": "Pune",
+        "region": "Maharashtra",
+        "postalCode": "411026",
+        "country": "IN"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

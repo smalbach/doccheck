@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 792,
+    "outputTokens": 987
+  },
+  "output": {
+    "blNumber": "PCCLAMR5319141",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "221616843",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "ÖZDEMIR VANA SANAYI VE TICARET A.Ş.",
+      "addressLines": [
+        "İKITELLI OSB, DEMIRCILER SITESI C BLOK NO: 9",
+        "BAŞAKŞEHIR İSTANBUL 34490"
+      ],
+      "city": "BAŞAKŞEHIR İSTANBUL",
+      "region": null,
+      "postalCode": "34490",
+      "country": "TR",
+      "taxId": "6810123456"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1280 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "034N",
+    "placeOfReceipt": {
+      "name": "BAŞAKŞEHIR",
+      "country": "TR"
+    },
+    "portOfLoading": {
+      "name": "AMBARLI",
+      "country": "TR"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "NEWARK",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCLU2164760",
+        "seal": "PC8172392",
+        "type": "20GP",
+        "packages": "51",
+        "grossWeight": {
+          "value": "969.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "4.49"
+      }
+    ],
+    "totalPackages": "51",
+    "totalGrossWeight": {
+      "value": "969.00",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-64924/C/NO. 1-51",
+    "cargoDescription": "SAID TO CONTAIN 51 CRTS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE REF: CI/26/9492 / PO-64924 FREIGHT COLLECT",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/9492",
+      "PO-64924"
+    ],
+    "placeOfIssue": "AMBARLI",
+    "dateOfIssue": "12-SEP-2026",
+    "shippedOnBoardDate": "12-SEP-2026"
+  }
+}

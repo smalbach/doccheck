@@ -1,0 +1,157 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 943,
+    "outputTokens": 1484
+  },
+  "output": {
+    "invoiceNumber": "CI/26/3200",
+    "invoiceDate": "Feb 26, 2026",
+    "poNumber": "NG100990",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "buyer": {
+      "name": "Nguyễn Family Foods Inc.",
+      "addressLines": [
+        "9200 Bolsa Ave",
+        "Westminster, CA, 92683"
+      ],
+      "city": "Westminster",
+      "region": "CA",
+      "postalCode": "92683",
+      "country": "US",
+      "taxId": "33-7654321"
+    },
+    "consignee": {
+      "name": "Nguyễn Family Foods Inc.",
+      "addressLines": [
+        "9200 Bolsa Ave",
+        "Westminster, CA, 92683"
+      ],
+      "city": "Westminster",
+      "region": "CA",
+      "postalCode": "92683",
+      "country": "US",
+      "taxId": "33-7654321"
+    },
+    "shipmentDate": "Mar 4, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "Nhava Sheva",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BV-2IN-PK",
+        "description": "Brass ball valves 2 inch, threaded, colour pink",
+        "quantity": "10",
+        "unit": "PCS",
+        "unitPrice": "16.33",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,633.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "2",
+        "sku": "BV-2IN-OR",
+        "description": "Brass ball valves 2 inch, threaded, colour orange",
+        "quantity": "20",
+        "unit": "PCS",
+        "unitPrice": "16.33",
+        "unitPriceCurrency": null,
+        "lineTotal": "326.60",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "3",
+        "sku": "BV-2IN-BE",
+        "description": "Brass ball valves 2 inch, threaded, colour beige",
+        "quantity": "100",
+        "unit": "PCS",
+        "unitPrice": "16.33",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,633.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "4",
+        "sku": "BV-2IN-YL",
+        "description": "Brass ball valves 2 inch, threaded, colour yellow",
+        "quantity": "140",
+        "unit": "PCS",
+        "unitPrice": "16.33",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,286.20",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "5",
+        "sku": "BV-2IN-BR",
+        "description": "Brass ball valves 2 inch, threaded, colour brown",
+        "quantity": "140",
+        "unit": "PCS",
+        "unitPrice": "16.33",
+        "unitPriceCurrency": null,
+        "lineTotal": "2,286.20",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "6",
+        "sku": "BV-2IN-RD",
+        "description": "Brass ball valves 2 inch, threaded, colour red",
+        "quantity": "80",
+        "unit": "PCS",
+        "unitPrice": "16.33",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,306.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "29",
+    "grossWeight": {
+      "value": "814.90",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "783.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "9,471.40",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}
