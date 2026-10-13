@@ -1,4 +1,4 @@
-import type { LlmProvider, StructuredRequest } from '@doccheck/extraction';
+import type { GenerateOptions, LlmProvider, StructuredRequest } from '@doccheck/extraction';
 import type { z } from 'zod';
 
 /**
@@ -17,8 +17,8 @@ export class SwitchableProvider implements LlmProvider {
     this.current = provider;
   }
 
-  generate(req: StructuredRequest<z.ZodType>) {
-    return this.current.generate(req);
+  generate(req: StructuredRequest<z.ZodType>, opts?: GenerateOptions) {
+    return this.current.generate(req, opts);
   }
 
   version(): Promise<string | undefined> {

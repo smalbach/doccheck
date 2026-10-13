@@ -8,10 +8,14 @@ import { isDemo } from '../demo/demo-mode';
  * Only with DEMO_READONLY=true, and DEMO_PACING=false turns it off.
  */
 const PACING_MS: Record<ProgressKind, Partial<Record<string, number>>> = {
-  extraction: { reading: 500, ocr: 800, classifying: 300, extracting: 2500, normalizing: 300 },
+  // extracting: no wait at the end; the cached answer is replayed as a stream instead (DEMO_REPLAY_MS).
+  extraction: { reading: 500, ocr: 800, classifying: 300, normalizing: 300 },
   // agent: per answered question (progress event with an answer), not on the stage's end.
   validation: { rules: 700, citations: 500, agent: 1800 },
 };
+
+/** How long the model takes to "write" a cached answer in the demo (LlmClient.replayMs). */
+export const DEMO_REPLAY_MS = 2500;
 
 export const demoPacing = (env: NodeJS.ProcessEnv = process.env) => isDemo(env) && env.DEMO_PACING !== 'false';
 

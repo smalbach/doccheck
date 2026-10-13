@@ -906,6 +906,44 @@ describe('PDF upload', { skip: !hasSample && 'evaluation set not generated' }, (
     assert.equal(file.headers.get('content-type'), 'application/pdf');
     assert.equal((await file.arrayBuffer()).byteLength, readFileSync(join(sample, 'invoice.pdf')).length);
   });
+
+  it('streams the model answer live while extracting, without storing it or changing the result', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    const stream = await openStream(`/shipments/${s.id}/events`);
+    const everything = await openStream('/events');
+    await Promise.all([stream.ready(), everything.ready()]);
+    const form = new FormData();
+    form.append('files', new Blob([readFileSync(join(sample, 'invoice.pdf'))], { type: 'application/pdf' }), 'invoice.pdf');
+    const up = await send(`${base}/shipments/${s.id}/documents?wait=true`, { method: 'POST', body: form });
+    const [{ document: d }] = (await up.json()).documents;
+    assert.equal(d.status, 'EXTRACTED');
+    await stream.waitFor((events) => events.some((e) => e.documentId === d.id && e.stage === 'saved' && e.status === 'done'));
+    stream.close();
+    everything.close();
+
+    // Deltas: ephemeral, sent without an SSE id, inside the extracting stage, adding up to the stored answer.
+    const events = stream.events().filter((e) => e.documentId === d.id);
+    const deltas = events.filter((e) => e.ephemeral);
+    assert.ok(deltas.length > 0);
+    assert.ok(deltas.every((e) => e.id === 0 && e.stage === 'extracting' && e.status === 'progress'));
+    assert.ok(stream.messages.filter((m) => m.data && JSON.parse(m.data).ephemeral).every((m) => m.id === undefined));
+    const index = (pred) => events.findIndex(pred);
+    assert.ok(index((e) => e.stage === 'extracting' && e.status === 'started') < index((e) => e.ephemeral));
+    assert.ok(events.findLastIndex((e) => e.ephemeral) < index((e) => e.stage === 'extracting' && e.status === 'done'));
+    assert.deepEqual(deltas.map((e) => e.detail.offset), deltas.map((_, i) => deltas.slice(0, i).reduce((n, e) => n + e.detail.delta.length, 0)));
+    const stored = (await call('GET', `/shipments/${s.id}/documents/${d.id}`)).body;
+    assert.deepEqual(JSON.parse(deltas.map((e) => e.detail.delta).join('')), stored.raw);
+    assert.equal(deltas.at(-1).detail.replay, true);
+    assert.equal(deltas.at(-1).detail.tokens, stored.outputTokens);
+
+    // Not stored: a new stream's backlog has the stages but no delta; the user-wide stream never had any.
+    const later = await openStream(`/shipments/${s.id}/events`);
+    await later.ready();
+    later.close();
+    assert.ok(later.events().some((e) => e.documentId === d.id && e.stage === 'extracting'));
+    assert.ok(later.events().every((e) => !e.ephemeral));
+    assert.ok(everything.events().every((e) => !e.ephemeral));
+  });
 });
 
 // ISF as a PDF: only when data/eval/v1-isf (npm run synth -- --isf-pdfs) and a cached model response

@@ -6,6 +6,7 @@ import { useI18n } from '../../i18n/useI18n';
 import { HighlightMark } from './HighlightMark';
 import { PdfPager } from './PdfPager';
 import type { ViewerTarget } from './types';
+import { useLiveHighlight } from './useLiveHighlight';
 import { usePageRender } from './usePageRender';
 import { usePdfDocument } from './usePdfDocument';
 
@@ -13,10 +14,15 @@ export interface PdfViewerSheetProps {
   shipmentId: string;
   target: ViewerTarget;
   onClose: () => void;
+  /** The model's answer so far, while the document is being extracted: the value it just read is outlined. */
+  liveText?: string;
 }
 
-/** One page of a PDF at a time, with the region a finding cites outlined. */
-export function PdfViewerSheet({ shipmentId, target, onClose }: PdfViewerSheetProps) {
+/**
+ * One page of a PDF at a time, with the region a finding cites outlined; while the document is being
+ * extracted, the line holding the value the model just wrote instead (following it from page to page).
+ */
+export function PdfViewerSheet({ shipmentId, target, onClose, liveText }: PdfViewerSheetProps) {
   const { t } = useI18n();
   const { doc, highlight } = target;
   const { pdf, error } = usePdfDocument(api.fileUrl(shipmentId, doc.id));
@@ -24,10 +30,16 @@ export function PdfViewerSheet({ shipmentId, target, onClose }: PdfViewerSheetPr
   const canvas = useRef<HTMLCanvasElement>(null);
   const scale = usePageRender(pdf, page, canvas);
 
+  const live = useLiveHighlight(pdf, liveText);
+
   useEffect(() => setPage(highlight?.page ?? 1), [highlight]);
+  useEffect(() => {
+    if (live) setPage(live.page);
+  }, [live]);
 
   const pages = pdf?.numPages ?? 0;
-  const bbox = highlight?.page === page ? highlight.bbox : undefined;
+  const shown = live ?? highlight;
+  const bbox = shown?.page === page ? shown.bbox : undefined;
 
   return (
     <Sheet
@@ -38,10 +50,13 @@ export function PdfViewerSheet({ shipmentId, target, onClose }: PdfViewerSheetPr
       {error ? (
         <p className="error sheet-body">{error}</p>
       ) : (
-        <div className="pdf-page">
-          <canvas ref={canvas} role="img" aria-label={`${doc.fileName}, ${t('viewer.page', { page, pages })}`} />
-          {bbox && <HighlightMark bbox={bbox} scale={scale} />}
-        </div>
+        <>
+          {live && <p className="viewer-live muted small">{t('viewer.reading', { value: live.value })}</p>}
+          <div className="pdf-page">
+            <canvas ref={canvas} role="img" aria-label={`${doc.fileName}, ${t('viewer.page', { page, pages })}`} />
+            {bbox && <HighlightMark bbox={bbox} scale={scale} live={!!live} />}
+          </div>
+        </>
       )}
     </Sheet>
   );

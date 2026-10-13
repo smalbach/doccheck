@@ -444,6 +444,13 @@ export const en = {
     extractedIn: 'Extracted in {duration}',
     failedAfter: 'Failed after {duration}',
     highlight: '{stage} {duration}',
+    output: {
+      title: 'Live output',
+      label: 'Model output for {file}',
+      tokens: { one: '{tokens} token', other: '{tokens} tokens' },
+      speed: '{speed} tokens/s',
+      replay: 'replayed from cache',
+    },
     validation: {
       title: 'Validation in progress',
       starting: 'Starting the validation…',
@@ -488,6 +495,7 @@ export const en = {
     previous: 'Previous page',
     next: 'Next page',
     page: '{page} / {pages}',
+    reading: 'The model just read: {value}',
   },
   extracted: {
     title: 'Extracted data · {file}',

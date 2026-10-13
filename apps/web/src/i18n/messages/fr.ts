@@ -434,6 +434,13 @@ export const fr: Messages = {
     extractedIn: 'Extrait en {duration}',
     failedAfter: 'Échec après {duration}',
     highlight: '{stage} {duration}',
+    output: {
+      title: 'Sortie en direct',
+      label: 'Sortie du modèle pour {file}',
+      tokens: { one: '{tokens} jeton', other: '{tokens} jetons' },
+      speed: '{speed} jetons/s',
+      replay: 'rejouée depuis le cache',
+    },
     validation: {
       title: 'Validation en cours',
       starting: 'Démarrage de la validation…',
@@ -473,7 +480,7 @@ export const fr: Messages = {
     blocked: 'Les notifications de DocCheck sont bloquées dans ce navigateur. Autorisez-les dans les paramètres du site pour activer cette option.',
     unsupported: 'Ce navigateur ne peut pas afficher de notifications.',
   },
-  viewer: { loading: 'Chargement du lecteur…', previous: 'Page précédente', next: 'Page suivante', page: '{page} / {pages}' },
+  viewer: { loading: 'Chargement du lecteur…', previous: 'Page précédente', next: 'Page suivante', page: '{page} / {pages}', reading: 'Le modèle vient de lire : {value}' },
   extracted: {
     title: 'Données extraites · {file}',
     loadError: 'Impossible de charger l’extraction ({message}).',

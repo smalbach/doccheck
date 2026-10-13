@@ -75,3 +75,9 @@
 .run-questions li { margin: 2px 0; }
 /* Without motion a running step keeps its partial ring, still. */
 @media (prefers-reduced-motion: reduce) { .step-spinner { animation: none; } }
+/* The model's answer while it is written: JSON forming, following the end unless scrolled up. */
+.live-output { margin: 4px 0 0; max-height: 14em; overflow: auto; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); font: 11px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+.live-output:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.live-output-caret { display: inline-block; width: 0.55em; height: 1.1em; margin-left: 1px; vertical-align: text-bottom; background: var(--accent); animation: live-output-blink 1s steps(2, start) infinite; }
+@keyframes live-output-blink { to { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .live-output-caret { animation: none; opacity: 0.6; } }

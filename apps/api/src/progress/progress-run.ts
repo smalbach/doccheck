@@ -48,6 +48,7 @@ export class ProgressRun<K extends ProgressKind> {
       at: new Date(at).toISOString(),
       ...(durationMs === undefined ? {} : { durationMs }),
       detail: update.detail ?? {},
+      ...(update.ephemeral ? { ephemeral: true } : {}),
     } as NewProgressEvent);
   };
 

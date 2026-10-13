@@ -79,5 +79,20 @@ describe('progress events', () => {
     expect(ProgressEventSchema.safeParse({ ...event, stage: 'ocr' }).success).toBe(false);
     expect(ProgressEventSchema.safeParse({ ...event, kind: 'extraction', stage: 'ocr' }).success).toBe(true);
     expect(ProgressEventSchema.safeParse({ ...event, status: 'paused' }).success).toBe(false);
+    // Id 0 exactly for an ephemeral event.
+    expect(ProgressEventSchema.safeParse({ ...event, id: 0, ephemeral: true }).success).toBe(true);
+    expect(ProgressEventSchema.safeParse({ ...event, id: 0 }).success).toBe(false);
+    expect(ProgressEventSchema.safeParse({ ...event, ephemeral: true }).success).toBe(false);
+  });
+
+  it('marks a progress step ephemeral when asked', async () => {
+    const seen: ExtractionUpdate[] = [];
+    const stage = await startStage<ExtractionDetail, 'extracting'>((u) => void seen.push(u), 'extracting');
+    await stage.progress({ delta: '{"a"', offset: 0 }, { ephemeral: true });
+    await stage.progress({ tokens: 3 });
+    expect(seen.slice(1)).toEqual([
+      { stage: 'extracting', status: 'progress', detail: { delta: '{"a"', offset: 0 }, ephemeral: true },
+      { stage: 'extracting', status: 'progress', detail: { tokens: 3 } },
+    ]);
   });
 });
