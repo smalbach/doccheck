@@ -10,13 +10,20 @@
  * the account.
  *
  *   npm run build && npm start            # or any running API + web, with the samples in data/eval
- *   node scripts/screenshots.mjs [--url http://localhost:3000] [--out docs/screenshots] [--keep-png]
+ *   node scripts/screenshots.mjs [--url http://localhost:3000] [--out docs/screenshots] [--keep-png] [--inbound-secret <MAIL_INBOUND_SECRET>]
+ *
+ * It also asks the featured shipment's supplier for corrections (an example.com address: recorded,
+ * or sent nowhere real) and marks another finding as an accepted risk; with --inbound-secret (the
+ * server's MAIL_INBOUND_SECRET) the supplier's reply with a corrected PDF arrives through the
+ * inbound webhook, so the conversation shows both sides.
  *
  * Images are written as WebP (cwebp, from libwebp) and the animation with img2webp; without those
  * tools the PNGs are kept as they are and the animation is skipped. --keep-png also keeps the PNGs.
  * Needs Playwright's Chromium or a local Chrome.
  */
 import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { mkdir, mkdtemp, rename, rm, stat } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
@@ -28,6 +35,7 @@ const { values } = parseArgs({
     url: { type: 'string', default: process.env.APP_URL ?? 'http://localhost:3000' },
     out: { type: 'string', default: 'docs/screenshots' },
     'keep-png': { type: 'boolean', default: false },
+    'inbound-secret': { type: 'string', default: process.env.MAIL_INBOUND_SECRET ?? '' },
   },
 });
 const base = values.url.replace(/\/$/, '');
@@ -94,6 +102,46 @@ try {
 }
 // The shipment page shows the one with the most findings.
 const featured = [...shipments].sort((a, b) => b.findings - a.findings)[0];
+
+// The finding workflow and the inbox: a request for corrections on all but one finding, that one
+// accepted as a risk, and (with the webhook secret) the supplier's answer with a corrected PDF.
+let thread;
+try {
+  const findings = (await (await api.get(`${base}/shipments/${featured.id}/validation`)).json()).findings;
+  const [kept, ...asked] = [...findings].reverse();
+  if (kept && asked.length) {
+    await api.post(`${base}/shipments/${featured.id}/findings/review`, { data: { fingerprints: [kept.fingerprint], status: 'accepted', note: 'Confirmed with the carrier: the booking shows the same container.' } });
+    const created = await api.post(`${base}/mail/threads`, {
+      data: {
+        kind: 'correction_request',
+        shipmentId: featured.id,
+        to: ['exports@supplier.example.com'],
+        cc: [],
+        subject: `Corrections needed: shipment Sample ${featured.sampleId}`,
+        body: `Hello,\n\nChecking the documents of shipment Sample ${featured.sampleId}, we found the differences listed in this request. Could you send us corrected documents?\n\nThank you,\n${account.name}`,
+        language: 'en',
+        fingerprints: asked.map((f) => f.fingerprint),
+      },
+    });
+    if (created.ok()) thread = await created.json();
+  }
+  if (thread && values['inbound-secret']) {
+    await sleep(1500); // the outbox sends the request first
+    const nodemailer = createRequire(resolve('apps/api/package.json'))('nodemailer');
+    const pdf = ['data/demo', 'data/eval/v1'].map((d) => join(d, featured.sampleId, 'bill-of-lading.pdf')).find((f) => { try { readFileSync(f); return true; } catch { return false; } });
+    const reply = await nodemailer.createTransport({ streamTransport: true, buffer: true }).sendMail({
+      from: 'Mei Chen <exports@supplier.example.com>',
+      to: thread.replyTo,
+      subject: `Re: ${thread.subject}`,
+      text: `Hi ${account.name.split(' ')[0]},\n\nSorry for the mix-up. The corrected bill of lading is attached; the packing list is right.\n\nBest regards,\nMei Chen\nExport desk`,
+      attachments: pdf ? [{ filename: 'bill-of-lading-corrected.pdf', content: readFileSync(pdf), contentType: 'application/pdf' }] : [],
+    });
+    const res = await fetch(`${base}/mail/inbound`, { method: 'POST', headers: { 'content-type': 'message/rfc822', 'x-inbound-secret': values['inbound-secret'] }, body: reply.message });
+    if (!res.ok) console.warn(`The supplier's reply was not accepted: ${res.status}`);
+  }
+} catch (err) {
+  console.warn(`Inbox shots will be incomplete: ${err instanceof Error ? err.message : err}`);
+}
 const cookies = (await setup.storageState()).cookies;
 
 async function deleteAccount() {
@@ -118,6 +166,8 @@ async function newPage({ theme = 'light', width = 1440, height = 900, signedIn =
 
 async function settle(page) {
   await page.waitForLoadState('networkidle');
+  // Notes about a development server without SMTP are not part of the product's look.
+  await page.addStyleTag({ content: '.mail-dev-note { display: none !important; }' });
   await page.waitForSelector('h1', { timeout: 10000 });
   // Fonts, charts and transitions.
   await page.evaluate(() => document.fonts.ready);
@@ -178,6 +228,16 @@ try {
       if (company) await shoot(page, `/app/companies/${company}`, 'company');
       if (product) await shoot(page, `/app/products/${product}`, 'product-prices');
       await shoot(page, '/app/containers', 'containers');
+      if (thread) {
+        await shoot(page, '/app/inbox?filter=all', 'inbox');
+        await shoot(page, `/app/inbox/${thread.id}`, 'conversation');
+      }
+      await shoot(page, `/app/s/${featured.id}`, 'request-compose', async (p) => {
+        await p.getByRole('button', { name: 'Ask for corrections' }).click();
+        await p.waitForSelector('.dialog textarea');
+        await p.locator('.dialog input[inputmode="email"]').first().fill('exports@supplier.example.com');
+        await p.waitForTimeout(400);
+      });
       await shoot(page, '/app/rules', 'rules');
       await shoot(page, '/app/results', 'evaluation-results');
       await shoot(page, '/app/samples', 'samples');

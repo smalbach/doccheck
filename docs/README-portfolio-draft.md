@@ -25,6 +25,12 @@ running app.
 | **Dashboard**: shipments that need attention at a glance | **Shipments**, filtered and paged on the server |
 | ![Extracted data: totals across shipments](docs/screenshots/extracted-data-summary.webp) | ![Every invoice line across shipments, with HS code and origin](docs/screenshots/extracted-data-goods.webp) |
 | **Extracted data**: values, weights and origins added up | **Goods**: every invoice line, searchable by description, origin or HS code |
+| ![Asking the supplier for corrected documents, drafted from the findings](docs/screenshots/request-compose.webp) | ![A conversation with the supplier: the request, the reply and its corrected PDF](docs/screenshots/conversation.webp) |
+| **Ask for corrections**: the email is drafted from the findings, in English, Spanish or French, and sent from the app | **Conversation**: the supplier's reply comes back with its PDF, which goes into the shipment in one click |
+| ![Inbox of conversations with suppliers](docs/screenshots/inbox.webp) | ![A company's page: addresses, related companies, products and shipments](docs/screenshots/company.webp) |
+| **Inbox**: unread replies, requests awaiting an answer, overdue and failed ones | **Company**: one record however the documents spell it, with everything they say about it |
+| ![A product's prices over time and per seller](docs/screenshots/product-prices.webp) | ![Every container on the bills of lading](docs/screenshots/containers.webp) |
+| **Product**: price per purchase, per seller and per currency | **Containers**: seal, carrier, vessel and route |
 | ![Rule catalog by destination](docs/screenshots/rules.webp) | ![Evaluation page: field accuracy and per-rule recall and precision](docs/screenshots/evaluation-results.webp) |
 | **Rules**: what is checked for each destination | **Evaluation**: the measured numbers, inside the app |
 | ![Dashboard in dark theme](docs/screenshots/dashboard-dark.webp) | ![Shipment findings in dark theme](docs/screenshots/shipment-findings-dark.webp) |
@@ -36,7 +42,7 @@ running app.
   <img src="docs/screenshots/landing.webp" width="560" alt="Landing page">
 </p>
 
-Also available: [samples page](docs/screenshots/samples.webp). The interface is in English, Spanish and French, with light, dark or system theme, and is audited with axe-core (WCAG 2.1 AA) at phone and desktop widths.
+Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/screenshots/companies.webp), [products](docs/screenshots/products.webp). The interface is in English, Spanish and French, with light, dark or system theme, and is audited with axe-core (WCAG 2.1 AA) at phone and desktop widths.
 
 ## What it does
 
