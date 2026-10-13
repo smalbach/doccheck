@@ -1,0 +1,9 @@
+.form-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+.sample-search { max-width: 260px; margin: 4px 0 12px; }
+.samples { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.sample { text-align: left; display: flex; flex-direction: column; gap: 6px; padding: 10px; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-sm); cursor: pointer; }
+.sample:hover:not(:disabled) { border-color: var(--accent); }
+.sample:disabled { opacity: 0.5; cursor: default; }
+.sample-id { font-weight: 600; display: flex; gap: 6px; align-items: center; }
+.sample-errors { display: flex; flex-wrap: wrap; gap: 4px; }
+.more { display: flex; justify-content: center; margin-top: 12px; }

@@ -1,0 +1,12 @@
+.app-header { display: flex; align-items: baseline; gap: 14px; padding: 14px 16px; border-bottom: 1px solid var(--line); background: var(--surface); flex-wrap: wrap; }
+.brand { font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.logo { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: var(--radius-sm); background: var(--accent); color: var(--accent-contrast); font-size: 14px; }
+.tagline { color: var(--muted); font-size: 13px; }
+.nav { margin-left: auto; display: flex; gap: 14px; font-size: 13px; }
+.nav-link { color: var(--muted); text-decoration: none; padding: 2px 0; border-bottom: 2px solid transparent; }
+.nav-link.active { color: var(--text); border-bottom-color: var(--accent); }
+.app-main { max-width: 1240px; margin: 0 auto; padding: 20px 16px 40px; }
+.app-footer { text-align: center; color: var(--muted); font-size: 12px; padding: 20px 16px 30px; }
+.back-link { font-size: 13px; text-decoration: none; }
+.title-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+.lede { max-width: 760px; }
