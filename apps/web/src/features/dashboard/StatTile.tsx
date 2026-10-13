@@ -3,7 +3,7 @@ import { cx } from '../../lib/cx';
 
 export interface StatTileProps {
   label: string;
-  value: number;
+  value: ReactNode;
   href?: string;
   tone?: 'neutral' | 'attention' | 'ok';
   hint?: ReactNode;

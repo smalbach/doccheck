@@ -25,6 +25,12 @@ import type {
   Role,
   Validation,
   ValidationSummary,
+  GoodsLine,
+  GoodsQuery,
+  InsightsSummary,
+  Paged,
+  ShipmentData,
+  ShipmentDataQuery,
 } from './types';
 
 const shipmentPath = (id: string) => `/shipments/${encodeURIComponent(id)}`;
@@ -71,6 +77,10 @@ export const api = {
   loadSample: (sampleId: string) => request<Shipment>(`/demo/samples/${encodeURIComponent(sampleId)}`, { method: 'POST' }),
 
   results: () => request<Results>('/results'),
+
+  insightsSummary: (destination?: Destination) => request<InsightsSummary>(`/insights/summary${queryString({ destination })}`),
+  insightsLines: (query: GoodsQuery) => request<Paged<GoodsLine>>(`/insights/lines${queryString({ ...query })}`),
+  insightsShipments: (query: ShipmentDataQuery) => request<Paged<ShipmentData>>(`/insights/shipments${queryString({ ...query })}`),
 
   adminSettings: () => request<AdminSettings>('/admin/settings'),
   updateSettings: (values: Partial<SettingValues>) => request<AdminSettings>('/admin/settings', jsonBody(values, 'PUT')),

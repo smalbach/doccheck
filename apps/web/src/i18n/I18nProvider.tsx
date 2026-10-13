@@ -46,6 +46,19 @@ export function I18nProvider({ initialLocale, initialMessages, children }: I18nP
         return Number.isNaN(d.getTime()) ? '—' : date.format(d);
       },
       formatPercent: (v) => (v === null || v === undefined ? '—' : percent.format(v)),
+      formatNumber: (v, maxFractionDigits = 2) => {
+        const n = v === null || v === undefined || v === '' ? NaN : Number(v);
+        return Number.isFinite(n) ? new Intl.NumberFormat(locale, { maximumFractionDigits: maxFractionDigits }).format(n) : '—';
+      },
+      formatMoney: (amount, currency) => {
+        const n = amount === null || amount === undefined || amount === '' ? NaN : Number(amount);
+        if (!Number.isFinite(n)) return '—';
+        try {
+          return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(n);
+        } catch {
+          return `${new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }).format(n)} ${currency}`;
+        }
+      },
     };
   }, [locale, messages, setLocale]);
 

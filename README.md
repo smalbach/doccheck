@@ -158,6 +158,9 @@ After the rules run, `/validate` does a second pass:
 | GET | `/shipments/:id` | Shipment and status |
 | PATCH | `/shipments/:id` | `{ reference?, destination?, transportMode? }`. The destination is refused while documents extract and, leaving the US, while the ISF was entered by hand (409); one read from a PDF is set aside and comes back with the US |
 | DELETE | `/shipments/:id` | Delete the shipment with its documents, PDFs, extractions, ISF and findings (409 while extracting) |
+| GET | `/insights/summary` | The extracted data of all the user's shipments added up: invoiced value per currency, gross and net kg, packages, containers, quantities per unit, and lines and value per country of origin and per HS subheading (`?destination=`) |
+| GET | `/insights/lines` | Every commercial invoice line with its shipment: `?q=text&origin=CN&hs=9503&destination=CA&limit=50&offset=0` |
+| GET | `/insights/shipments` | Per shipment: invoice, parties, incoterm, value, packages, weights, B/L, vessel, ports and containers (`?q=` also finds a container or B/L number) |
 | GET | `/results` | Summary of the evaluation reports in `eval/reports`, for the web app's results page |
 | PUT / GET / DELETE | `/shipments/:id/isf` | The shipment's ISF (10+2) as JSON, used by X11 on US shipments. GET says where it came from (`source`: `upload`, `sample` or `pdf` with `documentId`) |
 | POST | `/shipments/:id/documents` | Upload PDFs (multipart field `files`): invoice, packing list, bill of lading or ISF filing confirmation (stored as the shipment's ISF). Returns 202 with the documents `QUEUED`; `?wait=true` waits for extraction |

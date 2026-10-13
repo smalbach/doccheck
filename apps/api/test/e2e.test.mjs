@@ -649,6 +649,49 @@ const isfSample = await (async () => {
   return undefined;
 })();
 
+describe('insights', () => {
+  /** A shipment of `user` with the three documents extracted as given. */
+  const shipmentWith = async (user, destination, docs) => {
+    const { body: s } = await call('POST', '/shipments', { destination, reference: `Insights ${destination}` }, user);
+    for (const [type, data] of Object.entries(docs)) {
+      const id = randomUUID();
+      await repo.insertDocument({ id, shipmentId: s.id, fileName: `${type}.pdf`, storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+      await repo.saveExtraction(id, { pageCount: 1, detectedType: type, typeConfidence: 1 }, { documentId: id, documentType: type, model: 'test', promptVersion: 'test', raw: {}, data, issues: [], pdfLines: [] });
+    }
+    return s;
+  };
+
+  it('sums values, weights and lines across the user\'s shipments, and lists them', async () => {
+    const user = await signUp('Insights');
+    const docs = { COMMERCIAL_INVOICE: sampleInvoice, PACKING_LIST: samplePackingList, BILL_OF_LADING: sampleBillOfLading };
+    const ca = await shipmentWith(user, 'CA', docs);
+    const second = { ...sampleInvoice, invoiceNumber: 'INV-2', currency: 'CAD', lines: [{ ...sampleInvoice.lines[0], description: 'Wooden puzzle', countryOfOrigin: 'VN', hsCode: '9503.00.0090', lineTotal: { amount: '100.50', currency: 'CAD' } }] };
+    await shipmentWith(user, 'US', { COMMERCIAL_INVOICE: second });
+    await shipmentWith(await signUp('Someone else'), 'CA', docs);
+    const get = (path) => call('GET', path, undefined, user).then((r) => r.body);
+
+    const summary = await get('/insights/summary');
+    assert.equal(summary.shipments, 2);
+    assert.equal(summary.invoiceLines, sampleInvoice.lines.length + 1);
+    assert.deepEqual(summary.valueByCurrency, [{ key: 'USD', amount: '48600.00' }, { key: 'CAD', amount: '100.50' }]);
+    assert.equal(Number(summary.grossKg), 2500); // the bill of lading's, then the second shipment's invoice (it has no other document)
+    assert.equal(summary.containers, 1);
+    assert.deepEqual(summary.byHsCode.map((g) => [g.hsCode, g.lines]), [['950300', 2]]);
+    assert.deepEqual((await get('/insights/summary?destination=US')).valueByCurrency, [{ key: 'CAD', amount: '100.50' }]);
+
+    const lines = await get('/insights/lines?origin=VN');
+    assert.deepEqual(lines.items.map((l) => [l.description, l.invoiceNumber, l.lineTotal.amount]), [['Wooden puzzle', 'INV-2', '100.50']]);
+    assert.equal((await get('/insights/lines?hs=9503.00')).total, 2);
+    assert.equal((await get('/insights/lines?q=puzzle')).total, 1);
+    assert.equal((await call('GET', '/insights/lines?hs=abc', undefined, user)).status, 400);
+
+    const ships = await get(`/insights/shipments?q=${encodeURIComponent(sampleBillOfLading.containers[0].number)}`);
+    assert.deepEqual(ships.items.map((s) => s.shipmentId), [ca.id]);
+    assert.deepEqual([ships.items[0].packages, ships.items[0].blNumber, ships.items[0].containers], [120, sampleBillOfLading.blNumber, ['CSQU3054383']]);
+    assert.equal((await call('GET', '/insights/summary', undefined, '')).status, 401);
+  });
+});
+
 describe('ISF PDF upload', { skip: !isfSample && 'no ISF PDF with a cached model response' }, () => {
   const upload = async (shipmentId) => {
     const form = new FormData();

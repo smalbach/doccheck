@@ -240,3 +240,89 @@ export interface Health {
   demo?: boolean;
   registrationOpen?: boolean;
 }
+
+/** A sum per currency or unit; amounts stay decimal strings. */
+export interface Total {
+  key: string;
+  amount: string;
+}
+
+export interface Paged<T> {
+  items: T[];
+  total: number;
+  limit: number;
+  offset: number;
+}
+
+/** Extracted data of all of the user's shipments, added up. */
+export interface InsightsSummary {
+  shipments: number;
+  invoiceLines: number;
+  valueByCurrency: Total[];
+  quantityByUnit: Total[];
+  grossKg: string;
+  netKg: string;
+  packages: number;
+  containers: number;
+  byOrigin: { country: string | null; lines: number; values: Total[] }[];
+  byHsCode: { hsCode: string | null; description: string; lines: number; values: Total[] }[];
+}
+
+/** One commercial invoice line, with the shipment it belongs to. */
+export interface GoodsLine {
+  shipmentId: string;
+  reference?: string;
+  destination?: Destination;
+  documentId: string;
+  invoiceNumber?: string;
+  seller?: string;
+  lineNo: number;
+  sku?: string;
+  description: string;
+  hsCode?: string;
+  countryOfOrigin?: string;
+  quantity?: { value: string; unit: string };
+  unitPrice?: { amount: string; currency: string };
+  lineTotal?: { amount: string; currency: string };
+}
+
+export interface GoodsQuery {
+  destination?: Destination;
+  q?: string;
+  origin?: string;
+  hs?: string;
+  limit?: number;
+  offset?: number;
+}
+
+/** The key figures of one shipment, from its invoice, packing list and bill of lading. */
+export interface ShipmentData {
+  shipmentId: string;
+  reference?: string;
+  destination?: Destination;
+  createdAt: string;
+  invoiceNumber?: string;
+  invoiceDate?: string;
+  seller?: string;
+  buyer?: string;
+  incoterm?: string;
+  invoiceTotal?: { amount: string; currency: string };
+  lines: number;
+  packages?: number;
+  grossKg?: string;
+  netKg?: string;
+  volumeM3?: string;
+  blNumber?: string;
+  carrier?: string;
+  vessel?: string;
+  portOfLoading?: string;
+  portOfDischarge?: string;
+  containers: string[];
+}
+
+export interface ShipmentDataQuery {
+  destination?: Destination;
+  q?: string;
+  limit?: number;
+  offset?: number;
+}

@@ -83,3 +83,15 @@ a.stat-tile:hover { border-color: var(--accent); }
 .pager > .muted { margin-right: auto; }
 .is-refreshing { opacity: 0.6; transition: opacity 0.15s; }
 @media (prefers-reduced-motion: reduce) { .is-refreshing { transition: none; } }
+
+/* Extracted data (insights) */
+.block { display: block; }
+.mono { font-family: var(--mono); }
+.filters-grow { flex: 1 1 240px; min-width: 0; }
+.filters .input-short { width: 110px; }
+.section-title { font-size: 15px; margin: 16px 0 8px; }
+.insights-breakdowns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 16px; }
+.stat-tile-compact { font-size: 20px; display: flex; flex-direction: column; }
+@media (max-width: 600px) { .filters .input-short { width: calc(50% - 4px); } }
+.nowrap { white-space: nowrap; }
+.cell-wide { min-width: 200px; }

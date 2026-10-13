@@ -75,6 +75,7 @@ const staticPages = [
   '/app/shipments',
   '/app/shipments/new',
   '/app/samples',
+  '/app/data',
   '/app/rules',
   '/app/results',
   '/app/account',

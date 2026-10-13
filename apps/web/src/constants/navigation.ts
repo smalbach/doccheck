@@ -1,4 +1,4 @@
-import { ActivityLogIcon, ArchiveIcon, BarChartIcon, DashboardIcon, GearIcon, LayersIcon, PersonIcon, PlusIcon, ReaderIcon } from '@radix-ui/react-icons';
+import { ActivityLogIcon, ArchiveIcon, BarChartIcon, DashboardIcon, GearIcon, LayersIcon, PersonIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
 import type { ComponentType } from 'react';
 import type { MessageKey } from '../i18n/keys';
 import type { AppRoute } from '../lib/parseRoute';
@@ -26,6 +26,7 @@ export const NAVIGATION: NavGroup[] = [
     items: [
       { labelKey: 'nav.dashboard', href: '#/app', icon: DashboardIcon, matches: ['dashboard'] },
       { labelKey: 'nav.shipments', href: '#/app/shipments', icon: ArchiveIcon, matches: ['shipments', 'shipment'] },
+      { labelKey: 'nav.data', href: '#/app/data', icon: TableIcon, matches: ['insights'] },
       { labelKey: 'nav.newShipment', href: '#/app/shipments/new', icon: PlusIcon, matches: ['new-shipment'], writes: true },
       { labelKey: 'nav.samples', href: '#/app/samples', icon: LayersIcon, matches: ['samples'] },
     ],

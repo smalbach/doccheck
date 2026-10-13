@@ -6,6 +6,7 @@ export type AppRoute =
   | { name: 'new-shipment' }
   | { name: 'shipment'; id: string }
   | { name: 'samples' }
+  | { name: 'insights' }
   | { name: 'rules' }
   | { name: 'results' }
   | { name: 'account' }
@@ -23,6 +24,7 @@ const APP_PAGES: Record<string, AppRoute> = {
   '/app/shipments': { name: 'shipments' },
   '/app/shipments/new': { name: 'new-shipment' },
   '/app/samples': { name: 'samples' },
+  '/app/data': { name: 'insights' },
   '/app/rules': { name: 'rules' },
   '/app/results': { name: 'results' },
   // Links from before the app moved under /app.

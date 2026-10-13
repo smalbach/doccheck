@@ -13,6 +13,7 @@ const AccountPage = lazy(() => import('../../features/account/AccountPage').then
 const SettingsPage = lazy(() => import('../../features/admin/settings/SettingsPage').then((m) => ({ default: m.SettingsPage })));
 const SystemPage = lazy(() => import('../../features/admin/system/SystemPage').then((m) => ({ default: m.SystemPage })));
 const UsersPage = lazy(() => import('../../features/admin/users/UsersPage').then((m) => ({ default: m.UsersPage })));
+const InsightsPage = lazy(() => import('../../features/insights/InsightsPage').then((m) => ({ default: m.InsightsPage })));
 const ResultsPage = lazy(() => import('../../features/results/ResultsPage').then((m) => ({ default: m.ResultsPage })));
 const RulesPage = lazy(() => import('../../features/rules/RulesPage').then((m) => ({ default: m.RulesPage })));
 
@@ -29,6 +30,8 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return <ShipmentPage id={route.id} />;
     case 'samples':
       return <SamplesPage />;
+    case 'insights':
+      return <InsightsPage />;
     case 'rules':
       return <RulesPage />;
     case 'results':

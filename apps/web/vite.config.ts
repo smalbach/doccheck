@@ -9,6 +9,6 @@ export default defineConfig({
   server: {
     port: 5173,
     // Keep the browser's Host header: the API refuses state-changing requests whose Origin is another host.
-    proxy: Object.fromEntries(['/auth', '/admin', '/shipments', '/demo', '/rules', '/health', '/results'].map((p) => [p, { target: api, changeOrigin: false }])),
+    proxy: Object.fromEntries(['/auth', '/admin', '/shipments', '/demo', '/rules', '/health', '/results', '/insights'].map((p) => [p, { target: api, changeOrigin: false }])),
   },
 });
