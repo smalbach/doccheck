@@ -11,6 +11,8 @@ export interface StructuredRequest<S extends z.ZodType> {
   system: string;
   user: string;
   schema: S;
+  /** Aborts the call (a cancelled extraction): the request to the model is dropped and the call rejects with the signal's reason. */
+  signal?: AbortSignal;
 }
 
 export interface Usage {
@@ -54,6 +56,7 @@ export class OllamaProvider implements LlmProvider {
     try {
       res = await fetch(`${this.baseUrl}/api/chat`, {
         method: 'POST',
+        signal: req.signal,
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           model: this.model,
@@ -68,6 +71,7 @@ export class OllamaProvider implements LlmProvider {
         }),
       });
     } catch (err) {
+      req.signal?.throwIfAborted();
       throw new LlmError(`Ollama is not reachable at ${this.baseUrl} (${err instanceof Error ? err.message : String(err)})`);
     }
     if (!res.ok) throw new LlmError(`Ollama ${res.status}: ${await res.text()}`);
@@ -160,9 +164,11 @@ export class LlmClient {
       if (this.mode === 'replay') throw new LlmError(`Cache miss in replay mode (${this.provider.id}, key ${key})`);
     }
 
+    req.signal?.throwIfAborted();
     let { output, usage } = await this.provider.generate(req);
     let parsed = req.schema.safeParse(output);
     if (!parsed.success) {
+      req.signal?.throwIfAborted();
       const retry = await this.provider.generate({
         ...req,
         user: `${req.user}\n\nYour previous answer did not match the schema:\n${z.prettifyError(parsed.error)}\nReturn the corrected JSON.`,

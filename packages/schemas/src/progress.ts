@@ -85,6 +85,43 @@ export interface ValidationDetail {
   saved: { validationId?: string; findings?: number; skipped?: number; agent?: 'done' | 'skipped' | 'failed' };
 }
 
+/** Error of an extraction the user cancelled (the document ends FAILED with it; `saved` fails with reason 'cancelled'). */
+export const CANCELLED_ERROR = 'Cancelled by the user';
+
+/** How long a stage usually takes on this server: median of `samples` recent runs (ms). */
+export interface StageEstimate {
+  ms: number;
+  samples: number;
+}
+
+/**
+ * Typical stage durations on this server, from recent progress events (GET /events/estimates), for an
+ * activity panel to say "about 40 s left". A skipped stage counts as 0 ms. Clients decide how many
+ * samples are enough.
+ */
+export interface ProgressEstimates {
+  /** Model the next extraction will use (provider id, e.g. "ollama:qwen3.8"). */
+  model: string;
+  /** Per extraction stage; `reading` without OCR. */
+  extraction: Partial<Record<ExtractionStage, StageEstimate>>;
+  /** The model call (`extracting`) per model id. */
+  models: Record<string, StageEstimate>;
+  /** One page recognized by OCR. */
+  ocrPage?: StageEstimate;
+  /** Per validation stage (`agent`: the whole stage). */
+  validation: Partial<Record<ValidationStage, StageEstimate>>;
+  /** One agent question, asked and answered. */
+  agentQuestion?: StageEstimate;
+  /** ISO time the estimates were computed (they are cached for a minute). */
+  computedAt: string;
+}
+
+/** Names the activity panel shows for runs (GET /events/labels): only the user's own shipments and documents. */
+export interface ActivityLabels {
+  shipments: { id: string; reference: string | null; destination: string | null }[];
+  documents: { id: string; shipmentId: string; fileName: string; status: string }[];
+}
+
 /** One stage-level update, as packages report it: no ids, no time (the API adds them). */
 export type UpdateOf<D> = {
   [S in keyof D & string]: { stage: S; status: ProgressStatus; durationMs?: number; detail?: D[S] & CommonDetail };

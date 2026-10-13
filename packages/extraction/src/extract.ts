@@ -69,19 +69,20 @@ export function extractionRequest(pdf: PdfText, type: ExtractableType) {
   };
 }
 
-/** The model call (stage `extracting`), then normalization (stage `normalizing`). */
+/** The model call (stage `extracting`), then normalization (stage `normalizing`). `signal` aborts the model call. */
 export async function extractFromText<K extends ExtractableType>(
   pdf: PdfText,
   type: K,
   llm: LlmClient,
   onProgress?: ProgressCallback<ExtractionDetail>,
+  signal?: AbortSignal,
 ): Promise<Omit<ExtractionResult<Canonical[K]>, 'documentType' | 'typeConfidence' | 'pdf'>> {
   const pipeline = PIPELINES[type];
   const model = llm.provider.id;
   const { output, usage, cached } = await withStage(
     onProgress,
     'extracting',
-    () => llm.call(PROMPT_VERSION, extractionRequest(pdf, type)),
+    () => llm.call(PROMPT_VERSION, { ...extractionRequest(pdf, type), signal }),
     (r) => ({ model, documentType: type, cached: r.cached, inputTokens: r.usage?.inputTokens, outputTokens: r.usage?.outputTokens }),
     { model, documentType: type },
   );
@@ -97,11 +98,17 @@ export async function extractFromText<K extends ExtractableType>(
 export interface ExtractOptions {
   /** Stage updates: reading, ocr (scans only), classifying, extracting, normalizing. */
   onProgress?: ProgressCallback<ExtractionDetail>;
+  /**
+   * Stops the extraction (the user cancelled it): checked between stages and between OCR pages, and
+   * passed to the model call. The promise then rejects with the signal's reason, the stage it was in failed.
+   */
+  signal?: AbortSignal;
 }
 
 /** PDF bytes -> classified, extracted and normalized document. `type` skips classification. */
-export async function extractDocument(pdfBytes: Uint8Array, llm: LlmClient, type?: ExtractableType, { onProgress }: ExtractOptions = {}): Promise<ExtractionResult> {
-  const pdf = await withStage(onProgress, 'reading', () => readPdfText(pdfBytes, { onProgress }), (p) => ({ pages: p.pageCount, ...(p.ocrPages ? { ocrPages: p.ocrPages } : {}) }));
+export async function extractDocument(pdfBytes: Uint8Array, llm: LlmClient, type?: ExtractableType, { onProgress, signal }: ExtractOptions = {}): Promise<ExtractionResult> {
+  signal?.throwIfAborted();
+  const pdf = await withStage(onProgress, 'reading', () => readPdfText(pdfBytes, { onProgress, signal }), (p) => ({ pages: p.pageCount, ...(p.ocrPages ? { ocrPages: p.ocrPages } : {}) }));
   if (pdf.lines.length === 0) {
     return { documentType: 'UNKNOWN', typeConfidence: 0, pdf, raw: null, data: null, issues: ['No readable text, even with OCR: the PDF may be blank or too degraded'], cached: false };
   }
@@ -112,10 +119,11 @@ export async function extractDocument(pdfBytes: Uint8Array, llm: LlmClient, type
   } else {
     detected = await withStage(onProgress, 'classifying', async () => classifyDocument(pdf.text), (d) => ({ documentType: d.type, confidence: d.confidence }));
   }
+  signal?.throwIfAborted();
   if (!(detected.type in PIPELINES)) {
     return { documentType: detected.type, typeConfidence: detected.confidence, pdf, raw: null, data: null, issues: [`Unsupported document type ${detected.type}`], cached: false };
   }
-  const result = await extractFromText(pdf, detected.type as ExtractableType, llm, onProgress);
+  const result = await extractFromText(pdf, detected.type as ExtractableType, llm, onProgress, signal);
   if (pdf.ocrPages) result.issues.unshift(`Read with OCR (page${pdf.ocrPages.length > 1 ? 's' : ''} ${pdf.ocrPages.join(', ')}, confidence ${pdf.ocrConfidence}%): check values against the scan`);
   return { documentType: detected.type, typeConfidence: detected.confidence, pdf, ...result };
 }

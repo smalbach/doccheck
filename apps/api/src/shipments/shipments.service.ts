@@ -4,14 +4,16 @@ import { attachRegulations, reviewFindings, type AgentDecision } from '@doccheck
 import { findFieldSource, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
 import { runRules, type EngineOutput, type ShipmentContext } from '@doccheck/rules';
 import {
-  applyPointerChanges, BillOfLading, CommercialInvoice, diffPointers, fieldPointer, Isf, PackingList, readPointer, startStage, toPointer,
+  applyPointerChanges, BillOfLading, CANCELLED_ERROR, CommercialInvoice, diffPointers, fieldPointer, Isf, PackingList, readPointer, startStage, toPointer,
   type Destination, type PointerChange, type Shipment, type ShipmentDocument,
 } from '@doccheck/schemas';
 import { isDemo } from '../demo/demo-mode';
 import { InjectLlm, RegulationsService } from '../llm/llm.module';
 import type { ProgressRun } from '../progress/progress-run';
+import { ProgressRepository } from '../progress/progress.repository';
 import { ProgressService } from '../progress/progress.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
+import { DocumentProcessor } from './document.processor';
 import { ExtractionQueue } from './extraction.queue';
 import type { CreateShipmentDto, ListShipmentsQuery, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
 import { ShipmentsRepository, type CorrectionResult, type ExtractionRow, type NewCorrection } from './shipments.repository';
@@ -63,6 +65,8 @@ export class ShipmentsService {
     @Inject(STORAGE) private readonly storage: ObjectStorage,
     @InjectLlm() private readonly llm: LlmClient,
     private readonly progress: ProgressService,
+    private readonly progressRepo: ProgressRepository,
+    private readonly processor: DocumentProcessor,
   ) {}
 
   async create(dto: CreateShipmentDto, userId: string): Promise<Shipment> {
@@ -182,6 +186,32 @@ export class ShipmentsService {
     await this.repo.updateDocumentStatus(documentId, 'QUEUED');
     await this.repo.refreshShipmentStatus(id);
     await this.queue.enqueue(id, [documentId], wait, type);
+    return this.document(id, documentId);
+  }
+
+  /**
+   * Cancels a document's extraction. Waiting in line: it leaves the queue and ends FAILED ("Cancelled
+   * by the user") at once, with a failed `saved` event. Running: the process running it (this one or
+   * a worker) is asked to stop, and the processor ends it the same way; the document is returned as
+   * it is then (still EXTRACTING if a worker elsewhere has not stopped yet). 409 when neither.
+   */
+  async cancelExtraction(id: string, documentId: string) {
+    const doc = UUID.test(documentId) ? await this.repo.findDocument(documentId) : null;
+    if (!doc || doc.shipmentId !== id) throw new NotFoundException(`Document ${documentId} not found in shipment ${id}`);
+    if (doc.status !== 'QUEUED' && doc.status !== 'EXTRACTING') throw new ConflictException('The document is not being extracted');
+    if (await this.repo.cancelQueuedDocument(documentId, CANCELLED_ERROR)) {
+      await this.queue.remove(documentId);
+      const latest = await this.progressRepo.latestExtractionRun(id, documentId);
+      const run = this.progress.run('extraction', id, { documentId, runId: latest && !latest.ended ? latest.runId : undefined });
+      const waited = latest?.queuedAt ? Math.max(0, Date.now() - latest.queuedAt.getTime()) : 0;
+      if (latest && !latest.ended) await run.emit({ stage: 'queued', status: 'failed', durationMs: waited, detail: { error: CANCELLED_ERROR } });
+      await run.emit({ stage: 'saved', status: 'failed', durationMs: 0, detail: { error: CANCELLED_ERROR, reason: 'cancelled' } });
+      await this.repo.refreshShipmentStatus(id);
+      this.logger.log(`${doc.fileName}: cancelled while queued`);
+    } else {
+      await this.processor.cancel(documentId);
+    }
+    await this.progress.flush();
     return this.document(id, documentId);
   }
 

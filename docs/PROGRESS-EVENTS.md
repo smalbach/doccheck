@@ -15,6 +15,9 @@ the API that delivers them, and the web app that shows them.
 | A run being reported (ids, open stages, demo pacing) | `apps/api/src/progress/progress-run.ts` |
 | SQL | `apps/api/src/progress/progress.repository.ts` |
 | SSE routes | `apps/api/src/progress/progress.controller.ts`, framing in `sse.ts` |
+| Estimates (typical stage durations) | `apps/api/src/progress/progress-estimates.service.ts` |
+| Cancelling an extraction | `ShipmentsService.cancelExtraction`, `DocumentProcessor.cancel`, `ExtractionQueue.remove` |
+| Web: activity panel (user-wide stream) | `apps/web/src/features/activity/` (`ActivityProvider`, `ActivityIndicator`, `ActivityPanel`, `ActivityItem`), `apps/web/src/lib/activity.ts` (state, place in line, time left), `activityAnnouncement.ts`, `eventStream.ts` |
 | Web: hook, state, UI | `apps/web/src/features/shipment/useShipmentEvents.ts`, `apps/web/src/lib/progressTimeline.ts`, `progressSteps.ts`, `progressAnnouncement.ts`, `RunSteps.tsx`, `DocumentProgress.tsx`, `ValidationProgress.tsx`, `ProgressAnnouncer.tsx` |
 
 The types are defined once, in `@doccheck/schemas`. The web imports them with `import type` (re-exported
@@ -132,8 +135,20 @@ read-only demo guard let them through.
 - `GET /shipments/:id/events`: one shipment, behind `ShipmentOwnerGuard` (404 for someone else's shipment).
   Without a position, the backlog is **the latest run of each document and the latest validation**, enough
   to draw the timelines on page load.
-- `GET /events`: every shipment of the signed-in user (for an activity panel). Without a position, the
-  backlog is the user's latest 50 events.
+- `GET /events`: every shipment of the signed-in user (the activity panel). Without a position, the
+  backlog is every event of the user's runs still going (an event in the last 6 hours) and of their 10
+  latest ended runs (in the last day): whole runs, oldest event first.
+- `GET /events/estimates` (JSON, not a stream): typical stage durations on this server, for "about 40 s
+  left" (`ProgressEstimates` in `@doccheck/schemas`). Medians over the last 7 days of progress events
+  that ended (`done`; `skipped` counts as 0 ms): per extraction stage (`reading` without scans), per OCR
+  page, per validation stage, per agent question, and the model call per model id (`models`) with the
+  model the next extraction will use (`model`). The model call only counts calls that ran the model
+  (`cached: false`), from progress events when there are 3 or more, else from `llm_calls` (30 days); in
+  the read-only demo only the cached, paced calls count. Durations only, no ids; computed at most once a
+  minute. Clients decide how many `samples` are enough (the web wants 3).
+- `GET /events/labels?shipments=<ids>&documents=<ids>` (JSON): reference and destination of the user's
+  shipments, file name and status of their documents, among the comma-separated ids given (100 each at
+  most). Other users' ids are left out silently.
 
 Position: the `Last-Event-ID` header (sent by `EventSource` on its own reconnects) wins over `?after=<id>`.
 With either, the backlog is every event after that id (at most 1000).
@@ -158,6 +173,31 @@ live. A `: ping` comment every 20 s keeps proxies from closing the connection. L
 the backlog is read are held and sent after it, without duplicates. On shutdown every stream is ended so the
 HTTP server can close.
 
+## Cancelling an extraction
+
+`POST /shipments/:id/documents/:documentId/cancel` (owner only, 404 otherwise; 409 unless the document is
+QUEUED or EXTRACTING; 403 in the read-only demo like every write) answers the document as it is then.
+
+- **Waiting in line**: `documents.status` goes QUEUED → FAILED with error `Cancelled by the user` in one
+  statement (only if still QUEUED), the BullMQ job is removed if it is waiting or delayed (in-process: the
+  job is dropped from the in-memory line), and the run ends: `queued` failed, then `saved` failed with
+  `{ error: 'Cancelled by the user', reason: 'cancelled' }`. A worker that already took the job finds the
+  document not QUEUED (`claimDocument`) and leaves it.
+- **Running**: the API asks every process to stop it: `NOTIFY doccheck_cancel, '<documentId>'` (heard on
+  the progress LISTEN connection, `ProgressService.cancelRequests`), and aborts it at once if it runs in
+  this process. `DocumentProcessor` gives each extraction an `AbortController`, registered before it
+  claims the document; its signal goes to `extractDocument(..., { signal })`, which checks it between
+  stages and OCR pages and passes it to the model call (`fetch` to Ollama is aborted). The stage in
+  progress fails, the document ends FAILED (`Cancelled by the user`), `saved` fails with `reason:
+  'cancelled'`, and the job is not retried (BullMQ: `UnrecoverableError`). When the extraction runs in
+  this process the response waits for it to stop (5 s at most); a worker elsewhere stops on its own.
+- A document is FAILED rather than a new status, so everything that reads `DocumentStatus` keeps working;
+  re-extracting it starts a new run.
+- Limit: a cancel NOTIFY sent while a worker's LISTEN connection is down is lost; that extraction ends normally.
+
+On start, the in-process mode marks documents a previous process left QUEUED or EXTRACTING as FAILED and
+ends their open runs with a failed `saved` (so no panel shows them running forever).
+
 Known limit: events from two processes can be committed out of id order, so a client resuming after id N
 could miss an event with a smaller id committed later. The safety poll on the web covers it.
 
@@ -178,6 +218,25 @@ could miss an event with a smaller id committed later. The safety poll on the we
   took 41 s", expandable with the agent's questions and answers). Neither is a live region:
   `ProgressAnnouncer` (polite) speaks only milestones (a document going to the model and ending, a validation
   starting, reaching the agent, ending). Spinners stop under `prefers-reduced-motion`.
+- Activity panel: `ActivityProvider` (in `AppShell`, signed-in pages only) opens the one `/events`
+  stream of the app (`openEventStream`, same reconnection rules) and keeps `ActivityState`: one
+  `RunTimeline` per run id (with its shipment), every running run and the 10 latest finished. Other
+  components can listen to that stream with `useActivityEvents(handler)` instead of opening another one
+  (the shipment page still opens its own `/shipments/:id/events`, whose backlog is different). Names come
+  from `/events/labels`, asked once per new id. `ActivityIndicator` (sidebar; mobile top bar) shows "2
+  running" while anything runs, with the accessible name "2 tasks running", and opens a radix Popover
+  (focus moves to the panel; Escape closes): per run "CA-014 · invoice.pdf", what it does now with the
+  time in that step ("Extracting with the model (28 s)", "Agent question 2 of 4", "Waiting in line, #2"),
+  the time left and a Cancel button (extractions, not in the demo); then the recently finished runs with
+  their outcome, each linking to its shipment. Its polite live region speaks only when runs start ("2 tasks
+  running") or end, and stays quiet about the shipment page being shown (that page has its own announcer).
+- Time left (`remainingMs`, from `/events/estimates`, fetched when the panel opens and every minute while
+  something runs): the rest of the current step plus the typical time of each step ahead (the model call
+  of the run's model; OCR per page; agent questions left). None while queued, when any step ahead has
+  fewer than 3 samples, when the current step runs over 1.25 times its usual time (+5 s), or above an hour;
+  never negative. Shown rounded ("about 40 s left", "a few seconds left" under 10 s).
+- Place in line: the `position` given when queued, minus the user's runs queued before it that have left
+  the line since (other users' jobs are not visible, so it can only be too high).
 - Validate: the stream is open for the whole shipment page, so the blocking `POST /shipments/:id/validate`
   (unchanged for scripts and tests) shows its stages live while it runs.
 
@@ -199,3 +258,10 @@ itself is slowed the same way, so the timeline and the results stay consistent. 
   replay, 404 for another user, 401 without a session, `/events` limited to the user's shipments, and the
   extraction stages of uploaded PDFs (when the evaluation PDFs are present).
 - `apps/web/src/lib/progressTimeline.test.ts`: the web's state, steps and announcements.
+- `apps/web/src/lib/activity.test.ts`: activity state, place in line, time left, announcements.
+- `apps/api/test/progress.test.mjs` (`progress estimates`): which model calls count.
+- `apps/api/test/e2e.test.mjs` (`cancel extraction`, `activity`): cancelling a queued document and a
+  running one in another process (a worker built from the API's classes, NOTIFY), owner only and blocked in
+  the demo; the `/events` backlog (runs still going and the 10 latest ended); labels limited to the user;
+  estimates (median per model, no ids, 401 without a session).
+- `packages/extraction` (`progress`): an aborted model call rejects at once with the reason.

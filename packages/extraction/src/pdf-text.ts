@@ -32,6 +32,8 @@ export interface ReadOptions {
   ocr?: 'auto' | 'off' | 'force';
   /** Reports the `ocr` stage (one progress event per page recognized), only when a page needs OCR. */
   onProgress?: ProgressCallback<ExtractionDetail>;
+  /** Checked before each page (OCR takes seconds per page): reading stops with the signal's reason. */
+  signal?: AbortSignal;
 }
 
 interface Item {
@@ -61,6 +63,7 @@ export async function readPdfText(data: Uint8Array, opts: ReadOptions = {}): Pro
   let ocrStage: StageHandle<ExtractionDetail, 'ocr'> | undefined;
   try {
     for (let p = 1; p <= doc.numPages; p++) {
+      opts.signal?.throwIfAborted();
       const page = await doc.getPage(p);
       const { height } = page.getViewport({ scale: 1 });
       const content = await page.getTextContent();
@@ -76,6 +79,7 @@ export async function readPdfText(data: Uint8Array, opts: ReadOptions = {}): Pro
         ocrStage ??= await startStage(opts.onProgress, 'ocr', { pages: doc.numPages });
         await ocrStage.progress({ page: p, pages: doc.numPages });
         const ocr = await ocrPage(page);
+        opts.signal?.throwIfAborted();
         items = ocr.words;
         ocrPages.push(p);
         confidences.push(ocr.confidence);

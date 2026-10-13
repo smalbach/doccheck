@@ -1,6 +1,7 @@
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { Dialog, VisuallyHidden } from 'radix-ui';
 import { useState } from 'react';
+import { ActivityIndicator } from '../../features/activity/ActivityIndicator';
 import { useI18n } from '../../i18n/useI18n';
 import { Brand } from './Brand';
 import { Sidebar, type SidebarProps } from './Sidebar';
@@ -26,6 +27,9 @@ export function MobileTopbar(props: Omit<SidebarProps, 'onNavigate'>) {
         </Dialog.Portal>
       </Dialog.Root>
       <Brand href="#/app" />
+      <div className="mobile-topbar-end">
+        <ActivityIndicator side="bottom" />
+      </div>
     </header>
   );
 }

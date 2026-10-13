@@ -5,7 +5,7 @@ import { Client } from 'pg';
 import { Observable, Subject } from 'rxjs';
 import { demoPacing } from './demo-pacing';
 import { ProgressRun } from './progress-run';
-import { PROGRESS_CHANNEL, ProgressRepository } from './progress.repository';
+import { CANCEL_CHANNEL, PROGRESS_CHANNEL, ProgressRepository } from './progress.repository';
 import { parseNotification } from './sse';
 
 /** NOTIFY payloads must be shorter than 8000 bytes; larger events are announced by id. */
@@ -25,12 +25,14 @@ const SEEN_IDS = 2000;
  * work it describes.
  * events: every process LISTENs on a dedicated connection (the extraction worker may be another
  * process) and fans the events out in memory; SSE handlers subscribe and filter. The connection is
- * re-opened on error, and what was stored meanwhile is read back from the table.
+ * re-opened on error, and what was stored meanwhile is read back from the table. The same connection
+ * hears cancel requests (doccheck_cancel), so a worker process stops an extraction cancelled through the API.
  */
 @Injectable()
 export class ProgressService implements OnApplicationBootstrap, BeforeApplicationShutdown {
   private readonly logger = new Logger(ProgressService.name);
   private readonly subject = new Subject<ProgressEvent>();
+  private readonly cancels = new Subject<string>();
   private tail: Promise<unknown> = Promise.resolve();
   private listener?: Client;
   private reconnectMs = RECONNECT_MS;
@@ -47,6 +49,19 @@ export class ProgressService implements OnApplicationBootstrap, BeforeApplicatio
   /** Live events of all users; completes when the app shuts down. Subscribers filter what they need. */
   get events(): Observable<ProgressEvent> {
     return this.subject.asObservable();
+  }
+
+  /**
+   * Documents whose extraction a user cancelled, from any process (NOTIFY on doccheck_cancel): the
+   * process running that extraction stops it. Ids are not checked here; the API checked the owner.
+   */
+  get cancelRequests(): Observable<string> {
+    return this.cancels.asObservable();
+  }
+
+  /** Asks whichever process runs this document's extraction (this one included) to stop it. */
+  requestCancel(documentId: string): Promise<void> {
+    return this.repo.notifyCancel(documentId);
   }
 
   /** Stores and announces an event. Resolves with the stored event, or null if it could not be stored. */
@@ -85,6 +100,7 @@ export class ProgressService implements OnApplicationBootstrap, BeforeApplicatio
     clearTimeout(this.reconnectTimer);
     clearInterval(this.pruneTimer);
     this.subject.complete();
+    this.cancels.complete();
     await this.flush();
     await this.listener?.end().catch(() => undefined);
   }
@@ -116,10 +132,12 @@ export class ProgressService implements OnApplicationBootstrap, BeforeApplicatio
     client.on('end', () => drop());
     client.on('notification', (msg) => {
       if (msg.channel === PROGRESS_CHANNEL && msg.payload) void this.receive(msg.payload);
+      if (msg.channel === CANCEL_CHANNEL && msg.payload && !this.closing) this.cancels.next(msg.payload);
     });
     try {
       await client.connect();
       await client.query(`listen ${PROGRESS_CHANNEL}`);
+      await client.query(`listen ${CANCEL_CHANNEL}`);
       this.reconnectMs = RECONNECT_MS;
       // First connection: start from now. After a reconnect: deliver what was stored meanwhile.
       if (this.lastId === 0) this.lastId = await this.repo.lastId().catch(() => 0);

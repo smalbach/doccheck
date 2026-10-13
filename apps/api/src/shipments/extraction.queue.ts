@@ -1,9 +1,9 @@
 import { Injectable, Logger, type OnApplicationBootstrap, type OnApplicationShutdown, type OnModuleInit } from '@nestjs/common';
-import { Queue, QueueEvents, Worker, type ConnectionOptions } from 'bullmq';
+import { Queue, QueueEvents, UnrecoverableError, Worker, type ConnectionOptions } from 'bullmq';
 import type { ExtractableType } from '@doccheck/extraction';
 import { randomUUID } from 'node:crypto';
 import { ProgressService } from '../progress/progress.service';
-import { DocumentProcessor, type ProcessOptions } from './document.processor';
+import { DocumentProcessor, ExtractionCancelledError, type ProcessOptions } from './document.processor';
 
 const QUEUE = 'extraction';
 
@@ -35,6 +35,8 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationBootstrap, On
   private queue?: Queue;
   private events?: QueueEvents;
   private worker?: Worker;
+  /** In-process mode: the job waiting for each document (a cancelled one is dropped from here). */
+  private readonly inline = new Map<string, ExtractionJob>();
 
   constructor(
     private readonly processor: DocumentProcessor,
@@ -56,7 +58,15 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationBootstrap, On
     this.queue = new Queue(QUEUE, { connection, prefix });
     this.events = new QueueEvents(QUEUE, { connection, prefix });
     if (process.env.EXTRACTION_WORKER !== 'false') {
-      this.worker = new Worker<ExtractionJob>(QUEUE, (job) => this.processor.process(job.data.documentId, job.data.type, { willRetry: job.attemptsMade + 1 < (job.opts.attempts ?? 1), runId: job.data.runId, queuedAt: job.data.queuedAt }), {
+      const work = async (job: { data: ExtractionJob; attemptsMade: number; opts: { attempts?: number } }) => {
+        try {
+          await this.processor.process(job.data.documentId, job.data.type, { willRetry: job.attemptsMade + 1 < (job.opts.attempts ?? 1), runId: job.data.runId, queuedAt: job.data.queuedAt });
+        } catch (err) {
+          // Cancelled by the user: no retry.
+          throw err instanceof ExtractionCancelledError ? new UnrecoverableError(err.message) : err;
+        }
+      };
+      this.worker = new Worker<ExtractionJob>(QUEUE, work, {
         connection,
         prefix,
         concurrency: Number(process.env.EXTRACTION_CONCURRENCY ?? 1),
@@ -82,8 +92,14 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationBootstrap, On
     const jobs: ExtractionJob[] = documentIds.map((documentId) => ({ documentId, type, runId: randomUUID(), queuedAt }));
     await Promise.all(jobs.map((j, i) => this.progress.run('extraction', shipmentId, { documentId: j.documentId, runId: j.runId }).emit({ stage: 'queued', status: 'started', detail: { position: ahead + i + 1 } })));
     if (!this.queue) {
+      for (const j of jobs) this.inline.set(j.documentId, j);
       const run = async () => {
-        for (const j of jobs) await this.processor.process(j.documentId, j.type, { runId: j.runId, queuedAt: j.queuedAt }).catch(() => undefined);
+        for (const j of jobs) {
+          // Cancelled while waiting (or queued again since: that newer job runs it).
+          if (this.inline.get(j.documentId) !== j) continue;
+          await this.processor.process(j.documentId, j.type, { runId: j.runId, queuedAt: j.queuedAt }).catch(() => undefined);
+          if (this.inline.get(j.documentId) === j) this.inline.delete(j.documentId);
+        }
       };
       if (wait) await run();
       else void run();
@@ -98,6 +114,20 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationBootstrap, On
       })),
     );
     if (wait) await Promise.all(added.map((j) => j.waitUntilFinished(this.events!).catch(() => undefined)));
+  }
+
+  /**
+   * Takes a document's waiting job out of the queue (cancelled by the user). A job already running is
+   * left alone: DocumentProcessor.cancel stops it. Best effort: the processor also skips a document
+   * that is no longer QUEUED.
+   */
+  async remove(documentId: string): Promise<void> {
+    this.inline.delete(documentId);
+    if (!this.queue) return;
+    const waiting = await this.queue.getJobs(['waiting', 'delayed', 'prioritized']).catch(() => []);
+    for (const job of waiting) {
+      if ((job?.data as ExtractionJob | undefined)?.documentId === documentId) await job.remove().catch((err: Error) => this.logger.warn(`Job ${job.id} not removed: ${err.message}`));
+    }
   }
 
   async onApplicationShutdown() {

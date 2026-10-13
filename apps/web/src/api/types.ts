@@ -2,16 +2,19 @@ import type { DocumentType, Evidence, Finding, Shipment, ShipmentDocument } from
 
 export type { DocumentType, Evidence, Finding, Shipment, ShipmentDocument };
 
-// Live progress events (GET /shipments/:id/events, GET /events): types only, shared with the API
+// Live progress events (GET /shipments/:id/events, GET /events, /events/estimates, /events/labels): types only, shared with the API
 // through @doccheck/schemas so the contract has one definition (docs/PROGRESS-EVENTS.md).
 export type {
+  ActivityLabels,
   AgentAnswer,
   ExtractionDetail,
   ExtractionEvent,
   ExtractionStage,
+  ProgressEstimates,
   ProgressEvent,
   ProgressKind,
   ProgressStatus,
+  StageEstimate,
   ValidationDetail,
   ValidationEvent,
   ValidationStage,
