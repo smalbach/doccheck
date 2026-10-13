@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 605,
+    "outputTokens": 765
+  },
+  "output": {
+    "invoiceNumber": "CI/26/3922",
+    "invoiceDate": "30-JUL-2026",
+    "poNumber": "HA101562",
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RDBEILUN DISTRICT"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "08-AUG-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "NINGBO",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "NINGBO",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "BL-600",
+        "description": "COUNTERTOP BLENDER 600 W WITH GLASS JAR HS 8509.40",
+        "quantity": null,
+        "unit": null,
+        "unitPrice": null,
+        "unitPriceCurrency": null,
+        "lineTotal": null,
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8509.40"
+      }
+    ],
+    "totalPackages": "110 PKGS",
+    "grossWeight": {
+      "value": "1166.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1012.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": null,
+    "invoiceTotalCurrency": null,
+    "charges": []
+  }
+}

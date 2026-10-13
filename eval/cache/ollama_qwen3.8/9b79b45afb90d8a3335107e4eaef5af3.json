@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 726,
+    "outputTokens": 941
+  },
+  "output": {
+    "invoiceNumber": "NOR2609810",
+    "invoiceDate": "07-APR-2026",
+    "poNumber": "QU756171",
+    "seller": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "QUINCALLIERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "QUINCALLIERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "16-APR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "BREMERHAVEN",
+      "country": "DE"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "BREMERHAVEN",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "USD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "BV-2IN",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED HS 8481.80",
+        "quantity": "4770",
+        "unit": "PCS",
+        "unitPrice": "16.15",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "71797.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "49",
+        "unit": "PCS",
+        "unitPrice": "90.86",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "4452.14",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "288",
+    "grossWeight": {
+      "value": "7646.90",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "7163.50",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "81649.14",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

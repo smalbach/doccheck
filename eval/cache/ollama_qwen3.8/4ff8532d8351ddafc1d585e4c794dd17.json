@@ -1,0 +1,90 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 642,
+    "outputTokens": 789
+  },
+  "output": {
+    "invoiceNumber": "CI/26/8635",
+    "invoiceDate": "22-MAY-2026",
+    "poNumber": "HA284597",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "25-MAY-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "SHEKOU",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "SHEKOU",
+    "paymentTerms": "NET 60",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "PZ-1000",
+        "description": "JIGSAW PUZZLE 1000 PIECES, CARDBOARD, BOXED HS 9503.00",
+        "quantity": "4882",
+        "unit": "PCS",
+        "unitPrice": "4.14",
+        "unitPriceCurrency": "USD",
+        "lineTotal": null,
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "203 PKGS",
+    "grossWeight": {
+      "value": "3203.34",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "3020.64",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "20170.08",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 495,
+    "outputTokens": 496
+  },
+  "output": {
+    "packingListNumber": "PL/26/4775",
+    "invoiceRef": "CI/26/4775",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PR857633/C/NO. 1-111",
+    "packages": [
+      {
+        "range": "1-111",
+        "count": "111",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "2,220 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,997.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,119.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      }
+    ],
+    "totalPackages": "111",
+    "totalNetWeight": null,
+    "totalGrossWeight": null,
+    "totalVolumeM3": "5.24"
+  }
+}

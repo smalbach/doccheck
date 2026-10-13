@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 648,
+    "outputTokens": 951
+  },
+  "output": {
+    "packingListNumber": "PL/26/8087",
+    "invoiceRef": "CI/26/8087",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PO-75067/C/NO. 1-283",
+    "packages": [
+      {
+        "range": "1-148",
+        "count": "148 CTN",
+        "packageType": "CTN",
+        "sku": "Brass ball valve 2\"",
+        "description": "Brass ball valve 2\"",
+        "quantity": "2,960 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3,996.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,158.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      },
+      {
+        "range": "149-200",
+        "count": "52 CRT",
+        "packageType": "CRT",
+        "sku": "Centrifugal pump 0.75 kW",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "52 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "754.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "988.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      },
+      {
+        "range": "201-283",
+        "count": "83 CTN",
+        "packageType": "CTN",
+        "sku": "Ball bearing 6204 2",
+        "description": "Ball bearing 6204 2",
+        "quantity": "16,600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,826.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,900.70",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 25"
+      }
+    ],
+    "totalPackages": "283",
+    "totalNetWeight": {
+      "value": "6,576.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "7,047.50",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "14.06"
+  }
+}

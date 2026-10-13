@@ -1,0 +1,90 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 639,
+    "outputTokens": 768
+  },
+  "output": {
+    "invoiceNumber": "CJ/26/9067",
+    "invoiceDate": "2026-04-20",
+    "poNumber": "PO-40035",
+    "seller": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "2026-04-30",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Yantian",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": null,
+    "incotermPlace": null,
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Plush teddy bear 30 cm, polyester filling HS 9503.00",
+        "quantity": "2,550",
+        "unit": "PCS",
+        "unitPrice": "7.44",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "18,972.00",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": "CN",
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "51",
+    "grossWeight": {
+      "value": "520.20",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "459.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "18,972.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 612,
+    "outputTokens": 698
+  },
+  "output": {
+    "invoiceNumber": "CAF2601244",
+    "invoiceDate": "Jan 24, 2026",
+    "poNumber": "PO-65762",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": null,
+    "shipmentDate": "Jan 31, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Buenaventura",
+      "country": "CO"
+    },
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Buenaventura",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CF-GRN-60",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+        "quantity": "15,180 KG",
+        "unit": "KG",
+        "unitPrice": "6.05",
+        "unitPriceCurrency": null,
+        "lineTotal": "91,839.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "253",
+    "grossWeight": {
+      "value": "15,382.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "15,180.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "91,839.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

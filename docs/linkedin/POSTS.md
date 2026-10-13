@@ -232,7 +232,7 @@ tesseract. En los escaneos borrosos de 110 dpi: 94.2% contra 69.3%. Unos 2 segun
 Lección: no evalúes un nombre de modelo, evalúa la forma concreta en que lo vas a correr
 (cuantización, empaquetado, plantilla de prompt). La diferencia acá fue de 29 puntos.
 
-[Próximo: el número de punta a punta, campos y reglas, cuando esté integrado.]
+Integrado en el pipeline, de punta a punta sobre los mismos escaneos: los campos bien leídos pasaron de 81.5% a 94.0%, y las reglas detectaron el 100% de los errores inyectados (antes 81.8%).
 
 #OCR #DocumentAI #Evals #LLM #AppleSilicon
 
@@ -251,6 +251,6 @@ On blurry 110 dpi scans: 94.2% vs 69.3%. About 2 seconds per page.
 Lesson: don't evaluate a model name, evaluate the exact way you'll run it (quantization, packaging,
 prompt template). Here that was a 29-point difference.
 
-[Next: the end-to-end number, fields and rules, once it's integrated.]
+Integrated into the pipeline, end to end on the same scans: fields read correctly went from 81.5% to 94.0%, and the rules caught 100% of the injected errors (81.8% before).
 
 #OCR #DocumentAI #Evals #LLM #AppleSilicon

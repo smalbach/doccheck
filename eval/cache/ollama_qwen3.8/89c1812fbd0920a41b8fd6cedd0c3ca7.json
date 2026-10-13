@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 719,
+    "outputTokens": 866
+  },
+  "output": {
+    "blNumber": "MRDNC TG6468203",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "577662182",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5# 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "003W",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU6737638",
+        "seal": "MD9497289",
+        "type": "40HC",
+        "packages": "218",
+        "grossWeight": {
+          "value": "13,254.40",
+          "unit": "KG"
+        },
+        "volumeM3": "31.06"
+      }
+    ],
+    "totalPackages": "218",
+    "totalGrossWeight": {
+      "value": "13,254.40",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PACIFIC/PA191253/C/NO. 1-218",
+    "cargoDescription": "SAID TO CONTAIN 218 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-9927",
+      "PA191253"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "Jul 14, 2026",
+    "shippedOnBoardDate": "Jul 14, 2026"
+  }
+}

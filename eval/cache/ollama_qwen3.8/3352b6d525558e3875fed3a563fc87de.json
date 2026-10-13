@@ -1,0 +1,84 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 620,
+    "outputTokens": 753
+  },
+  "output": {
+    "packingListNumber": "PL-2026-3187",
+    "invoiceRef": "INV-2026-3187",
+    "seller": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/PO-29524/C/NO. 1-231",
+    "packages": [
+      {
+        "range": "1-214",
+        "count": "214 CTN",
+        "packageType": "CTN",
+        "sku": "OO-EV-5",
+        "description": "EV Olive oil 5 L",
+        "quantity": "856 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "3,937.60",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,130.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 × 30 × 35"
+      },
+      {
+        "range": "215-231",
+        "count": "17 PLT",
+        "packageType": "PLT",
+        "sku": "CT-6060",
+        "description": "Porcelain tile 60x60",
+        "quantity": "675 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "14,280.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "14,705.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "120 × 80 × 90"
+      }
+    ],
+    "totalPackages": "231",
+    "totalNetWeight": {
+      "value": "18,217.60",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "18,835.20",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "23.68"
+  }
+}

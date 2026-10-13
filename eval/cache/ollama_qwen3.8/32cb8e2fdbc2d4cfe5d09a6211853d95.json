@@ -1,0 +1,66 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 548,
+    "outputTokens": 554
+  },
+  "output": {
+    "packingListNumber": "PL/26/0934",
+    "invoiceRef": "CI/26/0934",
+    "seller": {
+      "name": "CERAMICHE VALLE SECCHIA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112"
+      ],
+      "city": "SASSUOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "PRAIRIE ROASTERS CO-OPERATIVE",
+      "addressLines": [
+        "77 COMMERCE DR"
+      ],
+      "city": "WINNIPEG",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PO-28600/C/NO. 1-113",
+    "packages": [
+      {
+        "range": "1-113",
+        "count": "113",
+        "packageType": null,
+        "sku": null,
+        "description": "CTV EV OLIVE OIL 5 L",
+        "quantity": "452 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2079.20",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "2180.90",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "113",
+    "totalNetWeight": {
+      "value": "2079.20",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "2180.90",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "4.75"
+  }
+}

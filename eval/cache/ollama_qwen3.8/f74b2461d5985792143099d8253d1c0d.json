@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 711,
+    "outputTokens": 897
+  },
+  "output": {
+    "blNumber": "KEYSSPE930934",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "409294602",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Ceramiche Valle Secchia S.p.A.",
+      "addressLines": [
+        "Via Radici in Piano 112"
+      ],
+      "city": "Sassuolo",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "050E",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "La Spezia",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU8524960",
+        "seal": "AG3805186",
+        "type": "20GP",
+        "packages": "113",
+        "grossWeight": {
+          "value": "2,180.90",
+          "unit": "KG"
+        },
+        "volumeM3": "4.75"
+      }
+    ],
+    "totalPackages": "113",
+    "totalGrossWeight": {
+      "value": "2,180.90",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PO-28600/C/NO. 1-113",
+    "cargoDescription": "SAID TO CONTAIN 113 CTNS EV OLIVE OIL 5 L\nRef: CI/26/0934 / PO-28600",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CI/26/0934",
+      "PO-28600"
+    ],
+    "placeOfIssue": "La Spezia",
+    "dateOfIssue": "2026-01-27",
+    "shippedOnBoardDate": "2026-01-27"
+  }
+}

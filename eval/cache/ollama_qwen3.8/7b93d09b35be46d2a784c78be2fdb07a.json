@@ -1,0 +1,54 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 521,
+    "outputTokens": 455
+  },
+  "output": {
+    "packingListNumber": "PL-CAF2601244",
+    "invoiceRef": "CAF2601244",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5# 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-65762/C/NO. 1-253",
+    "packages": [
+      {
+        "range": "1-253",
+        "count": "253 BAG",
+        "packageType": "BAG",
+        "sku": "CF-GRN-60",
+        "description": "Green coffee arabica",
+        "quantity": "15,180.00 KG",
+        "unit": "KG",
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": "95 x 60 x 25"
+      }
+    ],
+    "totalPackages": "253",
+    "totalNetWeight": null,
+    "totalGrossWeight": null,
+    "totalVolumeM3": "36.05 m3"
+  }
+}

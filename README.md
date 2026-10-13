@@ -76,6 +76,8 @@ Needs Postgres, Ollama with `qwen3.8` and `bge-m3`, and optionally Redis and S3 
 | Rules on extracted PDFs | Recall / precision, end to end | 99.0% / 99.7% |
 | Extraction, scanned PDFs (OCR) | Field accuracy, 120 PDFs (93 complete enough for the rules) | 81.5% |
 | Rules on scanned PDFs | Recall / precision, end to end | 81.8% / 67.5% |
+| Extraction, scanned PDFs, Unlimited-OCR (Apple Silicon) | Field accuracy, 120 PDFs (108 complete enough for the rules) | 94.0% |
+| Rules on scanned PDFs, Unlimited-OCR | Recall / precision, end to end | 100.0% / 79.6% |
 | Extraction, ISF PDFs | Field accuracy, 100 PDFs | 99.9% |
 | X11 on extracted ISF PDFs | Recall / precision, end to end | 100.0% / 100.0% |
 | Extraction, unseen formats (v2) | Field accuracy, 180 PDFs (177 complete enough for the rules) | 98.7% |

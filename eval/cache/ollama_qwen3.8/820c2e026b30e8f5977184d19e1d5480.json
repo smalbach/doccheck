@@ -1,0 +1,80 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 692,
+    "outputTokens": 754
+  },
+  "output": {
+    "blNumber": "TOWEGOAS506270",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDENKATER EXPRESS LINES (TONE)",
+    "bookingNumber": "414853742",
+    "carrierName": "TIDENKATER EXPRESS LINES (TONE)",
+    "scac": "TONE",
+    "shipper": {
+      "name": "CERAMICHE VALLE RECONA S.P.A.",
+      "addressLines": [
+        "VIA RADICI IN PIANO 112"
+      ],
+      "city": "SASSOLO",
+      "region": "MO",
+      "postalCode": "41049",
+      "country": "IT",
+      "taxId": "IT01234560362"
+    },
+    "consignee": {
+      "name": "QUINCAILERIE SAINT-LAURENT LTEE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "NTS 1P6",
+      "country": "CA",
+      "taxId": "873456789M0001"
+    },
+    "notifyParty": null,
+    "vessel": "IDEMASTER SPIRIT",
+    "voyage": "058N",
+    "placeOfReceipt": null,
+    "portOfLoading": {
+      "name": "GENOA",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "HALIFAX",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEUS34618",
+        "seal": "TNW863238",
+        "type": "20GP",
+        "packages": "170",
+        "grossWeight": {
+          "value": "10046.60",
+          "unit": "KGS"
+        },
+        "volumeM3": "13.72"
+      }
+    ],
+    "totalPackages": "170",
+    "totalGrossWeight": {
+      "value": "11051.26",
+      "unit": "RGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/QU137456/C/NO. 1-170",
+    "cargoDescription": "SAID TO CONTAIN 170 PROS PORCELAIN TILE 60X60 AND OTHER",
+    "freightTerms": null,
+    "references": [],
+    "placeOfIssue": "GENOA",
+    "dateOfIssue": "31-MAY-2026",
+    "shippedOnBoardDate": "31-MAY-2026"
+  }
+}

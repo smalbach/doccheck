@@ -1,0 +1,94 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 631,
+    "outputTokens": 833
+  },
+  "output": {
+    "blNumber": "COMPSHA260632",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "917946681",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "PACIFIC CREST",
+    "voyage": "HARMONY / 093W",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": null,
+    "containers": [
+      {
+        "number": "MDOU8897297",
+        "seal": "MD6134776",
+        "type": "23",
+        "packages": "23",
+        "grossWeight": {
+          "value": "537",
+          "unit": "LB"
+        },
+        "volumeM3": null
+      }
+    ],
+    "totalPackages": "23",
+    "totalGrossWeight": {
+      "value": "537",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-18529/C/NO. 1-23",
+    "cargoDescription": "SAID TO CONTAIN 23 CTNS BLENDER 600 W\nRef: INV-2026-7465 / PO-18529",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-7465",
+      "PO-18529"
+    ],
+    "placeOfIssue": "Shanghai",
+    "dateOfIssue": "Jul 6, 2026",
+    "shippedOnBoardDate": "Jul 6, 2026"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 673,
+    "outputTokens": 933
+  },
+  "output": {
+    "packingListNumber": "PL-2026-0889",
+    "invoiceRef": "INV-2026-0889",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "marks": "PACIFIC/PA787236/C/NO. 1-326",
+    "packages": [
+      {
+        "range": "1-117",
+        "count": "117 CTN",
+        "packageType": "CTN",
+        "sku": "SK-WL-3",
+        "description": "Wool socks 3-pack",
+        "quantity": "28,080 PRS",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "2,106.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,187.90",
+          "unit": "KG"
+        },
+        "dimensionsCm": "58 × 38 × 32"
+      },
+      {
+        "range": "118-218",
+        "count": "101 CTN",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M",
+        "description": "Men's cotton T-shirt",
+        "quantity": "10,100 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,919.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,999.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      },
+      {
+        "range": "219-326",
+        "count": "108 CTN",
+        "packageType": "CTN",
+        "sku": "JK-PL-02",
+        "description": "Women's padded jacket",
+        "quantity": "2,136 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,836.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,944.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "65 × 45 × 45"
+      }
+    ],
+    "totalPackages": "326",
+    "totalNetWeight": {
+      "value": "5,861.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "6,131.70",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "30.95"
+  }
+}

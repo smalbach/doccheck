@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 539,
+    "outputTokens": 590
+  },
+  "output": {
+    "packingListNumber": "PL-2026-3336",
+    "invoiceRef": "INV-2026-3336",
+    "seller": {
+      "name": "saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": "District 7",
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789"
+    },
+    "marks": "QUINCAILLERIE/QU398607/C/NO. 1-211",
+    "packages": [
+      {
+        "range": "1-211",
+        "count": "211 CTN",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M",
+        "description": "Men's cotton T-shirt",
+        "quantity": "21,100 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4,009.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,177.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      }
+    ],
+    "totalPackages": "211",
+    "totalNetWeight": {
+      "value": "4,009.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "4,177.80",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "17.72"
+  }
+}

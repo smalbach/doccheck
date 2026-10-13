@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 731,
+    "outputTokens": 973
+  },
+  "output": {
+    "blNumber": "MRDNMUN5380668",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "459200175",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F125"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "USA",
+      "taxId": "74-3812456"
+    },
+    "notifyParty": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "USA",
+      "taxId": "74-3812456"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "023N",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "MUNDRA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MD009567880",
+        "seal": "MD7298523",
+        "type": "200P",
+        "packages": "393",
+        "grossWeight": {
+          "value": "21652",
+          "unit": "LB"
+        },
+        "volumeM3": "15.65"
+      }
+    ],
+    "totalPackages": "393",
+    "totalGrossWeight": {
+      "value": "21652",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "BLUEBONNET/PO-64140/C/NO. 1-393",
+    "cargoDescription": "393 SAD TO CONTAIN 393 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE REF: CI/26/8506 / PO-64140 FREIGHT COLLECT",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/8506",
+      "PO-64140"
+    ],
+    "placeOfIssue": "MINDRA",
+    "dateOfIssue": "26-SEP-2026",
+    "shippedOnBoardDate": "26-SEP-2026"
+  }
+}

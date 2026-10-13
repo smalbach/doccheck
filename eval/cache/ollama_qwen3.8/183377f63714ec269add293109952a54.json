@@ -1,0 +1,85 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 567,
+    "outputTokens": 725
+  },
+  "output": {
+    "packingListNumber": "PL/26/1364",
+    "invoiceRef": "CI/26/1364",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/PO-30786/C/NO. 1-119",
+    "packages": [
+      {
+        "range": "1-82",
+        "count": "82 CTN",
+        "packageType": "CTN",
+        "sku": "EK-17",
+        "description": "Electric kettle 1.7 L EK-17",
+        "quantity": "656 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "688.80",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "779.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 45 × 42"
+      },
+      {
+        "range": "83-119",
+        "count": "37 CTN",
+        "packageType": "CTN",
+        "sku": "BL-600",
+        "description": "Blender 600 W BL-600",
+        "quantity": "148 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "340.40",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "392.20",
+          "unit": "KG"
+        },
+        "dimensionsCm": "50 × 50 × 45"
+      }
+    ],
+    "totalPackages": "119",
+    "totalNetWeight": {
+      "value": "1,029.20",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,171.20",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "12.69"
+  }
+}

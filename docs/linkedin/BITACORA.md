@@ -137,6 +137,21 @@ Lección: el mismo modelo dio 67.5% o 96.8% según cómo se corre (cuantización
 vs MLX). Medir la forma concreta de ejecutarlo, no el nombre del modelo. Próximo paso: integrarlo como
 motor de OCR y medir la extracción completa (campos y reglas) sobre los escaneos.
 
+**Integrado y medido de punta a punta** (commit `c0c4fb3`, reporte
+`eval/reports/extraction-ollama_qwen3.8-v1-scans-unlimited.json`): `OCR_ENGINE=unlimited` +
+`scripts/ocr-server.py`. Mismos 120 escaneos, mismo modelo de extracción (qwen3.8):
+
+| Escaneos | tesseract | Unlimited-OCR |
+| --- | --- | --- |
+| Campos bien leídos | 81.5% | **94.0%** |
+| Documentos válidos | 93/120 | 108/120 |
+| Envíos con las 3 piezas utilizables | 21/40 | 29/40 |
+| Reglas: recall / precisión | 81.8% / 67.5% | **100% / 79.6%** |
+
+Lo que todavía falla: valores pegados dentro de una celda de varias líneas ("PO" + el número de PO)
+y nombres de partes. La otra sesión agregó el selector de motor en la configuración de
+administrador (commit `d924998`).
+
 ## Producto web: hitos del 13 oct (sesión de la app)
 
 Cada hito con su commit. Números medidos en esta máquina; lo marcado [entre corchetes] es opinión
@@ -171,7 +186,7 @@ Decisiones para contar:
 
 ## Pendiente / próximos pasos
 
-- OCR de Baidu: integrarlo como motor (`OCR_ENGINE`) y medir la extracción completa de los escaneos.
+- OCR de Baidu en Linux con GPU (vLLM) para no depender de un Mac.
 - Segunda pasada barata para campos obligatorios ("¿este valor está impreso bajo esta etiqueta?").
 - Probar con documentos reales.
 - Publicar la demo de solo lectura.
@@ -181,5 +196,6 @@ Decisiones para contar:
 - 13 oct 2026: creada con el estado al cierre de la evaluación (commit `739a696`).
 - 13 oct 2026: primera prueba del OCR de Baidu.
 - 13 oct 2026: OCR de Baidu en MLX: 96.8% contra 86.6% de tesseract.
+- 13 oct 2026: OCR de Baidu integrado; escaneos de punta a punta 81.5% → 94.0%, reglas 100% de recall.
 - 13 oct 2026: hitos de la app web y de las tablas de datos extraídos (sesión de la app).
 - 13 oct 2026: menú Datos y flujo de resolución de findings (sesión de la app).

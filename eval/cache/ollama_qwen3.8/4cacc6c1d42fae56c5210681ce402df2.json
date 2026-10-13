@@ -1,0 +1,95 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 705,
+    "outputTokens": 834
+  },
+  "output": {
+    "invoiceNumber": "CAF2606370",
+    "invoiceDate": "13-FEB-2026",
+    "poNumber": "HA611287",
+    "seller": {
+      "name": "CAFE ALTO HUILLA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40"
+      ],
+      "city": "NEIVA",
+      "region": "HUILLA",
+      "postalCode": null,
+      "country": null,
+      "taxId": "900123456-7"
+    },
+    "buyer": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "18-FEB-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "CARTAGENA",
+      "country": "CO"
+    },
+    "portOfEntry": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "CARTAGENA",
+    "paymentTerms": "L/C AT SIGHT",
+    "currency": "USD",
+    "countryOfOrigin": null,
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CF-GRN-60",
+        "description": "GREEN COFFEE BEANS, ARABICA, NOT ROASTED, IN 60 KG JUTE BAGS HS 0901.11",
+        "quantity": "8220 KG",
+        "unit": "KG",
+        "unitPrice": "4.44",
+        "unitPriceCurrency": "USD",
+        "lineTotal": "36496.80",
+        "lineTotalCurrency": "USD",
+        "countryOfOrigin": null,
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "137 PKGS",
+    "grossWeight": {
+      "value": "8329.60",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "8220.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "36496.80",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "3384.00",
+        "currency": "INR"
+      }
+    ]
+  }
+}

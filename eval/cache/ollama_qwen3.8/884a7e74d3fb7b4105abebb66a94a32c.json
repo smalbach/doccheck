@@ -1,0 +1,84 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 586,
+    "outputTokens": 728
+  },
+  "output": {
+    "packingListNumber": "PL-NOR2609810",
+    "invoiceRef": "NOR2609810",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/QU756171/C/NO. 1-288",
+    "packages": [
+      {
+        "range": "1-239",
+        "count": "239 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "4,780 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "6,453.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "6,715.90",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      },
+      {
+        "range": "240-288",
+        "count": "49 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW",
+        "quantity": "49 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "710.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "931.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 40 × 40"
+      }
+    ],
+    "totalPackages": "288",
+    "totalNetWeight": {
+      "value": "7,163.50",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "7,646.90",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "15.60"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 499,
+    "outputTokens": 552
+  },
+  "output": {
+    "packingListNumber": "PL-CAF2602708",
+    "invoiceRef": "CAF2602708",
+    "seller": {
+      "name": "CAFE ALTO HUILLACERRAERAS S.A.S.",
+      "addressLines": [
+        "CARREERA 5 # 12-40"
+      ],
+      "city": "NEIVA",
+      "region": "HUILLA",
+      "postalCode": null,
+      "country": null,
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "USA",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-27051/C/NO. 1-171",
+    "packages": [
+      {
+        "range": "1-171",
+        "count": "171",
+        "packageType": "BAG",
+        "sku": "GREEN COFFEE ARABICCA",
+        "description": "171 BAG GREEN COFFEE ARABICCA",
+        "quantity": "10236 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "10260.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "10396.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "171",
+    "totalNetWeight": {
+      "value": "10260.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "10396.80",
+      "unit": "KG"
+    },
+    "totalVolumeM3": null
+  }
+}

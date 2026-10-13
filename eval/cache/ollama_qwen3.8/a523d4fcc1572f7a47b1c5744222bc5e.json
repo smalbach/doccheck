@@ -1,0 +1,54 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 496,
+    "outputTokens": 449
+  },
+  "output": {
+    "packingListNumber": "PL/26/0789",
+    "invoiceRef": "CI/26/0789",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Buenonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "marks": "BLUEBONNET/PO-1208/C/NO. 1-279",
+    "packages": [
+      {
+        "range": "1-279",
+        "count": "279 BAG",
+        "packageType": "BAG",
+        "sku": "CF-GRN-60",
+        "description": "Green coffee arabica",
+        "quantity": "16,740.00 KG",
+        "unit": "KG",
+        "netWeight": null,
+        "grossWeight": null,
+        "dimensionsCm": "95 × 60 × 25"
+      }
+    ],
+    "totalPackages": "279",
+    "totalNetWeight": null,
+    "totalGrossWeight": null,
+    "totalVolumeM3": "39.76 m^3"
+  }
+}

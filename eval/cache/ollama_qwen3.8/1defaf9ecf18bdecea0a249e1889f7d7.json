@@ -1,0 +1,67 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 500,
+    "outputTokens": 536
+  },
+  "output": {
+    "packingListNumber": "PL-2026-7465",
+    "invoiceRef": "INV-2026-7465",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "marks": "HARBORLINE/PO-18529/C/NO. 1-23",
+    "packages": [
+      {
+        "range": "1-23",
+        "count": "23 CTN",
+        "packageType": "CTN",
+        "sku": "BL-600",
+        "description": "Blender 600 W",
+        "quantity": "92 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "211.60",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "243.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": "50 × 50 × 45"
+      }
+    ],
+    "totalPackages": "23",
+    "totalNetWeight": {
+      "value": "211.60",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "243.80",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "2.59"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 700,
+    "outputTokens": 894
+  },
+  "output": {
+    "blNumber": "MRDNTAO9223339",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "160062724",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "083W",
+    "placeOfReceipt": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Qingdao",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU1972280",
+        "seal": "MD5197611",
+        "type": "20GP",
+        "packages": "18",
+        "grossWeight": {
+          "value": "754",
+          "unit": "LB"
+        },
+        "volumeM3": "1.58"
+      }
+    ],
+    "totalPackages": "18",
+    "totalGrossWeight": {
+      "value": "754",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-57441/C/NO. 1-18",
+    "cargoDescription": "SAID TO CONTAIN 18 CRTS CENTRIFUGAL PUMP 0.75 KW Ref: CI/26/2663 / PO-57441 Freight COLLECT",
+    "freightTerms": "COLLECT",
+    "references": [
+      "CI/26/2663",
+      "PO-57441"
+    ],
+    "placeOfIssue": "Qingdao",
+    "dateOfIssue": "Jun 11, 2026",
+    "shippedOnBoardDate": "Jun 11, 2026"
+  }
+}

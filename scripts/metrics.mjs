@@ -22,6 +22,7 @@ const agent = await readJson(join(values.reports, `agent-${values.model}.json`))
 const scans = await readJson(join(values.reports, `extraction-${values.model}-v1-scans.json`));
 const isfSet = await readJson(join(values.reports, `extraction-${values.model}-v1-isf.json`));
 const v2 = await readJson(join(values.reports, `extraction-${values.model}-v2.json`));
+const scansUnlimited = await readJson(join(values.reports, `extraction-${values.model}-v1-scans-unlimited.json`));
 
 // Every report records the model build it ran with; numbers from different builds should not be mixed.
 const builds = [
@@ -29,6 +30,7 @@ const builds = [
   ['extraction v1-scans', scans],
   ['extraction v1-isf', isfSet],
   ['extraction v2', v2],
+  ['extraction v1-scans (Unlimited-OCR)', scansUnlimited],
   ['agent', agent],
 ]
   .filter(([, r]) => r)
@@ -119,6 +121,8 @@ const headline = [
   extraction ? `| Rules on extracted PDFs | Recall / precision, end to end | ${pct(extTotal.recall)} / ${pct(extTotal.precision)} |` : null,
   scans ? `| Extraction, scanned PDFs (OCR) | Field accuracy, ${scans.documents} PDFs (${scans.validDocuments ?? '?'} complete enough for the rules) | ${pct(scans.overall.accuracy)} |` : null,
   scans ? `| Rules on scanned PDFs | Recall / precision, end to end | ${pct(scanTotal.recall)} / ${pct(scanTotal.precision)} |` : null,
+  scansUnlimited ? `| Extraction, scanned PDFs, Unlimited-OCR (Apple Silicon) | Field accuracy, ${scansUnlimited.documents} PDFs (${scansUnlimited.validDocuments} complete enough for the rules) | ${pct(scansUnlimited.overall.accuracy)} |` : null,
+  scansUnlimited ? `| Rules on scanned PDFs, Unlimited-OCR | Recall / precision, end to end | ${pct(totalOf(scansUnlimited.rules.table).recall)} / ${pct(totalOf(scansUnlimited.rules.table).precision)} |` : null,
   isfType ? `| Extraction, ISF PDFs | Field accuracy, ${isfSet.documentsDetail.filter((d) => d.type === 'ISF').length} PDFs | ${pct(isfType.accuracy)} |` : null,
   isfX11 ? `| X11 on extracted ISF PDFs | Recall / precision, end to end | ${pct(isfX11.recall)} / ${pct(isfX11.precision)} |` : null,
   v2 ? `| Extraction, unseen formats (v2) | Field accuracy, ${v2.documents} PDFs (${v2.validDocuments ?? '?'} complete enough for the rules) | ${pct(v2.overall.accuracy)} |` : null,

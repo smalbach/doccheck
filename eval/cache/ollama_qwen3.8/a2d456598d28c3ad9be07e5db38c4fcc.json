@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 736,
+    "outputTokens": 921
+  },
+  "output": {
+    "blNumber": "811VINGB953283",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEMATER EXPRESS LINES (TONE)",
+    "bookingNumber": "204130513",
+    "carrierName": "TIDEMATER EXPRESS LINES (TONE)",
+    "scac": "TONE",
+    "shipper": {
+      "name": "NINGO EVERMIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RDBEILUN DISTRICT"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTEE",
+      "addressLines": [
+        "1450 BOUL INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "N78 1P6",
+      "country": "CA",
+      "taxId": "873456789800001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTEE",
+      "addressLines": [
+        "1450 BOUL INDUSTRIEL"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "N78 1P6",
+      "country": "CA",
+      "taxId": "873456789800001"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "064E",
+    "placeOfReceipt": {
+      "name": "NINGBO, CN",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "NINGBO, CN",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "MONTREAL, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU9682359",
+        "seal": "TW6280247",
+        "type": "40HC",
+        "packages": "395",
+        "grossWeight": {
+          "value": "3924.10",
+          "unit": "KG"
+        },
+        "volumeM3": null
+      }
+    ],
+    "totalPackages": "395",
+    "totalGrossWeight": {
+      "value": "3924.10",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERI 1-395",
+    "cargoDescription": "SAID TO CONTAINS 35% CTN ELECTRIC RFTLE 1.7 L AND OTHER GOODS AS PER INVOICE REFT INV-2026-9061 / PO-64700",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-9061",
+      "PO-64700"
+    ],
+    "placeOfIssue": "NINGBO",
+    "dateOfIssue": "04-MAR-2026",
+    "shippedOnBoardDate": "04-MAR-2026"
+  }
+}

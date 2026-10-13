@@ -1,0 +1,81 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 603,
+    "outputTokens": 691
+  },
+  "output": {
+    "invoiceNumber": "NOR2608396",
+    "invoiceDate": "Feb 25, 2026",
+    "poNumber": "NO398514",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": null,
+    "shipmentDate": "Feb 28, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": null,
+    "portOfEntry": null,
+    "incotermCode": "CFR",
+    "incotermPlace": "Vancouver",
+    "paymentTerms": "Net 60",
+    "currency": "USD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BY-2IN",
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "880",
+        "unit": "PCS",
+        "unitPrice": "12.54",
+        "unitPriceCurrency": null,
+        "lineTotal": "11,035.20",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "44",
+    "grossWeight": {
+      "value": "1,188.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,236.40",
+      "unit": "KG"
+    },
+    "invoiceTotal": "11,035.20",
+    "invoiceTotalCurrency": "USD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "943.00",
+        "currency": "CNY"
+      }
+    ]
+  }
+}

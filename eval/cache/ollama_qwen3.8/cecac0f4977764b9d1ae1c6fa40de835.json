@@ -1,0 +1,84 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 542,
+    "outputTokens": 693
+  },
+  "output": {
+    "packingListNumber": "PL/26/0435",
+    "invoiceRef": "CI/26/0435",
+    "seller": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DEA",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "USA",
+      "taxId": "95-4783210"
+    },
+    "marks": "PACIFIC/PA996250/C/NO. 1-149",
+    "packages": [
+      {
+        "range": "1-50",
+        "count": "50",
+        "packageType": "CRT",
+        "sku": null,
+        "description": "CENTRIFUGAL PUMP 0.75 KW",
+        "quantity": "50 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "725.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "950.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "51-149",
+        "count": "99",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BRASS BALL VALVE 2\"",
+        "quantity": "1980 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2673.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "2781.90",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "149",
+    "totalNetWeight": {
+      "value": "3398.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "3731.90",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": null
+  }
+}

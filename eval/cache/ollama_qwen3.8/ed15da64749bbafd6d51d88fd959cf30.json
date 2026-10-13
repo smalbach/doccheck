@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 609,
+    "outputTokens": 778
+  },
+  "output": {
+    "packingListNumber": "PL-2026-5446",
+    "invoiceRef": "INV-2026-5446",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F125"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "marks": "BLUEBONNET/BL373962/C/NO. 1-232",
+    "packages": [
+      {
+        "range": "1-193",
+        "count": "193 CTN",
+        "packageType": "CTN",
+        "sku": "BB-6204",
+        "description": "Ball bearing 6204-2RS BB-6204",
+        "quantity": "38,600 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4,246.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "4,419.70",
+          "unit": "KG"
+        },
+        "dimensionsCm": "40 x 30 x 25"
+      },
+      {
+        "range": "194-232",
+        "count": "39 CRT",
+        "packageType": "CRT",
+        "sku": "CP-750",
+        "description": "Centrifugal pump 0.75 kW CP-750",
+        "quantity": "39 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "565.50",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "741.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 x 40 x 40"
+      }
+    ],
+    "totalPackages": "232",
+    "totalNetWeight": {
+      "value": "4,811.50",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "5,160.70",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "9.22"
+  }
+}

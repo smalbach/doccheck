@@ -1,0 +1,4302 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "ocrEngine": "unlimited",
+  "shipments": 40,
+  "documents": 120,
+  "failedDocuments": 0,
+  "cachedDocuments": 0,
+  "classificationAccuracy": 1,
+  "validDocuments": 108,
+  "overall": {
+    "total": 2523,
+    "correct": 2371,
+    "wrong": 76,
+    "missing": 74,
+    "spurious": 2,
+    "accuracy": 0.9398
+  },
+  "byType": [
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "documents": 40,
+      "validDocuments": 37,
+      "total": 1101,
+      "correct": 1043,
+      "wrong": 30,
+      "missing": 26,
+      "spurious": 2,
+      "accuracy": 0.9473
+    },
+    {
+      "type": "PACKING_LIST",
+      "documents": 40,
+      "validDocuments": 37,
+      "total": 622,
+      "correct": 593,
+      "wrong": 8,
+      "missing": 21,
+      "spurious": 0,
+      "accuracy": 0.9534
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "documents": 40,
+      "validDocuments": 34,
+      "total": 800,
+      "correct": 735,
+      "wrong": 38,
+      "missing": 27,
+      "spurious": 0,
+      "accuracy": 0.9188
+    }
+  ],
+  "byTemplate": [
+    {
+      "template": "BILL_OF_LADING · classic",
+      "total": 300,
+      "correct": 296,
+      "wrong": 2,
+      "missing": 2,
+      "spurious": 0,
+      "accuracy": 0.9867
+    },
+    {
+      "template": "BILL_OF_LADING · legacy",
+      "total": 180,
+      "correct": 143,
+      "wrong": 19,
+      "missing": 18,
+      "spurious": 0,
+      "accuracy": 0.7944
+    },
+    {
+      "template": "BILL_OF_LADING · modern",
+      "total": 320,
+      "correct": 296,
+      "wrong": 17,
+      "missing": 7,
+      "spurious": 0,
+      "accuracy": 0.925
+    },
+    {
+      "template": "COMMERCIAL_INVOICE · classic",
+      "total": 399,
+      "correct": 385,
+      "wrong": 14,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9649
+    },
+    {
+      "template": "COMMERCIAL_INVOICE · legacy",
+      "total": 436,
+      "correct": 404,
+      "wrong": 13,
+      "missing": 17,
+      "spurious": 2,
+      "accuracy": 0.9266
+    },
+    {
+      "template": "COMMERCIAL_INVOICE · modern",
+      "total": 266,
+      "correct": 254,
+      "wrong": 3,
+      "missing": 9,
+      "spurious": 0,
+      "accuracy": 0.9549
+    },
+    {
+      "template": "PACKING_LIST · classic",
+      "total": 257,
+      "correct": 248,
+      "wrong": 1,
+      "missing": 8,
+      "spurious": 0,
+      "accuracy": 0.965
+    },
+    {
+      "template": "PACKING_LIST · legacy",
+      "total": 129,
+      "correct": 124,
+      "wrong": 5,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9612
+    },
+    {
+      "template": "PACKING_LIST · modern",
+      "total": 236,
+      "correct": 221,
+      "wrong": 2,
+      "missing": 13,
+      "spurious": 0,
+      "accuracy": 0.9364
+    }
+  ],
+  "byField": [
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "poNumber",
+      "total": 40,
+      "correct": 31,
+      "wrong": 9,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.775
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "consignee.name",
+      "total": 38,
+      "correct": 30,
+      "wrong": 2,
+      "missing": 6,
+      "spurious": 0,
+      "accuracy": 0.7895
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceNumber",
+      "total": 40,
+      "correct": 33,
+      "wrong": 7,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.825
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "totals.netWeight.kg",
+      "total": 40,
+      "correct": 33,
+      "wrong": 0,
+      "missing": 7,
+      "spurious": 0,
+      "accuracy": 0.825
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "totals.grossWeight.kg",
+      "total": 40,
+      "correct": 33,
+      "wrong": 0,
+      "missing": 7,
+      "spurious": 0,
+      "accuracy": 0.825
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "shipper.name",
+      "total": 40,
+      "correct": 33,
+      "wrong": 7,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.825
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "consignee.name",
+      "total": 40,
+      "correct": 35,
+      "wrong": 5,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.875
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "notifyParty.name",
+      "total": 40,
+      "correct": 35,
+      "wrong": 3,
+      "missing": 2,
+      "spurious": 0,
+      "accuracy": 0.875
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "vessel",
+      "total": 40,
+      "correct": 35,
+      "wrong": 5,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.875
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "placeOfDelivery.name",
+      "total": 40,
+      "correct": 35,
+      "wrong": 0,
+      "missing": 5,
+      "spurious": 0,
+      "accuracy": 0.875
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "blNumber",
+      "total": 40,
+      "correct": 36,
+      "wrong": 4,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "totalGrossWeight.kg",
+      "total": 40,
+      "correct": 36,
+      "wrong": 0,
+      "missing": 4,
+      "spurious": 0,
+      "accuracy": 0.9
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "totalGrossWeight.raw.unit",
+      "total": 40,
+      "correct": 36,
+      "wrong": 0,
+      "missing": 4,
+      "spurious": 0,
+      "accuracy": 0.9
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].seal",
+      "total": 40,
+      "correct": 36,
+      "wrong": 2,
+      "missing": 2,
+      "spurious": 0,
+      "accuracy": 0.9
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].packages",
+      "total": 40,
+      "correct": 36,
+      "wrong": 1,
+      "missing": 3,
+      "spurious": 0,
+      "accuracy": 0.9
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "portOfEntry.name",
+      "total": 22,
+      "correct": 20,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 2,
+      "accuracy": 0.9091
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "seller.name",
+      "total": 40,
+      "correct": 37,
+      "wrong": 3,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.925
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "buyer.name",
+      "total": 40,
+      "correct": 37,
+      "wrong": 3,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.925
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "grossWeight.kg",
+      "total": 40,
+      "correct": 37,
+      "wrong": 0,
+      "missing": 3,
+      "spurious": 0,
+      "accuracy": 0.925
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "carrier.scac",
+      "total": 40,
+      "correct": 37,
+      "wrong": 3,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.925
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "voyage",
+      "total": 40,
+      "correct": 37,
+      "wrong": 3,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.925
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].number",
+      "total": 40,
+      "correct": 37,
+      "wrong": 1,
+      "missing": 2,
+      "spurious": 0,
+      "accuracy": 0.925
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "containers[*].grossWeight.kg",
+      "total": 40,
+      "correct": 37,
+      "wrong": 0,
+      "missing": 3,
+      "spurious": 0,
+      "accuracy": 0.925
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].description",
+      "total": 57,
+      "correct": 53,
+      "wrong": 4,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9298
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].lineTotal.amount",
+      "total": 57,
+      "correct": 53,
+      "wrong": 0,
+      "missing": 4,
+      "spurious": 0,
+      "accuracy": 0.9298
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].lineTotal.currency",
+      "total": 57,
+      "correct": 53,
+      "wrong": 0,
+      "missing": 4,
+      "spurious": 0,
+      "accuracy": 0.9298
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].count",
+      "total": 57,
+      "correct": 54,
+      "wrong": 3,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9474
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].netWeight.kg",
+      "total": 57,
+      "correct": 54,
+      "wrong": 0,
+      "missing": 3,
+      "spurious": 0,
+      "accuracy": 0.9474
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].grossWeight.kg",
+      "total": 57,
+      "correct": 54,
+      "wrong": 0,
+      "missing": 3,
+      "spurious": 0,
+      "accuracy": 0.9474
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "netWeight.kg",
+      "total": 40,
+      "correct": 38,
+      "wrong": 0,
+      "missing": 2,
+      "spurious": 0,
+      "accuracy": 0.95
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "consignee.name",
+      "total": 40,
+      "correct": 38,
+      "wrong": 2,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.95
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "seller.name",
+      "total": 40,
+      "correct": 38,
+      "wrong": 2,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.95
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "bookingNumber",
+      "total": 40,
+      "correct": 38,
+      "wrong": 2,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.95
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "portOfLoading.name",
+      "total": 40,
+      "correct": 38,
+      "wrong": 1,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.95
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].unitPrice.amount",
+      "total": 57,
+      "correct": 55,
+      "wrong": 1,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.9649
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].hsCode",
+      "total": 57,
+      "correct": 55,
+      "wrong": 1,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.9649
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "incoterm.code",
+      "total": 38,
+      "correct": 37,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.9737
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceTotal.amount",
+      "total": 40,
+      "correct": 39,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.975
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceTotal.currency",
+      "total": 40,
+      "correct": 39,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.975
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "portOfDischarge.name",
+      "total": 40,
+      "correct": 39,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.975
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "totalPackages",
+      "total": 40,
+      "correct": 39,
+      "wrong": 1,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.975
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].quantity.value",
+      "total": 57,
+      "correct": 56,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.9825
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].unitPrice.currency",
+      "total": 57,
+      "correct": 56,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.9825
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].type",
+      "total": 57,
+      "correct": 56,
+      "wrong": 1,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9825
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].contents[0].quantity.value",
+      "total": 57,
+      "correct": 56,
+      "wrong": 0,
+      "missing": 1,
+      "spurious": 0,
+      "accuracy": 0.9825
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "invoiceDate",
+      "total": 40,
+      "correct": 40,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "shipmentDate",
+      "total": 40,
+      "correct": 40,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "currency",
+      "total": 40,
+      "correct": 40,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "packageCount",
+      "total": 40,
+      "correct": 40,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "charges.freight.amount",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "charges.freight.currency",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].quantity.unit",
+      "total": 57,
+      "correct": 57,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "lines[*].countryOfOrigin",
+      "total": 55,
+      "correct": 55,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packingListNumber",
+      "total": 40,
+      "correct": 40,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "invoiceRef",
+      "total": 40,
+      "correct": 40,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "totals.packageCount",
+      "total": 40,
+      "correct": 40,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "PACKING_LIST",
+      "field": "packages[*].range",
+      "total": 57,
+      "correct": 57,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "consignee.address.lines[0]",
+      "total": 40,
+      "correct": 40,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "BILL_OF_LADING",
+      "field": "shippedOnBoardDate",
+      "total": 40,
+      "correct": 40,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    }
+  ],
+  "rules": {
+    "shipmentsWithAllDocuments": 29,
+    "table": [
+      {
+        "rule": "C1",
+        "tp": 2,
+        "fp": 1,
+        "fn": 0,
+        "recall": 1,
+        "precision": 0.6666666666666666
+      },
+      {
+        "rule": "U1",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X1",
+        "tp": 1,
+        "fp": 2,
+        "fn": 0,
+        "recall": 1,
+        "precision": 0.3333333333333333
+      },
+      {
+        "rule": "X10",
+        "tp": 4,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X2",
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X3",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X4",
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X5",
+        "tp": 9,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X6",
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "X7",
+        "tp": 10,
+        "fp": 2,
+        "fn": 0,
+        "recall": 1,
+        "precision": 0.8333333333333334
+      },
+      {
+        "rule": "X8",
+        "tp": 0,
+        "fp": 5,
+        "fn": 0,
+        "recall": null,
+        "precision": 0
+      }
+    ]
+  },
+  "usage": {
+    "inputTokens": 76510,
+    "outputTokens": 93589,
+    "seconds": 4446
+  },
+  "documentsDetail": [
+    {
+      "shipment": "CA-001",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "Quincallierie Saint-Laurent Ltée"
+        },
+        {
+          "field": "notifyParty.name",
+          "pattern": "notifyParty.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "Quincallierie Saint-Laurent Ltée"
+        },
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "wrong",
+          "expected": "PACIFIC CREST HARMONY",
+          "got": "PACIFIC CREST"
+        },
+        {
+          "field": "voyage",
+          "pattern": "voyage",
+          "outcome": "wrong",
+          "expected": "069S",
+          "got": "HARMONY / 069S"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 750,
+        "outputTokens": 915
+      }
+    },
+    {
+      "shipment": "CA-001",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "portOfEntry.name",
+          "pattern": "portOfEntry.name",
+          "outcome": "spurious",
+          "got": "MONTREAL"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 674,
+        "outputTokens": 873
+      }
+    },
+    {
+      "shipment": "CA-001",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": false,
+      "scores": [
+        {
+          "field": "totals.netWeight.kg",
+          "pattern": "totals.netWeight.kg",
+          "outcome": "missing",
+          "expected": "870.00"
+        },
+        {
+          "field": "totals.grossWeight.kg",
+          "pattern": "totals.grossWeight.kg",
+          "outcome": "missing",
+          "expected": "1140.00"
+        },
+        {
+          "field": "packages[0].count",
+          "pattern": "packages[*].count",
+          "outcome": "wrong",
+          "expected": 60,
+          "got": 0
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "packages.0.count: Too small: expected number to be >0"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 510,
+        "outputTokens": 540
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": false,
+      "scores": [
+        {
+          "field": "placeOfDelivery.name",
+          "pattern": "placeOfDelivery.name",
+          "outcome": "missing",
+          "expected": "Toronto"
+        },
+        {
+          "field": "totalGrossWeight.kg",
+          "pattern": "totalGrossWeight.kg",
+          "outcome": "missing",
+          "expected": "1729.00"
+        },
+        {
+          "field": "totalGrossWeight.raw.unit",
+          "pattern": "totalGrossWeight.raw.unit",
+          "outcome": "missing",
+          "expected": "KG"
+        },
+        {
+          "field": "containers[0].number",
+          "pattern": "containers[*].number",
+          "outcome": "wrong",
+          "expected": "AGXU1930725",
+          "got": "AGXU1903725"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "totalGrossWeight: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 706,
+        "outputTokens": 871
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "buyer.name",
+          "pattern": "buyer.name",
+          "outcome": "wrong",
+          "expected": "Northern Lantern Retail Inc.",
+          "got": "NORTHEON LANTERN RETAIL INC."
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Northern Lantern Retail Inc."
+        },
+        {
+          "field": "lines[0].description",
+          "pattern": "lines[*].description",
+          "outcome": "wrong",
+          "expected": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "got": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V RS"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 643,
+        "outputTokens": 719
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": false,
+      "scores": [
+        {
+          "field": "totals.netWeight.kg",
+          "pattern": "totals.netWeight.kg",
+          "outcome": "missing",
+          "expected": "1528.80"
+        },
+        {
+          "field": "totals.grossWeight.kg",
+          "pattern": "totals.grossWeight.kg",
+          "outcome": "missing",
+          "expected": "1729.00"
+        },
+        {
+          "field": "packages[0].contents[0].quantity.value",
+          "pattern": "packages[*].contents[0].quantity.value",
+          "outcome": "missing",
+          "expected": "1456",
+          "got": ""
+        },
+        {
+          "field": "packages[0].netWeight.kg",
+          "pattern": "packages[*].netWeight.kg",
+          "outcome": "missing",
+          "expected": "1528.80"
+        },
+        {
+          "field": "packages[0].grossWeight.kg",
+          "pattern": "packages[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "1729.00"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "packages.0.contents.0.quantity.value: Expected a decimal string like \"12500.00\""
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 513,
+        "outputTokens": 465
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "valid": false,
+      "scores": [
+        {
+          "field": "blNumber",
+          "pattern": "blNumber",
+          "outcome": "wrong",
+          "expected": "TDWEGOA8506270",
+          "got": "TOWEGOAS506270"
+        },
+        {
+          "field": "carrier.scac",
+          "pattern": "carrier.scac",
+          "outcome": "wrong",
+          "expected": "TDWE",
+          "got": "TONE"
+        },
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "wrong",
+          "expected": "Ceramiche Valle Secchia S.p.A.",
+          "got": "CERAMICHE VALLE RECONA S.P.A."
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "QUINCAILERIE SAINT-LAURENT LTEE"
+        },
+        {
+          "field": "notifyParty.name",
+          "pattern": "notifyParty.name",
+          "outcome": "missing",
+          "expected": "Quincaillerie Saint-Laurent Ltée"
+        },
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "wrong",
+          "expected": "TIDEWATER SPIRIT",
+          "got": "IDEMASTER SPIRIT"
+        },
+        {
+          "field": "totalPackages",
+          "pattern": "totalPackages",
+          "outcome": "wrong",
+          "expected": 160,
+          "got": 170
+        },
+        {
+          "field": "totalGrossWeight.kg",
+          "pattern": "totalGrossWeight.kg",
+          "outcome": "missing",
+          "expected": "11051.26"
+        },
+        {
+          "field": "totalGrossWeight.raw.unit",
+          "pattern": "totalGrossWeight.raw.unit",
+          "outcome": "missing",
+          "expected": "KG"
+        },
+        {
+          "field": "containers[0].number",
+          "pattern": "containers[*].number",
+          "outcome": "missing",
+          "expected": "TWEU3834618"
+        },
+        {
+          "field": "containers[0].seal",
+          "pattern": "containers[*].seal",
+          "outcome": "missing",
+          "expected": "TW9863238"
+        },
+        {
+          "field": "containers[0].packages",
+          "pattern": "containers[*].packages",
+          "outcome": "missing",
+          "expected": 170
+        },
+        {
+          "field": "containers[0].grossWeight.kg",
+          "pattern": "containers[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "10046.60"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "containers[0]: could not normalize {\"number\":\"TWEUS34618\",\"seal\":\"TNW863238\",\"type\":\"20GP\",\"packages\":170,\"grossWeight\":{\"kg\":\"10046.60\",\"raw\":{\"value\":\"10046.60\",\"unit\":\"KG\"}},\"volumeM3\":\"13.72\"}",
+        "totalGrossWeight: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 692,
+        "outputTokens": 754
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "invoiceNumber",
+          "pattern": "invoiceNumber",
+          "outcome": "wrong",
+          "expected": "CI/26/8361",
+          "got": "CI26/8361"
+        },
+        {
+          "field": "grossWeight.kg",
+          "pattern": "grossWeight.kg",
+          "outcome": "missing",
+          "expected": "10046.60"
+        },
+        {
+          "field": "netWeight.kg",
+          "pattern": "netWeight.kg",
+          "outcome": "missing",
+          "expected": "9700.80"
+        },
+        {
+          "field": "lines[0].hsCode",
+          "pattern": "lines[*].hsCode",
+          "outcome": "missing",
+          "expected": "6907.21"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "lines[0].hsCode: could not normalize \"6907:21\""
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 739,
+        "outputTokens": 931
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 591,
+        "outputTokens": 745
+      }
+    },
+    {
+      "shipment": "CA-004",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "placeOfDelivery.name",
+          "pattern": "placeOfDelivery.name",
+          "outcome": "missing",
+          "expected": "Vancouver"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 705,
+        "outputTokens": 879
+      }
+    },
+    {
+      "shipment": "CA-004",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "portOfEntry.name",
+          "pattern": "portOfEntry.name",
+          "outcome": "spurious",
+          "got": "VANCOUVER"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 701,
+        "outputTokens": 1024
+      }
+    },
+    {
+      "shipment": "CA-004",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 567,
+        "outputTokens": 725
+      }
+    },
+    {
+      "shipment": "CA-005",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "blNumber",
+          "pattern": "blNumber",
+          "outcome": "wrong",
+          "expected": "SILVNGB953283",
+          "got": "811VINGB953283"
+        },
+        {
+          "field": "bookingNumber",
+          "pattern": "bookingNumber",
+          "outcome": "wrong",
+          "expected": "208130513",
+          "got": "204130513"
+        },
+        {
+          "field": "carrier.scac",
+          "pattern": "carrier.scac",
+          "outcome": "wrong",
+          "expected": "TDWE",
+          "got": "TONE"
+        },
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "wrong",
+          "expected": "Ningbo Everbright Appliance Co., Ltd.",
+          "got": "NINGO EVERMIGHT APPLIANCE CO., LTD."
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "QUINCAILLERIE SAINT-LAURENT LTEE"
+        },
+        {
+          "field": "notifyParty.name",
+          "pattern": "notifyParty.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "QUINCAILLERIE SAINT-LAURENT LTEE"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 736,
+        "outputTokens": 921
+      }
+    },
+    {
+      "shipment": "CA-005",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": false,
+      "scores": [
+        {
+          "field": "buyer.name",
+          "pattern": "buyer.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "QUANCAILLERIE SAINT-LAURENT LTD"
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "QUANCAILLERIE SAINT-LAURENT LTD"
+        },
+        {
+          "field": "incoterm.code",
+          "pattern": "incoterm.code",
+          "outcome": "missing",
+          "expected": "FOB"
+        },
+        {
+          "field": "lines[0].description",
+          "pattern": "lines[*].description",
+          "outcome": "wrong",
+          "expected": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "got": "ELECTRIC KETTLE 1.7 L, STAINLESS STEEL, 1500 W, 120 V RO"
+        },
+        {
+          "field": "lines[1].description",
+          "pattern": "lines[*].description",
+          "outcome": "wrong",
+          "expected": "Countertop blender 600 W with glass jar",
+          "got": "COUNTERTOP BLENDER 600 W WITH GLASS JAR NO"
+        },
+        {
+          "field": "lines[0].lineTotal.amount",
+          "pattern": "lines[*].lineTotal.amount",
+          "outcome": "missing",
+          "expected": "29808.08"
+        },
+        {
+          "field": "lines[1].lineTotal.amount",
+          "pattern": "lines[*].lineTotal.amount",
+          "outcome": "missing",
+          "expected": "15406.56"
+        },
+        {
+          "field": "lines[0].lineTotal.currency",
+          "pattern": "lines[*].lineTotal.currency",
+          "outcome": "missing",
+          "expected": "USD"
+        },
+        {
+          "field": "lines[1].lineTotal.currency",
+          "pattern": "lines[*].lineTotal.currency",
+          "outcome": "missing",
+          "expected": "USD"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "lines.0.lineTotal: Invalid input: expected object, received undefined",
+        "lines.1.lineTotal: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 734,
+        "outputTokens": 1000
+      }
+    },
+    {
+      "shipment": "CA-005",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "Quincallterie Saint-Laurent Ltée"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 607,
+        "outputTokens": 758
+      }
+    },
+    {
+      "shipment": "CA-006",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "bookingNumber",
+          "pattern": "bookingNumber",
+          "outcome": "wrong",
+          "expected": "407344958",
+          "got": "4073444958"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 664,
+        "outputTokens": 808
+      }
+    },
+    {
+      "shipment": "CA-006",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 695,
+        "outputTokens": 924
+      }
+    },
+    {
+      "shipment": "CA-006",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "valid": false,
+      "scores": [
+        {
+          "field": "packages[0].count",
+          "pattern": "packages[*].count",
+          "outcome": "wrong",
+          "expected": 44,
+          "got": 0
+        },
+        {
+          "field": "packages[1].count",
+          "pattern": "packages[*].count",
+          "outcome": "wrong",
+          "expected": 6,
+          "got": 0
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "packages.0.count: Too small: expected number to be >0",
+        "packages.1.count: Too small: expected number to be >0"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 527,
+        "outputTokens": 689
+      }
+    },
+    {
+      "shipment": "CA-007",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "valid": false,
+      "scores": [
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "wrong",
+          "expected": "Saigon Apparel Joint Stock Company",
+          "got": "AIGON APPAREL JOINT STOCK COMPANY"
+        },
+        {
+          "field": "placeOfDelivery.name",
+          "pattern": "placeOfDelivery.name",
+          "outcome": "missing",
+          "expected": "Vancouver"
+        },
+        {
+          "field": "totalGrossWeight.kg",
+          "pattern": "totalGrossWeight.kg",
+          "outcome": "missing",
+          "expected": "8237.40"
+        },
+        {
+          "field": "totalGrossWeight.raw.unit",
+          "pattern": "totalGrossWeight.raw.unit",
+          "outcome": "missing",
+          "expected": "KG"
+        },
+        {
+          "field": "containers[0].packages",
+          "pattern": "containers[*].packages",
+          "outcome": "wrong",
+          "expected": 449,
+          "got": 443
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "totalGrossWeight: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 732,
+        "outputTokens": 967
+      }
+    },
+    {
+      "shipment": "CA-007",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "invoiceNumber",
+          "pattern": "invoiceNumber",
+          "outcome": "wrong",
+          "expected": "SAI2607606",
+          "got": "AI2607606"
+        },
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "wrong",
+          "expected": "CO367969",
+          "got": "O367969"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 701,
+        "outputTokens": 927
+      }
+    },
+    {
+      "shipment": "CA-007",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 592,
+        "outputTokens": 773
+      }
+    },
+    {
+      "shipment": "CA-008",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "wrong",
+          "expected": "Prairie Roasters Co-operative",
+          "got": "Rpnaire Roasters Co-operative"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 678,
+        "outputTokens": 883
+      }
+    },
+    {
+      "shipment": "CA-008",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "invoiceNumber",
+          "pattern": "invoiceNumber",
+          "outcome": "wrong",
+          "expected": "CI/26/4775",
+          "got": "Cl/26/4775"
+        },
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "wrong",
+          "expected": "PR857633",
+          "got": "R857633"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 629,
+        "outputTokens": 735
+      }
+    },
+    {
+      "shipment": "CA-008",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [
+        {
+          "field": "totals.netWeight.kg",
+          "pattern": "totals.netWeight.kg",
+          "outcome": "missing",
+          "expected": "2997.00"
+        },
+        {
+          "field": "totals.grossWeight.kg",
+          "pattern": "totals.grossWeight.kg",
+          "outcome": "missing",
+          "expected": "3119.10"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 495,
+        "outputTokens": 496
+      }
+    },
+    {
+      "shipment": "CA-009",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "placeOfDelivery.name",
+          "pattern": "placeOfDelivery.name",
+          "outcome": "missing",
+          "expected": "Toronto"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 722,
+        "outputTokens": 833
+      }
+    },
+    {
+      "shipment": "CA-009",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "invoiceNumber",
+          "pattern": "invoiceNumber",
+          "outcome": "wrong",
+          "expected": "CI/26/1944",
+          "got": "Cl/26/1944"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 633,
+        "outputTokens": 749
+      }
+    },
+    {
+      "shipment": "CA-009",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 507,
+        "outputTokens": 544
+      }
+    },
+    {
+      "shipment": "CA-010",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "blNumber",
+          "pattern": "blNumber",
+          "outcome": "wrong",
+          "expected": "COMPMUN967104",
+          "got": "COMPANYN967104"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 730,
+        "outputTokens": 896
+      }
+    },
+    {
+      "shipment": "CA-010",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 756,
+        "outputTokens": 1078
+      }
+    },
+    {
+      "shipment": "CA-010",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 648,
+        "outputTokens": 951
+      }
+    },
+    {
+      "shipment": "CA-011",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 711,
+        "outputTokens": 897
+      }
+    },
+    {
+      "shipment": "CA-011",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Prairie Roasters Co-operative"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 607,
+        "outputTokens": 694
+      }
+    },
+    {
+      "shipment": "CA-011",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [
+        {
+          "field": "packages[0].type",
+          "pattern": "packages[*].type",
+          "outcome": "wrong",
+          "expected": "CTN",
+          "got": "OTHER"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 548,
+        "outputTokens": 554
+      }
+    },
+    {
+      "shipment": "CA-012",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 710,
+        "outputTokens": 948
+      }
+    },
+    {
+      "shipment": "CA-012",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "wrong",
+          "expected": "CO348078",
+          "got": "C0348078"
+        },
+        {
+          "field": "seller.name",
+          "pattern": "seller.name",
+          "outcome": "wrong",
+          "expected": "Saigon Apparel Joint Stock Company",
+          "got": "SALGON APPAREL JOINT STOCK COMPANY"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 665,
+        "outputTokens": 814
+      }
+    },
+    {
+      "shipment": "CA-012",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [
+        {
+          "field": "totals.netWeight.kg",
+          "pattern": "totals.netWeight.kg",
+          "outcome": "missing",
+          "expected": "3942.00"
+        },
+        {
+          "field": "totals.grossWeight.kg",
+          "pattern": "totals.grossWeight.kg",
+          "outcome": "missing",
+          "expected": "4095.30"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 504,
+        "outputTokens": 543
+      }
+    },
+    {
+      "shipment": "CA-013",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 713,
+        "outputTokens": 898
+      }
+    },
+    {
+      "shipment": "CA-013",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 687,
+        "outputTokens": 838
+      }
+    },
+    {
+      "shipment": "CA-013",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 540,
+        "outputTokens": 570
+      }
+    },
+    {
+      "shipment": "CA-014",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "QUINCIAILLERIE SAINT-LAURENT LTÉE"
+        },
+        {
+          "field": "notifyParty.name",
+          "pattern": "notifyParty.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "QUINCIAILLERIE SAINT-LAURENT LTÉE"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 746,
+        "outputTokens": 937
+      }
+    },
+    {
+      "shipment": "CA-014",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 740,
+        "outputTokens": 956
+      }
+    },
+    {
+      "shipment": "CA-014",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 620,
+        "outputTokens": 753
+      }
+    },
+    {
+      "shipment": "CA-015",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 707,
+        "outputTokens": 878
+      }
+    },
+    {
+      "shipment": "CA-015",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 603,
+        "outputTokens": 691
+      }
+    },
+    {
+      "shipment": "CA-015",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 513,
+        "outputTokens": 540
+      }
+    },
+    {
+      "shipment": "CA-016",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 703,
+        "outputTokens": 870
+      }
+    },
+    {
+      "shipment": "CA-016",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 692,
+        "outputTokens": 937
+      }
+    },
+    {
+      "shipment": "CA-016",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 572,
+        "outputTokens": 729
+      }
+    },
+    {
+      "shipment": "CA-017",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "notifyParty.name",
+          "pattern": "notifyParty.name",
+          "outcome": "missing",
+          "expected": "Quincaillerie Saint-Laurent Ltée"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 657,
+        "outputTokens": 778
+      }
+    },
+    {
+      "shipment": "CA-017",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "buyer.name",
+          "pattern": "buyer.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "QUINCALLIERIE SAINT-LAURENT LTÉE"
+        },
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "wrong",
+          "expected": "Quincaillerie Saint-Laurent Ltée",
+          "got": "QUINCALLIERIE SAINT-LAURENT LTÉE"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 726,
+        "outputTokens": 941
+      }
+    },
+    {
+      "shipment": "CA-017",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 586,
+        "outputTokens": 728
+      }
+    },
+    {
+      "shipment": "CA-018",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 730,
+        "outputTokens": 975
+      }
+    },
+    {
+      "shipment": "CA-018",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "wrong",
+          "expected": "QU398607",
+          "got": "U398607"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 664,
+        "outputTokens": 816
+      }
+    },
+    {
+      "shipment": "CA-018",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 539,
+        "outputTokens": 590
+      }
+    },
+    {
+      "shipment": "CA-019",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 702,
+        "outputTokens": 888
+      }
+    },
+    {
+      "shipment": "CA-019",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 658,
+        "outputTokens": 777
+      }
+    },
+    {
+      "shipment": "CA-019",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 519,
+        "outputTokens": 555
+      }
+    },
+    {
+      "shipment": "CA-020",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": false,
+      "scores": [
+        {
+          "field": "portOfLoading.name",
+          "pattern": "portOfLoading.name",
+          "outcome": "missing",
+          "expected": "Yantian"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "portOfLoading: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 671,
+        "outputTokens": 849
+      }
+    },
+    {
+      "shipment": "CA-020",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "wrong",
+          "expected": "PO-64686",
+          "got": "OP-64686"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 620,
+        "outputTokens": 734
+      }
+    },
+    {
+      "shipment": "CA-020",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 471,
+        "outputTokens": 533
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "wrong",
+          "expected": "Nordhafen Armaturen GmbH",
+          "got": "Northdafen Armaturen GmbH"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 685,
+        "outputTokens": 872
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Lakeshore Coffee Importers LLC"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 600,
+        "outputTokens": 683
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 500,
+        "outputTokens": 548
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "valid": false,
+      "scores": [
+        {
+          "field": "carrier.scac",
+          "pattern": "carrier.scac",
+          "outcome": "wrong",
+          "expected": "AGLX",
+          "got": "AGLIX"
+        },
+        {
+          "field": "totalGrossWeight.kg",
+          "pattern": "totalGrossWeight.kg",
+          "outcome": "missing",
+          "expected": "204.00"
+        },
+        {
+          "field": "totalGrossWeight.raw.unit",
+          "pattern": "totalGrossWeight.raw.unit",
+          "outcome": "missing",
+          "expected": "LB"
+        },
+        {
+          "field": "containers[0].seal",
+          "pattern": "containers[*].seal",
+          "outcome": "wrong",
+          "expected": "AG7985748",
+          "got": "AGT985748"
+        },
+        {
+          "field": "containers[0].grossWeight.kg",
+          "pattern": "containers[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "204.00"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "totalGrossWeight: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 721,
+        "outputTokens": 857
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "grossWeight.kg",
+          "pattern": "grossWeight.kg",
+          "outcome": "missing",
+          "expected": "204.00"
+        },
+        {
+          "field": "netWeight.kg",
+          "pattern": "netWeight.kg",
+          "outcome": "missing",
+          "expected": "180.00"
+        },
+        {
+          "field": "lines[0].description",
+          "pattern": "lines[*].description",
+          "outcome": "wrong",
+          "expected": "Plush teddy bear 30 cm, polyester filling",
+          "got": "PLUSH TEDDY BEAR 30 CM, POLYESTER FILLING HD"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 597,
+        "outputTokens": 718
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 509,
+        "outputTokens": 548
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 719,
+        "outputTokens": 866
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "seller.name",
+          "pattern": "seller.name",
+          "outcome": "wrong",
+          "expected": "Cafe Alto Huila Exportadores S.A.S.",
+          "got": "CAFE ALTO HUIJA EXPORTADORES S.A.S."
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 706,
+        "outputTokens": 806
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [
+        {
+          "field": "seller.name",
+          "pattern": "seller.name",
+          "outcome": "wrong",
+          "expected": "Cafe Alto Huila Exportadores S.A.S.",
+          "got": "CAFE ALTO HUILE EXPORTADORES S.A.S."
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 542,
+        "outputTokens": 569
+      }
+    },
+    {
+      "shipment": "US-004",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "wrong",
+          "expected": "PACIFIC CREST HARMONY",
+          "got": "PACIFIC CREST"
+        },
+        {
+          "field": "voyage",
+          "pattern": "voyage",
+          "outcome": "wrong",
+          "expected": "030E",
+          "got": "HARMONY / 030E"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 703,
+        "outputTokens": 871
+      }
+    },
+    {
+      "shipment": "US-004",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 702,
+        "outputTokens": 928
+      }
+    },
+    {
+      "shipment": "US-004",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 542,
+        "outputTokens": 693
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "blNumber",
+          "pattern": "blNumber",
+          "outcome": "wrong",
+          "expected": "TDWEBUN8091104",
+          "got": "TDWEBURN091104"
+        },
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "wrong",
+          "expected": "Cafe Alto Huila Exportadores S.A.S.",
+          "got": "Cafe Alto Hulla Exportadores S.A.S."
+        },
+        {
+          "field": "containers[0].seal",
+          "pattern": "containers[*].seal",
+          "outcome": "wrong",
+          "expected": "TW8058724",
+          "got": "TW8508724"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 681,
+        "outputTokens": 876
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "invoiceNumber",
+          "pattern": "invoiceNumber",
+          "outcome": "wrong",
+          "expected": "CI/26/0789",
+          "got": "C1280789"
+        },
+        {
+          "field": "lines[0].hsCode",
+          "pattern": "lines[*].hsCode",
+          "outcome": "wrong",
+          "expected": "0901.11",
+          "got": "0801.11"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 646,
+        "outputTokens": 800
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "wrong",
+          "expected": "Bluebonnet Home Goods DC",
+          "got": "Buenonnet Home Goods DC"
+        },
+        {
+          "field": "totals.netWeight.kg",
+          "pattern": "totals.netWeight.kg",
+          "outcome": "missing",
+          "expected": "16740.00"
+        },
+        {
+          "field": "totals.grossWeight.kg",
+          "pattern": "totals.grossWeight.kg",
+          "outcome": "missing",
+          "expected": "16963.20"
+        },
+        {
+          "field": "packages[0].netWeight.kg",
+          "pattern": "packages[*].netWeight.kg",
+          "outcome": "missing",
+          "expected": "16740.00"
+        },
+        {
+          "field": "packages[0].grossWeight.kg",
+          "pattern": "packages[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "16963.20"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 496,
+        "outputTokens": 449
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 687,
+        "outputTokens": 854
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "invoiceNumber",
+          "pattern": "invoiceNumber",
+          "outcome": "wrong",
+          "expected": "NOR2601049",
+          "got": "2601049"
+        },
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "wrong",
+          "expected": "PA128589",
+          "got": "A128589"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 658,
+        "outputTokens": 805
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 556,
+        "outputTokens": 705
+      }
+    },
+    {
+      "shipment": "US-007",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 684,
+        "outputTokens": 877
+      }
+    },
+    {
+      "shipment": "US-007",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": false,
+      "scores": [
+        {
+          "field": "lines[0].lineTotal.amount",
+          "pattern": "lines[*].lineTotal.amount",
+          "outcome": "missing",
+          "expected": "2170.08"
+        },
+        {
+          "field": "lines[0].lineTotal.currency",
+          "pattern": "lines[*].lineTotal.currency",
+          "outcome": "missing",
+          "expected": "USD"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "lines.0.lineTotal: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 642,
+        "outputTokens": 789
+      }
+    },
+    {
+      "shipment": "US-007",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 529,
+        "outputTokens": 553
+      }
+    },
+    {
+      "shipment": "US-008",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 700,
+        "outputTokens": 894
+      }
+    },
+    {
+      "shipment": "US-008",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "wrong",
+          "expected": "PO-57441",
+          "got": "OPO-57441"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 628,
+        "outputTokens": 760
+      }
+    },
+    {
+      "shipment": "US-008",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 489,
+        "outputTokens": 538
+      }
+    },
+    {
+      "shipment": "US-009",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "containers[0].number",
+          "pattern": "containers[*].number",
+          "outcome": "missing",
+          "expected": "MDOU9567880"
+        },
+        {
+          "field": "containers[0].seal",
+          "pattern": "containers[*].seal",
+          "outcome": "missing",
+          "expected": "MD7298523"
+        },
+        {
+          "field": "containers[0].packages",
+          "pattern": "containers[*].packages",
+          "outcome": "missing",
+          "expected": 393
+        },
+        {
+          "field": "containers[0].grossWeight.kg",
+          "pattern": "containers[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "9821.30"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "containers[0]: could not normalize {\"number\":\"MD009567880\",\"seal\":\"MD7298523\",\"type\":\"200P\",\"packages\":393,\"grossWeight\":{\"kg\":\"9821.17\",\"raw\":{\"value\":\"21652\",\"unit\":\"LB\"}},\"volumeM3\":\"15.65\"}"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 731,
+        "outputTokens": 973
+      }
+    },
+    {
+      "shipment": "US-009",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 766,
+        "outputTokens": 1036
+      }
+    },
+    {
+      "shipment": "US-009",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 676,
+        "outputTokens": 954
+      }
+    },
+    {
+      "shipment": "US-010",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 690,
+        "outputTokens": 878
+      }
+    },
+    {
+      "shipment": "US-010",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Harborline Industrial Supply Inc."
+        },
+        {
+          "field": "grossWeight.kg",
+          "pattern": "grossWeight.kg",
+          "outcome": "missing",
+          "expected": "10396.80"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 613,
+        "outputTokens": 685
+      }
+    },
+    {
+      "shipment": "US-010",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [
+        {
+          "field": "seller.name",
+          "pattern": "seller.name",
+          "outcome": "wrong",
+          "expected": "Cafe Alto Huila Exportadores S.A.S.",
+          "got": "CAFE ALTO HUILLACERRAERAS S.A.S."
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 499,
+        "outputTokens": 552
+      }
+    },
+    {
+      "shipment": "US-011",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": false,
+      "scores": [
+        {
+          "field": "portOfDischarge.name",
+          "pattern": "portOfDischarge.name",
+          "outcome": "missing",
+          "expected": "New York"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "portOfDischarge: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 680,
+        "outputTokens": 880
+      }
+    },
+    {
+      "shipment": "US-011",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Harborline Industrial Supply Inc."
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 620,
+        "outputTokens": 707
+      }
+    },
+    {
+      "shipment": "US-011",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 546,
+        "outputTokens": 595
+      }
+    },
+    {
+      "shipment": "US-012",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "wrong",
+          "expected": "PACIFIC CREST HARMONY",
+          "got": "PACIFIC CREST"
+        },
+        {
+          "field": "voyage",
+          "pattern": "voyage",
+          "outcome": "wrong",
+          "expected": "093W",
+          "got": "HARMONY / 093W"
+        },
+        {
+          "field": "portOfLoading.name",
+          "pattern": "portOfLoading.name",
+          "outcome": "wrong",
+          "expected": "Shanghai",
+          "got": "Ningbo"
+        },
+        {
+          "field": "placeOfDelivery.name",
+          "pattern": "placeOfDelivery.name",
+          "outcome": "missing",
+          "expected": "Newark"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 631,
+        "outputTokens": 833
+      }
+    },
+    {
+      "shipment": "US-012",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "lines[0].unitPrice.amount",
+          "pattern": "lines[*].unitPrice.amount",
+          "outcome": "wrong",
+          "expected": "26.09",
+          "got": "26.00"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 619,
+        "outputTokens": 741
+      }
+    },
+    {
+      "shipment": "US-012",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 500,
+        "outputTokens": 536
+      }
+    },
+    {
+      "shipment": "US-013",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 692,
+        "outputTokens": 877
+      }
+    },
+    {
+      "shipment": "US-013",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "consignee.name",
+          "pattern": "consignee.name",
+          "outcome": "missing",
+          "expected": "Harborline Industrial Supply Inc."
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 612,
+        "outputTokens": 698
+      }
+    },
+    {
+      "shipment": "US-013",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [
+        {
+          "field": "totals.netWeight.kg",
+          "pattern": "totals.netWeight.kg",
+          "outcome": "missing",
+          "expected": "15180.00"
+        },
+        {
+          "field": "totals.grossWeight.kg",
+          "pattern": "totals.grossWeight.kg",
+          "outcome": "missing",
+          "expected": "15382.40"
+        },
+        {
+          "field": "packages[0].netWeight.kg",
+          "pattern": "packages[*].netWeight.kg",
+          "outcome": "missing",
+          "expected": "15180.00"
+        },
+        {
+          "field": "packages[0].grossWeight.kg",
+          "pattern": "packages[*].grossWeight.kg",
+          "outcome": "missing",
+          "expected": "15382.40"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 521,
+        "outputTokens": 455
+      }
+    },
+    {
+      "shipment": "US-014",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 685,
+        "outputTokens": 870
+      }
+    },
+    {
+      "shipment": "US-014",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "wrong",
+          "expected": "LA596620",
+          "got": "A596620"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 628,
+        "outputTokens": 745
+      }
+    },
+    {
+      "shipment": "US-014",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 509,
+        "outputTokens": 542
+      }
+    },
+    {
+      "shipment": "US-015",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "containers[0].packages",
+          "pattern": "containers[*].packages",
+          "outcome": "missing",
+          "expected": 110
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 705,
+        "outputTokens": 881
+      }
+    },
+    {
+      "shipment": "US-015",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": false,
+      "scores": [
+        {
+          "field": "invoiceTotal.amount",
+          "pattern": "invoiceTotal.amount",
+          "outcome": "missing",
+          "expected": "8962.80"
+        },
+        {
+          "field": "invoiceTotal.currency",
+          "pattern": "invoiceTotal.currency",
+          "outcome": "missing",
+          "expected": "USD"
+        },
+        {
+          "field": "lines[0].quantity.value",
+          "pattern": "lines[*].quantity.value",
+          "outcome": "missing",
+          "expected": "44",
+          "got": ""
+        },
+        {
+          "field": "lines[0].unitPrice.amount",
+          "pattern": "lines[*].unitPrice.amount",
+          "outcome": "missing",
+          "expected": "20.37"
+        },
+        {
+          "field": "lines[0].unitPrice.currency",
+          "pattern": "lines[*].unitPrice.currency",
+          "outcome": "missing",
+          "expected": "USD"
+        },
+        {
+          "field": "lines[0].lineTotal.amount",
+          "pattern": "lines[*].lineTotal.amount",
+          "outcome": "missing",
+          "expected": "8962.80"
+        },
+        {
+          "field": "lines[0].lineTotal.currency",
+          "pattern": "lines[*].lineTotal.currency",
+          "outcome": "missing",
+          "expected": "USD"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan",
+        "lines.0.quantity.value: Expected a decimal string like \"12500.00\"",
+        "lines.0.unitPrice: Invalid input: expected object, received undefined",
+        "lines.0.lineTotal: Invalid input: expected object, received undefined",
+        "invoiceTotal: Invalid input: expected object, received undefined"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 605,
+        "outputTokens": 765
+      }
+    },
+    {
+      "shipment": "US-015",
+      "type": "PACKING_LIST",
+      "template": "legacy",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 530,
+        "outputTokens": 557
+      }
+    },
+    {
+      "shipment": "US-016",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 679,
+        "outputTokens": 875
+      }
+    },
+    {
+      "shipment": "US-016",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "invoiceNumber",
+          "pattern": "invoiceNumber",
+          "outcome": "wrong",
+          "expected": "CI/26/9067",
+          "got": "CJ/26/9067"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 639,
+        "outputTokens": 768
+      }
+    },
+    {
+      "shipment": "US-016",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 499,
+        "outputTokens": 580
+      }
+    },
+    {
+      "shipment": "US-017",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "wrong",
+          "expected": "Cafe Alto Huila Exportadores S.A.S.",
+          "got": "CAFE ALTO HUIJA EXPORTADORES S.A.S."
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 715,
+        "outputTokens": 907
+      }
+    },
+    {
+      "shipment": "US-017",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "seller.name",
+          "pattern": "seller.name",
+          "outcome": "wrong",
+          "expected": "Cafe Alto Huila Exportadores S.A.S.",
+          "got": "CAFE ALTO HUILLA EXPORTADORES S.A.S."
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 705,
+        "outputTokens": 834
+      }
+    },
+    {
+      "shipment": "US-017",
+      "type": "PACKING_LIST",
+      "template": "classic",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 515,
+        "outputTokens": 549
+      }
+    },
+    {
+      "shipment": "US-018",
+      "type": "BILL_OF_LADING",
+      "template": "legacy",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 751,
+        "outputTokens": 919
+      }
+    },
+    {
+      "shipment": "US-018",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "modern",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 679,
+        "outputTokens": 996
+      }
+    },
+    {
+      "shipment": "US-018",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 609,
+        "outputTokens": 778
+      }
+    },
+    {
+      "shipment": "US-019",
+      "type": "BILL_OF_LADING",
+      "template": "classic",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 724,
+        "outputTokens": 964
+      }
+    },
+    {
+      "shipment": "US-019",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "classic",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [
+        {
+          "field": "poNumber",
+          "pattern": "poNumber",
+          "outcome": "wrong",
+          "expected": "PA787236",
+          "got": "A787236"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 767,
+        "outputTokens": 1097
+      }
+    },
+    {
+      "shipment": "US-019",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 673,
+        "outputTokens": 933
+      }
+    },
+    {
+      "shipment": "US-020",
+      "type": "BILL_OF_LADING",
+      "template": "modern",
+      "detectedType": "BILL_OF_LADING",
+      "valid": true,
+      "scores": [
+        {
+          "field": "shipper.name",
+          "pattern": "shipper.name",
+          "outcome": "wrong",
+          "expected": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+          "got": "Qingdao Hengl Fasteners & Machinery Co., Ltd."
+        },
+        {
+          "field": "vessel",
+          "pattern": "vessel",
+          "outcome": "wrong",
+          "expected": "PACIFIC CREST HARMONY",
+          "got": "PACIFIC CREST"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 748,
+        "outputTokens": 899
+      }
+    },
+    {
+      "shipment": "US-020",
+      "type": "COMMERCIAL_INVOICE",
+      "template": "legacy",
+      "detectedType": "COMMERCIAL_INVOICE",
+      "valid": true,
+      "scores": [],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 646,
+        "outputTokens": 789
+      }
+    },
+    {
+      "shipment": "US-020",
+      "type": "PACKING_LIST",
+      "template": "modern",
+      "detectedType": "PACKING_LIST",
+      "valid": true,
+      "scores": [
+        {
+          "field": "totals.netWeight.kg",
+          "pattern": "totals.netWeight.kg",
+          "outcome": "missing",
+          "expected": "261.00"
+        },
+        {
+          "field": "totals.grossWeight.kg",
+          "pattern": "totals.grossWeight.kg",
+          "outcome": "missing",
+          "expected": "342.00"
+        }
+      ],
+      "issues": [
+        "Read with OCR (page 1): check values against the scan"
+      ],
+      "cached": false,
+      "usage": {
+        "inputTokens": 480,
+        "outputTokens": 498
+      }
+    }
+  ],
+  "shipmentsDetail": [
+    {
+      "id": "CA-001",
+      "expectedRules": [
+        "X10",
+        "X3",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X3",
+        "X6"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "CA-002",
+      "expectedRules": [
+        "X2"
+      ],
+      "rulesOnTruth": [
+        "X2"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "CA-003",
+      "expectedRules": [
+        "X2",
+        "X3"
+      ],
+      "rulesOnTruth": [
+        "X2",
+        "X3"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "CA-004",
+      "expectedRules": [
+        "X3",
+        "X5",
+        "X6",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X3",
+        "X5",
+        "X6",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X3",
+        "X5",
+        "X6",
+        "X7"
+      ]
+    },
+    {
+      "id": "CA-005",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "CA-006",
+      "expectedRules": [
+        "X2"
+      ],
+      "rulesOnTruth": [
+        "X2"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "CA-007",
+      "expectedRules": [
+        "X1"
+      ],
+      "rulesOnTruth": [
+        "X1"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "CA-008",
+      "expectedRules": [
+        "C1",
+        "X10"
+      ],
+      "rulesOnTruth": [
+        "C1",
+        "X10"
+      ],
+      "rulesOnExtracted": [
+        "C1",
+        "X1",
+        "X10",
+        "X8"
+      ]
+    },
+    {
+      "id": "CA-009",
+      "expectedRules": [
+        "X2",
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X2",
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X2",
+        "X5",
+        "X8"
+      ]
+    },
+    {
+      "id": "CA-010",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "CA-011",
+      "expectedRules": [
+        "X10",
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "C1",
+        "X10",
+        "X5"
+      ]
+    },
+    {
+      "id": "CA-012",
+      "expectedRules": [
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X7"
+      ]
+    },
+    {
+      "id": "CA-013",
+      "expectedRules": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "CA-014",
+      "expectedRules": [
+        "X1",
+        "X3",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X3",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X3",
+        "X7"
+      ]
+    },
+    {
+      "id": "CA-015",
+      "expectedRules": [
+        "C1",
+        "X4",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "C1",
+        "X4",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "C1",
+        "X4",
+        "X6",
+        "X7"
+      ]
+    },
+    {
+      "id": "CA-016",
+      "expectedRules": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "CA-017",
+      "expectedRules": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X1",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "CA-018",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "CA-019",
+      "expectedRules": [
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X6"
+      ]
+    },
+    {
+      "id": "CA-020",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "US-001",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-002",
+      "expectedRules": [
+        "X1",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X1",
+        "X7"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "US-003",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": [
+        "X7"
+      ]
+    },
+    {
+      "id": "US-004",
+      "expectedRules": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-005",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": [
+        "X8"
+      ]
+    },
+    {
+      "id": "US-006",
+      "expectedRules": [
+        "X4"
+      ],
+      "rulesOnTruth": [
+        "X4"
+      ],
+      "rulesOnExtracted": [
+        "X4",
+        "X8"
+      ]
+    },
+    {
+      "id": "US-007",
+      "expectedRules": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "US-008",
+      "expectedRules": [
+        "U1"
+      ],
+      "rulesOnTruth": [
+        "U1"
+      ],
+      "rulesOnExtracted": [
+        "U1"
+      ]
+    },
+    {
+      "id": "US-009",
+      "expectedRules": [
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X7"
+      ]
+    },
+    {
+      "id": "US-010",
+      "expectedRules": [
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X7"
+      ]
+    },
+    {
+      "id": "US-011",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "US-012",
+      "expectedRules": [
+        "X5"
+      ],
+      "rulesOnTruth": [
+        "X5"
+      ],
+      "rulesOnExtracted": [
+        "X5"
+      ]
+    },
+    {
+      "id": "US-013",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-014",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-015",
+      "expectedRules": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": null
+    },
+    {
+      "id": "US-016",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": [
+        "X8"
+      ]
+    },
+    {
+      "id": "US-017",
+      "expectedRules": [
+        "U1",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "U1",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "U1",
+        "X6"
+      ]
+    },
+    {
+      "id": "US-018",
+      "expectedRules": [
+        "X4",
+        "X6"
+      ],
+      "rulesOnTruth": [
+        "X4",
+        "X6"
+      ],
+      "rulesOnExtracted": [
+        "X4",
+        "X6"
+      ]
+    },
+    {
+      "id": "US-019",
+      "expectedRules": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnTruth": [
+        "X10",
+        "X5",
+        "X7"
+      ],
+      "rulesOnExtracted": [
+        "X10",
+        "X5",
+        "X7"
+      ]
+    },
+    {
+      "id": "US-020",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    }
+  ]
+}

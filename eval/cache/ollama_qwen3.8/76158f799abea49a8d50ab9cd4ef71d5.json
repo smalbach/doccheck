@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 687,
+    "outputTokens": 854
+  },
+  "output": {
+    "blNumber": "TDWEBRV4381664",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Tidewater Express Lines (TDWE)",
+    "bookingNumber": "128027553",
+    "carrierName": "Tidewater Express Lines (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13532 Valley Blvd"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "040W",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU3439085",
+        "seal": "TW3942496",
+        "type": "20GP",
+        "packages": "260",
+        "grossWeight": {
+          "value": "7,051.20",
+          "unit": "KG"
+        },
+        "volumeM3": "13.43"
+      }
+    ],
+    "totalPackages": "260",
+    "totalGrossWeight": {
+      "value": "7,051.20",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PACIFIC/PA128589/C/NO. 1-260",
+    "cargoDescription": "SAID TO CONTAIN 260 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "NOR2601049",
+      "PA128589"
+    ],
+    "placeOfIssue": "Bremerhaven",
+    "dateOfIssue": "2026-02-24",
+    "shippedOnBoardDate": "2026-02-24"
+  }
+}

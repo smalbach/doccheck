@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 607,
+    "outputTokens": 758
+  },
+  "output": {
+    "packingListNumber": "PL-2026-9061",
+    "invoiceRef": "INV-2026-9061",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Quincallterie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "marks": "QUINCAILLERIE/PO-64700/C/NO. 1-395",
+    "packages": [
+      {
+        "range": "1-239",
+        "count": "239 CTN",
+        "packageType": "CTN",
+        "sku": "EX-17",
+        "description": "Electric kettle 1.7 L",
+        "quantity": "1,912 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,007.60",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,270.50",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 45 × 42"
+      },
+      {
+        "range": "240-395",
+        "count": "156 CTN",
+        "packageType": "CTN",
+        "sku": "BL-600",
+        "description": "Blender 600 W",
+        "quantity": "624 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,435.20",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,653.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": "50 × 50 × 45"
+      }
+    ],
+    "totalPackages": "395",
+    "totalNetWeight": {
+      "value": "3,442.80",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,924.10",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "42.39"
+  }
+}

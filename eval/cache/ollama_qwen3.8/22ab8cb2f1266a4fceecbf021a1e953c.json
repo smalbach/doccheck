@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 658,
+    "outputTokens": 805
+  },
+  "output": {
+    "invoiceNumber": "2601049",
+    "invoiceDate": "2026-02-18",
+    "poNumber": "A128589",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": null,
+    "shipmentDate": "2026-02-22",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "Bremerhaven",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "EUR",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "4,640",
+        "unit": "PCS",
+        "unitPrice": "15.09",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "70,017.60",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "28",
+        "unit": "PCS",
+        "unitPrice": "87.62",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "2,453.36",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "DE",
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "260",
+    "grossWeight": {
+      "value": "6,670.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "7,051.20",
+      "unit": "KG"
+    },
+    "invoiceTotal": "72,470.96",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

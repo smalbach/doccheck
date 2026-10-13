@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 702,
+    "outputTokens": 928
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0435",
+    "invoiceDate": "06-MAR-2026",
+    "poNumber": "PA996250",
+    "seller": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "USA",
+      "taxId": "95-4783210"
+    },
+    "shipmentDate": "09-MAR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "BREMERHAVEN",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "LOS ANGELES",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "BREMERHAVEN",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "USD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "5",
+        "unit": "PCS",
+        "unitPrice": "83.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "4182.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-21N",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED HS 8481.80",
+        "quantity": "1980",
+        "unit": "PCS",
+        "unitPrice": "12.88",
+        "unitPriceCurrency": null,
+        "lineTotal": "25502.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      }
+    ],
+    "totalPackages": "149 PKGS",
+    "grossWeight": {
+      "value": "3731.90",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "3398.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "29684.90",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}
