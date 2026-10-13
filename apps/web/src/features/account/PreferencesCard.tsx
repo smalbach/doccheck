@@ -3,6 +3,7 @@ import { ThemeToggle } from '../../components/layout/ThemeToggle';
 import { Card } from '../../components/ui/Card';
 import { Field } from '../../components/ui/Field';
 import { useI18n } from '../../i18n/useI18n';
+import { BackgroundNotifySetting } from '../notifications/BackgroundNotifySetting';
 
 export function PreferencesCard() {
   const { t } = useI18n();
@@ -15,6 +16,7 @@ export function PreferencesCard() {
           <span className="field-label">{t('prefs.theme')}</span>
           <ThemeToggle showLabels />
         </div>
+        <BackgroundNotifySetting />
       </div>
     </Card>
   );

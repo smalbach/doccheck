@@ -178,6 +178,14 @@ could miss an event with a smaller id committed later. The safety poll on the we
   took 41 s", expandable with the agent's questions and answers). Neither is a live region:
   `ProgressAnnouncer` (polite) speaks only milestones (a document going to the model and ending, a validation
   starting, reaching the agent, ending). Spinners stop under `prefers-reduced-motion`.
+- Notifications (`apps/web/src/features/notifications/`): `RunNotifications`, in the signed-in shell, opens
+  `GET /events` and, for **live** events only (after `ready`, never the backlog), tells when a run ends
+  (`saved`; a failure with `willRetry` is not an end): a radix toast unless that shipment's page is open,
+  and a browser notification when the tab is hidden and the viewer opted in (Account → Preferences,
+  `localStorage` `doccheck.notifyInBackground`, permission asked on that click only). Runs ending within
+  ~1 s of each other, or while the previous toast of the same shipment is up, become one toast
+  ("3 documents of CA-014 extracted"). The tab title counts runs under way ("(2) DocCheck") and shows
+  "✓ DocCheck" after one ended in the background.
 - Validate: the stream is open for the whole shipment page, so the blocking `POST /shipments/:id/validate`
   (unchanged for scripts and tests) shows its stages live while it runs.
 

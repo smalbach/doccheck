@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from 'react';
 import { useAuth } from '../../features/auth/useAuth';
+import { RunNotifications } from '../../features/notifications/RunNotifications';
 import { useDemo } from '../../hooks/useDemo';
 import { useI18n } from '../../i18n/useI18n';
 import { currentPath } from '../../lib/currentPath';
@@ -11,7 +12,10 @@ import { MobileTopbar } from './MobileTopbar';
 import { SkipLink } from './SkipLink';
 import { Sidebar } from './Sidebar';
 
-/** The signed-in app: sidebar on the left, page on the right. Signed-out visitors are sent to sign in and brought back. */
+/**
+ * The signed-in app: sidebar on the left, page on the right, toasts when runs end. Signed-out visitors
+ * are sent to sign in and brought back.
+ */
 export function AppShell({ route, children }: { route: AppRoute; children: ReactNode }) {
   const { user, logout } = useAuth();
   const demo = useDemo();
@@ -44,6 +48,7 @@ export function AppShell({ route, children }: { route: AppRoute; children: React
         </main>
         <AppFooter />
       </div>
+      <RunNotifications {...(route.name === 'shipment' ? { watchingShipmentId: route.id } : {})} />
     </div>
   );
 }

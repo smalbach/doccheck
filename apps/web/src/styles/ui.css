@@ -138,3 +138,23 @@
 
 .dialog-tools { display: flex; gap: 8px; flex-wrap: wrap; }
 .input.mono { font-family: var(--mono); letter-spacing: 0.02em; }
+
+/* Toasts (radix Toast): bottom right, swipe right to dismiss */
+.toast-viewport { position: fixed; right: 0; bottom: 0; z-index: 60; display: flex; flex-direction: column; gap: 8px; width: min(400px, 100vw); max-width: 100vw; margin: 0; padding: 16px; list-style: none; outline: none; box-sizing: border-box; pointer-events: none; }
+.toast-viewport > * { pointer-events: auto; }
+.toast { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; row-gap: 6px; align-items: start; background: var(--surface-raised); color: var(--text); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius); box-shadow: var(--shadow); padding: 10px 10px 10px 12px; }
+.toast-error { border-left-color: var(--critical); }
+.toast-title { grid-column: 1; margin: 0; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.toast-body { grid-column: 1; margin: 0; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+.toast-action { grid-column: 1; justify-self: start; }
+.toast-close { grid-column: 2; grid-row: 1; }
+.toast[data-state='open'] { animation: toast-in 180ms ease; }
+.toast[data-state='closed'] { animation: fade-out 150ms ease forwards; }
+.toast[data-swipe='move'] { transform: translateX(var(--radix-toast-swipe-move-x)); }
+.toast[data-swipe='cancel'] { transform: translateX(0); transition: transform 200ms ease; }
+.toast[data-swipe='end'] { animation: toast-swipe-out 150ms ease forwards; }
+@keyframes toast-in { from { transform: translateX(calc(100% + 16px)); } to { transform: translateX(0); } }
+@keyframes toast-swipe-out { from { transform: translateX(var(--radix-toast-swipe-end-x)); } to { transform: translateX(calc(100% + 16px)); } }
+@keyframes fade-out { to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .toast[data-state], .toast[data-swipe] { animation: none; transition: none; } }
+.notify-note { margin: 0; }
