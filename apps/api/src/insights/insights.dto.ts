@@ -15,6 +15,9 @@ export const LinesQuery = z.object({
   origin: CountryCode.optional(),
   /** Digits of an HS code or its start, dots ignored: "9503" matches 9503.00.00. */
   hs: z.string().trim().regex(/^[\d.]{2,13}$/).optional(),
+  /** Lines of invoices where this company is the seller or the buyer. */
+  party: z.string().uuid().optional(),
+  product: z.string().uuid().optional(),
   ...page,
 });
 export type LinesQuery = z.infer<typeof LinesQuery>;
@@ -57,3 +60,10 @@ export type ProductsQuery = z.infer<typeof ProductsQuery>;
 /** The destination filter of a party's or a product's page. */
 export const EntityQuery = z.object({ destination: Destination.optional() });
 export type EntityQuery = z.infer<typeof EntityQuery>;
+
+export const ContainersQuery = z.object({
+  destination: Destination.optional(),
+  q: z.string().trim().max(200).optional(),
+  ...page,
+});
+export type ContainersQuery = z.infer<typeof ContainersQuery>;

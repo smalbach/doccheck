@@ -18,19 +18,22 @@ export interface GoodsPanelProps {
   destination?: Destination;
   filters: GoodsFilterState;
   onFiltersChange: (filters: GoodsFilterState) => void;
+  /** Always applied: the lines of one company's invoices, or of one product. */
+  scope?: { party?: string; product?: string };
 }
 
 const ORIGIN = /^[A-Za-z]{2}$/;
 const HS = /^[\d.]{2,13}$/;
 
 /** Every invoice line of every shipment, searchable by text, origin and HS code. */
-export function GoodsPanel({ destination, filters, onFiltersChange }: GoodsPanelProps) {
+export function GoodsPanel({ destination, filters, onFiltersChange, scope }: GoodsPanelProps) {
   const { t } = useI18n();
   const [offset, setOffset] = useState(0);
   const settled = useDebouncedValue(filters, SEARCH_DEBOUNCE_MS);
   // Half-typed codes are not sent: the API would refuse them.
   const filtersQuery = {
     destination,
+    ...scope,
     q: settled.query.trim() || undefined,
     origin: ORIGIN.test(settled.origin.trim()) ? settled.origin.trim().toUpperCase() : undefined,
     hs: HS.test(settled.hs.trim()) ? settled.hs.trim() : undefined,

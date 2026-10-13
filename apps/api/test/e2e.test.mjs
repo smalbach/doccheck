@@ -1430,6 +1430,10 @@ describe('insights', () => {
     const detail = (await get(`/insights/parties/${acme.id}`)).body;
     assert.deepEqual(detail.topProducts.map((p) => [p.sku, p.lines]), [['TB-200', 2]]);
     assert.deepEqual(detail.recentShipments.map((s) => s.invoiceNumber), ['INV-LATER', sampleInvoice.invoiceNumber]);
+    assert.deepEqual(detail.addresses.map((x) => [x.name, x.city, x.roles]).sort(), [['ACME TOYS CO LTD', 'Shenzhen', ['seller']], [sampleInvoice.seller.name, 'Shenzhen', ['seller', 'shipper']]]);
+    assert.deepEqual(detail.related.map((r) => [r.name, r.roles]), [[sampleInvoice.buyer.name, ['buyer', 'consignee']]]);
+    assert.equal((await get(`/insights/lines?party=${acme.id}`)).body.total, 2);
+    assert.equal((await get(`/insights/lines?party=${acme.id}&destination=US`)).body.total, 1);
 
     const products = (await get('/insights/products')).body;
     assert.equal(products.total, 1);
@@ -1442,6 +1446,14 @@ describe('insights', () => {
     assert.equal((await get('/insights/products?hs=9503')).body.total, 1);
 
     const history = (await get(`/insights/products/${bear.id}`)).body.history;
+    const full = (await get(`/insights/products/${bear.id}`)).body;
+    assert.deepEqual(full.bySeller.map((x) => [x.name, x.lines, x.prices[0].avg]), [['ACME TOYS CO LTD', 2, '8.1148']]);
+    assert.deepEqual(full.descriptions, [{ text: sampleInvoice.lines[0].description, lines: 2 }]);
+    assert.deepEqual(full.origins, [{ country: 'CN', lines: 2 }]);
+    assert.equal((await get(`/insights/lines?product=${bear.id}`)).body.total, 2);
+    const boxes = (await get('/insights/containers?q=CSQU')).body;
+    assert.deepEqual(boxes.items.map((c) => [c.number, c.ownerCode, c.sizeType, c.blNumber, c.packages]), [['CSQU3054383', 'CSQU', '40HC', sampleBillOfLading.blNumber, 120]]);
+    assert.equal((await get('/insights/containers?destination=US')).body.total, 0);
     assert.deepEqual(history.map((h) => [h.invoiceDate, h.unitPrice.amount, h.seller]), [['2026-10-01', '8.10', sampleInvoice.seller.name], ['2026-11-02', '9.00', 'ACME TOYS CO LTD']]);
 
     const other = await signUp('Not theirs');

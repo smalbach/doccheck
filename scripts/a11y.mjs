@@ -52,6 +52,13 @@ page.on('pageerror', (err) => problems.push(`page error: ${err.message}`));
 /** A fresh throwaway account with one sample shipment, so the shipment page has content. Returns that page's path. */
 const admin = process.env.A11Y_ADMIN_EMAIL && process.env.A11Y_ADMIN_PASSWORD ? { email: process.env.A11Y_ADMIN_EMAIL, password: process.env.A11Y_ADMIN_PASSWORD } : undefined;
 
+/** A company's and a product's page, once the sample's documents are extracted (none if they are not yet). */
+async function entityPages() {
+  const first = async (path) => (await (await page.request.get(`${base}${path}?limit=1`)).json()).items?.[0]?.id;
+  const [company, product] = await Promise.all([first('/insights/parties'), first('/insights/products')]);
+  return [...(company ? [`/app/companies/${company}`] : []), ...(product ? [`/app/products/${product}`] : [])];
+}
+
 async function signUpWithSample() {
   await context.clearCookies();
   if (admin) {
@@ -76,6 +83,11 @@ const staticPages = [
   '/app/shipments/new',
   '/app/samples',
   '/app/data',
+  '/app/goods',
+  '/app/companies',
+  '/app/products',
+  '/app/containers',
+  '/app/data/shipments',
   '/app/rules',
   '/app/results',
   '/app/account',
@@ -104,7 +116,7 @@ for (const locale of locales) {
         const n = await audit(page, `${locale}/${theme}/${width} ${path}`);
         console.log(`${n ? '✗' : '✓'} ${locale} ${theme} ${width}px ${path}${n ? ` (${n})` : ''}`);
       };
-      for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), '/']) await visit(path);
+      for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), '/']) await visit(path);
       // The sign-in forms redirect signed-in visitors: check them signed out.
       await context.clearCookies();
       for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example']) await visit(path);

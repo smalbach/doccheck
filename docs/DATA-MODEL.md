@@ -44,12 +44,20 @@ Números en `numeric` (sin floats), fechas en `date`, pesos en kg con el valor y
 
 ## En la app
 
-- `GET /insights/parties?role=supplier|customer&q=` y `GET /insights/parties/:id`: empresas, con roles,
-  variantes del nombre, envíos, facturas, valor y sus productos.
-- `GET /insights/products?q=&hs=&origin=` y `GET /insights/products/:id`: productos, con cantidad,
-  valor, precio mínimo, máximo, promedio ponderado y último por moneda, y cada compra (historial).
-- Pestañas **Empresas** y **Productos** en Datos extraídos; cada fila abre su ficha, con el gráfico de
-  precio.
+Grupo **Datos** del menú lateral, una página por módulo:
+
+| Página | Ruta | API |
+| --- | --- | --- |
+| Resumen | `#/app/data` | `GET /insights/summary` |
+| Mercancías | `#/app/goods?q=&origin=&hs=` | `GET /insights/lines` (también `party=` y `product=`) |
+| Empresas | `#/app/companies` | `GET /insights/parties?role=supplier\|customer&q=` |
+| Empresa | `#/app/companies/<id>` | `GET /insights/parties/:id`: datos, variantes del nombre, direcciones y contactos, empresas en los mismos documentos, productos, envíos; sus mercancías con `lines?party=` |
+| Productos | `#/app/products` | `GET /insights/products?q=&hs=&origin=` |
+| Producto | `#/app/products/<id>` | `GET /insights/products/:id`: precio mínimo, promedio ponderado, máximo y último por moneda, gráfico, precios por vendedor, cómo lo escriben las facturas (descripciones, HS, orígenes) y cada compra |
+| Contenedores | `#/app/containers` | `GET /insights/containers?q=` |
+| Por envío | `#/app/data/shipments` | `GET /insights/shipments` |
+
+El filtro de destino es uno para todas estas páginas.
 
 ## Ejemplos
 

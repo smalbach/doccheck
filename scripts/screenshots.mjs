@@ -168,11 +168,16 @@ try {
       await shoot(page, '/app/shipments', 'shipments');
       await shoot(page, `/app/s/${featured.id}`, 'shipment-pdf-viewer', openCitedValue);
       await shoot(page, '/app/data', 'extracted-data-summary');
-      await shoot(page, '/app/data', 'extracted-data-goods', async (p) => {
-        await p.getByRole('tab', { name: 'Goods' }).click();
-        await p.waitForLoadState('networkidle');
-        await p.waitForTimeout(600);
-      });
+      await shoot(page, '/app/goods', 'extracted-data-goods');
+      await shoot(page, '/app/companies', 'companies');
+      await shoot(page, '/app/products', 'products');
+      // The company and the product with the most purchases, for their own pages.
+      const first = async (path) => (await (await page.request.get(`${base}${path}?limit=1`)).json()).items?.[0]?.id;
+      const company = await first('/insights/parties');
+      const product = await first('/insights/products');
+      if (company) await shoot(page, `/app/companies/${company}`, 'company');
+      if (product) await shoot(page, `/app/products/${product}`, 'product-prices');
+      await shoot(page, '/app/containers', 'containers');
       await shoot(page, '/app/rules', 'rules');
       await shoot(page, '/app/results', 'evaluation-results');
       await shoot(page, '/app/samples', 'samples');

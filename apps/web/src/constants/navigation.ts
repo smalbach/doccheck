@@ -1,4 +1,4 @@
-import { ActivityLogIcon, ArchiveIcon, BarChartIcon, DashboardIcon, GearIcon, LayersIcon, PersonIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
+import { ActivityLogIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
 import type { ComponentType } from 'react';
 import type { MessageKey } from '../i18n/keys';
 import type { AppRoute } from '../lib/parseRoute';
@@ -26,9 +26,19 @@ export const NAVIGATION: NavGroup[] = [
     items: [
       { labelKey: 'nav.dashboard', href: '#/app', icon: DashboardIcon, matches: ['dashboard'] },
       { labelKey: 'nav.shipments', href: '#/app/shipments', icon: ArchiveIcon, matches: ['shipments', 'shipment'] },
-      { labelKey: 'nav.data', href: '#/app/data', icon: TableIcon, matches: ['insights'] },
       { labelKey: 'nav.newShipment', href: '#/app/shipments/new', icon: PlusIcon, matches: ['new-shipment'], writes: true },
       { labelKey: 'nav.samples', href: '#/app/samples', icon: LayersIcon, matches: ['samples'] },
+    ],
+  },
+  {
+    labelKey: 'nav.dataGroup',
+    items: [
+      { labelKey: 'nav.summary', href: '#/app/data', icon: PieChartIcon, matches: ['data-summary'] },
+      { labelKey: 'nav.goods', href: '#/app/goods', icon: ListBulletIcon, matches: ['goods'] },
+      { labelKey: 'nav.companies', href: '#/app/companies', icon: IdCardIcon, matches: ['companies', 'company'] },
+      { labelKey: 'nav.products', href: '#/app/products', icon: CubeIcon, matches: ['products', 'product'] },
+      { labelKey: 'nav.containers', href: '#/app/containers', icon: ContainerIcon, matches: ['containers'] },
+      { labelKey: 'nav.figures', href: '#/app/data/shipments', icon: TableIcon, matches: ['data-shipments'] },
     ],
   },
   {

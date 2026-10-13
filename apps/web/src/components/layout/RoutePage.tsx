@@ -13,7 +13,16 @@ const AccountPage = lazy(() => import('../../features/account/AccountPage').then
 const SettingsPage = lazy(() => import('../../features/admin/settings/SettingsPage').then((m) => ({ default: m.SettingsPage })));
 const SystemPage = lazy(() => import('../../features/admin/system/SystemPage').then((m) => ({ default: m.SystemPage })));
 const UsersPage = lazy(() => import('../../features/admin/users/UsersPage').then((m) => ({ default: m.UsersPage })));
-const InsightsPage = lazy(() => import('../../features/insights/InsightsPage').then((m) => ({ default: m.InsightsPage })));
+// The data pages share one chunk.
+const data = () => import('../../features/insights/pages');
+const DataSummaryPage = lazy(() => data().then((m) => ({ default: m.DataSummaryPage })));
+const GoodsPage = lazy(() => data().then((m) => ({ default: m.GoodsPage })));
+const CompaniesPage = lazy(() => data().then((m) => ({ default: m.CompaniesPage })));
+const CompanyPage = lazy(() => data().then((m) => ({ default: m.CompanyPage })));
+const ProductsPage = lazy(() => data().then((m) => ({ default: m.ProductsPage })));
+const ProductPage = lazy(() => data().then((m) => ({ default: m.ProductPage })));
+const ContainersPage = lazy(() => data().then((m) => ({ default: m.ContainersPage })));
+const DataShipmentsPage = lazy(() => data().then((m) => ({ default: m.DataShipmentsPage })));
 const ResultsPage = lazy(() => import('../../features/results/ResultsPage').then((m) => ({ default: m.ResultsPage })));
 const RulesPage = lazy(() => import('../../features/rules/RulesPage').then((m) => ({ default: m.RulesPage })));
 
@@ -30,8 +39,22 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return <ShipmentPage id={route.id} />;
     case 'samples':
       return <SamplesPage />;
-    case 'insights':
-      return <InsightsPage />;
+    case 'data-summary':
+      return <DataSummaryPage />;
+    case 'goods':
+      return <GoodsPage key={`${route.q}:${route.origin}:${route.hs}`} initial={{ query: route.q ?? '', origin: route.origin ?? '', hs: route.hs ?? '' }} />;
+    case 'companies':
+      return <CompaniesPage />;
+    case 'company':
+      return <CompanyPage key={route.id} id={route.id} />;
+    case 'products':
+      return <ProductsPage />;
+    case 'product':
+      return <ProductPage key={route.id} id={route.id} />;
+    case 'containers':
+      return <ContainersPage />;
+    case 'data-shipments':
+      return <DataShipmentsPage />;
     case 'rules':
       return <RulesPage />;
     case 'results':

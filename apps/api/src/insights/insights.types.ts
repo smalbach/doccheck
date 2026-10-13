@@ -108,9 +108,34 @@ export interface PartyShipment {
   invoiceTotal?: { amount: string; currency: string };
 }
 
+/** An address, tax ID or contact the documents give for a company, with the roles it was given in. */
+export interface PartyAddress {
+  name: string;
+  lines: string[];
+  city?: string;
+  region?: string;
+  postalCode?: string;
+  country?: string;
+  taxId?: string;
+  contact?: { name?: string; email?: string; phone?: string };
+  roles: string[];
+  documents: number;
+}
+
+/** Another company on the same documents: the buyer of a seller, the consignee of a shipper… */
+export interface RelatedParty {
+  id: string;
+  name: string;
+  country?: string;
+  roles: string[];
+  shipments: number;
+}
+
 export interface PartyDetail extends PartySummary {
   topProducts: PartyProduct[];
   recentShipments: PartyShipment[];
+  addresses: PartyAddress[];
+  related: RelatedParty[];
 }
 
 /** Unit price statistics in one currency. avg is weighted by quantity. */
@@ -154,7 +179,44 @@ export interface PricePoint {
   lineTotal?: { amount: string; currency: string };
 }
 
+/** What one seller sold of a product, and at what price. */
+export interface ProductSeller {
+  id: string;
+  name: string;
+  country?: string;
+  lines: number;
+  quantities: Total[];
+  prices: PriceStats[];
+  lastDate?: string;
+}
+
 export interface ProductDetail extends ProductSummary {
   /** Oldest first. */
   history: PricePoint[];
+  bySeller: ProductSeller[];
+  /** How the invoices describe it, most used first. */
+  descriptions: { text: string; lines: number }[];
+  hsCodes: { code: string; lines: number }[];
+  origins: { country: string; lines: number }[];
+}
+
+export interface ContainerRow {
+  shipmentId: string;
+  reference?: string;
+  destination?: Destination;
+  documentId: string;
+  number: string;
+  ownerCode?: string;
+  sizeType?: string;
+  seal?: string;
+  packages?: number;
+  grossKg?: string;
+  volumeM3?: string;
+  blNumber?: string;
+  carrier?: string;
+  scac?: string;
+  vessel?: string;
+  portOfLoading?: string;
+  portOfDischarge?: string;
+  shippedDate?: string;
 }

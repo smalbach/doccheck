@@ -11,7 +11,14 @@ export type AppRoute =
   | { name: 'new-shipment' }
   | { name: 'shipment'; id: string }
   | { name: 'samples' }
-  | { name: 'insights' }
+  | { name: 'data-summary' }
+  | { name: 'goods'; q?: string; origin?: string; hs?: string }
+  | { name: 'companies' }
+  | { name: 'company'; id: string }
+  | { name: 'products' }
+  | { name: 'product'; id: string }
+  | { name: 'containers' }
+  | { name: 'data-shipments' }
   | { name: 'rules' }
   | { name: 'results' }
   | { name: 'account' }
@@ -23,13 +30,19 @@ export type AppRoute =
 export type Route = PublicRoute | AppRoute;
 
 const SHIPMENT = /^\/(?:app\/)?s\/([0-9a-f-]{36})$/i;
+const COMPANY = /^\/app\/companies\/([0-9a-f-]{36})$/i;
+const PRODUCT = /^\/app\/products\/([0-9a-f-]{36})$/i;
 
 const APP_PAGES: Record<string, AppRoute> = {
   '/app': { name: 'dashboard' },
   '/app/shipments': { name: 'shipments' },
   '/app/shipments/new': { name: 'new-shipment' },
   '/app/samples': { name: 'samples' },
-  '/app/data': { name: 'insights' },
+  '/app/data': { name: 'data-summary' },
+  '/app/companies': { name: 'companies' },
+  '/app/products': { name: 'products' },
+  '/app/containers': { name: 'containers' },
+  '/app/data/shipments': { name: 'data-shipments' },
   '/app/rules': { name: 'rules' },
   '/app/results': { name: 'results' },
   // Links from before the app moved under /app.
@@ -43,7 +56,8 @@ const APP_PAGES: Record<string, AppRoute> = {
 
 /**
  * "#/" landing, "#/login" and "#/register" (with ?next=<path>), "#/forgot-password",
- * "#/reset-password?token=<emailed token>", everything else under "#/app".
+ * "#/reset-password?token=<emailed token>", everything else under "#/app" ("#/app/companies/<id>",
+ * "#/app/products/<id>", "#/app/goods?origin=CN").
  * Old links ("#/s/<id>", "#/results") still open their page.
  */
 export function parseRoute(hash: string): Route {
@@ -58,5 +72,14 @@ export function parseRoute(hash: string): Route {
   if (path === '/reset-password') return { name: 'reset-password', token: params.get('token') ?? undefined };
   const id = SHIPMENT.exec(path)?.[1];
   if (id) return { name: 'shipment', id };
+  const company = COMPANY.exec(path)?.[1];
+  if (company) return { name: 'company', id: company };
+  const product = PRODUCT.exec(path)?.[1];
+  if (product) return { name: 'product', id: product };
+  // "#/app/goods?origin=CN&hs=9503&q=bear": the summary links here with a filter.
+  if (path === '/app/goods') {
+    const opt = (k: string) => params.get(k) || undefined;
+    return { name: 'goods', q: opt('q'), origin: opt('origin'), hs: opt('hs') };
+  }
   return APP_PAGES[path] ?? { name: 'not-found' };
 }

@@ -6,7 +6,7 @@ import { csvAttachment, toCsv } from '../common/csv';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { CSV_MAX_ROWS, GOODS_CSV_COLUMNS, SHIPMENTS_CSV_COLUMNS } from './insights.csv';
 import { EntitiesRepository } from './entities.repository';
-import { EntityQuery, LinesCsvQuery, LinesQuery, PartiesQuery, ProductsQuery, ShipmentDataCsvQuery, ShipmentDataQuery, SummaryQuery } from './insights.dto';
+import { ContainersQuery, EntityQuery, LinesCsvQuery, LinesQuery, PartiesQuery, ProductsQuery, ShipmentDataCsvQuery, ShipmentDataQuery, SummaryQuery } from './insights.dto';
 import { InsightsRepository } from './insights.repository';
 
 /**
@@ -53,6 +53,12 @@ export class InsightsController {
     const { items } = await this.repo.shipments(user.id, { ...query, limit: CSV_MAX_ROWS, offset: 0 });
     res.setHeader('content-disposition', csvAttachment('doccheck-shipments'));
     return toCsv(SHIPMENTS_CSV_COLUMNS, items);
+  }
+
+  /** Containers on the bills of lading. ?q=number, seal, B/L, carrier, vessel&destination=CA&limit=50&offset=0 */
+  @Get('containers')
+  containers(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(ContainersQuery)) query: ContainersQuery) {
+    return this.repo.containers(user.id, query);
   }
 
   /** Companies across the user's shipments. ?q=text&role=supplier|customer&destination=CA&limit=50&offset=0 */

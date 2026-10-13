@@ -324,6 +324,9 @@ export interface GoodsQuery {
   q?: string;
   origin?: string;
   hs?: string;
+  /** Lines of invoices where this company is the seller or the buyer. */
+  party?: string;
+  product?: string;
   limit?: number;
   offset?: number;
 }
@@ -380,7 +383,23 @@ export interface PartySummary {
 
 export type PartyRoleName = 'seller' | 'buyer' | 'consignee' | 'exporter' | 'originator' | 'shipper' | 'notify' | 'manufacturer' | 'ship_to' | 'consolidator';
 
+export interface PartyAddress {
+  name: string;
+  lines: string[];
+  city?: string;
+  region?: string;
+  postalCode?: string;
+  country?: string;
+  taxId?: string;
+  contact?: { name?: string; email?: string; phone?: string };
+  roles: PartyRoleName[];
+  documents: number;
+}
+
 export interface PartyDetail extends PartySummary {
+  addresses: PartyAddress[];
+  /** Other companies on the same documents. */
+  related: { id: string; name: string; country?: string; roles: PartyRoleName[]; shipments: number }[];
   topProducts: { id: string; sku?: string; description: string; lines: number; quantities: Total[]; values: Total[] }[];
   recentShipments: {
     shipmentId: string;
@@ -445,6 +464,39 @@ export interface PricePoint {
 export interface ProductDetail extends ProductSummary {
   /** Oldest first. */
   history: PricePoint[];
+  bySeller: { id: string; name: string; country?: string; lines: number; quantities: Total[]; prices: PriceStats[]; lastDate?: string }[];
+  descriptions: { text: string; lines: number }[];
+  hsCodes: { code: string; lines: number }[];
+  origins: { country: string; lines: number }[];
+}
+
+/** A container on a bill of lading. */
+export interface ContainerRow {
+  shipmentId: string;
+  reference?: string;
+  destination?: Destination;
+  documentId: string;
+  number: string;
+  ownerCode?: string;
+  sizeType?: string;
+  seal?: string;
+  packages?: number;
+  grossKg?: string;
+  volumeM3?: string;
+  blNumber?: string;
+  carrier?: string;
+  scac?: string;
+  vessel?: string;
+  portOfLoading?: string;
+  portOfDischarge?: string;
+  shippedDate?: string;
+}
+
+export interface ContainersQuery {
+  destination?: Destination;
+  q?: string;
+  limit?: number;
+  offset?: number;
 }
 
 export interface ProductsQuery {

@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { Pool } from 'pg';
 import { PG_POOL } from '../db/db.module';
-import type { LinesQuery, ShipmentDataQuery, SummaryQuery } from './insights.dto';
-import type { GoodsLine, InsightsSummary, Paged, ShipmentData, Total } from './insights.types';
+import type { ContainersQuery, LinesQuery, ShipmentDataQuery, SummaryQuery } from './insights.dto';
+import type { ContainerRow, GoodsLine, InsightsSummary, Paged, ShipmentData, Total } from './insights.types';
 
 /** The six-digit HS subheading of a line, or its heading when the code has only four digits. */
 const HS = `coalesce(hs6, hs4)`;
@@ -119,6 +119,14 @@ export class InsightsRepository {
       params.push(`${q.hs.replace(/\D/g, '')}%`);
       where.push(`lines.hs_digits like $${params.length}`);
     }
+    if (q.party) {
+      params.push(q.party);
+      where.push(`$${params.length}::uuid in (lines.seller_id, lines.buyer_id)`);
+    }
+    if (q.product) {
+      params.push(q.product);
+      where.push(`lines.product_id = $${params.length}`);
+    }
     const from = `from lines join owned o on o.id = lines.shipment_id${where.length ? ` where ${where.join(' and ')}` : ''}`;
     const [{ rows }, { rows: [count] }] = await Promise.all([
       this.pool.query(
@@ -192,6 +200,53 @@ export class InsightsRepository {
         portOfLoading: text(r.port_of_loading),
         portOfDischarge: text(r.port_of_discharge),
         containers: r.containers ?? [],
+      })),
+      total: count.n,
+      limit: q.limit,
+      offset: q.offset,
+    };
+  }
+
+  /** Every container on the bills of lading of the user's shipments, newest shipment first. */
+  async containers(userId: string, q: ContainersQuery): Promise<Paged<ContainerRow>> {
+    const params: unknown[] = [userId, q.destination ?? null];
+    let where = '';
+    if (q.q) {
+      params.push(like(q.q));
+      const n = `$${params.length}`;
+      where = ` where (c.container_number ilike ${n} or c.seal ilike ${n} or bl.bl_number ilike ${n} or bl.carrier_name ilike ${n} or bl.vessel ilike ${n} or o.reference ilike ${n})`;
+    }
+    const from = `from bl_containers c join bl using (document_id) join owned o on o.id = bl.shipment_id${where}`;
+    const [{ rows }, { rows: [count] }] = await Promise.all([
+      this.pool.query(
+        `${BASE} select c.*, c.gross_kg::text as gross, c.volume_m3::text as volume, o.reference, o.destination, o.created_at,
+           bl.bl_number, bl.carrier_name, bl.carrier_scac, bl.vessel, bl.voyage, to_char(coalesce(bl.shipped_on_board_date, bl.date_of_issue), 'YYYY-MM-DD') as shipped,
+           coalesce(bl.port_of_loading_name, bl.port_of_loading_locode) as pol, coalesce(bl.port_of_discharge_name, bl.port_of_discharge_locode) as pod
+         ${from} order by o.created_at desc, o.id, c.idx limit $${params.length + 1} offset $${params.length + 2}`,
+        [...params, q.limit, q.offset],
+      ),
+      this.pool.query(`${BASE} select count(*)::int as n ${from}`, params),
+    ]);
+    return {
+      items: rows.map((r) => ({
+        shipmentId: r.shipment_id,
+        ...(r.reference ? { reference: r.reference } : {}),
+        ...(r.destination ? { destination: r.destination } : {}),
+        documentId: r.document_id,
+        number: text(r.container_number) ?? '',
+        ownerCode: text(r.owner_code),
+        sizeType: text(r.size_type),
+        seal: text(r.seal),
+        packages: r.packages ?? undefined,
+        grossKg: r.gross ?? undefined,
+        volumeM3: r.volume ?? undefined,
+        blNumber: text(r.bl_number),
+        carrier: text(r.carrier_name),
+        scac: text(r.carrier_scac),
+        vessel: [r.vessel, r.voyage].filter((v) => typeof v === 'string' && v).join(' / ') || undefined,
+        portOfLoading: text(r.pol),
+        portOfDischarge: text(r.pod),
+        shippedDate: text(r.shipped),
       })),
       total: count.n,
       limit: q.limit,
