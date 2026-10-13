@@ -44,7 +44,8 @@ writeFileSync(join(reportsDir, 'agent-ollama_aaa.json'), JSON.stringify({ provid
 writeFileSync(join(reportsDir, 'agent-ollama_test.json'), JSON.stringify({ provider, summary: [] }));
 utimesSync(join(reportsDir, 'agent-ollama_test.json'), new Date(0), new Date(0));
 
-const port = 3990;
+// E2E_PORT lets several checkouts run the suite at once (each with its own DATABASE_URL_TEST).
+const port = Number(process.env.E2E_PORT ?? 3990);
 const base = `http://localhost:${port}`;
 let api;
 
@@ -758,7 +759,7 @@ describe('ISF PDF upload', { skip: !isfSample && 'no ISF PDF with a cached model
 // (cached) and a copy of it renamed CA-999 with its PDFs swapped (the invoice file holds the bill of
 // lading...), so the demo never finds CA-999's extraction in the cache.
 describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' }, () => {
-  const demoPort = 3991;
+  const demoPort = port + 1;
   const demoBase = `http://localhost:${demoPort}`;
   let demo;
   before(async () => {
