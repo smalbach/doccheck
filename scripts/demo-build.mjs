@@ -11,8 +11,12 @@
  *
  *   npm start                       # API on :3000, LLM_CACHE_DIR=eval/cache/ollama_qwen3.8
  *   node scripts/demo-build.mjs [--api http://localhost:3000] [--per-kind 1] [--clean 2]
+ *
+ * The API needs a session: the script signs in as DEMO_BUILD_EMAIL / DEMO_BUILD_PASSWORD when set,
+ * otherwise it signs up a throwaway account (its shipments are deleted at the end either way).
  */
 import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { randomBytes } from 'node:crypto';
 import { join } from 'node:path';
 import { parseArgs } from 'node:util';
 
@@ -26,15 +30,24 @@ const { values } = parseArgs({
   },
 });
 const api = values.api.replace(/\/$/, '');
-const auth = process.env.API_BASIC_AUTH ? { authorization: `Basic ${Buffer.from(process.env.API_BASIC_AUTH).toString('base64')}` } : {};
+let cookie = '';
 
 async function call(method, path, body) {
-  const res = await fetch(`${api}${path}`, { method, headers: { ...auth, ...(body ? { 'content-type': 'application/json' } : {}) }, body: body ? JSON.stringify(body) : undefined });
+  const res = await fetch(`${api}${path}`, { method, headers: { ...(cookie ? { cookie } : {}), ...(body ? { 'content-type': 'application/json' } : {}) }, body: body ? JSON.stringify(body) : undefined });
   if (!res.ok) throw new Error(`${method} ${path}: ${res.status} ${await res.text()}`);
+  const session = res.headers.getSetCookie().find((c) => c.startsWith('doccheck_session='));
+  if (session) cookie = session.split(';')[0];
   return res.status === 204 ? null : res.json();
 }
 
 const health = await call('GET', '/health');
+if (process.env.DEMO_BUILD_EMAIL && process.env.DEMO_BUILD_PASSWORD) {
+  await call('POST', '/auth/login', { email: process.env.DEMO_BUILD_EMAIL, password: process.env.DEMO_BUILD_PASSWORD });
+} else {
+  const email = `demo-build-${randomBytes(6).toString('hex')}@doccheck.invalid`;
+  await call('POST', '/auth/register', { email, password: randomBytes(18).toString('base64url'), name: 'demo-build' });
+  console.log(`Signed up ${email} for this run`);
+}
 if (health.demo) throw new Error('The API runs in demo mode; start it in normal mode with the local model to warm the caches.');
 
 // One shipment per error kind and destination (the first that has it), plus clean ones.

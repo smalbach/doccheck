@@ -2,7 +2,7 @@
 
 DocCheck corre hoy **localmente** en una Mac con Apple Silicon. Esta guía deja documentado cómo levantarlo, operarlo y, más adelante, llevarlo a un servidor.
 
-> **La aplicación no tiene autenticación.** Cualquiera que llegue al puerto puede subir PDFs, ver envíos y descargar documentos. Mientras sea así, no la expongas a internet sin un proxy con autenticación delante (ver [Servidor con GPU](#3-servidor-con-gpu)).
+> **Cuentas.** Todo, salvo `/health` y `/auth/*`, pide sesión. El registro es abierto (correo, nombre y contraseña de 8+ caracteres; scrypt) y cada envío es privado de quien lo creó. La sesión es una cookie `httpOnly` y `SameSite=Lax`, `Secure` cuando la petición llega por HTTPS a través de un proxy en la misma máquina (`TRUST_PROXY`); los POST con `Origin` de otro sitio se rechazan. Después de 10 intentos fallidos para un correo (o 50 desde una dirección) en 15 minutos, el inicio de sesión se bloquea hasta que pase la ventana. Los envíos creados antes de la migración `007_users.sql` no tienen dueño y no se muestran. El registro abierto significa que cualquiera con la URL puede crear cuenta y subir PDFs: para un servidor expuesto, sigue siendo buena idea un proxy con autenticación o lista de IPs delante.
 
 ## Componentes
 
@@ -198,7 +198,7 @@ Qué cambia en modo demo:
 
 - La API rechaza con 403 toda escritura salvo `POST /demo/samples/:id` y `POST /shipments/:id/validate`: no se suben PDFs, no se edita el ISF, no se re-extrae, no se borra.
 - El modelo corre solo desde caché (`LLM_CACHE_MODE=replay`, `LLM_CACHE_DIR` por defecto `eval/cache/ollama_<LLM_MODEL>`). Las muestras se leen de `data/demo` y solo se listan las que tienen su extracción en caché.
-- Cada muestra se carga una sola vez: todos los visitantes ven el mismo envío, así la base no crece.
+- Hay que crear cuenta para entrar (el registro funciona también en modo demo). Cada usuario recibe su propio envío por muestra, porque los envíos son privados: la base crece como usuarios × muestras (unas 24 por usuario).
 - Citas: los vectores de las consultas están en `data/corpus/index/bge-m3.queries.json`; si falta una, la búsqueda usa solo palabras clave (BM25).
 - Si falta la respuesta del agente para un envío, la validación igual devuelve los hallazgos de las reglas y dice que el agente no está disponible.
 - La web pregunta a `GET /health` (`demo: true`), oculta subida, borrar y editar ISF y muestra un aviso.
@@ -242,6 +242,8 @@ Para publicarla: VPS con Docker, proxy con TLS (Caddy como en la sección 3; el 
 | `EVAL_DIR` | `data/eval/v1` (`data/demo` en modo demo) | Muestras para la galería |
 | `DEMO_READONLY` | `false` | Demo pública de solo lectura: sin escrituras, modelo desde caché (sección 4) |
 | `LLM_CACHE_DIR`, `LLM_CACHE_MODE` | — | Caché de respuestas del modelo (`readwrite`, `replay`, `off`) |
+| `TRUST_PROXY` | `loopback` | Proxies cuyas cabeceras `X-Forwarded-*` se creen (cookie `Secure` y dirección del cliente). Valor de Express `trust proxy`: p. ej. `loopback`, una IP o `false` |
+| `DEMO_BUILD_EMAIL`, `DEMO_BUILD_PASSWORD` | — | Cuenta con la que `scripts/demo-build.mjs` inicia sesión; sin ellas crea una cuenta desechable |
 
 ## Problemas conocidos
 

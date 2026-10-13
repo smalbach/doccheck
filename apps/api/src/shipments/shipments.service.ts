@@ -42,7 +42,7 @@ export class ShipmentsService {
     @InjectLlm() private readonly llm: LlmClient,
   ) {}
 
-  async create(dto: CreateShipmentDto): Promise<Shipment> {
+  async create(dto: CreateShipmentDto, userId: string): Promise<Shipment> {
     const shipment: Shipment = {
       id: randomUUID(),
       reference: dto.reference,
@@ -52,12 +52,12 @@ export class ShipmentsService {
       documents: [],
       createdAt: new Date().toISOString(),
     };
-    await this.repo.createShipment(shipment);
+    await this.repo.createShipment(shipment, userId);
     return shipment;
   }
 
-  list() {
-    return this.repo.listShipments();
+  list(userId: string) {
+    return this.repo.listShipments(userId);
   }
 
   /** Deletes a shipment with everything attached to it, PDFs included. Refused while documents are extracting. */

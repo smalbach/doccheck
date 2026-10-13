@@ -3,6 +3,8 @@ import { extractionRequest, PROMPT_VERSION, readPdfText, type ExtractableType, t
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
+import type { PublicUser } from '../auth/auth.types';
+import { CurrentUser } from '../auth/current-user.decorator';
 import { InjectLlm } from '../llm/llm.module';
 import { ShipmentsService } from '../shipments/shipments.service';
 import { isDemo } from './demo-mode';
@@ -14,7 +16,7 @@ const TYPES: Record<string, ExtractableType> = { 'invoice.pdf': 'COMMERCIAL_INVO
  * Demo helpers over the synthetic evaluation set: list sample shipments with their injected errors,
  * and create a real shipment from one of them (PDFs uploaded and queued like any other upload).
  * The read-only demo reads the curated samples in data/demo (scripts/demo-build.mjs), lists only
- * those whose extraction is cached, and reuses a sample's shipment instead of creating a new one.
+ * those whose extraction is cached, and reuses the user's shipment for a sample instead of creating a new one.
  */
 @Controller('demo')
 export class DemoController implements OnApplicationBootstrap {
@@ -61,23 +63,25 @@ export class DemoController implements OnApplicationBootstrap {
   }
 
   @Post('samples/:sampleId')
-  async load(@Param('sampleId') sampleId: string) {
+  async load(@CurrentUser() user: PublicUser, @Param('sampleId') sampleId: string) {
     if (!this.dir || !/^(CA|US)-\d{3}$/.test(sampleId) || !existsSync(join(this.dir, sampleId)) || !(await this.extractionCached(sampleId))) throw new NotFoundException(`Sample ${sampleId} not found`);
-    if (!isDemo()) return this.create(sampleId);
-    // Every visitor gets the same shipment per sample, so the demo database stays small.
-    let pending = this.loading.get(sampleId);
+    if (!isDemo()) return this.create(sampleId, user.id);
+    // Each user gets one shipment per sample (shipments are private), so the demo database grows by
+    // at most users x samples.
+    const key = `${user.id}:${sampleId}`;
+    let pending = this.loading.get(key);
     if (!pending) {
       pending = this.shipments
-        .list()
-        .then(async (all): Promise<{ id: string }> => all.find((s) => s.reference === `Sample ${sampleId}`) ?? this.create(sampleId))
-        .finally(() => this.loading.delete(sampleId));
-      this.loading.set(sampleId, pending);
+        .list(user.id)
+        .then(async (all): Promise<{ id: string }> => all.find((s) => s.reference === `Sample ${sampleId}`) ?? this.create(sampleId, user.id))
+        .finally(() => this.loading.delete(key));
+      this.loading.set(key, pending);
     }
     return pending;
   }
 
-  private async create(sampleId: string) {
-    const shipment = await this.shipments.create({ reference: `Sample ${sampleId}`, destination: sampleId.slice(0, 2) as 'CA' | 'US', transportMode: 'SEA' });
+  private async create(sampleId: string, userId: string) {
+    const shipment = await this.shipments.create({ reference: `Sample ${sampleId}`, destination: sampleId.slice(0, 2) as 'CA' | 'US', transportMode: 'SEA' }, userId);
     const files = await Promise.all(FILES.map(async (f) => ({ name: `${sampleId}-${f}`, bytes: await readFile(join(this.dir!, sampleId, f)) })));
     // US samples come with their ISF, which is filed electronically rather than as a PDF.
     const truth = JSON.parse(await readFile(join(this.dir!, sampleId, 'truth.json'), 'utf8'));

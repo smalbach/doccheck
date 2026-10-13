@@ -1,25 +1,30 @@
-import { BadRequestException, Body, Controller, Delete, Get, Header, HttpCode, Param, Post, Put, Query, Res, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Header, HttpCode, Param, Post, Put, Query, Res, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { Isf } from '@doccheck/schemas';
 import type { Response } from 'express';
 import { FilesInterceptor } from '@nestjs/platform-express';
+import type { PublicUser } from '../auth/auth.types';
+import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
+import { ShipmentOwnerGuard } from './shipment-owner.guard';
 import { CreateShipmentDto, ReextractDto, ValidateShipmentDto } from './shipments.dto';
 import { ShipmentsService } from './shipments.service';
 
 const MAX_PDF_BYTES = 20 * 1024 * 1024;
 
+/** Every route with :id is limited to the signed-in user's shipments (ShipmentOwnerGuard). */
 @Controller('shipments')
+@UseGuards(ShipmentOwnerGuard)
 export class ShipmentsController {
   constructor(private readonly shipments: ShipmentsService) {}
 
   @Post()
-  create(@Body(new ZodValidationPipe(CreateShipmentDto)) dto: CreateShipmentDto) {
-    return this.shipments.create(dto);
+  create(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CreateShipmentDto)) dto: CreateShipmentDto) {
+    return this.shipments.create(dto, user.id);
   }
 
   @Get()
-  list() {
-    return this.shipments.list();
+  list(@CurrentUser() user: PublicUser) {
+    return this.shipments.list(user.id);
   }
 
   @Delete(':id')

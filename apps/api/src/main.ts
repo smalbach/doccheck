@@ -5,6 +5,7 @@ import type { NestExpressApplication } from '@nestjs/platform-express';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { AppModule } from './app.module';
+import { sameOriginGuard } from './auth/same-origin';
 import { isDemo, readOnlyGuard } from './demo/demo-mode';
 import { loadEnv } from './env';
 
@@ -12,6 +13,10 @@ async function bootstrap() {
   loadEnv();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableShutdownHooks();
+  // A proxy on this machine (ngrok, Caddy) terminates HTTPS: trust its X-Forwarded-* so the session
+  // cookie is marked Secure there and client addresses are right for the sign-in throttle.
+  app.set('trust proxy', process.env.TRUST_PROXY ?? 'loopback');
+  app.use(sameOriginGuard);
   if (isDemo()) {
     app.use(readOnlyGuard);
     Logger.log('Read-only demo: uploads, edits and deletes are disabled; the model runs from its cache', 'Bootstrap');

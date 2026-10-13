@@ -13,15 +13,23 @@ try {
     try { if ((await fetch(`${base}/health`)).ok) break; } catch {}
     await wait(250);
   }
-  const shipment = await (await fetch(`${base}/shipments`, {
+  // Every route needs a session: sign up a throwaway account.
+  const signup = await fetch(`${base}/auth/register`, {
     method: 'POST', headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ email: `smoke-${Date.now()}@doccheck.invalid`, password: `smoke-${Math.random()}`, name: 'Smoke test' }),
+  });
+  if (!signup.ok) throw new Error(`Sign-up failed: ${signup.status} ${await signup.text()}`);
+  const cookie = signup.headers.getSetCookie()[0].split(';')[0];
+
+  const shipment = await (await fetch(`${base}/shipments`, {
+    method: 'POST', headers: { 'content-type': 'application/json', cookie },
     body: JSON.stringify({ reference: 'SMOKE-1', destination: 'CA', transportMode: 'SEA' }),
   })).json();
 
   const bl = structuredClone(sampleBillOfLading);
   bl.totalPackages = 121; // injected error -> X2
   const res = await fetch(`${base}/shipments/${shipment.id}/validate?agent=false`, {
-    method: 'POST', headers: { 'content-type': 'application/json' },
+    method: 'POST', headers: { 'content-type': 'application/json', cookie },
     body: JSON.stringify({ invoice: sampleInvoice, packingList: samplePackingList, billOfLading: bl }),
   });
   const out = await res.json();

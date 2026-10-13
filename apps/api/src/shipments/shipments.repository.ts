@@ -95,11 +95,17 @@ const toFinding = (r: Record<string, unknown>): Finding => ({
 export class ShipmentsRepository {
   constructor(@Inject(PG_POOL) private readonly pool: Pool) {}
 
-  async createShipment(s: Shipment): Promise<void> {
+  async createShipment(s: Shipment, userId: string): Promise<void> {
     await this.pool.query(
-      'insert into shipments (id, reference, destination, transport_mode, status, created_at) values ($1, $2, $3, $4, $5, $6)',
-      [s.id, s.reference ?? null, s.destination ?? null, s.transportMode ?? null, s.status, s.createdAt],
+      'insert into shipments (id, reference, destination, transport_mode, status, created_at, user_id) values ($1, $2, $3, $4, $5, $6, $7)',
+      [s.id, s.reference ?? null, s.destination ?? null, s.transportMode ?? null, s.status, s.createdAt, userId],
     );
+  }
+
+  /** Whether the shipment exists and belongs to the user (shipments from before accounts belong to nobody). */
+  async isOwner(shipmentId: string, userId: string): Promise<boolean> {
+    const { rowCount } = await this.pool.query('select 1 from shipments where id = $1 and user_id = $2', [shipmentId, userId]);
+    return rowCount === 1;
   }
 
   async findShipment(id: string): Promise<Shipment | null> {
@@ -119,15 +125,15 @@ export class ShipmentsRepository {
   }
 
   /** Most recent first, with counts for a list view. */
-  async listShipments(limit = 50): Promise<(Omit<Shipment, 'documents'> & { documentCount: number; findingCount: number | null })[]> {
+  async listShipments(userId: string, limit = 100): Promise<(Omit<Shipment, 'documents'> & { documentCount: number; findingCount: number | null })[]> {
     const { rows } = await this.pool.query(
       `select s.*,
          (select count(*)::int from documents d where d.shipment_id = s.id) as document_count,
          (select count(*)::int from findings f where f.validation_id =
             (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)) as finding_count,
          exists (select 1 from validations v where v.shipment_id = s.id) as validated
-       from shipments s order by s.created_at desc limit $1`,
-      [limit],
+       from shipments s where s.user_id = $1 order by s.created_at desc limit $2`,
+      [userId, limit],
     );
     return rows.map((r) => ({
       id: r.id,

@@ -62,14 +62,24 @@ async function resetDatabase() {
   await t.end();
 }
 
-const call = async (method, path, body) => {
-  const res = await fetch(base + path, {
-    method,
-    headers: body === undefined ? {} : { 'content-type': 'application/json' },
-    body: body === undefined ? undefined : JSON.stringify(body),
-  });
+// Every route but /health and /auth needs a session: the tests run as one user, signed up in before().
+let cookie = '';
+const sessionCookie = (res) => res.headers.getSetCookie().find((c) => c.startsWith('doccheck_session='))?.split(';')[0] ?? '';
+
+/** fetch with the session cookie of `as` (default: the test user). */
+const send = (url, init = {}, as = cookie) => fetch(url, { ...init, headers: { ...init.headers, ...(as ? { cookie: as } : {}) } });
+
+const call = async (method, path, body, as = cookie) => {
+  const res = await send(base + path, { method, headers: body === undefined ? {} : { 'content-type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body) }, as);
   const text = await res.text();
-  return { status: res.status, body: text ? JSON.parse(text) : undefined };
+  return { status: res.status, body: text ? JSON.parse(text) : undefined, cookie: sessionCookie(res) };
+};
+
+/** Signs up a new user and returns its session cookie. */
+const signUp = async (name = 'Test user') => {
+  const res = await call('POST', '/auth/register', { email: `${randomUUID()}@example.com`, password: 'correct horse battery', name }, '');
+  assert.equal(res.status, 201);
+  return res.cookie;
 };
 
 before(async () => {
@@ -93,7 +103,10 @@ before(async () => {
   });
   for (let i = 0; i < 60; i++) {
     try {
-      if ((await fetch(`${base}/health`)).ok) return;
+      if ((await fetch(`${base}/health`)).ok) {
+        cookie = await signUp();
+        return;
+      }
     } catch {}
     await new Promise((r) => setTimeout(r, 250));
   }
@@ -115,6 +128,77 @@ before(async () => {
   const { ShipmentsRepository } = require(join(root, 'apps/api/dist/shipments/shipments.repository.js'));
   pool = new pg.Pool({ connectionString: testUrl });
   repo = new ShipmentsRepository(pool);
+});
+
+describe('auth', () => {
+  it('keeps everything but /health and /auth behind a session', async () => {
+    assert.equal((await call('GET', '/health', undefined, '')).status, 200);
+    for (const path of ['/shipments', '/rules', '/results', '/demo/samples', '/auth/me']) assert.equal((await call('GET', path, undefined, '')).status, 401, path);
+    assert.equal((await call('POST', '/shipments', { destination: 'CA' }, '')).status, 401);
+    assert.equal((await call('GET', '/shipments', undefined, 'doccheck_session=forged')).status, 401);
+  });
+
+  it('signs up, signs in and out, and never returns the password hash', async () => {
+    const email = `${randomUUID()}@Example.com`;
+    const reg = await call('POST', '/auth/register', { email, password: 'correct horse battery', name: ' Ada ' }, '');
+    assert.equal(reg.status, 201);
+    assert.deepEqual(Object.keys(reg.body).sort(), ['createdAt', 'email', 'id', 'name']);
+    assert.equal(reg.body.email, email.toLowerCase());
+    assert.equal(reg.body.name, 'Ada');
+    assert.match(reg.cookie, /^doccheck_session=/);
+
+    assert.equal((await call('POST', '/auth/register', { email: email.toUpperCase(), password: 'another password', name: 'Eve' }, '')).status, 409);
+    assert.equal((await call('POST', '/auth/register', { email: 'not-an-email', password: 'correct horse battery', name: 'X' }, '')).status, 400);
+    assert.equal((await call('POST', '/auth/register', { email: `${randomUUID()}@example.com`, password: 'short', name: 'X' }, '')).status, 400);
+
+    assert.equal((await call('GET', '/auth/me', undefined, reg.cookie)).body.email, email.toLowerCase());
+    assert.equal((await call('POST', '/auth/logout', undefined, reg.cookie)).status, 204);
+    assert.equal((await call('GET', '/auth/me', undefined, reg.cookie)).status, 401);
+
+    assert.equal((await call('POST', '/auth/login', { email, password: 'wrong password' }, '')).status, 401);
+    assert.equal((await call('POST', '/auth/login', { email: `${randomUUID()}@example.com`, password: 'wrong password' }, '')).status, 401);
+    const login = await call('POST', '/auth/login', { email, password: 'correct horse battery' }, '');
+    assert.equal(login.status, 200);
+    assert.equal((await call('GET', '/auth/me', undefined, login.cookie)).body.id, reg.body.id);
+  });
+
+  it('updates the profile and changes the password, signing out other sessions', async () => {
+    const email = `${randomUUID()}@example.com`;
+    const a = (await call('POST', '/auth/register', { email, password: 'first password', name: 'Grace' }, '')).cookie;
+    const b = (await call('POST', '/auth/login', { email, password: 'first password' }, '')).cookie;
+    assert.equal((await call('PATCH', '/auth/me', { name: 'Grace H.' }, a)).body.name, 'Grace H.');
+    assert.equal((await call('POST', '/auth/password', { currentPassword: 'nope', newPassword: 'second password' }, a)).status, 401);
+    assert.equal((await call('POST', '/auth/password', { currentPassword: 'first password', newPassword: 'second password' }, a)).status, 204);
+    assert.equal((await call('GET', '/auth/me', undefined, a)).status, 200);
+    assert.equal((await call('GET', '/auth/me', undefined, b)).status, 401);
+    assert.equal((await call('POST', '/auth/login', { email, password: 'first password' }, '')).status, 401);
+    assert.equal((await call('POST', '/auth/login', { email, password: 'second password' }, '')).status, 200);
+  });
+
+  it('refuses sign-in after 10 failures for an email', async () => {
+    const email = `${randomUUID()}@example.com`;
+    await call('POST', '/auth/register', { email, password: 'correct horse battery', name: 'Target' }, '');
+    for (let i = 0; i < 10; i++) assert.equal((await call('POST', '/auth/login', { email, password: `wrong ${i}` }, '')).status, 401);
+    assert.equal((await call('POST', '/auth/login', { email, password: 'correct horse battery' }, '')).status, 429);
+  });
+
+  it('keeps shipments private to their owner', async () => {
+    const other = await signUp('Other');
+    const { body: mine } = await call('POST', '/shipments', { destination: 'CA', reference: 'mine' });
+    assert.ok(!(await call('GET', '/shipments', undefined, other)).body.some((s) => s.id === mine.id));
+    assert.ok((await call('GET', '/shipments')).body.some((s) => s.id === mine.id));
+    for (const [method, path] of [['GET', `/shipments/${mine.id}`], ['GET', `/shipments/${mine.id}/isf`], ['POST', `/shipments/${mine.id}/validate?agent=false`], ['DELETE', `/shipments/${mine.id}`]]) {
+      assert.equal((await call(method, path, undefined, other)).status, 404, `${method} ${path}`);
+    }
+    assert.equal((await call('GET', `/shipments/${mine.id}`)).status, 200);
+  });
+
+  it('refuses state-changing requests from another origin', async () => {
+    const res = await send(`${base}/shipments`, { method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://evil.example' }, body: JSON.stringify({ destination: 'CA' }) });
+    assert.equal(res.status, 403);
+    const same = await send(`${base}/shipments`, { method: 'POST', headers: { 'content-type': 'application/json', origin: base }, body: JSON.stringify({ destination: 'CA' }) });
+    assert.equal(same.status, 201);
+  });
 });
 
 describe('shipments', () => {
@@ -183,7 +267,7 @@ describe('shipments', () => {
     const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
     const form = new FormData();
     form.append('files', new Blob(['hello'], { type: 'application/pdf' }), 'fake.pdf');
-    const res = await fetch(`${base}/shipments/${s.id}/documents`, { method: 'POST', body: form });
+    const res = await send(`${base}/shipments/${s.id}/documents`, { method: 'POST', body: form });
     assert.equal(res.status, 400);
   });
 });
@@ -316,7 +400,7 @@ describe('PDF upload', { skip: !hasSample && 'evaluation set not generated' }, (
     const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
     const form = new FormData();
     for (const f of ['invoice.pdf', 'packing-list.pdf', 'bill-of-lading.pdf']) form.append('files', new Blob([readFileSync(join(sample, f))], { type: 'application/pdf' }), f);
-    const up = await fetch(`${base}/shipments/${s.id}/documents?wait=true`, { method: 'POST', body: form });
+    const up = await send(`${base}/shipments/${s.id}/documents?wait=true`, { method: 'POST', body: form });
     assert.equal(up.status, 202);
     const { documents } = await up.json();
     assert.deepEqual(documents.map((d) => d.document.status), ['EXTRACTED', 'EXTRACTED', 'EXTRACTED']);
@@ -327,12 +411,12 @@ describe('PDF upload', { skip: !hasSample && 'evaluation set not generated' }, (
     assert.ok(run.body.findings.every((f) => f.evidence.some((e) => e.source?.page === 1)));
 
     const invoiceId = documents[0].document.id;
-    const again = await fetch(`${base}/shipments/${s.id}/documents/${invoiceId}/reextract?wait=true`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ type: 'COMMERCIAL_INVOICE' }) });
+    const again = await send(`${base}/shipments/${s.id}/documents/${invoiceId}/reextract?wait=true`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ type: 'COMMERCIAL_INVOICE' }) });
     assert.equal(again.status, 202);
     assert.deepEqual([(await again.json()).document.status, (await call('GET', `/shipments/${s.id}/documents/${invoiceId}`)).body.document.typeConfidence], ['EXTRACTED', 1]);
     assert.equal((await call('POST', `/shipments/${s.id}/documents/${invoiceId}/reextract`, { type: 'UNKNOWN' })).status, 400);
 
-    const file = await fetch(`${base}/shipments/${s.id}/documents/${documents[0].document.id}/file`);
+    const file = await send(`${base}/shipments/${s.id}/documents/${documents[0].document.id}/file`);
     assert.equal(file.headers.get('content-type'), 'application/pdf');
     assert.equal((await file.arrayBuffer()).byteLength, readFileSync(join(sample, 'invoice.pdf')).length);
   });
@@ -359,7 +443,7 @@ describe('ISF PDF upload', { skip: !isfSample && 'no ISF PDF with a cached model
   const upload = async (shipmentId) => {
     const form = new FormData();
     form.append('files', new Blob([readFileSync(join(isfSample, 'isf.pdf'))], { type: 'application/pdf' }), 'isf.pdf');
-    const res = await fetch(`${base}/shipments/${shipmentId}/documents?wait=true`, { method: 'POST', body: form });
+    const res = await send(`${base}/shipments/${shipmentId}/documents?wait=true`, { method: 'POST', body: form });
     assert.equal(res.status, 202);
     return (await res.json()).documents[0].document;
   };
@@ -405,7 +489,7 @@ describe('ISF PDF upload', { skip: !isfSample && 'no ISF PDF with a cached model
     assert.ok(partial.body.skipped.some((x) => x.ruleId === 'X11' && x.missing.includes('COMMERCIAL_INVOICE')));
 
     // Re-extracted as another type, it stops being the shipment's ISF.
-    const again = await fetch(`${base}/shipments/${us.id}/documents/${isfDoc.id}/reextract?wait=true`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ type: 'COMMERCIAL_INVOICE' }) });
+    const again = await send(`${base}/shipments/${us.id}/documents/${isfDoc.id}/reextract?wait=true`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ type: 'COMMERCIAL_INVOICE' }) });
     assert.equal(again.status, 202);
     assert.equal((await call('GET', `/shipments/${us.id}/isf`)).status, 404);
 
@@ -442,7 +526,13 @@ describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' 
     });
     for (let i = 0; i < 60; i++) {
       try {
-        if ((await fetch(`${demoBase}/health`)).ok) return;
+        if ((await fetch(`${demoBase}/health`)).ok) {
+          // Accounts work in the demo: sign up there like a visitor.
+          const res = await fetch(`${demoBase}/auth/register`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email: `${randomUUID()}@example.com`, password: 'correct horse battery', name: 'Visitor' }) });
+          assert.equal(res.status, 201);
+          demoCookie = sessionCookie(res);
+          return;
+        }
       } catch {}
       await new Promise((r) => setTimeout(r, 250));
     }
@@ -450,8 +540,9 @@ describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' 
   });
   after(() => demo?.kill());
 
+  let demoCookie = '';
   const demoCall = async (method, path, body) => {
-    const res = await fetch(demoBase + path, { method, headers: body === undefined ? {} : { 'content-type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body) });
+    const res = await fetch(demoBase + path, { method, headers: { cookie: demoCookie, ...(body === undefined ? {} : { 'content-type': 'application/json' }) }, body: body === undefined ? undefined : JSON.stringify(body) });
     const text = await res.text();
     return { status: res.status, body: text ? JSON.parse(text) : undefined };
   };
