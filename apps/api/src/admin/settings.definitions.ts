@@ -15,6 +15,10 @@ export const OCR_LANGUAGES = ['eng', 'fra', 'spa', 'deu'].filter((code) => {
 /** Tesseract page segmentation modes worth offering: automatic, one column, one block (default), sparse text. */
 export const OCR_PSM_VALUES = ['3', '4', '6', '11'] as const;
 
+/** OCR engines: Tesseract in-process, or Baidu Unlimited-OCR served by scripts/ocr-server.py (Apple Silicon). */
+export const OCR_ENGINES = ['tesseract', 'unlimited'] as const;
+export type OcrEngine = (typeof OCR_ENGINES)[number];
+
 export interface SettingDefinition<T> {
   /** Environment variable the packages read; the effective value is written there. */
   env: string;
@@ -52,6 +56,20 @@ export const SETTINGS = {
     schema: z.boolean(),
     toEnv: (v) => String(v),
     fromEnv: (raw) => raw !== 'false',
+  }),
+  ocrEngine: define<OcrEngine>({
+    env: 'OCR_ENGINE',
+    defaultValue: 'tesseract',
+    schema: z.enum(OCR_ENGINES),
+    toEnv: (v) => v,
+    fromEnv: (raw) => (raw === 'unlimited' ? 'unlimited' : 'tesseract'),
+  }),
+  ocrUrl: define<string>({
+    env: 'OCR_URL',
+    defaultValue: 'http://127.0.0.1:8765',
+    schema: z.string().max(200).regex(/^https?:\/\/[^\s/?#]+(:\d+)?\/?$/, 'Expected http(s)://host:port'),
+    toEnv: (v) => v.replace(/\/$/, ''),
+    fromEnv: (raw) => raw,
   }),
   ocrLanguages: define<string[]>({
     env: 'OCR_LANGS',

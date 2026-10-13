@@ -4,7 +4,7 @@ import { isDemo } from '../demo/demo-mode';
 import { LLM_PROVIDER } from '../llm/llm.module';
 import type { SwitchableProvider } from '../llm/switchable-provider';
 import { listOllamaModels } from './ollama-models';
-import { isSettingKey, OCR_LANGUAGES, OCR_PSM_VALUES, SETTING_KEYS, SETTINGS, type SettingDefinition, type SettingKey } from './settings.definitions';
+import { isSettingKey, OCR_ENGINES, OCR_LANGUAGES, OCR_PSM_VALUES, SETTING_KEYS, SETTINGS, type SettingDefinition, type SettingKey } from './settings.definitions';
 import { SettingsRepository } from './settings.repository';
 
 export type SettingSource = 'default' | 'env' | 'admin';
@@ -50,7 +50,13 @@ export class SettingsService implements OnApplicationBootstrap {
     return raw === undefined ? undefined : (SETTINGS[key] as SettingDefinition<unknown>).fromEnv(raw);
   }
 
-  async list(): Promise<{ settings: SettingView[]; options: { ocrLanguages: string[]; ocrPsm: readonly string[]; ocrScale: { min: number; max: number } }; editable: boolean }> {
+  async list(): Promise<{
+    settings: SettingView[];
+    options: { ocrLanguages: string[]; ocrPsm: readonly string[]; ocrScale: { min: number; max: number }; ocrEngines: readonly string[] };
+    editable: boolean;
+    /** With the Unlimited-OCR engine in use: whether its server answers. */
+    ocrServer?: { url: string; reachable: boolean };
+  }> {
     const stored = new Map((await this.repo.list()).map((s) => [s.key, s]));
     const settings = SETTING_KEYS.map((key): SettingView => {
       const def = SETTINGS[key] as SettingDefinition<unknown>;
@@ -60,7 +66,14 @@ export class SettingsService implements OnApplicationBootstrap {
       if (saved) return { ...base, value: saved.value, source: 'admin', updatedAt: saved.updatedAt, ...(saved.updatedBy ? { updatedBy: saved.updatedBy } : {}) };
       return { ...base, value: envValue ?? def.defaultValue, source: envValue !== undefined ? 'env' : 'default' };
     });
-    return { settings, options: { ocrLanguages: OCR_LANGUAGES, ocrPsm: OCR_PSM_VALUES, ocrScale: { min: 2, max: 6 } }, editable: !isDemo() };
+    const value = <K extends SettingKey>(key: K) => settings.find((s) => s.key === key)?.value as (typeof SETTINGS)[K]['defaultValue'];
+    const ocrServer = value('ocrEngine') === 'unlimited' ? { url: value('ocrUrl'), reachable: await ocrServerReachable(value('ocrUrl')) } : undefined;
+    return {
+      settings,
+      options: { ocrLanguages: OCR_LANGUAGES, ocrPsm: OCR_PSM_VALUES, ocrScale: { min: 2, max: 6 }, ocrEngines: OCR_ENGINES },
+      editable: !isDemo(),
+      ...(ocrServer ? { ocrServer } : {}),
+    };
   }
 
   /** Validates every value first, then saves and applies them together. */
@@ -75,6 +88,11 @@ export class SettingsService implements OnApplicationBootstrap {
     }
     const model = entries.find(([k]) => k === 'llmModel')?.[1] as string | undefined;
     if (model !== undefined) await this.assertInstalled(model);
+    // Switching to Unlimited-OCR, or moving its server, needs a server that answers.
+    const next = <K extends SettingKey>(key: K) => (entries.find(([k]) => k === key)?.[1] ?? this.current(key)) as (typeof SETTINGS)[K]['defaultValue'];
+    if (entries.some(([k]) => k === 'ocrEngine' || k === 'ocrUrl') && next('ocrEngine') === 'unlimited' && !(await ocrServerReachable(next('ocrUrl')))) {
+      throw new ServiceUnavailableException(`The Unlimited-OCR server at ${next('ocrUrl')} does not answer (start it with npm run ocr:server)`);
+    }
     await this.repo.save(entries, userId);
     for (const [key, value] of entries) await this.apply(key, value);
     this.logger.log(`Settings changed: ${entries.map(([k, v]) => `${k}=${JSON.stringify(v)}`).join(', ')}`);
@@ -87,6 +105,13 @@ export class SettingsService implements OnApplicationBootstrap {
     await this.repo.remove(key);
     await this.apply(key, this.fromEnv(key) ?? SETTINGS[key].defaultValue);
     return this.list();
+  }
+
+  /** The value in effect: apply() writes saved values to process.env, which starts as .env. */
+  private current(key: SettingKey): unknown {
+    const def = SETTINGS[key] as SettingDefinition<unknown>;
+    const raw = process.env[def.env];
+    return raw ? def.fromEnv(raw) : def.defaultValue;
   }
 
   private async assertInstalled(model: string) {
@@ -104,5 +129,15 @@ export class SettingsService implements OnApplicationBootstrap {
     if (key === 'llmModel') this.provider.replace(new OllamaProvider(value as string, process.env.OLLAMA_BASE_URL || undefined));
     // The OCR worker keeps its languages and page mode: a new one starts on the next scan.
     if (key === 'ocrLanguages' || key === 'ocrPsm') await terminateOcr();
+  }
+}
+
+/** GET {url}/health answers 2xx within 2 s. */
+async function ocrServerReachable(url: string): Promise<boolean> {
+  try {
+    const res = await fetch(`${url.replace(/\/$/, '')}/health`, { signal: AbortSignal.timeout(2000) });
+    return res.ok;
+  } catch {
+    return false;
   }
 }

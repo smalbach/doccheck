@@ -823,7 +823,17 @@ export const en = {
     },
     ocr: {
       title: 'OCR for scanned PDFs',
-      text: 'Pages without a text layer are read with Tesseract. The defaults were chosen by measuring 120 synthetic scans (npm run eval:ocr).',
+      text: 'Pages without a text layer are read with the OCR engine below. The defaults were chosen by measuring 120 synthetic scans (npm run eval:ocr).',
+      engine: 'Engine',
+      engines: { tesseract: 'Tesseract (built in)', unlimited: 'Unlimited-OCR (Apple Silicon server)' },
+      engineHint: {
+        tesseract: 'Runs inside the API on any machine. Languages, scale and layout below apply to it.',
+        unlimited: 'Baidu Unlimited-OCR on MLX, served by scripts/ocr-server.py (npm run ocr:server). Text recall on the 120 synthetic scans: 96.8% against 86.6% for Tesseract.',
+      },
+      url: 'Server URL',
+      badUrl: 'Expected http(s)://host:port.',
+      serverDown: 'The OCR server at {url} does not answer: scanned pages will fail until it runs (npm run ocr:server).',
+      serverUp: 'The OCR server at {url} answers.',
       languages: 'Languages',
       noLanguage: 'Choose at least one language.',
       languageNames: { eng: 'English', fra: 'French', spa: 'Spanish', deu: 'German' },

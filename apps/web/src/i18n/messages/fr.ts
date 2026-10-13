@@ -807,7 +807,17 @@ export const fr: Messages = {
     },
     ocr: {
       title: 'OCR des PDF numérisés',
-      text: 'Les pages sans couche de texte sont lues avec Tesseract. Les valeurs par défaut ont été choisies en mesurant 120 numérisations synthétiques (npm run eval:ocr).',
+      text: 'Les pages sans couche de texte sont lues avec le moteur OCR choisi ci-dessous. Les valeurs par défaut ont été choisies en mesurant 120 numérisations synthétiques (npm run eval:ocr).',
+      engine: 'Moteur',
+      engines: { tesseract: 'Tesseract (intégré)', unlimited: 'Unlimited-OCR (serveur Apple Silicon)' },
+      engineHint: {
+        tesseract: 'Tourne dans l’API sur n’importe quelle machine. Les langues, l’échelle et la mise en page ci-dessous s’y appliquent.',
+        unlimited: 'Unlimited-OCR de Baidu sur MLX, servi par scripts/ocr-server.py (npm run ocr:server). Texte retrouvé sur les 120 scans synthétiques : 96,8 % contre 86,6 % pour Tesseract.',
+      },
+      url: 'URL du serveur',
+      badUrl: 'Format attendu : http(s)://hôte:port.',
+      serverDown: 'Le serveur OCR à {url} ne répond pas : les pages scannées échoueront tant qu’il ne tourne pas (npm run ocr:server).',
+      serverUp: 'Le serveur OCR à {url} répond.',
       languages: 'Langues',
       noLanguage: 'Choisissez au moins une langue.',
       languageNames: { eng: 'Anglais', fra: 'Français', spa: 'Espagnol', deu: 'Allemand' },

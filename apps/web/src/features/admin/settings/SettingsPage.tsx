@@ -18,6 +18,8 @@ export function SettingsPage() {
   const ocrLanguages = settingOf(settings, 'ocrLanguages');
   const ocrScale = settingOf(settings, 'ocrScale');
   const ocrPsm = settingOf(settings, 'ocrPsm');
+  const ocrEngine = settingOf(settings, 'ocrEngine');
+  const ocrUrl = settingOf(settings, 'ocrUrl');
   return (
     <div className="page page-narrow">
       <PageHeader title={t('admin.settings')} description={t('admin.settingsDescription')} />
@@ -47,7 +49,10 @@ export function SettingsPage() {
         onReset={() => void reset('registrationOpen')}
       />
       <OcrSettingsCard
-        key={`ocr-${ocrLanguages.value.join('+')}-${ocrScale.value}-${ocrPsm.value}`}
+        key={`ocr-${ocrEngine.value}-${ocrUrl.value}-${ocrLanguages.value.join('+')}-${ocrScale.value}-${ocrPsm.value}`}
+        engine={ocrEngine}
+        url={ocrUrl}
+        server={settings.ocrServer}
         languages={ocrLanguages}
         scale={ocrScale}
         psm={ocrPsm}

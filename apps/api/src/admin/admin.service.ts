@@ -40,7 +40,7 @@ export class AdminService {
       queue: process.env.REDIS_URL ? 'bullmq' : 'in-process',
       storage: process.env.S3_ENDPOINT ? 's3' : 'disk',
       cache: { dir: process.env.LLM_CACHE_DIR || null, mode: process.env.LLM_CACHE_MODE || (process.env.LLM_CACHE_DIR ? 'readwrite' : 'off') },
-      ocr: { languages: (process.env.OCR_LANGS ?? 'eng+fra').split('+'), scale: Number(process.env.OCR_SCALE ?? 4), psm: process.env.OCR_PSM ?? '6' },
+      ocr: { engine: process.env.OCR_ENGINE === 'unlimited' ? 'unlimited' : 'tesseract', languages: (process.env.OCR_LANGS ?? 'eng+fra').split('+'), scale: Number(process.env.OCR_SCALE ?? 4), psm: process.env.OCR_PSM ?? '6' },
       agentEnabled: process.env.AGENT_ENABLED !== 'false',
       counts,
     };

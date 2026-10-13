@@ -346,7 +346,7 @@ describe('admin', () => {
 
   it('changes settings, validates them and resets them to .env', async () => {
     const list = (await call('GET', '/admin/settings', undefined, admin)).body;
-    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'registrationOpen', 'ocrLanguages', 'ocrScale', 'ocrPsm']);
+    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'registrationOpen', 'ocrEngine', 'ocrUrl', 'ocrLanguages', 'ocrScale', 'ocrPsm']);
     assert.equal(list.editable, true);
     assert.equal(list.settings.find((x) => x.key === 'agentEnabled').source, 'env');
 
@@ -365,6 +365,16 @@ describe('admin', () => {
     assert.equal((await call('PUT', '/admin/settings', { ocrScale: 3, ocrPsm: '99' }, admin)).status, 400);
     assert.equal((await call('GET', '/admin/settings', undefined, admin)).body.settings.find((x) => x.key === 'ocrScale').value, 5);
 
+    // Unlimited-OCR needs its server to answer: nothing listens on port 9 (discard).
+    const down = await call('PUT', '/admin/settings', { ocrEngine: 'unlimited', ocrUrl: 'http://127.0.0.1:9' }, admin);
+    assert.equal(down.status, 503);
+    assert.match(down.body.message, /does not answer/);
+    assert.equal((await call('PUT', '/admin/settings', { ocrUrl: 'ftp://x' }, admin)).status, 400);
+    const url = (await call('PUT', '/admin/settings', { ocrUrl: 'http://127.0.0.1:9/' }, admin)).body; // tesseract stays: the URL is not checked
+    assert.deepEqual([url.settings.find((x) => x.key === 'ocrUrl').value, url.ocrServer], ['http://127.0.0.1:9/', undefined]);
+    assert.equal(process.env.OCR_ENGINE ?? 'tesseract', 'tesseract');
+    assert.deepEqual(url.options.ocrEngines, ['tesseract', 'unlimited']);
+    assert.equal((await call('DELETE', '/admin/settings/ocrUrl', undefined, admin)).status, 200);
     for (const key of ['ocrScale', 'ocrPsm', 'agentEnabled']) assert.equal((await call('DELETE', `/admin/settings/${key}`, undefined, admin)).status, 200);
     const reset = (await call('GET', '/admin/settings', undefined, admin)).body.settings;
     assert.equal(reset.find((x) => x.key === 'ocrScale').source, 'default');

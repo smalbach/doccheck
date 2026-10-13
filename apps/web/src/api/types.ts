@@ -126,12 +126,16 @@ export interface User {
   createdAt: string;
 }
 
-export type SettingKey = 'llmModel' | 'agentEnabled' | 'registrationOpen' | 'ocrLanguages' | 'ocrScale' | 'ocrPsm';
+export type SettingKey = 'llmModel' | 'agentEnabled' | 'registrationOpen' | 'ocrEngine' | 'ocrUrl' | 'ocrLanguages' | 'ocrScale' | 'ocrPsm';
+
+export type OcrEngine = 'tesseract' | 'unlimited';
 
 export interface SettingValues {
   llmModel: string;
   agentEnabled: boolean;
   registrationOpen: boolean;
+  ocrEngine: OcrEngine;
+  ocrUrl: string;
   ocrLanguages: string[];
   ocrScale: number;
   ocrPsm: string;
@@ -149,8 +153,10 @@ export interface SettingView<K extends SettingKey = SettingKey> {
 
 export interface AdminSettings {
   settings: SettingView[];
-  options: { ocrLanguages: string[]; ocrPsm: string[]; ocrScale: { min: number; max: number } };
+  options: { ocrLanguages: string[]; ocrPsm: string[]; ocrScale: { min: number; max: number }; ocrEngines: OcrEngine[] };
   editable: boolean;
+  /** With the Unlimited-OCR engine in use: whether its server answers. */
+  ocrServer?: { url: string; reachable: boolean };
 }
 
 export interface InstalledModel {
@@ -185,7 +191,7 @@ export interface SystemStatus {
   queue: 'bullmq' | 'in-process';
   storage: 's3' | 'disk';
   cache: { dir: string | null; mode: string };
-  ocr: { languages: string[]; scale: number; psm: string };
+  ocr: { engine: OcrEngine; languages: string[]; scale: number; psm: string };
   agentEnabled: boolean;
   counts: { users: number; shipments: number; documents: number; validations: number };
 }
