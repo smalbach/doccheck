@@ -23,5 +23,12 @@ export type ChangePasswordDto = z.infer<typeof ChangePasswordDto>;
 export const ResetPasswordDto = z.object({ newPassword: password });
 export type ResetPasswordDto = z.infer<typeof ResetPasswordDto>;
 
+export const ForgotPasswordDto = z.object({ email });
+export type ForgotPasswordDto = z.infer<typeof ForgotPasswordDto>;
+
+/** The token from a "forgot password" email and the new password. */
+export const ResetWithTokenDto = z.object({ token: z.string().min(1).max(200), newPassword: password });
+export type ResetWithTokenDto = z.infer<typeof ResetWithTokenDto>;
+
 export const DeleteAccountDto = z.object({ password: z.string().min(1).max(200) });
 export type DeleteAccountDto = z.infer<typeof DeleteAccountDto>;

@@ -1,4 +1,9 @@
-export type PublicRoute = { name: 'landing' } | { name: 'login'; next?: string } | { name: 'register'; next?: string };
+export type PublicRoute =
+  | { name: 'landing' }
+  | { name: 'login'; next?: string }
+  | { name: 'register'; next?: string }
+  | { name: 'forgot-password' }
+  | { name: 'reset-password'; token?: string };
 
 export type AppRoute =
   | { name: 'dashboard' }
@@ -37,16 +42,20 @@ const APP_PAGES: Record<string, AppRoute> = {
 };
 
 /**
- * "#/" landing, "#/login" and "#/register" (with ?next=<path>), everything else under "#/app".
+ * "#/" landing, "#/login" and "#/register" (with ?next=<path>), "#/forgot-password",
+ * "#/reset-password?token=<emailed token>", everything else under "#/app".
  * Old links ("#/s/<id>", "#/results") still open their page.
  */
 export function parseRoute(hash: string): Route {
   const [rawPath = '', query = ''] = hash.replace(/^#/, '').split('?');
   const path = rawPath.replace(/\/+$/, '') || '/';
-  const next = new URLSearchParams(query).get('next') ?? undefined;
+  const params = new URLSearchParams(query);
+  const next = params.get('next') ?? undefined;
   if (path === '/') return { name: 'landing' };
   if (path === '/login') return { name: 'login', next };
   if (path === '/register') return { name: 'register', next };
+  if (path === '/forgot-password') return { name: 'forgot-password' };
+  if (path === '/reset-password') return { name: 'reset-password', token: params.get('token') ?? undefined };
   const id = SHIPMENT.exec(path)?.[1];
   if (id) return { name: 'shipment', id };
   return APP_PAGES[path] ?? { name: 'not-found' };

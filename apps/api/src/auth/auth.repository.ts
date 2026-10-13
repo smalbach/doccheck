@@ -111,4 +111,48 @@ export class AuthRepository {
   async deleteOtherSessions(userId: string, keepTokenHash?: string): Promise<void> {
     await this.pool.query('delete from sessions where user_id = $1 and token_hash is distinct from $2', [userId, keepTokenHash ?? null]);
   }
+
+  /** Stores a reset link's token hash; the user's used or expired ones are cleared on the way. */
+  async createPasswordReset(tokenHash: string, userId: string, expiresAt: Date): Promise<void> {
+    await this.pool.query('delete from password_resets where user_id = $1 and (used_at is not null or expires_at < now())', [userId]);
+    await this.pool.query('insert into password_resets (token_hash, user_id, expires_at) values ($1, $2, $3)', [tokenHash, userId, expiresAt]);
+  }
+
+  /** The user of an unused, unexpired reset link, or null. */
+  async passwordResetUser(tokenHash: string): Promise<UserRow | null> {
+    const { rows } = await this.pool.query(
+      'select u.* from password_resets r join users u on u.id = r.user_id where r.token_hash = $1 and r.used_at is null and r.expires_at > now()',
+      [tokenHash],
+    );
+    return rows[0] ? toUser(rows[0]) : null;
+  }
+
+  /**
+   * In one transaction: uses the link (only if still unused and unexpired), sets the password,
+   * deletes the user's other links and signs them out everywhere. False when the link was not valid.
+   */
+  async redeemPasswordReset(tokenHash: string, userId: string, passwordHash: string): Promise<boolean> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('begin');
+      const used = await client.query(
+        'update password_resets set used_at = now() where token_hash = $1 and user_id = $2 and used_at is null and expires_at > now()',
+        [tokenHash, userId],
+      );
+      if (used.rowCount !== 1) {
+        await client.query('rollback');
+        return false;
+      }
+      await client.query('update users set password_hash = $2, updated_at = now() where id = $1', [userId, passwordHash]);
+      await client.query('delete from password_resets where user_id = $1 and token_hash <> $2', [userId, tokenHash]);
+      await client.query('delete from sessions where user_id = $1', [userId]);
+      await client.query('commit');
+      return true;
+    } catch (err) {
+      await client.query('rollback');
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
 }

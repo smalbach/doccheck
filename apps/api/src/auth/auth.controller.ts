@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, Patch, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
 import type { Request, Response } from 'express';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
-import { ChangePasswordDto, DeleteAccountDto, LoginDto, RegisterDto, UpdateProfileDto } from './auth.dto';
+import { ChangePasswordDto, DeleteAccountDto, ForgotPasswordDto, LoginDto, RegisterDto, ResetWithTokenDto, UpdateProfileDto } from './auth.dto';
 import { AuthService, type NewSession } from './auth.service';
 import type { AuthedRequest, PublicUser } from './auth.types';
 import { CurrentUser } from './current-user.decorator';
@@ -28,6 +28,23 @@ export class AuthController {
   @HttpCode(200)
   async login(@Body(new ZodValidationPipe(LoginDto)) dto: LoginDto, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
     return this.open(req, res, await this.auth.login(dto, req.ip ?? 'unknown'));
+  }
+
+  /** Emails a reset link if the account exists; the answer is the same either way. */
+  @Public()
+  @Post('forgot-password')
+  @HttpCode(202)
+  forgotPassword(@Body(new ZodValidationPipe(ForgotPasswordDto)) dto: ForgotPasswordDto, @Req() req: Request) {
+    this.auth.forgotPassword(dto.email, req.ip ?? 'unknown');
+    return { message: 'If an account exists for this email, a reset link is on its way.' };
+  }
+
+  /** Body { token, newPassword }: sets the password from an emailed link and signs out every session. */
+  @Public()
+  @Post('reset-password')
+  @HttpCode(204)
+  async resetPassword(@Body(new ZodValidationPipe(ResetWithTokenDto)) dto: ResetWithTokenDto) {
+    await this.auth.resetWithToken(dto);
   }
 
   /** Always succeeds, signed in or not, and clears the cookie. */

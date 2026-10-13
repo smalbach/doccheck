@@ -7,8 +7,9 @@ import type { NextFunction, Request, Response } from 'express';
  */
 export const isDemo = (env: NodeJS.ProcessEnv = process.env) => env.DEMO_READONLY === 'true';
 
-// Accounts work as usual in the demo (sign up, sign in, profile, password); data stays read-only.
-const ALLOWED_WRITES = [/^\/auth\/(register|login|logout|me|password)$/, /^\/demo\/samples\/[\w-]+$/, /^\/shipments\/[0-9a-f-]{36}\/validate$/i];
+// Accounts work as usual in the demo (sign up, sign in, profile, password, forgotten password); data
+// stays read-only.
+const ALLOWED_WRITES = [/^\/auth\/(register|login|logout|me|password|forgot-password|reset-password)$/, /^\/demo\/samples\/[\w-]+$/, /^\/shipments\/[0-9a-f-]{36}\/validate$/i];
 
 export function readOnlyGuard(req: Request, res: Response, next: NextFunction) {
   if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') return next();
