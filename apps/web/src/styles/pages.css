@@ -59,3 +59,21 @@ a.stat-tile:hover { border-color: var(--accent); }
 .filters-right { display: flex; gap: 8px; flex-wrap: wrap; }
 .filters-right .input { width: 220px; }
 @media (max-width: 600px) { .filters-right, .filters-right .input, .filters-right .select-trigger { width: 100%; } }
+
+/* Administration */
+.setting-row { display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap; }
+.setting-source { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; font-weight: 400; }
+.fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.fieldset legend { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 0; margin-bottom: 6px; }
+.checkbox-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.status-list { display: grid; gap: 12px; margin: 0; }
+.status-item { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 4px 16px; }
+.status-item dt { color: var(--muted); font-size: 13px; }
+.status-item dd { margin: 0; overflow-wrap: anywhere; }
+.status-item-ok::before { content: '● '; color: var(--ok); }
+.status-item-error::before { content: '● '; color: var(--critical); }
+@media (max-width: 600px) { .status-item { grid-template-columns: 1fr; } }
+.setting-source .tag { white-space: normal; overflow-wrap: anywhere; }
+.card-head > .setting-source { max-width: 100%; }
+.setting-row .field { min-width: 0; max-width: 100%; }
+.setting-row .select-trigger { max-width: 100%; }

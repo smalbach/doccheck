@@ -1,4 +1,8 @@
 import { AccountPage } from '../../features/account/AccountPage';
+import { AdminOnly } from '../../features/admin/AdminOnly';
+import { SettingsPage } from '../../features/admin/settings/SettingsPage';
+import { SystemPage } from '../../features/admin/system/SystemPage';
+import { UsersPage } from '../../features/admin/users/UsersPage';
 import { DashboardPage } from '../../features/dashboard/DashboardPage';
 import { NotFoundPage } from '../../features/NotFoundPage';
 import { ResultsPage } from '../../features/results/ResultsPage';
@@ -28,6 +32,24 @@ export function RouteView({ route }: { route: AppRoute }) {
       return <ResultsPage />;
     case 'account':
       return <AccountPage />;
+    case 'admin-settings':
+      return (
+        <AdminOnly>
+          <SettingsPage />
+        </AdminOnly>
+      );
+    case 'admin-users':
+      return (
+        <AdminOnly>
+          <UsersPage />
+        </AdminOnly>
+      );
+    case 'admin-system':
+      return (
+        <AdminOnly>
+          <SystemPage />
+        </AdminOnly>
+      );
     case 'not-found':
       return <NotFoundPage />;
   }

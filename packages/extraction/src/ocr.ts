@@ -27,7 +27,7 @@ interface RenderablePage {
  *   with a contrast stretch and unsharp mask before OCR: 75.1% (sharpening amplifies scan noise)
  * 4x renders at 288 dpi; upscaling a poor 110 dpi scan still helps tesseract.
  */
-const SCALE = Number(process.env.OCR_SCALE ?? 4);
+const DEFAULT_SCALE = 4;
 /** Words recognized below this confidence are dropped: on scans they are mostly speckle. */
 const MIN_CONFIDENCE = 30;
 
@@ -67,7 +67,9 @@ export async function terminateOcr(): Promise<void> {
 /** Renders a PDF page and recognizes its words with tesseract. */
 export async function ocrPage(page: RenderablePage): Promise<{ words: OcrWord[]; confidence: number }> {
   const { createCanvas } = await import('@napi-rs/canvas');
-  const viewport = page.getViewport({ scale: SCALE });
+  // Read per page so an admin change applies without a restart; the same value maps boxes back to points.
+  const scale = Number(process.env.OCR_SCALE ?? DEFAULT_SCALE);
+  const viewport = page.getViewport({ scale });
   const canvas = createCanvas(Math.ceil(viewport.width), Math.ceil(viewport.height));
   await page.render({ canvas, viewport }).promise;
   const png = await canvas.encode('png');
@@ -84,10 +86,10 @@ export async function ocrPage(page: RenderablePage): Promise<{ words: OcrWord[];
           if (word.confidence < MIN_CONFIDENCE || !word.text.trim()) continue;
           words.push({
             str: word.text,
-            x: word.bbox.x0 / SCALE,
-            y: word.bbox.y0 / SCALE,
-            w: (word.bbox.x1 - word.bbox.x0) / SCALE,
-            h: (word.bbox.y1 - word.bbox.y0) / SCALE,
+            x: word.bbox.x0 / scale,
+            y: word.bbox.y0 / scale,
+            w: (word.bbox.x1 - word.bbox.x0) / scale,
+            h: (word.bbox.y1 - word.bbox.y0) / scale,
             confidence: word.confidence,
           });
         }

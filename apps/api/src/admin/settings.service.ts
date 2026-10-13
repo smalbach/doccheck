@@ -1,0 +1,108 @@
+import { BadRequestException, ForbiddenException, Inject, Injectable, Logger, ServiceUnavailableException, type OnApplicationBootstrap } from '@nestjs/common';
+import { OllamaProvider, terminateOcr } from '@doccheck/extraction';
+import { isDemo } from '../demo/demo-mode';
+import { LLM_PROVIDER } from '../llm/llm.module';
+import type { SwitchableProvider } from '../llm/switchable-provider';
+import { listOllamaModels } from './ollama-models';
+import { isSettingKey, OCR_LANGUAGES, OCR_PSM_VALUES, SETTING_KEYS, SETTINGS, type SettingDefinition, type SettingKey } from './settings.definitions';
+import { SettingsRepository } from './settings.repository';
+
+export type SettingSource = 'default' | 'env' | 'admin';
+
+export interface SettingView {
+  key: SettingKey;
+  value: unknown;
+  source: SettingSource;
+  defaultValue: unknown;
+  /** What .env says, if anything (the value a reset goes back to). */
+  envValue?: unknown;
+  updatedAt?: string;
+  updatedBy?: string;
+}
+
+/** Model and OCR settings: defaults, then .env, then what an admin saved; applied while the API runs. */
+@Injectable()
+export class SettingsService implements OnApplicationBootstrap {
+  private readonly logger = new Logger(SettingsService.name);
+  /** .env as it was at start, before any admin value was written over it. */
+  private readonly envAtStart: Partial<Record<SettingKey, string>> = Object.fromEntries(
+    SETTING_KEYS.flatMap((k) => (process.env[SETTINGS[k].env] ? [[k, process.env[SETTINGS[k].env]]] : [])),
+  );
+
+  constructor(
+    private readonly repo: SettingsRepository,
+    @Inject(LLM_PROVIDER) private readonly provider: SwitchableProvider,
+  ) {}
+
+  /** Saved values apply at start (after migrations). The read-only demo keeps .env: its caches were built for it. */
+  async onApplicationBootstrap() {
+    if (isDemo()) return;
+    for (const stored of await this.repo.list()) {
+      if (!isSettingKey(stored.key)) continue;
+      const parsed = (SETTINGS[stored.key] as SettingDefinition<unknown>).schema.safeParse(stored.value);
+      if (parsed.success) await this.apply(stored.key, parsed.data);
+      else this.logger.warn(`Ignoring saved setting ${stored.key}: ${parsed.error.issues[0]?.message}`);
+    }
+  }
+
+  private fromEnv(key: SettingKey): unknown {
+    const raw = this.envAtStart[key];
+    return raw === undefined ? undefined : (SETTINGS[key] as SettingDefinition<unknown>).fromEnv(raw);
+  }
+
+  async list(): Promise<{ settings: SettingView[]; options: { ocrLanguages: string[]; ocrPsm: readonly string[]; ocrScale: { min: number; max: number } }; editable: boolean }> {
+    const stored = new Map((await this.repo.list()).map((s) => [s.key, s]));
+    const settings = SETTING_KEYS.map((key): SettingView => {
+      const def = SETTINGS[key] as SettingDefinition<unknown>;
+      const envValue = this.fromEnv(key);
+      const saved = isDemo() ? undefined : stored.get(key);
+      const base = { key, defaultValue: def.defaultValue, ...(envValue !== undefined ? { envValue } : {}) };
+      if (saved) return { ...base, value: saved.value, source: 'admin', updatedAt: saved.updatedAt, ...(saved.updatedBy ? { updatedBy: saved.updatedBy } : {}) };
+      return { ...base, value: envValue ?? def.defaultValue, source: envValue !== undefined ? 'env' : 'default' };
+    });
+    return { settings, options: { ocrLanguages: OCR_LANGUAGES, ocrPsm: OCR_PSM_VALUES, ocrScale: { min: 2, max: 6 } }, editable: !isDemo() };
+  }
+
+  /** Validates every value first, then saves and applies them together. */
+  async update(values: Record<string, unknown>, userId: string) {
+    if (isDemo()) throw new ForbiddenException('Settings are read-only in the demo');
+    const entries: [SettingKey, unknown][] = [];
+    for (const [key, raw] of Object.entries(values)) {
+      if (!isSettingKey(key)) throw new BadRequestException(`Unknown setting ${key}`);
+      const parsed = (SETTINGS[key] as SettingDefinition<unknown>).schema.safeParse(raw);
+      if (!parsed.success) throw new BadRequestException(`${key}: ${parsed.error.issues[0]?.message ?? 'invalid'}`);
+      entries.push([key, parsed.data]);
+    }
+    const model = entries.find(([k]) => k === 'llmModel')?.[1] as string | undefined;
+    if (model !== undefined) await this.assertInstalled(model);
+    await this.repo.save(entries, userId);
+    for (const [key, value] of entries) await this.apply(key, value);
+    this.logger.log(`Settings changed: ${entries.map(([k, v]) => `${k}=${JSON.stringify(v)}`).join(', ')}`);
+    return this.list();
+  }
+
+  async reset(key: string) {
+    if (isDemo()) throw new ForbiddenException('Settings are read-only in the demo');
+    if (!isSettingKey(key)) throw new BadRequestException(`Unknown setting ${key}`);
+    await this.repo.remove(key);
+    await this.apply(key, this.fromEnv(key) ?? SETTINGS[key].defaultValue);
+    return this.list();
+  }
+
+  private async assertInstalled(model: string) {
+    const models = await listOllamaModels();
+    if (!models) throw new ServiceUnavailableException('Ollama is not reachable, so the model cannot be checked');
+    const found = models.find((m) => m.name === model || m.name.replace(/:latest$/, '') === model);
+    if (!found) throw new BadRequestException(`Model ${model} is not installed in Ollama`);
+    if (found.embedding) throw new BadRequestException(`${model} is an embedding model; it cannot read documents`);
+  }
+
+  /** Writes the value where the packages read it and swaps what has to be swapped. */
+  private async apply(key: SettingKey, value: unknown) {
+    const def = SETTINGS[key] as SettingDefinition<unknown>;
+    process.env[def.env] = def.toEnv(value);
+    if (key === 'llmModel') this.provider.replace(new OllamaProvider(value as string, process.env.OLLAMA_BASE_URL || undefined));
+    // The OCR worker keeps its languages and page mode: a new one starts on the next scan.
+    if (key === 'ocrLanguages' || key === 'ocrPsm') await terminateOcr();
+  }
+}

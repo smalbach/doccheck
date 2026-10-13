@@ -95,6 +95,7 @@ before(async () => {
       S3_ENDPOINT: '',
       STORAGE_DIR: mkdtempSync(join(tmpdir(), 'doccheck-e2e-')),
       REPORTS_DIR: reportsDir,
+      ADMIN_EMAILS: 'admin-e2e@example.com',
       LLM_CACHE_DIR: llmCacheDir,
       LLM_CACHE_MODE: 'replay',
       AGENT_ENABLED: 'false',
@@ -142,7 +143,8 @@ describe('auth', () => {
     const email = `${randomUUID()}@Example.com`;
     const reg = await call('POST', '/auth/register', { email, password: 'correct horse battery', name: ' Ada ' }, '');
     assert.equal(reg.status, 201);
-    assert.deepEqual(Object.keys(reg.body).sort(), ['createdAt', 'email', 'id', 'name']);
+    assert.deepEqual(Object.keys(reg.body).sort(), ['createdAt', 'email', 'id', 'name', 'role']);
+    assert.equal(reg.body.role, 'user');
     assert.equal(reg.body.email, email.toLowerCase());
     assert.equal(reg.body.name, 'Ada');
     assert.match(reg.cookie, /^doccheck_session=/);
@@ -210,6 +212,77 @@ describe('auth', () => {
     assert.equal(res.status, 403);
     const same = await send(`${base}/shipments`, { method: 'POST', headers: { 'content-type': 'application/json', origin: base }, body: JSON.stringify({ destination: 'CA' }) });
     assert.equal(same.status, 201);
+  });
+});
+
+describe('admin', () => {
+  let admin;
+  before(async () => {
+    const res = await call('POST', '/auth/register', { email: 'Admin-E2E@example.com', password: 'admin password', name: 'Admin' }, '');
+    assert.equal(res.status, 201);
+    assert.equal(res.body.role, 'admin');
+    admin = res.cookie;
+  });
+
+  it('is closed to visitors and to users who are not admins', async () => {
+    assert.equal((await call('GET', '/auth/me')).body.role, 'user');
+    for (const [method, path] of [['GET', '/admin/settings'], ['PUT', '/admin/settings'], ['GET', '/admin/users'], ['GET', '/admin/system'], ['GET', '/admin/models']]) {
+      assert.equal((await call(method, path, method === 'PUT' ? { ocrScale: 3 } : undefined)).status, 403, `${method} ${path}`);
+      assert.equal((await call(method, path, method === 'PUT' ? { ocrScale: 3 } : undefined, '')).status, 401, `${method} ${path} signed out`);
+    }
+  });
+
+  it('changes settings, validates them and resets them to .env', async () => {
+    const list = (await call('GET', '/admin/settings', undefined, admin)).body;
+    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'ocrLanguages', 'ocrScale', 'ocrPsm']);
+    assert.equal(list.editable, true);
+    assert.equal(list.settings.find((x) => x.key === 'agentEnabled').source, 'env');
+
+    const saved = (await call('PUT', '/admin/settings', { ocrScale: 5, ocrPsm: '11', agentEnabled: true }, admin)).body;
+    const scale = saved.settings.find((x) => x.key === 'ocrScale');
+    assert.equal(scale.value, 5);
+    assert.equal(scale.source, 'admin');
+    assert.equal(scale.updatedBy, 'admin-e2e@example.com');
+
+    for (const bad of [{ ocrScale: 9 }, { ocrScale: '4' }, { ocrPsm: '99' }, { ocrLanguages: [] }, { ocrLanguages: ['xyz'] }, { nope: 1 }, {}, { llmModel: 'bad model name!' }]) {
+      assert.equal((await call('PUT', '/admin/settings', bad, admin)).status, 400, JSON.stringify(bad));
+    }
+    // A well-formed name Ollama does not have: refused (400), or 503 when Ollama is not running here.
+    assert.ok([400, 503].includes((await call('PUT', '/admin/settings', { llmModel: 'not-installed-model' }, admin)).status));
+    // A refused batch saves nothing.
+    assert.equal((await call('PUT', '/admin/settings', { ocrScale: 3, ocrPsm: '99' }, admin)).status, 400);
+    assert.equal((await call('GET', '/admin/settings', undefined, admin)).body.settings.find((x) => x.key === 'ocrScale').value, 5);
+
+    for (const key of ['ocrScale', 'ocrPsm', 'agentEnabled']) assert.equal((await call('DELETE', `/admin/settings/${key}`, undefined, admin)).status, 200);
+    const reset = (await call('GET', '/admin/settings', undefined, admin)).body.settings;
+    assert.equal(reset.find((x) => x.key === 'ocrScale').source, 'default');
+    assert.equal(reset.find((x) => x.key === 'agentEnabled').value, false);
+    assert.equal((await call('DELETE', '/admin/settings/nope', undefined, admin)).status, 400);
+  });
+
+  it('manages roles without locking anyone out', async () => {
+    const me = (await call('GET', '/auth/me', undefined, admin)).body;
+    const other = await signUp('Promoted');
+    const otherId = (await call('GET', '/auth/me', undefined, other)).body.id;
+    assert.equal((await call('PATCH', `/admin/users/${me.id}`, { role: 'user' }, admin)).status, 400);
+    assert.equal((await call('PATCH', `/admin/users/${otherId}`, { role: 'owner' }, admin)).status, 400);
+    assert.equal((await call('PATCH', `/admin/users/${randomUUID()}`, { role: 'admin' }, admin)).status, 404);
+    const users = (await call('PATCH', `/admin/users/${otherId}`, { role: 'admin' }, admin)).body;
+    assert.equal(users.find((u) => u.id === otherId).role, 'admin');
+    assert.equal((await call('GET', '/admin/users', undefined, other)).status, 200);
+    // The new admin can demote the first one, then nobody can demote the last.
+    assert.equal((await call('PATCH', `/admin/users/${me.id}`, { role: 'user' }, other)).status, 200);
+    assert.equal((await call('GET', '/admin/users', undefined, admin)).status, 403);
+    assert.equal((await call('PATCH', `/admin/users/${me.id}`, { role: 'admin' }, other)).status, 200);
+  });
+
+  it('reports the system status', async () => {
+    const sys = (await call('GET', '/admin/system', undefined, admin)).body;
+    for (const key of ['demo', 'ollama', 'model', 'embeddings', 'queue', 'storage', 'cache', 'ocr', 'agentEnabled', 'counts']) assert.ok(key in sys, key);
+    assert.equal(sys.queue, 'in-process');
+    assert.ok(sys.counts.users >= 2);
+    const models = (await call('GET', '/admin/models', undefined, admin)).body;
+    assert.equal(typeof models.reachable, 'boolean');
   });
 });
 

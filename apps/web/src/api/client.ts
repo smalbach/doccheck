@@ -2,6 +2,8 @@ import type { ExtractableType } from '../constants/documentTypes';
 import { jsonBody } from './jsonBody';
 import { request } from './request';
 import type {
+  AdminModels,
+  AdminSettings,
   Destination,
   DocumentDetail,
   Health,
@@ -11,8 +13,13 @@ import type {
   Sample,
   Shipment,
   ShipmentDocument,
+  SettingKey,
+  SettingValues,
   ShipmentSummary,
+  SystemStatus,
   User,
+  UserSummary,
+  Role,
   Validation,
 } from './types';
 
@@ -57,4 +64,12 @@ export const api = {
   loadSample: (sampleId: string) => request<Shipment>(`/demo/samples/${encodeURIComponent(sampleId)}`, { method: 'POST' }),
 
   results: () => request<Results>('/results'),
+
+  adminSettings: () => request<AdminSettings>('/admin/settings'),
+  updateSettings: (values: Partial<SettingValues>) => request<AdminSettings>('/admin/settings', jsonBody(values, 'PUT')),
+  resetSetting: (key: SettingKey) => request<AdminSettings>(`/admin/settings/${key}`, { method: 'DELETE' }),
+  adminModels: () => request<AdminModels>('/admin/models'),
+  adminSystem: () => request<SystemStatus>('/admin/system'),
+  adminUsers: () => request<UserSummary[]>('/admin/users'),
+  setRole: (id: string, role: Role) => request<UserSummary[]>(`/admin/users/${encodeURIComponent(id)}`, { ...jsonBody({ role }), method: 'PATCH' }),
 };

@@ -1,6 +1,7 @@
-import { ConflictException, HttpException, HttpStatus, Inject, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, HttpException, HttpStatus, Inject, Injectable, Logger, UnauthorizedException, type OnApplicationBootstrap } from '@nestjs/common';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
+import { adminEmails } from './admin-emails';
 import { AuthRepository } from './auth.repository';
 import type { ChangePasswordDto, DeleteAccountDto, LoginDto, RegisterDto } from './auth.dto';
 import type { PublicUser, UserRow } from './auth.types';
@@ -21,7 +22,7 @@ export interface NewSession {
 }
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnApplicationBootstrap {
   private readonly logger = new Logger(AuthService.name);
 
   constructor(
@@ -29,6 +30,12 @@ export class AuthService {
     private readonly throttle: LoginThrottle,
     @Inject(STORAGE) private readonly storage: ObjectStorage,
   ) {}
+
+  /** Accounts listed in ADMIN_EMAILS that already exist become admins (after migrations ran). */
+  async onApplicationBootstrap() {
+    const promoted = await this.repo.promoteAdmins(adminEmails());
+    if (promoted) this.logger.log(`${promoted} account(s) made admin from ADMIN_EMAILS`);
+  }
 
   private async startSession(user: PublicUser): Promise<NewSession> {
     const token = randomBytes(32).toString('base64url');
@@ -38,9 +45,10 @@ export class AuthService {
   }
 
   async register(dto: RegisterDto): Promise<NewSession> {
-    const user = { id: randomUUID(), email: dto.email, name: dto.name, passwordHash: await hashPassword(dto.password) };
+    const role = adminEmails().includes(dto.email) ? 'admin' : 'user';
+    const user = { id: randomUUID(), email: dto.email, name: dto.name, passwordHash: await hashPassword(dto.password), role } as const;
     if (!(await this.repo.createUser(user))) throw new ConflictException('An account with this email already exists');
-    return this.startSession({ id: user.id, email: user.email, name: user.name, createdAt: new Date().toISOString() });
+    return this.startSession({ id: user.id, email: user.email, name: user.name, role, createdAt: new Date().toISOString() });
   }
 
   async login(dto: LoginDto, ip: string): Promise<NewSession> {

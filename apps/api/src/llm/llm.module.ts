@@ -1,25 +1,34 @@
 import { Global, Inject, Injectable, Logger, Module, type OnApplicationShutdown } from '@nestjs/common';
-import { llmFromEnv, terminateOcr, type LlmClient } from '@doccheck/extraction';
+import { LlmClient, OllamaProvider, terminateOcr, type CacheMode } from '@doccheck/extraction';
 import { CachedEmbedder, loadIndexFile, OllamaEmbedder, type RegulationIndex } from '@doccheck/regulations';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { Pool } from 'pg';
 import { PG_POOL } from '../db/db.module';
 import { isDemo } from '../demo/demo-mode';
+import { SwitchableProvider } from './switchable-provider';
 
 export const LLM = Symbol('LLM');
+/** The swappable model behind LLM, for the settings service. */
+export const LLM_PROVIDER = Symbol('LLM_PROVIDER');
 
 const repoRoot = () => [process.cwd(), resolve(__dirname, '../../../..')].find((d) => existsSync(resolve(d, 'eval'))) ?? process.cwd();
+
+/** The model, from LLM_MODEL at start; an admin can replace it later (never in the read-only demo). */
+const modelProvider = {
+  provide: LLM_PROVIDER,
+  useFactory: () => new SwitchableProvider(new OllamaProvider(process.env.LLM_MODEL || undefined, process.env.OLLAMA_BASE_URL || undefined)),
+};
 
 /** The local model client, with every call logged to llm_calls. */
 const llmProvider = {
   provide: LLM,
-  inject: [PG_POOL],
-  useFactory: (pool: Pool): LlmClient => {
+  inject: [PG_POOL, LLM_PROVIDER],
+  useFactory: (pool: Pool, provider: SwitchableProvider): LlmClient => {
     // The read-only demo never calls the model: cached answers only, a miss is an error.
     const llm = isDemo()
-      ? llmFromEnv({ ...process.env, LLM_CACHE_MODE: 'replay', LLM_CACHE_DIR: process.env.LLM_CACHE_DIR || resolve(repoRoot(), 'eval/cache', `ollama_${process.env.LLM_MODEL || 'qwen3.8'}`) })
-      : llmFromEnv();
+      ? new LlmClient(provider, process.env.LLM_CACHE_DIR || resolve(repoRoot(), 'eval/cache', `ollama_${process.env.LLM_MODEL || 'qwen3.8'}`), 'replay')
+      : new LlmClient(provider, process.env.LLM_CACHE_DIR || undefined, (process.env.LLM_CACHE_MODE as CacheMode) || undefined);
     llm.tracer = async (t) => {
       await pool.query(
         'insert into llm_calls (provider, model_version, prompt_version, cache_key, cached, ms, input_tokens, output_tokens, error) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
@@ -60,8 +69,8 @@ export class RegulationsService {
 
 @Global()
 @Module({
-  providers: [llmProvider, RegulationsService],
-  exports: [LLM, RegulationsService],
+  providers: [modelProvider, llmProvider, RegulationsService],
+  exports: [LLM, LLM_PROVIDER, RegulationsService],
 })
 export class LlmModule implements OnApplicationShutdown {
   async onApplicationShutdown() {

@@ -25,7 +25,7 @@ export function Sidebar({ route, user, demo, onSignOut, onNavigate }: SidebarPro
         <Brand href="#/app" />
         {demo && <Tag tone="accent">{t('app.readOnlyDemo')}</Tag>}
       </div>
-      <SidebarNav route={route} demo={demo} onNavigate={onNavigate} />
+      <SidebarNav route={route} demo={demo} isAdmin={user.role === 'admin'} onNavigate={onNavigate} />
       <div className="sidebar-prefs">
         <LanguageSelect />
         <ThemeToggle />

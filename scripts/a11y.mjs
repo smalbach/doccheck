@@ -9,7 +9,9 @@
  *   npm run build && npm start            # or any running API + web
  *   node scripts/a11y.mjs [--url http://localhost:3000] [--quick]
  *
- * --quick checks English only. Needs Playwright's Chromium or a local Chrome.
+ * --quick checks English only. With A11Y_ADMIN_EMAIL and A11Y_ADMIN_PASSWORD (an account listed in
+ * the server's ADMIN_EMAILS; signed up if it does not exist) the admin pages are checked too.
+ * Needs Playwright's Chromium or a local Chrome.
  */
 import { readFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
@@ -48,19 +50,36 @@ page.on('pageerror', (err) => problems.push(`page error: ${err.message}`));
 
 
 /** A fresh throwaway account with one sample shipment, so the shipment page has content. Returns that page's path. */
+const admin = process.env.A11Y_ADMIN_EMAIL && process.env.A11Y_ADMIN_PASSWORD ? { email: process.env.A11Y_ADMIN_EMAIL, password: process.env.A11Y_ADMIN_PASSWORD } : undefined;
+
 async function signUpWithSample() {
   await context.clearCookies();
-  const res = await page.request.post(`${base}/auth/register`, {
-    data: { email: `a11y-${Date.now()}-${Math.random().toString(36).slice(2)}@doccheck.invalid`, password: `a11y-${Math.random()}`, name: 'Accessibility check' },
-  });
-  if (!res.ok()) throw new Error(`Sign-up failed: ${res.status()} ${await res.text()}`);
+  if (admin) {
+    let res = await page.request.post(`${base}/auth/login`, { data: admin });
+    if (res.status() === 401) res = await page.request.post(`${base}/auth/register`, { data: { ...admin, name: 'Accessibility admin' } });
+    if (!res.ok()) throw new Error(`Admin sign-in failed: ${res.status()} ${await res.text()}`);
+  } else {
+    const res = await page.request.post(`${base}/auth/register`, {
+      data: { email: `a11y-${Date.now()}-${Math.random().toString(36).slice(2)}@doccheck.invalid`, password: `a11y-${Math.random()}`, name: 'Accessibility check' },
+    });
+    if (!res.ok()) throw new Error(`Sign-up failed: ${res.status()} ${await res.text()}`);
+  }
   const samples = await (await page.request.get(`${base}/demo/samples`)).json();
   if (!samples.length) return undefined;
   const shipment = await (await page.request.post(`${base}/demo/samples/${samples[0].id}`)).json();
   return `/app/s/${shipment.id}`;
 }
 
-const staticPages = ['/app', '/app/shipments', '/app/shipments/new', '/app/samples', '/app/rules', '/app/results', '/app/account'];
+const staticPages = [
+  '/app',
+  '/app/shipments',
+  '/app/shipments/new',
+  '/app/samples',
+  '/app/rules',
+  '/app/results',
+  '/app/account',
+  ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system'] : []),
+];
 const locales = values.quick ? ['en'] : ['en', 'es', 'fr'];
 
 for (const locale of locales) {

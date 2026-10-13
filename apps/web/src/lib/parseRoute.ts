@@ -9,6 +9,9 @@ export type AppRoute =
   | { name: 'rules' }
   | { name: 'results' }
   | { name: 'account' }
+  | { name: 'admin-settings' }
+  | { name: 'admin-users' }
+  | { name: 'admin-system' }
   | { name: 'not-found' };
 
 export type Route = PublicRoute | AppRoute;
@@ -25,6 +28,10 @@ const APP_PAGES: Record<string, AppRoute> = {
   // Links from before the app moved under /app.
   '/results': { name: 'results' },
   '/app/account': { name: 'account' },
+  '/app/admin': { name: 'admin-settings' },
+  '/app/admin/settings': { name: 'admin-settings' },
+  '/app/admin/users': { name: 'admin-users' },
+  '/app/admin/system': { name: 'admin-system' },
 };
 
 /**

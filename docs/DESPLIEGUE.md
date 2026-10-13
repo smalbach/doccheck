@@ -4,6 +4,8 @@ DocCheck corre hoy **localmente** en una Mac con Apple Silicon. Esta guía deja 
 
 > **Cuentas.** Todo, salvo `/health` y `/auth/*`, pide sesión. El registro es abierto (correo, nombre y contraseña de 8+ caracteres; scrypt) y cada envío es privado de quien lo creó. La sesión es una cookie `httpOnly` y `SameSite=Lax`, `Secure` cuando la petición llega por HTTPS a través de un proxy en la misma máquina (`TRUST_PROXY`); los POST con `Origin` de otro sitio se rechazan. Después de 10 intentos fallidos para un correo (o 50 desde una dirección) en 15 minutos, el inicio de sesión se bloquea hasta que pase la ventana. Los envíos creados antes de la migración `007_users.sql` no tienen dueño y no se muestran. El registro abierto significa que cualquiera con la URL puede crear cuenta y subir PDFs: para un servidor expuesto, sigue siendo buena idea un proxy con autenticación o lista de IPs delante.
 
+> **Administración.** Las cuentas de `ADMIN_EMAILS` ven en la web Configuración (modelo de extracción entre los instalados en Ollama, revisión del agente, idiomas, escala y modo del OCR), Usuarios (roles) y Sistema (estado de Ollama, modelo y build en uso, índice de normativa, cola, almacenamiento, caché). Un cambio se guarda en la tabla `settings`, se aplica sin reiniciar y manda sobre `.env` hasta que se restablece; quien lo hizo y cuándo queda registrado. Cambiar el modelo invalida la caché de respuestas (todo se vuelve a extraer) y un modelo sin medir lo dice antes de confirmar. En modo demo la configuración es de solo lectura. Las evaluaciones por línea de comandos (`npm run eval:*`) siguen leyendo solo `.env`.
+
 ## Componentes
 
 | Componente | Para qué | Local hoy | Obligatorio |
@@ -243,6 +245,8 @@ Para publicarla: VPS con Docker, proxy con TLS (Caddy como en la sección 3; el 
 | `DEMO_READONLY` | `false` | Demo pública de solo lectura: sin escrituras, modelo desde caché (sección 4) |
 | `LLM_CACHE_DIR`, `LLM_CACHE_MODE` | — | Caché de respuestas del modelo (`readwrite`, `replay`, `off`) |
 | `TRUST_PROXY` | `loopback` | Proxies cuyas cabeceras `X-Forwarded-*` se creen (cookie `Secure` y dirección del cliente). Valor de Express `trust proxy`: p. ej. `loopback`, una IP o `false` |
+| `ADMIN_EMAILS` | — | Correos de administradores (separados por coma). Solo así se obtiene el rol admin; registrarse nunca lo da. Un admin puede ascender a otros desde la web |
+| `OCR_LANGS`, `OCR_SCALE`, `OCR_PSM` | `eng+fra`, `4`, `6` | OCR de páginas escaneadas: idiomas instalados, escala de render (4 = 288 dpi) y modo de página de Tesseract |
 | `DEMO_BUILD_EMAIL`, `DEMO_BUILD_PASSWORD` | — | Cuenta con la que `scripts/demo-build.mjs` inicia sesión; sin ellas crea una cuenta desechable |
 
 ## Problemas conocidos

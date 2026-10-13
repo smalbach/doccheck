@@ -55,11 +55,77 @@ export interface RuleDefinition {
   severity: Finding['severity'];
 }
 
+export type Role = 'user' | 'admin';
+
 export interface User {
   id: string;
   email: string;
   name: string;
+  role: Role;
   createdAt: string;
+}
+
+export type SettingKey = 'llmModel' | 'agentEnabled' | 'ocrLanguages' | 'ocrScale' | 'ocrPsm';
+
+export interface SettingValues {
+  llmModel: string;
+  agentEnabled: boolean;
+  ocrLanguages: string[];
+  ocrScale: number;
+  ocrPsm: string;
+}
+
+export interface SettingView<K extends SettingKey = SettingKey> {
+  key: K;
+  value: SettingValues[K];
+  source: 'default' | 'env' | 'admin';
+  defaultValue: SettingValues[K];
+  envValue?: SettingValues[K];
+  updatedAt?: string;
+  updatedBy?: string;
+}
+
+export interface AdminSettings {
+  settings: SettingView[];
+  options: { ocrLanguages: string[]; ocrPsm: string[]; ocrScale: { min: number; max: number } };
+  editable: boolean;
+}
+
+export interface InstalledModel {
+  name: string;
+  size: number;
+  digest: string;
+  modifiedAt: string;
+  current: boolean;
+  evaluated: { accuracy: number; documents: number } | null;
+}
+
+export interface AdminModels {
+  reachable: boolean;
+  current: string;
+  models: InstalledModel[];
+}
+
+export interface UserSummary {
+  id: string;
+  email: string;
+  name: string;
+  role: Role;
+  createdAt: string;
+  shipmentCount: number;
+}
+
+export interface SystemStatus {
+  demo: boolean;
+  ollama: { url: string; reachable: boolean; models: number };
+  model: { provider: string; build: string | null };
+  embeddings: { model: string; chunks: number | null };
+  queue: 'bullmq' | 'in-process';
+  storage: 's3' | 'disk';
+  cache: { dir: string | null; mode: string };
+  ocr: { languages: string[]; scale: number; psm: string };
+  agentEnabled: boolean;
+  counts: { users: number; shipments: number; documents: number; validations: number };
 }
 
 export interface IsfFiling {

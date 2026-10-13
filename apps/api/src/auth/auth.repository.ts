@@ -1,12 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { Pool } from 'pg';
 import { PG_POOL } from '../db/db.module';
-import type { PublicUser, UserRow } from './auth.types';
+import type { PublicUser, Role, UserRow } from './auth.types';
 
 const toUser = (r: Record<string, unknown>): UserRow => ({
   id: r.id as string,
   email: r.email as string,
   name: r.name as string,
+  role: r.role as Role,
   passwordHash: r.password_hash as string,
   createdAt: new Date(r.created_at as string).toISOString(),
 });
@@ -16,12 +17,13 @@ export class AuthRepository {
   constructor(@Inject(PG_POOL) private readonly pool: Pool) {}
 
   /** False when the email is taken. */
-  async createUser(user: { id: string; email: string; name: string; passwordHash: string }): Promise<boolean> {
-    const res = await this.pool.query('insert into users (id, email, name, password_hash) values ($1, $2, $3, $4) on conflict (email) do nothing', [
+  async createUser(user: { id: string; email: string; name: string; passwordHash: string; role: Role }): Promise<boolean> {
+    const res = await this.pool.query('insert into users (id, email, name, password_hash, role) values ($1, $2, $3, $4, $5) on conflict (email) do nothing', [
       user.id,
       user.email,
       user.name,
       user.passwordHash,
+      user.role,
     ]);
     return res.rowCount === 1;
   }
@@ -34,6 +36,13 @@ export class AuthRepository {
   async findById(id: string): Promise<UserRow | null> {
     const { rows } = await this.pool.query('select * from users where id = $1', [id]);
     return rows[0] ? toUser(rows[0]) : null;
+  }
+
+  /** Makes these accounts admins (never demotes anyone). Returns how many changed. */
+  async promoteAdmins(emails: readonly string[]): Promise<number> {
+    if (!emails.length) return 0;
+    const res = await this.pool.query("update users set role = 'admin', updated_at = now() where email = any($1) and role <> 'admin'", [emails]);
+    return res.rowCount ?? 0;
   }
 
   async updateName(id: string, name: string): Promise<void> {
@@ -81,7 +90,7 @@ export class AuthRepository {
   /** The user of a live session; expired sessions are removed on the way. */
   async sessionUser(tokenHash: string): Promise<PublicUser | null> {
     const { rows } = await this.pool.query(
-      `select u.id, u.email, u.name, u.created_at, s.expires_at < now() as expired
+      `select u.id, u.email, u.name, u.role, u.created_at, s.expires_at < now() as expired
        from sessions s join users u on u.id = s.user_id where s.token_hash = $1`,
       [tokenHash],
     );
@@ -91,7 +100,7 @@ export class AuthRepository {
       await this.deleteSession(tokenHash);
       return null;
     }
-    return { id: r.id, email: r.email, name: r.name, createdAt: new Date(r.created_at).toISOString() };
+    return { id: r.id, email: r.email, name: r.name, role: r.role, createdAt: new Date(r.created_at).toISOString() };
   }
 
   async deleteSession(tokenHash: string): Promise<void> {

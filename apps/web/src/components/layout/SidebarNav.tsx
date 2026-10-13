@@ -6,14 +6,15 @@ import { SidebarLink } from './SidebarLink';
 export interface SidebarNavProps {
   route: AppRoute;
   demo: boolean;
+  isAdmin: boolean;
   onNavigate?: () => void;
 }
 
-export function SidebarNav({ route, demo, onNavigate }: SidebarNavProps) {
+export function SidebarNav({ route, demo, isAdmin, onNavigate }: SidebarNavProps) {
   const { t } = useI18n();
   return (
     <nav className="sidebar-nav" aria-label={t('nav.app')}>
-      {NAVIGATION.map((group) => {
+      {NAVIGATION.filter((group) => isAdmin || !group.adminOnly).map((group) => {
         const headingId = `nav-${group.labelKey}`;
         return (
           <div key={group.labelKey} className="sidebar-group" role="group" aria-labelledby={headingId}>
