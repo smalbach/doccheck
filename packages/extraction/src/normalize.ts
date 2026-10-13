@@ -35,6 +35,40 @@ const clean = (s: string | null | undefined): string | null => {
   return t ? t : null;
 };
 
+/**
+ * How the issuing country prints numbers and dates, for the cases the text alone cannot settle:
+ * "1.200" (one thousand two hundred in Germany, one point two in the US) and "03/04/2026" (3 April
+ * in most countries, March 4 in the US). Set per document from the issuer's country by withLocale.
+ */
+export interface Locale {
+  /** The country writes "1.234,56": a lone dot followed by groups of three digits groups thousands. */
+  decimalComma: boolean;
+  /** The country writes month/day/year. */
+  monthFirst: boolean;
+}
+
+const DEFAULT_LOCALE: Locale = { decimalComma: false, monthFirst: false };
+// Countries in the catalogs and common trade partners that write a decimal comma (heuristic: many
+// exporters there print English formats too, which are unambiguous and parsed as before).
+const DECIMAL_COMMA = new Set('DE FR IT ES PT NL BE AT DK SE NO FI PL CZ SK HU RO GR TR RU UA BR AR CL CO VN ID'.split(' '));
+let locale = DEFAULT_LOCALE;
+
+export function localeFor(country: string | null | undefined): Locale {
+  const c = countryCode(country);
+  return { decimalComma: !!c && DECIMAL_COMMA.has(c), monthFirst: c === 'US' };
+}
+
+/** Runs a (synchronous) normalization with the conventions of the issuing country. */
+export function withLocale<T>(l: Locale, fn: () => T): T {
+  const previous = locale;
+  locale = l;
+  try {
+    return fn();
+  } finally {
+    locale = previous;
+  }
+}
+
 /** "48,600.00" | "48600" | "USD 1,234.50" | "1.234,50" | "48 600,00" -> "48600.00" style decimal string. */
 export function decimal(s: string | null | undefined): string | null {
   let t = clean(s);
@@ -51,6 +85,9 @@ export function decimal(s: string | null | undefined): string | null {
     const after = t.length - lastComma - 1;
     if (lastDot === -1 && after === 3 && t.indexOf(',') === lastComma) t = t.replace(',', '');
     else t = t.replace(/\./g, '').replace(',', '.');
+  } else if (locale.decimalComma && /^\d{1,3}(\.\d{3})+$/.test(t)) {
+    // "1.200" from a decimal-comma country: the dot groups thousands.
+    t = t.replace(/\./g, '');
   } else {
     t = t.replace(/,/g, '');
   }
@@ -70,7 +107,7 @@ const MONTHS: Record<string, number> = {
   JANV: 1, FEV: 2, FÉV: 2, AVR: 4, MAI: 5, JUIN: 6, JUIL: 7, AOU: 8, AOÛ: 8,
 };
 
-/** "2026-03-14" | "14-MAR-2026" | "Mar 14, 2026" | "14 March 2026" | "14/03/2026" | "14.03.2026" (day first) -> "2026-03-14". */
+/** "2026-03-14" | "14-MAR-2026" | "Mar 14, 2026" | "14 March 2026" | "14/03/2026" | "14.03.2026" (day first; month first for US issuers) -> "2026-03-14". */
 export function isoDate(s: string | null | undefined): string | null {
   const raw = clean(s)?.toUpperCase();
   if (!raw) return null;
@@ -90,7 +127,8 @@ export function isoDate(s: string | null | undefined): string | null {
   m = t.match(/^([A-Z]{3,9}) (\d{1,2}),? (\d{4})$/);
   if (m) return MONTHS[m[1].slice(0, 3)] ? iso(+m[3], MONTHS[m[1].slice(0, 3)], +m[2]) : null;
   m = t.match(/^(\d{1,2})[/.](\d{1,2})[/.](\d{4})$/);
-  if (m) return iso(+m[3], +m[2], +m[1]);
+  // Day first unless the issuer writes month first (US) and the order is still possible.
+  if (m) return locale.monthFirst && +m[1] <= 12 ? iso(+m[3], +m[1], +m[2]) : iso(+m[3], +m[2], +m[1]);
   return null;
 }
 
@@ -228,7 +266,12 @@ function finish<S extends z.ZodType>(schema: S, value: unknown, issues: string[]
   return { data: null, issues: [...issues, ...r.error.issues.map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`)] };
 }
 
+/** Issuer conventions from seller.country. */
 export function normalizeInvoice(raw: RawInvoice): NormalizeResult<CommercialInvoice> {
+  return withLocale(localeFor(raw.seller?.country), () => normalizeInvoiceAs(raw));
+}
+
+function normalizeInvoiceAs(raw: RawInvoice): NormalizeResult<CommercialInvoice> {
   const issues: string[] = [];
   const currency = currencyCode(raw.currency) ?? currencyCode(raw.invoiceTotalCurrency) ?? undefined;
   const money = (amount: string | null, cur: string | null, field: string) => {
@@ -292,7 +335,12 @@ export function normalizeInvoice(raw: RawInvoice): NormalizeResult<CommercialInv
   );
 }
 
+/** Issuer conventions from seller.country. */
 export function normalizePackingList(raw: RawPackingList): NormalizeResult<PackingList> {
+  return withLocale(localeFor(raw.seller?.country), () => normalizePackingListAs(raw));
+}
+
+function normalizePackingListAs(raw: RawPackingList): NormalizeResult<PackingList> {
   const issues: string[] = [];
   const packages = raw.packages.map((g) => {
     const dims = clean(g.dimensionsCm)?.match(/(\d+(?:\.\d+)?)\D+(\d+(?:\.\d+)?)\D+(\d+(?:\.\d+)?)/);
@@ -327,7 +375,12 @@ export function normalizePackingList(raw: RawPackingList): NormalizeResult<Packi
   );
 }
 
+/** Issuer conventions from portOfLoading.country (the BL is issued where the cargo is loaded). */
 export function normalizeBillOfLading(raw: RawBillOfLading): NormalizeResult<BillOfLading> {
+  return withLocale(localeFor(raw.portOfLoading?.country ?? raw.shipper?.country), () => normalizeBillOfLadingAs(raw));
+}
+
+function normalizeBillOfLadingAs(raw: RawBillOfLading): NormalizeResult<BillOfLading> {
   const issues: string[] = [];
   const title = clean(raw.documentTitle)?.toUpperCase() ?? '';
   const issuer = clean(raw.issuer)?.toUpperCase() ?? '';

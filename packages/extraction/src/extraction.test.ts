@@ -3,7 +3,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { classifyDocument } from './classify';
-import { countryCode, decimal, htsCode, isoDate, normalizeBillOfLading, normalizeIsf, normalizePackingList, quantityUnit, weight } from './normalize';
+import { countryCode, decimal, htsCode, isoDate, localeFor, normalizeBillOfLading, normalizeIsf, normalizePackingList, quantityUnit, weight, withLocale } from './normalize';
 import { readPdfText } from './pdf-text';
 import { findFieldSource, findSource } from './provenance';
 import type { RawBillOfLading, RawIsf, RawParty } from './raw-schemas';
@@ -32,6 +32,16 @@ describe('normalization', () => {
     expect(isoDate('14/03/2026')).toBe('2026-03-14');
     expect(isoDate('14.03.2026')).toBe('2026-03-14');
     expect(isoDate('4 March 2026')).toBe('2026-03-04');
+  });
+
+  it('settles ambiguous numbers and dates with the issuer country', () => {
+    const de = localeFor('Germany');
+    const us = localeFor('US');
+    expect([decimal('1.200'), withLocale(de, () => decimal('1.200')), withLocale(us, () => decimal('1.200'))]).toEqual(['1.200', '1200', '1.200']);
+    // Unambiguous forms read the same everywhere.
+    expect(withLocale(de, () => [decimal('1,140.50'), decimal('1.140,50'), decimal('12.5'), decimal('1.2345')])).toEqual(['1140.50', '1140.50', '12.5', '1.2345']);
+    expect([isoDate('03/04/2026'), withLocale(us, () => isoDate('03/04/2026')), withLocale(us, () => isoDate('14/03/2026')), withLocale(de, () => isoDate('03/04/2026'))]).toEqual(['2026-04-03', '2026-03-04', '2026-03-14', '2026-04-03']);
+    expect(decimal('1.200')).toBe('1.200');
     expect(isoDate('soon')).toBeNull();
   });
 
