@@ -65,6 +65,18 @@ export class ProgressRepository {
     return event;
   }
 
+  /**
+   * Announces an ephemeral event without storing it (id 0, no owner: the shipment stream filters by
+   * shipment). Returns it, or null when it is too large for a NOTIFY payload (it cannot be read back).
+   */
+  async notifyEphemeral(e: NewProgressEvent, notifyMax: number): Promise<ProgressEvent | null> {
+    const event = { ...e, id: 0, userId: null, at: e.at ?? new Date().toISOString(), detail: e.detail ?? {}, ephemeral: true } as ProgressEvent;
+    const payload = JSON.stringify(event);
+    if (Buffer.byteLength(payload) >= notifyMax) return null;
+    await this.pool.query('select pg_notify($1, $2)', [PROGRESS_CHANNEL, payload]);
+    return event;
+  }
+
   async find(id: number): Promise<ProgressEvent | null> {
     const { rows } = await this.pool.query<Row>(`select ${COLUMNS} from progress_events where id = $1`, [id]);
     return rows[0] ? toEvent(rows[0]) : null;

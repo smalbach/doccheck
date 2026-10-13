@@ -36,6 +36,7 @@ needs at runtime is in `apps/web/src/lib/progressSteps.ts`, checked against the 
   at: string;             // ISO time the event happened
   durationMs?: number;    // on done and failed: time since the stage started
   detail: object;         // small, typed per stage (see below)
+  ephemeral?: true;       // live only, never stored: the model's answer as it is written (id is then 0)
 }
 ```
 
@@ -58,7 +59,7 @@ needs at runtime is in `apps/web/src/lib/progressSteps.ts`, checked against the 
 | `reading` | `extractDocument` around `readPdfText`. Includes OCR time | done: `{ pages, ocrPages? }` |
 | `ocr` | `readPdfText`, **only if a page had no text layer** | started `{ pages }`; progress `{ page, pages }` per page (PDF page numbers); done `{ pages, ocrPages, confidence }` |
 | `classifying` | `extractDocument`; skipped with `reason: 'type-given'` when the user chose the type | done/skipped: `{ documentType, confidence }` |
-| `extracting` | `extractFromText`: the model call | started `{ model, documentType }`; done adds `{ cached, inputTokens?, outputTokens? }` |
+| `extracting` | `extractFromText`: the model call | started `{ model, documentType }`; **ephemeral** progress while the answer is written `{ delta, offset, tokens, tokensPerSecond?, restart?, replay? }` (see [Live model output](#live-model-output-ephemeral-events)); done adds `{ cached, inputTokens?, outputTokens? }` |
 | `normalizing` | `extractFromText` | done: `{ normalized, issues }` |
 | `saved` | `DocumentProcessor` around `saveExtraction` | done: `{ documentType, normalized, pages }` |
 
@@ -181,21 +182,68 @@ could miss an event with a smaller id committed later. The safety poll on the we
 - Validate: the stream is open for the whole shipment page, so the blocking `POST /shipments/:id/validate`
   (unchanged for scripts and tests) shows its stages live while it runs.
 
+## Live model output (ephemeral events)
+
+While the model writes its answer (stage `extracting`), the shipment page shows the JSON forming.
+
+- **LLM client** (`packages/extraction/src/llm.ts`): `llm.call(version, req, { onChunk })` streams. The
+  Ollama provider then uses `stream: true` and reads the newline-delimited JSON (`readNdjson`); without
+  `onChunk` nothing changes (`stream: false`, as the evaluation CLIs call it). The cache is unchanged: it
+  stores the final, schema-checked answer only. A cache hit with `onChunk` is replayed as a stream
+  (`replayAsStream`: the answer's indented JSON in chunks, with the cached output token count spread over
+  them), at once, or over `llm.replayMs` (the read-only demo sets 2.5 s). A retry after an answer that did
+  not match the schema sends a `restart` chunk first.
+- **Throttle** (`packages/extraction/src/stream.ts`, `throttleOutput`): the chunks (one per token) become
+  progress updates of `extracting`: the first at once, then at most one every 300 ms, each carrying the
+  text written since the previous one (`delta`), where it starts (`offset`), the tokens so far and the
+  speed. A delta is at most 1500 characters (longer ones are split), so its NOTIFY payload stays far below
+  the 8000-byte limit; the last one is sent before the stage's `done`.
+- **Not stored** (the choice): these updates are marked `ephemeral`. `ProgressService.publish` only
+  NOTIFYs them (same queue, so they never overtake earlier events), with `id: 0` and `userId: null`; they
+  are never inserted, so they are not replayed on reconnect, never fill a backlog (the 1000-event replay, the
+  activity panel's latest 50) and need no pruning. An ephemeral event too large for a NOTIFY payload is
+  dropped (it could not be read back by id). The SSE frame has no `id:` line, so it does not move the
+  client's `Last-Event-ID`. Only `GET /shipments/:id/events` sends them; `GET /events` filters them out.
+  Trade-off: a page opened or reloaded mid-answer sees the text from the next delta on (shown after "…").
+- **Web**: `applyEvent` routes ephemeral events to `state.outputs[documentId]` (`lib/liveOutput.ts`:
+  `applyOutput` joins deltas by offset, skips repeats, starts over on `restart`, a new run or a gap), never
+  to the run's steps; a new `extracting` start or the run's `saved` end drops it. `useShipmentEvents` does
+  not pass them to `lastLive`, so the announcer never sees them. `LiveOutputPanel` (under the steps in
+  `DocumentProgress`) shows the text in monospace with the token count and tokens/s (or "replayed from
+  cache"); it is open by default (the choice is remembered), follows the end unless the user scrolled up,
+  is a labelled focusable region and **not** a live region; its caret stops blinking under reduced motion.
+- **PDF viewer**: opened on a document that is being extracted, it outlines where the value the model just
+  finished is printed: the last completed string value of the JSON so far (`lastCompletedValue`), searched
+  in the page lines that pdf.js reads from the PDF in the browser (`groupLines`, `findValue`: from the
+  previous match on, as the model mostly follows the reading order; values shorter than 3 characters are
+  skipped). The stored `pdfLines` cannot be used: they are saved with the extraction, after the model is
+  done. Values are copied as printed, so most are found; a normalized or multi-line value is not, and the
+  outline stays where it was.
+- **Agent answers** (validation stage `agent`) do not stream yet: `reviewFindings` could pass `onChunk` the
+  same way, but its questions are short JSON verdicts and the agent's live panel belongs to the findings
+  card; the client and the throttle are ready for it.
+
 ## Read-only demo pacing
 
 The demo replays model answers from a cache, so stages end in milliseconds. With `DEMO_READONLY=true` (and
 unless `DEMO_PACING=false`), a run waits before reporting the end of some stages and adds the wait to their
-duration: reading 0.5 s, OCR 0.8 s, classifying 0.3 s, model 2.5 s, normalizing 0.3 s; rules 0.7 s,
-citations 0.5 s, each answered agent question 1.8 s (`apps/api/src/progress/demo-pacing.ts`). The work
-itself is slowed the same way, so the timeline and the results stay consistent. The e2e suite sets
+duration: reading 0.5 s, OCR 0.8 s, classifying 0.3 s, normalizing 0.3 s; rules 0.7 s, citations 0.5 s,
+each answered agent question 1.8 s (`apps/api/src/progress/demo-pacing.ts`). The model stage has no wait:
+the cached answer is replayed as a stream over 2.5 s (`DEMO_REPLAY_MS`), so visitors see it written. The
+work itself is slowed the same way, so the timeline and the results stay consistent. The e2e suite sets
 `DEMO_PACING=false`.
 
 ## Tests
 
 - `packages/schemas/src/progress.test.ts`: stage helpers, envelope schema.
 - `packages/extraction`, `packages/agent`, `packages/rules`: the events each pipeline reports.
-- `apps/api/test/progress.test.mjs`: NOTIFY parsing, SSE framing, resume position, pacing, failing a run.
+- `packages/extraction/src/stream.test.ts`: the NDJSON parser and Ollama streaming, the throttle, the cache
+  replayed as a stream, the ephemeral deltas of `extractFromText`.
+- `apps/api/test/progress.test.mjs`: NOTIFY parsing, SSE framing (ephemeral too), resume position, pacing,
+  failing a run.
 - `apps/api/test/e2e.test.mjs` (`progress events`): live order of a validation, Last-Event-ID / `?after=`
   replay, 404 for another user, 401 without a session, `/events` limited to the user's shipments, and the
-  extraction stages of uploaded PDFs (when the evaluation PDFs are present).
+  extraction stages of uploaded PDFs (when the evaluation PDFs are present); `PDF upload`: the deltas of a
+  live extraction add up to the stored answer, without SSE ids, and are neither stored nor sent on `/events`.
 - `apps/web/src/lib/progressTimeline.test.ts`: the web's state, steps and announcements.
+- `apps/web/src/lib/liveOutput.test.ts`: joining deltas, the last completed value, PDF lines and matching.

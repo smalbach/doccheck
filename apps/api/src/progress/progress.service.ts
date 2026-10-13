@@ -49,11 +49,15 @@ export class ProgressService implements OnApplicationBootstrap, BeforeApplicatio
     return this.subject.asObservable();
   }
 
-  /** Stores and announces an event. Resolves with the stored event, or null if it could not be stored. */
+  /**
+   * Stores and announces an event. Resolves with the stored event, or null if it could not be stored.
+   * An ephemeral event (the model's answer while it is written) is only announced, never stored; it goes
+   * through the same queue, so it never overtakes the events published before it.
+   */
   publish(event: NewProgressEvent): Promise<ProgressEvent | null> {
     const next = this.tail.then(() =>
-      this.repo.insert(event, NOTIFY_MAX_BYTES).catch((err: Error) => {
-        this.logger.warn(`Progress event ${event.kind}/${event.stage}/${event.status} not stored: ${err.message}`);
+      (event.ephemeral ? this.repo.notifyEphemeral(event, NOTIFY_MAX_BYTES) : this.repo.insert(event, NOTIFY_MAX_BYTES)).catch((err: Error) => {
+        this.logger.warn(`Progress event ${event.kind}/${event.stage}/${event.status} not ${event.ephemeral ? 'sent' : 'stored'}: ${err.message}`);
         return null;
       }),
     );
@@ -145,7 +149,10 @@ export class ProgressService implements OnApplicationBootstrap, BeforeApplicatio
   }
 
   private deliver(event: ProgressEvent) {
-    if (this.closing || this.seen.has(event.id)) return;
+    if (this.closing) return;
+    // Ephemeral: never stored, so never backfilled nor delivered twice; id 0 says nothing about position.
+    if (event.ephemeral) return this.subject.next(event);
+    if (this.seen.has(event.id)) return;
     this.seen.add(event.id);
     if (this.seen.size > SEEN_IDS) this.seen.delete(this.seen.values().next().value as number);
     this.lastId = Math.max(this.lastId, event.id);

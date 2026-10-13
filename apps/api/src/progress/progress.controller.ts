@@ -37,11 +37,14 @@ export class ProgressController {
     this.stream(req, res, (e) => e.shipmentId === id, () => (from === undefined ? this.repo.shipmentLatestRuns(id) : this.repo.shipmentAfter(id, from)));
   }
 
-  /** Every event of the user's shipments (activity panel). Without a position: their latest 50 events. */
+  /**
+   * Every event of the user's shipments (activity panel). Without a position: their latest 50 events.
+   * Not the ephemeral ones (the model's answer as it is written): those are for the shipment page.
+   */
   @Get('events')
   user(@CurrentUser() user: PublicUser, @Query('after') after: unknown, @Req() req: Request, @Res() res: Response) {
     const from = resumeAfter(req.headers['last-event-id'], after);
-    this.stream(req, res, (e) => e.userId === user.id, () => (from === undefined ? this.repo.userRecent(user.id, USER_RECENT) : this.repo.userAfter(user.id, from)));
+    this.stream(req, res, (e) => e.userId === user.id && !e.ephemeral, () => (from === undefined ? this.repo.userRecent(user.id, USER_RECENT) : this.repo.userAfter(user.id, from)));
   }
 
   private stream(req: Request, res: Response, accept: (e: ProgressEvent) => boolean, backlog: () => Promise<ProgressEvent[]>) {

@@ -1,4 +1,5 @@
 import type { ShipmentDocument } from '../../api/types';
+import type { LiveOutput } from '../../lib/liveOutput';
 import type { RunTimeline } from '../../lib/progressTimeline';
 import { DocumentItem } from './DocumentItem';
 
@@ -8,14 +9,16 @@ export interface DocumentListProps {
   onShowData: (doc: ShipmentDocument) => void;
   /** Latest extraction run per document id. */
   runs: Readonly<Record<string, RunTimeline>>;
+  /** The model's answer per document id while it is written. */
+  outputs?: Readonly<Record<string, LiveOutput>>;
 }
 
-export function DocumentList({ documents, onOpen, onShowData, runs }: DocumentListProps) {
+export function DocumentList({ documents, onOpen, onShowData, runs, outputs }: DocumentListProps) {
   if (documents.length === 0) return null;
   return (
     <ul className="documents">
       {documents.map((d) => (
-        <DocumentItem key={d.id} doc={d} onOpen={onOpen} onShowData={onShowData} run={runs[d.id]} />
+        <DocumentItem key={d.id} doc={d} onOpen={onOpen} onShowData={onShowData} run={runs[d.id]} output={outputs?.[d.id]} />
       ))}
     </ul>
   );

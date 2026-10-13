@@ -434,6 +434,13 @@ export const fr: Messages = {
     extractedIn: 'Extrait en {duration}',
     failedAfter: 'Échec après {duration}',
     highlight: '{stage} {duration}',
+    output: {
+      title: 'Sortie en direct',
+      label: 'Sortie du modèle pour {file}',
+      tokens: { one: '{tokens} jeton', other: '{tokens} jetons' },
+      speed: '{speed} jetons/s',
+      replay: 'rejouée depuis le cache',
+    },
     validation: {
       title: 'Validation en cours',
       starting: 'Démarrage de la validation…',
@@ -453,7 +460,7 @@ export const fr: Messages = {
       validationFailed: 'La validation a échoué',
     },
   },
-  viewer: { loading: 'Chargement du lecteur…', previous: 'Page précédente', next: 'Page suivante', page: '{page} / {pages}' },
+  viewer: { loading: 'Chargement du lecteur…', previous: 'Page précédente', next: 'Page suivante', page: '{page} / {pages}', reading: 'Le modèle vient de lire : {value}' },
   extracted: {
     title: 'Données extraites · {file}',
     loadError: 'Impossible de charger l’extraction ({message}).',

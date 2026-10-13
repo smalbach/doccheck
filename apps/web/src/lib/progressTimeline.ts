@@ -1,4 +1,5 @@
 import type { AgentAnswer, ProgressEvent, ProgressKind, ProgressStatus } from '../api/types';
+import { applyOutput, type LiveOutput } from './liveOutput';
 
 /** One stage of a run as last reported. `status` is the latest event's (progress while it runs). */
 export interface StepState {
@@ -40,6 +41,8 @@ export interface RunTimeline {
 export interface ProgressState {
   documents: Readonly<Record<string, RunTimeline>>;
   validation?: RunTimeline;
+  /** Per document, the model's answer while it is written (from ephemeral events; until the run ends). */
+  outputs?: Readonly<Record<string, LiveOutput>>;
 }
 
 export const EMPTY_PROGRESS: ProgressState = { documents: {} };
@@ -99,12 +102,28 @@ export function applyToRun(run: RunTimeline | undefined, e: ProgressEvent): RunT
   return next;
 }
 
+/** The outputs without this document's. */
+function dropOutput(outputs: ProgressState['outputs'], documentId: string): ProgressState['outputs'] {
+  if (!outputs?.[documentId]) return outputs;
+  const rest = { ...outputs };
+  delete rest[documentId];
+  return rest;
+}
+
 /** The state with one more event. Pure; applying an event twice changes nothing. */
 export function applyEvent(state: ProgressState, e: ProgressEvent): ProgressState {
   if (e.kind === 'validation') return { ...state, validation: applyToRun(state.validation, e) };
-  if (!e.documentId) return state;
-  const run = applyToRun(state.documents[e.documentId], e);
-  return run ? { ...state, documents: { ...state.documents, [e.documentId]: run } } : state;
+  const documentId = e.documentId;
+  if (!documentId) return state;
+  if (e.ephemeral) {
+    const output = applyOutput(state.outputs?.[documentId], e);
+    return output ? { ...state, outputs: { ...state.outputs, [documentId]: output } } : state;
+  }
+  const run = applyToRun(state.documents[documentId], e);
+  if (!run) return state;
+  // A new model call starts a new output; the end of the run drops it (it was never stored).
+  const ends = (e.stage === 'extracting' && e.status === 'started') || (e.stage === 'saved' && ENDS.includes(e.status));
+  return { ...state, documents: { ...state.documents, [documentId]: run }, outputs: ends ? dropOutput(state.outputs, documentId) : state.outputs };
 }
 
 /** Milliseconds from the first event to the end of the run (or to `now` while it runs). */

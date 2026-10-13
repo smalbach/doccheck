@@ -6,6 +6,7 @@ import { resolve } from 'node:path';
 import type { Pool } from 'pg';
 import { PG_POOL } from '../db/db.module';
 import { isDemo } from '../demo/demo-mode';
+import { DEMO_REPLAY_MS, demoPacing } from '../progress/demo-pacing';
 import { SwitchableProvider } from './switchable-provider';
 
 export const LLM = Symbol('LLM');
@@ -29,6 +30,8 @@ const llmProvider = {
     const llm = isDemo()
       ? new LlmClient(provider, process.env.LLM_CACHE_DIR || resolve(repoRoot(), 'eval/cache', `ollama_${process.env.LLM_MODEL || 'qwen3.8'}`), 'replay')
       : new LlmClient(provider, process.env.LLM_CACHE_DIR || undefined, (process.env.LLM_CACHE_MODE as CacheMode) || undefined);
+    // The demo replays cached answers as if the model wrote them (streamed during `extracting`).
+    if (demoPacing()) llm.replayMs = DEMO_REPLAY_MS;
     llm.tracer = async (t) => {
       await pool.query(
         'insert into llm_calls (provider, model_version, prompt_version, cache_key, cached, ms, input_tokens, output_tokens, error) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)',

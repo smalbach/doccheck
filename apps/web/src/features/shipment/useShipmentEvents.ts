@@ -62,7 +62,8 @@ export function useShipmentEvents(shipmentId: string, onEvent?: (event: Progress
         }
         lastId = Math.max(lastId, event.id);
         setProgress((s) => applyEvent(s, event));
-        if (ready) setLastLive(event);
+        // Ephemeral events (the model writing, a few per second) are never milestones to announce.
+        if (ready && !event.ephemeral) setLastLive(event);
         handler.current?.(event, ready);
       };
       es.addEventListener('ready', () => {

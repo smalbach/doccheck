@@ -37,6 +37,14 @@ describe('progress helpers', () => {
     assert.equal(sseNamed('ready', { lastId: 42 }), 'event: ready\ndata: {"lastId":42}\n\n');
   });
 
+  it('frames and parses an ephemeral event (the model writing) without an id', () => {
+    const delta = { ...event, id: 0, userId: null, stage: 'extracting', detail: { delta: '{"a', offset: 0, tokens: 2 }, ephemeral: true };
+    assert.equal(sseEvent(delta), `data: ${JSON.stringify(delta)}\n\n`);
+    assert.deepEqual(parseNotification(JSON.stringify(delta)), delta);
+    // Id 0 is only valid for an ephemeral event, and never read back.
+    assert.equal(parseNotification(JSON.stringify({ ...delta, ephemeral: undefined })), null);
+  });
+
   it('resumes after Last-Event-ID first, then ?after=', () => {
     assert.equal(resumeAfter('17', '3'), 17);
     assert.equal(resumeAfter(undefined, '3'), 3);
@@ -50,7 +58,9 @@ describe('progress helpers', () => {
     assert.equal(demoPacing({ DEMO_READONLY: 'true' }), true);
     assert.equal(demoPacing({ DEMO_READONLY: 'true', DEMO_PACING: 'false' }), false);
     assert.equal(demoPacing({}), false);
-    assert.ok(pacingFor('extraction', 'extracting', 'done', false) > 0);
+    assert.ok(pacingFor('extraction', 'reading', 'done', false) > 0);
+    // The model stage is paced by replaying the cached answer as a stream, not by a wait at its end.
+    assert.equal(pacingFor('extraction', 'extracting', 'done', false), 0);
     assert.equal(pacingFor('extraction', 'extracting', 'started', false), 0);
     assert.equal(pacingFor('extraction', 'saved', 'done', false), 0);
     assert.ok(pacingFor('validation', 'agent', 'progress', true) > 0);
@@ -74,5 +84,13 @@ describe('progress helpers', () => {
     await v.report({ stage: 'started', status: 'started' });
     await v.fail('database down', 'saved');
     assert.deepEqual(validation.map((e) => `${e.stage}:${e.status}`), ['started:started', 'saved:failed']);
+  });
+
+  it('marks ephemeral updates, and only those', async () => {
+    const published = [];
+    const run = new ProgressRun({ kind: 'extraction', shipmentId: event.shipmentId, documentId: event.documentId, runId: event.runId }, async (e) => published.push(e));
+    await run.report({ stage: 'extracting', status: 'started' });
+    await run.report({ stage: 'extracting', status: 'progress', detail: { delta: '{', offset: 0 }, ephemeral: true });
+    assert.deepEqual(published.map((e) => e.ephemeral), [undefined, true]);
   });
 });

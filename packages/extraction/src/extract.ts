@@ -5,6 +5,7 @@ import type { LlmClient, Usage } from './llm';
 import { normalizeBillOfLading, normalizeInvoice, normalizeIsf, normalizePackingList, type NormalizeResult } from './normalize';
 import { readPdfText, type PdfText } from './pdf-text';
 import { RawBillOfLading, RawInvoice, RawIsf, RawPackingList } from './raw-schemas';
+import { throttleOutput } from './stream';
 
 /**
  * Bump when a prompt changes, so cached responses from the old prompt are not reused. Adding a
@@ -69,7 +70,10 @@ export function extractionRequest(pdf: PdfText, type: ExtractableType) {
   };
 }
 
-/** The model call (stage `extracting`), then normalization (stage `normalizing`). */
+/**
+ * The model call (stage `extracting`), then normalization (stage `normalizing`). With `onProgress`, the
+ * answer is streamed as ephemeral `extracting` progress events (OutputDelta) while it is written.
+ */
 export async function extractFromText<K extends ExtractableType>(
   pdf: PdfText,
   type: K,
@@ -81,7 +85,16 @@ export async function extractFromText<K extends ExtractableType>(
   const { output, usage, cached } = await withStage(
     onProgress,
     'extracting',
-    () => llm.call(PROMPT_VERSION, extractionRequest(pdf, type)),
+    async (stage) => {
+      if (!onProgress) return llm.call(PROMPT_VERSION, extractionRequest(pdf, type));
+      const stream = throttleOutput((delta) => stage.progress(delta, { ephemeral: true }));
+      try {
+        return await llm.call(PROMPT_VERSION, extractionRequest(pdf, type), { onChunk: stream.push });
+      } finally {
+        // The last delta goes out before the stage ends.
+        await stream.flush();
+      }
+    },
     (r) => ({ model, documentType: type, cached: r.cached, inputTokens: r.usage?.inputTokens, outputTokens: r.usage?.outputTokens }),
     { model, documentType: type },
   );

@@ -50,6 +50,26 @@ export interface AgentAnswer {
   effect?: 'kept' | 'dismissed' | 'added' | 'none';
 }
 
+/**
+ * A piece of the model's answer while it is written (ephemeral progress events: delivered live, never
+ * stored). The text so far is the concatenation of the deltas; `offset` says where this one starts, so a
+ * client that joined late or missed one can tell.
+ */
+export interface OutputDelta {
+  /** Text written since the previous delta. */
+  delta?: string;
+  /** Position of `delta` in the whole answer (characters). */
+  offset?: number;
+  /** Tokens written so far (estimated when the answer is replayed from the cache). */
+  tokens?: number;
+  /** Writing speed so far. */
+  tokensPerSecond?: number;
+  /** The model starts over (a retry after an answer that did not match the schema): drop the text so far. */
+  restart?: boolean;
+  /** The text is a cached answer replayed, not the model writing. */
+  replay?: boolean;
+}
+
 /** Detail per extraction stage. Every field is optional: a stage reports what it knows when it knows it. */
 export interface ExtractionDetail {
   /** started: place in the queue (1 = next). */
@@ -60,8 +80,11 @@ export interface ExtractionDetail {
   ocr: { page?: number; pages?: number; ocrPages?: number; confidence?: number };
   /** done: the detected type; skipped (reason 'type-given'): the type the user chose. */
   classifying: { documentType?: DocumentType; confidence?: number };
-  /** The model call. cached: the answer came from the model cache (replay, read-only demo). */
-  extracting: { model?: string; documentType?: DocumentType; cached?: boolean; inputTokens?: number; outputTokens?: number };
+  /**
+   * The model call. cached: the answer came from the model cache (replay, read-only demo).
+   * Ephemeral progress events stream the answer as it is written (see `OutputDelta`).
+   */
+  extracting: { model?: string; documentType?: DocumentType; cached?: boolean; inputTokens?: number; outputTokens?: number } & OutputDelta;
   /** done: whether the values could be normalized, and how many issues were noted. */
   normalizing: { normalized?: boolean; issues?: number };
   /** done: the extraction is stored. */
@@ -87,7 +110,7 @@ export interface ValidationDetail {
 
 /** One stage-level update, as packages report it: no ids, no time (the API adds them). */
 export type UpdateOf<D> = {
-  [S in keyof D & string]: { stage: S; status: ProgressStatus; durationMs?: number; detail?: D[S] & CommonDetail };
+  [S in keyof D & string]: { stage: S; status: ProgressStatus; durationMs?: number; detail?: D[S] & CommonDetail; ephemeral?: boolean };
 }[keyof D & string];
 
 export type ExtractionUpdate = UpdateOf<ExtractionDetail>;
@@ -117,6 +140,11 @@ interface EventBase {
   at: string;
   /** On done and failed: time since the stage started. */
   durationMs?: number;
+  /**
+   * Delivered live only, never stored nor replayed (the model's answer while it is written). Its `id` is
+   * 0 and it is sent without an SSE `id:`, so it does not move a client's resume position.
+   */
+  ephemeral?: true;
 }
 
 type EventOf<K extends ProgressKind, D> = {
@@ -132,7 +160,8 @@ export type ProgressEvent = ExtractionEvent | ValidationEvent;
 export type NewProgressEvent = (Omit<ExtractionEvent, 'id' | 'userId' | 'at'> | Omit<ValidationEvent, 'id' | 'userId' | 'at'>) & { at?: string };
 
 const Base = z.object({
-  id: z.number().int().positive(),
+  // 0 only for an ephemeral event (checked below).
+  id: z.number().int().nonnegative(),
   shipmentId: z.string().uuid(),
   userId: z.string().uuid().nullable(),
   documentId: z.string().uuid().optional(),
@@ -141,13 +170,16 @@ const Base = z.object({
   at: z.string().datetime({ offset: true }),
   durationMs: z.number().int().nonnegative().optional(),
   detail: z.record(z.string(), z.unknown()),
+  ephemeral: z.literal(true).optional(),
 });
 
 /** Runtime check of an event's envelope (the stage must belong to the kind; detail is any object). */
-export const ProgressEventSchema = z.discriminatedUnion('kind', [
-  Base.extend({ kind: z.literal('extraction'), stage: z.enum(EXTRACTION_STAGES) }),
-  Base.extend({ kind: z.literal('validation'), stage: z.enum(VALIDATION_STAGES) }),
-]);
+export const ProgressEventSchema = z
+  .discriminatedUnion('kind', [
+    Base.extend({ kind: z.literal('extraction'), stage: z.enum(EXTRACTION_STAGES) }),
+    Base.extend({ kind: z.literal('validation'), stage: z.enum(VALIDATION_STAGES) }),
+  ])
+  .refine((e) => (e.id === 0) === !!e.ephemeral, { message: 'id is 0 exactly for an ephemeral event', path: ['id'] });
 
 /** Calls the hook; never throws, so progress reporting cannot break the work it reports on. */
 export async function report<D>(onProgress: ProgressCallback<D> | undefined, update: UpdateOf<D>): Promise<void> {
@@ -161,7 +193,8 @@ export async function report<D>(onProgress: ProgressCallback<D> | undefined, upd
 
 /** A started stage: report steps inside it, then end it once (later calls to done/fail/skip are ignored). */
 export interface StageHandle<D, S extends keyof D & string> {
-  progress(detail: D[S] & CommonDetail): Promise<void>;
+  /** A step inside the stage; `ephemeral`: delivered live only, never stored (see EventBase.ephemeral). */
+  progress(detail: D[S] & CommonDetail, opts?: { ephemeral?: boolean }): Promise<void>;
   done(detail?: D[S] & CommonDetail): Promise<void>;
   fail(error: unknown, detail?: D[S] & CommonDetail): Promise<void>;
   /** Ends the stage as skipped; say why in `reason`. */
@@ -180,8 +213,14 @@ export async function startStage<D, S extends keyof D & string>(
 ): Promise<StageHandle<D, S>> {
   const started = now();
   let ended = false;
-  const send = (status: ProgressStatus, d?: D[S] & CommonDetail, timed = false) =>
-    report(onProgress, { stage, status, ...(timed ? { durationMs: Math.max(0, Math.round(now() - started)) } : {}), ...(d ? { detail: d } : {}) } as UpdateOf<D>);
+  const send = (status: ProgressStatus, d?: D[S] & CommonDetail, timed = false, ephemeral = false) =>
+    report(onProgress, {
+      stage,
+      status,
+      ...(timed ? { durationMs: Math.max(0, Math.round(now() - started)) } : {}),
+      ...(d ? { detail: d } : {}),
+      ...(ephemeral ? { ephemeral: true } : {}),
+    } as UpdateOf<D>);
   await send('started', detail);
   const end = (status: ProgressStatus, d?: D[S] & CommonDetail) => {
     if (ended) return Promise.resolve();
@@ -189,7 +228,7 @@ export async function startStage<D, S extends keyof D & string>(
     return send(status, d, true);
   };
   return {
-    progress: (d) => (ended ? Promise.resolve() : send('progress', d)),
+    progress: (d, opts) => (ended ? Promise.resolve() : send('progress', d, false, !!opts?.ephemeral)),
     done: (d) => end('done', d),
     fail: (err, d) => end('failed', { ...d, error: errorText(err) } as D[S] & CommonDetail),
     skip: (d) => end('skipped', d),

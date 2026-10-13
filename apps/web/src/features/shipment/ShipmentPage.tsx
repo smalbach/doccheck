@@ -5,6 +5,7 @@ import { Banner } from '../../components/ui/Banner';
 import { Sheet } from '../../components/ui/Sheet';
 import { useDemo } from '../../hooks/useDemo';
 import { useI18n } from '../../i18n/useI18n';
+import { textBeingWritten } from '../../lib/liveOutput';
 import { DocumentDataSheet } from '../document-data/DocumentDataSheet';
 import type { ViewerTarget } from '../pdf/types';
 import { DocumentsCard } from './DocumentsCard';
@@ -60,6 +61,7 @@ export function ShipmentPage({ id }: { id: string }) {
           busy={busy}
           extracting={extracting}
           runs={progress.documents}
+          outputs={progress.outputs}
           onUpload={(files) => void upload(files)}
           onValidate={(useAgent) => void validate(useAgent)}
           onOpen={setViewer}
@@ -107,7 +109,12 @@ export function ShipmentPage({ id }: { id: string }) {
             </Sheet>
           }
         >
-          <PdfViewerSheet shipmentId={id} target={viewer} onClose={() => setViewer(undefined)} />
+          <PdfViewerSheet
+            shipmentId={id}
+            target={viewer}
+            onClose={() => setViewer(undefined)}
+            liveText={textBeingWritten(progress.documents[viewer.doc.id], progress.outputs?.[viewer.doc.id])}
+          />
         </Suspense>
       )}
     </div>

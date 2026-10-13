@@ -14,8 +14,11 @@ export function parseNotification(payload: string): ProgressEvent | { id: number
   return typeof id === 'number' && Number.isInteger(id) && id > 0 ? { id } : null;
 }
 
-/** One SSE message: `id:` is the event id (sent back as Last-Event-ID on reconnect), data is the JSON event. */
-export const sseEvent = (event: ProgressEvent): string => `id: ${event.id}\ndata: ${JSON.stringify(event)}\n\n`;
+/**
+ * One SSE message: `id:` is the event id (sent back as Last-Event-ID on reconnect), data is the JSON
+ * event. An ephemeral event has no `id:` line, so the client's resume position stays where it was.
+ */
+export const sseEvent = (event: ProgressEvent): string => `${event.ephemeral ? '' : `id: ${event.id}\n`}data: ${JSON.stringify(event)}\n\n`;
 
 /** A named message without an id, e.g. `ready` once the backlog has been sent. */
 export const sseNamed = (name: string, data: unknown): string => `event: ${name}\ndata: ${JSON.stringify(data)}\n\n`;
