@@ -169,10 +169,11 @@ para que la revises.
 | Progreso en vivo (SSE): etapas, salida del modelo en streaming, hallazgos mientras valida | `f88f14a`, `b818844`, `bd14a98` | eventos en Postgres + `NOTIFY`, se reanudan con `Last-Event-ID` |
 | Panel de actividad con tiempo restante y cancelar; notificaciones al terminar | `d54e580`, `e675de1` | — |
 | Datos extraídos como tablas (facturas, líneas, packing, BL, contenedores, ISF, empresas, productos) | `fc661d6` | 13 tablas llenadas por triggers; el backfill de la base local tardó ~0.1 s |
-| Vistas de empresas y productos con historial de precios | (este commit) | en la base local, la normalización final bajó de 98 a 73 empresas; tests de la API: 76 de 76 |
+| Vistas de empresas y productos con historial de precios | `22243a1` | en la base local, la normalización final bajó de 98 a 73 empresas; tests de la API: 76 de 76 |
 | Menú Datos: un módulo por página; fichas completas de empresa y producto; contenedores | `ec31499` | — |
-| Qué hacer con un finding: estados con motivo e historial, corregir desde la evidencia, carta al proveedor en en/es/fr, resueltos y nuevos entre validaciones | (este commit) | tests de la API 77 de 77, web 55 de 55 |
-| Correo dentro de la app: pedidos al proveedor, bandeja, hilos, cola de envío con reintentos, recepción por IMAP o webhook, adjuntos al envío, alertas | (este commit) | tests de la API 78 de 78 (uno cubre el ciclo completo: pedido, envío, respuesta con PDF, importación y respuesta) |
+| Qué hacer con un finding: estados con motivo e historial, corregir desde la evidencia, carta al proveedor en en/es/fr, resueltos y nuevos entre validaciones | `b89f4ae` | tests de la API 77 de 77, web 55 de 55 |
+| Correo dentro de la app: pedidos al proveedor, bandeja, hilos, cola de envío con reintentos, recepción por IMAP o webhook, adjuntos al envío, alertas | `19b9c23`, `4b011fa` | tests de la API 78 de 78 (uno cubre el ciclo completo: pedido, envío, respuesta con PDF, importación y respuesta) |
+| README de portafolio: capturas, métricas con su fuente, qué hace, arquitectura; posts 6 (bandeja) y 7 (flujo de hallazgos) | `d22482c` | 22 de 22 capturas de `docs/screenshots/` enlazadas; `npm run metrics` regenera el bloque de métricas sin cambios desde `eval/reports` |
 
 Decisiones para contar:
 
@@ -213,3 +214,4 @@ puerto de entrada se conserva solo si el PDF lo imprime debajo de su etiqueta, e
 - 13 oct 2026: hitos de la app web y de las tablas de datos extraídos (sesión de la app).
 - 13 oct 2026: menú Datos y flujo de resolución de findings (sesión de la app).
 - 13 oct 2026: correo integrado en la app (sesión de la app).
+- 14 oct 2026: README de portafolio en la raíz y posts 6 y 7 (commit `d22482c`).
