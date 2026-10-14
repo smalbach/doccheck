@@ -257,3 +257,121 @@ prompt template). Here that was a 29-point difference.
 Integrated into the pipeline, end to end on the same scans: fields read correctly went from 81.5% to 94.0%, and the rules caught 100% of the injected errors (81.8% before).
 
 #OCR #DocumentAI #Evals #LLM #AppleSilicon
+
+---
+
+## 6. Pedir la corrección al proveedor sin salir de la app
+
+Imágenes: `docs/screenshots/conversation.webp` (la conversación: el pedido, la respuesta del proveedor
+y su PDF corregido) y `docs/screenshots/request-compose.webp` (el correo redactado desde los
+hallazgos).
+
+Fuente: [BITACORA.md](BITACORA.md), hito "Correo dentro de la app" (commits `19b9c23` y `4b011fa`);
+detalle en [docs/MESSAGING.md](../MESSAGING.md).
+
+**ES**
+
+Encontrar el error en un documento es la mitad del trabajo. La otra mitad es conseguir que el
+proveedor lo corrija.
+
+Hasta ahora DocCheck terminaba en la lista de hallazgos. Después venía copiar valores a un correo,
+esperar la respuesta, bajar el PDF corregido y volver a subirlo. Ahora todo eso pasa dentro de la app:
+
+• desde los hallazgos, "Pedir correcciones" redacta el correo al proveedor en inglés, español o
+  francés, con cada valor que no coincide y qué corregir; se puede editar antes de enviar
+• los hallazgos pasan a "Esperando al proveedor"
+• la respuesta llega a la misma conversación (por IMAP o webhook), con su PDF adjunto
+• un clic agrega ese PDF al envío; se lee como cualquier otro, se valida de nuevo y los hallazgos
+  corregidos aparecen como resueltos
+• una bandeja muestra respuestas sin leer, pedidos sin respuesta pasada la fecha y correos que no
+  salieron
+
+La parte aburrida fue la que más trabajo llevó: cola de envío con reintentos, hilos por
+`In-Reply-To` y un token en la dirección, rebotes, límites de envío por usuario. Un test de la API
+recorre el ciclo completo: pedido, envío, respuesta con PDF, importación y respuesta.
+
+[Tu opinión: por qué el seguimiento con el proveedor importa tanto como detectar el error.]
+
+#Logistics #CustomsCompliance #ProductEngineering #TypeScript
+
+**EN**
+
+Finding the error in a document is half the job. The other half is getting the supplier to fix it.
+
+Until now DocCheck stopped at the list of findings. Then came copying values into an email, waiting
+for the reply, downloading the corrected PDF and uploading it again. Now all of that happens inside
+the app:
+
+• from the findings, "Ask for corrections" drafts the email to the supplier in English, Spanish or
+  French, with every value that doesn't match and what to fix; it can be edited before sending
+• the findings move to "Waiting for supplier"
+• the reply lands in the same conversation (over IMAP or a webhook), with its PDF attached
+• one click adds that PDF to the shipment; it's read like any other, validated again, and the fixed
+  findings show up as resolved
+• an inbox shows unread replies, requests past their follow-up date and emails that didn't go out
+
+The boring part took the most work: an outbox with retries, threading by `In-Reply-To` and a token
+in the reply address, bounces, per-user send limits. One API test walks the whole loop: request,
+send, reply with a PDF, import and answer.
+
+[Your take: why the follow-up with the supplier matters as much as catching the error.]
+
+#Logistics #CustomsCompliance #ProductEngineering #TypeScript
+
+---
+
+## 7. Un hallazgo no es una tarea terminada
+
+Imagen: `docs/screenshots/shipment-findings-light.webp`.
+
+Fuente: [BITACORA.md](BITACORA.md), hito "Qué hacer con un finding" (commit `b89f4ae`); detalle en
+[docs/FINDINGS.md](../FINDINGS.md).
+
+**ES**
+
+Una lista de errores no le dice a nadie qué hacer. Así que en DocCheck cada hallazgo ahora termina en
+una decisión.
+
+Cada hallazgo tiene un estado:
+• por resolver
+• esperando al proveedor
+• riesgo aceptado, con motivo obligatorio
+• falso positivo, con motivo obligatorio
+
+Cada decisión queda en un historial con quién, cuándo y por qué.
+
+Si el problema es que el modelo leyó mal, "Corregir este valor" abre los datos del documento justo en
+ese campo, desde la evidencia del hallazgo. Se guarda, se valida de nuevo, y listo.
+
+Al validar otra vez, los hallazgos nuevos llevan la etiqueta "Nuevo" y los que desaparecieron se
+muestran como resueltos. Una decisión se mantiene mientras el hallazgo sea el mismo (misma regla,
+mismos campos y valores), aunque el documento se haya vuelto a subir. Un envío queda listo cuando su
+última validación no tiene hallazgos abiertos.
+
+[Tu opinión: por qué "aceptar el riesgo" con motivo escrito vale más que ignorar una alerta.]
+
+#ProductDesign #Logistics #CustomsCompliance #AIEngineering
+
+**EN**
+
+A list of errors doesn't tell anyone what to do. So in DocCheck every finding now ends in a
+decision.
+
+Each finding has a status:
+• to resolve
+• waiting for the supplier
+• risk accepted, with a required reason
+• false positive, with a required reason
+
+Every decision goes into a history with who, when and why.
+
+If the model misread a value, "Correct this value" opens the document's data right on that field,
+from the finding's evidence. Save, validate again, done.
+
+On the next validation, new findings get a "New" tag and the ones that went away show as resolved. A
+decision sticks while the finding is the same (same rule, same fields and values), even if the
+document was uploaded again. A shipment is ready when its last validation has no open findings.
+
+[Your take: why accepting a risk with a written reason beats ignoring an alert.]
+
+#ProductDesign #Logistics #CustomsCompliance #AIEngineering

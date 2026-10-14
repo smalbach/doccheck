@@ -1,18 +1,165 @@
 # DocCheck
 
-An agent that cross-checks freight documents — commercial invoice, packing list, bill of lading and (for US ocean imports) the ISF 10+2 — and flags inconsistencies **before** they reach customs in Canada (CBSA) or the United States (CBP). Every finding cites the exact document field it comes from.
+**Catch freight document errors before customs does.** DocCheck reads the commercial invoice, packing list, bill of lading and, for US ocean freight, the ISF 10+2 filing, then cross-checks them against each other and against CBSA (Canada) and CBP (US) requirements. A local model copies the values as printed, plain tested code normalizes them, and fifteen deterministic rules do the checking. The model comes back only for the narrow cases a rule cannot settle alone. Every finding links to the exact line in the PDF it comes from and to the regulation passage behind it, and the supplier can be asked for corrected documents without leaving the app. The models run locally: no document goes to an outside AI service.
 
-> Status: **phase 5 of 6** (portfolio). Schemas, 15 deterministic rules, a synthetic evaluation set of 200 labeled shipments rendered to PDF (plus simulated scans and ISF filing confirmations), and extraction from PDF with a local model (Ollama) measured field by field. The API accepts PDFs (including scans, read with OCR, and the ISF), extracts them and runs the rules with page-level citations. Shipments, documents, extractions and findings are stored in Postgres, PDFs in S3-compatible storage, and extraction runs in a BullMQ queue. An agent reviews ambiguous cases with the local model, and findings cite CBSA memoranda and 19 CFR passages found by hybrid search. The metrics table, write-up and a results page in the web app are done; the full evaluation run and the deployed demo come next.
+<p align="center">
+  <img src="docs/screenshots/flow.webp" width="900" alt="Opening a sample shipment, validating it, and clicking a finding's evidence: the invoice PDF opens with the cited line highlighted">
+</p>
 
-## How it works
+## Results
 
+Measured on synthetic shipments generated from a fixed seed (there is no public labeled set of freight documents); see [Evaluation set](#evaluation-set-phase-1). The table is written by `npm run metrics` (`scripts/metrics.mjs`) from the reports in [`eval/reports`](eval/reports).
+
+<!-- metrics:start -->
+| Stage | Metric | Result |
+| --- | --- | --- |
+| Extraction (ollama:qwen3.8) | Field accuracy, 600 PDFs | 99.8% |
+| Classification | Document type | 100.0% |
+| Rules on ground truth | Recall / precision on 274 covered errors (of 293 injected) | 100.0% / 100.0% |
+| Rules on extracted PDFs | Recall / precision, end to end | 100.0% / 99.7% |
+| Extraction, scanned PDFs (OCR) | Field accuracy, 120 PDFs (93 complete enough for the rules) | 81.5% |
+| Rules on scanned PDFs | Recall / precision, end to end | 81.8% / 67.5% |
+| Extraction, scanned PDFs, Unlimited-OCR (Apple Silicon) | Field accuracy, 120 PDFs (108 complete enough for the rules) | 94.0% |
+| Rules on scanned PDFs, Unlimited-OCR | Recall / precision, end to end | 100.0% / 79.6% |
+| Extraction, ISF PDFs | Field accuracy, 100 PDFs | 99.9% |
+| X11 on extracted ISF PDFs | Recall / precision, end to end | 100.0% / 100.0% |
+| Extraction, unseen formats (v2) | Field accuracy, 180 PDFs (177 complete enough for the rules) | 98.8% |
+| Rules on v2 PDFs | Recall / precision, end to end | 100.0% / 100.0% |
+| Agent | Same consignee written differently (40 cases): verdict / right action | 87.5% / 100.0% (0 wrong, 5 unsure) |
+| Agent | BL description vs invoice goods (40 cases): verdict / right action | 100.0% / 100.0% (0 wrong, 0 unsure) |
+
+Details in [docs/METRICS.md](docs/METRICS.md); design and lessons in [docs/WRITEUP.md](docs/WRITEUP.md).
+<!-- metrics:end -->
+
+## Screenshots
+
+| | |
+| --- | --- |
+| ![Findings on a shipment: each one cites its fields and the regulation passage](docs/screenshots/shipment-findings-light.webp) | ![The invoice PDF open on the cited line, highlighted](docs/screenshots/shipment-pdf-viewer.webp) |
+| **Findings** with evidence, the fix to make and the CBP or CBSA passage behind it | **PDF viewer** that opens on the cited page with the line highlighted |
+| ![Dashboard](docs/screenshots/dashboard-light.webp) | ![Shipments list with status and findings per shipment](docs/screenshots/shipments.webp) |
+| **Dashboard**: shipments that need attention at a glance | **Shipments**, filtered and paged on the server |
+| ![Extracted data: totals across shipments](docs/screenshots/extracted-data-summary.webp) | ![Every invoice line across shipments, with HS code and origin](docs/screenshots/extracted-data-goods.webp) |
+| **Extracted data**: values, weights and origins added up | **Goods**: every invoice line, searchable by description, origin or HS code |
+| ![Asking the supplier for corrected documents, drafted from the findings](docs/screenshots/request-compose.webp) | ![A conversation with the supplier: the request, the reply and its corrected PDF](docs/screenshots/conversation.webp) |
+| **Ask for corrections**: the email is drafted from the findings, in English, Spanish or French, and sent from the app | **Conversation**: the supplier's reply comes back with its PDF, which goes into the shipment in one click |
+| ![Inbox of conversations with suppliers](docs/screenshots/inbox.webp) | ![A company's page: addresses, related companies, products and shipments](docs/screenshots/company.webp) |
+| **Inbox**: unread replies, requests awaiting an answer, overdue and failed ones | **Company**: one record however the documents spell it, with everything they say about it |
+| ![A product's prices over time and per seller](docs/screenshots/product-prices.webp) | ![Every container on the bills of lading](docs/screenshots/containers.webp) |
+| **Product**: price per purchase, per seller and per currency | **Containers**: seal, carrier, vessel and route |
+| ![Rule catalog by destination](docs/screenshots/rules.webp) | ![Evaluation page: field accuracy and per-rule recall and precision](docs/screenshots/evaluation-results.webp) |
+| **Rules**: what is checked for each destination | **Evaluation**: the measured numbers, inside the app |
+| ![Dashboard in dark theme](docs/screenshots/dashboard-dark.webp) | ![Shipment findings in dark theme](docs/screenshots/shipment-findings-dark.webp) |
+| Dark theme | Dark theme |
+
+<p align="center">
+  <img src="docs/screenshots/mobile-shipment.webp" width="300" alt="A shipment's findings on a phone">
+  &nbsp;
+  <img src="docs/screenshots/landing.webp" width="560" alt="Landing page">
+</p>
+
+Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/screenshots/companies.webp), [products](docs/screenshots/products.webp). The interface is in English, Spanish and French, with light, dark or system theme, and is audited with axe-core (WCAG 2.1 AA) at phone and desktop widths. The images are regenerated with `node scripts/screenshots.mjs` against a running app (`--url`, default `http://localhost:3000`).
+
+## What it does
+
+- **Reads the PDFs**, text layer or scans (OCR with bundled English and French models, or optionally Unlimited-OCR on Apple Silicon), and classifies each one as invoice, packing list, bill of lading or ISF filing confirmation.
+- **Extracts typed data with a local model** (Ollama, `qwen3.8`): the model fills a Zod schema with values exactly as printed, and tested code converts them to decimals, ISO dates, kilograms and ISO country codes. A required value the model fills in although the invoice leaves it blank is dropped.
+- **Runs 15 deterministic rules** (listed [below](#rules-implemented)): package counts and weights across documents, invoice arithmetic, currency, quantities per SKU, dates, terms of sale vs freight terms, ISO 6346 container check digits, ISF consistency, and the invoice fields CBSA (CI1) and CBP (19 CFR 141.86) require. Money and weights use fixed-point arithmetic, never floats.
+- **Asks the model narrow questions only where rules cannot decide**: is a differently written consignee the same company, does the BL cargo description match the invoice goods. Each answer comes with verdict, confidence and rationale; it acts only at confidence ≥ 0.7 (`ACT_CONFIDENCE` in [`packages/agent/src/review.ts`](packages/agent/src/review.ts)) and "unsure" never dismisses a finding.
+- **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a CBSA memorandum or 19 CFR passage found by hybrid search (embeddings + BM25). The model never writes the legal basis.
+- **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
+- **Talks to the supplier from the app**: the correction request is drafted from the findings in English, Spanish or French, sent over SMTP, and the reply comes back by IMAP or webhook into the same conversation, where its PDF is added to the shipment in one click ([docs/MESSAGING.md](docs/MESSAGING.md), in Spanish).
+- **Measures itself** on a generated set of 200 labeled shipments (100 per destination, 293 injected errors), field by field and rule by rule, end to end on the extracted PDFs ([docs/METRICS.md](docs/METRICS.md)). Model answers are cached in `eval/cache`, so the evaluation reruns without a model.
+- **Works like a product**: accounts, private shipments, validation history, JSON export and printable report, aggregated extracted data with companies, products and containers, admin settings changed without a restart, and a read-only demo mode that replays cached model answers.
+
+## Architecture
+
+```mermaid
+flowchart LR
+  subgraph Web["Web app (React + Vite + Radix UI)"]
+    UI[Shipments, findings, PDF viewer, inbox]
+  end
+  subgraph API["API (NestJS)"]
+    Upload[Upload] --> Queue[[BullMQ queue]]
+    Queue --> Extract
+    subgraph Extract["Extraction"]
+      direction LR
+      Parse["pdf.js text + positions<br/>OCR for scans"] --> Classify[Classify] --> LLM["LLM: values as printed<br/>(Zod-validated)"] --> Normalize[Normalize in code]
+    end
+    Normalize --> Rules["15 deterministic rules<br/>+ CA / US profiles"]
+    Rules --> Agent["Agent: narrow questions<br/>(verdict, confidence, rationale)"]
+    Agent --> Cite["Regulation search<br/>embeddings + BM25"]
+    Mail["Supplier mail<br/>outbox, inbound, attachments"] --> Upload
+  end
+  UI <--> API
+  API --- PG[(Postgres + pgvector)]
+  API --- S3[(S3-compatible storage<br/>PDFs)]
+  Queue --- Redis[(Redis)]
+  Mail -.- SMTP{{"SMTP out<br/>IMAP or webhook in"}}
+  LLM -.-> Ollama{{"Ollama (local)<br/>qwen3.8 · bge-m3"}}
+  Agent -.-> Ollama
+  Cite -.-> Ollama
+  Cite --- Corpus[/"CBSA memoranda<br/>19 CFR"/]
 ```
-PDFs ──► parsing ──► extraction (LLM + Zod) ──► normalization ──► rules ──► agent (ambiguous cases) ──► report
-                                                                    ▲              │
-                                                         country profile     CBSA / CBP regulation (RAG)
+
+## Tech stack
+
+| Layer | Tools |
+| --- | --- |
+| Language | TypeScript end to end, npm workspaces monorepo |
+| API | NestJS, Zod, BullMQ (Redis), Postgres with pgvector, S3-compatible storage (MinIO / SeaweedFS), nodemailer, ImapFlow and mailparser for supplier mail |
+| Documents | pdf.js (text with positions), tesseract.js (OCR), optional Unlimited-OCR server on Apple Silicon, Playwright (renders the synthetic PDFs) |
+| Models | Ollama, run locally: `qwen3.8` for extraction and agent decisions, `bge-m3` for embeddings |
+| Web | React, Vite, Radix UI, pdf.js viewer with highlights; English, Spanish, French |
+| Quality | Unit tests for every rule and normalizer, API end-to-end tests, axe-core accessibility audit in CI, evaluation set with recall and precision per rule |
+| Deploy | Docker Compose (app, Postgres, Redis, MinIO; Ollama on the host for the GPU) |
+
+## Run it locally
+
+Needs Node 22+, Docker and [Ollama](https://ollama.com). From a clone of the repository:
+
+```bash
+npm install
+cp .env.example .env
+docker compose up -d                          # Postgres + pgvector, Redis, MinIO
+ollama pull qwen3.8 && ollama pull bge-m3
+npm run synth                                 # the 200 sample shipments as PDFs (~1 min)
+scripts/start-local.sh                        # checks every dependency, builds, serves http://localhost:3000
 ```
 
-Deterministic rules do most of the work; the agent only decides cases where literal comparison fails (company names written differently, cargo descriptions, ISF consistency).
+Then create an account, open **Samples**, pick one and press **Validate**.
+
+## Using the app
+
+The landing page is public; create an account to get in. The interface is in English, Spanish and French (a finding says what is wrong and what to do in the interface language; its technical message and the regulation passages stay in English, as the API returns them) with a light, dark or system theme; both are remembered per device. `npm run a11y` audits every page with axe-core (WCAG 2.1 AA) in each language and theme, at phone and desktop widths, and fails on any violation or horizontal overflow. The app has a sidebar with a dashboard, your shipments (each account sees only its own), new shipment, samples, the rule catalog by destination, the evaluation numbers and your account (profile, preferences, password, sign out, delete account). A validated shipment can be exported as JSON or printed as a report. Accounts listed in `ADMIN_EMAILS` also get an Administration section: the extraction model (among those installed in Ollama, with their measured accuracy), agent review and OCR settings, changed without a restart; user roles; and the system status. Sign-ups can be closed from Settings, and are limited to 5 per client address and hour. Create a shipment and drop its PDFs, or pick one of the synthetic samples (each lists the errors injected into it). Extraction runs in the background; then **Validate** shows each finding with its evidence, a link that opens the PDF with the cited line highlighted, the regulation passage that backs it and, when the agent was involved, its rationale. When the model misread a value, the extracted-data panel of a document has an **Edit** mode to correct it by hand: the corrected document must still pass its schema, every change is recorded with who made it, the model's values can be restored, and findings that cite a corrected value say so. `DEMO_READONLY=true` runs the same app as a public read-only demo with no model: curated samples from `data/demo` (`npm run demo:build`), model answers replayed from `eval/cache`, and every write refused except loading and validating a sample (see [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md), section 4). For frontend work, `npm run dev:web` serves the app on :5173 with hot reload and proxies the API.
+
+Needs Postgres, Ollama with `qwen3.8` and `bge-m3`, and optionally Redis and S3 storage (see below).
+
+Self-hosted with Docker: `docker compose --profile app up -d --build` runs the app with Postgres, Redis and MinIO; Ollama stays on the host for GPU access. Deployment guide (Spanish): [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md), covering local setup, backups, Docker, a GPU server behind an authenticating proxy, and a planned static read-only demo.
+
+## Development
+
+Requires Node 22+.
+
+```bash
+npm install
+npm run build
+npm test          # schema and rule tests
+npm run smoke     # starts the API, validates a shipment with one injected error
+npm run test:e2e -w @doccheck/api   # API end to end against the doccheck_test database (reset on every run)
+npm run synth     # regenerates data/eval/v1 (200 shipments + PDFs, ~1 min)
+npm run eval:extraction -- --limit 10   # extracts 10 shipments with the local model and writes eval/reports
+npm run dev       # API with hot reload on http://localhost:3000
+```
+
+The API needs Postgres. Copy `.env.example` to `.env` and point `DATABASE_URL` at a local server (create the database first) or start the bundled one; migrations in `apps/api/migrations` run when the API starts, or with `npm run db:migrate -w @doccheck/api`.
+
+```bash
+cp .env.example .env
+docker compose up -d   # Postgres + pgvector, Redis, MinIO (optional if you run them yourself)
+```
+
+Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` starts SeaweedFS as S3-compatible storage on port 9100 (`brew install seaweedfs`). Without `S3_ENDPOINT` PDFs go to `.data/uploads`; without `REDIS_URL` extraction runs in-process with no retries.
 
 ## Repository layout
 
@@ -54,65 +201,6 @@ Deterministic rules do most of the work; the agent only decides cases where lite
 Completeness rules report one finding per missing field, citing the CI1 field or the 141.86 paragraph. Regulation excerpts are attached by the agent in phase 4.
 
 Money and weights are decimal strings and use fixed-point arithmetic — never JavaScript floats.
-
-## Demo
-
-```bash
-scripts/start-local.sh          # checks Postgres, Redis, S3, Ollama and models, then builds and serves http://localhost:3000
-```
-
-The landing page is public; create an account to get in. The interface is in English, Spanish and French (findings, rule titles and regulation passages stay in English, as the API returns them) with a light, dark or system theme; both are remembered per device. `npm run a11y` audits every page with axe-core (WCAG 2.1 AA) in each language and theme, at phone and desktop widths, and fails on any violation or horizontal overflow. The app has a sidebar with a dashboard, your shipments (each account sees only its own), new shipment, samples, the rule catalog by destination, the evaluation numbers and your account (profile, preferences, password, sign out, delete account). A validated shipment can be exported as JSON or printed as a report. Accounts listed in `ADMIN_EMAILS` also get an Administration section: the extraction model (among those installed in Ollama, with their measured accuracy), agent review and OCR settings, changed without a restart; user roles; and the system status. Sign-ups can be closed from Settings, and are limited to 5 per client address and hour. Create a shipment and drop its PDFs, or pick one of the synthetic samples (each lists the errors injected into it). Extraction runs in the background; then **Validate** shows each finding with its evidence, a link that opens the PDF with the cited line highlighted, the regulation passage that backs it and, when the agent was involved, its rationale. When the model misread a value, the extracted-data panel of a document has an **Edit** mode to correct it by hand: the corrected document must still pass its schema, every change is recorded with who made it, the model's values can be restored, and findings that cite a corrected value say so. `DEMO_READONLY=true` runs the same app as a public read-only demo with no model: curated samples from `data/demo` (`npm run demo:build`), model answers replayed from `eval/cache`, and every write refused except loading and validating a sample (see [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md), section 4). For frontend work, `npm run dev:web` serves the app on :5173 with hot reload and proxies the API.
-
-Needs Postgres, Ollama with `qwen3.8` and `bge-m3`, and optionally Redis and S3 storage (see below).
-
-## Results
-
-<!-- metrics:start -->
-| Stage | Metric | Result |
-| --- | --- | --- |
-| Extraction (ollama:qwen3.8) | Field accuracy, 600 PDFs | 99.8% |
-| Classification | Document type | 100.0% |
-| Rules on ground truth | Recall / precision on 274 covered errors (of 293 injected) | 100.0% / 100.0% |
-| Rules on extracted PDFs | Recall / precision, end to end | 100.0% / 99.7% |
-| Extraction, scanned PDFs (OCR) | Field accuracy, 120 PDFs (93 complete enough for the rules) | 81.5% |
-| Rules on scanned PDFs | Recall / precision, end to end | 81.8% / 67.5% |
-| Extraction, scanned PDFs, Unlimited-OCR (Apple Silicon) | Field accuracy, 120 PDFs (108 complete enough for the rules) | 94.0% |
-| Rules on scanned PDFs, Unlimited-OCR | Recall / precision, end to end | 100.0% / 79.6% |
-| Extraction, ISF PDFs | Field accuracy, 100 PDFs | 99.9% |
-| X11 on extracted ISF PDFs | Recall / precision, end to end | 100.0% / 100.0% |
-| Extraction, unseen formats (v2) | Field accuracy, 180 PDFs (177 complete enough for the rules) | 98.8% |
-| Rules on v2 PDFs | Recall / precision, end to end | 100.0% / 100.0% |
-| Agent | Same consignee written differently (40 cases): verdict / right action | 87.5% / 100.0% (0 wrong, 5 unsure) |
-| Agent | BL description vs invoice goods (40 cases): verdict / right action | 100.0% / 100.0% (0 wrong, 0 unsure) |
-
-Details in [docs/METRICS.md](docs/METRICS.md); design and lessons in [docs/WRITEUP.md](docs/WRITEUP.md).
-<!-- metrics:end -->
-
-Self-hosted with Docker: `docker compose --profile app up -d --build` runs the app with Postgres, Redis and MinIO; Ollama stays on the host for GPU access. Deployment guide (Spanish): [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md), covering local setup, backups, Docker, a GPU server behind an authenticating proxy, and a planned static read-only demo. The app has no authentication of its own.
-
-## Getting started
-
-Requires Node 22+.
-
-```bash
-npm install
-npm run build
-npm test          # schema and rule tests
-npm run smoke     # starts the API, validates a shipment with one injected error
-npm run test:e2e -w @doccheck/api   # API end to end against the doccheck_test database (reset on every run)
-npm run synth     # regenerates data/eval/v1 (200 shipments + PDFs, ~1 min)
-npm run eval:extraction -- --limit 10   # extracts 10 shipments with the local model and writes eval/reports
-npm run dev       # API with hot reload on http://localhost:3000
-```
-
-The API needs Postgres. Copy `.env.example` to `.env` and point `DATABASE_URL` at a local server (create the database first) or start the bundled one; migrations in `apps/api/migrations` run when the API starts, or with `npm run db:migrate -w @doccheck/api`.
-
-```bash
-cp .env.example .env
-docker compose up -d   # Postgres + pgvector, Redis, MinIO (optional if you run them yourself)
-```
-
-Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` starts SeaweedFS as S3-compatible storage on port 9100 (`brew install seaweedfs`). Without `S3_ENDPOINT` PDFs go to `.data/uploads`; without `REDIS_URL` extraction runs in-process with no retries.
 
 ## Evaluation set (phase 1)
 
@@ -183,6 +271,8 @@ After the rules run, `/validate` does a second pass:
 | GET | `/shipments/:id/findings` | Findings from the last validation |
 
 Documents passed as JSON in the body of `/validate` take precedence over extracted ones, which keeps the phase 0 flow working for tests.
+
+Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs/FINDINGS.md](docs/FINDINGS.md), and the supplier mail routes (`/mail/...`) in [docs/MESSAGING.md](docs/MESSAGING.md).
 
 ## Roadmap
 
