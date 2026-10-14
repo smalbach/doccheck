@@ -39,10 +39,10 @@ documentos de carga etiquetados), modelo `qwen3.8` build `aaee06c39dcf`.
 
 | Set | PDFs | Campos bien leídos | Reglas de punta a punta (recall / precisión) |
 | --- | --- | --- | --- |
-| Texto (v1) | 600 | 99.7% | 99.0% / 99.7% |
+| Texto (v1) | 600 | 99.8% | 100% / 99.7% |
 | Confirmaciones ISF | 100 | 99.9% | X11: 20 de 20 |
 | Escaneos simulados (OCR) | 120 | 81.5% | 81.8% / 67.5% |
-| Formatos nunca vistos (v2) | 180 | 98.7% | 95.3% / 97.6% |
+| Formatos nunca vistos (v2) | 180 | 98.8% | 100% / 100% |
 | Agente, 80 casos con respuesta conocida | — | 0 decisiones equivocadas | — |
 
 ## Decisiones de diseño que vale la pena contar
@@ -185,10 +185,21 @@ Decisiones para contar:
 - **Productos por SKU o, si no hay, por descripción normalizada**, con precio promedio ponderado por
   cantidad y la lista de compras para ver cómo cambia el precio.
 
+## Arreglo de los campos rellenados, 13 oct
+
+Chequeo determinista en `packages/extraction/src/printed.ts`: un consignatario, país de origen o
+puerto de entrada se conserva solo si el PDF lo imprime debajo de su etiqueta, en la misma columna
+(o a su derecha en la misma línea). Sin modelo; usa las posiciones de columna que ya guarda el texto.
+
+- Sobre la verdad impresa (sin modelo): 0 descartes falsos en 260 facturas con capa de texto (v1+v2);
+  31 de 40 en escaneos con tesseract, así que en documentos con OCR queda apagado.
+- v1 de punta a punta: recall de reglas 99.0% → **100%** (C1 6/6, U1 7/7), campos inventados 15 → 0.
+- v2: recall 95.3% → **100%**, precisión 97.6% → **100%**.
+- Fuente: `docs/METRICS.md`, reportes regenerados desde caché.
+
 ## Pendiente / próximos pasos
 
 - OCR de Baidu en Linux con GPU (vLLM) para no depender de un Mac.
-- Segunda pasada barata para campos obligatorios ("¿este valor está impreso bajo esta etiqueta?").
 - Probar con documentos reales.
 - Publicar la demo de solo lectura.
 
@@ -198,6 +209,7 @@ Decisiones para contar:
 - 13 oct 2026: primera prueba del OCR de Baidu.
 - 13 oct 2026: OCR de Baidu en MLX: 96.8% contra 86.6% de tesseract.
 - 13 oct 2026: OCR de Baidu integrado; escaneos de punta a punta 81.5% → 94.0%, reglas 100% de recall.
+- 13 oct 2026: chequeo "impreso bajo su etiqueta": reglas al 100% de recall en v1 y v2.
 - 13 oct 2026: hitos de la app web y de las tablas de datos extraídos (sesión de la app).
 - 13 oct 2026: menú Datos y flujo de resolución de findings (sesión de la app).
 - 13 oct 2026: correo integrado en la app (sesión de la app).

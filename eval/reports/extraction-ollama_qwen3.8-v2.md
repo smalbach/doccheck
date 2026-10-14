@@ -1,12 +1,12 @@
 # Extraction report — ollama:qwen3.8
 
-Data `v2` · model build aaee06c39dcf · prompt `extract-v3` · 60 shipments · 180 PDFs · 0 failed · 180 from cache
+Data `v2` · model build aaee06c39dcf · prompt `extract-v3` · OCR tesseract · 60 shipments · 180 PDFs · 0 failed · 180 from cache
 
-**Field accuracy 98.7%** (16679/16898: 74 wrong, 136 missing, 9 spurious) · classification 100.0% · 177/180 documents valid (rules can run on them)
+**Field accuracy 98.8%** (16679/16889: 74 wrong, 136 missing, 0 spurious) · classification 100.0% · 177/180 documents valid (rules can run on them)
 
 | Document | Accuracy | Correct | Wrong | Missing | Spurious | Valid documents |
 | --- | --- | --- | --- | --- | --- | --- |
-| COMMERCIAL_INVOICE | 99.9% | 9503 | 0 | 0 | 9 | 60/60 |
+| COMMERCIAL_INVOICE | 100.0% | 9503 | 0 | 0 | 0 | 60/60 |
 | PACKING_LIST | 96.7% | 5982 | 68 | 136 | 0 | 57/60 |
 | BILL_OF_LADING | 99.5% | 1194 | 6 | 0 | 0 | 60/60 |
 
@@ -20,9 +20,9 @@ Data `v2` · model build aaee06c39dcf · prompt `extract-v3` · 60 shipments · 
 | BILL_OF_LADING · legacy | 100.0% | 280 |
 | BILL_OF_LADING · modern | 96.7% | 180 |
 | COMMERCIAL_INVOICE · classic | 100.0% | 1274 |
-| COMMERCIAL_INVOICE · euro | 99.9% | 1934 |
-| COMMERCIAL_INVOICE · grid | 99.9% | 3969 |
-| COMMERCIAL_INVOICE · legacy | 99.9% | 1229 |
+| COMMERCIAL_INVOICE · euro | 100.0% | 1932 |
+| COMMERCIAL_INVOICE · grid | 100.0% | 3963 |
+| COMMERCIAL_INVOICE · legacy | 100.0% | 1228 |
 | COMMERCIAL_INVOICE · modern | 100.0% | 1106 |
 | PACKING_LIST · classic | 100.0% | 982 |
 | PACKING_LIST · euro | 100.0% | 1746 |
@@ -34,8 +34,6 @@ Data `v2` · model build aaee06c39dcf · prompt `extract-v3` · 60 shipments · 
 
 | Document | Field | Accuracy | Wrong | Missing | Spurious |
 | --- | --- | --- | --- | --- | --- |
-| COMMERCIAL_INVOICE | `portOfEntry.name` | 85.7% | 0 | 0 | 5 |
-| COMMERCIAL_INVOICE | `consignee.name` | 93.2% | 0 | 0 | 4 |
 | PACKING_LIST | `packages[*].count` | 93.2% | 65 | 0 | 0 |
 | PACKING_LIST | `packages[*].netWeight.kg` | 93.2% | 0 | 65 | 0 |
 | PACKING_LIST | `packages[*].grossWeight.kg` | 93.2% | 0 | 65 | 0 |
@@ -54,9 +52,9 @@ Data `v2` · model build aaee06c39dcf · prompt `extract-v3` · 60 shipments · 
 
 | Rule | Recall | Precision | TP | FP | FN |
 | --- | --- | --- | --- | --- | --- |
-| C1 | 0.0% | — | 0 | 0 | 4 |
+| C1 | 100.0% | 100.0% | 4 | 0 | 0 |
 | U1 | 100.0% | 100.0% | 3 | 0 | 0 |
-| X1 | 100.0% | 84.6% | 11 | 2 | 0 |
+| X1 | 100.0% | 100.0% | 11 | 0 | 0 |
 | X10 | 100.0% | 100.0% | 7 | 0 | 0 |
 | X2 | 100.0% | 100.0% | 4 | 0 | 0 |
 | X3 | 100.0% | 100.0% | 8 | 0 | 0 |

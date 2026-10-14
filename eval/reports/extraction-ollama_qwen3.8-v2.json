@@ -2,6 +2,7 @@
   "provider": "ollama:qwen3.8",
   "modelVersion": "aaee06c39dcf",
   "promptVersion": "extract-v3",
+  "ocrEngine": "tesseract",
   "shipments": 60,
   "documents": 180,
   "failedDocuments": 0,
@@ -9,24 +10,24 @@
   "classificationAccuracy": 1,
   "validDocuments": 177,
   "overall": {
-    "total": 16898,
+    "total": 16889,
     "correct": 16679,
     "wrong": 74,
     "missing": 136,
-    "spurious": 9,
-    "accuracy": 0.987
+    "spurious": 0,
+    "accuracy": 0.9876
   },
   "byType": [
     {
       "type": "COMMERCIAL_INVOICE",
       "documents": 60,
       "validDocuments": 60,
-      "total": 9512,
+      "total": 9503,
       "correct": 9503,
       "wrong": 0,
       "missing": 0,
-      "spurious": 9,
-      "accuracy": 0.9991
+      "spurious": 0,
+      "accuracy": 1
     },
     {
       "type": "PACKING_LIST",
@@ -108,30 +109,30 @@
     },
     {
       "template": "COMMERCIAL_INVOICE · euro",
-      "total": 1934,
+      "total": 1932,
       "correct": 1932,
       "wrong": 0,
       "missing": 0,
-      "spurious": 2,
-      "accuracy": 0.999
+      "spurious": 0,
+      "accuracy": 1
     },
     {
       "template": "COMMERCIAL_INVOICE · grid",
-      "total": 3969,
+      "total": 3963,
       "correct": 3963,
       "wrong": 0,
       "missing": 0,
-      "spurious": 6,
-      "accuracy": 0.9985
+      "spurious": 0,
+      "accuracy": 1
     },
     {
       "template": "COMMERCIAL_INVOICE · legacy",
-      "total": 1229,
+      "total": 1228,
       "correct": 1228,
       "wrong": 0,
       "missing": 0,
-      "spurious": 1,
-      "accuracy": 0.9992
+      "spurious": 0,
+      "accuracy": 1
     },
     {
       "template": "COMMERCIAL_INVOICE · modern",
@@ -189,26 +190,6 @@
     }
   ],
   "byField": [
-    {
-      "type": "COMMERCIAL_INVOICE",
-      "field": "portOfEntry.name",
-      "total": 35,
-      "correct": 30,
-      "wrong": 0,
-      "missing": 0,
-      "spurious": 5,
-      "accuracy": 0.8571
-    },
-    {
-      "type": "COMMERCIAL_INVOICE",
-      "field": "consignee.name",
-      "total": 59,
-      "correct": 55,
-      "wrong": 0,
-      "missing": 0,
-      "spurious": 4,
-      "accuracy": 0.9322
-    },
     {
       "type": "PACKING_LIST",
       "field": "packages[*].count",
@@ -318,6 +299,16 @@
       "missing": 0,
       "spurious": 0,
       "accuracy": 0.9833
+    },
+    {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "consignee.name",
+      "total": 55,
+      "correct": 55,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
     },
     {
       "type": "COMMERCIAL_INVOICE",
@@ -560,6 +551,16 @@
       "accuracy": 1
     },
     {
+      "type": "COMMERCIAL_INVOICE",
+      "field": "portOfEntry.name",
+      "total": 30,
+      "correct": 30,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
       "type": "PACKING_LIST",
       "field": "consignee.name",
       "total": 60,
@@ -785,11 +786,11 @@
     "table": [
       {
         "rule": "C1",
-        "tp": 0,
+        "tp": 4,
         "fp": 0,
-        "fn": 4,
-        "recall": 0,
-        "precision": null
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
       },
       {
         "rule": "U1",
@@ -802,10 +803,10 @@
       {
         "rule": "X1",
         "tp": 11,
-        "fp": 2,
+        "fp": 0,
         "fn": 0,
         "recall": 1,
-        "precision": 0.8461538461538461
+        "precision": 1
       },
       {
         "rule": "X10",
@@ -1316,21 +1317,11 @@
       "template": "grid",
       "detectedType": "COMMERCIAL_INVOICE",
       "valid": true,
-      "scores": [
-        {
-          "field": "consignee.name",
-          "pattern": "consignee.name",
-          "outcome": "spurious",
-          "got": "Épicerie Fine Évangéline Coopérative Ltée"
-        },
-        {
-          "field": "portOfEntry.name",
-          "pattern": "portOfEntry.name",
-          "outcome": "spurious",
-          "got": "Fos-sur-Mer"
-        }
+      "scores": [],
+      "issues": [
+        "consignee: \"Épicerie Fine Évangéline Coopérative Ltée\" is not printed under a consignee label; dropped",
+        "portOfEntry: \"Fos-sur-Mer\" is not printed under a port of entry label; dropped"
       ],
-      "issues": [],
       "cached": true,
       "usage": {
         "inputTokens": 1132,
@@ -1428,15 +1419,10 @@
       "template": "grid",
       "detectedType": "COMMERCIAL_INVOICE",
       "valid": true,
-      "scores": [
-        {
-          "field": "portOfEntry.name",
-          "pattern": "portOfEntry.name",
-          "outcome": "spurious",
-          "got": "Buenaventura"
-        }
+      "scores": [],
+      "issues": [
+        "portOfEntry: \"Buenaventura\" is not printed under a port of entry label; dropped"
       ],
-      "issues": [],
       "cached": true,
       "usage": {
         "inputTokens": 1253,
@@ -1653,15 +1639,10 @@
       "template": "euro",
       "detectedType": "COMMERCIAL_INVOICE",
       "valid": true,
-      "scores": [
-        {
-          "field": "portOfEntry.name",
-          "pattern": "portOfEntry.name",
-          "outcome": "spurious",
-          "got": "Prince Rupert"
-        }
+      "scores": [],
+      "issues": [
+        "portOfEntry: \"Prince Rupert\" is not printed under a port of entry label; dropped"
       ],
-      "issues": [],
       "cached": true,
       "usage": {
         "inputTokens": 1753,
@@ -2191,21 +2172,11 @@
       "template": "grid",
       "detectedType": "COMMERCIAL_INVOICE",
       "valid": true,
-      "scores": [
-        {
-          "field": "consignee.name",
-          "pattern": "consignee.name",
-          "outcome": "spurious",
-          "got": "Coastal Mountain Hardware Ltd."
-        },
-        {
-          "field": "portOfEntry.name",
-          "pattern": "portOfEntry.name",
-          "outcome": "spurious",
-          "got": "Vancouver"
-        }
+      "scores": [],
+      "issues": [
+        "consignee: \"Coastal Mountain Hardware Ltd.\" is not printed under a consignee label; dropped",
+        "portOfEntry: \"Vancouver\" is not printed under a port of entry label; dropped"
       ],
-      "issues": [],
       "cached": true,
       "usage": {
         "inputTokens": 1373,
@@ -2288,15 +2259,10 @@
       "template": "legacy",
       "detectedType": "COMMERCIAL_INVOICE",
       "valid": true,
-      "scores": [
-        {
-          "field": "portOfEntry.name",
-          "pattern": "portOfEntry.name",
-          "outcome": "spurious",
-          "got": "HALIFAX"
-        }
+      "scores": [],
+      "issues": [
+        "portOfEntry: \"HALIFAX\" is not printed under a port of entry label; dropped"
       ],
-      "issues": [],
       "cached": true,
       "usage": {
         "inputTokens": 1899,
@@ -2547,15 +2513,10 @@
       "template": "grid",
       "detectedType": "COMMERCIAL_INVOICE",
       "valid": true,
-      "scores": [
-        {
-          "field": "consignee.name",
-          "pattern": "consignee.name",
-          "outcome": "spurious",
-          "got": "Épicerie Fine Évangéline Coopérative Ltée"
-        }
+      "scores": [],
+      "issues": [
+        "consignee: \"Épicerie Fine Évangéline Coopérative Ltée\" is not printed under a consignee label; dropped"
       ],
-      "issues": [],
       "cached": true,
       "usage": {
         "inputTokens": 1896,
@@ -2779,15 +2740,10 @@
       "template": "euro",
       "detectedType": "COMMERCIAL_INVOICE",
       "valid": true,
-      "scores": [
-        {
-          "field": "consignee.name",
-          "pattern": "consignee.name",
-          "outcome": "spurious",
-          "got": "Coastal Mountain Hardware Ltd."
-        }
+      "scores": [],
+      "issues": [
+        "consignee: \"Coastal Mountain Hardware Ltd.\" is not printed under a consignee label; dropped"
       ],
-      "issues": [],
       "cached": true,
       "usage": {
         "inputTokens": 1270,
@@ -4890,7 +4846,7 @@
         "C1"
       ],
       "rulesOnExtracted": [
-        "X1"
+        "C1"
       ]
     },
     {
@@ -5022,7 +4978,7 @@
         "C1"
       ],
       "rulesOnExtracted": [
-        "X1"
+        "C1"
       ]
     },
     {
@@ -5146,6 +5102,7 @@
         "X6"
       ],
       "rulesOnExtracted": [
+        "C1",
         "X2",
         "X6"
       ]
@@ -5200,6 +5157,7 @@
         "X10"
       ],
       "rulesOnExtracted": [
+        "C1",
         "X10"
       ]
     },

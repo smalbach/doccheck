@@ -2,6 +2,7 @@ import { report, withStage, type BillOfLading, type CommercialInvoice, type Docu
 import type { z } from 'zod';
 import { classifyDocument } from './classify';
 import type { LlmClient, Usage } from './llm';
+import { dropUnprintedInvoiceValues } from './printed';
 import { normalizeBillOfLading, normalizeInvoice, normalizeIsf, normalizePackingList, type NormalizeResult } from './normalize';
 import { readPdfText, type PdfText } from './pdf-text';
 import { RawBillOfLading, RawInvoice, RawIsf, RawPackingList } from './raw-schemas';
@@ -104,7 +105,12 @@ export async function extractFromText<K extends ExtractableType>(
   const { data, partial, issues } = await withStage(
     onProgress,
     'normalizing',
-    async () => pipeline.normalize(output as never),
+    async () => {
+      const r = pipeline.normalize(output as never);
+      // Required values the model filled in although the invoice leaves them blank (printed.ts).
+      if (type === 'COMMERCIAL_INVOICE' && r.data) r.issues.push(...dropUnprintedInvoiceValues(r.data as CommercialInvoice, pdf));
+      return r;
+    },
     (r) => ({ normalized: r.data !== null, issues: r.issues.length }),
   );
   return { raw: output, data, partial, issues, usage, cached };

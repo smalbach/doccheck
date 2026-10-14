@@ -70,18 +70,18 @@ Needs Postgres, Ollama with `qwen3.8` and `bge-m3`, and optionally Redis and S3 
 <!-- metrics:start -->
 | Stage | Metric | Result |
 | --- | --- | --- |
-| Extraction (ollama:qwen3.8) | Field accuracy, 600 PDFs | 99.7% |
+| Extraction (ollama:qwen3.8) | Field accuracy, 600 PDFs | 99.8% |
 | Classification | Document type | 100.0% |
 | Rules on ground truth | Recall / precision on 274 covered errors (of 293 injected) | 100.0% / 100.0% |
-| Rules on extracted PDFs | Recall / precision, end to end | 99.0% / 99.7% |
+| Rules on extracted PDFs | Recall / precision, end to end | 100.0% / 99.7% |
 | Extraction, scanned PDFs (OCR) | Field accuracy, 120 PDFs (93 complete enough for the rules) | 81.5% |
 | Rules on scanned PDFs | Recall / precision, end to end | 81.8% / 67.5% |
 | Extraction, scanned PDFs, Unlimited-OCR (Apple Silicon) | Field accuracy, 120 PDFs (108 complete enough for the rules) | 94.0% |
 | Rules on scanned PDFs, Unlimited-OCR | Recall / precision, end to end | 100.0% / 79.6% |
 | Extraction, ISF PDFs | Field accuracy, 100 PDFs | 99.9% |
 | X11 on extracted ISF PDFs | Recall / precision, end to end | 100.0% / 100.0% |
-| Extraction, unseen formats (v2) | Field accuracy, 180 PDFs (177 complete enough for the rules) | 98.7% |
-| Rules on v2 PDFs | Recall / precision, end to end | 95.3% / 97.6% |
+| Extraction, unseen formats (v2) | Field accuracy, 180 PDFs (177 complete enough for the rules) | 98.8% |
+| Rules on v2 PDFs | Recall / precision, end to end | 100.0% / 100.0% |
 | Agent | Same consignee written differently (40 cases): verdict / right action | 87.5% / 100.0% (0 wrong, 5 unsure) |
 | Agent | BL description vs invoice goods (40 cases): verdict / right action | 100.0% / 100.0% (0 wrong, 0 unsure) |
 

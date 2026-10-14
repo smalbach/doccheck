@@ -28,8 +28,8 @@ DocCheck:
 • usa el modelo solo para preguntas acotadas ("¿son la misma empresa?"), con nivel de confianza
 • cita la línea exacta del PDF y el párrafo de la norma en cada hallazgo
 
-Medido sobre 200 embarques sintéticos con 293 errores inyectados: 99.7% de los campos bien leídos y
-99.0% de los errores detectados de punta a punta.
+Medido sobre 200 embarques sintéticos con 293 errores inyectados: 99.8% de los campos bien leídos y
+100% de los errores detectados de punta a punta.
 
 Stack: TypeScript, NestJS, React, Postgres, Ollama (qwen3.8 + bge-m3).
 
@@ -52,8 +52,8 @@ DocCheck:
 • asks the model only narrow questions ("same company?"), with a confidence level
 • cites the exact PDF line and regulation passage for every finding
 
-Measured on 200 synthetic shipments with 293 injected errors: 99.7% of fields read correctly and
-99.0% of errors caught end to end.
+Measured on 200 synthetic shipments with 293 injected errors: 99.8% of fields read correctly and
+100% of errors caught end to end.
 
 Stack: TypeScript, NestJS, React, Postgres, Ollama (qwen3.8 + bge-m3).
 
@@ -85,8 +85,10 @@ sobre un documento que la aduana va a rechazar.
 Lo que aprendí:
 1. Medir con errores inyectados y etiquetados, no solo con documentos limpios: con documentos limpios
    esto no aparece.
-2. La solución probablemente no es un modelo más grande, sino una segunda pasada barata: "¿este
-   valor está impreso debajo de esta etiqueta?"
+2. La solución no fue un modelo más grande, sino una segunda pasada barata y sin IA: un valor
+   obligatorio se conserva solo si el PDF lo imprime debajo de su etiqueta, en la misma columna.
+   Resultado: las reglas pasaron de detectar el 99.0% al 100% de los errores, sin descartar ningún
+   valor correcto en 260 facturas.
 
 #LLM #AIEngineering #Evals #DocumentAI
 
@@ -107,8 +109,9 @@ customs will reject.
 
 What I took from it:
 1. Evaluate with injected, labeled errors, not only clean documents; clean documents never show this.
-2. The fix is probably not a bigger model but a cheap second pass: "is this value printed under this
-   label?"
+2. The fix wasn't a bigger model but a cheap second pass with no AI: a required value is kept only if
+   the PDF prints it under its own label, in the same column. The rules went from catching 99.0% to
+   100% of the errors, without dropping a single correct value across 260 invoices.
 
 #LLM #AIEngineering #Evals #DocumentAI
 

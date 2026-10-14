@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { sampleInvoice, type CommercialInvoice } from '@doccheck/schemas';
 import type { ExtractionUpdate } from '@doccheck/schemas';
 import { classifyDocument } from './classify';
 import { extractFromText } from './extract';
@@ -10,6 +11,7 @@ import { createServer } from 'node:http';
 import { countryCode, countryFromPostalCode, decimal, htsCode, isoDate, localeFor, normalizeBillOfLading, normalizeIsf, normalizePackingList, quantityUnit, weight, withLocale } from './normalize';
 import { readPdfText } from './pdf-text';
 import { parseUnlimitedOcr } from './ocr';
+import { dropUnprintedInvoiceValues } from './printed';
 import { findFieldSource, findSource } from './provenance';
 import type { RawBillOfLading, RawIsf, RawParty } from './raw-schemas';
 import { scoreDocument, tally } from './score';
@@ -345,5 +347,50 @@ describe('Unlimited-OCR output', () => {
     const pdf = { pageCount: 1, text: '', lines };
     expect(findSource(pdf, 'inv', '1.85')?.rawText).toContain('Wool');
     expect(findSource(pdf, 'inv', '53280')?.rawText).toContain('PRS');
+  });
+});
+
+describe('values the model filled in', () => {
+  // Layout text as pdf-text.ts prints it: each cell padded to its page column.
+  const pdfOf = (rows: string[], ocr = false) => ({
+    pageCount: 1,
+    text: rows.join('\n'),
+    lines: rows.map((text, i) => ({ page: 1, text, bbox: [0, i * 10, 500, i * 10 + 9] as [number, number, number, number] })),
+    ...(ocr ? { ocrPages: [1] } : {}),
+  });
+  const invoice = (over: Partial<CommercialInvoice> = {}) =>
+    ({
+      ...structuredClone(sampleInvoice),
+      buyer: { name: 'Maple Retail Inc', address: { lines: ['1 King St'], country: 'CA' } },
+      consignee: { name: 'Maple Retail Inc', address: { lines: ['1 King St'], country: 'CA' } },
+      lines: [{ ...structuredClone(sampleInvoice.lines[0]), countryOfOrigin: 'CN' }],
+      ...over,
+    }) as CommercialInvoice;
+  const page = (consignee: string, origin: string, port?: string) =>
+    pdfOf([
+      'SELLER: SHENZHEN TOY CO, CN',
+      'SOLD TO:                                SHIP TO:',
+      `MAPLE RETAIL INC                        ${consignee}`,
+      `FROM: YANTIAN, CN BY SEA · ORIGIN: ${origin}${port ? `   PORT OF ENTRY: ${port}` : ''}`,
+    ]);
+
+  it('keeps values printed under their label', () => {
+    const inv = invoice({ portOfEntry: { name: 'Vancouver', country: 'CA' } });
+    expect(dropUnprintedInvoiceValues(inv, page('MAPLE RETAIL INC', 'CN', 'VANCOUVER'))).toEqual([]);
+    expect([inv.consignee?.name, inv.lines[0].countryOfOrigin, inv.portOfEntry?.name]).toEqual(['Maple Retail Inc', 'CN', 'Vancouver']);
+  });
+
+  it('drops a consignee copied from the buyer, an origin taken from the seller and an unprinted port', () => {
+    const inv = invoice({ portOfEntry: { name: 'Halifax', country: 'CA' } });
+    const issues = dropUnprintedInvoiceValues(inv, page('', ''));
+    expect(issues.map((i) => i.split(':')[0])).toEqual(['consignee', 'portOfEntry', 'lines[*].countryOfOrigin']);
+    expect([inv.consignee, inv.portOfEntry, inv.lines[0].countryOfOrigin]).toEqual([undefined, undefined, undefined]);
+  });
+
+  it('leaves OCR text alone, where labels and columns are not reliable', () => {
+    const inv = invoice();
+    const scan = page('', '');
+    expect(dropUnprintedInvoiceValues(inv, { ...scan, ocrPages: [1] })).toEqual([]);
+    expect(inv.consignee?.name).toBe('Maple Retail Inc');
   });
 });
