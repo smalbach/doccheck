@@ -6,8 +6,8 @@ import { MailTransport } from './mail-transport';
 
 /**
  * Sends queued messages from the database (an outbox): a message is stored first, then sent, so a
- * crash or an SMTP outage never loses it. Failures retry after 1, 2, 4 and 8 minutes, then the message
- * is failed (the user can retry it). Several API processes can run this: rows are claimed with
+ * crash or an SMTP outage never loses it. Temporary failures retry after 1, 2, 4 and 8 minutes, then
+ * the message is failed (the user can retry it); a permanent one (SMTP 5xx) fails at once. Several API processes can run this: rows are claimed with
  * SKIP LOCKED.
  */
 @Injectable()
@@ -57,7 +57,10 @@ export class OutboxWorker implements OnApplicationBootstrap, OnApplicationShutdo
           await this.repo.markSent(item.id, await this.transport.send(item));
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
-          const retry = item.attempts < MAX_ATTEMPTS ? new Date(Date.now() + retryDelayMs(item.attempts)) : null;
+          // A 5xx SMTP answer is permanent (unverified sender domain, refused recipient): no retry.
+          const code = Number((err as { responseCode?: number }).responseCode);
+          const permanent = code >= 500 && code < 600;
+          const retry = !permanent && item.attempts < MAX_ATTEMPTS ? new Date(Date.now() + retryDelayMs(item.attempts)) : null;
           await this.repo.markRetry(item.id, message, retry);
           this.logger.warn(`Sending ${item.id} failed (attempt ${item.attempts}): ${message}${retry ? '; retrying' : '; giving up'}`);
         }
