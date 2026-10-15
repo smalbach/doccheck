@@ -25,7 +25,13 @@ export class ImapPoller implements OnApplicationBootstrap, OnApplicationShutdown
     return !!process.env.IMAP_URL;
   }
 
-  onApplicationBootstrap() {
+  /** Bootstrapped by MailSettingsService, once the saved configuration is applied. */
+  onApplicationBootstrap() {}
+
+  /** Starts, restarts or stops polling after the configuration changed. */
+  reconfigure() {
+    clearInterval(this.timer);
+    this.timer = undefined;
     if (isDemo() || !ImapPoller.configured()) return;
     let host = '?';
     try {

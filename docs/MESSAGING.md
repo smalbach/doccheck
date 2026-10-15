@@ -25,7 +25,30 @@ Las conversaciones con proveedores viven en DocCheck: se escriben, se envían, s
 | Robustez | Un mensaje que no se puede guardar no traba el buzón: se registra en el log y el lector sigue. Los mensajes de más de 25 MB se saltan. Los caracteres NUL se eliminan. |
 | Límites | Por usuario, 60 mensajes por hora y 300 por día; para todo el servidor, 1000 por hora (`MAIL_USER_HOURLY`, `MAIL_USER_DAILY`, `MAIL_SERVER_HOURLY`). Se cuentan dentro de la transacción con un lock por usuario, así que las solicitudes en paralelo no los saltan, y reenviar también cuenta. `MAIL_ALLOWED_SENDERS=admins` deja enviar solo a los admins: úsalo si el registro está abierto en un servidor público. El webhook revisa el secreto antes de leer el cuerpo (máximo 25 MB). `/mail/status` muestra la configuración completa solo a los admins. En la demo pública todo es de solo lectura y el worker no corre. |
 
-Migraciones `015_mail.sql` y `016_mail_hardening.sql`: `mail_threads`, `mail_messages`, `mail_attachments`, `mail_contacts` (direcciones usadas, sugeridas la próxima vez junto con los correos que imprimen los documentos de la empresa) y `mail_cursors`.
+Migraciones `015_mail.sql`, `016_mail_hardening.sql` y `017_mail_intake.sql` (recepción de documentos: `mail_intakes`, `users.intake_token`): `mail_threads`, `mail_messages`, `mail_attachments`, `mail_contacts` (direcciones usadas, sugeridas la próxima vez junto con los correos que imprimen los documentos de la empresa) y `mail_cursors`.
+
+## Configuración desde la app
+
+En **Admin → Configuración → Buzón de correo**:
+- **Envío (SMTP)** y **Recepción (IMAP)**, con valores precargados para Gmail, Outlook/Microsoft 365, Resend (solo envío) y Zoho.
+- Remitente, dirección de respuesta y el uso de `+códigos`.
+- Botones **Enviar correo de prueba** (al correo del admin) y **Probar el buzón**, que usan los valores del formulario antes de guardar.
+- Lo guardado reemplaza a `.env` hasta que se pulsa **Usar .env**.
+
+Las contraseñas se guardan cifradas (AES-256-GCM) con `SETTINGS_KEY`, o con una clave generada en `.data/settings.key` si esa variable no está; nunca vuelven al navegador. Si la clave cambia, hay que volver a escribirlas. En contenedores define `SETTINGS_KEY` (32 bytes en base64), porque el disco no se conserva.
+
+## Documentos por correo
+
+Con **Documentos por correo** activado (en la misma tarjeta), un correo con PDF adjuntos se convierte en un envío revisado:
+
+1. **De quién es:**
+   - Si va a la dirección personal del usuario, `buzón+in-<código>@…`, es de ese usuario. La dirección aparece en su página **Cuenta**.
+   - Si llega desde el propio correo del usuario, también es suyo, pero solo cuando el servidor receptor verificó al remitente (DMARC o DKIM `pass`).
+2. **A qué envío va:** si el asunto contiene la referencia de un envío del usuario (de los últimos 120 días), los PDF se agregan a ese envío. Si no, se crea uno nuevo con el asunto como referencia.
+3. **Proceso:** los PDF se extraen como cualquier carga. Si el envío no tiene destino, se toma de los documentos: puerto de descarga o de entrega del BL, puerto de entrada de la factura o país del consignatario (CA o US). Luego se valida.
+4. **Aviso:** la conversación queda sin leer en la Bandeja, con el estado de la recepción (leyendo, validado con N hallazgos, falta el destino, no se pudo validar) y el botón **Validar de nuevo**. En el panel aparece la alerta "Documentos por correo". Si quien envió es el propio usuario, recibe un correo con el resultado y el enlace.
+
+Límites: 30 correos con documentos por usuario y hora. Los PDF ilegibles se ignoran.
 
 ## Configuración
 

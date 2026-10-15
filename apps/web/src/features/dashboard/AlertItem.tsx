@@ -1,4 +1,4 @@
-import { ClockIcon, CrossCircledIcon, EnvelopeClosedIcon, ExclamationTriangleIcon, EyeOpenIcon, GlobeIcon, UpdateIcon } from '@radix-ui/react-icons';
+import { ClockIcon, DownloadIcon, CrossCircledIcon, EnvelopeClosedIcon, ExclamationTriangleIcon, EyeOpenIcon, GlobeIcon, UpdateIcon } from '@radix-ui/react-icons';
 import type { ComponentType } from 'react';
 import type { Alert, AlertKind } from '../../api/types';
 import { useI18n } from '../../i18n/useI18n';
@@ -17,6 +17,7 @@ const KINDS: Record<AlertKind, { icon: ComponentType<{ 'aria-hidden'?: boolean; 
   'mail-reply': { icon: EnvelopeClosedIcon, tone: 'medium' },
   'mail-overdue': { icon: ClockIcon, tone: 'low' },
   'mail-failed': { icon: CrossCircledIcon, tone: 'high' },
+  'mail-intake': { icon: DownloadIcon, tone: 'medium' },
 };
 
 /** One alert, linking to its shipment (or, for email, to the conversation). */

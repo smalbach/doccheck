@@ -10,6 +10,7 @@ import { ImapPoller } from './imap.poller';
 import type { PoolClient } from 'pg';
 import { addressOf, adminsOnly, followUpDays, mailFrom, messageIdDomain, replyAddress, SEND_LIMITS } from './mail.config';
 import type { NewThreadDto, ReplyDto, ThreadsQuery } from './mail.dto';
+import { MailIntakeService } from './mail-intake.service';
 import { MailRepository } from './mail.repository';
 import { MailTransport } from './mail-transport';
 import type { ThreadDetail } from './mail.types';
@@ -34,6 +35,7 @@ export class MailService {
     private readonly shipments: ShipmentsService,
     private readonly shipmentsRepo: ShipmentsRepository,
     private readonly reviews: FindingReviewsRepository,
+    private readonly intake: MailIntakeService,
     @Inject(STORAGE) private readonly storage: ObjectStorage,
   ) {}
 
@@ -116,7 +118,8 @@ export class MailService {
     const thread = await this.ownThread(userId, threadId);
     const fresh = (await this.repo.findThread(threadId))!;
     const items = await this.repo.messages(threadId);
-    return { ...fresh.summary, ...(thread.language ? { language: thread.language } : {}), replyTo: replyAddress(thread.token), fingerprints: thread.fingerprints, items };
+    const intakes = thread.kind === 'intake' ? await this.intake.forThread(threadId) : undefined;
+    return { ...fresh.summary, ...(thread.language ? { language: thread.language } : {}), replyTo: replyAddress(thread.token), fingerprints: thread.fingerprints, items, ...(intakes ? { intakes } : {}) };
   }
 
   list(userId: string, q: ThreadsQuery) {
@@ -249,6 +252,10 @@ export class MailService {
         throw new HttpException(`At most ${max} messages per ${interval.replace('1 ', '')}${who ? '' : ' on this server'}`, HttpStatus.TOO_MANY_REQUESTS);
       }
     }
+  }
+
+  static badRequestRetry() {
+    return new BadRequestException('Only an intake waiting for a destination, or failed, can be checked again');
   }
 
   static badRequest() {

@@ -1,5 +1,5 @@
 export type ThreadStatus = 'awaiting' | 'replied' | 'closed';
-export type ThreadKind = 'correction_request' | 'conversation';
+export type ThreadKind = 'correction_request' | 'conversation' | 'intake';
 export type MessageStatus = 'queued' | 'sending' | 'sent' | 'failed' | 'received';
 
 export interface MailAttachment {
@@ -64,6 +64,8 @@ export interface ThreadDetail extends ThreadSummary {
   fingerprints: string[];
   messages: number;
   items: MailMessage[];
+  /** Documents by email: what happened to the PDFs of each received message. */
+  intakes?: import('./mail-intake.service').IntakeView[];
 }
 
 export interface MailSummary {

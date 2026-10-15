@@ -1,6 +1,6 @@
 import type { Destination } from '@doccheck/schemas';
 
-export const ALERT_KINDS = ['critical', 'failed-document', 'ocr', 'not-validated', 'stale-destination', 'mail-reply', 'mail-overdue', 'mail-failed'] as const;
+export const ALERT_KINDS = ['critical', 'failed-document', 'ocr', 'not-validated', 'stale-destination', 'mail-reply', 'mail-overdue', 'mail-failed', 'mail-intake'] as const;
 export type AlertKind = (typeof ALERT_KINDS)[number];
 
 interface AlertBase {
@@ -25,6 +25,8 @@ export type Alert = AlertBase &
     | { kind: 'stale-destination'; detail: { validated: Destination; current?: Destination } }
     /** A conversation about the shipment: a reply not read yet, no answer by its due date, or a message that could not be sent. */
     | { kind: 'mail-reply' | 'mail-overdue' | 'mail-failed'; detail: { threadId: string; subject: string; count: number } }
+    /** Documents received by email were checked (or wait for a destination, or failed); the conversation is unread. */
+    | { kind: 'mail-intake'; detail: { threadId: string; subject: string; status: string; findings: number | null } }
   );
 
 export interface AlertList {

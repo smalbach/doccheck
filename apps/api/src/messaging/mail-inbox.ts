@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { simpleParser, type AddressObject, type ParsedMail } from 'mailparser';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { MAX_ATTACHMENT_BYTES, MAX_ATTACHMENTS, MAX_ATTACHMENTS_BYTES, TOKEN_IN_ADDRESS, TOKEN_IN_SUBJECT, addressOf } from './mail.config';
+import { MailIntakeService, intakeEnabled } from './mail-intake.service';
 import { MailRepository } from './mail.repository';
 
 /** Kinds of attachment kept from received mail: documents and pictures of them. */
@@ -30,6 +31,7 @@ export class MailInbox {
 
   constructor(
     private readonly repo: MailRepository,
+    private readonly intake: MailIntakeService,
     @Inject(STORAGE) private readonly storage: ObjectStorage,
   ) {}
 
@@ -38,7 +40,7 @@ export class MailInbox {
     const messageId = mail.messageId ? stripId(mail.messageId) : `generated-${randomUUID()}@doccheck`;
     if (await this.repo.hasMessageId(messageId)) return { status: 'duplicate' };
 
-    const threadId = await this.findThread(mail);
+    let threadId = await this.findThread(mail);
     const id = randomUUID();
     // One sender, written by us from the parsed address: the From text itself can list several.
     const sender = mail.from?.value[0];
@@ -46,6 +48,26 @@ export class MailInbox {
     const fromText = sender?.name ? `${clean(sender.name).replace(/["<>\r\n]/g, '').slice(0, 200)} <${from}>` : from;
     const references = [...(Array.isArray(mail.references) ? mail.references : mail.references ? [mail.references] : [])].map(stripId);
     const bounce = this.isBounce(mail);
+    const check = senderCheck(mail);
+    // Not an answer to a conversation: documents sent by email to a user's intake address (or from
+    // their own verified address) start a conversation of their own and a shipment.
+    let intakeOwner: string | null = null;
+    if (!threadId && !bounce && intakeEnabled()) {
+      intakeOwner = await this.intake.owner([...addresses(mail.to), ...addresses(mail.cc), ...this.envelopeRecipients(mail)], from, check === 'pass');
+      if (intakeOwner) {
+        threadId = randomUUID();
+        await this.repo.insertThread({
+          id: threadId,
+          userId: intakeOwner,
+          token: randomUUID().replace(/-/g, '').slice(0, 10),
+          kind: 'intake',
+          subject: clean(mail.subject ?? '').slice(0, 300) || '(no subject)',
+          status: 'replied',
+          fingerprints: [],
+          dueAt: null,
+        });
+      }
+    }
     await this.repo.insertMessage({
       id,
       threadId,
@@ -61,11 +83,12 @@ export class MailInbox {
       inReplyTo: mail.inReplyTo ? stripId(mail.inReplyTo) : null,
       references,
       receivedAt: (mail.date && !Number.isNaN(mail.date.getTime()) ? mail.date : new Date()).toISOString(),
-      senderCheck: senderCheck(mail),
+      senderCheck: check,
     });
     // Mail no conversation claims keeps its text only: anyone can write to the mailbox.
     let kept = 0;
     let bytes = 0;
+    const pdfs: { attachmentId: string; filename: string; storageKey: string }[] = [];
     for (const a of threadId ? mail.attachments : []) {
       if (!KEPT.test(a.contentType) || a.size > MAX_ATTACHMENT_BYTES || a.related) continue;
       if (kept >= MAX_ATTACHMENTS || bytes + a.size > MAX_ATTACHMENTS_BYTES) break;
@@ -76,10 +99,15 @@ export class MailInbox {
       const key = `mail/${id}/${attachmentId}`;
       await this.storage.put(key, a.content, a.contentType);
       await this.repo.insertAttachment({ id: attachmentId, messageId: id, filename, contentType: a.contentType.toLowerCase(), size: a.size, storageKey: key });
+      if (a.contentType.toLowerCase() === 'application/pdf') pdfs.push({ attachmentId, filename, storageKey: key });
     }
     if (bounce) await this.markBounced(mail);
     if (threadId) await this.repo.touchThreadIn(threadId);
     else this.logger.log(`Received mail no thread claims, from ${from}: ${mail.subject ?? ''}`);
+    if (intakeOwner && threadId) {
+      // The mail is stored whatever happens to its documents; a failure shows in its conversation.
+      await this.intake.start({ threadId, messageId: id, userId: intakeOwner, subject: mail.subject ?? '', pdfs }).catch((err) => this.logger.error(`Intake of ${id} failed: ${err instanceof Error ? err.message : err}`));
+    }
     return { status: 'stored', messageId: id, threadId };
   }
 
@@ -87,17 +115,21 @@ export class MailInbox {
     const refs = [mail.inReplyTo, ...(Array.isArray(mail.references) ? mail.references : mail.references ? [mail.references] : [])].filter((x): x is string => !!x).map(stripId);
     const byId = await this.repo.threadByMessageIds(refs);
     if (byId) return byId;
-    const headerAddresses = ['delivered-to', 'x-original-to', 'envelope-to'].flatMap((h) => {
-      const v = mail.headers.get(h);
-      return (Array.isArray(v) ? v : v ? [v] : []).map((x) => (typeof x === 'string' ? x : JSON.stringify(x)));
-    });
-    for (const address of [...addresses(mail.to), ...addresses(mail.cc), ...headerAddresses.map(addressOf)]) {
+    for (const address of [...addresses(mail.to), ...addresses(mail.cc), ...this.envelopeRecipients(mail)]) {
       const token = TOKEN_IN_ADDRESS.exec(address)?.[1];
       const thread = token ? await this.repo.threadByToken(token) : null;
       if (thread) return thread;
     }
     const token = TOKEN_IN_SUBJECT.exec(mail.subject ?? '')?.[1];
     return token ? this.repo.threadByToken(token) : null;
+  }
+
+  /** Where the mail was delivered, as the receiving server wrote it (a forward keeps the original To). */
+  private envelopeRecipients(mail: ParsedMail): string[] {
+    return ['delivered-to', 'x-original-to', 'envelope-to'].flatMap((h) => {
+      const v = mail.headers.get(h);
+      return (Array.isArray(v) ? v : v ? [v] : []).map((x) => addressOf(typeof x === 'string' ? x : JSON.stringify(x)));
+    });
   }
 
   /** A delivery status notification: multipart/report; report-type=delivery-status (not who the sender says it is). */

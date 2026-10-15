@@ -539,7 +539,7 @@ export interface ProductsQuery {
   offset?: number;
 }
 
-export type AlertKind = 'critical' | 'failed-document' | 'ocr' | 'not-validated' | 'stale-destination' | 'mail-reply' | 'mail-overdue' | 'mail-failed';
+export type AlertKind = 'critical' | 'failed-document' | 'ocr' | 'not-validated' | 'stale-destination' | 'mail-reply' | 'mail-overdue' | 'mail-failed' | 'mail-intake';
 
 /** Something on one of the user's shipments that needs a look (GET /shipments/alerts). */
 export type Alert = {
@@ -556,6 +556,7 @@ export type Alert = {
   | { kind: 'stale-destination'; detail: { validated: Destination; current?: Destination } }
   /** A conversation about the shipment: unread replies, no answer by its due date, or a message that could not be sent. */
   | { kind: 'mail-reply' | 'mail-overdue' | 'mail-failed'; detail: { threadId: string; subject: string; count: number } }
+  | { kind: 'mail-intake'; detail: { threadId: string; subject: string; status: IntakeStatus; findings: number | null } }
 );
 
 export interface AlertList {
@@ -569,7 +570,7 @@ export interface AlertList {
 // Mail ---------------------------------------------------------------------------------------------
 
 export type ThreadStatus = 'awaiting' | 'replied' | 'closed';
-export type ThreadKind = 'correction_request' | 'conversation';
+export type ThreadKind = 'correction_request' | 'conversation' | 'intake';
 export type MailMessageStatus = 'queued' | 'sending' | 'sent' | 'failed' | 'received';
 export type ThreadFilter = 'open' | 'unread' | 'awaiting' | 'overdue' | 'failed' | 'closed' | 'all';
 
@@ -625,7 +626,24 @@ export interface ThreadSummary {
   messages: number;
 }
 
+export type IntakeStatus = 'extracting' | 'validating' | 'validated' | 'needs_destination' | 'failed' | 'skipped';
+
+/** What happened to the PDFs of an email sent to the user's intake address. */
+export interface Intake {
+  id: string;
+  status: IntakeStatus;
+  shipmentId?: string;
+  createdShipment: boolean;
+  documents: number;
+  findings?: number;
+  error?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface ThreadDetail extends ThreadSummary {
+  /** Documents by email only. */
+  intakes?: Intake[];
   language?: string;
   /** Where the other side's replies go (with this thread's +token). */
   replyTo: string;
@@ -669,4 +687,27 @@ export interface NewThread {
   body: string;
   language?: string;
   fingerprints: string[];
+}
+
+export interface MailServerInput {
+  smtp: { host: string; port: number; secure: boolean; user: string; password?: string } | null;
+  from: string;
+  replyTo: string | null;
+  plusAddressing: boolean;
+  imap: { host: string; port: number; secure: boolean; user: string; password?: string; mailbox: string; pollSeconds: number } | null;
+  intake: { enabled: boolean; notifySender: boolean };
+}
+
+export interface MailServerSettings {
+  /** admin: saved from the web; env: from .env; none: nothing set. */
+  source: 'admin' | 'env' | 'none';
+  editable: boolean;
+  updatedAt?: string;
+  updatedBy?: string;
+  config:
+    | (Omit<MailServerInput, 'smtp' | 'imap'> & {
+        smtp: { host: string; port: number; secure: boolean; user: string; hasPassword: boolean } | null;
+        imap: { host: string; port: number; secure: boolean; user: string; hasPassword: boolean; mailbox: string; pollSeconds: number } | null;
+      })
+    | null;
 }

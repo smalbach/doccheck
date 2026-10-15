@@ -8,6 +8,7 @@ import { Public } from '../auth/public.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { AssignDto, ContactsQuery, NewThreadDto, ReplyDto, ThreadsQuery, ThreadStatusDto } from './mail.dto';
 import { MailInbox } from './mail-inbox';
+import { MailIntakeService } from './mail-intake.service';
 import { MailService } from './mail.service';
 
 /** Conversations with suppliers by email, inside the app (docs/MESSAGING.md). */
@@ -16,7 +17,22 @@ export class MailController {
   constructor(
     private readonly mail: MailService,
     private readonly inbox: MailInbox,
+    private readonly intake: MailIntakeService,
   ) {}
+
+  /** The user's address for sending documents by email, when that is on. */
+  @Get('intake')
+  intakeAddress(@CurrentUser() user: PublicUser) {
+    return this.intake.address(user.id);
+  }
+
+  /** Checks a documents-by-email shipment again once its destination is set. */
+  @Post('intakes/:id/retry')
+  @HttpCode(200)
+  async retryIntake(@CurrentUser() user: PublicUser, @Param('id', ParseUUIDPipe) id: string) {
+    if (!(await this.intake.retry(user.id, id))) throw MailService.badRequestRetry();
+    return { ok: true };
+  }
 
   /** Unread replies, conversations awaiting an answer, overdue and failed ones (and unassigned mail for admins). */
   @Get('summary')

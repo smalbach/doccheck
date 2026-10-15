@@ -107,6 +107,8 @@ before(async () => {
       MAIL_FROM: 'DocCheck <docs@doccheck.example>',
       MAIL_OUTBOX_MS: '200',
       MAIL_USER_HOURLY: '8',
+      MAIL_INTAKE_MS: '300',
+      SETTINGS_KEY_FILE: join(mkdtempSync(join(tmpdir(), 'doccheck-e2e-key-')), 'settings.key'),
       MAIL_INBOUND_SECRET: 'inbound-secret',
       IMAP_URL: '',
       APP_URL: 'http://app.example/',
@@ -1506,7 +1508,7 @@ describe('alerts', () => {
     const user = await signUp('Alerts');
     const create = async (reference, destination = 'CA') => (await call('POST', '/shipments', { reference, destination }, user)).body;
     const get = () => call('GET', '/shipments/alerts', undefined, user);
-    assert.deepEqual((await get()).body, { items: [], counts: { critical: 0, 'failed-document': 0, ocr: 0, 'not-validated': 0, 'stale-destination': 0, 'mail-reply': 0, 'mail-overdue': 0, 'mail-failed': 0 }, total: 0 });
+    assert.deepEqual((await get()).body, { items: [], counts: { critical: 0, 'failed-document': 0, ocr: 0, 'not-validated': 0, 'stale-destination': 0, 'mail-reply': 0, 'mail-overdue': 0, 'mail-failed': 0, 'mail-intake': 0 }, total: 0 });
 
     // critical: the latest run has CRITICAL or HIGH findings; an earlier run's do not count.
     const critical = await create('AL-critical');
@@ -1567,7 +1569,7 @@ describe('alerts', () => {
       ['failed-document', 'AL-failed', 'scan.pdf', { error: 'Unreadable PDF' }],
       ['critical', 'AL-critical', undefined, { critical: 1, high: 2 }],
     ]);
-    assert.deepEqual(body.counts, { critical: 1, 'failed-document': 1, ocr: 2, 'not-validated': 2, 'stale-destination': 1, 'mail-reply': 0, 'mail-overdue': 0, 'mail-failed': 0 });
+    assert.deepEqual(body.counts, { critical: 1, 'failed-document': 1, ocr: 2, 'not-validated': 2, 'stale-destination': 1, 'mail-reply': 0, 'mail-overdue': 0, 'mail-failed': 0, 'mail-intake': 0 });
     assert.equal(body.total, 7);
     assert.equal(body.items.find((a) => a.kind === 'failed-document').documentId, failedDoc);
     assert.deepEqual(body.items.filter((a) => a.kind === 'ocr').map((a) => a.documentId), [ocrCitedDoc, ocrNewDoc]);
@@ -1888,6 +1890,93 @@ describe('mail', () => {
       Array.from({ length: 12 }, (_, i) => call('POST', '/mail/threads', { to: [`x${i}@example.com`], subject: `Hello ${i}`, body: 'Hi' }, user)),
     );
     assert.deepEqual([tries.filter((r) => r.status === 201).length, tries.filter((r) => r.status === 429).length], [8, 4]);
+  });
+});
+
+describe('mail server settings and documents by email', () => {
+  const builder = createRequire(join(root, 'apps/api/package.json'))('nodemailer').createTransport({ streamTransport: true, buffer: true });
+  const compose = (mail) => builder.sendMail(mail).then((info) => info.message);
+  const inbound = (raw) => send(`${base}/mail/inbound`, { method: 'POST', headers: { 'content-type': 'message/rfc822', 'x-inbound-secret': 'inbound-secret' }, body: raw }, '');
+  const adminLogin = async () => {
+    let res = await call('POST', '/auth/login', { email: 'admin-e2e@example.com', password: 'admin password' }, '');
+    if (res.status === 401) res = await call('POST', '/auth/register', { email: 'admin-e2e@example.com', password: 'admin password', name: 'Admin' }, '');
+    return res.cookie;
+  };
+  const base64 = { from: 'DocCheck <docs@doccheck.example>', replyTo: null, plusAddressing: true, intake: { enabled: true, notifySender: true } };
+
+  it('is set by admins, keeps passwords sealed and never sends them back, tests and resets', async () => {
+    const admin = await adminLogin();
+    assert.equal((await call('GET', '/admin/mail')).status, 403);
+    assert.equal((await call('GET', '/admin/mail', undefined, admin)).body.source, 'env');
+    assert.equal((await call('POST', '/admin/mail/test', { kind: 'smtp' }, admin)).body.ok, false); // nothing saved
+    const config = { ...base64, smtp: { host: '127.0.0.1', port: 9, secure: false, user: 'mailer', password: 'smtp-secret-123' }, imap: null };
+    const saved = await call('PUT', '/admin/mail', config, admin);
+    assert.equal(saved.status, 200);
+    assert.deepEqual([saved.body.source, saved.body.config.smtp.hasPassword, saved.body.config.intake.enabled], ['admin', true, true]);
+    assert.ok(!JSON.stringify(saved.body).includes('smtp-secret-123'));
+    const { rows } = await pool.query(`select value::text as v from settings where key = 'mailServer'`);
+    assert.ok(!rows[0].v.includes('smtp-secret-123'), 'stored sealed');
+    // An empty password keeps the saved one; a test reports the server's answer, not a credential.
+    const kept = await call('PUT', '/admin/mail', { ...config, smtp: { ...config.smtp, password: '' } }, admin);
+    assert.equal(kept.body.config.smtp.hasPassword, true);
+    const test = (await call('POST', '/admin/mail/test', { kind: 'smtp' }, admin)).body;
+    assert.equal(test.ok, false);
+    assert.ok(!test.detail.includes('smtp-secret-123'));
+    assert.equal((await call('POST', '/admin/mail/test', { kind: 'imap' }, admin)).body.ok, false);
+    assert.equal((await call('PUT', '/admin/mail', { ...base64, smtp: null, imap: { host: 'imap.example.com', port: 993, secure: true, user: 'u' } }, admin)).status, 400); // no password yet
+    assert.equal((await call('DELETE', '/admin/mail', undefined, admin)).body.source, 'env');
+  });
+
+  it('turns an email with PDFs to a user\'s intake address into a shipment, checked without opening the app', { skip: !hasSample && 'evaluation set not generated' }, async () => {
+    const admin = await adminLogin();
+    assert.equal((await call('PUT', '/admin/mail', { ...base64, smtp: null, imap: null }, admin)).status, 200);
+    try {
+      const user = await signUp('Intake');
+      const me = (await call('GET', '/auth/me', undefined, user)).body;
+      const { address, enabled } = (await call('GET', '/mail/intake', undefined, user)).body;
+      assert.equal(enabled, true);
+      assert.match(address, /^docs\+in-[a-z0-9]+@doccheck\.example$/);
+      const pdfs = ['invoice.pdf', 'packing-list.pdf', 'bill-of-lading.pdf'].map((f) => ({ filename: f, content: readFileSync(join(sample, f)), contentType: 'application/pdf' }));
+      const mail = await compose({ from: me.email, to: address, subject: 'Fwd: PO-7781 documents', messageId: '<intake-1@example.com>', text: 'Documents attached.', attachments: pdfs });
+      assert.equal(await inbound(mail).then((r) => r.json()).then((b) => b.status), 'stored');
+
+      const threads = (await call('GET', '/mail/threads?filter=all', undefined, user)).body.items;
+      assert.deepEqual(threads.map((t) => [t.kind, t.subject]), [['intake', 'Fwd: PO-7781 documents']]);
+      let thread;
+      for (let i = 0; i < 300; i++) {
+        thread = (await call('GET', `/mail/threads/${threads[0].id}`, undefined, user)).body;
+        if (thread.intakes?.[0] && !['extracting', 'validating'].includes(thread.intakes[0].status)) break;
+        await new Promise((r) => setTimeout(r, 200));
+      }
+      const intake = thread.intakes[0];
+      assert.deepEqual([intake.status, intake.documents, intake.createdShipment, typeof intake.findings], ['validated', 3, true, 'number']);
+      const shipment = (await call('GET', `/shipments/${intake.shipmentId}`, undefined, user)).body;
+      assert.deepEqual([shipment.reference, shipment.destination, shipment.status], ['PO-7781 documents', 'CA', 'DONE']);
+      assert.ok(thread.items[0].attachments.every((a) => a.documentId));
+      // The sender is the user: a summary goes back to them in the same conversation.
+      const summary = thread.items.find((m) => m.direction === 'out');
+      assert.deepEqual(summary?.to, [me.email]);
+      assert.match(summary.text, /PO-7781 documents was read and checked/);
+      const alerts = (await call('GET', '/shipments/alerts', undefined, user)).body;
+      assert.deepEqual(alerts.items.filter((a) => a.kind === 'mail-intake').map((a) => a.detail.status), ['validated']);
+
+      // A second email naming the reference adds to that shipment.
+      const more = await compose({ from: me.email, to: address, subject: 'PO-7781 documents: corrected invoice', messageId: '<intake-2@example.com>', text: 'Corrected.', attachments: [pdfs[0]] });
+      await inbound(more);
+      const second = (await call('GET', '/mail/threads?filter=all', undefined, user)).body.items.find((t) => t.subject.includes('corrected'));
+      const detail = (await call('GET', `/mail/threads/${second.id}`, undefined, user)).body;
+      assert.deepEqual([detail.intakes[0].shipmentId, detail.intakes[0].createdShipment], [intake.shipmentId, false]);
+
+      // From the user's address without the intake address: only when the receiving server verified it.
+      const spoofed = await compose({ from: me.email, to: 'docs@doccheck.example', subject: 'Unverified', messageId: '<intake-3@example.com>', text: 'x', attachments: [pdfs[0]] });
+      assert.equal(await inbound(spoofed).then((r) => r.json()).then((b) => b.threadId), null);
+      const verified = await compose({ from: me.email, to: 'docs@doccheck.example', subject: 'Verified', messageId: '<intake-4@example.com>', text: 'x', attachments: [pdfs[0]], headers: { 'Authentication-Results': 'mx.example.com; dkim=pass header.d=example.com; dmarc=pass' } });
+      assert.ok(await inbound(verified).then((r) => r.json()).then((b) => b.threadId));
+      // Someone else's mail to the user's address is accepted (the address is the key) but never answered.
+      assert.equal((await call('GET', '/mail/intake', undefined, await signUp('Other'))).body.address === address, false);
+    } finally {
+      await call('DELETE', '/admin/mail', undefined, admin);
+    }
   });
 });
 

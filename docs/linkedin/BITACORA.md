@@ -173,6 +173,7 @@ para que la revises.
 | Menú Datos: un módulo por página; fichas completas de empresa y producto; contenedores | `ec31499` | — |
 | Qué hacer con un finding: estados con motivo e historial, corregir desde la evidencia, carta al proveedor en en/es/fr, resueltos y nuevos entre validaciones | `b89f4ae` | tests de la API 77 de 77, web 55 de 55 |
 | Correo dentro de la app: pedidos al proveedor, bandeja, hilos, cola de envío con reintentos, recepción por IMAP o webhook, adjuntos al envío, alertas | `19b9c23`, `4b011fa` | tests de la API 78 de 78 (uno cubre el ciclo completo: pedido, envío, respuesta con PDF, importación y respuesta) |
+| Buzón configurable desde Admin (SMTP/IMAP, contraseñas cifradas, pruebas) y documentos por correo: un correo con PDF se convierte en un envío extraído y validado sin abrir la app | (este commit) | tests de la API 81 de 81; envío real por Resend con dominio verificado |
 | README de portafolio: capturas, métricas con su fuente, qué hace, arquitectura; posts 6 (bandeja) y 7 (flujo de hallazgos) | `d22482c` | 22 de 22 capturas de `docs/screenshots/` enlazadas; `npm run metrics` regenera el bloque de métricas sin cambios desde `eval/reports` |
 
 Decisiones para contar:
@@ -215,3 +216,4 @@ puerto de entrada se conserva solo si el PDF lo imprime debajo de su etiqueta, e
 - 13 oct 2026: menú Datos y flujo de resolución de findings (sesión de la app).
 - 13 oct 2026: correo integrado en la app (sesión de la app).
 - 14 oct 2026: README de portafolio en la raíz y posts 6 y 7 (commit `d22482c`).
+- 14 oct 2026: buzón configurable y documentos por correo (sesión de la app).

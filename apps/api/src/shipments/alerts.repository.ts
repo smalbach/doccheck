@@ -59,7 +59,12 @@ const ALERTS = `
     union all
     select 'mail-reply', t.shipment_id, null, null, t.last_message_at, jsonb_build_object('threadId', t.id, 'subject', t.subject, 'count', t.unread)
     from mail_threads t join owned o on o.id = t.shipment_id
-    where t.unread > 0 and t.status <> 'closed'
+    where t.unread > 0 and t.status <> 'closed' and t.kind <> 'intake'
+    union all
+    select 'mail-intake', t.shipment_id, null, null, i.updated_at, jsonb_build_object('threadId', t.id, 'subject', t.subject, 'status', i.status, 'findings', i.findings)
+    from mail_threads t join owned o on o.id = t.shipment_id
+    join lateral (select * from mail_intakes x where x.thread_id = t.id order by x.created_at desc limit 1) i on true
+    where t.kind = 'intake' and t.unread > 0 and t.status <> 'closed' and i.status in ('validated', 'needs_destination', 'failed')
     union all
     select 'mail-overdue', t.shipment_id, null, null, t.due_at, jsonb_build_object('threadId', t.id, 'subject', t.subject, 'count', 1)
     from mail_threads t join owned o on o.id = t.shipment_id

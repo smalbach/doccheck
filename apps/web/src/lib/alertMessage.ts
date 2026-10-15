@@ -22,6 +22,12 @@ export function alertMessage(alert: Alert, t: I18nState['t']): string {
       return t('dashboard.alerts.mailOverdue', { subject: alert.detail.subject });
     case 'mail-failed':
       return t('dashboard.alerts.mailFailed', { subject: alert.detail.subject, count: alert.detail.count });
+    case 'mail-intake':
+      return alert.detail.status === 'validated'
+        ? t('dashboard.alerts.intakeValidated', { subject: alert.detail.subject, count: alert.detail.findings ?? 0 })
+        : alert.detail.status === 'needs_destination'
+          ? t('dashboard.alerts.intakeDestination', { subject: alert.detail.subject })
+          : t('dashboard.alerts.intakeFailed', { subject: alert.detail.subject });
     case 'stale-destination': {
       const validated = t(`destinations.${alert.detail.validated}`);
       return alert.detail.current

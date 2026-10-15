@@ -6,6 +6,7 @@ import { settingOf } from '../../../lib/settingOf';
 import { AccountsSettingCard } from './AccountsSettingCard';
 import { AgentSettingCard } from './AgentSettingCard';
 import { ModelSettingCard } from './ModelSettingCard';
+import { MailboxSettingsCard } from './MailboxSettingsCard';
 import { OcrSettingsCard } from './OcrSettingsCard';
 import { useAdminSettings } from './useAdminSettings';
 
@@ -62,6 +63,7 @@ export function SettingsPage() {
         onSave={(values) => void save(values)}
         onReset={(key) => void reset(key)}
       />
+      <MailboxSettingsCard />
     </div>
   );
 }

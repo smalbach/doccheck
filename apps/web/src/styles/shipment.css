@@ -152,3 +152,7 @@
 .unassigned-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .assign-row { display: flex; gap: 8px; margin-top: 6px; }
 .reply-box textarea { min-height: 110px; }
+.intake-address { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0; }
+.intake-address code { font-size: 14px; padding: 4px 8px; border-radius: var(--radius-sm); background: var(--bg); border: 1px solid var(--line); overflow-wrap: anywhere; }
+.intake-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.mail-settings-actions { justify-content: flex-start; flex-wrap: wrap; }

@@ -12,6 +12,7 @@ import { refreshMailSummary } from '../../hooks/useMailSummary';
 import { useI18n } from '../../i18n/useI18n';
 import { errorMessage } from '../../lib/errorMessage';
 import { ThreadFindings } from './ThreadFindings';
+import { IntakePanel } from './IntakePanel';
 import { MessageItem } from './MessageItem';
 import { ReplyBox } from './ReplyBox';
 import { ThreadTags } from './ThreadTags';
@@ -46,7 +47,7 @@ export function ThreadPage({ id }: { id: string }) {
   useEffect(() => {
     void load();
   }, [load]);
-  const pending = thread?.items.some((m) => m.status === 'queued' || m.status === 'sending');
+  const pending = thread?.items.some((m) => m.status === 'queued' || m.status === 'sending') || thread?.intakes?.some((i) => i.status === 'extracting' || i.status === 'validating');
   useEffect(() => {
     const timer = setInterval(() => void load(), pending ? FAST_MS : SLOW_MS);
     return () => clearInterval(timer);
@@ -100,6 +101,7 @@ export function ThreadPage({ id }: { id: string }) {
       />
       {error && <Banner tone="error">{error}</Banner>}
       {notice && <Banner tone="ok">{notice}</Banner>}
+      {thread.intakes && <IntakePanel intakes={thread.intakes} readOnly={demo} onChanged={() => void load()} onError={setError} />}
       {thread.fingerprints.length > 0 && thread.shipmentId && <ThreadFindings fingerprints={thread.fingerprints} validation={validation} />}
       <Card>
         <ol className="mail-thread">
