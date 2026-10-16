@@ -1,8 +1,9 @@
 import { BadRequestException, ConflictException, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { createHash, randomUUID } from 'node:crypto';
-import { attachRegulations, reviewFindings, type AgentDecision } from '@doccheck/agent';
+import { attachRegulations, reviewFindings, reviewScreeningMatches, type AgentDecision } from '@doccheck/agent';
 import { findFieldSource, inputFormat, prepareImage, readSpreadsheet, storedSpreadsheetFormat, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
 import { runRules, type EngineOutput, type ShipmentContext } from '@doccheck/rules';
+import { SCREENING_RULES, type ScreeningQuestion } from '@doccheck/screening';
 import {
   applyPointerChanges, CANCELLED_ERROR, clip, DOCUMENT_SCHEMAS, diffPointers, fieldPointer, findingPreview, FINDING_PREVIEWS_PER_RULE, readPointer, startStage, toPointer,
   type Attestation, type BillOfLading, type CommercialInvoice, type Destination, type DocumentFormat, type Isf, type PackingList, type PointerChange, type Shipment, type ShipmentDocument,
@@ -14,6 +15,7 @@ import type { ProgressRun } from '../progress/progress-run';
 import { RuleSettingsService } from '../rules/rule-settings.service';
 import { ProgressRepository } from '../progress/progress.repository';
 import { ProgressService } from '../progress/progress.service';
+import { ScreeningService } from '../screening/screening.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { AuditService } from '../audit/audit.service';
 import { NotificationsService } from '../collab/notifications.service';
@@ -90,6 +92,7 @@ export class ShipmentsService {
     private readonly ruleSettings: RuleSettingsService,
     private readonly usage: UsageService,
     private readonly review: ReviewService,
+    private readonly screening: ScreeningService,
   ) {}
 
   /** A new shipment in the organization, created by `userId`. */
@@ -445,11 +448,24 @@ export class ShipmentsService {
     ctx.account = account;
     ctx.asOf = asOf;
     // Each rule's findings go out with it (a few, cut short), so the web can show them as they are found.
+    // Screening rules (S1-S3) run after the document rules and count in the same total.
+    const extra = SCREENING_RULES.length;
+    let engineTotal = 0;
     const output = runRules(ctx, {}, {
       config,
-      onRule: ({ rule, index, total, skipped, findings, found }) =>
-        void rules.progress({ rule, index, total, skipped, findings, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) }),
+      onRule: ({ rule, index, total, skipped, findings, found }) => {
+        engineTotal = total;
+        void rules.progress({ rule, index, total: total + extra, skipped, findings, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) });
+      },
     });
+    // Screening (S1-S3) after the document rules, numbered after the last rule the engine reported.
+    const screened = await this.screening.screen(ctx);
+    for (const [i, def] of SCREENING_RULES.entries()) {
+      const found = screened.findings.filter((f) => f.ruleId === def.id);
+      output.ran.push(def.id);
+      output.findings.push(...found);
+      await rules.progress({ rule: def.id, index: engineTotal + i + 1, total: engineTotal + extra, skipped: false, findings: found.length, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) });
+    }
     const notApplicable = output.notApplicable?.length ?? 0;
     // An optional rule whose document is there but could not be read is missing input, so the user sees it.
     for (const ruleId of [...(output.notApplicable ?? [])]) {
@@ -481,7 +497,7 @@ export class ShipmentsService {
       }
     }
 
-    const agent = await this.runAgent(ctx, output, useAgent, run);
+    const agent = await this.runAgent(ctx, output, useAgent, run, screened.questions);
 
     const saved = await startStage(run.report, 'saved');
     await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination, ruleConfig: { ...applied, disabled: output.disabled } });
@@ -495,7 +511,7 @@ export class ShipmentsService {
    * Second pass: regulation citations, then the local model on ambiguous cases. Best effort: if the
    * model or the index is unavailable the rule findings are returned as they are, and the outcome says why.
    */
-  private async runAgent(ctx: ShipmentContext, output: EngineOutput, enabled: boolean, run: ProgressRun<'validation'>): Promise<AgentOutcome> {
+  private async runAgent(ctx: ShipmentContext, output: EngineOutput, enabled: boolean, run: ProgressRun<'validation'>, screening: ScreeningQuestion[] = []): Promise<AgentOutcome> {
     const outcome: AgentOutcome = { status: 'skipped', citations: 0, decisions: [] };
     const citations = await startStage(run.report, 'citations', { findings: output.findings.length });
     let citing = true;
@@ -517,6 +533,12 @@ export class ShipmentsService {
       const review = await reviewFindings(ctx, output.findings, this.llm, index ?? undefined, run.report);
       output.findings = review.findings;
       outcome.decisions = review.decisions;
+      // Borderline screening matches (S2) only: the model compares, never clears one.
+      if (screening.length > 0) {
+        const compared = await reviewScreeningMatches(output.findings, screening, this.llm);
+        output.findings = compared.findings;
+        outcome.decisions.push(...compared.decisions);
+      }
       outcome.status = 'done';
     } catch (err) {
       outcome.status = 'failed';

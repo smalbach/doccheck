@@ -1,0 +1,96 @@
+{
+  "thresholds": {
+    "match": 0.92,
+    "review": 0.82
+  },
+  "lists": {
+    "entries": 38383,
+    "source": "full"
+  },
+  "shipments": 260,
+  "injected": 260,
+  "recall": {
+    "exact": {
+      "cases": 44,
+      "flagged": 44,
+      "hit": 44
+    },
+    "case-and-legal-form": {
+      "cases": 44,
+      "flagged": 44,
+      "hit": 44
+    },
+    "alias": {
+      "cases": 43,
+      "flagged": 43,
+      "hit": 43
+    },
+    "typo": {
+      "cases": 43,
+      "flagged": 42,
+      "hit": 40
+    },
+    "extra-word": {
+      "cases": 43,
+      "flagged": 42,
+      "hit": 20
+    },
+    "word-order": {
+      "cases": 43,
+      "flagged": 43,
+      "hit": 43
+    }
+  },
+  "precision": {
+    "findings": 443,
+    "correct": 443,
+    "s1Findings": 366,
+    "s1Correct": 366
+  },
+  "falsePositives": [],
+  "misses": [
+    {
+      "shipmentId": "v1/US-006",
+      "kind": "injected",
+      "variant": "typo",
+      "role": "invoice.seller",
+      "written": "Huawei Technolgoies Co., Ltd.",
+      "entry": {
+        "list": "bis-el",
+        "id": "03af7d6df1cb349107d67791c92fcfba4422eda0c148aad1b730fc89",
+        "name": "Huawei Technologies Co., Ltd."
+      },
+      "got": [
+        {
+          "ruleId": "S1",
+          "party": "Huawei Technolgoies Co., Ltd.",
+          "list": "bis-el",
+          "entryId": "d39cedb3c858f0854bb219b12b242575696b55fa06157d354692d967",
+          "name": "Huawei Technologies Co., Ltd. (Huawei)",
+          "score": 0.992
+        },
+        {
+          "ruleId": "S1",
+          "party": "Huawei Technolgoies Co., Ltd.",
+          "list": "ofac-cons",
+          "entryId": "30947",
+          "name": "HUAWEI TECHNOLOGIES CO., LTD.",
+          "score": 0.991
+        }
+      ]
+    },
+    {
+      "shipmentId": "v2/CA-021",
+      "kind": "injected",
+      "variant": "extra-word",
+      "role": "billOfLading.shipper",
+      "written": "ADF Group",
+      "entry": {
+        "list": "un-sc",
+        "id": "CDe.001",
+        "name": "ADF"
+      },
+      "got": []
+    }
+  ]
+}

@@ -58,6 +58,9 @@ import type {
   ShipmentData,
   ShipmentDataQuery,
   SheetGrid,
+  AllowlistItem,
+  ScreeningSearch,
+  ScreeningStatus,
 } from './types';
 
 const shipmentPath = (id: string) => `/shipments/${encodeURIComponent(id)}`;
@@ -172,6 +175,16 @@ export const api = {
   adminModels: () => request<AdminModels>('/admin/models'),
   adminSystem: () => request<SystemStatus>('/admin/system'),
   adminUsers: () => request<UserSummary[]>('/admin/users'),
+  screeningLists: () => request<ScreeningStatus>('/screening/lists'),
+  screeningSearch: (q: { q: string; country?: string; city?: string }) => request<ScreeningSearch>(`/screening/search${queryString(q)}`),
+  screeningAllowlist: (opts: { history?: boolean; all?: boolean } = {}) =>
+    request<AllowlistItem[]>(`/screening/allowlist${queryString({ history: opts.history ? 'true' : undefined, all: opts.all ? 'true' : undefined })}`),
+  addAllowlist: (body: { partyName: string; list: string; entryId: string; reason: string }) => request<AllowlistItem>('/screening/allowlist', jsonBody(body)),
+  removeAllowlist: (id: string, reason?: string) => request<AllowlistItem>(`/screening/allowlist/${encodeURIComponent(id)}`, { ...jsonBody(reason ? { reason } : {}), method: 'DELETE' }),
+  adminScreening: () => request<ScreeningStatus>('/admin/screening'),
+  refreshScreening: () => request<ScreeningStatus>('/admin/screening/refresh', jsonBody({})),
+  setScreeningThresholds: (t: { match: number; review: number }) => request<ScreeningStatus>('/admin/screening/thresholds', jsonBody(t, 'PUT')),
+  resetScreeningThresholds: () => request<ScreeningStatus>('/admin/screening/thresholds', { method: 'DELETE' }),
   resetPassword: (id: string, newPassword: string) => request<void>(`/admin/users/${encodeURIComponent(id)}/password`, jsonBody({ newPassword })),
   setRole: (id: string, role: Role) => request<UserSummary[]>(`/admin/users/${encodeURIComponent(id)}`, { ...jsonBody({ role }), method: 'PATCH' }),
 };

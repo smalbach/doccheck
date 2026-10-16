@@ -30,4 +30,5 @@ export const NAV_PERMISSIONS: Record<string, OrgPermission> = {
   '#/app/data/shipments': 'data.read',
   '#/app/review': 'data.read',
   '#/app/usage': 'data.read',
+  '#/app/screening': 'data.read',
 };

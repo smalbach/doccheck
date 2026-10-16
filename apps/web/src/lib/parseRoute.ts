@@ -33,6 +33,8 @@ export type AppRoute =
   | { name: 'review-document'; id: string }
   | { name: 'usage'; checkout?: string }
   | { name: 'admin-plans' }
+  | { name: 'screening' }
+  | { name: 'admin-screening' }
   | { name: 'team' }
   | { name: 'audit' }
   | { name: 'approvals' }
@@ -69,6 +71,8 @@ const APP_PAGES: Record<string, AppRoute> = {
   '/app/admin/system': { name: 'admin-system' },
   '/app/review': { name: 'review-queue' },
   '/app/admin/plans': { name: 'admin-plans' },
+  '/app/screening': { name: 'screening' },
+  '/app/admin/screening': { name: 'admin-screening' },
   '/app/team': { name: 'team' },
   '/app/audit': { name: 'audit' },
   '/app/approvals': { name: 'approvals' },
