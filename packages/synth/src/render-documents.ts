@@ -43,7 +43,7 @@ export function renderAirWaybill(s: DocsShipment): string {
       <tr>${cell('Requested flight / date', `${esc(f?.flight)} / ${date(f?.date, 'legacy')}`)}${cell('Charges code', a.freightTerms === 'PREPAID' ? 'PP' : 'CC')}</tr>
     </table><br>
     <table><thead><tr><th>No. of pieces</th><th>Gross weight</th><th>kg / lb</th><th>Rate class</th><th>Chargeable weight</th><th>Nature and quantity of goods</th></tr></thead>
-    <tbody><tr><td class="num">${a.pieces}</td><td class="num">${esc(a.grossWeight.raw.value)}</td><td>${a.grossWeight.raw.unit === 'KG' ? 'K' : 'L'}</td><td>Q</td><td class="num">${esc(a.chargeableWeight?.raw.value)}</td><td>${esc(a.natureOfGoods)}<br>VOL ${esc(a.volumeM3)} M3</td></tr></tbody></table>
+    <tbody><tr><td>${a.pieces}</td><td class="num">${esc(a.grossWeight.raw.value)}</td><td>${a.grossWeight.raw.unit === 'KG' ? 'K' : 'L'}</td><td>Q</td><td class="num">${esc(a.chargeableWeight?.raw.value)}</td><td>${esc(a.natureOfGoods)}<br>VOL ${esc(a.volumeM3)} M3</td></tr></tbody></table>
     <p>Handling information: invoice ${esc(a.references?.join(', '))}</p>
     <table class="grid"><tr>${cell('Executed on (date)', date(a.executedOn, 'legacy'))}${cell('At (place)', esc(a.placeOfExecution))}</tr></table>
     ${signatureBlock('Signature of issuing carrier or its agent', a.carrier?.name ?? '', undefined)}`;

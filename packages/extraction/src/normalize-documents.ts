@@ -105,7 +105,7 @@ export function normalizeAirWaybill(raw: RawAirWaybill): NormalizeResult<AirWayb
         airportOfDestination: airport(raw.airportOfDestination),
         routing: routing.length ? routing : undefined,
         flights: flights.length ? flights : undefined,
-        pieces: integer(raw.pieces) ?? undefined,
+        pieces: integer(raw.numberOfPieces) ?? undefined,
         grossWeight: awbWeight(raw.grossWeight) ?? undefined,
         chargeableWeight: awbWeight(raw.chargeableWeight) ?? undefined,
         volumeM3: decimal(raw.volume) ?? undefined,

@@ -27,7 +27,8 @@ export const RawAirWaybill = z.object({
   airportOfDestination: RawAirport,
   routing: z.array(z.string()).describe('Airport codes of the routing boxes (to / by first carrier), in order; empty if not printed'),
   flights: z.array(z.object({ flight: text, date: text })).describe('Requested flight / date boxes'),
-  pieces: text.describe('No. of pieces'),
+  // Named for its label: as "pieces", qwen3.8 left it empty on every air waybill of set v1-docs.
+  numberOfPieces: text.describe('No. of pieces, as printed'),
   grossWeight: RawWeight.nullable(),
   chargeableWeight: RawWeight.nullable().describe('Only if a chargeable weight is printed'),
   volume: text.describe('Volume in cubic metres, if printed'),
@@ -95,7 +96,7 @@ export const RawArrivalNotice = z.object({
   consignee: RawParty,
   notifyParty: RawParty.nullable(),
   containers: z.array(z.object({ number: text, seal: text, type: text })),
-  packages: text,
+  packages: text.describe('Number of packages as printed under PACKAGES'),
   grossWeight: RawWeight.nullable(),
   cargoDescription: text,
   freightTerms: text,

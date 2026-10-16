@@ -15,3 +15,5 @@ export * from './spreadsheet-extract';
 export * from './image';
 export * from './attestation';
 export * from './inputs';
+export * from './raw-schemas-documents';
+export * from './normalize-documents';

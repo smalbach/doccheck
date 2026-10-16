@@ -1,0 +1,52 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 540,
+    "outputTokens": 417
+  },
+  "output": {
+    "shipper": {
+      "name": "Norte Manufacturas S.A. de C.V.",
+      "addressLines": [
+        "Av. Industrial 2450"
+      ],
+      "city": "Monterrey",
+      "region": "NL",
+      "postalCode": "64000",
+      "country": "MX",
+      "taxId": "NMA981204KL3"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "transportDocumentNumber": "176-59163366",
+    "mode": "Air",
+    "regulation": "IATA",
+    "items": [
+      {
+        "unNumber": "UN 3481",
+        "properShippingName": "LITHIUM ION BATTERIES CONTAINED IN EQUIPMENT",
+        "hazardClass": "9",
+        "subsidiaryRisk": null,
+        "packingGroup": "II",
+        "quantity": "16740 KG",
+        "unit": "KG",
+        "packages": null
+      }
+    ],
+    "emergencyContact": "+1 613 996 6666",
+    "signatoryName": "Li Wei",
+    "signatoryPlace": "Monterrey",
+    "signatureDate": "2026-02-05"
+  }
+}

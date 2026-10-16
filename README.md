@@ -26,6 +26,11 @@ Measured on synthetic shipments generated from a fixed seed (there is no public 
 | Extraction, unseen formats (v2) | Field accuracy, 180 PDFs (177 complete enough for the rules) | 98.8% |
 | Rules on v2 PDFs | Recall / precision, end to end | 100.0% / 100.0% |
 | Rules T1-T13 on ground truth (v1-docs) | Recall / precision on 49 injected errors in 40 shipments | 100.0% / 100.0% |
+| Extraction, other documents (v1-docs) | Field accuracy, 43 PDFs of 20 shipments, one layout per type (43 complete enough for the rules) · classification | 100.0% · 100.0% |
+| Rules on v1-docs PDFs | Recall / precision, end to end | 100.0% / 100.0% |
+| Spreadsheets (.xlsx invoice, .csv packing list) | Field accuracy, 40 sheets, read without a model (14 headers mapped by it) | 100.0% |
+| Invoice photos (JPEG, deskew + OCR) | Field accuracy, 20 photos (18 complete enough for the rules; 29 false findings on these clean shipments) | 91.2% |
+| Combined PDFs | Documents split with the right type and pages, 60 documents in 20 PDFs | 100.0% |
 | Agent | Same consignee written differently (40 cases): verdict / right action | 87.5% / 100.0% (0 wrong, 5 unsure) |
 | Agent | BL description vs invoice goods (40 cases): verdict / right action | 100.0% / 100.0% (0 wrong, 0 unsure) |
 

@@ -1,0 +1,115 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 800,
+    "outputTokens": 1065
+  },
+  "output": {
+    "invoiceNumber": "PO-75067",
+    "invoiceDate": "2026-04-24",
+    "poNumber": "PO-75067",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosan",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27TAABCP1234F1 Z5"
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "2026-05-02",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Mundra",
+    "paymentTerms": "L/C at sight",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "2,960",
+        "unit": "PCS",
+        "unitPrice": "14.64",
+        "unitPriceCurrency": null,
+        "lineTotal": "43,334.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "K451 60"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "quantity": "52",
+        "unit": "PCS",
+        "unitPrice": "77.63",
+        "unitPriceCurrency": null,
+        "lineTotal": "4,036.76",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "IN",
+        "hsCode": "B413.70"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "16,600",
+        "unit": "PCS",
+        "unitPrice": "127",
+        "unitPriceCurrency": null,
+        "lineTotal": "21,082.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      }
+    ],
+    "totalPackages": "283",
+    "grossWeight": {
+      "value": "7,047.50",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "6,576.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "68,453.16",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

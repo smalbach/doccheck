@@ -1,0 +1,90 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 776,
+    "outputTokens": 737
+  },
+  "output": {
+    "awbNumber": "176-59163366",
+    "documentTitle": "AIR WAYBILL",
+    "masterAwbNumber": null,
+    "carrierName": "Pacific Crest Air Cargo",
+    "shipper": {
+      "name": "Norte Manufacturas S.A. de C.V.",
+      "addressLines": [
+        "Av. Industrial 2450",
+        "Monterrey, NL, 64000",
+        "MX"
+      ],
+      "city": "Monterrey",
+      "region": "NL",
+      "postalCode": "64000",
+      "country": "MX",
+      "taxId": "NMA981204KL3"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd",
+        "Houston, TX, 77013",
+        "US"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041",
+        "US"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "airportOfDeparture": {
+      "name": "Mexico City",
+      "code": "MEX"
+    },
+    "airportOfDestination": {
+      "name": "Los Angeles",
+      "code": "LAX"
+    },
+    "routing": [
+      "Mexico City (MEX)",
+      "Los Angeles (LAX)"
+    ],
+    "flights": [
+      {
+        "flight": "PC146",
+        "date": "16-FEB-2026"
+      }
+    ],
+    "numberOfPieces": "279",
+    "grossWeight": {
+      "value": "16963.20",
+      "unit": "K"
+    },
+    "chargeableWeight": {
+      "value": "16963.20",
+      "unit": "K"
+    },
+    "volume": "39.76 M3",
+    "natureOfGoods": "GREEN COFFEE ARABICA",
+    "freightTerms": "CC",
+    "handlingInformation": "invoice CI/26/0789",
+    "references": [
+      "invoice CI/26/0789"
+    ],
+    "placeOfExecution": "Mexico City",
+    "executedOn": "15-FEB-2026"
+  }
+}

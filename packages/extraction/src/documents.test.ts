@@ -26,7 +26,7 @@ describe('normalizing the other documents', () => {
       awbNumber: 'SZXF0012345', documentTitle: 'HOUSE AIR WAYBILL', masterAwbNumber: '176-1234 5675', carrierName: 'Example Air Cargo',
       shipper: party('Acme Toys Co., Ltd.'), consignee: party('Maple Retail Inc.', 'Canada'), notifyParty: null,
       airportOfDeparture: { name: 'Shenzhen', code: 'SZX' }, airportOfDestination: { name: 'Toronto (YYZ)', code: null },
-      routing: ['SZX', 'YVR', 'yyz'], flights: [{ flight: 'xa821', date: '06-OCT-2026' }], pieces: '120', grossWeight: { value: '1,250.0', unit: 'K' },
+      routing: ['SZX', 'YVR', 'yyz'], flights: [{ flight: 'xa821', date: '06-OCT-2026' }], numberOfPieces: '120', grossWeight: { value: '1,250.0', unit: 'K' },
       chargeableWeight: { value: '1920', unit: 'KG' }, volume: '11.52 M3', natureOfGoods: 'PLUSH TOYS', freightTerms: 'CC', handlingInformation: null,
       references: ['INV-2026-0412'], placeOfExecution: 'Shenzhen', executedOn: '05-OCT-2026',
     };
