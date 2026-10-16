@@ -27,6 +27,10 @@ const QUERIES: Record<string, Partial<Record<Authority, string | null>>> = {
   E2: { UCC: 'EORI number identification number unique in the customs territory of the Union' },
   K2: { HMRC: "A GB EORI has 12 digits and the prefix 'GB'" },
   K3: { HMRC: 'statement on origin exporter reference number REX preferential origin' },
+  // Rules added after v1. X22 is about the same invoice charges as X12, so it cites the same passages.
+  X22: { CBSA: 'Field 9: Conditions of sale and terms of payment terms and conditions agreed upon by the vendor and the purchaser', CBP: 'all charges upon the merchandise itemized by name and amount including freight' },
+  U2: { CBSA: null, CBP: 'importer security filing data elements' },
+  U3: { CBSA: null, CBP: 'no later than 24 hours before the cargo is laden aboard the vessel at the foreign port' },
 };
 
 /** Completeness rules: their findings end with "(<authority> <ref>)", which the citation query keeps. */
@@ -77,6 +81,8 @@ export const INVOICE_REQUIREMENTS: Record<Authority, readonly string[]> = {
 /** Rules whose basis is a document of its own rather than the invoice requirements. */
 const RULE_SCOPE: Record<string, string[]> = {
   X11: ['cfr-19-149'],
+  U2: ['cfr-19-149'],
+  U3: ['cfr-19-149'],
   E2: ['eu-2015-2446', 'eu-ucc'],
   E3: ['eu-2015-2446'],
   K2: ['hmrc-eori'],

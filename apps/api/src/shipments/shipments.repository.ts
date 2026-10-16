@@ -59,6 +59,8 @@ export interface ValidationRow {
   findings: Finding[];
   agent?: unknown;
   destination?: Destination;
+  /** The rule settings, tolerances, run date and account history the run applied (null before they were recorded). */
+  ruleConfig?: unknown;
   createdAt?: string;
 }
 
@@ -143,6 +145,7 @@ const toValidation = (r: Record<string, unknown>): Omit<ValidationRow, 'findings
   inputs: r.inputs as Record<string, string>,
   agent: r.agent ?? undefined,
   ...(r.destination ? { destination: r.destination as Destination } : {}),
+  ...(r.rule_config ? { ruleConfig: r.rule_config } : {}),
   createdAt: new Date(r.created_at as string).toISOString(),
 });
 
@@ -751,8 +754,9 @@ export class ShipmentsRepository {
     const client = await this.pool.connect();
     try {
       await client.query('begin');
-      await client.query('insert into validations (id, shipment_id, ran, skipped, inputs, agent, destination) values ($1, $2, $3, $4, $5, $6, $7)', [
+      await client.query('insert into validations (id, shipment_id, ran, skipped, inputs, agent, destination, rule_config) values ($1, $2, $3, $4, $5, $6, $7, $8)', [
         v.id, v.shipmentId, JSON.stringify(v.ran), JSON.stringify(v.skipped), JSON.stringify(v.inputs), v.agent === undefined ? null : JSON.stringify(v.agent), v.destination ?? null,
+        v.ruleConfig === undefined ? null : JSON.stringify(v.ruleConfig),
       ]);
       for (const f of v.findings) {
         await client.query(

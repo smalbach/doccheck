@@ -11,8 +11,8 @@ import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseArgs } from 'node:util';
-import { runRules } from '@doccheck/rules';
-import { buildDataset, DESTINATION_ERROR_KINDS, EXTRA_ERROR_KINDS, injectErrors, Rng, V3_DESTINATIONS } from '@doccheck/synth';
+import { runRules, V1_RULE_IDS } from '@doccheck/rules';
+import { buildDataset, DESTINATION_ERROR_KINDS, evaluateRulesSet, EXTRA_ERROR_KINDS, injectErrors, Rng, V3_DESTINATIONS } from '@doccheck/synth';
 
 const { values } = parseArgs({ options: { model: { type: 'string', default: 'ollama_qwen3.8' }, reports: { type: 'string', default: 'eval/reports' } } });
 const pct = (x) => (x === null || x === undefined ? '—' : `${(x * 100).toFixed(1)}%`);
@@ -61,7 +61,7 @@ for (const id of ids) {
     billOfLading: { id: 'billOfLading', data: d.billOfLading },
     isf: d.isf && { id: 'isf', data: d.isf },
   };
-  const got = new Set(runRules(ctx).findings.map((f) => f.ruleId));
+  const got = new Set(runRules(ctx, {}, { only: V1_RULE_IDS }).findings.map((f) => f.ruleId));
   const expected = new Set(labels.flatMap((l) => l.expectedRuleIds));
   for (const r of new Set([...got, ...expected])) {
     const row = perRule.get(r) ?? { tp: 0, fp: 0, fn: 0 };
@@ -117,16 +117,19 @@ const toCtx = (s) => ({
   isf: s.documents.isf && { id: 'isf', data: s.documents.isf },
 });
 const cleans = buildDataset().map((e) => e.clean);
-const extraKinds = coverage(EXTRA_ERROR_KINDS, cleans);
+// Only the rules the shipments were written for: the v1 rules, plus the destination rules on set
+// v3-destinations. Rules added after v1 have their own set (v1-rules, below).
+const DESTINATION_RULE_IDS = ['M1', 'M2', 'M3', 'E1', 'E2', 'E3', 'K1', 'K2', 'K3'];
+const extraKinds = coverage(EXTRA_ERROR_KINDS, cleans, V1_RULE_IDS);
 // Destination error kinds alone on each clean v3-destinations shipment (each applies to some destinations only).
-const destinationKinds = coverage(DESTINATION_ERROR_KINDS, buildDataset(V3_DESTINATIONS).map((e) => e.clean));
+const destinationKinds = coverage(DESTINATION_ERROR_KINDS, buildDataset(V3_DESTINATIONS).map((e) => e.clean), [...V1_RULE_IDS, ...DESTINATION_RULE_IDS]);
 
-function coverage(kinds, cleans) {
+function coverage(kinds, cleans, only) {
   return kinds.map((kind) => {
     const row = { kind, rules: new Set(), injected: 0, tp: 0, fn: 0, fp: 0 };
     cleans.forEach((clean, i) => {
       const { shipment, labels } = injectErrors(clean, new Rng(0x9e37 + i), 1, [kind]);
-      const findings = runRules(toCtx(shipment)).findings;
+      const findings = runRules(toCtx(shipment), {}, { only }).findings;
       for (const label of labels) {
         row.injected++;
         label.expectedRuleIds.forEach((r) => row.rules.add(r));
@@ -141,6 +144,10 @@ function coverage(kinds, cleans) {
     return { ...row, ...pr(row) };
   });
 }
+
+// Rules added after v1 (X13–X24, C3, U2–U4) on set v1-rules: the clean v1 shipments completed with what
+// those rules read, one error kind at a time (packages/synth/src/rules-set.ts). Ground truth only.
+const laterRules = evaluateRulesSet(cleans);
 
 const totalOf = (table) => pr(table.reduce((a, r) => ({ tp: a.tp + r.tp, fp: a.fp + r.fp, fn: a.fn + r.fn }), { tp: 0, fp: 0, fn: 0 }));
 const extRules = extraction?.rules.table ?? [];
@@ -226,6 +233,17 @@ const md = [
   '| Error kind | Rule | Injected | Caught | Missed | Other findings | Recall (truth) | Precision (truth) |',
   '| --- | --- | --- | --- | --- | --- | --- | --- |',
   ...destinationKinds.map((k) => `| \`${k.kind}\` | ${[...k.rules].join(', ')} | ${k.injected} | ${k.tp} | ${k.fn} | ${k.fp} | ${pct(k.recall)} | ${pct(k.precision)} |`),
+  '',
+  '## Rules added after v1 (set v1-rules)',
+  '',
+  `Ground truth only. The v1 shipments predate rules X13–X24, C3 and U2–U4: they lack what those rules read (vessel IMO, VGM, ISF filing time) and carry made-up Business Numbers and SCACs. Set v1-rules completes each of the ${cleans.length} clean shipments with realistic values and an account history (past prices, earlier invoices, the purchase order), then injects one error kind at a time. A hit is every labeled rule citing the altered field. Completed clean shipments raising a finding: ${laterRules.cleanFindings.length}.`,
+  '',
+  '| Error kind | Rules | Injected | Caught | Missed | Other findings | Recall (truth) | Precision (truth) |',
+  '| --- | --- | --- | --- | --- | --- | --- | --- |',
+  ...laterRules.tallies.map((t) => {
+    const r = pr(t);
+    return `| \`${t.kind}\` | ${t.rules.join(', ')} | ${t.injected} | ${t.tp} | ${t.fn} | ${t.fp} | ${pct(r.recall)} | ${pct(r.precision)} |`;
+  }),
   '',
   ...(extraction
     ? [

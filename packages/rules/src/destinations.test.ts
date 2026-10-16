@@ -32,7 +32,9 @@ const shipment = (destination: 'MX' | 'EU' | 'GB'): ShipmentContext => {
   return ctx;
 };
 
-const findings = (ctx: ShipmentContext) => runRules(ctx).findings;
+// The fixture's carrier SCAC is made up: the account knows it (rule X15).
+const PARAMS = { knownScacs: ['EXLN'] };
+const findings = (ctx: ShipmentContext) => runRules(ctx, PARAMS).findings;
 const ids = (ctx: ShipmentContext) => findings(ctx).map((f) => f.ruleId);
 
 describe('profiles', () => {
@@ -48,7 +50,7 @@ describe('profiles', () => {
   });
 
   it.each(['MX', 'EU', 'GB'] as const)('%s: a clean shipment raises nothing', (d) => {
-    const out = runRules(shipment(d));
+    const out = runRules(shipment(d), PARAMS);
     expect(out.findings).toEqual([]);
     expect(out.ran).toEqual(expect.arrayContaining(PROFILES[d].rules.filter((r) => r !== 'X11')));
   });

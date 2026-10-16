@@ -1,8 +1,5 @@
 import type { Rule } from '../types';
 
-/** Days of difference tolerated between the invoice shipment date and the BL on-board date. */
-const MAX_DAYS = 7;
-
 const days = (a: string, b: string) => Math.round((Date.parse(`${a}T00:00:00Z`) - Date.parse(`${b}T00:00:00Z`)) / 86_400_000);
 
 /**
@@ -18,13 +15,14 @@ export const x9ShipmentDate: Rule = {
     requires: ['COMMERCIAL_INVOICE', 'BILL_OF_LADING'],
     kind: 'DETERMINISTIC',
     severity: 'LOW',
+    params: [{ key: 'shipmentDateDays', unit: 'days', min: 0, max: 60 }],
   },
-  run(ctx) {
+  run(ctx, params) {
     const shipped = ctx.invoice?.data.shipmentDate;
     const onBoard = ctx.billOfLading?.data.shippedOnBoardDate;
     if (!ctx.invoice || !ctx.billOfLading || !shipped || !onBoard) return [];
     const gap = days(onBoard, shipped);
-    if (Math.abs(gap) <= MAX_DAYS) return [];
+    if (Math.abs(gap) <= params.shipmentDateDays) return [];
     return [
       {
         message: `The invoice shows shipment on ${shipped}, but the BL was shipped on board on ${onBoard} (${Math.abs(gap)} days ${gap > 0 ? 'later' : 'earlier'}).`,

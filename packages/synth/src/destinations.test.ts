@@ -1,11 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { isValidEuEori, isValidGbEori, isValidRfc, runRules, type ShipmentContext } from '@doccheck/rules';
+import { isValidEuEori, isValidGbEori, isValidRfc, runRules, V1_RULE_IDS, type ShipmentContext } from '@doccheck/rules';
 import { BillOfLading, CommercialInvoice, PackingList } from '@doccheck/schemas';
 import { buildDataset, V3_DESTINATIONS } from './dataset';
 import { DESTINATION_ERROR_KINDS, injectErrors } from './errors';
 import type { SyntheticShipment } from './generate';
 import { renderHtml } from './pdf';
 import { Rng } from './rng';
+import { RULES_SET_PARAMS } from './rules-set';
+
+// Injected errors are labeled for the rules the set was written for; rules added after v1 have set v1-rules.
+const ONLY = { only: [...V1_RULE_IDS, 'M1', 'M2', 'M3', 'E1', 'E2', 'E3', 'K1', 'K2', 'K3'] };
 
 const context = (s: SyntheticShipment): ShipmentContext => ({
   shipmentId: s.id,
@@ -32,13 +36,13 @@ describe('dataset v3-destinations', () => {
       expect({ MX: isValidRfc, EU: isValidEuEori, GB: isValidGbEori }[s.destination as 'MX' | 'EU' | 'GB'](id), `${s.id} ${id}`).toBe(true);
       // An import crosses a customs border: no EU seller for the EU.
       if (s.destination === 'EU') expect(['CN', 'VN', 'IN', 'CO', 'PE', 'TR']).toContain(s.documents.invoice.seller.address.country);
-      expect(runRules(context(s)).findings).toEqual([]);
+      expect(runRules(context(s), RULES_SET_PARAMS).findings).toEqual([]);
     }
   });
 
   it('every labeled error is caught by its rule, with no other finding on the shipment', () => {
     for (const e of v3) {
-      const got = new Set(runRules(context(e.shipment)).findings.map((f) => f.ruleId));
+      const got = new Set(runRules(context(e.shipment), RULES_SET_PARAMS, ONLY).findings.map((f) => f.ruleId));
       const expected = new Set(e.labels.flatMap((l) => l.expectedRuleIds));
       expect([...got].sort(), e.shipment.id).toEqual([...expected].sort());
     }
@@ -51,7 +55,7 @@ describe('dataset v3-destinations', () => {
         const { shipment, labels } = injectErrors(clean, new Rng(0x51ed + i), 1, [kind]);
         for (const l of labels) {
           injected++;
-          const findings = runRules(context(shipment)).findings;
+          const findings = runRules(context(shipment), RULES_SET_PARAMS, ONLY).findings;
           expect(findings.map((f) => f.ruleId), `${kind} ${clean.id}`).toEqual(l.expectedRuleIds);
         }
       });

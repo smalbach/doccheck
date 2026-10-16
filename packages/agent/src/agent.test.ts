@@ -7,6 +7,9 @@ import { describe, expect, it } from 'vitest';
 import { attachRegulations, citationQuery } from './cite';
 import { countAgentQuestions, reviewFindings } from './review';
 
+// The fixture BL's carrier SCAC (EXLN) is made up: known to the account, as an NVOCC's would be (X15).
+const rules = (c: ShipmentContext) => runRules(c, { knownScacs: ['EXLN'] });
+
 const ctx = (): ShipmentContext =>
   structuredClone({
     shipmentId: 'shp-1',
@@ -43,7 +46,7 @@ describe('citations', () => {
   it('builds the query of a completeness finding from its field label and reference', () => {
     const c = ctx();
     delete c.invoice!.data.lines[0].countryOfOrigin;
-    const [finding] = runRules(c).findings;
+    const [finding] = rules(c).findings;
     expect(citationQuery(finding, 'CA')).toBe('Country of origin CI1 field 7');
   });
 
@@ -52,7 +55,7 @@ describe('citations', () => {
     delete c.invoice!.data.lines[0].countryOfOrigin;
     c.billOfLading!.data.containers[0].number = 'CSQU3054384';
     const cited: string[] = [];
-    const findings = await attachRegulations(runRules(c).findings, 'CA', await index(), (f) => {
+    const findings = await attachRegulations(rules(c).findings, 'CA', await index(), (f) => {
       cited.push(f.id);
       throw new Error('ignored');
     });
@@ -99,7 +102,7 @@ describe('citations on the real corpus', () => {
     ] as const) {
       const c = { ...ctx(), destination };
       delete c.invoice!.data.lines[0].countryOfOrigin;
-      const findings = await attachRegulations(runRules(c).findings.filter((f) => f.ruleId === ruleId && /^Country of origin/.test(f.message)), destination, index);
+      const findings = await attachRegulations(rules(c).findings.filter((f) => f.ruleId === ruleId && /^Country of origin/.test(f.message)), destination, index);
       expect(findings).toHaveLength(1);
       expect(findings[0].regulation?.url).toContain(url);
       expect(findings[0].regulation?.excerpt.startsWith(start)).toBe(true);
@@ -125,7 +128,7 @@ describe('agent review', () => {
   it('dismisses a name mismatch the model is confident is the same company', async () => {
     const c = ctx();
     c.billOfLading!.data.consignee = { ...sampleBillOfLading.consignee, name: 'Maple Retailers' };
-    const findings = runRules(c).findings;
+    const findings = rules(c).findings;
     expect(findings.map((f) => f.ruleId)).toEqual(['X1']);
     const llm = scripted([
       { sameParty: 'yes', confidence: 0.9, rationale: 'Same company.' },
@@ -143,7 +146,7 @@ describe('agent review', () => {
       { sameParty: 'unsure', confidence: 0.5, rationale: 'Cannot tell.' },
       { consistent: 'no', confidence: 0.9, rationale: 'Steel pipes are not toys.' },
     ]);
-    const review = await reviewFindings(c, runRules(c).findings, llm);
+    const review = await reviewFindings(c, rules(c).findings, llm);
     expect(review.findings.map((f) => [f.ruleId, f.decidedBy])).toEqual([['X1', 'RULE'], ['A1', 'AGENT']]);
     expect(review.findings[0].agentRationale).toBe('Cannot tell.');
   });
@@ -151,7 +154,7 @@ describe('agent review', () => {
   it('reports each question asked and answered, numbered against the total known up front', async () => {
     const c = ctx();
     c.billOfLading!.data.consignee = { ...sampleBillOfLading.consignee, name: 'Maple Retailers' };
-    const findings = runRules(c).findings;
+    const findings = rules(c).findings;
     expect(countAgentQuestions(c, findings)).toBe(2);
     expect(countAgentQuestions({ ...c, billOfLading: undefined }, findings)).toBe(0);
     const llm = scripted([
@@ -176,7 +179,7 @@ describe('agent review', () => {
   it('names the finding each question is about, and previews a finding the agent adds', async () => {
     const c = ctx();
     c.billOfLading!.data.consignee = { ...sampleBillOfLading.consignee, name: 'Maple Holdings' };
-    const findings = runRules(c).findings;
+    const findings = rules(c).findings;
     const x1 = findings.find((f) => f.ruleId === 'X1')!;
     const llm = scripted([
       { sameParty: 'unsure', confidence: 0.5, rationale: 'Cannot tell.' },

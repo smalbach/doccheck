@@ -752,3 +752,68 @@ describe('migration to organizations', () => {
     }
   });
 });
+
+describe('rule settings and purchase orders', () => {
+  it('belong to the organization: members read them, owners and admins change settings, viewers and clients change nothing', async () => {
+    const owner = await signUp('Rules owner');
+    await call('POST', '/orgs', { name: 'Rules Co' }, owner.cookie);
+    const analyst = await signUp('Rules analyst');
+    const viewer = await signUp('Rules viewer');
+    const client = await signUp('Rules client');
+    const outsider = await signUp('Rules outsider');
+    await join_(owner, analyst, 'analyst');
+    await join_(owner, viewer, 'viewer');
+    await join_(owner, client, 'client');
+
+    const config = { rules: { X8: { enabled: false } }, params: { knownScacs: ['EXLN'] } };
+    assert.equal((await call('PUT', '/rules/settings', config, owner.cookie)).status, 200);
+    for (const m of [analyst, viewer]) assert.deepEqual((await call('GET', '/rules/settings', undefined, m.cookie)).body.config, config);
+    for (const m of [analyst, viewer, client]) {
+      assert.equal((await call('PUT', '/rules/settings', {}, m.cookie)).status, 403);
+      assert.equal((await call('DELETE', '/rules/settings', undefined, m.cookie)).status, 403);
+    }
+    assert.equal((await call('GET', '/rules/settings', undefined, client.cookie)).status, 403);
+    // Another organization has its own (none).
+    assert.deepEqual((await call('GET', '/rules/settings', undefined, outsider.cookie)).body.config, {});
+
+    // Purchase orders: analysts import, viewers and clients cannot, outsiders do not see them.
+    const po = [{ poNumber: 'PO-4411', currency: 'USD', lines: [{ sku: 'TB-200', quantity: '6000', unit: 'PCS', unitPrice: '8.10' }] }];
+    assert.equal((await call('POST', '/purchase-orders', po, viewer.cookie)).status, 403);
+    assert.equal((await call('POST', '/purchase-orders', po, client.cookie)).status, 403);
+    assert.equal((await call('POST', '/purchase-orders', po, analyst.cookie)).status, 201);
+    const [order] = (await call('GET', '/purchase-orders', undefined, viewer.cookie)).body;
+    assert.equal(order.poNumber, 'PO-4411');
+    assert.equal((await call('GET', '/purchase-orders', undefined, client.cookie)).status, 403);
+    assert.deepEqual((await call('GET', '/purchase-orders', undefined, outsider.cookie)).body, []);
+    assert.equal((await call('DELETE', `/purchase-orders/${order.id}`, undefined, outsider.cookie)).status, 404);
+    assert.equal((await call('DELETE', `/purchase-orders/${order.id}`, undefined, viewer.cookie)).status, 403);
+
+    // A run in the organization applies its settings and matches its PO; the run records them.
+    const { s } = await shipmentWithFinding(analyst.cookie);
+    const run = (await call('GET', `/shipments/${s.id}/validation`, undefined, analyst.cookie)).body;
+    assert.deepEqual(run.findings.map((f) => f.ruleId), ['X2']);
+    assert.equal(run.ruleConfig.scope, 'organization');
+    assert.deepEqual(run.ruleConfig.disabled, ['X8']);
+    assert.equal(run.ruleConfig.account.purchaseOrder, 'PO-4411');
+    assert.equal((await call('DELETE', `/purchase-orders/${order.id}`, undefined, analyst.cookie)).status, 204);
+  });
+
+  it('finds a duplicate invoice only among the organization’s own shipments', async () => {
+    const a = await signUp('Dup A');
+    const b = await signUp('Dup B');
+    for (const m of [a, b]) await call('PUT', '/rules/settings', { params: { knownScacs: ['EXLN'] } }, m.cookie);
+    // An earlier shipment of A with the same invoice, extracted (projected to the invoices table).
+    const { body: first } = await call('POST', '/shipments', { destination: 'CA', reference: 'first' }, a.cookie);
+    const docId = randomUUID();
+    await repo.insertDocument({ id: docId, shipmentId: first.id, fileName: 'invoice.pdf', storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+    await repo.saveExtraction(docId, { pageCount: 1, detectedType: 'COMMERCIAL_INVOICE', typeConfidence: 1 }, { documentId: docId, documentType: 'COMMERCIAL_INVOICE', model: 'test', promptVersion: 'test', raw: {}, data: sampleInvoice, issues: [], pdfLines: [] });
+
+    const docs = { invoice: sampleInvoice, packingList: samplePackingList, billOfLading: sampleBillOfLading };
+    const again = (await call('POST', '/shipments', { destination: 'CA' }, a.cookie)).body;
+    const mine = (await call('POST', `/shipments/${again.id}/validate?agent=false`, docs, a.cookie)).body;
+    assert.deepEqual(mine.findings.map((f) => f.ruleId), ['X17']);
+    assert.ok(mine.findings[0].evidence.some((e) => e.documentId === docId));
+    const other = (await call('POST', '/shipments', { destination: 'CA' }, b.cookie)).body;
+    assert.deepEqual((await call('POST', `/shipments/${other.id}/validate?agent=false`, docs, b.cookie)).body.findings, []);
+  });
+});

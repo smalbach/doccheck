@@ -39,6 +39,7 @@ const AuditPage = lazy(() => team().then((m) => ({ default: m.AuditPage })));
 const ApprovalsPage = lazy(() => team().then((m) => ({ default: m.ApprovalsPage })));
 const NotificationsPage = lazy(() => team().then((m) => ({ default: m.NotificationsPage })));
 const RulesPage = lazy(() => import('../../features/rules/RulesPage').then((m) => ({ default: m.RulesPage })));
+const RuleSettingsPage = lazy(() => import('../../features/rules/RuleSettingsPage').then((m) => ({ default: m.RuleSettingsPage })));
 
 /** The page component of an app route. */
 export function RoutePage({ route }: { route: AppRoute }) {
@@ -75,6 +76,8 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return <DataShipmentsPage />;
     case 'rules':
       return <RulesPage />;
+    case 'rule-settings':
+      return <RuleSettingsPage />;
     case 'results':
       return <ResultsPage />;
     case 'account':

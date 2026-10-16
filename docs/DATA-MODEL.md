@@ -42,6 +42,14 @@ Números en `numeric` (sin floats), fechas en `date`, pesos en kg con el valor y
 
 - **`current_documents`**: el documento de cada tipo que usa la validación (el último extraído).
 
+### Reglas por organización (migración 041)
+
+No son proyección de documentos: las escribe la organización (ver [ORGANIZATIONS.md](ORGANIZATIONS.md)).
+
+- **`rule_settings`**: ajustes de reglas por organización (`org_id`). `config` guarda solo lo que difiere de los valores por defecto (`RuleConfig`: reglas apagadas, severidad, tolerancias, SCAC conocidos); sin fila, la validación se comporta igual que sin ajustes.
+- **`purchase_orders`**: órdenes de compra de la organización (`org_id`; `user_id` = quién la importó), importadas (CSV o JSON) para la regla X24. `po_key` (mayúsculas, solo letras y dígitos) las encuentra desde el PO de la factura; `lines` en jsonb con cantidades y precios como texto decimal. El mismo número reemplaza la orden anterior.
+- **`validations.rule_config`**: lo que aplicó cada validación: ajustes, todas las tolerancias vigentes, fecha de la corrida (`asOf`), reglas apagadas y cuánta historia de la organización comparó (facturas, precios, orden de compra). Las reglas X17 y X23 leen `invoices` e `invoice_lines` de los otros envíos de la organización (`org_id`).
+
 ## En la app
 
 Grupo **Datos** del menú lateral, una página por módulo:

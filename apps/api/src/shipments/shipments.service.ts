@@ -10,6 +10,7 @@ import {
 import { isDemo } from '../demo/demo-mode';
 import { InjectLlm, RegulationsService } from '../llm/llm.module';
 import type { ProgressRun } from '../progress/progress-run';
+import { RuleSettingsService } from '../rules/rule-settings.service';
 import { ProgressRepository } from '../progress/progress.repository';
 import { ProgressService } from '../progress/progress.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
@@ -81,6 +82,7 @@ export class ShipmentsService {
     private readonly requests: ReviewRequestsRepository,
     private readonly notifications: NotificationsService,
     private readonly audit: AuditService,
+    private readonly ruleSettings: RuleSettingsService,
     private readonly usage: UsageService,
     private readonly review: ReviewService,
   ) {}
@@ -402,8 +404,14 @@ export class ShipmentsService {
     }
     const documents = [ctx.invoice, ctx.packingList, ctx.billOfLading, ctx.isf].filter(Boolean).length;
     const rules = await startStage(run.report, 'rules', { documents });
+    // The account's rule settings, its history (earlier invoices, prices, purchase orders) and the run
+    // date; what was applied is saved with the run.
+    const { config, account, asOf, applied } = await this.ruleSettings.forValidation(ctx);
+    ctx.account = account;
+    ctx.asOf = asOf;
     // Each rule's findings go out with it (a few, cut short), so the web can show them as they are found.
     const output = runRules(ctx, {}, {
+      config,
       onRule: ({ rule, index, total, skipped, findings, found }) =>
         void rules.progress({ rule, index, total, skipped, findings, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) }),
     });
@@ -432,7 +440,7 @@ export class ShipmentsService {
     const agent = await this.runAgent(ctx, output, useAgent, run);
 
     const saved = await startStage(run.report, 'saved');
-    await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination });
+    await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination, ruleConfig: { ...applied, disabled: output.disabled } });
     await this.repo.setStatus(id, output.skipped.length > 0 ? 'NEEDS_INPUT' : 'DONE');
     await this.usage.record(id, 'validation');
     await saved.done({ validationId, findings: output.findings.length, skipped: output.skipped.length, agent: agent.status });

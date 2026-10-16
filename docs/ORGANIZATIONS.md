@@ -68,6 +68,7 @@ Per organization and destination: CBSA asks importers to keep records 6 years (C
 | `review_requests`, `finding_reviews.approved_by` | two-step decisions |
 | `shipments.eta`, `shipments.due_at`, view `shipment_due` | due dates |
 | `audit_log` | append-only, hash-chained |
+| `rule_settings`, `purchase_orders` (migration 041) | rules on/off, severities and tolerances per organization (`org.settings` to change); purchase orders for rule X24 (`shipment.write` to import) |
 | `sessions.id/org_id/ip/user_agent/method/last_seen_at`, `mfa_recovery_codes`, `mfa_challenges`, `users.mfa_*` | sessions and TOTP |
 | `org_sso`, `sso_states` | OpenID Connect |
 
