@@ -12,6 +12,7 @@ import { liveValidationRun } from '../../lib/validationCaption';
 import { DocumentDataSheet } from '../document-data/DocumentDataSheet';
 import { ComposeDialog } from '../mail/ComposeDialog';
 import { ThreadsCard } from '../mail/ThreadsCard';
+import { TariffCard } from '../tariff/TariffCard';
 import type { ViewerTarget } from '../pdf/types';
 import { DocumentsCard } from './DocumentsCard';
 import { EditShipmentDialog } from './EditShipmentDialog';
@@ -99,6 +100,7 @@ export function ShipmentPage({ id }: { id: string }) {
           notice={<ValidationNotice shipment={shipment} validation={validation} past={!!history.past} onShowLatest={history.showLatest} />}
         />
       </div>
+      <TariffCard validation={validation} />
       <ThreadsCard shipmentId={id} actions={!demo && <ComposeDialog mode="message" shipmentId={id} reference={shipment.reference ?? ''} />} />
       <ValidationHistory
         runs={history.runs}

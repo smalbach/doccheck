@@ -1,8 +1,9 @@
 import { BadRequestException, ConflictException, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { createHash, randomUUID } from 'node:crypto';
-import { attachRegulations, reviewFindings, type AgentDecision } from '@doccheck/agent';
+import { attachRegulations, classificationExtension, reviewFindings, type AgentDecision } from '@doccheck/agent';
 import { findFieldSource, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
-import { runRules, type EngineOutput, type ShipmentContext } from '@doccheck/rules';
+import { runRules, type EngineOutput, type RuleProgress, type ShipmentContext } from '@doccheck/rules';
+import { runTariffRules, TARIFF_RULE_COUNT, tariffLines, type TariffLineReport } from '@doccheck/tariff';
 import {
   applyPointerChanges, BillOfLading, CANCELLED_ERROR, clip, CommercialInvoice, diffPointers, fieldPointer, findingPreview, FINDING_PREVIEWS_PER_RULE, Isf, PackingList, readPointer, startStage, toPointer,
   type Destination, type PointerChange, type Shipment, type ShipmentDocument,
@@ -13,6 +14,7 @@ import type { ProgressRun } from '../progress/progress-run';
 import { ProgressRepository } from '../progress/progress.repository';
 import { ProgressService } from '../progress/progress.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
+import { TariffService } from '../tariff/tariff.service';
 import { DocumentProcessor } from './document.processor';
 import { ExtractionQueue } from './extraction.queue';
 import { FindingReviewsRepository } from './reviews.repository';
@@ -51,6 +53,8 @@ export interface AgentOutcome {
   citations: number;
   decisions: AgentDecision[];
   error?: string;
+  /** Per invoice line: declared HS code, whether it exists, agency flags, the model's view and suggestions. */
+  tariff?: { schedule?: string; url?: string; unavailable: string[]; lines: TariffLineReport[] };
 }
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -73,6 +77,7 @@ export class ShipmentsService {
     private readonly progressRepo: ProgressRepository,
     private readonly processor: DocumentProcessor,
     private readonly reviews: FindingReviewsRepository,
+    private readonly tariff: TariffService,
   ) {}
 
   async create(dto: CreateShipmentDto, userId: string): Promise<Shipment> {
@@ -371,11 +376,18 @@ export class ShipmentsService {
     const documents = [ctx.invoice, ctx.packingList, ctx.billOfLading, ctx.isf].filter(Boolean).length;
     const rules = await startStage(run.report, 'rules', { documents });
     // Each rule's findings go out with it (a few, cut short), so the web can show them as they are found.
-    const output = runRules(ctx, {}, {
-      onRule: ({ rule, index, total, skipped, findings, found }) =>
-        void rules.progress({ rule, index, total, skipped, findings, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) }),
-    });
-    await rules.done({ ran: output.ran.length, skipped: output.skipped.length, total: output.ran.length + output.skipped.length, findings: output.findings.length });
+    const tariff = await this.tariff.get(destination);
+    const report = ({ rule, index, total, skipped, findings, found }: RuleProgress) =>
+      void rules.progress({ rule, index, total, skipped, findings, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) });
+    const output = runRules(ctx, {}, { onRule: (p) => report({ ...p, total: p.total + TARIFF_RULE_COUNT }) });
+    // Tariff rules (HS codes, partner agencies, export control) run after them, in the same stage.
+    const ruleCount = output.ran.length + output.skipped.length;
+    const tariffOutput = runTariffRules(ctx, { schedule: tariff?.schedule }, { onRule: report, offset: ruleCount, total: ruleCount + TARIFF_RULE_COUNT });
+    output.findings.push(...tariffOutput.findings);
+    output.ran.push(...tariffOutput.ran);
+    output.skipped.push(...tariffOutput.skipped);
+    const tariffLinesReport = tariffLines(ctx, tariff?.schedule);
+    await rules.done({ ran: output.ran.length, skipped: output.skipped.length, total: output.ran.length + output.skipped.length + tariffOutput.unavailable.length, findings: output.findings.length });
 
     const sources = [...extracted.values(), ...(isfPdf ? [isfPdf] : [])];
     const sourceById = new Map(sources.map((e) => [e.documentId, e]));
@@ -397,7 +409,12 @@ export class ShipmentsService {
       }
     }
 
-    const agent = await this.runAgent(ctx, output, useAgent, run);
+    const agent = await this.runAgent(ctx, output, useAgent, run, tariffLinesReport);
+    agent.tariff = {
+      ...(tariff ? { schedule: `${tariff.schedule.file.title}, ${tariff.schedule.file.edition}`, url: tariff.schedule.file.url } : {}),
+      unavailable: tariffOutput.unavailable,
+      lines: tariffLinesReport,
+    };
 
     const saved = await startStage(run.report, 'saved');
     await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination });
@@ -410,7 +427,7 @@ export class ShipmentsService {
    * Second pass: regulation citations, then the local model on ambiguous cases. Best effort: if the
    * model or the index is unavailable the rule findings are returned as they are, and the outcome says why.
    */
-  private async runAgent(ctx: ShipmentContext, output: EngineOutput, enabled: boolean, run: ProgressRun<'validation'>): Promise<AgentOutcome> {
+  private async runAgent(ctx: ShipmentContext, output: EngineOutput, enabled: boolean, run: ProgressRun<'validation'>, lines: TariffLineReport[] = []): Promise<AgentOutcome> {
     const outcome: AgentOutcome = { status: 'skipped', citations: 0, decisions: [] };
     const citations = await startStage(run.report, 'citations', { findings: output.findings.length });
     let citing = true;
@@ -428,8 +445,12 @@ export class ShipmentsService {
         await run.emit({ stage: 'agent', status: 'skipped', detail: { reason: 'disabled' } });
         return outcome;
       }
+      // Tariff classification questions join the agent stage. Not in the read-only demo: its cached
+      // answers predate them, and a missing answer would fail the whole stage.
+      const tariff = isDemo() ? null : await this.tariff.get(ctx.destination);
+      const extensions = tariff && ctx.invoice ? [await classificationExtension(ctx, lines, this.llm, tariff)] : [];
       // The agent stage reports itself (started, one progress event per question asked and answered, done or failed).
-      const review = await reviewFindings(ctx, output.findings, this.llm, index ?? undefined, run.report);
+      const review = await reviewFindings(ctx, output.findings, this.llm, index ?? undefined, run.report, extensions);
       output.findings = review.findings;
       outcome.decisions = review.decisions;
       outcome.status = 'done';

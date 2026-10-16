@@ -2,6 +2,7 @@
 //   eval/reports/extraction-<model>.json   (npm run eval:extraction)
 //   eval/reports/extraction-<model>-v1-scans.json, -v1-isf.json   (same, with --data data/eval/v1-scans or v1-isf)
 //   eval/reports/agent-<model>.json        (npm run eval:agent)
+//   eval/reports/classification-<model>.json   (npm run eval:classification)
 // plus the rule engine on the ground-truth documents of data/eval/v1, and on error kinds that v1 does
 // not inject (applied one at a time to the clean v1 shipments). Run `npm run build` first.
 //
@@ -23,6 +24,7 @@ const scans = await readJson(join(values.reports, `extraction-${values.model}-v1
 const isfSet = await readJson(join(values.reports, `extraction-${values.model}-v1-isf.json`));
 const v2 = await readJson(join(values.reports, `extraction-${values.model}-v2.json`));
 const scansUnlimited = await readJson(join(values.reports, `extraction-${values.model}-v1-scans-unlimited.json`));
+const classification = await readJson(join(values.reports, `classification-${values.model}.json`));
 
 // Every report records the model build it ran with; numbers from different builds should not be mixed.
 const builds = [
@@ -32,6 +34,7 @@ const builds = [
   ['extraction v2', v2],
   ['extraction v1-scans (Unlimited-OCR)', scansUnlimited],
   ['agent', agent],
+  ['classification', classification],
 ]
   .filter(([, r]) => r)
   .map(([name, r]) => ({ name, build: r.modelVersion ?? 'not recorded' }));
@@ -129,6 +132,8 @@ const headline = [
   v2 ? `| Rules on v2 PDFs | Recall / precision, end to end | ${pct(totalOf(v2.rules.table).recall)} / ${pct(totalOf(v2.rules.table).precision)} |` : null,
   agentRow('party') ? `| Agent | Same consignee written differently (${agentRow('party').cases} cases): verdict / right action | ${pct(agentRow('party').accuracy)} / ${pct(agentRow('party').effectAccuracy)} (${agentRow('party').wrong} wrong, ${agentRow('party').unsure} unsure) |` : null,
   agentRow('description') ? `| Agent | BL description vs invoice goods (${agentRow('description').cases} cases): verdict / right action | ${pct(agentRow('description').accuracy)} / ${pct(agentRow('description').effectAccuracy)} (${agentRow('description').wrong} wrong, ${agentRow('description').unsure} unsure) |` : null,
+  classification ? `| Agent | HS heading fits the goods description (${classification.summary.fit.cases} cases): verdict / right action | ${pct(classification.summary.fit.accuracy)} / ${pct(classification.summary.fit.effectAccuracy)} (${classification.summary.fit.wrong} wrong, ${classification.summary.fit.unsure} unsure) |` : null,
+  classification ? `| Tariff search | Right heading in the top 5 for ${classification.summary.retrieval.cases} goods descriptions (${classification.summary.retrieval.mode}) / in the model's top 3 suggestions | ${pct(classification.summary.retrieval.headingAt5)} / ${pct(classification.summary.suggest.headingTop3)} |` : null,
 ].filter(Boolean);
 
 const md = [
@@ -260,6 +265,22 @@ const md = [
         '| Decision | Cases | Verdict accuracy | When answered | Wrong | Unsure | Right action |',
         '| --- | --- | --- | --- | --- | --- | --- |',
         ...agent.summary.map((s) => `| ${s.kind === 'party' ? 'Same consignee? (X1)' : 'BL description consistent? (A1)'} | ${s.cases} | ${pct(s.accuracy)} | ${pct(s.accuracyWhenAnswered)} | ${s.wrong} | ${s.unsure} | ${pct(s.effectAccuracy)} |`),
+        '',
+      ]
+    : []),
+  ...(classification
+    ? [
+        '## Tariff classification',
+        '',
+        `Goods with a known subheading: those of the synthetic set and common goods across chapters (\`data/eval/classification/cases.json\`), against the ${classification.edition}. Model build ${classification.modelVersion ?? 'unknown'} · prompt \`${classification.promptVersion}\` · search ${classification.summary.retrieval.mode}. Each good is asked with its own heading (expected yes) and a wrong one (expected no): a heading from another chapter, or a trap a chapter note excludes (a child's bicycle as a toy). An A2 finding is added only on a confident "no".`,
+        '',
+        '| Measure | Cases | Result |',
+        '| --- | --- | --- |',
+        `| Search: right heading in the top 5 | ${classification.summary.retrieval.cases} | ${pct(classification.summary.retrieval.headingAt5)} (subheading ${pct(classification.summary.retrieval.subheadingAt5)}) |`,
+        `| Fit verdict (A2) | ${classification.summary.fit.cases} | ${pct(classification.summary.fit.accuracy)}, ${pct(classification.summary.fit.accuracyWhenAnswered)} when answered (${classification.summary.fit.wrong} wrong, ${classification.summary.fit.unsure} unsure) |`,
+        `| Fit, right action on the finding | ${classification.summary.fit.cases} | ${pct(classification.summary.fit.effectAccuracy)} |`,
+        ...classification.summary.fit.byKind.map((k) => `| Fit verdict, ${k.why === 'right' ? 'right heading' : k.why === 'trap' ? 'wrong heading a note excludes' : 'wrong heading from another chapter'} | ${k.cases} | ${pct(k.accuracy)} |`),
+        `| Suggestion without a code: right heading in the top 3 | ${classification.summary.suggest.cases} | ${pct(classification.summary.suggest.headingTop3)} (exact subheading first ${pct(classification.summary.suggest.exactTop1)}) |`,
         '',
       ]
     : []),

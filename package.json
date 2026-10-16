@@ -9,14 +9,17 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/synth -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/agent && npm run build -w @doccheck/api -w @doccheck/web",
-    "test": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations && npm run test --workspaces --if-present",
+    "build": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/synth -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/tariff -w @doccheck/agent && npm run build -w @doccheck/api -w @doccheck/web",
+    "test": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/tariff && npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "dev": "npm run start:dev -w @doccheck/api",
     "smoke": "node scripts/smoke.mjs",
     "synth": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/synth && node packages/synth/dist/cli.js",
     "eval:extraction": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction && node packages/extraction/dist/eval-cli.js",
-    "eval:agent": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/agent && node packages/agent/dist/eval-cli.js",
+    "eval:agent": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/tariff -w @doccheck/agent && node packages/agent/dist/eval-cli.js",
+    "eval:classification": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/tariff -w @doccheck/agent && node packages/agent/dist/classification-eval-cli.js",
+    "tariff:fetch": "node scripts/fetch-tariff.mjs",
+    "tariff:index": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/regulations -w @doccheck/tariff && node packages/tariff/dist/cli.js index",
     "corpus:fetch": "node scripts/fetch-corpus.mjs",
     "corpus:index": "npm run build -w @doccheck/regulations && node packages/regulations/dist/cli.js index",
     "start": "node apps/api/dist/main.js",
@@ -34,6 +37,7 @@
   "devDependencies": {
     "@types/node": "^22.0.0",
     "axe-core": "4.13.0",
+    "mdb-reader": "^3.2.0",
     "typescript": "~6.0.2",
     "vitest": "^5.0.0"
   }

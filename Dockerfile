@@ -25,6 +25,7 @@ COPY --from=build /app/packages/regulations/package.json packages/regulations/
 COPY --from=build /app/packages/rules/package.json packages/rules/
 COPY --from=build /app/packages/schemas/package.json packages/schemas/
 COPY --from=build /app/packages/synth/package.json packages/synth/
+COPY --from=build /app/packages/tariff/package.json packages/tariff/
 COPY --from=build /app/apps/api/package.json apps/api/
 COPY --from=build /app/apps/web/package.json apps/web/
 RUN npm ci --omit=dev --no-audit --no-fund -w @doccheck/api \
@@ -54,6 +55,8 @@ COPY --from=build /app/packages/rules/package.json packages/rules/
 COPY --from=build /app/packages/rules/dist packages/rules/dist
 COPY --from=build /app/packages/schemas/package.json packages/schemas/
 COPY --from=build /app/packages/schemas/dist packages/schemas/dist
+COPY --from=build /app/packages/tariff/package.json packages/tariff/
+COPY --from=build /app/packages/tariff/dist packages/tariff/dist
 COPY --from=build /app/apps/api/package.json apps/api/
 COPY --from=build /app/apps/api/dist apps/api/dist
 COPY --from=build /app/apps/api/migrations apps/api/migrations
@@ -61,6 +64,8 @@ COPY --from=build /app/apps/web/dist apps/web/dist
 # Regulation corpus and its embedding index (data/corpus/index/*.queries.json holds the citation
 # query vectors the demo replays). Evaluation reports feed the Results page.
 COPY data/corpus data/corpus
+# HTSUS and Customs Tariff schedules with their notes and subheading embeddings (tariff checks).
+COPY data/tariff data/tariff
 COPY eval/reports eval/reports
 # Read-only demo: curated samples (npm run demo:build) and the model answers they replay.
 COPY data/demo data/demo

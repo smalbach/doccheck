@@ -11,9 +11,10 @@ import { HealthController } from './health/health.controller';
 import { RulesController } from './rules/rules.controller';
 import { ShipmentsModule } from './shipments/shipments.module';
 import { StorageModule } from './storage/storage';
+import { TariffModule } from './tariff/tariff.module';
 
 @Module({
-  imports: [DbModule, StorageModule, LlmModule, ProgressModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule],
+  imports: [DbModule, StorageModule, LlmModule, ProgressModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule, TariffModule],
   controllers: [HealthController, RulesController, ResultsController],
 })
 export class AppModule {}

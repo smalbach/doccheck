@@ -78,6 +78,47 @@ export interface AgentDecision {
   effect: 'kept' | 'dismissed' | 'added' | 'none';
 }
 
+/** Whether a declared HS code is in the destination schedule (packages/tariff, codeStatus). */
+export type TariffCodeStatus = 'valid' | 'subheading' | 'heading' | 'national-unknown' | 'unknown' | 'malformed' | 'missing' | 'not-checked';
+
+export interface AgencyFlag {
+  id: string;
+  agency: string;
+  program: string;
+  severity: 'LOW' | 'MEDIUM';
+}
+
+export interface TariffNoteQuote {
+  ref: string;
+  url: string;
+  excerpt: string;
+}
+
+/** One invoice line as the tariff check sees it. */
+export interface TariffLine {
+  index: number;
+  lineNo: number;
+  description: string;
+  declared?: string;
+  code?: string;
+  status: TariffCodeStatus;
+  title?: string;
+  agencies: AgencyFlag[];
+  exportControl: { id: string; category: number; label: string }[];
+  fit?: { verdict: 'yes' | 'no' | 'unsure'; confidence: number; rationale: string; notes: TariffNoteQuote[]; by: 'agent' | 'search' };
+  suggestions?: { code: string; title: string; confidence?: number; rationale?: string; agencies: AgencyFlag[] }[];
+  suggestionNotes?: TariffNoteQuote[];
+}
+
+export interface TariffReport {
+  /** "Harmonized Tariff Schedule of the United States, 2026 HTS Revision 21"; absent when no schedule was loaded. */
+  schedule?: string;
+  url?: string;
+  /** Tariff rules that did not run for lack of the schedule. */
+  unavailable: string[];
+  lines: TariffLine[];
+}
+
 export interface SkippedRule {
   ruleId: string;
   missing: DocumentType[];
@@ -91,7 +132,7 @@ export interface Validation {
   ran: string[];
   skipped: SkippedRule[];
   inputs: Record<string, string>;
-  agent?: { status: 'done' | 'skipped' | 'failed'; citations: number; decisions: AgentDecision[]; error?: string };
+  agent?: { status: 'done' | 'skipped' | 'failed'; citations: number; decisions: AgentDecision[]; error?: string; tariff?: TariffReport };
   findings: ValidationFinding[];
   /** Latest run only: the run before it, and its findings that are gone (resolved). */
   previous?: { id: string; createdAt: string };

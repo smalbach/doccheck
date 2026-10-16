@@ -198,6 +198,19 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | C2 | Invoice is in English or French | CA | Medium |
 | U1 | Invoice has the information 19 CFR 141.86(a) requires (port of entry, time of sale, parties, description, quantity, price, currency, origin) | US | per field |
 
+### Tariff rules (packages/tariff)
+
+| ID | Rule | Applies to | Severity |
+| --- | --- | --- | --- |
+| H1 | HS codes are complete: 6, 8 or 10 digits (ISF: at least 6) | CA, US | Medium (ISF High) |
+| H2 | HS codes exist in the destination schedule (HTSUS or Customs Tariff); foreign national digits flagged separately | CA, US | High / Medium |
+| H3 | Same SKU, same HS subheading across invoice lines and packing list | CA, US | Medium |
+| P1 | Partner agency (US PGA: FDA, USDA, EPA, FCC, CPSC, NHTSA, ATF, DEA; CA OGD: CFIA, Health Canada, ECCC, Transport Canada, GAC) likely needed, with the regulation cited | CA, US | Low / Medium |
+| E1 | Possible dual-use item (CCL / ECL categories 3, 4, 5, also 6 and 9), informational | CA, US | Low |
+| A2 | Agent: declared heading fits the description, judged against the retrieved section and chapter notes; never changes the code | CA, US | Medium |
+
+`npm run tariff:fetch` downloads the USITC HTSUS export and the CBSA Customs Tariff (Access database) with the section and chapter notes into `data/tariff`; `npm run tariff:index` embeds every tariff line with bge-m3 into `data/tariff/index` (git-ignored, ~15 min), copied into Postgres when pgvector is installed (migration 019). Without the index the description search uses BM25 only. Lines without a code get up to three suggested subheadings, shown on the shipment page as suggestions, not findings. `npm run eval:classification` measures the search and the A2 verdicts.
+
 Completeness rules report one finding per missing field, citing the CI1 field or the 141.86 paragraph. Regulation excerpts are attached by the agent in phase 4.
 
 Money and weights are decimal strings and use fixed-point arithmetic — never JavaScript floats.
