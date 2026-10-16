@@ -20,7 +20,7 @@ export function ScreeningListsTable({ lists }: { lists: readonly ScreeningList[]
         </>
       ),
     },
-    { key: 'version', header: t('screening.lists.columns.version'), cell: (l) => (l.cached ? l.versionDate : <span className="muted">{t('screening.lists.never')}</span>) },
+    { key: 'version', header: t('screening.lists.columns.version'), cell: (l) => (l.cached ? <span className="screening-nowrap">{l.versionDate}</span> : <span className="muted">{t('screening.lists.never')}</span>) },
     { key: 'entries', header: t('screening.lists.columns.entries'), cell: (l) => formatNumber(l.entries), numeric: true },
     { key: 'fetched', header: t('screening.lists.columns.fetched'), cell: (l) => (l.fetchedAt ? <span className="muted">{formatDateTime(l.fetchedAt)}</span> : '—'), secondary: true },
   ];

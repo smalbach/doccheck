@@ -50,7 +50,7 @@ export function AllowlistDialog({ partyName, match, disabled, onAdded }: Allowli
       }}
     >
       <AlertDialog.Trigger asChild>
-        <Button size="sm" disabled={disabled} aria-label={`${t('screening.check.setAside')} · ${match.entry.name}`}>
+        <Button size="sm" disabled={disabled} aria-label={`${t('screening.check.setAside')} · ${entry}`}>
           {t('screening.check.setAside')}
         </Button>
       </AlertDialog.Trigger>

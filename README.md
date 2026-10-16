@@ -65,6 +65,7 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 - **Reads the PDFs**, text layer or scans (OCR with bundled English and French models, or optionally Unlimited-OCR on Apple Silicon), and classifies each one as invoice, packing list, bill of lading or ISF filing confirmation.
 - **Extracts typed data with a local model** (Ollama, `qwen3.8`): the model fills a Zod schema with values exactly as printed, and tested code converts them to decimals, ISO dates, kilograms and ISO country codes. A required value the model fills in although the invoice leaves it blank is dropped.
 - **Runs 15 deterministic rules** (listed [below](#rules-implemented)): package counts and weights across documents, invoice arithmetic, currency, quantities per SKU, dates, terms of sale vs freight terms, ISO 6346 container check digits, ISF consistency, and the invoice fields CBSA (CI1) and CBP (19 CFR 141.86) require. Money and weights use fixed-point arithmetic, never floats.
+- **Screens every party against denied and restricted party lists** (OFAC SDN and Consolidated, BIS Entity List, Denied Persons, Unverified and Military End-User, Canada SEMA, UN Security Council, EU financial sanctions, DHS UFLPA Entity List), cached on the server with source, version date and checksum, and flags forced-labour risk (Xinjiang links, Chinese-origin cotton, apparel, polysilicon, tomatoes). False positives go on a per-account allowlist with a reason and an audit trail ([docs/SCREENING.md](docs/SCREENING.md), in Spanish).
 - **Asks the model narrow questions only where rules cannot decide**: is a differently written consignee the same company, does the BL cargo description match the invoice goods. Each answer comes with verdict, confidence and rationale; it acts only at confidence ≥ 0.7 (`ACT_CONFIDENCE` in [`packages/agent/src/review.ts`](packages/agent/src/review.ts)) and "unsure" never dismisses a finding.
 - **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a CBSA memorandum or 19 CFR passage found by hybrid search (embeddings + BM25). The model never writes the legal basis.
 - **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
@@ -124,6 +125,7 @@ cp .env.example .env
 docker compose up -d                          # Postgres + pgvector, Redis, MinIO
 ollama pull qwen3.8 && ollama pull bge-m3
 npm run synth                                 # the 200 sample shipments as PDFs (~1 min)
+npm run screening:fetch                       # denied-party lists for screening (~20 MB)
 scripts/start-local.sh                        # checks every dependency, builds, serves http://localhost:3000
 ```
 
@@ -149,6 +151,8 @@ npm run smoke     # starts the API, validates a shipment with one injected error
 npm run test:e2e -w @doccheck/api   # API end to end against the doccheck_test database (reset on every run)
 npm run synth     # regenerates data/eval/v1 (200 shipments + PDFs, ~1 min)
 npm run eval:extraction -- --limit 10   # extracts 10 shipments with the local model and writes eval/reports
+npm run screening:fetch   # downloads the denied-party lists into data/screening (~20 MB, a few minutes)
+npm run eval:screening    # list names injected into the synthetic shipments: recall and precision
 npm run dev       # API with hot reload on http://localhost:3000
 ```
 
@@ -170,6 +174,7 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | `packages/extraction` | PDF text with positions (pdf.js), document classification, LLM extraction with Zod-validated output (Ollama), deterministic normalization, field-level scoring |
 | `packages/regulations` | Regulation corpus: chunking, local embeddings (bge-m3 via Ollama), hybrid search (vectors + BM25) with citations |
 | `packages/agent` | Citations on findings and model decisions on ambiguous cases (same consignee written differently, BL description vs invoice goods) |
+| `packages/screening` | Denied-party lists (download, normalization, cache with checksums), the name matcher, rules S1–S3 and their evaluation; `fixtures` holds a small set of real entries for the tests |
 | `packages/synth` | Synthetic shipment generator: ground-truth JSON, labeled error injection, HTML templates rendered to PDF |
 | `apps/api` | NestJS API; also serves the web app |
 | `apps/web` | Web app (Vite + React + Radix UI): shipments, PDF upload, findings with citations, PDF viewer with highlights. `src/features/<page>` holds one component per file, `src/components/ui` the Radix-based primitives, `src/lib` one helper per file |
@@ -197,6 +202,11 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | C1 | Invoice has the fields CBSA requires (CI1 fields 1–17: vendor, consignee, origin, terms of sale, currency, packages, description, quantity, price, total, weights) | CA | per field |
 | C2 | Invoice is in English or French | CA | Medium |
 | U1 | Invoice has the information 19 CFR 141.86(a) requires (port of entry, time of sale, parties, description, quantity, price, currency, origin) | US | per field |
+| S1 | A party (seller, shipper, buyer, consignee, notify party, exporter, ISF manufacturer, ship-to, consolidator) is on a denied or restricted party list: score ≥ match threshold (0.92) | CA, US | High |
+| S2 | A party may be on a list: score between the review (0.82) and match thresholds; the agent may compare, never clears | CA, US | Medium |
+| S3 | Forced-labour risk: a party linked to Xinjiang with goods of Chinese origin, or Chinese-origin cotton (52), apparel (61, 62), polysilicon (2804.61) or tomatoes (0702, 2002); cites UFLPA (US) or tariff item 9897.00.00 (CA) | CA, US | Medium |
+
+S1–S3 run after the document rules against the lists cached in `data/screening` (`npm run screening:fetch`, or Administration › Screening). The match score is deterministic: X1's name normalization, word-by-word Jaro-Winkler weighted by how rare each word is across the lists, aliases, and small country and city adjustments. Each finding cites the list entry, its list, the score and the entry's link. On the 260 synthetic shipments with list names injected six ways and decoys sharing a word (`npm run eval:screening -- --lists data/screening`, 38,383 entries): no false positives, 99.2% of injected entries flagged, 100% as S1 when written exactly, with another legal form, as an alias or in another word order. Details in [docs/SCREENING.md](docs/SCREENING.md).
 
 Completeness rules report one finding per missing field, citing the CI1 field or the 141.86 paragraph. Regulation excerpts are attached by the agent in phase 4.
 
@@ -271,6 +281,8 @@ After the rules run, `/validate` does a second pass:
 | GET | `/shipments/:id/findings` | Findings from the last validation |
 
 Documents passed as JSON in the body of `/validate` take precedence over extracted ones, which keeps the phase 0 flow working for tests.
+
+Party screening (`/screening/...` and `/admin/screening/...`: lists, checking a name, the allowlist, refresh and thresholds) is described in [docs/SCREENING.md](docs/SCREENING.md).
 
 Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs/FINDINGS.md](docs/FINDINGS.md), and the supplier mail routes (`/mail/...`) in [docs/MESSAGING.md](docs/MESSAGING.md).
 

@@ -62,7 +62,7 @@ export function ScreeningAdminPage() {
       <Card title={t('screening.lists.title')}>
         <p className="muted">
           {t('screening.lists.total', { entries: formatNumber(status.entries), lists: status.lists.filter((l) => l.cached).length })} ·{' '}
-          <span className="mono small">{t('screening.admin.cache', { dir: status.dir })}</span>
+          <span className="mono small screening-path">{t('screening.admin.cache', { dir: status.dir })}</span>
           {status.refreshedAt && <> · {formatDateTime(status.refreshedAt)}</>}
         </p>
         <ScreeningListsTable lists={status.lists} />
