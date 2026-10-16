@@ -1025,6 +1025,7 @@ export const es: Messages = {
   admin: {
     section: 'Administración',
     settings: 'Configuración',
+    settingsTabs: { label: 'Secciones de configuración', model: 'Modelo y agente', accounts: 'Cuentas', ocr: 'OCR', mail: 'Correo' },
     users: 'Usuarios',
     system: 'Sistema',
     forbiddenTitle: 'Solo administradores',

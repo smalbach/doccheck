@@ -1041,6 +1041,7 @@ export const en = {
   admin: {
     section: 'Administration',
     settings: 'Settings',
+    settingsTabs: { label: 'Settings sections', model: 'Model and agent', accounts: 'Accounts', ocr: 'OCR', mail: 'Mail' },
     users: 'Users',
     system: 'System',
     forbiddenTitle: 'Admins only',
