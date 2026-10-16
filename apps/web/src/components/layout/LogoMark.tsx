@@ -1,13 +1,17 @@
-/** DocCheck's mark: a checked document with an AI spark. The favicon (index.html) and the email logo are the same drawing. */
+/** DocCheck's mark: scanner corners around a D-shaped document whose nodes feed a lens with a check. The favicon (index.html) and the email logo are the same drawing. */
 export function LogoMark({ size = 26 }: { size?: number }) {
   return (
     <svg className="logo" width={size} height={size} viewBox="0 0 32 32" aria-hidden focusable="false">
       <rect width="32" height="32" rx="7" fill="#0f766e" />
-      <path d="M8.5 5.5h8.2l5.3 5.3v14.7a2 2 0 0 1-2 2H8.5a2 2 0 0 1-2-2V7.5a2 2 0 0 1 2-2z" fill="#fff" />
-      <path d="M16.7 5.5v4.3a1 1 0 0 0 1 1H22" fill="none" stroke="#99d5cd" strokeWidth="1.3" strokeLinejoin="round" />
-      <path d="M9.6 18.6l2.8 2.8 5-5.6" fill="none" stroke="#0f766e" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M24.5 3Q24.5 8 29.5 8Q24.5 8 24.5 13Q24.5 8 19.5 8Q24.5 8 24.5 3Z" fill="#fbbf24" stroke="#0f766e" strokeWidth="1.2" strokeLinejoin="round" paintOrder="stroke" />
-      <path d="M27 13.3Q27 15.5 29.2 15.5Q27 15.5 27 17.7Q27 15.5 24.8 15.5Q27 15.5 27 13.3Z" fill="#fbbf24" />
+      <path d="M6 11V7a1 1 0 0 1 1-1h4M21 6h4a1 1 0 0 1 1 1v4M26 21v4a1 1 0 0 1-1 1h-4M11 26H7a1 1 0 0 1-1-1v-4" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+      <path d="M10 9h5a7 7 0 0 1 0 14h-5z" fill="#fff" />
+      <path d="M12.5 12.2L18.5 16M12.5 16H18.5M12.5 19.8L18.5 16" stroke="#5fb3a8" strokeWidth="1" />
+      <circle cx="12.5" cy="12.2" r="1.3" fill="#0f766e" />
+      <circle cx="12.5" cy="16" r="1.3" fill="#0f766e" />
+      <circle cx="12.5" cy="19.8" r="1.3" fill="#0f766e" />
+      <path d="M20.6 18.1L23.8 21.3" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="18.5" cy="16" r="3" fill="#0f766e" />
+      <path d="M17.1 16.1l1 1 1.9-2.1" fill="none" stroke="#fbbf24" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
