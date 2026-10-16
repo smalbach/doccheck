@@ -1,6 +1,8 @@
+import { analyticsFr } from './analytics.fr';
 import type { Messages } from './en';
 
 export const fr: Messages = {
+  analytics: analyticsFr,
   common: { loading: 'Chargement…', cancel: 'Annuler', save: 'Enregistrer', saving: 'Enregistrement…', close: 'Fermer', none: '—' },
   app: {
     tagline: 'Documents de transport vérifiés avant d’arriver à l’ASFC ou au CBP',

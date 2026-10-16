@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1212,
+    "outputTokens": 62
+  },
+  "output": {
+    "sql": "SELECT incoterm, count(*) AS frequency FROM invoices GROUP BY incoterm ORDER BY frequency DESC",
+    "explanation": "The query lists each distinct incoterm found in the invoices and counts how many times each appears, sorted by frequency."
+  }
+}

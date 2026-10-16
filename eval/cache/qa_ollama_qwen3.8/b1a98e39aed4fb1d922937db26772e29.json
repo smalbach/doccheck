@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1210,
+    "outputTokens": 46
+  },
+  "output": {
+    "sql": "SELECT count(*) AS finding_count FROM findings WHERE document_type = 'PACKING_LIST'",
+    "explanation": "Counts the total number of findings associated with packing list documents."
+  }
+}

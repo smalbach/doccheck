@@ -1,9 +1,11 @@
+import { analyticsEn } from './analytics.en';
 /**
  * English, the reference dictionary: es.ts and fr.ts must have the same keys (checked by the type).
  * A leaf is a string with {placeholders}, or { one, other } for words that change with {count}.
  * Content that comes from the API (rule titles, finding messages, regulation excerpts) stays in English.
  */
 export const en = {
+  analytics: analyticsEn,
   common: {
     loading: 'Loading…',
     cancel: 'Cancel',

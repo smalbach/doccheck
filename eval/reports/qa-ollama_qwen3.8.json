@@ -1,0 +1,234 @@
+{
+  "provider": "ollama:qwen3.8",
+  "promptVersion": "qa-sql-v2",
+  "role": true,
+  "total": 22,
+  "correct": 22,
+  "accuracy": 1,
+  "retried": 1,
+  "rejected": 0,
+  "errors": 0,
+  "leaked": 0,
+  "results": [
+    {
+      "id": "q01",
+      "question": "How many shipments do I have?",
+      "status": "correct",
+      "sql": "SELECT count(*) AS shipment_count FROM shipments",
+      "attempts": 0,
+      "expectedSql": "select count(*) from shipments",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q02",
+      "question": "How many shipments go to the US?",
+      "status": "correct",
+      "sql": "SELECT count(*) AS us_shipment_count FROM shipments WHERE destination = 'US'",
+      "attempts": 0,
+      "expectedSql": "select count(*) from shipments where destination = 'US'",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q03",
+      "question": "Which shipments with goods from Vietnam in HS chapter 61 had findings?",
+      "status": "correct",
+      "sql": "SELECT DISTINCT s.reference, s.destination, s.status FROM shipments s JOIN invoice_lines il ON s.id = il.shipment_id JOIN findings f ON s.id = f.shipment_id WHERE il.country_of_origin = 'VN' AND il.hs2 = '61' ORDER BY s.reference",
+      "attempts": 0,
+      "expectedSql": "select distinct s.reference from shipments s join findings f on f.shipment_id = s.id join invoice_lines l on l.shipment_id = s.id where l.country_of_origin = 'VN' and l.hs2 = '61'",
+      "expectedRows": 2,
+      "leaked": false
+    },
+    {
+      "id": "q04",
+      "question": "How many open findings are there per rule?",
+      "status": "correct",
+      "sql": "SELECT rule_id, count(*) AS open_findings FROM findings WHERE status = 'open' GROUP BY rule_id ORDER BY open_findings DESC, rule_id",
+      "attempts": 0,
+      "expectedSql": "select rule_id, count(*) from findings where status = 'open' group by rule_id",
+      "expectedRows": 10,
+      "leaked": false
+    },
+    {
+      "id": "q05",
+      "question": "Which supplier has the most shipments?",
+      "status": "correct",
+      "sql": "WITH supplier_counts AS (\n    SELECT \n        i.seller_name,\n        COUNT(DISTINCT s.id) AS shipment_count\n    FROM invoices i\n    JOIN shipments s ON i.shipment_id = s.id\n    GROUP BY i.seller_name\n)\nSELECT \n    seller_name,\n    shipment_count\nFROM supplier_counts\nORDER BY shipment_count DESC, seller_name ASC\nLIMIT 1",
+      "attempts": 0,
+      "expectedSql": "select seller_name from invoices group by seller_name order by count(*) desc limit 1",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q06",
+      "question": "What is the total invoiced value per currency?",
+      "status": "correct",
+      "sql": "SELECT currency, SUM(invoice_total) AS total_value FROM invoices GROUP BY currency ORDER BY total_value DESC",
+      "attempts": 0,
+      "expectedSql": "select invoice_total_currency, sum(invoice_total) from invoices group by invoice_total_currency",
+      "expectedRows": 3,
+      "leaked": false
+    },
+    {
+      "id": "q07",
+      "question": "List the shipments with a package count mismatch.",
+      "status": "correct",
+      "sql": "SELECT DISTINCT s.reference, s.destination, s.status FROM shipments s JOIN findings f ON s.id = f.shipment_id WHERE f.rule_id = 'X2' ORDER BY s.reference",
+      "attempts": 0,
+      "expectedSql": "select distinct s.reference from shipments s join findings f on f.shipment_id = s.id where f.rule_id = 'X2'",
+      "expectedRows": 4,
+      "leaked": false
+    },
+    {
+      "id": "q08",
+      "question": "How many invoice lines have China as the country of origin?",
+      "status": "correct",
+      "sql": "SELECT count(*) AS line_count FROM invoice_lines WHERE country_of_origin = 'CN'",
+      "attempts": 0,
+      "expectedSql": "select count(*) from invoice_lines where country_of_origin = 'CN'",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q09",
+      "question": "Which carriers do my bills of lading use, and how many each?",
+      "status": "correct",
+      "sql": "SELECT carrier_name, COUNT(*) AS bl_count FROM bills_of_lading GROUP BY carrier_name ORDER BY bl_count DESC, carrier_name ASC",
+      "attempts": 0,
+      "expectedSql": "select carrier_name, count(*) from bills_of_lading group by carrier_name",
+      "expectedRows": 4,
+      "leaked": false
+    },
+    {
+      "id": "q10",
+      "question": "How many high or critical findings are still open?",
+      "status": "correct",
+      "sql": "SELECT count(*) AS open_high_critical_findings FROM findings WHERE severity IN ('HIGH', 'CRITICAL') AND status = 'open'",
+      "attempts": 0,
+      "expectedSql": "select count(*) from findings where severity in ('HIGH', 'CRITICAL') and status = 'open'",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q11",
+      "question": "What is the average unit price of goods in HS chapter 95?",
+      "status": "correct",
+      "sql": "SELECT round(avg(unit_price), 2) AS avg_unit_price FROM invoice_lines WHERE hs2 = '95'",
+      "attempts": 0,
+      "expectedSql": "select round(avg(unit_price), 2) from invoice_lines where hs2 = '95'",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q12",
+      "question": "Which shipments have no findings on their latest validation?",
+      "status": "correct",
+      "sql": "SELECT s.reference, s.destination, s.status FROM shipments s WHERE NOT EXISTS (SELECT 1 FROM findings f WHERE f.shipment_id = s.id)",
+      "attempts": 0,
+      "expectedSql": "select s.reference from shipments s where s.validated_at is not null and not exists (select 1 from findings f where f.shipment_id = s.id)",
+      "expectedRows": 15,
+      "leaked": false
+    },
+    {
+      "id": "q13",
+      "question": "What is the total gross weight in kg on the bills of lading of shipments to Canada?",
+      "status": "correct",
+      "sql": "SELECT SUM(b.gross_kg) AS total_gross_weight_kg FROM bills_of_lading b JOIN shipments s ON b.shipment_id = s.id WHERE s.destination = 'CA'",
+      "attempts": 0,
+      "expectedSql": "select sum(b.gross_kg) from bills_of_lading b join shipments s on s.id = b.shipment_id where s.destination = 'CA'",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q14",
+      "question": "How many containers are there in total?",
+      "status": "correct",
+      "sql": "SELECT count(*) AS total_containers FROM containers",
+      "attempts": 0,
+      "expectedSql": "select count(*) from containers",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q15",
+      "question": "Which ports of loading do my shipments leave from, with the number of shipments?",
+      "status": "correct",
+      "sql": "SELECT bl.port_of_loading, COUNT(*) AS shipment_count FROM bills_of_lading bl JOIN shipments s ON bl.shipment_id = s.id GROUP BY bl.port_of_loading ORDER BY shipment_count DESC, bl.port_of_loading",
+      "attempts": 0,
+      "expectedSql": "select port_of_loading, count(*) from bills_of_lading group by port_of_loading",
+      "expectedRows": 15,
+      "leaked": false
+    },
+    {
+      "id": "q16",
+      "question": "How many findings are on the packing list documents?",
+      "status": "correct",
+      "sql": "SELECT count(*) AS finding_count FROM findings WHERE document_type = 'PACKING_LIST'",
+      "attempts": 0,
+      "expectedSql": "select count(*) from findings where document_type = 'PACKING_LIST'",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q17",
+      "question": "Which incoterms appear on my invoices and how often?",
+      "status": "correct",
+      "sql": "SELECT incoterm, count(*) AS frequency FROM invoices GROUP BY incoterm ORDER BY frequency DESC",
+      "attempts": 0,
+      "expectedSql": "select incoterm, count(*) from invoices group by incoterm",
+      "expectedRows": 6,
+      "leaked": false
+    },
+    {
+      "id": "q18",
+      "question": "How many shipments were validated in the last 30 days?",
+      "status": "correct",
+      "sql": "SELECT count(*) AS shipment_count FROM shipments WHERE validated_at >= current_date - interval '30 days'",
+      "attempts": 0,
+      "expectedSql": "select count(*) from shipments where validated_at >= current_date - 30",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q19",
+      "question": "Which shipments have an ISF whose country of origin is Vietnam?",
+      "status": "correct",
+      "sql": "SELECT DISTINCT s.reference, s.destination, s.status FROM shipments s JOIN isf i ON s.id = i.shipment_id WHERE i.country_of_origin = 'VN'",
+      "attempts": 0,
+      "expectedSql": "select s.reference from shipments s join isf i on i.shipment_id = s.id where i.country_of_origin = 'VN'",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q20",
+      "question": "What is the largest invoice total, and on which shipment?",
+      "status": "correct",
+      "sql": "SELECT s.reference, i.invoice_total FROM invoices i JOIN shipments s ON i.shipment_id = s.id ORDER BY i.invoice_total DESC LIMIT 1",
+      "attempts": 1,
+      "expectedSql": "select s.reference, i.invoice_total from invoices i join shipments s on s.id = i.shipment_id order by i.invoice_total desc nulls last limit 1",
+      "expectedRows": 1,
+      "leaked": false
+    },
+    {
+      "id": "q21",
+      "question": "Which shipments from CN with HS 61 had weight errors this month?",
+      "status": "correct",
+      "sql": "SELECT DISTINCT s.reference, s.destination, s.status FROM shipments s JOIN invoice_lines il ON s.id = il.shipment_id JOIN findings f ON s.id = f.shipment_id WHERE il.country_of_origin = 'CN' AND il.hs2 = '61' AND f.rule_id IN ('X3', 'X4') AND date_trunc('month', f.first_found_at) = date_trunc('month', current_date) ORDER BY s.reference",
+      "attempts": 0,
+      "expectedSql": "select distinct s.reference from shipments s join findings f on f.shipment_id = s.id join invoice_lines l on l.shipment_id = s.id where l.country_of_origin = 'CN' and l.hs2 = '61' and f.rule_id in ('X3', 'X4') and date_trunc('month', f.validated_at) = date_trunc('month', current_date)",
+      "expectedRows": 0,
+      "leaked": false
+    },
+    {
+      "id": "q22",
+      "question": "Which shipments had weight errors this month?",
+      "status": "correct",
+      "sql": "SELECT DISTINCT s.reference, s.destination, s.status FROM shipments s JOIN findings f ON s.id = f.shipment_id WHERE f.rule_id IN ('X3', 'X4') AND date_trunc('month', f.validated_at) = date_trunc('month', current_date) ORDER BY s.reference",
+      "attempts": 0,
+      "expectedSql": "select distinct s.reference from shipments s join findings f on f.shipment_id = s.id where f.rule_id in ('X3', 'X4') and date_trunc('month', f.validated_at) = date_trunc('month', current_date)",
+      "expectedRows": 0,
+      "leaked": false
+    }
+  ]
+}

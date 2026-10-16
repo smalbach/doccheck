@@ -69,6 +69,7 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 - **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a CBSA memorandum or 19 CFR passage found by hybrid search (embeddings + BM25). The model never writes the legal basis.
 - **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
 - **Talks to the supplier from the app**: the correction request is drafted from the findings in English, Spanish or French, sent over SMTP, and the reply comes back by IMAP or webhook into the same conversation, where its PDF is added to the shipment in one click ([docs/MESSAGING.md](docs/MESSAGING.md), in Spanish).
+- **Analyses the history** ([docs/ANALYTICS.md](docs/ANALYTICS.md), in Spanish): KPIs (clean on first validation, findings per shipment by month, error rate by rule, document, supplier, origin and route, time to resolution, supplier response time, CSV), a supplier scorecard with its formula on the page, an estimate of the CBSA AMPS and CBP ISF penalties and hold costs avoided (assumptions editable and always shown), unit price outliers per product and per HS-6 and origin, questions about the account's data in plain language (the local model writes SQL that a guard checks and that runs read-only, with a timeout, on views scoped to the account; 22/22 on the evaluation questions), and a scheduled check of the cited regulations that lists changed passages, the rules that cite them and the open shipments they concern.
 - **Measures itself** on a generated set of 200 labeled shipments (100 per destination, 293 injected errors), field by field and rule by rule, end to end on the extracted PDFs ([docs/METRICS.md](docs/METRICS.md)). Model answers are cached in `eval/cache`, so the evaluation reruns without a model.
 - **Works like a product**: accounts, private shipments, validation history, JSON export and printable report, aggregated extracted data with companies, products and containers, admin settings changed without a restart, and a read-only demo mode that replays cached model answers.
 
@@ -272,7 +273,7 @@ After the rules run, `/validate` does a second pass:
 
 Documents passed as JSON in the body of `/validate` take precedence over extracted ones, which keeps the phase 0 flow working for tests.
 
-Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs/FINDINGS.md](docs/FINDINGS.md), and the supplier mail routes (`/mail/...`) in [docs/MESSAGING.md](docs/MESSAGING.md).
+Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs/FINDINGS.md](docs/FINDINGS.md), the supplier mail routes (`/mail/...`) in [docs/MESSAGING.md](docs/MESSAGING.md), and the analytics routes (`/analytics/...`) in [docs/ANALYTICS.md](docs/ANALYTICS.md).
 
 ## Roadmap
 

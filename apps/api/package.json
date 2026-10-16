@@ -9,6 +9,7 @@
     "start:dev": "nest start --watch",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "db:migrate": "node dist/db/migrate-cli.js",
+    "test": "vitest run --dir src",
     "test:e2e": "node --test \"test/*.test.mjs\""
   },
   "dependencies": {

@@ -108,3 +108,22 @@ export async function attachRegulations(findings: Finding[], destination: Destin
   }
   return findings;
 }
+
+/**
+ * The rules whose findings may cite a corpus document (`cbsa-d1-4-1-en`, `cfr-19-149`...), per
+ * destination: the reverse of citationScope, for telling which rules a changed passage concerns.
+ * A rule with no query for the authority (ISO 6346 container numbers) cites nothing.
+ */
+export function rulesCiting(documentId: string): { destination: Destination; ruleId: string }[] {
+  const out: { destination: Destination; ruleId: string }[] = [];
+  for (const destination of Object.keys(PROFILES) as Destination[]) {
+    const profile = PROFILES[destination];
+    for (const ruleId of profile.rules) {
+      const queried = ruleId === 'C1' || ruleId === 'U1' || ruleId === 'X11' || !!QUERIES[ruleId]?.[profile.authority];
+      if (!queried) continue;
+      const scope = ruleId === 'X11' ? ['cfr-19-149'] : [...INVOICE_REQUIREMENTS[profile.authority]];
+      if (scope.some((d) => documentId === d || documentId.startsWith(`${d}-`))) out.push({ destination, ruleId });
+    }
+  }
+  return out;
+}

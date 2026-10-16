@@ -1,6 +1,8 @@
+import { analyticsEs } from './analytics.es';
 import type { Messages } from './en';
 
 export const es: Messages = {
+  analytics: analyticsEs,
   common: { loading: 'Cargando…', cancel: 'Cancelar', save: 'Guardar', saving: 'Guardando…', close: 'Cerrar', none: '—' },
   app: {
     tagline: 'Documentos de carga revisados antes de llegar a CBSA o CBP',

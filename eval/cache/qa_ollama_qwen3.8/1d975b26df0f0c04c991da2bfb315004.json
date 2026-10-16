@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1210,
+    "outputTokens": 54
+  },
+  "output": {
+    "sql": "SELECT count(*) AS open_high_critical_findings FROM findings WHERE severity IN ('HIGH', 'CRITICAL') AND status = 'open'",
+    "explanation": "Counts the number of findings with HIGH or CRITICAL severity that are still open."
+  }
+}

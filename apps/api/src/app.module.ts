@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
+import { AnalyticsModule } from './insights/analytics.module';
 import { DbModule } from './db/db.module';
 import { InsightsModule } from './insights/insights.module';
 import { LlmModule } from './llm/llm.module';
@@ -13,7 +14,7 @@ import { ShipmentsModule } from './shipments/shipments.module';
 import { StorageModule } from './storage/storage';
 
 @Module({
-  imports: [DbModule, StorageModule, LlmModule, ProgressModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule],
+  imports: [DbModule, StorageModule, LlmModule, ProgressModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule, AnalyticsModule],
   controllers: [HealthController, RulesController, ResultsController],
 })
 export class AppModule {}
