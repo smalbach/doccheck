@@ -163,12 +163,15 @@ describe('usage, plans and billing over HTTP', () => {
       },
       stdio: ['ignore', 'ignore', 'inherit'],
     });
-    for (let i = 0; i < 80; i++) {
+    // Up to a minute: the other suites start their own API at the same time.
+    let up = false;
+    for (let i = 0; i < 240 && !up; i++) {
       try {
-        if ((await fetch(`${base}/health`)).ok) break;
+        up = (await fetch(`${base}/health`)).ok;
       } catch {}
-      await new Promise((r) => setTimeout(r, 250));
+      if (!up) await new Promise((r) => setTimeout(r, 250));
     }
+    if (!up) throw new Error('API did not start');
     admin = await signUp(ADMIN);
     user = await signUp(`${randomUUID()}@example.com`);
   });

@@ -1,5 +1,5 @@
 import { extraEs } from './extra-es';
-import { captureEs } from './capture';
+import { captureEs } from './capture-es';
 import type { Messages } from './en';
 
 export const es: Messages = {

@@ -122,7 +122,7 @@ export const SETTINGS = {
   }),
   supplierExamples: define<number>({
     env: 'SUPPLIER_EXAMPLES',
-    defaultValue: 3,
+    defaultValue: 5,
     schema: z.number().int().min(1).max(10),
     toEnv: (v) => String(v),
     fromEnv: (raw) => Number(raw),

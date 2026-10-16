@@ -28,7 +28,7 @@ export function ReviewPdfPane({ shipmentId, documentId, fileName, field }: Revie
   const pages = pdf?.numPages ?? 0;
   const bbox = source?.page === page ? source.bbox : undefined;
   return (
-    <section className="card review-pdf" aria-label={fileName}>
+    <section className="card review-pdf">
       <div className="card-head">
         <span className="muted small">{field && !source ? t('reviewQueue.noPdfMark') : fileName}</span>
         <PdfPager page={page} pages={pages} onPageChange={(n) => setPage(Math.min(Math.max(1, n), pages))} />
@@ -36,7 +36,8 @@ export function ReviewPdfPane({ shipmentId, documentId, fileName, field }: Revie
       {error ? (
         <p className="error">{error}</p>
       ) : (
-        <div className="pdf-page">
+        // Focusable so the page can be scrolled from the keyboard when it is larger than its frame.
+        <div className="pdf-page" tabIndex={0} role="region" aria-label={fileName}>
           <canvas ref={canvas} role="img" aria-label={t('reviewQueue.pdfLabel', { name: fileName, page, pages: pages || 1 })} />
           {bbox && <HighlightMark bbox={bbox} scale={scale} />}
         </div>

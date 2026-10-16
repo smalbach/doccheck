@@ -134,6 +134,10 @@ describe('supplier examples', () => {
       correctValue: '1200',
       line: 'NET WEIGHT 1,250 KG GROSS WEIGHT 1,200 KG',
     });
+    // An item field is learned for every item.
+    const row = exampleFromCorrection({ documentType: 'PACKING_LIST', path: '/packages/2/netWeight/kg', newValue: '400', raw: { packages: [{}, {}, { netWeight: { value: '420' } }] } });
+    expect(row).toMatchObject({ field: 'packages[*].netWeight.value', modelValue: '420', correctValue: '400' });
+    expect(examplesPrompt('ACME', [row!])).toContain('"packages[*].netWeight.value" (on one of the items; read every item the same way)');
     // Fields the model does not fill directly are not learned.
     expect(exampleFromCorrection({ documentType: 'COMMERCIAL_INVOICE', path: '/language', newValue: 'en', raw })).toBeUndefined();
   });

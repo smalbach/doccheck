@@ -12,7 +12,10 @@ import { findSource } from './provenance';
  */
 export interface SupplierExample {
   documentType: ExtractableType;
-  /** The answer field the model fills ("netWeight.value", "lines[0].quantity"). */
+  /**
+   * The answer field the model fills ("netWeight.value"); an item field is kept for every item
+   * ("packages[*].netWeight.value"): a layout that misleads on one row misleads on all of them.
+   */
   field: string;
   /** What the model had copied; null when it left the field empty. */
   modelValue: string | null;
@@ -23,7 +26,7 @@ export interface SupplierExample {
 }
 
 /** At most this many examples go into one prompt (SUPPLIER_EXAMPLES, set from admin, overrides it). */
-export const DEFAULT_SUPPLIER_EXAMPLES = 3;
+export const DEFAULT_SUPPLIER_EXAMPLES = 5;
 
 /** "/lines/0/quantity/value" -> "lines[0].quantity.value" */
 export function pointerToField(pointer: string): string | undefined {
@@ -64,7 +67,7 @@ export function exampleFromCorrection(input: {
   const modelValue = text(getPath(input.raw, rawField));
   if (correctValue === modelValue) return undefined;
   const found = correctValue && input.pdf ? findSource({ pageCount: 0, text: '', lines: input.pdf.lines }, '', correctValue) : undefined;
-  return { documentType: input.documentType, field: rawField, modelValue, correctValue, ...(found ? { line: found.rawText.replace(/\s+/g, ' ').trim() } : {}) };
+  return { documentType: input.documentType, field: rawField.replace(/\[\d+\]/g, '[*]'), modelValue, correctValue, ...(found ? { line: found.rawText.replace(/\s+/g, ' ').trim() } : {}) };
 }
 
 /** The prompt section with the supplier's corrected examples (empty without examples). */
@@ -75,7 +78,8 @@ export function examplesPrompt(supplier: string, examples: SupplierExample[]): s
     const unit = /Weight\.value$/.test(e.field) ? ' kg' : '';
     const model = e.modelValue === null ? 'left it empty' : `copied ${JSON.stringify(e.modelValue)}`;
     const right = e.correctValue === null ? 'the field should be empty' : `the right value is ${JSON.stringify(e.correctValue)}${unit}`;
-    return `- "${e.field}": you ${model}, but ${right}.${e.line ? ` It is printed on the line: ${JSON.stringify(e.line)}` : ''}`;
+    const where = e.field.includes('[*]') ? ' (on one of the items; read every item the same way)' : '';
+    return `- "${e.field}"${where}: you ${model}, but ${right}.${e.line ? ` It is printed on the line: ${JSON.stringify(e.line)}` : ''}`;
   });
   return `Earlier documents from ${supplier} use the same layout. A reviewer corrected these values on them:
 ${items.join('\n')}

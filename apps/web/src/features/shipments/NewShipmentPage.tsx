@@ -32,7 +32,13 @@ export function NewShipmentPage() {
           onScan={(input, pdf) =>
             void open('scan', async () => {
               const shipment = await api.create(input);
-              await api.upload(shipment.id, [pdf]);
+              try {
+                await api.upload(shipment.id, [pdf]);
+              } catch (err) {
+                // A refused upload (plan limit, size) leaves no empty shipment behind.
+                await api.remove(shipment.id).catch(() => undefined);
+                throw err;
+              }
               return shipment;
             })
           }
