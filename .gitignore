@@ -9,3 +9,5 @@ data/eval/**/*.pdf
 data/eval/**/*.html
 .data/
 .claude/worktrees/
+# Denied-party lists downloaded by npm run screening:fetch (about 20 MB); tests use packages/screening/fixtures.
+data/screening/
