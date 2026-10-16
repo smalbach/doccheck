@@ -284,6 +284,11 @@ export const fr: Messages = {
     noThreads: 'Aucune conversation pour l’instant.',
     newMessage: 'Nouveau message',
     compose: {
+      from: 'De',
+      replies: 'Les réponses arrivent à',
+      write: 'Rédiger',
+      preview: 'Aperçu',
+      previewTitle: 'Le courriel tel que le destinataire le verra',
       requestButton: 'Demander des corrections',
       requestTitle: 'Demander au fournisseur des documents corrigés',
       messageTitle: 'Nouveau message',

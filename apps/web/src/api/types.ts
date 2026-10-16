@@ -660,7 +660,7 @@ export interface MailSummary {
   unassigned?: number;
 }
 
-/** Everyone gets `sending`; the rest is for admins. */
+/** Everyone gets `sending`, `from` and `replyTo`; the rest is for admins. */
 export interface MailStatus {
   sending: 'smtp' | 'log';
   from?: string;

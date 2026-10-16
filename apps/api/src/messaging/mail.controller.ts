@@ -6,8 +6,10 @@ import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { Public } from '../auth/public.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
-import { AssignDto, ContactsQuery, NewThreadDto, ReplyDto, ThreadsQuery, ThreadStatusDto } from './mail.dto';
+import { AssignDto, ContactsQuery, NewThreadDto, PreviewDto, ReplyDto, ThreadsQuery, ThreadStatusDto } from './mail.dto';
+import { mailHtml } from './mail-html';
 import { MailInbox } from './mail-inbox';
+import { MAIL_LOGO_PNG } from './mail-logo';
 import { MailIntakeService } from './mail-intake.service';
 import { MailService } from './mail.service';
 
@@ -50,6 +52,13 @@ export class MailController {
   @Get('threads')
   threads(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(ThreadsQuery)) query: ThreadsQuery) {
     return this.mail.list(user.id, query);
+  }
+
+  /** The email as the recipient will see it (the HTML part), with the logo inline as a data URL. */
+  @Post('preview')
+  @HttpCode(200)
+  preview(@Body(new ZodValidationPipe(PreviewDto)) dto: PreviewDto) {
+    return { html: mailHtml({ subject: dto.subject, text: dto.body, language: dto.language, logoSrc: `data:image/png;base64,${MAIL_LOGO_PNG.toString('base64')}` }) };
   }
 
   /** Starts a conversation (or a request for corrected documents) and queues its first message. */

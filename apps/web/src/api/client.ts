@@ -111,6 +111,7 @@ export const api = {
 
   mailSummary: () => request<MailSummary>('/mail/summary'),
   mailStatus: () => request<MailStatus>('/mail/status'),
+  mailPreview: (body: { subject: string; body: string; language?: string }) => request<{ html: string }>('/mail/preview', jsonBody(body)),
   mailThreads: (query: { filter?: ThreadFilter; q?: string; shipmentId?: string; partyId?: string; limit?: number; offset?: number }) =>
     request<Paged<ThreadSummary>>(`/mail/threads${queryString({ ...query })}`),
   mailThread: (id: string) => request<ThreadDetail>(`/mail/threads/${encodeURIComponent(id)}`),

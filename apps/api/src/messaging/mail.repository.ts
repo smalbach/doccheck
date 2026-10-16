@@ -40,6 +40,8 @@ export interface NewMessage {
 export interface OutboxItem {
   id: string;
   threadToken: string | null;
+  /** The thread's language, else its owner's: for the HTML footer. */
+  language: string | null;
   from: string;
   to: string[];
   cc: string[];
@@ -263,12 +265,14 @@ export class MailRepository {
     const { rows } = await this.pool.query(
       `update mail_messages m set status = 'sending', attempts = attempts + 1
        where id in (select id from mail_messages where status = 'queued' and next_attempt_at <= now() order by next_attempt_at limit $1 for update skip locked)
-       returning m.*, (select token from mail_threads t where t.id = m.thread_id) as token`,
+       returning m.*, (select token from mail_threads t where t.id = m.thread_id) as token,
+         (select coalesce(t.language, u.language) from mail_threads t join users u on u.id = t.user_id where t.id = m.thread_id) as language`,
       [limit],
     );
     return rows.map((r) => ({
       id: r.id,
       threadToken: r.token,
+      language: r.language,
       from: r.from_addr,
       to: r.to_addrs,
       cc: r.cc_addrs,

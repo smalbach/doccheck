@@ -294,6 +294,11 @@ export const en = {
     noThreads: 'No conversation yet.',
     newMessage: 'New message',
     compose: {
+      from: 'From',
+      replies: 'Replies come back to',
+      write: 'Write',
+      preview: 'Preview',
+      previewTitle: 'The email as the recipient will see it',
       requestButton: 'Ask for corrections',
       requestTitle: 'Ask the supplier for corrected documents',
       messageTitle: 'New message',

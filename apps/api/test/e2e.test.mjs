@@ -1817,6 +1817,10 @@ describe('mail', () => {
     const eml = await sentMail('Corrections needed: MAIL-1');
     const tag = /\[DC-([a-z0-9]+)\]/.exec(header(eml, 'Subject'))[1];
     assert.equal(header(eml, 'Reply-To'), `docs+${tag}@doccheck.example`);
+    // An HTML part with the mark inline, besides the text part.
+    assert.match(eml, /Content-Type: text\/html/);
+    assert.match(eml, /cid:logo@doccheck/);
+    assert.match(eml, /Content-ID: <logo@doccheck>/);
     const ourId = header(eml, 'Message-ID').replace(/[<>]/g, '');
 
     // The supplier answers with a corrected PDF.
@@ -1877,7 +1881,14 @@ describe('mail', () => {
     assert.equal((await call('GET', `/mail/threads/${t.id}`, undefined, other)).status, 404);
     assert.equal((await send(`${base}/mail/attachments/${att.id}/file`, {}, other)).status, 404);
     assert.equal((await call('GET', '/mail/unassigned', undefined, other)).status, 403);
-    assert.deepEqual((await call('GET', '/mail/status', undefined, other)).body, { sending: 'log' });
+    const status = (await call('GET', '/mail/status', undefined, other)).body;
+    assert.deepEqual(Object.keys(status).sort(), ['from', 'replyTo', 'sending']);
+    assert.equal(status.sending, 'log');
+    // The preview is the HTML part, with the logo as a data URL and the text escaped.
+    const preview = (await call('POST', '/mail/preview', { subject: 'S', body: '1. <b>x</b>\n   - Invoice · total: 5', language: 'es' }, other)).body.html;
+    assert.match(preview, /data:image\/png;base64,/);
+    assert.match(preview, /&lt;b&gt;x&lt;\/b&gt;/);
+    assert.match(preview, /Responde a este correo/);
   });
 
   it('refuses webhook calls without the secret before reading them, and limits sending even in parallel', async () => {

@@ -159,7 +159,8 @@ export class MailService {
 
   /** Everyone learns whether mail is really delivered; admins also see the queue and the mailboxes. */
   async status(admin: boolean) {
-    if (!admin) return { sending: this.transport.mode };
+    // From and reply-to are in every email a user sends, so anyone may see them; the rest is for admins.
+    if (!admin) return { sending: this.transport.mode, from: mailFrom(), replyTo: replyAddress('token').replace('+token', '+…') };
     const { rows: [queue] } = await this.pool.query(
       `select (count(*) filter (where status in ('queued', 'sending')))::int as queued, (count(*) filter (where status = 'failed'))::int as failed from mail_messages where direction = 'out'`,
     );

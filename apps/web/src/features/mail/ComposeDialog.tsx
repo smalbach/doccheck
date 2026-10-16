@@ -9,6 +9,7 @@ import { Checkbox } from '../../components/ui/Checkbox';
 import { Field } from '../../components/ui/Field';
 import { Select } from '../../components/ui/Select';
 import { TextInput } from '../../components/ui/TextInput';
+import { ToggleChips } from '../../components/ui/ToggleChips';
 import { refreshMailSummary } from '../../hooks/useMailSummary';
 import type { MessageKey, MessageVars } from '../../i18n/keys';
 import { loadMessages } from '../../i18n/loadMessages';
@@ -54,6 +55,9 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
   const [body, setBody] = useState('');
   const [contacts, setContacts] = useState<MailContact[]>([]);
   const [logOnly, setLogOnly] = useState(false);
+  const [sender, setSender] = useState<{ from?: string; replyTo?: string }>({});
+  const [view, setView] = useState<'write' | 'preview'>('write');
+  const [preview, setPreview] = useState<string>();
   const [error, setError] = useState<string>();
   const [sending, setSending] = useState(false);
   const request = mode === 'request';
@@ -77,6 +81,22 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
     setBody(letter.body);
   }, [request, dictionary, language, reference, chosen, documents]);
 
+  // The preview is the HTML part the server sends, built from what is written now.
+  useEffect(() => {
+    if (!open || view !== 'preview') return;
+    let active = true;
+    const timer = setTimeout(() => {
+      api.mailPreview({ subject, body, language: request ? language : locale }).then(
+        (r) => active && setPreview(r.html),
+        () => active && setPreview(undefined),
+      );
+    }, 250);
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
+  }, [open, view, subject, body, language, locale, request]);
+
   const openWith = (next: boolean) => {
     if (next) {
       setPicked(new Set(preselect ?? findings.flatMap((f) => (f.fingerprint ? [f.fingerprint] : []))));
@@ -84,12 +104,19 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
       setTo('');
       setCc('');
       setError(undefined);
+      setView('write');
       if (!request) {
         setSubject(reference ? `${reference}: ` : '');
         setBody('');
       }
       api.mailContacts(partyId).then(setContacts, () => setContacts([]));
-      api.mailStatus().then((s) => setLogOnly(s.sending === 'log'), () => setLogOnly(false));
+      api.mailStatus().then(
+        (s) => {
+          setLogOnly(s.sending === 'log');
+          setSender({ from: s.from, replyTo: s.replyTo });
+        },
+        () => setLogOnly(false),
+      );
     }
     setOpen(next);
   };
@@ -149,9 +176,24 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
                 <Banner tone="warning">{t('mail.compose.logOnly')}</Banner>
               </div>
             )}
-            <Field label={`${t('mail.compose.to')} (${t('mail.compose.toHint')})`}>
-              {(id) => <TextInput id={id} type="text" inputMode="email" value={to} onChange={(e) => setTo(e.target.value)} autoComplete="off" />}
-            </Field>
+            {sender.from && (
+              <dl className="compose-from">
+                <dt>{t('mail.compose.from')}</dt>
+                <dd>{sender.from}</dd>
+                {sender.replyTo && (
+                  <>
+                    <dt>{t('mail.compose.replies')}</dt>
+                    <dd>{sender.replyTo}</dd>
+                  </>
+                )}
+              </dl>
+            )}
+            <div className="compose-row">
+              <Field label={`${t('mail.compose.to')} (${t('mail.compose.toHint')})`}>
+                {(id) => <TextInput id={id} type="text" inputMode="email" value={to} onChange={(e) => setTo(e.target.value)} autoComplete="off" />}
+              </Field>
+              <Field label={t('mail.compose.cc')}>{(id) => <TextInput id={id} type="text" inputMode="email" value={cc} onChange={(e) => setCc(e.target.value)} autoComplete="off" />}</Field>
+            </div>
             {contacts.length > 0 && (
               <div className="contact-suggestions" role="group" aria-label={t('mail.compose.suggestions')}>
                 <span className="muted small">{t('mail.compose.suggestions')}:</span>
@@ -162,7 +204,6 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
                 ))}
               </div>
             )}
-            <Field label={t('mail.compose.cc')}>{(id) => <TextInput id={id} type="text" inputMode="email" value={cc} onChange={(e) => setCc(e.target.value)} autoComplete="off" />}</Field>
             {request && (
               <>
                 <fieldset className="fieldset">
@@ -194,9 +235,34 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
               </>
             )}
             <Field label={t('mail.compose.subject')}>{(id) => <TextInput id={id} value={subject} maxLength={300} onChange={(e) => setSubject(e.target.value)} />}</Field>
-            <Field label={t('mail.compose.body')}>
-              {(id) => <textarea id={id} className="input textarea mono-text" rows={12} value={body} onChange={(e) => setBody(e.target.value)} lang={request ? language : undefined} />}
-            </Field>
+            <div className="field">
+              <div className="compose-body-head">
+                <label className="field-label" htmlFor={`compose-body-${mode}`}>
+                  {t('mail.compose.body')}
+                </label>
+                <ToggleChips
+                  value={view}
+                  options={[
+                    { value: 'write', label: t('mail.compose.write') },
+                    { value: 'preview', label: t('mail.compose.preview') },
+                  ]}
+                  onValueChange={setView}
+                  ariaLabel={t('mail.compose.body')}
+                />
+              </div>
+              {view === 'write' ? (
+                <textarea
+                  id={`compose-body-${mode}`}
+                  className="input textarea compose-text"
+                  rows={14}
+                  value={body}
+                  onChange={(e) => setBody(e.target.value)}
+                  lang={request ? language : undefined}
+                />
+              ) : (
+                <iframe className="compose-preview" title={t('mail.compose.previewTitle')} sandbox="" srcDoc={preview ?? ''} />
+              )}
+            </div>
             {error && <Banner tone="error">{error}</Banner>}
             <div className="dialog-actions">
               <Dialog.Close asChild>

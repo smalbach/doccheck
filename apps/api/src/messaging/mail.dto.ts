@@ -25,6 +25,14 @@ export const NewThreadDto = z
   });
 export type NewThreadDto = z.infer<typeof NewThreadDto>;
 
+/** What a message will look like, before sending it. */
+export const PreviewDto = z.object({
+  subject: z.string().max(300).default(''),
+  body: z.string().max(50_000).default(''),
+  language: z.enum(['en', 'es', 'fr']).optional(),
+});
+export type PreviewDto = z.infer<typeof PreviewDto>;
+
 export const ReplyDto = z.object({
   body: z.string().trim().min(1).max(50_000),
   /** Defaults to whoever wrote last (or the thread's first recipients). */

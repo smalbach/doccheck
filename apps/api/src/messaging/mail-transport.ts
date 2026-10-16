@@ -3,6 +3,8 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createTransport, type Transporter } from 'nodemailer';
 import { replyAddress, subjectTag } from './mail.config';
+import { LOGO_CID, mailHtml } from './mail-html';
+import { MAIL_LOGO_PNG } from './mail-logo';
 import type { OutboxItem } from './mail.repository';
 
 /**
@@ -28,6 +30,9 @@ export class MailTransport {
       ...(item.threadToken ? { replyTo: replyAddress(item.threadToken) } : {}),
       subject: item.threadToken && !item.subject.includes(subjectTag(item.threadToken)) ? `${item.subject} ${subjectTag(item.threadToken)}` : item.subject,
       text: item.text,
+      // The same message laid out, with DocCheck's mark inline.
+      html: mailHtml({ subject: item.subject, text: item.text, language: item.language, tag: item.threadToken ? subjectTag(item.threadToken).replace(/[[\]]/g, '') : null }),
+      attachments: [{ filename: 'doccheck.png', content: MAIL_LOGO_PNG, contentType: 'image/png', cid: LOGO_CID, contentDisposition: 'inline' as const }],
       messageId: `<${item.messageId}>`,
       ...(item.inReplyTo ? { inReplyTo: `<${item.inReplyTo}>` } : {}),
       ...(item.references.length ? { references: item.references.map((r) => `<${r}>`) } : {}),
