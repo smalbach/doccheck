@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import type { ReviewStatus, ValidationFinding } from '../../api/types';
 import { Button } from '../../components/ui/Button';
 import { useI18n } from '../../i18n/useI18n';
@@ -9,10 +9,12 @@ export interface FindingReviewActionsProps {
   finding: ValidationFinding;
   busy: boolean;
   onReview: (status: ReviewStatus, note?: string) => Promise<void>;
+  /** "Write to the supplier…": the request dialog with this finding picked. */
+  request?: ReactNode;
 }
 
 /** What can be decided about a finding from where it stands; closing it asks for a reason. */
-export function FindingReviewActions({ finding, busy, onReview }: FindingReviewActionsProps) {
+export function FindingReviewActions({ finding, busy, onReview, request }: FindingReviewActionsProps) {
   const { t } = useI18n();
   const [asking, setAsking] = useState<'accepted' | 'false_positive'>();
   const status = reviewStatus(finding);
@@ -26,6 +28,7 @@ export function FindingReviewActions({ finding, busy, onReview }: FindingReviewA
       )}
       {!closed && (
         <>
+          {request}
           <Button size="sm" disabled={busy} onClick={() => setAsking('accepted')}>
             {t('review.actions.accept')}
           </Button>

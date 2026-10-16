@@ -384,10 +384,12 @@ export const es: Messages = {
   },
   review: {
     status: { open: 'Por resolver', waiting_supplier: 'Esperando al proveedor', accepted: 'Riesgo aceptado', false_positive: 'Falso positivo', resolved: 'Resuelto' },
-    filter: { label: 'Mostrar hallazgos', open: 'Por resolver ({count})', closed: 'Cerrados ({count})', all: 'Todos ({count})' },
+    filter: { label: 'Mostrar hallazgos', open: 'Por resolver ({count})', waiting: 'Esperando al proveedor ({count})', closed: 'Cerrados ({count})', all: 'Todos ({count})' },
     newTag: 'Nuevo',
+    waitingFlag: 'Esperando al proveedor desde {date}',
+    waitingBy: 'marcado por {name}',
     newHint: 'No estaba en la validación anterior',
-    actions: { label: 'Decidir sobre {rule}', waiting: 'Pedido al proveedor', accept: 'Aceptar el riesgo…', falsePositive: 'Marcar como falso positivo…', reopen: 'Reabrir' },
+    actions: { label: 'Decidir sobre {rule}', waiting: 'Marcar como esperando al proveedor', write: 'Escribir al proveedor…', accept: 'Aceptar el riesgo…', falsePositive: 'Marcar como falso positivo…', reopen: 'Reabrir' },
     note: {
       acceptTitle: 'Aceptar el riesgo de {rule}',
       falsePositiveTitle: 'Marcar {rule} como falso positivo',

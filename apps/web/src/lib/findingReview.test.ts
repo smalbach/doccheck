@@ -25,7 +25,7 @@ describe('finding reviews', () => {
   it('reads the status, and closes only accepted and false positives', () => {
     expect(reviewStatus(finding())).toBe('open');
     const waiting = finding({ review: { status: 'waiting_supplier', at: '2026-10-13T10:00:00Z' } });
-    expect([isClosed(waiting), matchesFilter(waiting, 'open'), matchesFilter(waiting, 'closed')]).toEqual([false, true, false]);
+    expect([isClosed(waiting), matchesFilter(waiting, 'open'), matchesFilter(waiting, 'waiting'), matchesFilter(waiting, 'closed')]).toEqual([false, true, true, false]);
     const accepted = finding({ review: { status: 'accepted', note: 'spare', at: '2026-10-13T10:00:00Z' } });
     expect([isClosed(accepted), matchesFilter(accepted, 'closed'), matchesFilter(accepted, 'all')]).toEqual([true, true, true]);
   });

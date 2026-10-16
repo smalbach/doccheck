@@ -126,6 +126,12 @@
 .review-note { margin: 8px 0 0; padding-left: 10px; border-left: 3px solid var(--line); font-style: italic; }
 .review-history { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .finding.review-accepted, .finding.review-false_positive { opacity: 0.85; }
+/* Waiting for the supplier: a band across the top of the card, in its own color, seen at a glance. */
+.finding.review-waiting_supplier { border-top-color: var(--waiting); border-right-color: var(--waiting); border-bottom-color: var(--waiting); }
+.finding .waiting-flag { display: flex; align-items: flex-start; gap: 8px; margin: -12px -12px 10px; padding: 7px 12px; border-radius: 0 7px 0 0; background: var(--waiting-soft); color: var(--waiting); border-bottom: 1px solid var(--waiting); font-size: 13px; font-weight: 600; }
+.waiting-flag svg { flex: none; margin-top: 2px; }
+.waiting-flag .waiting-by { font-weight: 400; }
+.tag-waiting { color: var(--waiting); border-color: var(--waiting); background: var(--waiting-soft); font-weight: 600; }
 .resolved-list { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .supplier-picks { display: flex; flex-direction: column; gap: 6px; max-height: 180px; overflow: auto; }
 .dialog-wide { width: min(680px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto; }

@@ -394,10 +394,12 @@ export const en = {
   },
   review: {
     status: { open: 'To resolve', waiting_supplier: 'Waiting for supplier', accepted: 'Risk accepted', false_positive: 'False positive', resolved: 'Resolved' },
-    filter: { label: 'Show findings', open: 'To resolve ({count})', closed: 'Closed ({count})', all: 'All ({count})' },
+    filter: { label: 'Show findings', open: 'To resolve ({count})', waiting: 'Waiting for supplier ({count})', closed: 'Closed ({count})', all: 'All ({count})' },
     newTag: 'New',
+    waitingFlag: 'Waiting for the supplier since {date}',
+    waitingBy: 'marked by {name}',
     newHint: 'Not in the previous validation',
-    actions: { label: 'Decide on {rule}', waiting: 'Asked the supplier', accept: 'Accept the risk…', falsePositive: 'Mark as false positive…', reopen: 'Reopen' },
+    actions: { label: 'Decide on {rule}', waiting: 'Mark as waiting for supplier', write: 'Write to the supplier…', accept: 'Accept the risk…', falsePositive: 'Mark as false positive…', reopen: 'Reopen' },
     note: {
       acceptTitle: 'Accept the risk of {rule}',
       falsePositiveTitle: 'Mark {rule} as a false positive',

@@ -51,7 +51,12 @@ export function FindingsCard({ validation, rules, documents, onOpen, notice, pro
   }, []);
   const findings = validation?.findings ?? [];
   const closedCount = findings.filter(isClosed).length;
-  const counts: Record<FindingFilter, number> = { open: findings.length - closedCount, closed: closedCount, all: findings.length };
+  const counts: Record<FindingFilter, number> = {
+    open: findings.length - closedCount,
+    waiting: findings.filter((f) => matchesFilter(f, 'waiting')).length,
+    closed: closedCount,
+    all: findings.length,
+  };
   // Past runs carry no decisions and are not reviewed here: everything shows, without the filter.
   const filterable = !!review || closedCount > 0;
   const shown = sortFindings(filterable ? findings.filter((f) => matchesFilter(f, filter)) : findings);
@@ -81,7 +86,7 @@ export function FindingsCard({ validation, rules, documents, onOpen, notice, pro
                 <div className="findings-toolbar">
                   <ToggleChips
                     value={filter}
-                    options={(['open', 'closed', 'all'] as const).map((v) => ({ value: v, label: t(`review.filter.${v}`, { count: counts[v] }) }))}
+                    options={(['open', 'waiting', 'closed', 'all'] as const).map((v) => ({ value: v, label: t(`review.filter.${v}`, { count: counts[v] }) }))}
                     onValueChange={setFilter}
                     ariaLabel={t('review.filter.label')}
                   />
@@ -107,7 +112,26 @@ export function FindingsCard({ validation, rules, documents, onOpen, notice, pro
                       rule={rules[f.ruleId]}
                       documents={documents}
                       onOpen={onOpen}
-                      review={review && f.fingerprint ? { busy: review.busy, onReview: (status, note) => review.onReview([f.fingerprint!], status, note), onCorrect: review.onCorrect } : undefined}
+                      review={
+                        review && f.fingerprint
+                          ? {
+                              busy: review.busy,
+                              onReview: (status, note) => review.onReview([f.fingerprint!], status, note),
+                              onCorrect: review.onCorrect,
+                              request: (
+                                <ComposeDialog
+                                  mode="request"
+                                  shipmentId={review.shipmentId}
+                                  reference={review.reference}
+                                  findings={openFindings}
+                                  documents={documents}
+                                  preselect={[f.fingerprint]}
+                                  triggerLabel={t('review.actions.write')}
+                                />
+                              ),
+                            }
+                          : undefined
+                      }
                     />
                   </li>
                 ))}

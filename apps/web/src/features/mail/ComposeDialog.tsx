@@ -31,6 +31,10 @@ export interface ComposeDialogProps {
   findings?: readonly ValidationFinding[];
   documents?: ReadonlyMap<string, ShipmentDocument>;
   disabled?: boolean;
+  /** Fingerprints picked when it opens (default: every finding). */
+  preselect?: readonly string[];
+  /** The button that opens it, when not the default one. */
+  triggerLabel?: string;
 }
 
 /**
@@ -38,7 +42,7 @@ export interface ComposeDialogProps {
  * supplier reads, from the findings picked; the conversation opens once it is queued, and the
  * supplier's reply comes back to it.
  */
-export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findings = [], documents = new Map(), disabled }: ComposeDialogProps) {
+export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findings = [], documents = new Map(), disabled, preselect, triggerLabel }: ComposeDialogProps) {
   const { t, locale } = useI18n();
   const [open, setOpen] = useState(false);
   const [language, setLanguage] = useState<Locale>(locale);
@@ -75,7 +79,7 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
 
   const openWith = (next: boolean) => {
     if (next) {
-      setPicked(new Set(findings.flatMap((f) => (f.fingerprint ? [f.fingerprint] : []))));
+      setPicked(new Set(preselect ?? findings.flatMap((f) => (f.fingerprint ? [f.fingerprint] : []))));
       setLanguage(locale);
       setTo('');
       setCc('');
@@ -131,7 +135,7 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
     <Dialog.Root open={open} onOpenChange={openWith}>
       <Dialog.Trigger asChild>
         <Button size="sm" disabled={disabled} title={disabled && request ? t('mail.compose.none') : undefined}>
-          <EnvelopeClosedIcon aria-hidden /> {request ? t('mail.compose.requestButton') : t('mail.newMessage')}
+          <EnvelopeClosedIcon aria-hidden /> {triggerLabel ?? (request ? t('mail.compose.requestButton') : t('mail.newMessage'))}
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
