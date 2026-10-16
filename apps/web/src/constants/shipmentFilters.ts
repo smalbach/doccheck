@@ -18,13 +18,24 @@ export const DESTINATION_FILTERS: readonly { value: DestinationFilter; labelKey:
   { value: 'US', labelKey: 'destinations.US' },
 ];
 
+export type DueFilter = 'any' | 'overdue' | 'soon';
+
+export const DUE_FILTERS: readonly { value: DueFilter; labelKey: MessageKey }[] = [
+  { value: 'any', labelKey: 'team.filters.anyDue' },
+  { value: 'overdue', labelKey: 'team.filters.overdue' },
+  { value: 'soon', labelKey: 'team.filters.soon' },
+];
+
 export interface ShipmentFilterState {
   status: StatusFilter;
   destination: DestinationFilter;
   query: string;
+  due?: DueFilter;
+  /** Only shipments assigned to me (the shipment or one of its findings). */
+  mine?: boolean;
 }
 
-export const INITIAL_SHIPMENT_FILTERS: ShipmentFilterState = { status: 'all', destination: 'any', query: '' };
+export const INITIAL_SHIPMENT_FILTERS: ShipmentFilterState = { status: 'all', destination: 'any', query: '', due: 'any', mine: false };
 
 export const SHIPMENTS_PAGE_SIZE = 25;
 

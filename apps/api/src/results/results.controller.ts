@@ -4,6 +4,7 @@ import { existsSync } from 'node:fs';
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { InjectLlm } from '../llm/llm.module';
+import { NoOrg } from '../orgs/permissions';
 
 interface Tally {
   total: number;
@@ -16,6 +17,7 @@ interface Tally {
  * npm run eval:extraction and npm run eval:agent). Only summaries are returned, never the
  * per-document detail.
  */
+@NoOrg()
 @Controller('results')
 export class ResultsController {
   private readonly logger = new Logger(ResultsController.name);
