@@ -4,7 +4,7 @@ import { PG_POOL } from '../db/db.module';
 import { ALERT_KINDS, type Alert, type AlertKind, type AlertList } from './alerts.types';
 
 /**
- * Every alert of the user's shipments ($1), one row each, with the moment it arose (`at`).
+ * Every alert of the organization's shipments ($1), one row each, with the moment it arose (`at`).
  * - critical: the latest validation has CRITICAL or HIGH findings not accepted nor marked false positive.
  * - failed-document: a document whose extraction failed.
  * - ocr: an extracted document read with OCR (an issue starting "Read with OCR") that the latest
@@ -18,7 +18,7 @@ import { ALERT_KINDS, type Alert, type AlertKind, type AlertList } from './alert
  */
 const ALERTS = `
   with owned as (
-    select id, reference, destination from shipments where user_id = $1
+    select id, reference, destination from shipments where org_id = $1
   ), lv as (
     select distinct on (v.shipment_id) v.id, v.shipment_id, v.created_at, v.destination
     from validations v join owned o on o.id = v.shipment_id
@@ -80,15 +80,15 @@ const ALERTS = `
 export class AlertsRepository {
   constructor(@Inject(PG_POOL) private readonly pool: Pool) {}
 
-  /** The user's alerts, newest first, at most `limit`, with the count of each kind. */
-  async list(userId: string, limit: number): Promise<AlertList> {
+  /** The organization's alerts, newest first, at most `limit`, with the count of each kind. */
+  async list(orgId: string, limit: number): Promise<AlertList> {
     const [{ rows }, { rows: counted }] = await Promise.all([
       this.pool.query(
         `${ALERTS} select a.*, o.reference from alerts a join owned o on o.id = a.shipment_id
          order by a.at desc, a.kind, a.shipment_id, a.document_id limit $2`,
-        [userId, limit],
+        [orgId, limit],
       ),
-      this.pool.query<{ kind: AlertKind; n: number }>(`${ALERTS} select kind, count(*)::int as n from alerts group by kind`, [userId]),
+      this.pool.query<{ kind: AlertKind; n: number }>(`${ALERTS} select kind, count(*)::int as n from alerts group by kind`, [orgId]),
     ]);
     const counts = Object.fromEntries(ALERT_KINDS.map((k) => [k, 0])) as Record<AlertKind, number>;
     for (const c of counted) counts[c.kind] = c.n;
