@@ -1,0 +1,93 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 769,
+    "outputTokens": 844
+  },
+  "output": {
+    "invoiceNumber": "INV-202Z6-6880",
+    "invoiceDate": "25-JUL-2026",
+    "poNumber": "BLB21850",
+    "seller": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 1B LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PEWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "29-JUL-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "YANTIAN",
+      "country": "CN"
+    },
+    "portOfEntry": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "incotermCode": "CFR",
+    "incotermPlace": "HOUSTON",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "TE-200",
+        "description": "PLUSH TEDDY BEAR 30 CM, POLYESTER FILLING",
+        "quantity": "1000",
+        "unit": "PCs",
+        "unitPrice": "9.66",
+        "unitPriceCurrency": null,
+        "lineTotal": "9660.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "9503.00"
+      }
+    ],
+    "totalPackages": "20",
+    "grossWeight": {
+      "value": "204.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "180.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "9660.00",
+    "invoiceTotalCurrency": null,
+    "charges": []
+  }
+}

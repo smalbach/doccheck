@@ -7,6 +7,7 @@
 //
 // Runs beside e2e.test.mjs: its own database (the test database name with "_orgs" before "_test") and
 // port (E2E_PORT + 1).
+import { writeCsv, writeXlsx } from '@doccheck/extraction';
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
 import { createHash, createSign, generateKeyPairSync, randomUUID } from 'node:crypto';
@@ -797,5 +798,47 @@ describe('rule settings and purchase orders', () => {
     assert.ok(mine.findings[0].evidence.some((e) => e.documentId === docId));
     const other = (await call('POST', '/shipments', { destination: 'CA' }, b.cookie)).body;
     assert.deepEqual((await call('POST', `/shipments/${other.id}/validate?agent=false`, docs, b.cookie)).body.findings, []);
+  });
+});
+
+describe('other documents and input formats', () => {
+  const invoice = [['COMMERCIAL INVOICE'], ['Invoice No.', 'INV-1'], ['Currency', 'USD'], ['Description', 'Qty', 'Unit price', 'Amount'], ['Plush bear', '10', '8.10', '81.00'], ['TOTAL', '10', '', '81.00']];
+  const packing = [['PACKING LIST'], ['Packing list no.', 'PL-1'], ['C/No.', 'Cartons', 'Description', 'Qty'], ['1-2', '2', 'Plush bear', '10'], ['TOTAL', '2', '', '10']];
+  const upload = async (cookie, shipmentId, name, bytes) => {
+    const form = new FormData();
+    form.append('files', new Blob([bytes]), name);
+    const res = await fetch(`${base}/shipments/${shipmentId}/documents?wait=true`, { method: 'POST', body: form, headers: { cookie } });
+    return { status: res.status, body: await res.json().catch(() => undefined) };
+  };
+
+  it('keeps spreadsheets, split parts and their cells inside the organization, and closed to viewers', async () => {
+    const owner = await signUp('Sheets');
+    await call('POST', '/orgs', { name: 'Sheets Co' }, owner.cookie);
+    const s = (await call('POST', '/shipments', { destination: 'CA' }, owner.cookie)).body;
+    const res = await upload(owner.cookie, s.id, 'folder.xlsx', writeXlsx([{ name: 'Invoice', rows: invoice }, { name: 'Packing list', rows: packing }]));
+    assert.equal(res.status, 202, JSON.stringify(res.body));
+    const docs = (await call('GET', `/shipments/${s.id}`, undefined, owner.cookie)).body.documents;
+    assert.deepEqual(docs.map((d) => [d.detectedType, d.pages]), [['COMMERCIAL_INVOICE', [1]], ['PACKING_LIST', [2]]]);
+    const part = docs[1];
+    assert.equal((await call('GET', `/shipments/${s.id}/documents/${part.id}/sheets`, undefined, owner.cookie)).status, 200);
+
+    // Another organization's member: everything is 404, as if the shipment did not exist.
+    const stranger = await signUp('Stranger sheets');
+    for (const [method, path, body] of [
+      ['GET', `/shipments/${s.id}/documents/${part.id}/sheets`],
+      ['GET', `/shipments/${s.id}/documents/${part.id}/file`],
+      ['GET', `/shipments/${s.id}/documents/${part.id}`],
+      ['POST', `/shipments/${s.id}/documents/${part.id}/reextract`, { type: 'PACKING_LIST' }],
+      ['POST', `/shipments/${s.id}/documents/${part.id}/cancel`],
+      ['POST', `/shipments/${s.id}/validate?agent=false`, { airWaybill: undefined }],
+    ]) assert.equal((await call(method, path, body, stranger.cookie)).status, 404, `${method} ${path}`);
+    assert.equal((await upload(stranger.cookie, s.id, 'packing.csv', writeCsv(packing))).status, 404);
+
+    // A viewer reads the cells but uploads and re-extracts nothing.
+    const viewer = await signUp('Viewer sheets');
+    await join_(owner, viewer, 'viewer');
+    assert.equal((await call('GET', `/shipments/${s.id}/documents/${part.id}/sheets`, undefined, viewer.cookie)).status, 200);
+    assert.equal((await upload(viewer.cookie, s.id, 'packing.csv', writeCsv(packing))).status, 403);
+    assert.equal((await call('POST', `/shipments/${s.id}/documents/${part.id}/reextract`, { type: 'PACKING_LIST' }, viewer.cookie)).status, 403);
   });
 });

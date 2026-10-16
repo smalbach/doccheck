@@ -1,0 +1,56 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 540,
+    "outputTokens": 452
+  },
+  "output": {
+    "noticeNumber": "AN-83120",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": null,
+    "mode": "Ocean",
+    "transportDocumentNumber": "MRDNBRV1561230",
+    "vessel": "NORTHERN VEGA",
+    "voyage": "059E",
+    "flight": null,
+    "portOfLoading": {
+      "name": "Bremerhaven",
+      "country": null
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": null
+    },
+    "estimatedArrival": "2026-08-12",
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": null,
+    "containers": [
+      {
+        "number": "MDOU3642288",
+        "seal": "MD6000788",
+        "type": "20GP"
+      }
+    ],
+    "packages": "114",
+    "grossWeight": {
+      "value": "3119.10",
+      "unit": "KG"
+    },
+    "cargoDescription": "SAID TO CONTAIN 111 CTNS BRASS BALL VALVE 2\"",
+    "freightTerms": "COLLECT",
+    "lastFreeDay": "2026-08-12",
+    "charges": []
+  }
+}

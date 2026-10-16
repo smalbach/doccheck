@@ -43,10 +43,10 @@ export function EvidenceItem({ evidence, doc, onOpen, onCorrect }: EvidenceItemP
         </>
       )}
       {doc && source && (
-        <Button variant="link" size="sm" className="evidence-link" onClick={() => onOpen({ doc, highlight: { page: source.page, bbox: source.bbox } })}
-          aria-label={t('shipment.findings.openPage', { page: source.page, document: docLabel })}
+        <Button variant="link" size="sm" className="evidence-link" onClick={() => onOpen({ doc, highlight: { page: source.page, bbox: source.bbox, cell: source.cell, sheet: source.sheet } })}
+          aria-label={source.cell ? t('shipment.findings.openCell', { cell: source.cell, document: docLabel }) : t('shipment.findings.openPage', { page: source.page, document: docLabel })}
         >
-          {t('shipment.findings.page', { page: source.page })} ↗
+          {source.cell ? t('shipment.findings.cell', { cell: source.cell }) : t('shipment.findings.page', { page: source.page })} ↗
         </Button>
       )}
       {doc && onCorrect && doc.status === 'EXTRACTED' && (

@@ -5,7 +5,7 @@ import type { ProgressEvent, ReviewStatus, RuleDefinition, Shipment, ShipmentUpd
 import { useInterval } from '../../hooks/useInterval';
 import { useI18n } from '../../i18n/useI18n';
 import { errorMessage } from '../../lib/errorMessage';
-import { isPdfFile } from '../../lib/isPdfFile';
+import { isUploadableFile } from '../../lib/isUploadableFile';
 import { isPendingDocument } from '../../lib/isPendingDocument';
 import { navigate } from '../../lib/navigate';
 import { useShipmentEvents } from './useShipmentEvents';
@@ -105,7 +105,7 @@ export function useShipment(id: string) {
   };
 
   const upload = (files: File[]) => {
-    const pdfs = files.filter(isPdfFile);
+    const pdfs = files.filter(isUploadableFile);
     if (pdfs.length === 0) {
       setError(t('shipment.onlyPdf'));
       return Promise.resolve();

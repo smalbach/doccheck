@@ -10,3 +10,6 @@ export * from './render-v2';
 export * from './pdf';
 export * from './isf';
 export * from './rules-set';
+export * from './documents';
+export * from './render-documents';
+export * from './inputs';

@@ -15,7 +15,19 @@ export const UnLocode = z.string().regex(/^[A-Z]{2}[A-Z2-9]{3}$/, 'Expected UN/L
 /** ISO 8601 date: "2026-10-01". */
 export const IsoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Expected YYYY-MM-DD');
 
-export const DocumentType = z.enum(['COMMERCIAL_INVOICE', 'PACKING_LIST', 'BILL_OF_LADING', 'ISF', 'UNKNOWN']);
+export const DocumentType = z.enum([
+  'COMMERCIAL_INVOICE',
+  'PACKING_LIST',
+  'BILL_OF_LADING',
+  'ISF',
+  'AIR_WAYBILL',
+  'CERTIFICATE_OF_ORIGIN',
+  'CUSMA_CERTIFICATION',
+  'ARRIVAL_NOTICE',
+  'WOOD_PACKAGING_CERTIFICATE',
+  'DANGEROUS_GOODS_DECLARATION',
+  'UNKNOWN',
+]);
 export type DocumentType = z.infer<typeof DocumentType>;
 
 /** Import destination: a customs regime. EU is the customs union (one Union Customs Code), GB the United Kingdom. */
@@ -28,12 +40,17 @@ export type TransportMode = z.infer<typeof TransportMode>;
 export const Incoterm = z.enum(['EXW', 'FCA', 'FAS', 'FOB', 'CFR', 'CIF', 'CPT', 'CIP', 'DAP', 'DPU', 'DDP']);
 export type Incoterm = z.infer<typeof Incoterm>;
 
-/** Where a value was found in the source PDF. Every finding must cite one. */
+/**
+ * Where a value was found in the source document. Every finding must cite one. In a spreadsheet,
+ * `page` is the sheet's position (1-based), `sheet` its name and `cell` the A1 reference ("C12").
+ */
 export const SourceRef = z.object({
   documentId: z.string(),
   page: z.number().int().positive(),
   bbox: z.tuple([z.number(), z.number(), z.number(), z.number()]).optional(),
   rawText: z.string(),
+  sheet: z.string().optional(),
+  cell: z.string().regex(/^[A-Z]{1,3}\d+$/).optional(),
 });
 export type SourceRef = z.infer<typeof SourceRef>;
 

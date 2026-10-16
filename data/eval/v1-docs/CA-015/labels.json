@@ -1,0 +1,16 @@
+{
+  "id": "CA-015",
+  "errors": [
+    {
+      "kind": "awb_weight_mismatch",
+      "document": "airWaybill",
+      "field": "grossWeight.kg",
+      "before": "1236.40",
+      "after": "1112.76",
+      "expectedRuleIds": [
+        "T3"
+      ],
+      "description": "Air waybill gross weight differs from the packing list."
+    }
+  ]
+}

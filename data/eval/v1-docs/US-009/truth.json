@@ -1,0 +1,490 @@
+{
+  "id": "US-009",
+  "seed": 1617449152,
+  "destination": "US",
+  "mode": "AIR",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "attestations": {
+    "certificateOfOrigin": {
+      "signature": true,
+      "stamp": true
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/8506",
+      "invoiceDate": "2026-09-22",
+      "poNumber": "PO-64140",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-09-25",
+      "transport": {
+        "mode": "AIR"
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Mundra"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 393,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "41400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "0.98",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "40572.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "3400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.01",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "54434.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "16",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "79.27",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1268.32",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "9821.30",
+        "raw": {
+          "value": "9821.30",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "9376.00",
+        "raw": {
+          "value": "9376.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "96274.32",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/8506",
+      "invoiceRef": "CI/26/8506",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "packages": [
+        {
+          "range": "1-207",
+          "count": 207,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-64140/C/NO. 1-393",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "41400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4554.00",
+            "raw": {
+              "value": "4554.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4740.30",
+            "raw": {
+              "value": "4740.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "208-377",
+          "count": 170,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-64140/C/NO. 1-393",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "3400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4590.00",
+            "raw": {
+              "value": "4590.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4777.00",
+            "raw": {
+              "value": "4777.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "378-393",
+          "count": 16,
+          "type": "CRT",
+          "marks": "BLUEBONNET/PO-64140/C/NO. 1-393",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "16",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "232.00",
+            "raw": {
+              "value": "232.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "304.00",
+            "raw": {
+              "value": "304.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 393,
+        "netWeight": {
+          "kg": "9376.00",
+          "raw": {
+            "value": "9376.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "9821.30",
+          "raw": {
+            "value": "9821.30",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "15.65"
+      }
+    },
+    "airWaybill": {
+      "awbNumber": "618-25226375",
+      "issuer": "MAWB",
+      "carrier": {
+        "name": "Aurora Cargo Airlines",
+        "iataPrefix": "618"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "notifyParty": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "airportOfDeparture": {
+        "name": "Mumbai",
+        "iata": "BOM"
+      },
+      "airportOfDestination": {
+        "name": "New York JFK",
+        "iata": "JFK"
+      },
+      "flights": [
+        {
+          "flight": "AU974",
+          "date": "2026-09-27"
+        }
+      ],
+      "pieces": 395,
+      "grossWeight": {
+        "kg": "9821.30",
+        "raw": {
+          "value": "9821.30",
+          "unit": "KG"
+        }
+      },
+      "chargeableWeight": {
+        "kg": "9821.30",
+        "raw": {
+          "value": "9821.30",
+          "unit": "KG"
+        }
+      },
+      "volumeM3": "15.65",
+      "natureOfGoods": "WOODEN CRATES BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "references": [
+        "CI/26/8506"
+      ],
+      "placeOfExecution": "Mumbai",
+      "executedOn": "2026-09-25"
+    },
+    "certificateOfOrigin": {
+      "certificateNumber": "CO-IN-421047",
+      "issuer": "Federation of Indian Export Organisations",
+      "exporter": {
+        "name": "Golden Bridge Trading Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Harbour Rd"
+          ],
+          "city": "Hong Kong",
+          "country": "HK"
+        }
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "countryOfOrigin": "IN",
+      "transport": "By air",
+      "goods": [
+        {
+          "itemNo": 1,
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "hsCode": "8482.10"
+        },
+        {
+          "itemNo": 2,
+          "description": "Brass ball valves 2 inch, threaded",
+          "hsCode": "8481.80"
+        },
+        {
+          "itemNo": 3,
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "hsCode": "8413.70"
+        }
+      ],
+      "invoiceRefs": [
+        "CI/26/8506"
+      ],
+      "placeOfIssue": "Pune",
+      "dateOfIssue": "2026-09-23"
+    },
+    "woodPackaging": {
+      "certificateNumber": "HT-73362",
+      "kind": "HEAT_TREATMENT",
+      "treatment": "HT",
+      "ispmMark": {
+        "country": "IN",
+        "registration": "1760",
+        "treatment": "HT"
+      },
+      "treatmentDate": "2026-09-19",
+      "issuer": "Accredited treatment provider",
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "packagingDescription": "Wooden crates",
+      "invoiceRef": "CI/26/8506"
+    }
+  }
+}

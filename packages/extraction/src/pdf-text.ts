@@ -15,6 +15,9 @@ export interface TextLine {
   page: number;
   text: string;
   bbox: BBox;
+  /** Spreadsheets (spreadsheet.ts): the sheet's name and the row's cells, so a value can cite its cell. */
+  sheet?: string;
+  cells?: { ref: string; text: string }[];
 }
 
 export interface PdfText {

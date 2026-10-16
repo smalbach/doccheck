@@ -1,0 +1,16 @@
+{
+  "id": "US-017",
+  "errors": [
+    {
+      "kind": "awb_check_digit",
+      "document": "airWaybill",
+      "field": "awbNumber",
+      "before": "160-21023052",
+      "after": "160-21023053",
+      "expectedRuleIds": [
+        "T1"
+      ],
+      "description": "Air waybill number 160-21023053 has a wrong check digit."
+    }
+  ]
+}

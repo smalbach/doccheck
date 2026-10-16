@@ -44,7 +44,7 @@ describe('rule engine', () => {
   it('finds nothing on a clean shipment', () => {
     const out = run(clean());
     expect(out.findings).toEqual([]);
-    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X12', 'C1', 'C2', ...NEW_SHARED, 'C3']);
+    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X12', 'C1', 'C2', ...NEW_SHARED, 'C3', 'T10', 'T11']);
   });
 
   it('reports each rule in order, skipped ones included, and survives a broken hook', () => {
@@ -55,8 +55,9 @@ describe('rule engine', () => {
     const out = run(ctx, { onRule: (p) => void seen.push(p) });
     expect(seen.map((p) => p.index)).toEqual(seen.map((_, i) => i + 1));
     expect(seen.every((p) => p.total === seen.length)).toBe(true);
-    expect(seen.length).toBe(out.ran.length + out.skipped.length);
-    expect(seen.filter((p) => p.skipped).map((p) => p.rule)).toEqual(out.skipped.map((s) => s.ruleId));
+    expect(seen.length).toBe(out.ran.length + out.skipped.length + out.notApplicable!.length);
+    expect(seen.filter((p) => p.skipped && !p.notApplicable).map((p) => p.rule)).toEqual(out.skipped.map((s) => s.ruleId));
+    expect(seen.filter((p) => p.notApplicable).map((p) => p.rule)).toEqual(out.notApplicable);
     expect(seen.reduce((n, p) => n + p.findings, 0)).toBe(out.findings.length);
     expect(seen.flatMap((p) => p.found)).toEqual(out.findings);
     expect(seen.every((p) => p.found.length === p.findings && p.found.every((f) => f.ruleId === p.rule))).toBe(true);
@@ -200,7 +201,7 @@ describe('rule engine', () => {
     };
     ctx.isf = { id: 'isf-1', data: isf };
     const out = run(ctx);
-    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X11', 'X12', 'U1', ...NEW_SHARED, 'U2', 'U3', 'U4']);
+    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X11', 'X12', 'U1', ...NEW_SHARED, 'U2', 'U3', 'U4', 'T10', 'T11']);
     expect(out.findings).toEqual([]);
 
     ctx.isf.data = { ...isf, countryOfOrigin: 'VN', htsCode: '950490' };

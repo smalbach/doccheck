@@ -1,0 +1,87 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 809,
+    "outputTokens": 757
+  },
+  "output": {
+    "awbNumber": "160-37993303",
+    "documentTitle": "AIR WAYBILL",
+    "masterAwbNumber": null,
+    "carrierName": "Meridian Airfreight",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "airportOfDeparture": {
+      "name": "Mumbai",
+      "code": "BOM"
+    },
+    "airportOfDestination": {
+      "name": "Montreal Trudeau",
+      "code": "YUL"
+    },
+    "routing": [
+      "Mumbai (BOM)",
+      "Montreal Trudeau (YUL)"
+    ],
+    "flights": [
+      {
+        "flight": "MF871",
+        "date": "03-MAY-2026"
+      }
+    ],
+    "pieces": "",
+    "grossWeight": {
+      "value": "7047.50",
+      "unit": "K"
+    },
+    "chargeableWeight": {
+      "value": "7047.50",
+      "unit": "K"
+    },
+    "volume": "14.06 M3",
+    "natureOfGoods": "WOODEN CRATES BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "CC",
+    "handlingInformation": "invoice CI/26/8087",
+    "references": [
+      "invoice CI/26/8087"
+    ],
+    "placeOfExecution": "Mumbai",
+    "executedOn": "02-MAY-2026"
+  }
+}

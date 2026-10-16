@@ -1,0 +1,27 @@
+{
+  "id": "US-014",
+  "errors": [
+    {
+      "kind": "coo_exporter_mismatch",
+      "document": "certificateOfOrigin",
+      "field": "exporter.name",
+      "before": "Nordhafen Armaturen GmbH",
+      "after": "Golden Bridge Trading Co., Ltd.",
+      "expectedRuleIds": [
+        "T7"
+      ],
+      "description": "Certificate of origin made out by another exporter."
+    },
+    {
+      "kind": "coo_hs_mismatch",
+      "document": "certificateOfOrigin",
+      "field": "goods[0].hsCode",
+      "before": "8481.80",
+      "after": "3926.90",
+      "expectedRuleIds": [
+        "T8"
+      ],
+      "description": "Certificate of origin lists HS 3926.90 instead of 8481.80."
+    }
+  ]
+}

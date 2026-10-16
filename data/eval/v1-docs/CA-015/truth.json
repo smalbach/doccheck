@@ -1,0 +1,290 @@
+{
+  "id": "CA-015",
+  "seed": 1294266345,
+  "destination": "CA",
+  "mode": "AIR",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "attestations": {},
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NOR2608396",
+      "invoiceDate": "2026-02-25",
+      "poNumber": "NO398514",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-02-28",
+      "transport": {
+        "mode": "AIR"
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Vancouver"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 44,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "880",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.54",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "11035.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1236.40",
+        "raw": {
+          "value": "1236.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1188.00",
+        "raw": {
+          "value": "1188.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "11035.20",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-NOR2608396",
+      "invoiceRef": "NOR2608396",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-44",
+          "count": 44,
+          "type": "CTN",
+          "marks": "NORTHERN/NO398514/C/NO. 1-44",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "880",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1188.00",
+            "raw": {
+              "value": "1188.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1236.40",
+            "raw": {
+              "value": "1236.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 44,
+        "netWeight": {
+          "kg": "1188.00",
+          "raw": {
+            "value": "1188.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1236.40",
+          "raw": {
+            "value": "1236.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "2.08"
+      }
+    },
+    "airWaybill": {
+      "awbNumber": "PCCL863641",
+      "issuer": "HAWB",
+      "masterAwbNumber": "160-63686674",
+      "carrier": {
+        "name": "Meridian Airfreight"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "airportOfDeparture": {
+        "name": "Frankfurt",
+        "iata": "FRA"
+      },
+      "airportOfDestination": {
+        "name": "Montreal Trudeau",
+        "iata": "YUL"
+      },
+      "flights": [
+        {
+          "flight": "MF763",
+          "date": "2026-02-28"
+        }
+      ],
+      "pieces": 44,
+      "grossWeight": {
+        "kg": "1112.76",
+        "raw": {
+          "value": "1112.76",
+          "unit": "KG"
+        }
+      },
+      "chargeableWeight": {
+        "kg": "1236.40",
+        "raw": {
+          "value": "1236.40",
+          "unit": "KG"
+        }
+      },
+      "volumeM3": "2.08",
+      "natureOfGoods": "BRASS BALL VALVE 2\"",
+      "freightTerms": "PREPAID",
+      "references": [
+        "NOR2608396"
+      ],
+      "placeOfExecution": "Frankfurt",
+      "executedOn": "2026-02-28"
+    }
+  }
+}

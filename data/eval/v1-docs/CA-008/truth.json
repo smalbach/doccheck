@@ -1,0 +1,370 @@
+{
+  "id": "CA-008",
+  "seed": 1694377330,
+  "destination": "CA",
+  "mode": "SEA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "attestations": {},
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/4775",
+      "invoiceDate": "2026-07-13",
+      "poNumber": "PR857633",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-07-22",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Bremerhaven",
+          "unLocode": "DEBRV",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Bremerhaven"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 111,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "2220",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.65",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "28083.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3119.10",
+        "raw": {
+          "value": "3119.10",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2997.00",
+        "raw": {
+          "value": "2997.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "28083.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/4775",
+      "invoiceRef": "CI/26/4775",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-111",
+          "count": 111,
+          "type": "CTN",
+          "marks": "PRAIRIE/PR857633/C/NO. 1-111",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "2220",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2997.00",
+            "raw": {
+              "value": "2997.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3119.10",
+            "raw": {
+              "value": "3119.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 111,
+        "netWeight": {
+          "kg": "2997.00",
+          "raw": {
+            "value": "2997.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3119.10",
+          "raw": {
+            "value": "3119.10",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "5.24"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNBRV1561230",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "316064695",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "notifyParty": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "059E",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Bremerhaven",
+        "unLocode": "DEBRV",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Winnipeg",
+        "unLocode": "CAWNP",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU3642288",
+          "seal": "MD6000788",
+          "type": "20GP",
+          "packages": 111,
+          "grossWeight": {
+            "kg": "3119.10",
+            "raw": {
+              "value": "3119.10",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "5.24"
+        }
+      ],
+      "totalPackages": 111,
+      "totalGrossWeight": {
+        "kg": "3119.10",
+        "raw": {
+          "value": "3119.10",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PRAIRIE/PR857633/C/NO. 1-111",
+      "cargoDescription": "SAID TO CONTAIN 111 CTNS BRASS BALL VALVE 2\"",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Bremerhaven",
+      "dateOfIssue": "2026-07-24",
+      "shippedOnBoardDate": "2026-07-24",
+      "references": [
+        "CI/26/4775",
+        "PR857633"
+      ]
+    },
+    "arrivalNotice": {
+      "noticeNumber": "AN-83120",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "mode": "SEA",
+      "transportDocumentNumber": "MRDNBRV1561230",
+      "vessel": "NORTHERN VEGA",
+      "voyage": "059E",
+      "portOfLoading": {
+        "name": "Bremerhaven",
+        "unLocode": "DEBRV",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "estimatedArrival": "2026-08-12",
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "containers": [
+        {
+          "number": "MDOU3642288",
+          "seal": "MD6000788",
+          "type": "20GP"
+        }
+      ],
+      "packages": 114,
+      "grossWeight": {
+        "kg": "3119.10",
+        "raw": {
+          "value": "3119.10",
+          "unit": "KG"
+        }
+      },
+      "cargoDescription": "SAID TO CONTAIN 111 CTNS BRASS BALL VALVE 2\"",
+      "freightTerms": "COLLECT",
+      "lastFreeDay": "2026-08-12"
+    }
+  }
+}

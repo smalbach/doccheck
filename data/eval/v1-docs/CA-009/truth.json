@@ -1,0 +1,366 @@
+{
+  "id": "CA-009",
+  "seed": 951030476,
+  "destination": "CA",
+  "mode": "AIR",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "attestations": {
+    "cusmaCertification": {
+      "signature": true,
+      "stamp": false
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/1944",
+      "invoiceDate": "2026-01-13",
+      "poNumber": "PO-55019",
+      "seller": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "buyer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "exporter": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "shipmentDate": "2026-01-24",
+      "transport": {
+        "mode": "AIR"
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Buenaventura"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "CAD",
+      "packageCount": 219,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "13140",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.97",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "78445.80",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "MX",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "13315.20",
+        "raw": {
+          "value": "13315.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "13140.00",
+        "raw": {
+          "value": "13140.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "78445.80",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/1944",
+      "invoiceRef": "CI/26/1944",
+      "seller": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-219",
+          "count": 219,
+          "type": "BAG",
+          "marks": "NORTHERN/PO-55019/C/NO. 1-219",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "13140",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "13140.00",
+            "raw": {
+              "value": "13140.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "13315.20",
+            "raw": {
+              "value": "13315.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 219,
+        "netWeight": {
+          "kg": "13140.00",
+          "raw": {
+            "value": "13140.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "13315.20",
+          "raw": {
+            "value": "13315.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "31.21"
+      }
+    },
+    "airWaybill": {
+      "awbNumber": "KEYS329589",
+      "issuer": "HAWB",
+      "masterAwbNumber": "176-56685845",
+      "carrier": {
+        "name": "Pacific Crest Air Cargo"
+      },
+      "shipper": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Northern Lantern DC Brampton",
+        "address": {
+          "lines": [
+            "8 Steinway Blvd"
+          ],
+          "city": "Brampton",
+          "region": "ON",
+          "postalCode": "L6T 4X7",
+          "country": "CA"
+        }
+      },
+      "notifyParty": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "airportOfDeparture": {
+        "name": "Mexico City",
+        "iata": "MEX"
+      },
+      "airportOfDestination": {
+        "name": "Montreal Trudeau",
+        "iata": "YUL"
+      },
+      "flights": [
+        {
+          "flight": "PC528",
+          "date": "2026-01-24"
+        }
+      ],
+      "pieces": 219,
+      "grossWeight": {
+        "kg": "11983.68",
+        "raw": {
+          "value": "11983.68",
+          "unit": "KG"
+        }
+      },
+      "chargeableWeight": {
+        "kg": "13315.20",
+        "raw": {
+          "value": "13315.20",
+          "unit": "KG"
+        }
+      },
+      "volumeM3": "31.21",
+      "natureOfGoods": "GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "references": [
+        "CI/26/1944"
+      ],
+      "placeOfExecution": "Mexico City",
+      "executedOn": "2026-01-24"
+    },
+    "cusmaCertification": {
+      "certifierRole": "EXPORTER",
+      "certifier": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "exporter": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "producer": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "importer": {
+        "name": "Northern Lantern Retail Inc.",
+        "address": {
+          "lines": [
+            "250 Front St W, Suite 1400"
+          ],
+          "city": "Toronto",
+          "region": "ON",
+          "postalCode": "M5V 3G5",
+          "country": "CA"
+        },
+        "taxId": "812345678RM0001"
+      },
+      "goods": [
+        {
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "hsCode": "0901.11",
+          "countryOfOrigin": "MX"
+        }
+      ],
+      "signature": {
+        "name": "Ana Ruiz Treviño",
+        "title": "Export Manager",
+        "date": "2026-01-14"
+      },
+      "invoiceRefs": [
+        "CI/26/1944"
+      ]
+    }
+  }
+}
