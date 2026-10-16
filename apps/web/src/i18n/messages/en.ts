@@ -1,9 +1,12 @@
+import { captureEn } from './capture';
+import { extraEn } from './extra-en';
 /**
  * English, the reference dictionary: es.ts and fr.ts must have the same keys (checked by the type).
  * A leaf is a string with {placeholders}, or { one, other } for words that change with {count}.
  * Content that comes from the API (rule titles, finding messages, regulation excerpts) stays in English.
  */
 export const en = {
+  ...extraEn,
   common: {
     loading: 'Loading…',
     cancel: 'Cancel',
@@ -1280,6 +1283,7 @@ export const en = {
     deleting: 'Deleting…',
     wrongPassword: 'The password is wrong.',
   },
+  capture: captureEn,
   team: {
     title: 'Organization',
     text: 'Everyone here sees the organization’s shipments, companies, products and conversations, each with what their role allows.',

@@ -23,6 +23,7 @@ One table decides every permission: `PERMISSIONS` in [`apps/api/src/orgs/permiss
 | `comment.write`, `assign` | ✓ | ✓ | ✓ | ✓ | | |
 | `members.manage`: invite, roles, remove, share with clients | ✓ | ✓ | | | | |
 | `org.settings`, `audit.read` | ✓ | ✓ | | | | |
+| `billing.manage`: buy and manage the plan (docs/BILLING.md) | ✓ | ✓ | | | | |
 | `org.delete` | ✓ | | | | | |
 
 Only an owner makes or unmakes owners. A **client** sees only the shipments shared with them (shipment page, Team card: "Shared with clients"), read-only, without the team's comments or approval queue.

@@ -59,6 +59,19 @@ async function entityPages() {
   return [...(company ? [`/app/companies/${company}`] : []), ...(product ? [`/app/products/${product}`] : [])];
 }
 
+/** The review screen of the sample's first extracted document (none if it is not extracted within 20 s). */
+async function reviewPages(shipmentPath) {
+  if (!shipmentPath) return [];
+  // The sample is extracted in the background: wait for it (up to 20 s) so every round audits the screen.
+  for (let i = 0; i < 40; i++) {
+    const shipment = await (await page.request.get(`${base}/shipments/${shipmentPath.split('/').pop()}`)).json();
+    const doc = shipment.documents?.find((d) => d.status === 'EXTRACTED');
+    if (doc) return [`/app/review/${doc.id}`];
+    await page.waitForTimeout(500);
+  }
+  return [];
+}
+
 async function signUpWithSample() {
   await context.clearCookies();
   if (admin) {
@@ -119,7 +132,9 @@ const staticPages = [
   '/app/notifications',
   '/app/approvals',
   '/app/audit',
-  ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system'] : []),
+  '/app/review',
+  '/app/usage',
+  ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system', '/app/admin/plans'] : []),
 ];
 const locales = values.quick ? ['en'] : ['en', 'es', 'fr'];
 
@@ -144,7 +159,7 @@ for (const locale of locales) {
         const n = await audit(page, `${locale}/${theme}/${width} ${path}`);
         console.log(`${n ? '✗' : '✓'} ${locale} ${theme} ${width}px ${path}${n ? ` (${n})` : ''}`);
       };
-      for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), '/']) await visit(path);
+      for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), ...(await reviewPages(shipmentPath)), '/']) await visit(path);
       const sheetPath = await spreadsheetShipment();
       if (sheetPath) {
         await visit(sheetPath);

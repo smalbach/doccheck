@@ -1,0 +1,4232 @@
+{
+  "provider": "ollama:qwen3.8",
+  "set": "v2",
+  "shipments": 60,
+  "documents": 180,
+  "examplesPerDocument": 5,
+  "documentsWithExamples": 11,
+  "suppliers": [
+    {
+      "key": "SAIGON APPAREL JOINT STOCK",
+      "name": "Saigon Apparel Joint Stock Company",
+      "examples": 6
+    },
+    {
+      "key": "NORDHAFEN ARMATUREN",
+      "name": "Nordhafen Armaturen GmbH",
+      "examples": 3
+    },
+    {
+      "key": "AZEITES DO ALENTEJO LDA",
+      "name": "Azeites do Alentejo, Lda.",
+      "examples": 1
+    },
+    {
+      "key": "COOPERATIVA AGRARIA CAFETALERA PANGOA LTDA",
+      "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "examples": 6
+    },
+    {
+      "key": "CONG TY PHAN MAY ONG A",
+      "name": "Công ty Cổ phần May Đông Á",
+      "examples": 1
+    }
+  ],
+  "overall": {
+    "baseline": {
+      "total": 16889,
+      "correct": 16679,
+      "wrong": 74,
+      "missing": 136,
+      "spurious": 0,
+      "accuracy": 0.9876
+    },
+    "learning": {
+      "total": 16889,
+      "correct": 16784,
+      "wrong": 39,
+      "missing": 66,
+      "spurious": 0,
+      "accuracy": 0.9938
+    }
+  },
+  "withExamples": {
+    "baseline": {
+      "total": 564,
+      "correct": 457,
+      "wrong": 37,
+      "missing": 70,
+      "spurious": 0,
+      "accuracy": 0.8103
+    },
+    "learning": {
+      "total": 564,
+      "correct": 562,
+      "wrong": 2,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9965
+    }
+  },
+  "weightFields": {
+    "baseline": {
+      "total": 2282,
+      "correct": 2146,
+      "wrong": 0,
+      "missing": 136,
+      "spurious": 0,
+      "accuracy": 0.9404
+    },
+    "learning": {
+      "total": 2282,
+      "correct": 2216,
+      "wrong": 0,
+      "missing": 66,
+      "spurious": 0,
+      "accuracy": 0.9711
+    }
+  },
+  "minutes": 14.73,
+  "runs": [
+    {
+      "shipment": "CA-001",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 86,
+        "correct": 86,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 86,
+        "correct": 86,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-001",
+      "type": "PACKING_LIST",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-001",
+      "type": "BILL_OF_LADING",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 142,
+        "correct": 142,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 142,
+        "correct": 142,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "PACKING_LIST",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 0,
+      "learned": 51,
+      "baseline": {
+        "total": 103,
+        "correct": 52,
+        "wrong": 17,
+        "missing": 34,
+        "spurious": 0,
+        "accuracy": 0.5049
+      },
+      "learning": {
+        "total": 103,
+        "correct": 52,
+        "wrong": 17,
+        "missing": 34,
+        "spurious": 0,
+        "accuracy": 0.5049
+      }
+    },
+    {
+      "shipment": "CA-002",
+      "type": "BILL_OF_LADING",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 76,
+        "correct": 76,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 76,
+        "correct": 76,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "PACKING_LIST",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 49,
+        "correct": 49,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 49,
+        "correct": 49,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "BILL_OF_LADING",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-004",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 86,
+        "correct": 86,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 86,
+        "correct": 86,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-004",
+      "type": "PACKING_LIST",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-004",
+      "type": "BILL_OF_LADING",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 2,
+      "baseline": {
+        "total": 20,
+        "correct": 18,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9
+      },
+      "learning": {
+        "total": 20,
+        "correct": 18,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9
+      }
+    },
+    {
+      "shipment": "CA-005",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 77,
+        "correct": 77,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 77,
+        "correct": 77,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-005",
+      "type": "PACKING_LIST",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 49,
+        "correct": 49,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 49,
+        "correct": 49,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-005",
+      "type": "BILL_OF_LADING",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-006",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 211,
+        "correct": 211,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 211,
+        "correct": 211,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-006",
+      "type": "PACKING_LIST",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 139,
+        "correct": 139,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 139,
+        "correct": 139,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-006",
+      "type": "BILL_OF_LADING",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-007",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 140,
+        "correct": 140,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 140,
+        "correct": 140,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-007",
+      "type": "PACKING_LIST",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 91,
+        "correct": 91,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 91,
+        "correct": 91,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-007",
+      "type": "BILL_OF_LADING",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-008",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Azeites do Alentejo, Lda.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 104,
+        "correct": 104,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 104,
+        "correct": 104,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-008",
+      "type": "PACKING_LIST",
+      "supplier": "Azeites do Alentejo, Lda.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 67,
+        "correct": 67,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 67,
+        "correct": 67,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-008",
+      "type": "BILL_OF_LADING",
+      "supplier": "Azeites do Alentejo, Lda.",
+      "examples": 0,
+      "learned": 1,
+      "baseline": {
+        "total": 20,
+        "correct": 19,
+        "wrong": 1,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.95
+      },
+      "learning": {
+        "total": 20,
+        "correct": 19,
+        "wrong": 1,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.95
+      }
+    },
+    {
+      "shipment": "CA-009",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 86,
+        "correct": 86,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 86,
+        "correct": 86,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-009",
+      "type": "PACKING_LIST",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-009",
+      "type": "BILL_OF_LADING",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-010",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 151,
+        "correct": 151,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 151,
+        "correct": 151,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-010",
+      "type": "PACKING_LIST",
+      "supplier": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "examples": 0,
+      "learned": 48,
+      "baseline": {
+        "total": 97,
+        "correct": 49,
+        "wrong": 16,
+        "missing": 32,
+        "spurious": 0,
+        "accuracy": 0.5052
+      },
+      "learning": {
+        "total": 97,
+        "correct": 49,
+        "wrong": 16,
+        "missing": 32,
+        "spurious": 0,
+        "accuracy": 0.5052
+      }
+    },
+    {
+      "shipment": "CA-010",
+      "type": "BILL_OF_LADING",
+      "supplier": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-011",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 68,
+        "correct": 68,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 68,
+        "correct": 68,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-011",
+      "type": "PACKING_LIST",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 43,
+        "correct": 43,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 43,
+        "correct": 43,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-011",
+      "type": "BILL_OF_LADING",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-012",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 158,
+        "correct": 158,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 158,
+        "correct": 158,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-012",
+      "type": "PACKING_LIST",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 103,
+        "correct": 103,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 103,
+        "correct": 103,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-012",
+      "type": "BILL_OF_LADING",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-013",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 158,
+        "correct": 158,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 158,
+        "correct": 158,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-013",
+      "type": "PACKING_LIST",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 103,
+        "correct": 103,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 103,
+        "correct": 103,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-013",
+      "type": "BILL_OF_LADING",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-014",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 185,
+        "correct": 185,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 185,
+        "correct": 185,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-014",
+      "type": "PACKING_LIST",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 121,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 121,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-014",
+      "type": "BILL_OF_LADING",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-015",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 121,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 121,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-015",
+      "type": "PACKING_LIST",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 79,
+        "correct": 79,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 79,
+        "correct": 79,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-015",
+      "type": "BILL_OF_LADING",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-016",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 106,
+        "correct": 106,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 106,
+        "correct": 106,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-016",
+      "type": "PACKING_LIST",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 67,
+        "correct": 67,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 67,
+        "correct": 67,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-016",
+      "type": "BILL_OF_LADING",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-017",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Küchentechnik Müller & Söhne GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 185,
+        "correct": 185,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 185,
+        "correct": 185,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-017",
+      "type": "PACKING_LIST",
+      "supplier": "Küchentechnik Müller & Söhne GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 121,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 121,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-017",
+      "type": "BILL_OF_LADING",
+      "supplier": "Küchentechnik Müller & Söhne GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-018",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 97,
+        "correct": 97,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 97,
+        "correct": 97,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-018",
+      "type": "PACKING_LIST",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 61,
+        "correct": 61,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 61,
+        "correct": 61,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-018",
+      "type": "BILL_OF_LADING",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-019",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 194,
+        "correct": 194,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 194,
+        "correct": 194,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-019",
+      "type": "PACKING_LIST",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 127,
+        "correct": 127,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 127,
+        "correct": 127,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-019",
+      "type": "BILL_OF_LADING",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-020",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Industrias Cerámicas del Levante, S.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 77,
+        "correct": 77,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 77,
+        "correct": 77,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-020",
+      "type": "PACKING_LIST",
+      "supplier": "Industrias Cerámicas del Levante, S.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 49,
+        "correct": 49,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 49,
+        "correct": 49,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-020",
+      "type": "BILL_OF_LADING",
+      "supplier": "Industrias Cerámicas del Levante, S.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-021",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 131,
+        "correct": 131,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 131,
+        "correct": 131,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-021",
+      "type": "PACKING_LIST",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 5,
+      "learned": 0,
+      "baseline": {
+        "total": 85,
+        "correct": 85,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 85,
+        "correct": 85,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-021",
+      "type": "BILL_OF_LADING",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-022",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Küchentechnik Müller & Söhne GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 185,
+        "correct": 185,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 185,
+        "correct": 185,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-022",
+      "type": "PACKING_LIST",
+      "supplier": "Küchentechnik Müller & Söhne GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 121,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 121,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-022",
+      "type": "BILL_OF_LADING",
+      "supplier": "Küchentechnik Müller & Söhne GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-023",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 186,
+        "correct": 186,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 186,
+        "correct": 186,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-023",
+      "type": "PACKING_LIST",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 121,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 121,
+        "correct": 121,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-023",
+      "type": "BILL_OF_LADING",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-024",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 221,
+        "correct": 221,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 221,
+        "correct": 221,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-024",
+      "type": "PACKING_LIST",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 145,
+        "correct": 145,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 145,
+        "correct": 145,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-024",
+      "type": "BILL_OF_LADING",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 2,
+      "learned": 1,
+      "baseline": {
+        "total": 20,
+        "correct": 18,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9
+      },
+      "learning": {
+        "total": 20,
+        "correct": 18,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9
+      }
+    },
+    {
+      "shipment": "CA-025",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 104,
+        "correct": 104,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 104,
+        "correct": 104,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-025",
+      "type": "PACKING_LIST",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 67,
+        "correct": 67,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 67,
+        "correct": 67,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-025",
+      "type": "BILL_OF_LADING",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-026",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 194,
+        "correct": 194,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 194,
+        "correct": 194,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-026",
+      "type": "PACKING_LIST",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 127,
+        "correct": 127,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 127,
+        "correct": 127,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-026",
+      "type": "BILL_OF_LADING",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-027",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 374,
+        "correct": 374,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 374,
+        "correct": 374,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-027",
+      "type": "PACKING_LIST",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 247,
+        "correct": 247,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 247,
+        "correct": 247,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-027",
+      "type": "BILL_OF_LADING",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-028",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 112,
+        "correct": 112,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 112,
+        "correct": 112,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-028",
+      "type": "PACKING_LIST",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 73,
+        "correct": 73,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 73,
+        "correct": 73,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-028",
+      "type": "BILL_OF_LADING",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-029",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Küchentechnik Müller & Söhne GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 230,
+        "correct": 230,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 230,
+        "correct": 230,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-029",
+      "type": "PACKING_LIST",
+      "supplier": "Küchentechnik Müller & Söhne GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 151,
+        "correct": 151,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 151,
+        "correct": 151,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-029",
+      "type": "BILL_OF_LADING",
+      "supplier": "Küchentechnik Müller & Söhne GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-030",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 241,
+        "correct": 241,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 241,
+        "correct": 241,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-030",
+      "type": "PACKING_LIST",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 157,
+        "correct": 157,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 157,
+        "correct": 157,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "CA-030",
+      "type": "BILL_OF_LADING",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 213,
+        "correct": 213,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 213,
+        "correct": 213,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "PACKING_LIST",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 139,
+        "correct": 139,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 139,
+        "correct": 139,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "BILL_OF_LADING",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 177,
+        "correct": 177,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 177,
+        "correct": 177,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "PACKING_LIST",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 115,
+        "correct": 115,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 115,
+        "correct": 115,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "BILL_OF_LADING",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Azeites do Alentejo, Lda.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 96,
+        "correct": 96,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 96,
+        "correct": 96,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "PACKING_LIST",
+      "supplier": "Azeites do Alentejo, Lda.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 61,
+        "correct": 61,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 61,
+        "correct": 61,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "BILL_OF_LADING",
+      "supplier": "Azeites do Alentejo, Lda.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-004",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 123,
+        "correct": 123,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 123,
+        "correct": 123,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-004",
+      "type": "PACKING_LIST",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 79,
+        "correct": 79,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 79,
+        "correct": 79,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-004",
+      "type": "BILL_OF_LADING",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 70,
+        "correct": 70,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 70,
+        "correct": 70,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "PACKING_LIST",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 43,
+        "correct": 43,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 43,
+        "correct": 43,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "BILL_OF_LADING",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 87,
+        "correct": 87,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 87,
+        "correct": 87,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "PACKING_LIST",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "BILL_OF_LADING",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-007",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 87,
+        "correct": 87,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 87,
+        "correct": 87,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-007",
+      "type": "PACKING_LIST",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-007",
+      "type": "BILL_OF_LADING",
+      "supplier": "Cafe Alto Huila Exportadores S.A.S.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-008",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 285,
+        "correct": 285,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 285,
+        "correct": 285,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-008",
+      "type": "PACKING_LIST",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 187,
+        "correct": 187,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 187,
+        "correct": 187,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-008",
+      "type": "BILL_OF_LADING",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 1,
+      "baseline": {
+        "total": 20,
+        "correct": 19,
+        "wrong": 1,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.95
+      },
+      "learning": {
+        "total": 20,
+        "correct": 19,
+        "wrong": 1,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.95
+      }
+    },
+    {
+      "shipment": "US-009",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 69,
+        "correct": 69,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 69,
+        "correct": 69,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-009",
+      "type": "PACKING_LIST",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 43,
+        "correct": 43,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 43,
+        "correct": 43,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-009",
+      "type": "BILL_OF_LADING",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-010",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 332,
+        "correct": 332,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 332,
+        "correct": 332,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-010",
+      "type": "PACKING_LIST",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 217,
+        "correct": 217,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 217,
+        "correct": 217,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-010",
+      "type": "BILL_OF_LADING",
+      "supplier": "Pune Precision Engineering Pvt. Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-011",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 68,
+        "correct": 68,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 68,
+        "correct": 68,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-011",
+      "type": "PACKING_LIST",
+      "supplier": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "examples": 5,
+      "learned": 0,
+      "baseline": {
+        "total": 43,
+        "correct": 43,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 43,
+        "correct": 43,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-011",
+      "type": "BILL_OF_LADING",
+      "supplier": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-012",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 78,
+        "correct": 78,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 78,
+        "correct": 78,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-012",
+      "type": "PACKING_LIST",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 49,
+        "correct": 49,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 49,
+        "correct": 49,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-012",
+      "type": "BILL_OF_LADING",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-013",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 105,
+        "correct": 105,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 105,
+        "correct": 105,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-013",
+      "type": "PACKING_LIST",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 67,
+        "correct": 67,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 67,
+        "correct": 67,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-013",
+      "type": "BILL_OF_LADING",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-014",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 168,
+        "correct": 168,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 168,
+        "correct": 168,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-014",
+      "type": "PACKING_LIST",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 109,
+        "correct": 109,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 109,
+        "correct": 109,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-014",
+      "type": "BILL_OF_LADING",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-015",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 71,
+        "correct": 71,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 71,
+        "correct": 71,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-015",
+      "type": "PACKING_LIST",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 49,
+        "correct": 49,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 49,
+        "correct": 49,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-015",
+      "type": "BILL_OF_LADING",
+      "supplier": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-016",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 312,
+        "correct": 312,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 312,
+        "correct": 312,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-016",
+      "type": "PACKING_LIST",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 205,
+        "correct": 205,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 205,
+        "correct": 205,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-016",
+      "type": "BILL_OF_LADING",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-017",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 203,
+        "correct": 203,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 203,
+        "correct": 203,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-017",
+      "type": "PACKING_LIST",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 133,
+        "correct": 133,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 133,
+        "correct": 133,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-017",
+      "type": "BILL_OF_LADING",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-018",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 195,
+        "correct": 195,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 195,
+        "correct": 195,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-018",
+      "type": "PACKING_LIST",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 127,
+        "correct": 127,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 127,
+        "correct": 127,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-018",
+      "type": "BILL_OF_LADING",
+      "supplier": "Société Lyonnaise de Jouets S.A.R.L.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-019",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 132,
+        "correct": 132,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 132,
+        "correct": 132,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-019",
+      "type": "PACKING_LIST",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 5,
+      "learned": 0,
+      "baseline": {
+        "total": 85,
+        "correct": 85,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 85,
+        "correct": 85,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-019",
+      "type": "BILL_OF_LADING",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-020",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 320,
+        "correct": 320,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 320,
+        "correct": 320,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-020",
+      "type": "PACKING_LIST",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 5,
+      "learned": 0,
+      "baseline": {
+        "total": 211,
+        "correct": 106,
+        "wrong": 35,
+        "missing": 70,
+        "spurious": 0,
+        "accuracy": 0.5024
+      },
+      "learning": {
+        "total": 211,
+        "correct": 211,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-020",
+      "type": "BILL_OF_LADING",
+      "supplier": "Saigon Apparel Joint Stock Company",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-021",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 105,
+        "correct": 105,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 105,
+        "correct": 105,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-021",
+      "type": "PACKING_LIST",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 67,
+        "correct": 67,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 67,
+        "correct": 67,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-021",
+      "type": "BILL_OF_LADING",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-022",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 251,
+        "correct": 251,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 251,
+        "correct": 251,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-022",
+      "type": "PACKING_LIST",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 163,
+        "correct": 163,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 163,
+        "correct": 163,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-022",
+      "type": "BILL_OF_LADING",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-023",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 177,
+        "correct": 177,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 177,
+        "correct": 177,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-023",
+      "type": "PACKING_LIST",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 115,
+        "correct": 115,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 115,
+        "correct": 115,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-023",
+      "type": "BILL_OF_LADING",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-024",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 222,
+        "correct": 222,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 222,
+        "correct": 222,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-024",
+      "type": "PACKING_LIST",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 145,
+        "correct": 145,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 145,
+        "correct": 145,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-024",
+      "type": "BILL_OF_LADING",
+      "supplier": "Nordhafen Armaturen GmbH",
+      "examples": 3,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-025",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 204,
+        "correct": 204,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 204,
+        "correct": 204,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-025",
+      "type": "PACKING_LIST",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 133,
+        "correct": 133,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 133,
+        "correct": 133,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-025",
+      "type": "BILL_OF_LADING",
+      "supplier": "Ningbo Everbright Appliance Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-026",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 114,
+        "correct": 114,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 114,
+        "correct": 114,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-026",
+      "type": "PACKING_LIST",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 73,
+        "correct": 73,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 73,
+        "correct": 73,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-026",
+      "type": "BILL_OF_LADING",
+      "supplier": "Brightstar Toys Manufacturing Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-027",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Azeites do Alentejo, Lda.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 87,
+        "correct": 87,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 87,
+        "correct": 87,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-027",
+      "type": "PACKING_LIST",
+      "supplier": "Azeites do Alentejo, Lda.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 55,
+        "correct": 55,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-027",
+      "type": "BILL_OF_LADING",
+      "supplier": "Azeites do Alentejo, Lda.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-028",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 141,
+        "correct": 141,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 141,
+        "correct": 141,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-028",
+      "type": "PACKING_LIST",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 91,
+        "correct": 91,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 91,
+        "correct": 91,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-028",
+      "type": "BILL_OF_LADING",
+      "supplier": "Ceramiche Valle Secchia S.p.A.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-029",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 204,
+        "correct": 204,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 204,
+        "correct": 204,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-029",
+      "type": "PACKING_LIST",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 133,
+        "correct": 133,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 133,
+        "correct": 133,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-029",
+      "type": "BILL_OF_LADING",
+      "supplier": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-030",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 321,
+        "correct": 321,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 321,
+        "correct": 321,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-030",
+      "type": "PACKING_LIST",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 0,
+      "learned": 0,
+      "baseline": {
+        "total": 211,
+        "correct": 211,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 211,
+        "correct": 211,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "US-030",
+      "type": "BILL_OF_LADING",
+      "supplier": "Công ty Cổ phần May Đông Á",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    }
+  ]
+}

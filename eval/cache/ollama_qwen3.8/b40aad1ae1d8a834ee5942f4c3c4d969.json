@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 860,
+    "outputTokens": 932
+  },
+  "output": {
+    "blNumber": "COMPNSA193152",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "819929378",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "064W",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU1764340",
+        "seal": "PC5679950",
+        "type": "20GP",
+        "packages": "187",
+        "grossWeight": {
+          "value": "4,282.30",
+          "unit": "KG"
+        },
+        "volumeM3": "5.61"
+      }
+    ],
+    "totalPackages": "188",
+    "totalGrossWeight": {
+      "value": "4,282.30",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-71886/C/NO. 1-187",
+    "cargoDescription": "SAID TO CONTAIN 187 CTNS BALL BEARING 6204-2RS",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "PUN2608222",
+      "PO-71886"
+    ],
+    "placeOfIssue": "Nhava Sheva",
+    "dateOfIssue": "Aug 7, 2026",
+    "shippedOnBoardDate": "Aug 7, 2026"
+  }
+}

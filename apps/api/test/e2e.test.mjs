@@ -244,7 +244,14 @@ const mailsTo = (to) =>
   readdirSync(mailDir)
     .filter((f) => f.endsWith('.json'))
     .sort()
-    .map((f) => JSON.parse(readFileSync(join(mailDir, f), 'utf8')))
+    // A file still being written reads as invalid JSON: skip it, the next poll gets it whole.
+    .flatMap((f) => {
+      try {
+        return [JSON.parse(readFileSync(join(mailDir, f), 'utf8'))];
+      } catch {
+        return [];
+      }
+    })
     .filter((m) => m.to === to);
 
 /** Waits for the `count`-th email to `to` (sent after the API answered) and returns it. */
@@ -363,7 +370,7 @@ describe('admin', () => {
 
   it('changes settings, validates them and resets them to .env', async () => {
     const list = (await call('GET', '/admin/settings', undefined, admin)).body;
-    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'registrationOpen', 'ocrEngine', 'ocrUrl', 'ocrLanguages', 'ocrScale', 'ocrPsm']);
+    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'registrationOpen', 'ocrEngine', 'ocrUrl', 'ocrLanguages', 'ocrScale', 'ocrPsm', 'reviewThreshold', 'reviewSecondPass', 'supplierLearning', 'supplierExamples']);
     assert.equal(list.editable, true);
     assert.equal(list.settings.find((x) => x.key === 'agentEnabled').source, 'env');
 

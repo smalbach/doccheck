@@ -1,0 +1,327 @@
+{
+  "id": "QK-001",
+  "seed": 1261395022,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/0887",
+      "invoiceDate": "2026-03-14",
+      "poNumber": "PO-55859",
+      "seller": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-03-22",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Montreal"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "CAD",
+      "packageCount": 60,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "60",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "87.12",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "5227.20",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1140.00",
+        "raw": {
+          "value": "1140.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "870.00",
+        "raw": {
+          "value": "870.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "5227.20",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "2079.00",
+          "currency": "INR"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/0887",
+      "invoiceRef": "CI/26/0887",
+      "seller": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-60",
+          "count": 60,
+          "type": "CRT",
+          "marks": "QUINCAILLERIE/PO-55859/C/NO. 1-60",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "60",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "870.00",
+            "raw": {
+              "value": "870.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1140.00",
+            "raw": {
+              "value": "1140.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 60,
+        "netWeight": {
+          "kg": "870.00",
+          "raw": {
+            "value": "870.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1140.00",
+          "raw": {
+            "value": "1140.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "5.28"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVNSA613169",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "897607922",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "069S",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU1619406",
+          "seal": "MD1087924",
+          "type": "20GP",
+          "packages": 60,
+          "grossWeight": {
+            "kg": "1140.00",
+            "raw": {
+              "value": "1140.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "5.28"
+        }
+      ],
+      "totalPackages": 60,
+      "totalGrossWeight": {
+        "kg": "969.00",
+        "raw": {
+          "value": "969.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/PO-55859/C/NO. 1-60",
+      "cargoDescription": "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-03-22",
+      "shippedOnBoardDate": "2026-03-22",
+      "references": [
+        "CI/26/0887",
+        "PO-55859"
+      ]
+    }
+  },
+  "source": "CA-001",
+  "quirk": "net-gross-swapped"
+}

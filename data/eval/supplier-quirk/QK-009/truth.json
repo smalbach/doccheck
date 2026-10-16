@@ -1,0 +1,321 @@
+{
+  "id": "QK-009",
+  "seed": 669350774,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5859",
+      "invoiceDate": "2026-09-21",
+      "poNumber": "PO-5313",
+      "seller": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-10-01",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Cai Mep"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "CAD",
+      "packageCount": 205,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "20500",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.17",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "44485.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4059.00",
+        "raw": {
+          "value": "4059.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3895.00",
+        "raw": {
+          "value": "3895.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "44485.00",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5859",
+      "invoiceRef": "CI/26/5859",
+      "seller": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-205",
+          "count": 205,
+          "type": "CTN",
+          "marks": "COASTAL/PO-5313/C/NO. 1-205",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "20500",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3895.00",
+            "raw": {
+              "value": "3895.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4059.00",
+            "raw": {
+              "value": "4059.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 205,
+        "netWeight": {
+          "kg": "3895.00",
+          "raw": {
+            "value": "3895.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4059.00",
+          "raw": {
+            "value": "4059.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "17.22"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLCMT9824399",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "463153471",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "037N",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "PCRU8680929",
+          "seal": "PC1472899",
+          "type": "20GP",
+          "packages": 205,
+          "grossWeight": {
+            "kg": "4059.00",
+            "raw": {
+              "value": "4059.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "17.22"
+        }
+      ],
+      "totalPackages": 205,
+      "totalGrossWeight": {
+        "kg": "4059.00",
+        "raw": {
+          "value": "4059.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/PO-5313/C/NO. 1-205",
+      "cargoDescription": "SAID TO CONTAIN 205 CTNS MEN'S COTTON T-SHIRT",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-10-01",
+      "shippedOnBoardDate": "2026-10-01",
+      "references": [
+        "CI/26/5859",
+        "PO-5313"
+      ]
+    }
+  },
+  "source": "CA-034",
+  "quirk": "net-gross-swapped"
+}

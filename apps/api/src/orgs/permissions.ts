@@ -30,6 +30,8 @@ export const PERMISSIONS = {
   /** Retention, approval policy, due date lead time, SSO. */
   'org.settings': ['owner', 'admin'],
   'audit.read': ['owner', 'admin'],
+  /** Buy or change the organization's plan (Stripe Checkout and customer portal). */
+  'billing.manage': ['owner', 'admin'],
   'org.delete': ['owner'],
 } as const satisfies Record<string, readonly OrgRole[]>;
 export type OrgPermission = keyof typeof PERMISSIONS;

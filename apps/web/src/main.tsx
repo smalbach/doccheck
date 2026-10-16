@@ -4,6 +4,7 @@ import { App } from './App';
 import { detectLocale } from './i18n/detectLocale';
 import { loadMessages } from './i18n/loadMessages';
 import { en } from './i18n/messages/en';
+import { registerServiceWorker } from './lib/registerServiceWorker';
 import './styles/index.css';
 
 const root = document.getElementById('root');
@@ -21,3 +22,5 @@ void loadMessages(locale)
       </StrictMode>,
     ),
   );
+
+registerServiceWorker();

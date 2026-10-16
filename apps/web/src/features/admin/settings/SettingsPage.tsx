@@ -7,6 +7,7 @@ import { useI18n } from '../../../i18n/useI18n';
 import { settingOf } from '../../../lib/settingOf';
 import { AccountsSettingCard } from './AccountsSettingCard';
 import { AgentSettingCard } from './AgentSettingCard';
+import { LearningSettingsCard } from './LearningSettingsCard';
 import { ModelSettingCard } from './ModelSettingCard';
 import { MailboxSettingsCard } from './MailboxSettingsCard';
 import { OcrSettingsCard } from './OcrSettingsCard';
@@ -57,6 +58,17 @@ export function SettingsPage() {
               busy={busy}
               onSave={(agentEnabled) => void save({ agentEnabled })}
               onReset={() => void reset('agentEnabled')}
+            />
+            <LearningSettingsCard
+              key={`learning-${settingOf(settings, 'supplierExamples').value}-${settingOf(settings, 'reviewThreshold').value}`}
+              learning={settingOf(settings, 'supplierLearning')}
+              examples={settingOf(settings, 'supplierExamples')}
+              threshold={settingOf(settings, 'reviewThreshold')}
+              secondPass={settingOf(settings, 'reviewSecondPass')}
+              editable={editable}
+              busy={busy}
+              onSave={(values) => void save(values)}
+              onReset={(key) => void reset(key)}
             />
               </>
             ),

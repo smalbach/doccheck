@@ -1,0 +1,92 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 711,
+    "outputTokens": 880
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-7065",
+    "invoiceDate": "14-MAY-2026",
+    "poNumber": "CO183787",
+    "seller": {
+      "name": "NORLAND PRECISION SCALES CO., LTD.",
+      "addressLines": [
+        "88 GAOXIN ROAD, BUILDING 3",
+        "NINGBO ZHEJIANG 315040"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "buyer": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "26-MAY-2026",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "GENOA",
+      "country": "IT"
+    },
+    "portOfEntry": {
+      "name": "GENOA",
+      "country": "IT"
+    },
+    "incotermCode": "FCA",
+    "incotermPlace": "GENOA",
+    "paymentTerms": "T/T 30% DEPOSIT, 70% AGAINST COPY OF BL",
+    "currency": "EUR",
+    "countryOfOrigin": "IT",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CT-6060",
+        "description": "GLAZED PORCELAIN FLOOR TILES 60 X 60 CM HS 6907.21",
+        "quantity": "710 M2",
+        "unit": "M2",
+        "unitPrice": "9.61",
+        "unitPriceCurrency": "EUR",
+        "lineTotal": "9619.20",
+        "lineTotalCurrency": "EUR",
+        "countryOfOrigin": "IT",
+        "hsCode": "6907.21"
+      }
+    ],
+    "totalPackages": "18 PKGS",
+    "grossWeight": {
+      "value": "15120.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "15570.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "6919.20",
+    "invoiceTotalCurrency": "EUR",
+    "charges": []
+  }
+}

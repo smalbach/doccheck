@@ -17,3 +17,5 @@ export * from './attestation';
 export * from './inputs';
 export * from './raw-schemas-documents';
 export * from './normalize-documents';
+export * from './confidence';
+export * from './supplier-examples';

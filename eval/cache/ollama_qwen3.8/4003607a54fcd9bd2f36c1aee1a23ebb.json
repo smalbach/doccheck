@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 813,
+    "outputTokens": 914
+  },
+  "output": {
+    "blNumber": "MRDNBRV4781759",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "922058160",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197",
+        "DE"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201",
+        "US"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201",
+        "US"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "088N",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU4289051",
+        "seal": "MD6976216",
+        "type": "20GP",
+        "packages": "79",
+        "grossWeight": {
+          "value": "1,737.60",
+          "unit": "KG"
+        },
+        "volumeM3": "5.89"
+      }
+    ],
+    "totalPackages": "79",
+    "totalGrossWeight": {
+      "value": "1,737.60",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-75449/C/NO. 1-79",
+    "cargoDescription": "SAID TO CONTAIN 79 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-2124",
+      "PO-75449"
+    ],
+    "placeOfIssue": "Bremerhaven",
+    "dateOfIssue": "2026-02-26",
+    "shippedOnBoardDate": "2026-02-26"
+  }
+}

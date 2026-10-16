@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 857,
+    "outputTokens": 917
+  },
+  "output": {
+    "blNumber": "SILVNGB757528",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "708941472",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "094W",
+    "placeOfReceipt": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGXU8795592",
+        "seal": "AG4661847",
+        "type": "20GP",
+        "packages": "198",
+        "grossWeight": {
+          "value": "4,147",
+          "unit": "LB"
+        },
+        "volumeM3": "20.58"
+      }
+    ],
+    "totalPackages": "198",
+    "totalGrossWeight": {
+      "value": "4,147",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "PACIFIC/PA244498/C/NO. 1-198",
+    "cargoDescription": "SAID TO CONTAIN 198 CTNS ELECTRIC KETTLE 1.7 L",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "NIN2600194",
+      "PA244498"
+    ],
+    "placeOfIssue": "Ningbo",
+    "dateOfIssue": "2026-08-15",
+    "shippedOnBoardDate": "2026-08-15"
+  }
+}

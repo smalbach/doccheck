@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 801,
+    "outputTokens": 874
+  },
+  "output": {
+    "blNumber": "KEYSBRV384401",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "561873991",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd",
+        "Fontana, CA, 92335"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "025N",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Los Angeles",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU3834596",
+        "seal": "AG3104354",
+        "type": "20GP",
+        "packages": "29",
+        "grossWeight": {
+          "value": "1,797",
+          "unit": "LB"
+        },
+        "volumeM3": "1.37"
+      }
+    ],
+    "totalPackages": "29",
+    "totalGrossWeight": {
+      "value": "1,797",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "PACIFIC/PO-23127/C/NO. 1-29",
+    "cargoDescription": "SAID TO CONTAIN 29 CTNS BRASS BALL VALVE 2\"",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-6820",
+      "PO-23127"
+    ],
+    "placeOfIssue": "Bremerhaven",
+    "dateOfIssue": "May 16, 2026",
+    "shippedOnBoardDate": "May 16, 2026"
+  }
+}

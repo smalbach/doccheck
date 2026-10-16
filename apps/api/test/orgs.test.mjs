@@ -258,6 +258,9 @@ describe('organizations', () => {
       ['PUT', `/shipments/${s.id}/schedule`, { eta: '2030-01-01' }],
       ['GET', `/shipments/${s.id}/shares`],
       ['GET', `/shipments/${s.id}/events`],
+      ['GET', `/review/documents/${docId}`],
+      ['POST', `/review/documents/${docId}/accept`, { paths: ['/invoiceNumber'] }],
+      ['DELETE', `/review/documents/${docId}/accept`],
     ];
     for (const [method, path, body] of routes) assert.equal((await call(method, path, body, b.cookie)).status, 404, `${method} ${path}`);
     assert.equal((await call('GET', '/shipments', undefined, b.cookie)).body.total, 0);
@@ -279,6 +282,12 @@ describe('organizations', () => {
     const aProducts = (await call('GET', '/insights/products', undefined, a.cookie)).body.items;
     assert.equal((await call('GET', `/insights/products/${aProducts[0].id}`, undefined, b.cookie)).status, 404);
     assert.equal((await call('GET', '/insights/lines', undefined, b.cookie)).body.total, 0);
+    // The review queue, supplier examples and usage are per organization too.
+    assert.equal((await call('GET', `/review/documents/${docId}`, undefined, a.cookie)).status, 200);
+    assert.equal((await call('GET', '/review/queue', undefined, b.cookie)).body.total, 0);
+    assert.deepEqual((await call('GET', '/suppliers/examples', undefined, b.cookie)).body.suppliers, []);
+    assert.equal((await call('GET', '/usage', undefined, a.cookie)).body.meters.find((m) => m.kind === 'validation').used, 1);
+    assert.equal((await call('GET', '/usage', undefined, b.cookie)).body.meters.find((m) => m.kind === 'validation').used, 0);
     assert.equal((await call('GET', `/shipments/${s.id}/documents/${docId}/file`, undefined, b.cookie)).status, 404);
     // The Mexico, EU and UK destinations filter within the organization too.
     const eu = (await call('POST', '/shipments', { destination: 'EU', reference: 'EU-1' }, a.cookie)).body;
@@ -339,6 +348,15 @@ describe('organizations', () => {
     assert.equal((await call('POST', `/shipments/${s.id}/comments`, { targetKind: 'shipment', body: 'hi' }, viewer.cookie)).status, 403);
     assert.equal((await call('GET', '/audit', undefined, viewer.cookie)).status, 403);
     assert.equal((await call('POST', '/orgs/current/invites', { email: 'x@example.com', role: 'viewer' }, viewer.cookie)).status, 403);
+    // Viewers read the review queue and usage, but neither review values nor buy a plan.
+    assert.equal((await call('GET', '/review/queue', undefined, viewer.cookie)).status, 200);
+    assert.equal((await call('GET', '/usage', undefined, viewer.cookie)).status, 200);
+    assert.equal((await call('POST', `/review/documents/${randomUUID()}/accept`, { paths: ['/invoiceNumber'] }, viewer.cookie)).status, 403);
+    assert.equal((await call('DELETE', '/suppliers/examples/ACME', undefined, viewer.cookie)).status, 403);
+    assert.equal((await call('POST', '/billing/checkout', { plan: 'pro' }, viewer.cookie)).status, 403);
+    assert.equal((await call('POST', '/billing/portal', undefined, viewer.cookie)).status, 403);
+    // An admin may manage billing (here it is not set up: 503, not 403).
+    assert.notEqual((await call('POST', '/billing/checkout', { plan: 'pro' }, admin.cookie)).status, 403);
 
     // An admin manages members but cannot make owners; the last owner cannot step down.
     assert.equal((await call('PATCH', `/orgs/current/members/${viewer.id}`, { role: 'reviewer' }, admin.cookie)).status, 200);
@@ -372,7 +390,7 @@ describe('organizations', () => {
     assert.equal((await call('GET', `/shipments/${shared.id}`, undefined, client.cookie)).status, 200);
     assert.equal((await call('GET', `/shipments/${shared.id}/collab`, undefined, client.cookie)).status, 200);
     assert.equal((await call('GET', `/shipments/${other.id}`, undefined, client.cookie)).status, 404);
-    for (const path of ['/insights/summary', '/shipments/alerts', '/orgs/current/members', '/mail/threads', `/shipments/${shared.id}/comments`, '/events/labels']) {
+    for (const path of ['/insights/summary', '/shipments/alerts', '/orgs/current/members', '/mail/threads', `/shipments/${shared.id}/comments`, '/events/labels', '/review/queue', '/review/summary', '/suppliers/examples', '/usage']) {
       assert.equal((await call('GET', path, undefined, client.cookie)).status, 403, path);
     }
     assert.equal((await call('PATCH', `/shipments/${shared.id}`, { reference: 'x' }, client.cookie)).status, 403);

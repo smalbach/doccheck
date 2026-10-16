@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 783,
+    "outputTokens": 938
+  },
+  "output": {
+    "blNumber": "SILVNSA613169",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Meridian Ocean Shipping",
+    "bookingNumber": "897607922",
+    "carrierName": "Meridian Ocean Shipping",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Norland Precision Scales Co., Ltd.",
+      "addressLines": [
+        "88 Gaoxin Road, Building 3",
+        "Ningbo, Zhejiang, 315040"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel",
+        "Laval, QC, H7S 1P6"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "PACIFIC CREST",
+    "voyage": "069S",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU1619406",
+        "seal": "MD1087924",
+        "type": "20GP",
+        "packages": "60",
+        "grossWeight": {
+          "value": "1,140.00",
+          "unit": "KG"
+        },
+        "volumeM3": "5.28"
+      }
+    ],
+    "totalPackages": "60",
+    "totalGrossWeight": {
+      "value": "969.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-55859/C/NO. 1-60",
+    "cargoDescription": "SAID TO CONTAIN 60 CRTS CENTRIFUGAL PUMP 0.75 KW",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CI/26/0887",
+      "PO-55859"
+    ],
+    "placeOfIssue": "Nhava Sheva",
+    "dateOfIssue": "Mar 22, 2026",
+    "shippedOnBoardDate": "Mar 22, 2026"
+  }
+}

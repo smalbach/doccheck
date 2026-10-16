@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 825,
+    "outputTokens": 916
+  },
+  "output": {
+    "blNumber": "COMPMUN581253",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "787090975",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2176 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "026N",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCLU4405676",
+        "seal": "PC6141216",
+        "type": "20GP",
+        "packages": "102",
+        "grossWeight": {
+          "value": "5,256",
+          "unit": "LB"
+        },
+        "volumeM3": "6.98"
+      }
+    ],
+    "totalPackages": "102",
+    "totalGrossWeight": {
+      "value": "5,518",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "PACIFIC/PO-88361/C/NO. 1-102",
+    "cargoDescription": "SAID TO CONTAIN 102 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/6682",
+      "PO-88361"
+    ],
+    "placeOfIssue": "Mundra",
+    "dateOfIssue": "2026-03-05",
+    "shippedOnBoardDate": "2026-03-05"
+  }
+}

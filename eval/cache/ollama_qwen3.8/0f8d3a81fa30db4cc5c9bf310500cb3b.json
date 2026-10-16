@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 871,
+    "outputTokens": 982
+  },
+  "output": {
+    "blNumber": "MRDNMUN8433386",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "753884139",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026",
+        "IN"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2154 E 37TH ST",
+        "VERNON CA 90058",
+        "US"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST",
+        "VERNON CA 90058",
+        "US"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "021W",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "MUNDRA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "LONG BEACH",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "FONTANA",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU3481917",
+        "seal": "MD4995858",
+        "type": "20GP",
+        "packages": "287",
+        "grossWeight": {
+          "value": "7637.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "15.48"
+      }
+    ],
+    "totalPackages": "287",
+    "totalGrossWeight": {
+      "value": "6491.45",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "PACIFIC/PO-33343/C/NO. 1-287",
+    "cargoDescription": "SAID TO CONTAIN 287 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE REF: PUN2603841 / PO-33343 FREIGHT COLLECT",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "PUN2603841",
+      "PO-33343"
+    ],
+    "placeOfIssue": "MUNDRA",
+    "dateOfIssue": "31-AUG-2026",
+    "shippedOnBoardDate": "31-AUG-2026"
+  }
+}

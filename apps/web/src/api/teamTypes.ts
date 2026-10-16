@@ -15,7 +15,8 @@ export type OrgPermission =
   | 'members.manage'
   | 'org.settings'
   | 'audit.read'
-  | 'org.delete';
+  | 'org.delete'
+  | 'billing.manage';
 
 export interface OrgSummary {
   id: string;

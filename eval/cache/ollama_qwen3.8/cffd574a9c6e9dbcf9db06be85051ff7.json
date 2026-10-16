@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 830,
+    "outputTokens": 931
+  },
+  "output": {
+    "blNumber": "COMPNSA641749",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "661382406",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "032E",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU8395874",
+        "seal": "MD9465365",
+        "type": "20GP",
+        "packages": "59",
+        "grossWeight": {
+          "value": "1,384.90",
+          "unit": "KG"
+        },
+        "volumeM3": "4.01"
+      }
+    ],
+    "totalPackages": "59",
+    "totalGrossWeight": {
+      "value": "1,384.90",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PO-61806/C/NO. 1-59",
+    "cargoDescription": "SAID TO CONTAIN 59 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/3373",
+      "PO-61806"
+    ],
+    "placeOfIssue": "Nhava Sheva",
+    "dateOfIssue": "2026-03-10",
+    "shippedOnBoardDate": "2026-03-10"
+  }
+}

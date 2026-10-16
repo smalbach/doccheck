@@ -17,6 +17,8 @@ import { ProgressService } from '../progress/progress.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { AuditService } from '../audit/audit.service';
 import { NotificationsService } from '../collab/notifications.service';
+import { ReviewService } from '../review/review.service';
+import { UsageService } from '../usage/usage.service';
 import { DocumentProcessor } from './document.processor';
 import { ExtractionQueue } from './extraction.queue';
 import { ReviewRequestsRepository } from './review-requests.repository';
@@ -86,6 +88,8 @@ export class ShipmentsService {
     private readonly notifications: NotificationsService,
     private readonly audit: AuditService,
     private readonly ruleSettings: RuleSettingsService,
+    private readonly usage: UsageService,
+    private readonly review: ReviewService,
   ) {}
 
   /** A new shipment in the organization, created by `userId`. */
@@ -174,6 +178,8 @@ export class ShipmentsService {
         return f.bytes;
       }),
     );
+    // Each file is at least one extraction of the plan: a hard limit refuses the whole upload (402).
+    await this.usage.assertAllowed(id, 'extraction', files.length);
     const documents: ShipmentDocument[] = [];
     for (const [i, f] of files.entries()) {
       const documentId = randomUUID();
@@ -233,6 +239,7 @@ export class ShipmentsService {
     const doc = UUID.test(documentId) ? await this.repo.findDocument(documentId) : null;
     if (!doc || doc.shipmentId !== id) throw new NotFoundException(`Document ${documentId} not found in shipment ${id}`);
     if (doc.status === 'QUEUED' || doc.status === 'EXTRACTING') throw new ConflictException('The document is already being extracted');
+    await this.usage.assertAllowed(id, 'extraction');
     // Not an ISF after all: the ISF taken from it goes now, even if the new extraction fails.
     if (type !== 'ISF') await this.repo.deleteIsfFromDocument(documentId);
     await this.repo.updateDocumentStatus(documentId, 'QUEUED');
@@ -305,6 +312,8 @@ export class ShipmentsService {
       .filter((c) => c.oldValue !== c.newValue);
     if (corrections.length === 0) return this.document(id, documentId);
     this.check(await this.repo.saveCorrections(id, documentId, userId, { before: row.data, after: applied.data, corrections }), documentId);
+    // The corrected fields leave the review queue; with supplier learning they become examples.
+    await this.review.onCorrected(userId, { documentId, documentType: row.documentType, raw: row.raw, data: applied.data, pdfLines: row.pdfLines }, corrections);
     return this.document(id, documentId);
   }
 
@@ -314,6 +323,7 @@ export class ShipmentsService {
     if (!row.modelData) throw new BadRequestException('The document has no corrections to revert');
     const corrections = diffPointers(row.data, row.modelData).map((path) => ({ path, oldValue: readPointer(row.data, path), newValue: readPointer(row.modelData, path) }));
     this.check(await this.repo.saveCorrections(id, documentId, userId, { before: row.data, after: row.modelData, corrections, revert: true }), documentId);
+    await this.review.onReverted(documentId);
     return this.document(id, documentId);
   }
 
@@ -354,6 +364,7 @@ export class ShipmentsService {
     }
     const pending = await this.repo.pendingDocuments(id);
     if (pending > 0) throw new ConflictException(`${pending} document(s) are still being extracted; validate when they are done`);
+    await this.usage.assertAllowed(id, 'validation');
     await this.repo.setStatus(id, 'VALIDATING');
 
     const validationId = randomUUID();
@@ -475,6 +486,7 @@ export class ShipmentsService {
     const saved = await startStage(run.report, 'saved');
     await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination, ruleConfig: { ...applied, disabled: output.disabled } });
     await this.repo.setStatus(id, output.skipped.length > 0 ? 'NEEDS_INPUT' : 'DONE');
+    await this.usage.record(id, 'validation');
     await saved.done({ validationId, findings: output.findings.length, skipped: output.skipped.length, agent: agent.status });
     return { validationId, ...output, agent };
   }

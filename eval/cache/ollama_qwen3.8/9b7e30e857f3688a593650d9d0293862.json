@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 905,
+    "outputTokens": 929
+  },
+  "output": {
+    "blNumber": "PCCLHAM4197752",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line",
+    "bookingNumber": "938894101",
+    "carrierName": "Pacific Crest Container Line",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Les Importations Bélanger & Frères inc.",
+      "addressLines": [
+        "2947 boul. Laurier, bureau 300",
+        "Québec, QC, G1V 2M2"
+      ],
+      "city": "Québec",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "notifyParty": {
+      "name": "Les Importations Bélanger & Frères inc.",
+      "addressLines": [
+        "2875 boul. Laurier, bureau 300",
+        "Québec, QC, G1V 2M2"
+      ],
+      "city": "Québec",
+      "region": "QC",
+      "postalCode": "G1V 2M2",
+      "country": "CA",
+      "taxId": "881234567RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "087S",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Hamburg",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Québec",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Montréal",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCLU4496001",
+        "seal": "PC8067021",
+        "type": "20GP",
+        "packages": "135",
+        "grossWeight": {
+          "value": "3,365.80",
+          "unit": "KG"
+        },
+        "volumeM3": "8.29"
+      }
+    ],
+    "totalPackages": "135",
+    "totalGrossWeight": {
+      "value": "3,365.80",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "LES/LE847110/C/NO. 1-135",
+    "cargoDescription": "SAID TO CONTAIN 135 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "NOR2605836",
+      "LE847110"
+    ],
+    "placeOfIssue": "Hamburg",
+    "dateOfIssue": "Mar 27, 2026",
+    "shippedOnBoardDate": "Mar 27, 2026"
+  }
+}

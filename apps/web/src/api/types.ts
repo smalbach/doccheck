@@ -219,7 +219,7 @@ export interface User {
   createdAt: string;
 }
 
-export type SettingKey = 'llmModel' | 'agentEnabled' | 'registrationOpen' | 'ocrEngine' | 'ocrUrl' | 'ocrLanguages' | 'ocrScale' | 'ocrPsm';
+export type SettingKey = 'llmModel' | 'agentEnabled' | 'registrationOpen' | 'ocrEngine' | 'ocrUrl' | 'ocrLanguages' | 'ocrScale' | 'ocrPsm' | 'reviewThreshold' | 'reviewSecondPass' | 'supplierLearning' | 'supplierExamples';
 
 export type OcrEngine = 'tesseract' | 'unlimited';
 
@@ -232,6 +232,10 @@ export interface SettingValues {
   ocrLanguages: string[];
   ocrScale: number;
   ocrPsm: string;
+  reviewThreshold: number;
+  reviewSecondPass: boolean;
+  supplierLearning: boolean;
+  supplierExamples: number;
 }
 
 export interface SettingView<K extends SettingKey = SettingKey> {

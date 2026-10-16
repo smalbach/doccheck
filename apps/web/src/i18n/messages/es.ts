@@ -1,6 +1,9 @@
+import { extraEs } from './extra-es';
+import { captureEs } from './capture-es';
 import type { Messages } from './en';
 
 export const es: Messages = {
+  ...extraEs,
   common: { loading: 'Cargando…', cancel: 'Cancelar', save: 'Guardar', saving: 'Guardando…', close: 'Cerrar', none: '—' },
   app: {
     tagline: 'Documentos de carga revisados antes de llegar a la aduana',
@@ -1261,6 +1264,7 @@ export const es: Messages = {
     deleting: 'Eliminando…',
     wrongPassword: 'La contraseña no es correcta.',
   },
+  capture: captureEs,
   team: {
     title: 'Organización',
     text: 'Todos aquí ven los envíos, empresas, productos y conversaciones de la organización, cada uno con lo que su rol permite.',

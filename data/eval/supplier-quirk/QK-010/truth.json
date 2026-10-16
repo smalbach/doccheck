@@ -1,0 +1,428 @@
+{
+  "id": "QK-010",
+  "seed": 1016569923,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SAI2601998",
+      "poNumber": "QU969565",
+      "seller": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-08-17",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Cai Mep"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 423,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "4200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "20.88",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "87696.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "20100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.16",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "43416.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 3,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "3360",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "3.14",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10550.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        }
+      ],
+      "grossWeight": {
+        "kg": "8021.60",
+        "raw": {
+          "value": "8021.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7641.00",
+        "raw": {
+          "value": "7641.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "141662.40",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-SAI2601998",
+      "invoiceRef": "SAI2601998",
+      "seller": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-210",
+          "count": 210,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU969565/C/NO. 1-425",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "4200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3570.00",
+            "raw": {
+              "value": "3570.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3780.00",
+            "raw": {
+              "value": "3780.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        },
+        {
+          "range": "211-411",
+          "count": 201,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU969565/C/NO. 1-425",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "20100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3819.00",
+            "raw": {
+              "value": "3819.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3979.80",
+            "raw": {
+              "value": "3979.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "412-425",
+          "count": 14,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/QU969565/C/NO. 1-425",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "3360",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "252.00",
+            "raw": {
+              "value": "252.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "261.80",
+            "raw": {
+              "value": "261.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 425,
+        "netWeight": {
+          "kg": "7641.00",
+          "raw": {
+            "value": "7641.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "8021.60",
+          "raw": {
+            "value": "8021.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "45.51"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSCMT269686",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "797782096",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "055S",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Halifax",
+        "unLocode": "CAHAL",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "AGLU4283712",
+          "seal": "AG2480664",
+          "type": "40GP",
+          "packages": 425,
+          "grossWeight": {
+            "kg": "8021.60",
+            "raw": {
+              "value": "8021.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "45.51"
+        }
+      ],
+      "totalPackages": 425,
+      "totalGrossWeight": {
+        "kg": "8182.03",
+        "raw": {
+          "value": "8182.03",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/QU969565/C/NO. 1-425",
+      "cargoDescription": "SAID TO CONTAIN 425 CTNS WOMEN'S PADDED JACKET AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-08-17",
+      "shippedOnBoardDate": "2026-08-17",
+      "references": [
+        "SAI2601998",
+        "QU969565"
+      ]
+    }
+  },
+  "source": "CA-035",
+  "quirk": "net-gross-swapped"
+}
