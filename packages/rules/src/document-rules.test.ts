@@ -26,8 +26,10 @@ const air = (): ShipmentContext => {
   return ctx;
 };
 
-const ids = (ctx: ShipmentContext) => runRules(ctx).findings.map((f) => f.ruleId);
-const findings = (ctx: ShipmentContext, rule: string) => runRules(ctx).findings.filter((f) => f.ruleId === rule);
+// The fixtures' carrier SCAC is made up: the account knows it (rule X15).
+const PARAMS = { knownScacs: ['EXLN'] };
+const ids = (ctx: ShipmentContext) => runRules(ctx, PARAMS).findings.map((f) => f.ruleId);
+const findings = (ctx: ShipmentContext, rule: string) => runRules(ctx, PARAMS).findings.filter((f) => f.ruleId === rule);
 
 describe('engine with the other documents', () => {
   it('a clean sea shipment with every certificate finds nothing', () => {
@@ -35,14 +37,14 @@ describe('engine with the other documents', () => {
     ctx.certificateOfOrigin = { id: 'coo-1', data: structuredClone(sampleCertificateOfOrigin) };
     ctx.arrivalNotice = { id: 'an-1', data: structuredClone(sampleArrivalNotice) };
     ctx.woodPackaging = { id: 'wp-1', data: structuredClone(sampleWoodPackaging) };
-    const out = runRules(ctx);
+    const out = runRules(ctx, PARAMS);
     expect(out.findings).toEqual([]);
     expect(out.ran).toEqual(expect.arrayContaining(['T7', 'T8', 'T10', 'T11', 'T12']));
     expect(out.notApplicable).toEqual(['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T9', 'T13']);
   });
 
   it('an air shipment runs the air waybill rules, and the ocean rules do not apply instead of being skipped', () => {
-    const out = runRules(air());
+    const out = runRules(air(), PARAMS);
     expect(out.findings).toEqual([]);
     expect(out.ran).toEqual(expect.arrayContaining(['T1', 'T2', 'T3', 'T4', 'T5', 'T6']));
     expect(out.notApplicable).toEqual(expect.arrayContaining(['X1', 'X2', 'X3', 'X9', 'X10', 'X12']));
@@ -50,7 +52,7 @@ describe('engine with the other documents', () => {
   });
 
   it('an optional rule without its documents is not applicable, not missing input', () => {
-    const out = runRules(sea());
+    const out = runRules(sea(), PARAMS);
     expect(out.skipped).toEqual([]);
     expect(out.notApplicable).toContain('T9');
   });
@@ -141,7 +143,7 @@ describe('T7-T9 certificates of origin', () => {
     ctx.cusmaCertification = { id: 'cus-1', data: { certifierRole: 'IMPORTER', goods: [{ description: 'Plush teddy bear', hsCode: '9503' }] } };
     const found = findings(ctx, 'T9');
     expect(found.map((f) => f.message.match(/element (\d)/)![1])).toEqual(['2', '3', '4', '6', '7', '9']);
-    expect(runRules({ ...sea(), cusmaCertification: { id: 'cus-2', data: structuredClone(sampleCusmaCertification) } }).findings).toEqual([]);
+    expect(runRules({ ...sea(), cusmaCertification: { id: 'cus-2', data: structuredClone(sampleCusmaCertification) } }, PARAMS).findings).toEqual([]);
   });
   it('T9 checks the blanket period', () => {
     const ctx = sea();
@@ -213,7 +215,7 @@ describe('T12 arrival notice', () => {
 
 describe('T13 signature and stamp', () => {
   it('is not applicable until the paper was looked at', () => {
-    expect(runRules(sea()).notApplicable).toContain('T13');
+    expect(runRules(sea(), PARAMS).notApplicable).toContain('T13');
   });
   it('reports an original BL without signature or stamp, as information, citing the signature block', () => {
     const ctx = sea();
@@ -225,7 +227,7 @@ describe('T13 signature and stamp', () => {
     expect(ids(ctx)).not.toContain('T13');
     ctx.billOfLading!.data.blType = { issuer: 'HBL', form: 'ORIGINAL' };
     ctx.attestations = { 'bl-1': { signature: false, stamp: false, signatureBlock: false } };
-    expect(runRules(ctx).notApplicable).toContain('T13');
+    expect(runRules(ctx, PARAMS).notApplicable).toContain('T13');
   });
   it('asks for both signature and stamp on a chamber certificate', () => {
     const ctx = sea();

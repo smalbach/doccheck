@@ -1,9 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { runRules } from '@doccheck/rules';
+import { DOCUMENT_RULE_IDS, runRules, V1_RULE_IDS } from '@doccheck/rules';
 import { DOCUMENT_SCHEMAS } from '@doccheck/schemas';
 import { buildDataset } from './dataset';
 import { buildDocsDataset, DOCS_ERROR_KINDS, docsContext } from './documents';
 import { renderDocsHtml } from './render-documents';
+import { RULES_SET_PARAMS } from './rules-set';
+
+// Set v1-docs is labeled for the v1 rules and the rules on the other documents.
+const ONLY = { only: [...V1_RULE_IDS, ...DOCUMENT_RULE_IDS] };
 
 const dataset = buildDataset();
 const docs = buildDocsDataset(dataset);
@@ -30,7 +34,7 @@ describe('set v1-docs', () => {
 
   it('the rules flag exactly what each label expects, and cite the labelled field', () => {
     for (const { shipment, labels } of docs) {
-      const findings = runRules(docsContext(shipment)).findings;
+      const findings = runRules(docsContext(shipment), RULES_SET_PARAMS, ONLY).findings;
       const expected = [...new Set(labels.flatMap((l) => l.expectedRuleIds))].sort();
       expect([shipment.id, [...new Set(findings.map((f) => f.ruleId))].sort()]).toEqual([shipment.id, expected]);
       for (const l of labels) {

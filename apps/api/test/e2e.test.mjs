@@ -2377,7 +2377,8 @@ describe('other documents and input formats', () => {
     const invoice = { ...sampleInvoice, transport: { mode: 'AIR' }, shipmentDate: '2026-10-05' };
     const run = await call('POST', `/shipments/${s.id}/validate?agent=false`, { invoice, packingList: samplePackingList, airWaybill, certificateOfOrigin: sampleCertificateOfOrigin });
     assert.equal(run.status, 200);
-    assert.deepEqual([...new Set(run.body.findings.map((f) => f.ruleId))].sort(), ['T1', 'T2']);
+    // X17 aside: earlier tests in this account used the same sample invoice number.
+    assert.deepEqual([...new Set(run.body.findings.filter((f) => f.ruleId !== 'X17').map((f) => f.ruleId))].sort(), ['T1', 'T2']);
     assert.ok(run.body.notApplicable.includes('X2') && run.body.notApplicable.includes('X10'));
     assert.deepEqual(run.body.skipped, []);
     assert.ok(run.body.ran.includes('T7') && run.body.ran.includes('T8'));
