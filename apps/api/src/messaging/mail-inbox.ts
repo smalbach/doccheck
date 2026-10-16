@@ -1,6 +1,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import { simpleParser, type AddressObject, type ParsedMail } from 'mailparser';
+import { inputFormat } from '@doccheck/extraction';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { MAX_ATTACHMENT_BYTES, MAX_ATTACHMENTS, MAX_ATTACHMENTS_BYTES, TOKEN_IN_ADDRESS, TOKEN_IN_SUBJECT, addressOf } from './mail.config';
 import { MailIntakeService, intakeEnabled } from './mail-intake.service';
@@ -110,7 +111,8 @@ export class MailInbox {
       const key = `mail/${id}/${attachmentId}`;
       await this.storage.put(key, a.content, a.contentType);
       await this.repo.insertAttachment({ id: attachmentId, messageId: id, filename, contentType: a.contentType.toLowerCase(), size: a.size, storageKey: key });
-      if (a.contentType.toLowerCase() === 'application/pdf') pdfs.push({ attachmentId, filename, storageKey: key });
+      // PDFs, photos and spreadsheets go to the shipment as documents.
+      if (inputFormat(filename, new Uint8Array(a.content))) pdfs.push({ attachmentId, filename, storageKey: key });
     }
     if (bounce) await this.markBounced(mail);
     if (bounce || /^(mailer-daemon|postmaster)@/i.test(from)) await this.checkPlusBounce(mail, bounce);

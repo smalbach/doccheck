@@ -1,0 +1,91 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 674,
+    "outputTokens": 800
+  },
+  "output": {
+    "invoiceNumber": "CAF2602708",
+    "invoiceDate": "Jun 11, 2026",
+    "poNumber": "PO-27051",
+    "seller": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera5 # 12-40",
+        "Huila"
+      ],
+      "city": null,
+      "region": null,
+      "postalCode": null,
+      "country": null,
+      "taxId": "900123456-7"
+    },
+    "buyer": {
+      "name": "Harborline Industrial Supply Ine.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201",
+        "us"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "us",
+      "taxId": "22-4519873"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201",
+        "us"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "us",
+      "taxId": "22-4519873"
+    },
+    "shipmentDate": "Jun 13, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": null,
+    "portOfEntry": {
+      "name": "New York",
+      "country": "US"
+    },
+    "incotermCode": "EXW",
+    "incotermPlace": "Buenaventura)",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL. Export Manager.",
+    "currency": "USD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "CF-GRN-60",
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+        "quantity": "10,260 KG",
+        "unit": "KG",
+        "unitPrice": "4.49",
+        "unitPriceCurrency": null,
+        "lineTotal": "48,067.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "171",
+    "grossWeight": {
+      "value": "10,396.80",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "10,260.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "46,067.40",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

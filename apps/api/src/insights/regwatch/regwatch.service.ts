@@ -2,8 +2,10 @@ import { Inject, Injectable, Logger, type OnApplicationBootstrap, type OnApplica
 import { rulesCiting } from '@doccheck/agent';
 import { CORPUS_SOURCES, diffPassages, fetchCorpus, parseDocument, passagesOf, type Passage } from '@doccheck/regulations';
 import { randomUUID } from 'node:crypto';
+import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import type { Pool } from 'pg';
 import { PG_POOL } from '../../db/db.module';
 import { isDemo } from '../../demo/demo-mode';
@@ -27,7 +29,8 @@ export interface FetchedDocument {
 }
 
 /**
- * Where the corpus is read from: the government pages (default), or REG_WATCH_SOURCE=<directory>
+ * Where the corpus is read from: the government pages (default; CBSA and CBP from
+ * packages/regulations, Mexico, EU and UK from scripts/corpus-intl.mjs), or REG_WATCH_SOURCE=<directory>
  * of corpus Markdown files laid out like data/corpus (offline servers and tests).
  */
 async function readSources(): Promise<{ docs: FetchedDocument[]; errors: { id: string; error: string }[] }> {
@@ -54,7 +57,27 @@ async function readSources(): Promise<{ docs: FetchedDocument[]; errors: { id: s
       errors.push({ id: source.id, error: (err instanceof Error ? err.message : String(err)).slice(0, 300) });
     }
   }
+  // Mexico, EU and UK: the sources and converters of scripts/corpus-intl.mjs, when the server has them.
+  const intl = [process.cwd(), resolve(__dirname, '../../../../..')].map((d) => join(d, 'scripts/corpus-intl.mjs')).find((f) => existsSync(f));
+  if (intl) {
+    const mod = (await import(pathToFileURL(intl).href)) as { INTL_SOURCES: IntlSource[]; convertIntl: (s: IntlSource) => Promise<{ markdown: string; url: string; effectiveDate?: string }> };
+    for (const source of mod.INTL_SOURCES) {
+      try {
+        const { markdown, url, effectiveDate } = await mod.convertIntl(source);
+        docs.push({ id: source.id, title: source.title, url, effectiveDate, body: markdown });
+      } catch (err) {
+        // An optional source (a host that is often down) keeps its previous snapshot without an error.
+        if (!source.optional) errors.push({ id: source.id, error: (err instanceof Error ? err.message : String(err)).slice(0, 300) });
+      }
+    }
+  }
   return { docs, errors };
+}
+
+interface IntlSource {
+  id: string;
+  title: string;
+  optional?: boolean;
 }
 
 const normal = (s: string) => s.replace(/…/g, ' ').replace(/\s+/g, ' ').trim().toLowerCase();

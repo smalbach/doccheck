@@ -1,0 +1,310 @@
+{
+  "id": "EU-026",
+  "seed": 678776175,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/6056",
+      "invoiceDate": "2026-01-19",
+      "poNumber": "PO-55534",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-01-27",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Qingdao"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 15,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "HB-M12",
+          "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+          "quantity": {
+            "value": "7500",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "2.60",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "19500.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "7318.15"
+        }
+      ],
+      "grossWeight": {
+        "kg": "7830.00",
+        "raw": {
+          "value": "7830.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7500.00",
+        "raw": {
+          "value": "7500.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "19500.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/6056",
+      "invoiceRef": "CI/26/6056",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "packages": [
+        {
+          "range": "1-15",
+          "count": 15,
+          "type": "PLT",
+          "marks": "MAISON/PO-55534/C/NO. 1-15",
+          "contents": [
+            {
+              "sku": "HB-M12",
+              "description": "Hex bolt M12x60",
+              "quantity": {
+                "value": "7500",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "7500.00",
+            "raw": {
+              "value": "7500.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "7830.00",
+            "raw": {
+              "value": "7830.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            100,
+            60
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 15,
+        "netWeight": {
+          "kg": "7500.00",
+          "raw": {
+            "value": "7500.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "7830.00",
+          "raw": {
+            "value": "7830.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "10.80"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNTAO4918613",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "117540548",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "009W",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Marseille",
+        "unLocode": "FRMRS",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "MDOU1227755",
+          "seal": "MD7532854",
+          "type": "20GP",
+          "packages": 15,
+          "grossWeight": {
+            "kg": "7830.00",
+            "raw": {
+              "value": "7830.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "10.80"
+        }
+      ],
+      "totalPackages": 15,
+      "totalGrossWeight": {
+        "kg": "7830.00",
+        "raw": {
+          "value": "7830.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/PO-55534/C/NO. 1-15",
+      "cargoDescription": "SAID TO CONTAIN 15 PLTS HEX BOLT M12X60",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-01-30",
+      "shippedOnBoardDate": "2026-01-30",
+      "references": [
+        "CI/26/6056",
+        "PO-55534"
+      ]
+    }
+  }
+}

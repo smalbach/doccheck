@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 799,
+    "outputTokens": 889
+  },
+  "output": {
+    "blNumber": "MRDNHAM2611562",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "228906143",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "Chicago, IL, 60661"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "081S",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Hamburg",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Savannah",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Chicago",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU3705848",
+        "seal": "MD5613571",
+        "type": "20GP",
+        "packages": "148",
+        "grossWeight": {
+          "value": "8,386",
+          "unit": "LB"
+        },
+        "volumeM3": "8.58"
+      }
+    ],
+    "totalPackages": "148",
+    "totalGrossWeight": {
+      "value": "8,386",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "LAKESHORE/PO-8587/C/NO. 1-148",
+    "cargoDescription": "SAID TO CONTAIN 148 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/6660",
+      "PO-8587"
+    ],
+    "placeOfIssue": "Hamburg",
+    "dateOfIssue": "2026-05-17",
+    "shippedOnBoardDate": "2026-05-17"
+  }
+}

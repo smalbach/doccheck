@@ -1,0 +1,315 @@
+{
+  "id": "MX-012",
+  "seed": 2093471384,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "COO2608491",
+      "invoiceDate": "2026-02-23",
+      "poNumber": "PO-40603",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "shipmentDate": "2026-02-28",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Callao",
+          "unLocode": "PECLL",
+          "country": "PE"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Callao"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "MXN",
+      "packageCount": 89,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "5340",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.71",
+            "currency": "MXN"
+          },
+          "lineTotal": {
+            "amount": "30491.40",
+            "currency": "MXN"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "5411.20",
+        "raw": {
+          "value": "5411.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5340.00",
+        "raw": {
+          "value": "5340.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "30491.40",
+        "currency": "MXN"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL-COO2608491",
+      "invoiceRef": "COO2608491",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-89",
+          "count": 89,
+          "type": "BAG",
+          "marks": "COMERCIALIZADORA/PO-40603/C/NO. 1-89",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "5340",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "5340.00",
+            "raw": {
+              "value": "5340.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "5411.20",
+            "raw": {
+              "value": "5411.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 89,
+        "netWeight": {
+          "kg": "5340.00",
+          "raw": {
+            "value": "5340.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5411.20",
+          "raw": {
+            "value": "5411.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "12.68"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPCLL644715",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "600873769",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "020W",
+      "placeOfReceipt": {
+        "name": "San Martín de Pangoa",
+        "country": "PE"
+      },
+      "portOfLoading": {
+        "name": "Callao",
+        "unLocode": "PECLL",
+        "country": "PE"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "MDOU3685968",
+          "seal": "MD1872016",
+          "type": "20GP",
+          "packages": 89,
+          "grossWeight": {
+            "kg": "5411.20",
+            "raw": {
+              "value": "5411.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "12.68"
+        }
+      ],
+      "totalPackages": 89,
+      "totalGrossWeight": {
+        "kg": "5411.20",
+        "raw": {
+          "value": "5411.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-40603/C/NO. 1-89",
+      "cargoDescription": "SAID TO CONTAIN 89 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Callao",
+      "dateOfIssue": "2026-03-02",
+      "shippedOnBoardDate": "2026-03-02",
+      "references": [
+        "COO2608491",
+        "PO-40603"
+      ]
+    }
+  }
+}

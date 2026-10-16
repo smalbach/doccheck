@@ -1,0 +1,368 @@
+{
+  "id": "GB-017",
+  "seed": 633237230,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "PUN2609334",
+      "invoiceDate": "2026-01-20",
+      "poNumber": "PE930531",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-01-28",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Mundra",
+          "unLocode": "INMUN",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Southampton"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 264,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "29800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.16",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "34568.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "2300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "13.05",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "30015.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6643.60",
+        "raw": {
+          "value": "6643.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "6383.00",
+        "raw": {
+          "value": "6383.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "64583.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-PUN2609334",
+      "invoiceRef": "PUN2609334",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-149",
+          "count": 149,
+          "type": "CTN",
+          "marks": "PENNINE/PE930531/C/NO. 1-264",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "29800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3278.00",
+            "raw": {
+              "value": "3278.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3412.10",
+            "raw": {
+              "value": "3412.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "150-264",
+          "count": 115,
+          "type": "CTN",
+          "marks": "PENNINE/PE930531/C/NO. 1-264",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "2300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3105.00",
+            "raw": {
+              "value": "3105.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3231.50",
+            "raw": {
+              "value": "3231.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 264,
+        "netWeight": {
+          "kg": "6383.00",
+          "raw": {
+            "value": "6383.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6643.60",
+          "raw": {
+            "value": "6643.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "9.90"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWEMUN6935560",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "609516700",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "018S",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Mundra",
+        "unLocode": "INMUN",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Southampton",
+        "unLocode": "GBSOU",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "TWEU8974886",
+          "seal": "TW7054124",
+          "type": "20GP",
+          "packages": 264,
+          "grossWeight": {
+            "kg": "6643.60",
+            "raw": {
+              "value": "6643.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "9.90"
+        }
+      ],
+      "totalPackages": 264,
+      "totalGrossWeight": {
+        "kg": "6643.60",
+        "raw": {
+          "value": "6643.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PE930531/C/NO. 1-264",
+      "cargoDescription": "SAID TO CONTAIN 264 CTNS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Mundra",
+      "dateOfIssue": "2026-01-29",
+      "shippedOnBoardDate": "2026-01-29",
+      "references": [
+        "PUN2609334",
+        "PE930531"
+      ]
+    }
+  }
+}

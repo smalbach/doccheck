@@ -1,0 +1,369 @@
+{
+  "id": "MX-006",
+  "seed": 599070803,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CÔN2604549",
+      "invoiceDate": "2026-04-11",
+      "poNumber": "PO-93827",
+      "seller": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "shipmentDate": "2026-04-18",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hai Phong",
+          "unLocode": "VNHPH",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Veracruz"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "MXN",
+      "packageCount": 113,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "22560",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "2.84",
+            "currency": "MXN"
+          },
+          "lineTotal": {
+            "amount": "64070.40",
+            "currency": "MXN"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        },
+        {
+          "lineNo": 2,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "380",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.19",
+            "currency": "MXN"
+          },
+          "lineTotal": {
+            "amount": "8812.20",
+            "currency": "MXN"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2099.80",
+        "raw": {
+          "value": "2099.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2015.00",
+        "raw": {
+          "value": "2015.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "72882.60",
+        "currency": "MXN"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL-CÔN2604549",
+      "invoiceRef": "CÔN2604549",
+      "seller": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-94",
+          "count": 94,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-93827/C/NO. 1-113",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "22536",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1692.00",
+            "raw": {
+              "value": "1692.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1757.80",
+            "raw": {
+              "value": "1757.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        },
+        {
+          "range": "95-113",
+          "count": 19,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-93827/C/NO. 1-113",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "380",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "323.00",
+            "raw": {
+              "value": "323.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "342.00",
+            "raw": {
+              "value": "342.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 113,
+        "netWeight": {
+          "kg": "2015.00",
+          "raw": {
+            "value": "2015.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2099.80",
+          "raw": {
+            "value": "2099.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "9.13"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXHPH4571259",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "238999043",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "085S",
+      "placeOfReceipt": {
+        "name": "Duy Tiên",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Hai Phong",
+        "unLocode": "VNHPH",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "AGXU8496420",
+          "seal": "AG1404117",
+          "type": "20GP",
+          "packages": 113,
+          "grossWeight": {
+            "kg": "2099.80",
+            "raw": {
+              "value": "2099.80",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "9.13"
+        }
+      ],
+      "totalPackages": 113,
+      "totalGrossWeight": {
+        "kg": "2099.80",
+        "raw": {
+          "value": "2099.80",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-93827/C/NO. 1-113",
+      "cargoDescription": "SAID TO CONTAIN 113 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Hai Phong",
+      "dateOfIssue": "2026-04-19",
+      "shippedOnBoardDate": "2026-04-19",
+      "references": [
+        "CÔN2604549",
+        "PO-93827"
+      ]
+    }
+  }
+}

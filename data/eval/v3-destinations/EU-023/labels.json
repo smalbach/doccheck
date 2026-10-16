@@ -1,0 +1,36 @@
+{
+  "id": "EU-023",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "invoiceDate",
+      "before": "2026-02-24",
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Invoice date missing."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 41,
+      "after": 42,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 42 packages instead of 41."
+    },
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[0].contents[0].quantity.value",
+      "before": "41",
+      "after": "36",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    }
+  ]
+}

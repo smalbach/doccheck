@@ -1,0 +1,369 @@
+{
+  "id": "MX-016",
+  "seed": 271346901,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SOC2605949",
+      "invoiceDate": "2026-08-20",
+      "poNumber": "PO-18064",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "shipmentDate": "2026-08-24",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Le Havre",
+          "unLocode": "FRLEH",
+          "country": "FR"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Veracruz"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 159,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "PZ-1000",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+          "quantity": {
+            "value": "3096",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.15",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "12848.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "1450",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.13",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10338.50",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2331.42",
+        "raw": {
+          "value": "2331.42",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2180.52",
+        "raw": {
+          "value": "2180.52",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "23186.90",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-SOC2605949",
+      "invoiceRef": "SOC2605949",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-129",
+          "count": 129,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-18064/C/NO. 1-158",
+          "contents": [
+            {
+              "sku": "PZ-1000",
+              "description": "Jigsaw puzzle 1000 pcs",
+              "quantity": {
+                "value": "3096",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1919.52",
+            "raw": {
+              "value": "1919.52",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2035.62",
+            "raw": {
+              "value": "2035.62",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "130-158",
+          "count": 29,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-18064/C/NO. 1-158",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "1450",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "261.00",
+            "raw": {
+              "value": "261.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "295.80",
+            "raw": {
+              "value": "295.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 158,
+        "netWeight": {
+          "kg": "2180.52",
+          "raw": {
+            "value": "2180.52",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2331.42",
+          "raw": {
+            "value": "2331.42",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "10.43"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPLEH787516",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "640136520",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "007S",
+      "placeOfReceipt": {
+        "name": "Lyon",
+        "country": "FR"
+      },
+      "portOfLoading": {
+        "name": "Le Havre",
+        "unLocode": "FRLEH",
+        "country": "FR"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "AGXU4976226",
+          "seal": "AG8494725",
+          "type": "20GP",
+          "packages": 158,
+          "grossWeight": {
+            "kg": "2331.42",
+            "raw": {
+              "value": "2331.42",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "10.43"
+        }
+      ],
+      "totalPackages": 158,
+      "totalGrossWeight": {
+        "kg": "2331.42",
+        "raw": {
+          "value": "2331.42",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-18064/C/NO. 1-158",
+      "cargoDescription": "SAID TO CONTAIN 158 CTNS JIGSAW PUZZLE 1000 PCS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Le Havre",
+      "dateOfIssue": "2026-08-25",
+      "shippedOnBoardDate": "2026-08-25",
+      "references": [
+        "SOC2605949",
+        "PO-18064"
+      ]
+    }
+  }
+}

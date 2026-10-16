@@ -60,6 +60,19 @@ async function entityPages() {
   return [...(company ? [`/app/companies/${company}`] : []), ...(product ? [`/app/products/${product}`] : []), ...(supplier ? [`/app/analytics/suppliers/${supplier}`] : [])];
 }
 
+/** The review screen of the sample's first extracted document (none if it is not extracted within 20 s). */
+async function reviewPages(shipmentPath) {
+  if (!shipmentPath) return [];
+  // The sample is extracted in the background: wait for it (up to 20 s) so every round audits the screen.
+  for (let i = 0; i < 40; i++) {
+    const shipment = await (await page.request.get(`${base}/shipments/${shipmentPath.split('/').pop()}`)).json();
+    const doc = shipment.documents?.find((d) => d.status === 'EXTRACTED');
+    if (doc) return [`/app/review/${doc.id}`];
+    await page.waitForTimeout(500);
+  }
+  return [];
+}
+
 async function signUpWithSample() {
   await context.clearCookies();
   if (admin) {
@@ -76,6 +89,28 @@ async function signUpWithSample() {
   if (!samples.length) return undefined;
   const shipment = await (await page.request.post(`${base}/demo/samples/${samples[0].id}`)).json();
   return `/app/s/${shipment.id}`;
+}
+
+/**
+ * A shipment made from a spreadsheet invoice (read without a model), so its page shows a spreadsheet
+ * document, and the spreadsheet viewer can be audited. Returns that page's path.
+ */
+async function spreadsheetShipment() {
+  const { writeCsv } = await import('@doccheck/extraction');
+  const shipment = await (await page.request.post(`${base}/shipments`, { data: { destination: 'CA', reference: 'Spreadsheet' } })).json();
+  const rows = [['COMMERCIAL INVOICE'], ['Invoice No.', 'INV-1'], ['Currency', 'USD'], ['Seller'], ['Acme Toys Co., Ltd.'], ['China'], [], ['Description', 'Qty', 'Unit price', 'Amount'], ['Plush teddy bear', '10', '8.10', '81.00'], ['TOTAL', '10', '', '81.00']];
+  const res = await page.request.post(`${base}/shipments/${shipment.id}/documents?wait=true`, { multipart: { files: { name: 'invoice.csv', mimeType: 'text/csv', buffer: Buffer.from(writeCsv(rows)) } } });
+  return res.ok() ? `/app/s/${shipment.id}` : undefined;
+}
+
+/** Opens the spreadsheet viewer from the document list and audits the page with it open. */
+async function auditSheetViewer(label) {
+  await page.getByRole('button', { name: 'invoice.csv' }).first().click();
+  const shown = await page.waitForSelector('.sheet-grid', { timeout: 8000 }).then(() => true, () => false);
+  if (!shown) problems.push(`${label}: the spreadsheet viewer did not open`);
+  const n = await audit(page, label);
+  await page.keyboard.press('Escape');
+  return n;
 }
 
 const staticPages = [
@@ -97,13 +132,16 @@ const staticPages = [
   '/app/analytics/ask',
   '/app/analytics/regulations',
   '/app/rules',
+  '/app/rules/settings',
   '/app/results',
   '/app/account',
   '/app/team',
   '/app/notifications',
   '/app/approvals',
   '/app/audit',
-  ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system'] : []),
+  '/app/review',
+  '/app/usage',
+  ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system', '/app/admin/plans'] : []),
 ];
 const locales = values.quick ? ['en'] : ['en', 'es', 'fr'];
 
@@ -128,7 +166,13 @@ for (const locale of locales) {
         const n = await audit(page, `${locale}/${theme}/${width} ${path}`);
         console.log(`${n ? '✗' : '✓'} ${locale} ${theme} ${width}px ${path}${n ? ` (${n})` : ''}`);
       };
-      for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), '/']) await visit(path);
+      for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), ...(await reviewPages(shipmentPath)), '/']) await visit(path);
+      const sheetPath = await spreadsheetShipment();
+      if (sheetPath) {
+        await visit(sheetPath);
+        const n = await auditSheetViewer(`${round} ${sheetPath} spreadsheet viewer`);
+        console.log(`${n ? '✗' : '✓'} ${locale} ${theme} ${width}px spreadsheet viewer${n ? ` (${n})` : ''}`);
+      } else problems.push(`${round}: could not upload a spreadsheet`);
       // The sign-in forms redirect signed-in visitors: check them signed out.
       await context.clearCookies();
       for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example', '/invite?token=example']) await visit(path);

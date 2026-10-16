@@ -1,7 +1,7 @@
 import type { LlmClient } from '@doccheck/extraction';
 import type { RegulationIndex } from '@doccheck/regulations';
 import { excerpt } from '@doccheck/regulations';
-import { PROFILES, type ShipmentContext } from '@doccheck/rules';
+import { PROFILES, type Authority, type ShipmentContext } from '@doccheck/rules';
 import { clip, findingPreview, report, startStage, type AgentAnswer, type Finding, type Party, type ProgressCallback, type ValidationDetail } from '@doccheck/schemas';
 import { z } from 'zod';
 import { INVOICE_REQUIREMENTS } from './cite';
@@ -78,6 +78,15 @@ export interface ReviewResult {
 
 /** Minimum confidence for the agent to dismiss a rule finding or add one of its own. */
 const ACT_CONFIDENCE = 0.7;
+
+/** Passage on how detailed the goods description must be, in each authority's own wording. */
+const DESCRIPTION_QUERY: Record<Authority, string> = {
+  CBSA: 'detailed description of the goods',
+  CBP: 'detailed description of the merchandise',
+  ANAM: 'descripción comercial detallada de las mercancías',
+  UCC: 'description of goods',
+  HMRC: 'description of the goods',
+};
 
 /** Progress reports carry the rationale cut to this length, so events stay small. */
 const RATIONALE_CHARS = 500;
@@ -162,7 +171,7 @@ async function review(ctx: ShipmentContext, findings: Finding[], llm: LlmClient,
   if (inv && bl && ctx.invoice && ctx.billOfLading) {
     let regulation: string | undefined;
     if (index) {
-      const [hit] = await index.search(authority === 'CBSA' ? 'detailed description of the goods' : 'detailed description of the merchandise', { authority, documents: [...INVOICE_REQUIREMENTS[authority]], language: 'en', limit: 1 });
+      const [hit] = await index.search(DESCRIPTION_QUERY[authority], { authority, documents: [...INVOICE_REQUIREMENTS[authority]], language: 'en', limit: 1 });
       if (hit) regulation = excerpt(hit.chunk.text, 'detailed description', 400);
     }
     const lines = inv.lines.map((l) => `${l.description} (${l.quantity.value} ${l.quantity.unit})`);

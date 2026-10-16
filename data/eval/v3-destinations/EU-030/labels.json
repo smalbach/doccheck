@@ -1,0 +1,35 @@
+{
+  "id": "EU-030",
+  "errors": [
+    {
+      "kind": "missing_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "NL861234905",
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Importer's RFC or EORI number missing from the invoice. Not detectable: overwritten by the later error (invalid_importer_number)."
+    },
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "after": "GB763142707000",
+      "expectedRuleIds": [
+        "E2"
+      ],
+      "description": "Importer number undefined replaced by GB763142707000."
+    },
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "387.20",
+      "after": "442.20",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    }
+  ]
+}

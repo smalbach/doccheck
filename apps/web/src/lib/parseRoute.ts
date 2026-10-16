@@ -30,11 +30,16 @@ export type AppRoute =
   | { name: 'analytics-ask' }
   | { name: 'analytics-regulations' }
   | { name: 'rules' }
+  | { name: 'rule-settings' }
   | { name: 'results' }
   | { name: 'account' }
   | { name: 'admin-settings' }
   | { name: 'admin-users' }
   | { name: 'admin-system' }
+  | { name: 'review-queue' }
+  | { name: 'review-document'; id: string }
+  | { name: 'usage'; checkout?: string }
+  | { name: 'admin-plans' }
   | { name: 'team' }
   | { name: 'audit' }
   | { name: 'approvals' }
@@ -48,6 +53,7 @@ const THREAD = /^\/app\/inbox\/([0-9a-f-]{36})$/i;
 const COMPANY = /^\/app\/companies\/([0-9a-f-]{36})$/i;
 const PRODUCT = /^\/app\/products\/([0-9a-f-]{36})$/i;
 const SUPPLIER = /^\/app\/analytics\/suppliers\/([0-9a-f-]{36})$/i;
+const REVIEW = /^\/app\/review\/([0-9a-f-]{36})$/i;
 
 const APP_PAGES: Record<string, AppRoute> = {
   '/app': { name: 'dashboard' },
@@ -66,6 +72,7 @@ const APP_PAGES: Record<string, AppRoute> = {
   '/app/analytics/ask': { name: 'analytics-ask' },
   '/app/analytics/regulations': { name: 'analytics-regulations' },
   '/app/rules': { name: 'rules' },
+  '/app/rules/settings': { name: 'rule-settings' },
   '/app/results': { name: 'results' },
   // Links from before the app moved under /app.
   '/results': { name: 'results' },
@@ -74,6 +81,8 @@ const APP_PAGES: Record<string, AppRoute> = {
   '/app/admin/settings': { name: 'admin-settings' },
   '/app/admin/users': { name: 'admin-users' },
   '/app/admin/system': { name: 'admin-system' },
+  '/app/review': { name: 'review-queue' },
+  '/app/admin/plans': { name: 'admin-plans' },
   '/app/team': { name: 'team' },
   '/app/audit': { name: 'audit' },
   '/app/approvals': { name: 'approvals' },
@@ -113,6 +122,10 @@ export function parseRoute(hash: string): Route {
   if (product) return { name: 'product', id: product };
   const supplier = SUPPLIER.exec(path)?.[1];
   if (supplier) return { name: 'analytics-supplier', id: supplier };
+  const review = REVIEW.exec(path)?.[1];
+  if (review) return { name: 'review-document', id: review };
+  // "#/app/usage?checkout=done": back from Stripe Checkout.
+  if (path === '/app/usage') return { name: 'usage', checkout: params.get('checkout') || undefined };
   // "#/app/goods?origin=CN&hs=9503&q=bear": the summary links here with a filter.
   if (path === '/app/goods') {
     const opt = (k: string) => params.get(k) || undefined;

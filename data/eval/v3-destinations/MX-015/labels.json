@@ -1,0 +1,28 @@
+{
+  "id": "MX-015",
+  "errors": [
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[1].quantity.value",
+      "before": "1380",
+      "after": "1390",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 2 quantity changed without updating the line total."
+    },
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "DPN070315K24",
+      "after": "DPN070315K20",
+      "expectedRuleIds": [
+        "M2"
+      ],
+      "description": "Importer number DPN070315K24 replaced by DPN070315K20."
+    }
+  ]
+}

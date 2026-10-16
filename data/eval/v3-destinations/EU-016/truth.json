@@ -1,0 +1,307 @@
+{
+  "id": "EU-016",
+  "seed": 1238666272,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-1652",
+      "invoiceDate": "2026-04-18",
+      "poNumber": "RH417650",
+      "seller": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "buyer": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "GB222593574000"
+      },
+      "consignee": {
+        "name": "Rheinufer Logistikzentrum",
+        "address": {
+          "lines": [
+            "Logport-Allee 7"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47229",
+          "country": "DE"
+        }
+      },
+      "exporter": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "shipmentDate": "2026-04-23",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hai Phong",
+          "unLocode": "VNHPH",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Hai Phong"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 185,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "3700",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "18.20",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "67340.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3330.00",
+        "raw": {
+          "value": "3330.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3145.00",
+        "raw": {
+          "value": "3145.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "67340.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-1652",
+      "invoiceRef": "INV-2026-1652",
+      "seller": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "consignee": {
+        "name": "Rheinufer Logistikzentrum",
+        "address": {
+          "lines": [
+            "Logport-Allee 7"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47229",
+          "country": "DE"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-185",
+          "count": 185,
+          "type": "CTN",
+          "marks": "RHEINUFER/RH417650/C/NO. 1-185",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "3700",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3145.00",
+            "raw": {
+              "value": "3145.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3330.00",
+            "raw": {
+              "value": "3330.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 185,
+        "netWeight": {
+          "kg": "3145.00",
+          "raw": {
+            "value": "3145.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3330.00",
+          "raw": {
+            "value": "3330.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "24.35"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLHPH2912411",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "383138907",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "consignee": {
+        "name": "Rheinufer Logistikzentrum",
+        "address": {
+          "lines": [
+            "Logport-Allee 7"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47229",
+          "country": "DE"
+        }
+      },
+      "notifyParty": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "GB222593574000"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "091E",
+      "placeOfReceipt": {
+        "name": "Duy Tiên",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Hai Phong",
+        "unLocode": "VNHPH",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Rotterdam",
+        "unLocode": "NLRTM",
+        "country": "NL"
+      },
+      "placeOfDelivery": {
+        "name": "Duisburg",
+        "unLocode": "DEDUI",
+        "country": "DE"
+      },
+      "containers": [
+        {
+          "number": "PCLU2796798",
+          "seal": "PC7268634",
+          "type": "40HC",
+          "packages": 185,
+          "grossWeight": {
+            "kg": "3330.00",
+            "raw": {
+              "value": "3330.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "24.35"
+        }
+      ],
+      "totalPackages": 184,
+      "totalGrossWeight": {
+        "kg": "3330.00",
+        "raw": {
+          "value": "3330.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "RHEINUFER/RH417650/C/NO. 1-185",
+      "cargoDescription": "SAID TO CONTAIN 185 CTNS WOMEN'S PADDED JACKET",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Hai Phong",
+      "dateOfIssue": "2026-04-25",
+      "shippedOnBoardDate": "2026-04-25",
+      "references": [
+        "INV-2026-1652",
+        "RH417650"
+      ]
+    }
+  }
+}

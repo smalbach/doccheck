@@ -1,5 +1,5 @@
 import { excerpt, sentenceMatch, type RegulationIndex } from '@doccheck/regulations';
-import { PROFILES } from '@doccheck/rules';
+import { PROFILES, type Authority } from '@doccheck/rules';
 import type { Destination, Finding } from '@doccheck/schemas';
 
 /**
@@ -7,7 +7,7 @@ import type { Destination, Finding } from '@doccheck/schemas';
  * the missing field and its CI1 field or 141.86 paragraph. `null` means the corpus has nothing on
  * it (ISO 6346 is an industry standard, not a customs regulation), so no citation is attached.
  */
-const QUERIES: Record<string, { CBSA: string | null; CBP: string | null }> = {
+const QUERIES: Record<string, Partial<Record<Authority, string | null>>> = {
   X1: { CBSA: 'consignee name and address shipped to', CBP: 'person to whom the merchandise is sold or shipped' },
   X2: { CBSA: 'number of packages', CBP: 'marks and numbers of the packages' },
   X3: { CBSA: 'net and gross weight', CBP: 'quantities in weights and measures' },
@@ -21,15 +21,27 @@ const QUERIES: Record<string, { CBSA: string | null; CBP: string | null }> = {
   X12: { CBSA: 'Field 9: Conditions of sale and terms of payment terms and conditions agreed upon by the vendor and the purchaser', CBP: 'all charges upon the merchandise itemized by name and amount including freight' },
   X11: { CBSA: null, CBP: 'importer security filing data elements' },
   C2: { CBSA: 'invoice in English or French translation', CBP: null },
-  A1: { CBSA: 'detailed description of the goods', CBP: 'detailed description of the merchandise' },
+  A1: { CBSA: 'detailed description of the goods', CBP: 'detailed description of the merchandise', ANAM: 'descripción comercial detallada de las mercancías', UCC: 'description of goods', HMRC: 'description of the goods' },
+  M2: { ANAM: 'Datos del destinatario la clave en el RFC' },
+  M3: { ANAM: 'idiomas distintos del español, inglés o francés, deberán traducirse al idioma español' },
+  E2: { UCC: 'EORI number identification number unique in the customs territory of the Union' },
+  K2: { HMRC: "A GB EORI has 12 digits and the prefix 'GB'" },
+  K3: { HMRC: 'statement on origin exporter reference number REX preferential origin' },
+  // Rules added after v1. X22 is about the same invoice charges as X12, so it cites the same passages.
+  X22: { CBSA: 'Field 9: Conditions of sale and terms of payment terms and conditions agreed upon by the vendor and the purchaser', CBP: 'all charges upon the merchandise itemized by name and amount including freight' },
+  U2: { CBSA: null, CBP: 'importer security filing data elements' },
+  U3: { CBSA: null, CBP: 'no later than 24 hours before the cargo is laden aboard the vessel at the foreign port' },
 };
+
+/** Completeness rules: their findings end with "(<authority> <ref>)", which the citation query keeps. */
+const COMPLETENESS = new Set(['C1', 'U1', 'M1', 'E1', 'K1']);
 
 export function citationQuery(finding: Finding, destination: Destination): string | null {
   const authority = PROFILES[destination].authority;
-  if (finding.ruleId === 'C1' || finding.ruleId === 'U1') {
+  if (COMPLETENESS.has(finding.ruleId)) {
     // "Country of origin is missing on every invoice line (CBSA CI1 field 7)." -> "Country of origin field 7"
     const label = finding.message.split(' is missing')[0];
-    const ref = finding.message.match(/\(([^)]*)\)\.?$/)?.[1].replace(/^(CBSA|19 CFR) /, '') ?? '';
+    const ref = finding.message.match(/\(([^)]*)\)\.?$/)?.[1].replace(/^(CBSA|19 CFR|RGCE|UCC|HMRC) /, '') ?? '';
     return `${label} ${ref}`.trim();
   }
   if (finding.ruleId === 'X11') {
@@ -44,19 +56,41 @@ export function citationQuery(finding: Finding, destination: Destination): strin
     };
     return element[field] ?? 'importer security filing data elements';
   }
+  if (finding.ruleId === 'E3') {
+    // "HS code to six digits is missing ... (UCC Annex B D.E. 18 09 056 000)." -> the ENS data element.
+    return finding.message.match(/\(UCC (Annex B D\.E\. [\d ]+)\)\.?$/)?.[1] ?? 'entry summary declaration particulars';
+  }
   return QUERIES[finding.ruleId]?.[authority] ?? null;
 }
 
 /**
  * Documents each finding may cite. The invoice rules are about what the invoice must show, which is
- * defined by D1-4-1 (CI1 fields) and 19 CFR 141.86; X11 compares the ISF, defined by 19 CFR 149.3.
+ * defined by D1-4-1 (CI1 fields), 19 CFR 141.86, RGCE reglas 3.1.8 and 1.9.19, Annex B of Delegated
+ * Regulation 2015/2446 and HMRC's CDS completion guide; X11 compares the ISF, defined by 19 CFR 149.3.
  * The rest of the corpus (marking, proof of origin, valuation) is searchable but would otherwise
  * outrank the field definition for words like "country of origin" or "price paid or payable".
  */
-export const INVOICE_REQUIREMENTS = { CBSA: ['cbsa-d1-4-1'], CBP: ['cfr-19-141-86'] } as const;
+export const INVOICE_REQUIREMENTS: Record<Authority, readonly string[]> = {
+  CBSA: ['cbsa-d1-4-1'],
+  CBP: ['cfr-19-141-86'],
+  ANAM: ['mx-rgce'],
+  UCC: ['eu-2015-2446'],
+  HMRC: ['hmrc-cds'],
+};
+
+/** Rules whose basis is a document of its own rather than the invoice requirements. */
+const RULE_SCOPE: Record<string, string[]> = {
+  X11: ['cfr-19-149'],
+  U2: ['cfr-19-149'],
+  U3: ['cfr-19-149'],
+  E2: ['eu-2015-2446', 'eu-ucc'],
+  E3: ['eu-2015-2446'],
+  K2: ['hmrc-eori'],
+  K3: ['hmrc-tca-origin', 'tca-annex-7'],
+};
 
 export function citationScope(finding: Finding, destination: Destination): string[] {
-  if (finding.ruleId === 'X11') return ['cfr-19-149'];
+  if (RULE_SCOPE[finding.ruleId]) return RULE_SCOPE[finding.ruleId];
   return [...INVOICE_REQUIREMENTS[PROFILES[destination].authority]];
 }
 
@@ -119,9 +153,10 @@ export function rulesCiting(documentId: string): { destination: Destination; rul
   for (const destination of Object.keys(PROFILES) as Destination[]) {
     const profile = PROFILES[destination];
     for (const ruleId of profile.rules) {
-      const queried = ruleId === 'C1' || ruleId === 'U1' || ruleId === 'X11' || !!QUERIES[ruleId]?.[profile.authority];
+      // The rules citationQuery finds something to search for (the others never get a passage).
+      const queried = COMPLETENESS.has(ruleId) || ruleId === 'X11' || ruleId === 'E3' || !!QUERIES[ruleId]?.[profile.authority];
       if (!queried) continue;
-      const scope = ruleId === 'X11' ? ['cfr-19-149'] : [...INVOICE_REQUIREMENTS[profile.authority]];
+      const scope = RULE_SCOPE[ruleId] ?? INVOICE_REQUIREMENTS[profile.authority];
       if (scope.some((d) => documentId === d || documentId.startsWith(`${d}-`))) out.push({ destination, ruleId });
     }
   }

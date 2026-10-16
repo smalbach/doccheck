@@ -110,6 +110,7 @@ export const analyticsEn = {
       exposed: 'Still exposed',
       exposedHint: 'Findings still open',
     },
+    unmapped: 'No penalty mapped for {rules}: only the hold counts for them, when severe enough.',
     items: 'By shipment',
     itemsCaption: 'Estimated cost per shipment and item',
     columns: { shipment: 'Shipment', item: 'Item', rules: 'Rules', arrival: 'Est. arrival', outcome: 'Outcome', amount: 'Amount' },

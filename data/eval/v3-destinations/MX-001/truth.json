@@ -1,0 +1,369 @@
+{
+  "id": "MX-001",
+  "seed": 2057924885,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/1012",
+      "invoiceDate": "2026-04-28",
+      "poNumber": "DI999582",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-05-02",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 214,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "4040",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.74",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "51469.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "12",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "89.72",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1076.64",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "5904.20",
+        "raw": {
+          "value": "5904.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5628.00",
+        "raw": {
+          "value": "5628.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "52546.24",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/1012",
+      "invoiceRef": "CI/26/1012",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "packages": [
+        {
+          "range": "1-202",
+          "count": 202,
+          "type": "CTN",
+          "marks": "DISTRIBUIDORA/DI999582/C/NO. 1-214",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "4040",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "5454.00",
+            "raw": {
+              "value": "5454.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "5676.20",
+            "raw": {
+              "value": "5676.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "203-214",
+          "count": 12,
+          "type": "CRT",
+          "marks": "DISTRIBUIDORA/DI999582/C/NO. 1-214",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "12",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "174.00",
+            "raw": {
+              "value": "174.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "228.00",
+            "raw": {
+              "value": "228.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 214,
+        "netWeight": {
+          "kg": "5628.00",
+          "raw": {
+            "value": "5628.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5904.20",
+          "raw": {
+            "value": "5904.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "10.60"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLAMR8386765",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "396970299",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "notifyParty": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "075W",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "Manzanillo",
+        "unLocode": "MXZLO",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Guadalajara",
+        "unLocode": "MXGDL",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "PCLU8003084",
+          "seal": "PC5637000",
+          "type": "20GP",
+          "packages": 214,
+          "grossWeight": {
+            "kg": "5904.20",
+            "raw": {
+              "value": "5904.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "10.60"
+        }
+      ],
+      "totalPackages": 214,
+      "totalGrossWeight": {
+        "kg": "5904.20",
+        "raw": {
+          "value": "5904.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "DISTRIBUIDORA/DI999582/C/NO. 1-214",
+      "cargoDescription": "SAID TO CONTAIN 214 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-05-02",
+      "shippedOnBoardDate": "2026-05-02",
+      "references": [
+        "CI/26/1012",
+        "DI999582"
+      ]
+    }
+  }
+}

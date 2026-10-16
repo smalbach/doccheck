@@ -91,7 +91,7 @@ export type Severity = 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
 
 export interface CostAssumptions {
   penalties: Penalty[];
-  delay: { severities: Severity[]; days: number; perDay: Record<Destination, { amount: string; currency: string }> };
+  delay: { severities: Severity[]; days: number; perDay: Partial<Record<Destination, { amount: string; currency: string }>> };
   transitDays: { SEA: number; AIR: number; ROAD: number };
 }
 
@@ -117,6 +117,8 @@ export interface Money {
 export interface CostReport {
   items: CostItem[];
   totals: Record<CostOutcome, Money[]>;
+  /** Rules that found something where no penalty is mapped (hold only). */
+  unmapped: string[];
   assumptions: CostAssumptions;
   defaults: boolean;
   shipments: number;

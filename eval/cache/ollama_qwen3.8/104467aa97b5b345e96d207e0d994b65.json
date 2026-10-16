@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 810,
+    "outputTokens": 757
+  },
+  "output": {
+    "awbNumber": "MRDN784290",
+    "documentTitle": "HOUSE AIR WAYBILL",
+    "masterAwbNumber": "176-92252414",
+    "carrierName": "Pacific Crest Air Cargo",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40",
+        "Neiva, Huila"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "airportOfDeparture": {
+      "name": "Bogota El Dorado",
+      "code": "BOG"
+    },
+    "airportOfDestination": {
+      "name": "Chicago O’Hare",
+      "code": "ORD"
+    },
+    "routing": [
+      "PC599 / 12-JUL-2026"
+    ],
+    "flights": [
+      {
+        "flight": "PC599",
+        "date": "12-JUL-2026"
+      }
+    ],
+    "numberOfPieces": "223",
+    "grossWeight": {
+      "value": "13254.40",
+      "unit": "K"
+    },
+    "chargeableWeight": {
+      "value": "13254.40",
+      "unit": "K"
+    },
+    "volume": "31.07 M3",
+    "natureOfGoods": "GREEN COFFEE ARABICA",
+    "freightTerms": "CC",
+    "handlingInformation": "invoice INV-2026-9927",
+    "references": [
+      "INV-2026-9927"
+    ],
+    "placeOfExecution": "Bogota El Dorado",
+    "executedOn": "11-JUL-2026"
+  }
+}

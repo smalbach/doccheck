@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1753,
+    "outputTokens": 30
+  },
+  "output": {
+    "sql": "SELECT count(*) AS shipment_count FROM shipments",
+    "explanation": "Counts the total number of shipments in the account."
+  }
+}

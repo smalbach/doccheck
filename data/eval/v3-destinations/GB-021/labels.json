@@ -1,0 +1,16 @@
+{
+  "id": "GB-021",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "Trafford Wharf Rd",
+      "after": "Trafford Wharf Rd Unit 18",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    }
+  ]
+}

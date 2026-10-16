@@ -45,6 +45,8 @@ export const CommercialInvoice = z.object({
   discounts: z.array(z.object({ description: z.string(), amount: Money })).optional(), // US (g)
   responsiblePerson: z.string().optional(), // US (j)
   customsRuling: z.string().optional(), // CA 21
-  language: z.string().optional(), // detected language: CA allows en/fr, US en
+  language: z.string().optional(), // detected language: CA allows en/fr, US en, MX es/en/fr
+  /** Statement on origin printed on the invoice (UK-EU TCA preference). Not extracted from PDFs yet. */
+  originStatement: z.string().optional(), // GB K3
 });
 export type CommercialInvoice = z.infer<typeof CommercialInvoice>;

@@ -23,6 +23,7 @@ One table decides every permission: `PERMISSIONS` in [`apps/api/src/orgs/permiss
 | `comment.write`, `assign` | ✓ | ✓ | ✓ | ✓ | | |
 | `members.manage`: invite, roles, remove, share with clients | ✓ | ✓ | | | | |
 | `org.settings`, `audit.read` | ✓ | ✓ | | | | |
+| `billing.manage`: buy and manage the plan (docs/BILLING.md) | ✓ | ✓ | | | | |
 | `org.delete` | ✓ | | | | | |
 
 Only an owner makes or unmakes owners. A **client** sees only the shipments shared with them (shipment page, Team card: "Shared with clients"), read-only, without the team's comments or approval queue.
@@ -45,7 +46,7 @@ The table is **append-only**: triggers refuse `UPDATE`, `DELETE` and `TRUNCATE`.
 
 ## Records retention
 
-Per organization: CBSA asks importers to keep records 6 years (Customs Act s. 40, Memorandum D17-1-21), CBP 5 years (19 CFR 163.4); both are the defaults, between 1 and 50 years. `RetentionJob` runs a minute after start and then daily (`RETENTION_INTERVAL_MS`, off with `RETENTION_JOB=off` and in the read-only demo). It deletes shipments created longer ago than their destination's period (the longer of both while the destination is unset), with their PDFs, and nothing else; a shipment still extracting waits for the next run. Each deletion is a `retention.delete` row in the audit log with the reference, destination, creation date and document count. Settings shows how many shipments are past their period and can run it at once.
+Per organization and destination: CBSA asks importers to keep records 6 years (Customs Act s. 40, Memorandum D17-1-21), CBP 5 years (19 CFR 163.4), Mexico 5 years (Código Fiscal de la Federación, art. 30), the EU at least 3 years (Union Customs Code, art. 51(1)) and HMRC 4 years (GOV.UK, "Archiving your trade documents"); these are the defaults, between 1 and 50 years (migration 043 adds the last three). `RetentionJob` runs a minute after start and then daily (`RETENTION_INTERVAL_MS`, off with `RETENTION_JOB=off` and in the read-only demo). It deletes shipments created longer ago than their destination's period (the longest of the five while the destination is unset), with their PDFs, and nothing else; a shipment still extracting waits for the next run. Each deletion is a `retention.delete` row in the audit log with the reference, destination, creation date and document count. Settings shows how many shipments are past their period and can run it at once.
 
 ## Sign-in
 
@@ -67,6 +68,7 @@ Per organization: CBSA asks importers to keep records 6 years (Customs Act s. 40
 | `review_requests`, `finding_reviews.approved_by` | two-step decisions |
 | `shipments.eta`, `shipments.due_at`, view `shipment_due` | due dates |
 | `audit_log` | append-only, hash-chained |
+| `rule_settings`, `purchase_orders` (migration 041) | rules on/off, severities and tolerances per organization (`org.settings` to change); purchase orders for rule X24 (`shipment.write` to import) |
 | `sessions.id/org_id/ip/user_agent/method/last_seen_at`, `mfa_recovery_codes`, `mfa_challenges`, `users.mfa_*` | sessions and TOTP |
 | `org_sso`, `sso_states` | OpenID Connect |
 

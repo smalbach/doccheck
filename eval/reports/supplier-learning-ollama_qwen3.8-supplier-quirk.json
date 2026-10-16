@@ -1,0 +1,900 @@
+{
+  "provider": "ollama:qwen3.8",
+  "set": "supplier-quirk",
+  "shipments": 12,
+  "documents": 36,
+  "examplesPerDocument": 5,
+  "documentsWithExamples": 33,
+  "suppliers": [
+    {
+      "key": "NORLAND PRECISION SCALES",
+      "name": "Norland Precision Scales Co., Ltd.",
+      "examples": 7
+    }
+  ],
+  "overall": {
+    "baseline": {
+      "total": 777,
+      "correct": 689,
+      "wrong": 88,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.8867
+    },
+    "learning": {
+      "total": 777,
+      "correct": 724,
+      "wrong": 53,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.9318
+    }
+  },
+  "withExamples": {
+    "baseline": {
+      "total": 719,
+      "correct": 638,
+      "wrong": 81,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.8873
+    },
+    "learning": {
+      "total": 719,
+      "correct": 673,
+      "wrong": 46,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.936
+    }
+  },
+  "weightFields": {
+    "baseline": {
+      "total": 110,
+      "correct": 24,
+      "wrong": 86,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.2182
+    },
+    "learning": {
+      "total": 110,
+      "correct": 58,
+      "wrong": 52,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 0.5273
+    }
+  },
+  "minutes": 8.78,
+  "runs": [
+    {
+      "shipment": "QK-001",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 0,
+      "learned": 2,
+      "baseline": {
+        "total": 25,
+        "correct": 23,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.92
+      },
+      "learning": {
+        "total": 25,
+        "correct": 23,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.92
+      }
+    },
+    {
+      "shipment": "QK-001",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 0,
+      "learned": 4,
+      "baseline": {
+        "total": 13,
+        "correct": 9,
+        "wrong": 4,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6923
+      },
+      "learning": {
+        "total": 13,
+        "correct": 9,
+        "wrong": 4,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6923
+      }
+    },
+    {
+      "shipment": "QK-001",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 0,
+      "learned": 1,
+      "baseline": {
+        "total": 20,
+        "correct": 19,
+        "wrong": 1,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.95
+      },
+      "learning": {
+        "total": 20,
+        "correct": 19,
+        "wrong": 1,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.95
+      }
+    },
+    {
+      "shipment": "QK-002",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 32,
+        "correct": 30,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9375
+      },
+      "learning": {
+        "total": 32,
+        "correct": 32,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-002",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 6,
+      "baseline": {
+        "total": 19,
+        "correct": 13,
+        "wrong": 6,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6842
+      },
+      "learning": {
+        "total": 19,
+        "correct": 13,
+        "wrong": 6,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6842
+      }
+    },
+    {
+      "shipment": "QK-002",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-003",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 34,
+        "correct": 32,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9412
+      },
+      "learning": {
+        "total": 34,
+        "correct": 34,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-003",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 0,
+      "baseline": {
+        "total": 19,
+        "correct": 13,
+        "wrong": 6,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6842
+      },
+      "learning": {
+        "total": 19,
+        "correct": 19,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-003",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-004",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 32,
+        "correct": 30,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9375
+      },
+      "learning": {
+        "total": 32,
+        "correct": 32,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-004",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 6,
+      "baseline": {
+        "total": 19,
+        "correct": 13,
+        "wrong": 6,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6842
+      },
+      "learning": {
+        "total": 19,
+        "correct": 13,
+        "wrong": 6,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6842
+      }
+    },
+    {
+      "shipment": "QK-004",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-005",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 2,
+      "baseline": {
+        "total": 32,
+        "correct": 30,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9375
+      },
+      "learning": {
+        "total": 32,
+        "correct": 30,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9375
+      }
+    },
+    {
+      "shipment": "QK-005",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 6,
+      "baseline": {
+        "total": 19,
+        "correct": 13,
+        "wrong": 6,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6842
+      },
+      "learning": {
+        "total": 19,
+        "correct": 13,
+        "wrong": 6,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6842
+      }
+    },
+    {
+      "shipment": "QK-005",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-006",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 22,
+        "correct": 20,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9091
+      },
+      "learning": {
+        "total": 22,
+        "correct": 22,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-006",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 0,
+      "baseline": {
+        "total": 13,
+        "correct": 9,
+        "wrong": 4,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6923
+      },
+      "learning": {
+        "total": 13,
+        "correct": 13,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-006",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-007",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 23,
+        "correct": 21,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.913
+      },
+      "learning": {
+        "total": 23,
+        "correct": 23,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-007",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 4,
+      "baseline": {
+        "total": 13,
+        "correct": 9,
+        "wrong": 4,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6923
+      },
+      "learning": {
+        "total": 13,
+        "correct": 9,
+        "wrong": 4,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6923
+      }
+    },
+    {
+      "shipment": "QK-007",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-008",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 32,
+        "correct": 30,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9375
+      },
+      "learning": {
+        "total": 32,
+        "correct": 32,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-008",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 6,
+      "baseline": {
+        "total": 19,
+        "correct": 13,
+        "wrong": 6,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6842
+      },
+      "learning": {
+        "total": 19,
+        "correct": 13,
+        "wrong": 6,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6842
+      }
+    },
+    {
+      "shipment": "QK-008",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-009",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 23,
+        "correct": 21,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.913
+      },
+      "learning": {
+        "total": 23,
+        "correct": 23,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-009",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 4,
+      "baseline": {
+        "total": 13,
+        "correct": 8,
+        "wrong": 5,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6154
+      },
+      "learning": {
+        "total": 13,
+        "correct": 9,
+        "wrong": 4,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6923
+      }
+    },
+    {
+      "shipment": "QK-009",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-010",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 40,
+        "correct": 38,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.95
+      },
+      "learning": {
+        "total": 40,
+        "correct": 40,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-010",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 8,
+      "baseline": {
+        "total": 25,
+        "correct": 17,
+        "wrong": 8,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.68
+      },
+      "learning": {
+        "total": 25,
+        "correct": 17,
+        "wrong": 8,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.68
+      }
+    },
+    {
+      "shipment": "QK-010",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-011",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 22,
+        "correct": 20,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9091
+      },
+      "learning": {
+        "total": 22,
+        "correct": 22,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-011",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 4,
+      "baseline": {
+        "total": 13,
+        "correct": 9,
+        "wrong": 4,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6923
+      },
+      "learning": {
+        "total": 13,
+        "correct": 9,
+        "wrong": 4,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6923
+      }
+    },
+    {
+      "shipment": "QK-011",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-012",
+      "type": "COMMERCIAL_INVOICE",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 2,
+      "learned": 0,
+      "baseline": {
+        "total": 22,
+        "correct": 20,
+        "wrong": 2,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.9091
+      },
+      "learning": {
+        "total": 22,
+        "correct": 22,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-012",
+      "type": "PACKING_LIST",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 4,
+      "learned": 0,
+      "baseline": {
+        "total": 13,
+        "correct": 9,
+        "wrong": 4,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 0.6923
+      },
+      "learning": {
+        "total": 13,
+        "correct": 13,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    },
+    {
+      "shipment": "QK-012",
+      "type": "BILL_OF_LADING",
+      "supplier": "Norland Precision Scales Co., Ltd.",
+      "examples": 1,
+      "learned": 0,
+      "baseline": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      },
+      "learning": {
+        "total": 20,
+        "correct": 20,
+        "wrong": 0,
+        "missing": 0,
+        "spurious": 0,
+        "accuracy": 1
+      }
+    }
+  ]
+}

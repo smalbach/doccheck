@@ -35,6 +35,12 @@ const PricesPage = lazy(() => analytics().then((m) => ({ default: m.PricesPage }
 const AskPage = lazy(() => analytics().then((m) => ({ default: m.AskPage })));
 const RegulationsPage = lazy(() => analytics().then((m) => ({ default: m.RegulationsPage })));
 const ResultsPage = lazy(() => import('../../features/results/ResultsPage').then((m) => ({ default: m.ResultsPage })));
+// Review queue, usage and plans share one chunk.
+const more = () => import('../../features/review/pages');
+const ReviewQueuePage = lazy(() => more().then((m) => ({ default: m.ReviewQueuePage })));
+const ReviewDocumentPage = lazy(() => more().then((m) => ({ default: m.ReviewDocumentPage })));
+const UsagePage = lazy(() => more().then((m) => ({ default: m.UsagePage })));
+const PlansPage = lazy(() => more().then((m) => ({ default: m.PlansPage })));
 // Team pages share one chunk.
 const team = () => import('../../features/team/pages');
 const TeamPage = lazy(() => team().then((m) => ({ default: m.TeamPage })));
@@ -42,6 +48,7 @@ const AuditPage = lazy(() => team().then((m) => ({ default: m.AuditPage })));
 const ApprovalsPage = lazy(() => team().then((m) => ({ default: m.ApprovalsPage })));
 const NotificationsPage = lazy(() => team().then((m) => ({ default: m.NotificationsPage })));
 const RulesPage = lazy(() => import('../../features/rules/RulesPage').then((m) => ({ default: m.RulesPage })));
+const RuleSettingsPage = lazy(() => import('../../features/rules/RuleSettingsPage').then((m) => ({ default: m.RuleSettingsPage })));
 
 /** The page component of an app route. */
 export function RoutePage({ route }: { route: AppRoute }) {
@@ -92,6 +99,8 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return <RegulationsPage />;
     case 'rules':
       return <RulesPage />;
+    case 'rule-settings':
+      return <RuleSettingsPage />;
     case 'results':
       return <ResultsPage />;
     case 'account':
@@ -112,6 +121,18 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return (
         <AdminOnly>
           <SystemPage />
+        </AdminOnly>
+      );
+    case 'review-queue':
+      return <ReviewQueuePage />;
+    case 'review-document':
+      return <ReviewDocumentPage key={route.id} id={route.id} />;
+    case 'usage':
+      return <UsagePage checkout={route.checkout} />;
+    case 'admin-plans':
+      return (
+        <AdminOnly>
+          <PlansPage />
         </AdminOnly>
       );
     case 'team':

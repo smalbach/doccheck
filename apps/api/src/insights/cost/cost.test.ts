@@ -41,6 +41,19 @@ describe('estimateCost', () => {
     });
   });
 
+  it('counts only the hold where no penalty is mapped, and lists those rules', () => {
+    const est = estimateCost(
+      [ship('mx', { destination: 'MX' }), ship('gb', { destination: 'GB' }), ship('ca')],
+      [finding('mx', 'M2', 'HIGH', '2026-03-02T00:00:00Z'), finding('gb', 'K1', 'LOW'), finding('ca', 'X10', 'MEDIUM'), finding('ca', 'X2', 'LOW', undefined, true)],
+      DEFAULT_COST_ASSUMPTIONS,
+    );
+    expect(est.items.map((i) => [i.shipmentId, i.item, i.outcome, i.amount, i.currency])).toEqual([['mx', 'delay', 'avoided', '400.00', 'USD']]);
+    expect(est.unmapped).toEqual(['K1', 'M2', 'X10']);
+    // A destination without a per-day cost counts no hold.
+    const noRate = { ...DEFAULT_COST_ASSUMPTIONS, delay: { ...DEFAULT_COST_ASSUMPTIONS.delay, perDay: { CA: { amount: '1.00', currency: 'CAD' } } } };
+    expect(estimateCost([ship('mx', { destination: 'MX' })], [finding('mx', 'M2', 'HIGH')], noRate).items).toEqual([]);
+  });
+
   it('counts a penalty as exposed while any of its findings is open', () => {
     const est = estimateCost([ship('a')], [finding('a', 'X2', 'LOW', '2026-03-02T00:00:00Z'), finding('a', 'X3', 'LOW')], DEFAULT_COST_ASSUMPTIONS);
     expect(est.items.map((i) => i.outcome)).toEqual(['exposed']);

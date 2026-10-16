@@ -6,7 +6,7 @@
 //   npm run build && npm run test:e2e -w @doccheck/api
 //
 // Uses DATABASE_URL_ANALYTICS_TEST, else the database of DATABASE_URL_TEST (or doccheck_test) with
-// _test replaced by _analytics_test, on port E2E_PORT + 2.
+// _test replaced by _analytics_test, on port E2E_PORT + 3 (+1 is the orgs suite, +2 the usage and review one).
 // Each account below is its own personal organization.
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
@@ -34,7 +34,7 @@ const testUrl = (() => {
 const dbName = new URL(testUrl).pathname.slice(1);
 if (!dbName.endsWith('_test')) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
 
-const port = Number(process.env.E2E_ANALYTICS_PORT ?? Number(process.env.E2E_PORT ?? 3990) + 2);
+const port = Number(process.env.E2E_ANALYTICS_PORT ?? Number(process.env.E2E_PORT ?? 3990) + 3);
 const base = `http://localhost:${port}`;
 const require = createRequire(import.meta.url);
 const { buildFixture } = require(join(root, 'apps/api/dist/insights/qa/fixture.js'));
@@ -316,9 +316,9 @@ describe('regulation changes', () => {
     assert.equal(before.unread, 1);
     const page = await get('/analytics/regulations');
     const [change] = page.changes;
-    assert.deepEqual([change.documentId, change.kind, change.after.endsWith('added by the test.'), change.rules], ['cfr-19-149', 'changed', true, [{ destination: 'US', ruleId: 'X11' }]]);
-    // The account's US shipments with open X11 findings are listed (the fixture has some or none).
-    const x11 = (await run2('select distinct s.reference from shipments s join findings f on f.shipment_id = s.id where f.rule_id = \'X11\'')).map((r) => r[0]).sort();
+    assert.deepEqual([change.documentId, change.kind, change.after.endsWith('added by the test.'), change.rules], ['cfr-19-149', 'changed', true, [{ destination: 'US', ruleId: 'X11' }, { destination: 'US', ruleId: 'U2' }, { destination: 'US', ruleId: 'U3' }]]);
+    // The account's US shipments with open ISF findings (X11, U2, U3) are listed.
+    const x11 = (await run2('select distinct s.reference from shipments s join findings f on f.shipment_id = s.id where f.rule_id in (\'X11\', \'U2\', \'U3\') and f.status in (\'open\', \'waiting_supplier\')')).map((r) => r[0]).sort();
     assert.deepEqual(change.affected.map((a) => a.reference).sort(), x11);
     assert.equal((await call('POST', '/analytics/regulations/read', undefined, accounts.a.cookie)).status, 204);
     assert.equal((await get('/analytics/regulations/unread')).unread, 0);

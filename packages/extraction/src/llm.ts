@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { z } from 'zod';
+import { leafLogprobs, type TokenLogprob } from './confidence';
 
 /**
  * One structured call: system + user text in, an object matching `schema` out.
@@ -13,6 +14,10 @@ export interface StructuredRequest<S extends z.ZodType> {
   schema: S;
   /** Aborts the call (a cancelled extraction): the request to the model is dropped and the call rejects with the signal's reason. */
   signal?: AbortSignal;
+  /** Sampling temperature (default 0). Part of the cache key when set. */
+  temperature?: number;
+  /** Ask for token log-probabilities (LLM_LOGPROBS=true), used as a confidence signal when complete. */
+  logprobs?: boolean;
 }
 
 export interface Usage {
@@ -47,7 +52,7 @@ export interface GenerateOptions {
 export interface LlmProvider {
   /** "ollama:qwen3.8" - part of the cache key. */
   readonly id: string;
-  generate(req: StructuredRequest<z.ZodType>, opts?: GenerateOptions): Promise<{ output: unknown; usage?: Usage }>;
+  generate(req: StructuredRequest<z.ZodType>, opts?: GenerateOptions): Promise<{ output: unknown; usage?: Usage; content?: string; logprobs?: TokenLogprob[] }>;
   /** Exact model build (e.g. the Ollama digest), recorded with results: a tag like "latest" can change under you. */
   version?(): Promise<string | undefined>;
 }
@@ -61,6 +66,7 @@ interface OllamaChatBody {
   error?: string;
   prompt_eval_count?: number;
   eval_count?: number;
+  logprobs?: TokenLogprob[];
 }
 
 /** Parses a newline-delimited JSON body (Ollama's stream) line by line, whatever the chunk boundaries. */
@@ -122,7 +128,8 @@ export class OllamaProvider implements LlmProvider {
           stream,
           think: false,
           format: z.toJSONSchema(req.schema),
-          options: { temperature: 0, num_ctx: 16384 },
+          ...(req.logprobs ? { logprobs: true } : {}),
+          options: { temperature: req.temperature ?? 0, num_ctx: 16384 },
           messages: [
             { role: 'system', content: req.system },
             { role: 'user', content: req.user },
@@ -148,9 +155,11 @@ export class OllamaProvider implements LlmProvider {
     if (stream && res.body) {
       let content = '';
       let last: OllamaChatBody = {};
+      const logprobs: TokenLogprob[] = [];
       for await (const line of readNdjson<OllamaChatBody>(res.body)) {
         signal?.throwIfAborted();
         if (line.error) throw new LlmError(`Ollama: ${line.error}`);
+        for (const t of line.logprobs ?? []) logprobs.push({ token: t.token, logprob: t.logprob });
         const piece = line.message?.content ?? '';
         if (piece) {
           content += piece;
@@ -163,7 +172,7 @@ export class OllamaProvider implements LlmProvider {
         last = line;
       }
       signal?.throwIfAborted();
-      body = { ...last, message: { content } };
+      body = { ...last, message: { content }, logprobs };
     } else {
       body = (await res.json()) as OllamaChatBody;
     }
@@ -173,7 +182,9 @@ export class OllamaProvider implements LlmProvider {
     } catch {
       throw new LlmError('Ollama returned invalid JSON');
     }
-    return { output, usage: { inputTokens: body.prompt_eval_count ?? 0, outputTokens: body.eval_count ?? 0 } };
+    const content = body.message?.content ?? '';
+    const logprobs = body.logprobs?.map((t) => ({ token: t.token, logprob: t.logprob }));
+    return { output, content, ...(logprobs?.length ? { logprobs } : {}), usage: { inputTokens: body.prompt_eval_count ?? 0, outputTokens: body.eval_count ?? 0 } };
   }
 }
 
@@ -195,6 +206,8 @@ export interface CallResult<T> {
   output: T;
   usage?: Usage;
   cached: boolean;
+  /** Lowest token log-probability per answer field ("lines[0].quantity"), when the provider gave every token's. */
+  logprobs?: Record<string, number>;
 }
 
 /**
@@ -217,9 +230,12 @@ export class LlmClient {
     private readonly mode: CacheMode = cacheDir ? 'readwrite' : 'off',
   ) {}
 
-  cacheKey(promptVersion: string, req: Pick<StructuredRequest<z.ZodType>, 'system' | 'user'>): string {
+  cacheKey(promptVersion: string, req: Pick<StructuredRequest<z.ZodType>, 'system' | 'user' | 'temperature'>): string {
+    // The temperature joins the key only when set, so every answer cached before it existed still matches.
+    const parts: unknown[] = [this.provider.id, promptVersion, req.system, req.user];
+    if (req.temperature !== undefined) parts.push(req.temperature);
     return createHash('sha256')
-      .update(JSON.stringify([this.provider.id, promptVersion, req.system, req.user]))
+      .update(JSON.stringify(parts))
       .digest('hex')
       .slice(0, 32);
   }
@@ -263,7 +279,7 @@ export class LlmClient {
         const parsed = req.schema.safeParse(hit.output);
         if (parsed.success) {
           if (onChunk) await replayAsStream(parsed.data, hit.usage, onChunk, this.replayMs, req.signal);
-          return { output: parsed.data, usage: hit.usage, cached: true };
+          return { output: parsed.data, usage: hit.usage, cached: true, ...(hit.logprobs ? { logprobs: hit.logprobs } : {}) };
         }
       }
       if (this.mode === 'replay') throw new LlmError(`Cache miss in replay mode (${this.provider.id}, key ${key})`);
@@ -271,7 +287,7 @@ export class LlmClient {
 
     const generateOpts: GenerateOptions | undefined = onChunk && { onText: (text) => onChunk({ text, tokens: 1 }) };
     req.signal?.throwIfAborted();
-    let { output, usage } = await this.provider.generate(req, generateOpts);
+    let { output, usage, content, logprobs: tokens } = await this.provider.generate(req, generateOpts);
     let parsed = req.schema.safeParse(output);
     if (!parsed.success) {
       req.signal?.throwIfAborted();
@@ -284,6 +300,8 @@ export class LlmClient {
         generateOpts,
       );
       output = retry.output;
+      content = retry.content;
+      tokens = retry.logprobs;
       usage = retry.usage && usage ? { inputTokens: usage.inputTokens + retry.usage.inputTokens, outputTokens: usage.outputTokens + retry.usage.outputTokens } : retry.usage;
       parsed = req.schema.safeParse(output);
       if (!parsed.success) throw new LlmError(`Output does not match the schema: ${z.prettifyError(parsed.error)}`);
@@ -291,12 +309,13 @@ export class LlmClient {
 
     // A cancelled call never leaves an answer in the cache, even one that completed just as it was aborted.
     req.signal?.throwIfAborted();
+    const logprobs = content !== undefined ? leafLogprobs(content, tokens) : undefined;
     if (file && this.mode !== 'off') {
       await mkdir(this.cacheDir!, { recursive: true });
       const modelVersion = await this.provider.version?.();
-      await writeFile(file, JSON.stringify({ provider: this.provider.id, modelVersion, promptVersion, usage, output: parsed.data }, null, 2) + '\n');
+      await writeFile(file, JSON.stringify({ provider: this.provider.id, modelVersion, promptVersion, usage, output: parsed.data, ...(logprobs ? { logprobs } : {}) }, null, 2) + '\n');
     }
-    return { output: parsed.data, usage, cached: false };
+    return { output: parsed.data, usage, cached: false, ...(logprobs ? { logprobs } : {}) };
   }
 }
 

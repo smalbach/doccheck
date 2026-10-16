@@ -5,6 +5,7 @@ import { Banner } from '../../components/ui/Banner';
 import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import { DataTable, type Column } from '../../components/ui/DataTable';
+import { DESTINATIONS } from '../../constants/destinations';
 import { EmptyState } from '../../components/ui/EmptyState';
 import { Tag } from '../../components/ui/Tag';
 import { useQuery } from '../../hooks/useQuery';
@@ -106,6 +107,7 @@ function CostBody({ filter }: { filter: AnalyticsFilter }) {
           <AssumptionsTable data={data} />
         )}
         <p className="muted small">{t('analytics.cost.assumptions.how')}</p>
+        {data.unmapped.length > 0 && <p className="muted small">{t('analytics.cost.unmapped', { rules: data.unmapped.join(', ') })}</p>}
       </Card>
       <Card title={t('analytics.cost.items')}>
         {data.items.length === 0 ? (
@@ -162,12 +164,17 @@ function AssumptionsTable({ data }: { data: CostReport }) {
           <dt className="muted small">{t('analytics.cost.assumptions.delaySeverities')}</dt>
           <dd>{a.delay.severities.map((s) => t(`severity.${s}`)).join(', ') || '—'}</dd>
         </div>
-        {(['CA', 'US'] as const).map((d) => (
-          <div key={d}>
-            <dt className="muted small">{t('analytics.cost.assumptions.perDay', { destination: d })}</dt>
-            <dd>{formatMoney(a.delay.perDay[d].amount, a.delay.perDay[d].currency)}</dd>
-          </div>
-        ))}
+        {DESTINATIONS.map((d) => {
+          const rate = a.delay.perDay[d];
+          return (
+            rate && (
+              <div key={d}>
+                <dt className="muted small">{t('analytics.cost.assumptions.perDay', { destination: d })}</dt>
+                <dd>{formatMoney(rate.amount, rate.currency)}</dd>
+              </div>
+            )
+          );
+        })}
         <div>
           <dt className="muted small">{t('analytics.cost.assumptions.transit')}</dt>
           <dd>

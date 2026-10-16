@@ -1,0 +1,370 @@
+{
+  "id": "MX-020",
+  "seed": 1763106560,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-9032",
+      "invoiceDate": "2026-08-02",
+      "poNumber": "DI652511",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-08-06",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Ambarlı"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 159,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "51",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "88.92",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4534.92",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "2160",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "14.60",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "31536.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4003.80",
+        "raw": {
+          "value": "4003.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3655.50",
+        "raw": {
+          "value": "3655.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "36070.92",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-9032",
+      "invoiceRef": "INV-2026-9032",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-51",
+          "count": 51,
+          "type": "CRT",
+          "marks": "DISTRIBUIDORA/DI652511/C/NO. 1-159",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "51",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "739.50",
+            "raw": {
+              "value": "739.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "969.00",
+            "raw": {
+              "value": "969.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "52-159",
+          "count": 108,
+          "type": "CTN",
+          "marks": "DISTRIBUIDORA/DI652511/C/NO. 1-159",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "2160",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2916.00",
+            "raw": {
+              "value": "2916.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3034.80",
+            "raw": {
+              "value": "3034.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 159,
+        "netWeight": {
+          "kg": "3655.50",
+          "raw": {
+            "value": "3655.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4003.80",
+          "raw": {
+            "value": "4003.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "9.59"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWEAMR9093947",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "322984890",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 8.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "notifyParty": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "072W",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "Lazaro Cardenas",
+        "unLocode": "MXLZC",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Guadalajara",
+        "unLocode": "MXGDL",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "TWEU1516644",
+          "seal": "TW1959562",
+          "type": "20GP",
+          "packages": 159,
+          "grossWeight": {
+            "kg": "4003.80",
+            "raw": {
+              "value": "4003.80",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "9.59"
+        }
+      ],
+      "totalPackages": 159,
+      "totalGrossWeight": {
+        "kg": "4003.80",
+        "raw": {
+          "value": "4003.80",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "DISTRIBUIDORA/DI652511/C/NO. 1-159",
+      "cargoDescription": "SAID TO CONTAIN 159 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-08-07",
+      "shippedOnBoardDate": "2026-08-07",
+      "references": [
+        "INV-2026-9032",
+        "DI652511"
+      ]
+    }
+  }
+}

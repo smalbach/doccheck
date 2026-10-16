@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, it } from 'vitest';
-import { runRules, type ShipmentContext } from '@doccheck/rules';
+import { runRules, V1_RULE_IDS, type ShipmentContext } from '@doccheck/rules';
 import { buildDataset } from './dataset';
 import { ERROR_KINDS, EXTRA_ERROR_KINDS, injectErrors, type ErrorKind } from './errors';
 import type { SyntheticShipment } from './generate';
@@ -49,7 +49,7 @@ describe('injectors outside v1', () => {
       expect(label.expectedRuleIds).toHaveLength(1);
       t.rule = label.expectedRuleIds[0];
       t.injected++;
-      const findings = runRules(context(shipment)).findings;
+      const findings = runRules(context(shipment), {}, { only: V1_RULE_IDS }).findings;
       const hit = findings
         .filter((f) => f.ruleId === t.rule)
         .some((f) => f.evidence.some((ev) => ev.documentId === label.document && ev.field === label.field && ev.value === label.after));

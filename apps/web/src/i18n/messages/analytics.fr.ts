@@ -88,6 +88,7 @@ export const analyticsFr: typeof analyticsEn = {
       exposed: 'Encore exposé',
       exposedHint: 'Constats encore ouverts',
     },
+    unmapped: 'Aucune pénalité associée à {rules} : seule la retenue compte, si leur gravité le justifie.',
     items: 'Par envoi',
     itemsCaption: 'Coût estimé par envoi et par poste',
     columns: { shipment: 'Envoi', item: 'Poste', rules: 'Règles', arrival: 'Arrivée est.', outcome: 'Résultat', amount: 'Montant' },

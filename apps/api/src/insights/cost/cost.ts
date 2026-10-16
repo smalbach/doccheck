@@ -1,10 +1,11 @@
 import { fromFixed, toFixed } from '@doccheck/rules';
+import type { Destination } from '@doccheck/schemas';
 import type { CostAssumptions } from './penalties';
 
 export interface CostShipment {
   shipmentId: string;
   reference?: string;
-  destination: 'CA' | 'US';
+  destination: Destination;
   transportMode?: 'SEA' | 'AIR' | 'ROAD';
   containers: number;
   /** Shipped on board (B/L), YYYY-MM-DD; without it the shipment's creation is the start. */
@@ -47,6 +48,8 @@ export interface CostEstimate {
   items: CostItem[];
   /** Per outcome, one total per currency (no conversion between currencies). */
   totals: Record<Outcome, Money[]>;
+  /** Rules that found something on a shipment whose destination has no penalty for them (hold only, if severe). */
+  unmapped: string[];
 }
 
 const DAY = 86_400_000;
@@ -75,6 +78,7 @@ export function estimateCost(shipments: readonly CostShipment[], findings: reado
   const byShipment = new Map<string, CostFinding[]>();
   for (const f of findings) byShipment.set(f.shipmentId, [...(byShipment.get(f.shipmentId) ?? []), f]);
   const items: CostItem[] = [];
+  const unmapped = new Set<string>();
   for (const s of shipments) {
     const own = byShipment.get(s.shipmentId) ?? [];
     if (own.length === 0) continue;
@@ -87,10 +91,11 @@ export function estimateCost(shipments: readonly CostShipment[], findings: reado
       if (!outcome) continue;
       items.push({ ...base, item: p.id, label: p.label, ruleIds: [...new Set(hit.map((f) => f.ruleId))].sort(), outcome, amount: fromFixed(toFixed(p.amount)), currency: p.currency });
     }
+    for (const f of own) if (!f.dismissed && !a.penalties.some((p) => p.destination === s.destination && p.ruleIds.includes(f.ruleId))) unmapped.add(f.ruleId);
     const severe = own.filter((f) => a.delay.severities.includes(f.severity as never));
-    const outcome = a.delay.days > 0 ? outcomeOf(severe, arrival) : undefined;
-    if (outcome) {
-      const rate = a.delay.perDay[s.destination];
+    const rate = a.delay.perDay[s.destination];
+    const outcome = a.delay.days > 0 && rate ? outcomeOf(severe, arrival) : undefined;
+    if (outcome && rate) {
       const units = BigInt(Math.max(1, s.containers) * a.delay.days);
       items.push({ ...base, item: 'delay', label: `Hold: ${a.delay.days} day(s) × ${Math.max(1, s.containers)} container(s)`, ruleIds: [...new Set(severe.map((f) => f.ruleId))].sort(), outcome, amount: fromFixed(toFixed(rate.amount) * units), currency: rate.currency });
     }
@@ -101,5 +106,5 @@ export function estimateCost(shipments: readonly CostShipment[], findings: reado
     for (const i of items.filter((x) => x.outcome === outcome)) sums.set(i.currency, (sums.get(i.currency) ?? 0n) + toFixed(i.amount));
     totals[outcome] = [...sums].sort(([a], [b]) => a.localeCompare(b)).map(([currency, v]) => ({ amount: fromFixed(v), currency }));
   }
-  return { items, totals };
+  return { items, totals, unmapped: [...unmapped].sort((x, y) => x.localeCompare(y, 'en', { numeric: true })) };
 }

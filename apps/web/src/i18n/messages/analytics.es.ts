@@ -88,6 +88,7 @@ export const analyticsEs: typeof analyticsEn = {
       exposed: 'Aún expuesto',
       exposedHint: 'Hallazgos todavía abiertos',
     },
+    unmapped: 'Sin multa asignada para {rules}: solo cuenta la retención, si son lo bastante graves.',
     items: 'Por envío',
     itemsCaption: 'Costo estimado por envío y concepto',
     columns: { shipment: 'Envío', item: 'Concepto', rules: 'Reglas', arrival: 'Llegada est.', outcome: 'Resultado', amount: 'Monto' },

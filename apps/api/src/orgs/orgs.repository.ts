@@ -11,6 +11,9 @@ const toSettings = (r: Record<string, unknown>): OrgSettings => ({
   name: r.name as string,
   retentionCaYears: r.retention_ca_years as number,
   retentionUsYears: r.retention_us_years as number,
+  retentionMxYears: r.retention_mx_years as number,
+  retentionEuYears: r.retention_eu_years as number,
+  retentionGbYears: r.retention_gb_years as number,
   requireApproval: r.require_approval as boolean,
   slaEtaLeadHours: r.sla_eta_lead_hours as number,
 });
@@ -73,6 +76,9 @@ export class OrgsRepository {
       name: 'name',
       retentionCaYears: 'retention_ca_years',
       retentionUsYears: 'retention_us_years',
+      retentionMxYears: 'retention_mx_years',
+      retentionEuYears: 'retention_eu_years',
+      retentionGbYears: 'retention_gb_years',
       requireApproval: 'require_approval',
       slaEtaLeadHours: 'sla_eta_lead_hours',
     };

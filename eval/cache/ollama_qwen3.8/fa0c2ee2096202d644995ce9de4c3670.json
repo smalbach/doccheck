@@ -1,0 +1,54 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 549,
+    "outputTokens": 412
+  },
+  "output": {
+    "certificateNumber": "CO-DE-345545",
+    "issuer": "Industrie- und Handelskammer Hamburg",
+    "exporter": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "producer": null,
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "countryOfOrigin": "DE",
+    "transport": "By sea from Bremerhaven to Savannah",
+    "goods": [
+      {
+        "itemNo": "1",
+        "description": "Brass ball valves 2 inch, threaded",
+        "hsCode": "3926.90",
+        "quantity": null,
+        "unit": null,
+        "grossWeight": null,
+        "marks": null
+      }
+    ],
+    "invoiceRefs": [
+      "INV-2026-7847"
+    ],
+    "placeOfIssue": "Bremen",
+    "dateOfIssue": "2026-07-01"
+  }
+}

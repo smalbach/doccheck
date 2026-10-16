@@ -1,0 +1,375 @@
+{
+  "id": "QK-008",
+  "seed": 96903722,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-4225",
+      "invoiceDate": "2026-09-04",
+      "poNumber": "CO709122",
+      "seller": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-09-06",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Cai Mep"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "CAD",
+      "packageCount": 328,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "52560",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "2.08",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "109324.80",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "10890",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.02",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "32918.00",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6013.00",
+        "raw": {
+          "value": "6013.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "6253.50",
+        "raw": {
+          "value": "6253.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "142242.80",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-4225",
+      "invoiceRef": "INV-2026-4225",
+      "seller": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-219",
+          "count": 219,
+          "type": "CTN",
+          "marks": "COASTAL/CO709122/C/NO. 1-328",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "52560",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3942.00",
+            "raw": {
+              "value": "3942.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4095.30",
+            "raw": {
+              "value": "4095.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        },
+        {
+          "range": "220-328",
+          "count": 109,
+          "type": "CTN",
+          "marks": "COASTAL/CO709122/C/NO. 1-328",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "10900",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2071.00",
+            "raw": {
+              "value": "2071.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2158.20",
+            "raw": {
+              "value": "2158.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 328,
+        "netWeight": {
+          "kg": "6013.00",
+          "raw": {
+            "value": "6013.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6253.50",
+          "raw": {
+            "value": "6253.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "24.60"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSCMT259569",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "668353698",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Norland Precision Scales Co., Ltd.",
+        "address": {
+          "lines": [
+            "88 Gaoxin Road, Building 3"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315040",
+          "country": "CN"
+        },
+        "taxId": "91330200MA2H7K4X1Q"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "091W",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "MDOU3075179",
+          "seal": "MD3871068",
+          "type": "40HC",
+          "packages": 328,
+          "grossWeight": {
+            "kg": "6253.50",
+            "raw": {
+              "value": "6253.50",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "24.60"
+        }
+      ],
+      "totalPackages": 328,
+      "totalGrossWeight": {
+        "kg": "6253.50",
+        "raw": {
+          "value": "6253.50",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/CO709122/C/NO. 1-328",
+      "cargoDescription": "SAID TO CONTAIN 328 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-09-09",
+      "shippedOnBoardDate": "2026-09-09",
+      "references": [
+        "INV-2026-4225",
+        "CO709122"
+      ]
+    }
+  },
+  "source": "CA-022",
+  "quirk": "net-gross-swapped"
+}
