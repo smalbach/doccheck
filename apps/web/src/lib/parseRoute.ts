@@ -27,6 +27,8 @@ export type AppRoute =
   | { name: 'rule-settings' }
   | { name: 'results' }
   | { name: 'account' }
+  | { name: 'integrations'; tab?: string }
+  | { name: 'api-docs' }
   | { name: 'admin-settings' }
   | { name: 'admin-users' }
   | { name: 'admin-system' }
@@ -66,6 +68,7 @@ const APP_PAGES: Record<string, AppRoute> = {
   // Links from before the app moved under /app.
   '/results': { name: 'results' },
   '/app/account': { name: 'account' },
+  '/app/api-docs': { name: 'api-docs' },
   '/app/admin': { name: 'admin-settings' },
   '/app/admin/settings': { name: 'admin-settings' },
   '/app/admin/users': { name: 'admin-users' },
@@ -122,5 +125,7 @@ export function parseRoute(hash: string): Route {
     const opt = (k: string) => params.get(k) || undefined;
     return { name: 'goods', q: opt('q'), origin: opt('origin'), hs: opt('hs') };
   }
+  // "#/app/integrations?tab=webhooks" opens that tab.
+  if (path === '/app/integrations') return { name: 'integrations', tab: params.get('tab') || undefined };
   return APP_PAGES[path] ?? { name: 'not-found' };
 }

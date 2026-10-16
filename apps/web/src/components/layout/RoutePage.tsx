@@ -40,6 +40,10 @@ const TeamPage = lazy(() => team().then((m) => ({ default: m.TeamPage })));
 const AuditPage = lazy(() => team().then((m) => ({ default: m.AuditPage })));
 const ApprovalsPage = lazy(() => team().then((m) => ({ default: m.ApprovalsPage })));
 const NotificationsPage = lazy(() => team().then((m) => ({ default: m.NotificationsPage })));
+// The integrations pages share one chunk.
+const integrations = () => import('../../features/integrations/pages');
+const IntegrationsPage = lazy(() => integrations().then((m) => ({ default: m.IntegrationsPage })));
+const ApiDocsPage = lazy(() => integrations().then((m) => ({ default: m.ApiDocsPage })));
 const RulesPage = lazy(() => import('../../features/rules/RulesPage').then((m) => ({ default: m.RulesPage })));
 const RuleSettingsPage = lazy(() => import('../../features/rules/RuleSettingsPage').then((m) => ({ default: m.RuleSettingsPage })));
 
@@ -84,6 +88,10 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return <ResultsPage />;
     case 'account':
       return <AccountPage />;
+    case 'integrations':
+      return <IntegrationsPage key={route.tab ?? ''} initialTab={route.tab} />;
+    case 'api-docs':
+      return <ApiDocsPage />;
     case 'admin-settings':
       return (
         <AdminOnly>

@@ -15,6 +15,7 @@ export type OrgPermission =
   | 'members.manage'
   | 'org.settings'
   | 'audit.read'
+  | 'integrations.manage'
   | 'org.delete'
   | 'billing.manage';
 

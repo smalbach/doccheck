@@ -1,4 +1,4 @@
-import { MixerHorizontalIcon, MagnifyingGlassIcon, LockClosedIcon, ActivityLogIcon, CheckboxIcon, MixIcon, TokensIcon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
+import { MixerHorizontalIcon, MagnifyingGlassIcon, LockClosedIcon, ActivityLogIcon, CheckboxIcon, MixIcon, TokensIcon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon, CodeIcon, Link2Icon } from '@radix-ui/react-icons';
 import type { ComponentType } from 'react';
 import type { MessageKey } from '../i18n/keys';
 import type { AppRoute } from '../lib/parseRoute';
@@ -53,6 +53,13 @@ export const NAVIGATION: NavGroup[] = [
       { labelKey: 'nav.ruleSettings', href: '#/app/rules/settings', icon: MixerHorizontalIcon, matches: ['rule-settings'], writes: true },
       { labelKey: 'nav.evaluation', href: '#/app/results', icon: BarChartIcon, matches: ['results'] },
       { labelKey: 'screening.nav', href: '#/app/screening', icon: MagnifyingGlassIcon, matches: ['screening'] },
+    ],
+  },
+  {
+    labelKey: 'integrations.navGroup',
+    items: [
+      { labelKey: 'integrations.nav', href: '#/app/integrations', icon: Link2Icon, matches: ['integrations'], writes: true },
+      { labelKey: 'integrations.navDocs', href: '#/app/api-docs', icon: CodeIcon, matches: ['api-docs'] },
     ],
   },
   {

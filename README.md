@@ -87,6 +87,7 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 - **Learns each supplier's quirks** (admin switch): a value corrected on a supplier's document becomes an example in the local model's prompt for that supplier's next documents. On a synthetic supplier that prints net and gross weights under each other's label, weight fields go from 21.8% to 52.7% correct; on the regular sets nothing drops (v1 99.8% → 99.8%, unseen formats v2 98.8% → 99.4%; [docs/METRICS.md](docs/METRICS.md#supplier-learning)).
 - **Meters usage per plan**: documents extracted and validations per organization and month, Free/Pro/Business limits editable by server admins, bought by the organization's owners and admins, a warning before the limit and either a refusal (402) or an overage notice at it, and an optional Stripe integration that only accepts test-mode keys ([docs/BILLING.md](docs/BILLING.md), in Spanish).
 - **Installs as an app and scans with the camera**: a PWA whose service worker caches static files only, never documents; on a phone, pages photographed with the camera are found, straightened and put into one PDF before upload ([docs/PWA.md](docs/PWA.md), in Spanish).
+- **Connects to other systems**: a public REST API with scoped, rate-limited API keys and idempotent writes, described by an OpenAPI 3.1 document generated from the same Zod schemas (with a Postman contract test and a TypeScript client); HMAC-signed webhooks with retries and a delivery log; Slack and Teams alerts that quote no document contents unless asked; folders it watches (SFTP, S3 or local) that become shipments; CargoWise Universal Shipment XML and X12 856/310 exports; and optional container tracking checked against the bill of lading ([docs/INTEGRATIONS.md](docs/INTEGRATIONS.md), in Spanish).
 - **Measures itself** on a generated set of 200 labeled shipments (100 per destination, 293 injected errors), field by field and rule by rule, end to end on the extracted PDFs ([docs/METRICS.md](docs/METRICS.md)). Model answers are cached in `eval/cache`, so the evaluation reruns without a model.
 - **Works for teams**: organizations with roles (owner, admin, analyst, reviewer, viewer, and clients who read only what is shared with them), invitations by email, assignments, comments with @mentions, notifications in the app and by email, two-step approval of accepted risks and false positives, due dates from the ISF deadline or the ETA with overdue filters, an append-only hash-chained audit log with CSV export, records retention per organization (CBSA 6 years, CBP 5), TOTP two-factor sign-in, OpenID Connect single sign-on and a list of signed-in devices ([docs/ORGANIZATIONS.md](docs/ORGANIZATIONS.md)).
 - **Works like a product**: accounts, shipments private to their organization, validation history, JSON export and printable report, aggregated extracted data with companies, products and containers, admin settings changed without a restart, and a read-only demo mode that replays cached model answers.
@@ -194,6 +195,8 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | `packages/agent` | Citations on findings and model decisions on ambiguous cases (same consignee written differently, BL description vs invoice goods) |
 | `packages/screening` | Denied-party lists (download, normalization, cache with checksums), the name matcher, rules S1–S3 and their evaluation; `fixtures` holds a small set of real entries for the tests |
 | `packages/duties` | Duty and tax estimate, customs value, landed cost, trade agreement checks and draft entry summaries (CBP 7501, CBSA CAD), pure functions over the rate tables in `data/duties` |
+| `packages/integrations` | Pure parts of the integrations: webhook signatures, events, Slack/Teams messages, folder grouping, CargoWise XML and X12 exports, connectors, container-tracking normalizers and checks CT1-CT3 |
+| `packages/client` | TypeScript client for the public API v1, with webhook signature verification and examples |
 | `packages/synth` | Synthetic shipment generator: ground-truth JSON, labeled error injection, HTML templates rendered to PDF |
 | `apps/api` | NestJS API; also serves the web app |
 | `apps/web` | Web app (Vite + React + Radix UI): shipments, PDF upload, findings with citations, PDF viewer with highlights. `src/features/<page>` holds one component per file, `src/components/ui` the Radix-based primitives, `src/lib` one helper per file |
@@ -201,6 +204,7 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | `data/corpus` | CBSA memoranda (invoices D1-4-1, marking D11-3-1, proof of origin D11-4-2, valuation D13-4-3 and D13-4-7), 19 CFR (141.83, 141.86, 141.89, Parts 134 and 149, Part 152 subpart E), the RGCE 2026 (reglas 1.9.19 and 3.1.8), the Union Customs Code and Annex B of Delegated Regulation 2015/2446, HMRC's CDS completion guide, EORI manual and TCA origin guidance, as Markdown with URL and effective date, plus the embedding index |
 | `data/duties` | Rate tables with source and date: HTSUS and Customs Tariff (`npm run duties:fetch`), Bank of Canada and Federal Reserve exchange rates, and hand-edited additional duties, fees, taxes, AD/CVD cases and trade agreements |
 | `data/eval/v1` | Evaluation set: `truth.json` + `labels.json` per shipment (committed), PDFs (generated, git-ignored) |
+| `docs/api` | OpenAPI 3.1 document and Postman collection of the public API (`node scripts/api-contract.mjs --write-only` regenerates them; without the flag it runs the collection against a server) |
 | `scripts/smoke.mjs` | End-to-end smoke test against the built API |
 
 ## Rules implemented
@@ -356,6 +360,8 @@ After the rules run, `/validate` does a second pass:
 | PUT / POST | `/shipments/:id/duties/inputs`, `/duties/preview` | Save the answers the documents do not give (related party, assists, freight, preference claimed, full tariff numbers…) and recalculate, or recalculate without saving |
 
 Documents passed as JSON in the body of `/validate` take precedence over extracted ones, which keeps the phase 0 flow working for tests.
+
+The public API for other systems lives under `/api/v1` with API keys (reference at `#/app/api-docs` in the app and `/api/v1/openapi.json`); it and the integration routes (`/integrations/...`) are described in [docs/INTEGRATIONS.md](docs/INTEGRATIONS.md).
 
 Party screening (`/screening/...` and `/admin/screening/...`: lists, checking a name, the allowlist, refresh and thresholds) is described in [docs/SCREENING.md](docs/SCREENING.md).
 

@@ -2,6 +2,7 @@ import { Injectable, type CallHandler, type ExecutionContext, type NestIntercept
 import type { Request } from 'express';
 import { mergeMap, Observable } from 'rxjs';
 import type { AuthedRequest } from '../auth/auth.types';
+import type { ApiRequest } from '../integrations/account';
 import type { OrgRequest } from '../orgs/org.types';
 import { AuditService, type AuditScope } from './audit.service';
 
@@ -19,10 +20,12 @@ export class AuditInterceptor implements NestInterceptor {
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     if (context.getType() !== 'http') return next.handle();
-    const req = context.switchToHttp().getRequest<Request & AuthedRequest & OrgRequest>();
+    const req = context.switchToHttp().getRequest<Request & AuthedRequest & OrgRequest & ApiRequest>();
     if (READS.has(req.method)) return next.handle();
+    // A public API call (ApiKeyGuard) acts for the member who made the key, and says which key.
+    const key = req.principal;
     const scope: AuditScope = {
-      actor: { userId: req.user?.id ?? null, email: req.user?.email ?? null, orgId: req.org?.id ?? null, ip: req.ip ?? null },
+      actor: { userId: req.user?.id ?? key?.actingUserId ?? null, email: req.user?.email ?? (key ? `api-key ${key.keyPrefix}` : null), orgId: req.org?.id ?? null, ip: req.ip ?? null },
       entries: [],
     };
     return new Observable((subscriber) =>

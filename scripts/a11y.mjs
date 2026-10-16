@@ -84,6 +84,12 @@ async function signUpWithSample() {
     });
     if (!res.ok()) throw new Error(`Sign-up failed: ${res.status()} ${await res.text()}`);
   }
+  // Something in each Integrations list, so the lists are audited too (nothing is sent: no test deliveries).
+  await Promise.all([
+    page.request.post(`${base}/integrations/api-keys`, { data: { name: 'Accessibility', scopes: ['read'] } }),
+    page.request.post(`${base}/integrations/webhooks`, { data: { url: 'https://example.com/doccheck', events: ['validation.completed'] } }),
+    page.request.post(`${base}/integrations/chat-alerts`, { data: { kind: 'slack', name: '#customs', url: 'https://hooks.slack.com/services/T000/B000/x', events: ['finding.created'] } }),
+  ]).catch(() => undefined);
   const samples = await (await page.request.get(`${base}/demo/samples`)).json();
   if (!samples.length) return undefined;
   const shipment = await (await page.request.post(`${base}/demo/samples/${samples[0].id}`)).json();
@@ -149,6 +155,8 @@ const staticPages = [
   '/app/audit',
   '/app/review',
   '/app/usage',
+  ...['keys', 'webhooks', 'chat', 'ingestion', 'tracking', 'exports'].map((tab) => `/app/integrations?tab=${tab}`),
+  '/app/api-docs',
   ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system', '/app/admin/plans', '/app/admin/screening'] : []),
 ];
 const locales = values.quick ? ['en'] : ['en', 'es', 'fr'];

@@ -6,6 +6,7 @@ import { Button } from '../../components/ui/Button';
 import { useI18n } from '../../i18n/useI18n';
 import { downloadJson } from '../../lib/downloadJson';
 import { reportFileName } from '../../lib/reportFileName';
+import { ExportFormatItems } from '../integrations/ExportFormatItems';
 
 export interface ExportMenuProps {
   shipment: Shipment;
@@ -32,6 +33,7 @@ export function ExportMenu({ shipment, validation, duties }: ExportMenuProps) {
           <DropdownMenu.Item className="menu-item" onSelect={() => setTimeout(() => window.print(), 0)}>
             <FileTextIcon aria-hidden /> {t('shipment.print')}
           </DropdownMenu.Item>
+          <ExportFormatItems shipmentId={shipment.id} documents={shipment.documents} />
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>

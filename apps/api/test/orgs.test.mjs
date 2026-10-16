@@ -41,9 +41,10 @@ const withDb = (name) => {
   return u.toString();
 };
 const baseName = new URL(baseUrl).pathname.slice(1);
-if (!baseName.endsWith('_test')) throw new Error(`Refusing to reset "${baseName}": the test database name must end in _test`);
-const testUrl = withDb(baseName.replace(/_test$/, '_orgs_test'));
-const migrationUrl = withDb(baseName.replace(/_test$/, '_orgs_migration_test'));
+// A test database name ends in _test or has _test_ in it (doccheck_test_api); the schema is dropped.
+if (!/_test($|_)/.test(baseName)) throw new Error(`Refusing to reset "${baseName}": the test database name must end in _test`);
+const testUrl = withDb(baseName.replace(/_test($|_)/, '_orgs_test$1'));
+const migrationUrl = withDb(baseName.replace(/_test($|_)/, '_orgs_migration_test$1'));
 
 const port = Number(process.env.E2E_PORT ?? 3990) + 1;
 const base = `http://localhost:${port}`;
@@ -271,6 +272,8 @@ describe('organizations', () => {
       ['GET', `/review/documents/${docId}`],
       ['POST', `/review/documents/${docId}/accept`, { paths: ['/invoiceNumber'] }],
       ['DELETE', `/review/documents/${docId}/accept`],
+      ['GET', `/shipments/${s.id}/exports/cargowise-xml`],
+      ['GET', `/shipments/${s.id}/tracking`],
     ];
     for (const [method, path, body] of routes) assert.equal((await call(method, path, body, b.cookie)).status, 404, `${method} ${path}`);
     assert.equal((await call('GET', '/shipments', undefined, b.cookie)).body.total, 0);
@@ -305,6 +308,63 @@ describe('organizations', () => {
     assert.equal((await call('GET', '/shipments?destination=EU', undefined, b.cookie)).body.total, 0);
     assert.equal((await call('PATCH', `/shipments/${eu.id}`, { destination: 'GB' }, b.cookie)).status, 404);
     assert.equal((await call('GET', `/shipments/${eu.id}`, undefined, a.cookie)).body.destination, 'EU');
+    // The public API: a key of B's organization reaches none of A's shipments.
+    const bKey = (await call('POST', '/integrations/api-keys', { name: 'B', scopes: ['read', 'write'] }, b.cookie)).body.key;
+    const v1 = (method, path, body) =>
+      fetch(`${base}/api/v1${path}`, { method, headers: { authorization: `Bearer ${bKey}`, ...(body ? { 'content-type': 'application/json' } : {}) }, body: body && JSON.stringify(body) }).then((res) => res.status);
+    for (const [method, path, body] of [
+      ['GET', `/shipments/${s.id}`],
+      ['GET', `/shipments/${s.id}/findings`],
+      ['GET', `/shipments/${s.id}/documents/${docId}`],
+      ['POST', `/shipments/${s.id}/validate`],
+      ['GET', `/shipments/${s.id}/exports/x12-856`],
+      ['POST', `/shipments/${s.id}/exports/x12-856/send`, { connector: 'mock' }],
+    ]) assert.equal(await v1(method, path, body), 404, `api/v1 ${method} ${path}`);
+    assert.equal((await (await fetch(`${base}/api/v1/shipments`, { headers: { authorization: `Bearer ${bKey}` } })).json()).total, 0);
+  });
+
+  it('lets only owners and admins manage integrations, and makes API keys act in their organization', async () => {
+    const owner = await signUp('Integrator');
+    await call('POST', '/orgs', { name: 'Keys Inc' }, owner.cookie);
+    const created = await call('POST', '/integrations/api-keys', { name: 'ERP', scopes: ['read', 'write'] }, owner.cookie);
+    assert.equal(created.status, 201);
+    assert.equal(created.body.createdBy, 'Integrator');
+    const admin = await signUp('Admin');
+    const viewer = await signUp('Viewer');
+    const client = await signUp('Client');
+    const analyst = await signUp('Analyst2');
+    await join_(owner, admin, 'admin');
+    await join_(owner, viewer, 'viewer');
+    await join_(owner, client, 'client');
+    await join_(owner, analyst, 'analyst');
+    for (const who of [viewer, client, analyst]) {
+      for (const [method, path, body] of [
+        ['GET', '/integrations/api-keys'],
+        ['POST', '/integrations/api-keys', { name: 'x', scopes: ['read'] }],
+        ['POST', `/integrations/api-keys/${created.body.id}/revoke`],
+        ['GET', '/integrations/webhooks'],
+        ['POST', '/integrations/webhooks', { url: 'https://example.com/hook', events: ['finding.created'] }],
+        ['GET', '/integrations/chat-alerts'],
+        ['GET', '/integrations/ingestion'],
+        ['PUT', '/integrations/tracking', { enabled: true, provider: 'mock' }],
+      ]) assert.equal((await call(method, path, body, who.cookie)).status, 403, `${who.name} ${method} ${path}`);
+    }
+    assert.equal((await call('GET', '/integrations/api-keys', undefined, admin.cookie)).body.length, 1);
+
+    // A shipment made with the key belongs to the organization, recorded as created by the key's maker.
+    const res = await fetch(`${base}/api/v1/shipments`, { method: 'POST', headers: { authorization: `Bearer ${created.body.key}`, 'content-type': 'application/json' }, body: JSON.stringify({ reference: 'BY-KEY', destination: 'CA' }) });
+    assert.equal(res.status, 201);
+    const viaKey = await res.json();
+    assert.equal((await call('GET', `/shipments/${viaKey.id}`, undefined, viewer.cookie)).body.reference, 'BY-KEY');
+    const row = (await pool.query('select s.user_id, o.name from shipments s join organizations o on o.id = s.org_id where s.id = $1', [viaKey.id])).rows[0];
+    assert.deepEqual([row.user_id, row.name], [owner.id, 'Keys Inc']);
+
+    // Key changes are in the audit log, without the key.
+    await call('POST', `/integrations/api-keys/${created.body.id}/revoke`, undefined, admin.cookie);
+    const log = (await pool.query(`select action, user_email as actor_email, after::text as after from audit_log where action like 'api_key.%' or (action = 'shipment.create' and entity_id = $1) order by id`, [viaKey.id])).rows;
+    assert.deepEqual(log.filter((l) => l.action.startsWith('api_key.')).map((l) => l.action).slice(-2), ['api_key.create', 'api_key.revoke']);
+    assert.ok(log.every((l) => !l.after?.includes(created.body.key)));
+    assert.match(log.find((l) => l.action === 'shipment.create').actor_email, /^api-key dck_/);
   });
 
   it('invites members by email, shares the organization’s shipments and keeps personal ones apart', async () => {

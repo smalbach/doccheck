@@ -34,7 +34,7 @@ const testUrl = (() => {
   return u.toString();
 })();
 const dbName = new URL(testUrl).pathname.slice(1);
-if (!dbName.endsWith('_test')) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
+if (!/_test($|_)/.test(dbName)) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
 
 // Cached model responses replayed by the API (E2E_LLM_CACHE_DIR overrides, e.g. for another model).
 const llmCacheDir = process.env.E2E_LLM_CACHE_DIR || join(root, 'eval/cache/ollama_qwen3.8');

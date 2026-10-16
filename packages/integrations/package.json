@@ -1,0 +1,17 @@
+{
+  "name": "@doccheck/integrations",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pure pieces of DocCheck's integrations: webhook signatures, events, chat messages, CargoWise XML and X12 exports, container tracking checks. No NestJS, no I/O beyond the providers' fetch.",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@doccheck/schemas": "0.1.0"
+  }
+}
