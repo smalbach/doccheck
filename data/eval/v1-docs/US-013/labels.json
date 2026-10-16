@@ -1,0 +1,28 @@
+{
+  "id": "US-013",
+  "errors": [
+    {
+      "kind": "coo_hs_mismatch",
+      "document": "certificateOfOrigin",
+      "field": "goods[0].hsCode",
+      "before": "0901.11",
+      "after": "3926.90",
+      "expectedRuleIds": [
+        "T8"
+      ],
+      "description": "Certificate of origin lists HS 3926.90 instead of 0901.11."
+    },
+    {
+      "kind": "awb_check_digit",
+      "document": "airWaybill",
+      "field": "awbNumber",
+      "before": "176-53416930",
+      "after": "176-53416931",
+      "expectedRuleIds": [
+        "T1",
+        "T12"
+      ],
+      "description": "Air waybill number 176-53416931 has a wrong check digit."
+    }
+  ]
+}

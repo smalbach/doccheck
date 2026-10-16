@@ -247,6 +247,29 @@ describe('screening rules', () => {
     expect(out.findings.find((f) => f.ruleId === 'S3')?.evidence[0]).toMatchObject({ documentId: 'isf-1', field: 'manufacturer.name' });
   });
 
+  it('screens the producer on a certificate of origin and the air waybill parties', () => {
+    const ctx = clean();
+    const producer = { name: 'Xinjiang East Hope Nonferrous Metals Co Ltd', address: { lines: ['Zhundong'], country: 'CN' } };
+    Object.assign(ctx, {
+      certificateOfOrigin: { id: 'co-1', data: { exporter: ctx.invoice!.data.seller, producer, originCountry: 'CN' } },
+      airWaybill: { id: 'awb-1', data: { shipper: ctx.invoice!.data.seller, consignee: { name: 'Banco Nacional de Cuba', address: { lines: [] } } } },
+    });
+    const hits = screenShipment(ctx, lists.index).hits.map((h) => `${h.ruleId} ${h.party}`);
+    expect(hits).toContain('S1 Xinjiang East Hope Nonferrous Metals Co Ltd');
+    expect(hits).toContain('S1 Banco Nacional de Cuba');
+    const roles = shipmentParties(ctx).find((p) => p.name.startsWith('Xinjiang'))!.seen.map((s) => `${s.doc}.${s.field}`);
+    expect(roles).toEqual(['certificateOfOrigin.producer']);
+  });
+
+  it('cites the forced-labour rules of each destination', () => {
+    const ctx = clean();
+    ctx.invoice!.data.lines[0].hsCode = '6109.10';
+    for (const [destination, title] of [['US', /Uyghur/], ['CA', /9897/], ['MX', /Secretaría de Economía/], ['EU', /2024\/3015/], ['GB', /Modern Slavery Act/]] as const) {
+      ctx.destination = destination;
+      expect(screenShipment(ctx, lists.index).findings[0].regulation?.title).toMatch(title);
+    }
+  });
+
   it('uses the thresholds it is given', () => {
     const ctx = clean();
     ctx.invoice!.data.seller.name = 'Hangzhou Hikvisoin Digital Technology Co., Ltd.';

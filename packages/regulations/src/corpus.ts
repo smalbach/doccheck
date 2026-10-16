@@ -1,11 +1,14 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
+/** Who issues (or, for the EU, which law governs) a corpus document: matches the destination profiles. */
+export type Authority = 'CBSA' | 'CBP' | 'ANAM' | 'UCC' | 'HMRC';
+
 /** One regulation document from data/corpus/<authority>/<id>.md. */
 export interface CorpusDocument {
   id: string;
   title: string;
-  authority: 'CBSA' | 'CBP';
+  authority: Authority;
   language: string;
   url: string;
   effectiveDate?: string;
@@ -17,7 +20,7 @@ export interface CorpusDocument {
 export interface Chunk {
   id: string;
   documentId: string;
-  authority: 'CBSA' | 'CBP';
+  authority: Authority;
   language: string;
   title: string;
   url: string;
@@ -38,7 +41,7 @@ export function parseDocument(raw: string): CorpusDocument {
   return {
     id: meta.id,
     title: meta.title,
-    authority: meta.authority as 'CBSA' | 'CBP',
+    authority: meta.authority as Authority,
     language: meta.language,
     url: meta.url,
     effectiveDate: meta.effectiveDate,

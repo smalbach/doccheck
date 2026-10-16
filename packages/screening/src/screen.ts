@@ -1,6 +1,6 @@
 import type { RuleDefinition, ShipmentContext } from '@doccheck/rules';
 import type { Evidence, Finding, Party } from '@doccheck/schemas';
-import { FORCED_LABOUR_BASIS, highRiskSector, xinjiangTerm } from './forced-labour';
+import { FORCED_LABOUR_ACTION, FORCED_LABOUR_BASIS, highRiskSector, xinjiangTerm } from './forced-labour';
 import type { Match, ScreeningIndex } from './matcher';
 import { LISTS } from './sources';
 import { displayName, partyKey } from './text';
@@ -18,9 +18,22 @@ const ROLES = {
   packingList: [['seller', 'seller'], ['consignee', 'consignee']],
   billOfLading: [['shipper', 'shipper'], ['consignee', 'consignee'], ['notifyParty', 'notify party']],
   isf: [['seller', 'seller'], ['buyer', 'buyer'], ['manufacturer', 'manufacturer'], ['shipToParty', 'ship-to party'], ['consolidator', 'consolidator']],
+  airWaybill: [['shipper', 'shipper'], ['consignee', 'consignee'], ['notifyParty', 'notify party']],
+  certificateOfOrigin: [['exporter', 'exporter'], ['producer', 'producer'], ['consignee', 'consignee']],
+  cusmaCertification: [['certifier', 'certifier'], ['exporter', 'exporter'], ['producer', 'producer'], ['importer', 'importer']],
+  arrivalNotice: [['consignee', 'consignee'], ['notifyParty', 'notify party']],
 } as const;
 
-const DOC_LABEL = { invoice: 'invoice', packingList: 'packing list', billOfLading: 'BL', isf: 'ISF' } as const;
+const DOC_LABEL = {
+  invoice: 'invoice',
+  packingList: 'packing list',
+  billOfLading: 'BL',
+  isf: 'ISF',
+  airWaybill: 'air waybill',
+  certificateOfOrigin: 'certificate of origin',
+  cusmaCertification: 'CUSMA certification',
+  arrivalNotice: 'arrival notice',
+} as const;
 
 /** One party as it appears across the shipment's documents: same name (after normalization) = same party. */
 export interface ScreenedParty {
@@ -32,7 +45,10 @@ export interface ScreenedParty {
   seen: { documentId: string; doc: keyof typeof ROLES; field: string; role: string; party: Party }[];
 }
 
-/** Every named party of the shipment, grouped by normalized name. "TO ORDER" consignees are not parties. */
+/**
+ * Every named party of the shipment, grouped by normalized name: invoice, packing list, BL, ISF, air
+ * waybill, certificates of origin (with the producer) and arrival notice. "TO ORDER" consignees are not parties.
+ */
 export function shipmentParties(ctx: ShipmentContext): ScreenedParty[] {
   const parties = new Map<string, ScreenedParty>();
   for (const doc of Object.keys(ROLES) as (keyof typeof ROLES)[]) {
@@ -191,10 +207,7 @@ export function screenShipment(ctx: ShipmentContext, index: ScreeningIndex | und
       ? [{ documentId: ctx.isf!.id, field: 'countryOfOrigin', value: 'CN' }]
       : [];
   const basis = FORCED_LABOUR_BASIS[ctx.destination];
-  const action =
-    ctx.destination === 'US'
-      ? 'Before shipping, get supply-chain tracing documents down to the raw material (UFLPA operational guidance), or expect CBP to detain the goods.'
-      : 'Ask the supplier for supply-chain tracing documents down to the raw material; CBSA may detain goods suspected of forced labour.';
+  const action = FORCED_LABOUR_ACTION[ctx.destination];
   for (const p of parties) {
     for (const s of p.seen) {
       const a = s.party.address;

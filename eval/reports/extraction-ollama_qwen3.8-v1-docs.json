@@ -1,0 +1,1613 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "ocrEngine": "tesseract",
+  "shipments": 20,
+  "documents": 43,
+  "failedDocuments": 0,
+  "cachedDocuments": 34,
+  "classificationAccuracy": 1,
+  "validDocuments": 43,
+  "overall": {
+    "total": 401,
+    "correct": 401,
+    "wrong": 0,
+    "missing": 0,
+    "spurious": 0,
+    "accuracy": 1
+  },
+  "byType": [
+    {
+      "type": "AIR_WAYBILL",
+      "documents": 9,
+      "validDocuments": 9,
+      "total": 130,
+      "correct": 130,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "documents": 12,
+      "validDocuments": 12,
+      "total": 102,
+      "correct": 102,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "documents": 3,
+      "validDocuments": 3,
+      "total": 28,
+      "correct": 28,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ARRIVAL_NOTICE",
+      "documents": 11,
+      "validDocuments": 11,
+      "total": 83,
+      "correct": 83,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "documents": 6,
+      "validDocuments": 6,
+      "total": 42,
+      "correct": 42,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "documents": 2,
+      "validDocuments": 2,
+      "total": 16,
+      "correct": 16,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    }
+  ],
+  "byTemplate": [
+    {
+      "template": "AIR_WAYBILL · classic",
+      "total": 130,
+      "correct": 130,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "template": "ARRIVAL_NOTICE · classic",
+      "total": 83,
+      "correct": 83,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "template": "CERTIFICATE_OF_ORIGIN · classic",
+      "total": 102,
+      "correct": 102,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "template": "CUSMA_CERTIFICATION · classic",
+      "total": 28,
+      "correct": 28,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "template": "DANGEROUS_GOODS_DECLARATION · classic",
+      "total": 16,
+      "correct": 16,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "template": "WOOD_PACKAGING_CERTIFICATE · classic",
+      "total": 42,
+      "correct": 42,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    }
+  ],
+  "byField": [
+    {
+      "type": "AIR_WAYBILL",
+      "field": "consignee.name",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "grossWeight.kg",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "awbNumber",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "issuer",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "shipper.name",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "airportOfDeparture.iata",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "airportOfDestination.iata",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "flights[0].flight",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "flights[0].date",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "pieces",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "chargeableWeight.kg",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "natureOfGoods",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "freightTerms",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "executedOn",
+      "total": 9,
+      "correct": 9,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "AIR_WAYBILL",
+      "field": "masterAwbNumber",
+      "total": 4,
+      "correct": 4,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "field": "certificateNumber",
+      "total": 12,
+      "correct": 12,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "field": "exporter.name",
+      "total": 12,
+      "correct": 12,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "field": "consignee.name",
+      "total": 12,
+      "correct": 12,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "field": "countryOfOrigin",
+      "total": 12,
+      "correct": 12,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "field": "goods[*].description",
+      "total": 21,
+      "correct": 21,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "field": "goods[*].hsCode",
+      "total": 21,
+      "correct": 21,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "field": "dateOfIssue",
+      "total": 12,
+      "correct": 12,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "field": "exporter.name",
+      "total": 3,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "field": "goods[*].description",
+      "total": 3,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "field": "goods[*].hsCode",
+      "total": 3,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "field": "certifierRole",
+      "total": 3,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "field": "certifier.name",
+      "total": 3,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "field": "producer.name",
+      "total": 3,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "field": "importer.name",
+      "total": 3,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "field": "signature.name",
+      "total": 3,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "field": "signature.date",
+      "total": 3,
+      "correct": 3,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "CUSMA_CERTIFICATION",
+      "field": "goods[*].originCriterion",
+      "total": 1,
+      "correct": 1,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ARRIVAL_NOTICE",
+      "field": "consignee.name",
+      "total": 11,
+      "correct": 11,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ARRIVAL_NOTICE",
+      "field": "noticeNumber",
+      "total": 11,
+      "correct": 11,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ARRIVAL_NOTICE",
+      "field": "transportDocumentNumber",
+      "total": 11,
+      "correct": 11,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ARRIVAL_NOTICE",
+      "field": "estimatedArrival",
+      "total": 11,
+      "correct": 11,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ARRIVAL_NOTICE",
+      "field": "containers[*].number",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ARRIVAL_NOTICE",
+      "field": "packages",
+      "total": 11,
+      "correct": 11,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ARRIVAL_NOTICE",
+      "field": "grossWeight.kg",
+      "total": 11,
+      "correct": 11,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "ARRIVAL_NOTICE",
+      "field": "lastFreeDay",
+      "total": 11,
+      "correct": 11,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "field": "certificateNumber",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "field": "exporter.name",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "field": "kind",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "field": "treatment",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "field": "ispmMark.country",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "field": "ispmMark.registration",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "field": "treatmentDate",
+      "total": 6,
+      "correct": 6,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "field": "transportDocumentNumber",
+      "total": 2,
+      "correct": 2,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "field": "shipper.name",
+      "total": 2,
+      "correct": 2,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "field": "regulation",
+      "total": 2,
+      "correct": 2,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "field": "items[*].unNumber",
+      "total": 2,
+      "correct": 2,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "field": "items[*].properShippingName",
+      "total": 2,
+      "correct": 2,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "field": "items[*].hazardClass",
+      "total": 2,
+      "correct": 2,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "field": "items[*].packingGroup",
+      "total": 2,
+      "correct": 2,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    {
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "field": "items[*].quantity.value",
+      "total": 2,
+      "correct": 2,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    }
+  ],
+  "rules": {
+    "shipmentsWithAllDocuments": 20,
+    "table": [
+      {
+        "rule": "T10",
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "T11",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "T12",
+        "tp": 6,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "T2",
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "T3",
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "T7",
+        "tp": 4,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "T8",
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      },
+      {
+        "rule": "T9",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1,
+        "precision": 1
+      }
+    ]
+  },
+  "usage": {
+    "inputTokens": 26083,
+    "outputTokens": 21945,
+    "seconds": 512
+  },
+  "documentsDetail": [
+    {
+      "shipment": "CA-001",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 577,
+        "outputTokens": 467
+      }
+    },
+    {
+      "shipment": "CA-001",
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "template": "classic",
+      "detectedType": "WOOD_PACKAGING_CERTIFICATE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 488,
+        "outputTokens": 339
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 596,
+        "outputTokens": 478
+      }
+    },
+    {
+      "shipment": "CA-003",
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "template": "classic",
+      "detectedType": "WOOD_PACKAGING_CERTIFICATE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 488,
+        "outputTokens": 322
+      }
+    },
+    {
+      "shipment": "CA-004",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 582,
+        "outputTokens": 463
+      }
+    },
+    {
+      "shipment": "CA-004",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 594,
+        "outputTokens": 543
+      }
+    },
+    {
+      "shipment": "CA-005",
+      "type": "AIR_WAYBILL",
+      "template": "classic",
+      "detectedType": "AIR_WAYBILL",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 810,
+        "outputTokens": 769
+      }
+    },
+    {
+      "shipment": "CA-005",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 517,
+        "outputTokens": 366
+      }
+    },
+    {
+      "shipment": "CA-005",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 598,
+        "outputTokens": 544
+      }
+    },
+    {
+      "shipment": "CA-006",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 562,
+        "outputTokens": 466
+      }
+    },
+    {
+      "shipment": "CA-007",
+      "type": "AIR_WAYBILL",
+      "template": "classic",
+      "detectedType": "AIR_WAYBILL",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 816,
+        "outputTokens": 770
+      }
+    },
+    {
+      "shipment": "CA-007",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 505,
+        "outputTokens": 354
+      }
+    },
+    {
+      "shipment": "CA-007",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 556,
+        "outputTokens": 476
+      }
+    },
+    {
+      "shipment": "CA-008",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 569,
+        "outputTokens": 452
+      }
+    },
+    {
+      "shipment": "CA-009",
+      "type": "AIR_WAYBILL",
+      "template": "classic",
+      "detectedType": "AIR_WAYBILL",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 787,
+        "outputTokens": 743
+      }
+    },
+    {
+      "shipment": "CA-009",
+      "type": "CUSMA_CERTIFICATION",
+      "template": "classic",
+      "detectedType": "CUSMA_CERTIFICATION",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 720,
+        "outputTokens": 663
+      }
+    },
+    {
+      "shipment": "CA-010",
+      "type": "AIR_WAYBILL",
+      "template": "classic",
+      "detectedType": "AIR_WAYBILL",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 809,
+        "outputTokens": 761
+      }
+    },
+    {
+      "shipment": "CA-010",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 513,
+        "outputTokens": 363
+      }
+    },
+    {
+      "shipment": "CA-010",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 586,
+        "outputTokens": 560
+      }
+    },
+    {
+      "shipment": "CA-010",
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "template": "classic",
+      "detectedType": "WOOD_PACKAGING_CERTIFICATE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 488,
+        "outputTokens": 340
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 563,
+        "outputTokens": 444
+      }
+    },
+    {
+      "shipment": "US-001",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 549,
+        "outputTokens": 412
+      }
+    },
+    {
+      "shipment": "US-002",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 558,
+        "outputTokens": 451
+      }
+    },
+    {
+      "shipment": "US-003",
+      "type": "AIR_WAYBILL",
+      "template": "classic",
+      "detectedType": "AIR_WAYBILL",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 810,
+        "outputTokens": 757
+      }
+    },
+    {
+      "shipment": "US-004",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 580,
+        "outputTokens": 524
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "AIR_WAYBILL",
+      "template": "classic",
+      "detectedType": "AIR_WAYBILL",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 776,
+        "outputTokens": 737
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 484,
+        "outputTokens": 334
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "CUSMA_CERTIFICATION",
+      "template": "classic",
+      "detectedType": "CUSMA_CERTIFICATION",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 715,
+        "outputTokens": 656
+      }
+    },
+    {
+      "shipment": "US-005",
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "template": "classic",
+      "detectedType": "DANGEROUS_GOODS_DECLARATION",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 540,
+        "outputTokens": 417
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "AIR_WAYBILL",
+      "template": "classic",
+      "detectedType": "AIR_WAYBILL",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 792,
+        "outputTokens": 738
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 555,
+        "outputTokens": 503
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "DANGEROUS_GOODS_DECLARATION",
+      "template": "classic",
+      "detectedType": "DANGEROUS_GOODS_DECLARATION",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 523,
+        "outputTokens": 432
+      }
+    },
+    {
+      "shipment": "US-006",
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "template": "classic",
+      "detectedType": "WOOD_PACKAGING_CERTIFICATE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 474,
+        "outputTokens": 325
+      }
+    },
+    {
+      "shipment": "US-007",
+      "type": "AIR_WAYBILL",
+      "template": "classic",
+      "detectedType": "AIR_WAYBILL",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 789,
+        "outputTokens": 738
+      }
+    },
+    {
+      "shipment": "US-007",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 501,
+        "outputTokens": 349
+      }
+    },
+    {
+      "shipment": "US-007",
+      "type": "CUSMA_CERTIFICATION",
+      "template": "classic",
+      "detectedType": "CUSMA_CERTIFICATION",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 704,
+        "outputTokens": 646
+      }
+    },
+    {
+      "shipment": "US-008",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 550,
+        "outputTokens": 424
+      }
+    },
+    {
+      "shipment": "US-008",
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "template": "classic",
+      "detectedType": "WOOD_PACKAGING_CERTIFICATE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 469,
+        "outputTokens": 323
+      }
+    },
+    {
+      "shipment": "US-009",
+      "type": "AIR_WAYBILL",
+      "template": "classic",
+      "detectedType": "AIR_WAYBILL",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": false,
+      "usage": {
+        "inputTokens": 813,
+        "outputTokens": 754
+      }
+    },
+    {
+      "shipment": "US-009",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 588,
+        "outputTokens": 558
+      }
+    },
+    {
+      "shipment": "US-009",
+      "type": "WOOD_PACKAGING_CERTIFICATE",
+      "template": "classic",
+      "detectedType": "WOOD_PACKAGING_CERTIFICATE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 488,
+        "outputTokens": 340
+      }
+    },
+    {
+      "shipment": "US-010",
+      "type": "ARRIVAL_NOTICE",
+      "template": "classic",
+      "detectedType": "ARRIVAL_NOTICE",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 564,
+        "outputTokens": 443
+      }
+    },
+    {
+      "shipment": "US-010",
+      "type": "CERTIFICATE_OF_ORIGIN",
+      "template": "classic",
+      "detectedType": "CERTIFICATE_OF_ORIGIN",
+      "valid": true,
+      "scores": [],
+      "issues": [],
+      "cached": true,
+      "usage": {
+        "inputTokens": 537,
+        "outputTokens": 401
+      }
+    }
+  ],
+  "shipmentsDetail": [
+    {
+      "id": "CA-001",
+      "expectedRules": [
+        "T8"
+      ],
+      "rulesOnTruth": [
+        "T8"
+      ],
+      "rulesOnExtracted": [
+        "T8"
+      ]
+    },
+    {
+      "id": "CA-002",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "CA-003",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "CA-004",
+      "expectedRules": [
+        "T8"
+      ],
+      "rulesOnTruth": [
+        "T8"
+      ],
+      "rulesOnExtracted": [
+        "T8"
+      ]
+    },
+    {
+      "id": "CA-005",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "CA-006",
+      "expectedRules": [
+        "T11",
+        "T12"
+      ],
+      "rulesOnTruth": [
+        "T11",
+        "T12"
+      ],
+      "rulesOnExtracted": [
+        "T11",
+        "T12"
+      ]
+    },
+    {
+      "id": "CA-007",
+      "expectedRules": [
+        "T7",
+        "T8"
+      ],
+      "rulesOnTruth": [
+        "T7",
+        "T8"
+      ],
+      "rulesOnExtracted": [
+        "T7",
+        "T8"
+      ]
+    },
+    {
+      "id": "CA-008",
+      "expectedRules": [
+        "T12"
+      ],
+      "rulesOnTruth": [
+        "T12"
+      ],
+      "rulesOnExtracted": [
+        "T12"
+      ]
+    },
+    {
+      "id": "CA-009",
+      "expectedRules": [
+        "T3",
+        "T9"
+      ],
+      "rulesOnTruth": [
+        "T3",
+        "T9"
+      ],
+      "rulesOnExtracted": [
+        "T3",
+        "T9"
+      ]
+    },
+    {
+      "id": "CA-010",
+      "expectedRules": [
+        "T12",
+        "T7"
+      ],
+      "rulesOnTruth": [
+        "T12",
+        "T7"
+      ],
+      "rulesOnExtracted": [
+        "T12",
+        "T7"
+      ]
+    },
+    {
+      "id": "US-001",
+      "expectedRules": [
+        "T8"
+      ],
+      "rulesOnTruth": [
+        "T8"
+      ],
+      "rulesOnExtracted": [
+        "T8"
+      ]
+    },
+    {
+      "id": "US-002",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-003",
+      "expectedRules": [
+        "T2"
+      ],
+      "rulesOnTruth": [
+        "T2"
+      ],
+      "rulesOnExtracted": [
+        "T2"
+      ]
+    },
+    {
+      "id": "US-004",
+      "expectedRules": [
+        "T10",
+        "T11"
+      ],
+      "rulesOnTruth": [
+        "T10",
+        "T11"
+      ],
+      "rulesOnExtracted": [
+        "T10",
+        "T11"
+      ]
+    },
+    {
+      "id": "US-005",
+      "expectedRules": [
+        "T12"
+      ],
+      "rulesOnTruth": [
+        "T12"
+      ],
+      "rulesOnExtracted": [
+        "T12"
+      ]
+    },
+    {
+      "id": "US-006",
+      "expectedRules": [
+        "T8"
+      ],
+      "rulesOnTruth": [
+        "T8"
+      ],
+      "rulesOnExtracted": [
+        "T8"
+      ]
+    },
+    {
+      "id": "US-007",
+      "expectedRules": [
+        "T12",
+        "T2",
+        "T9"
+      ],
+      "rulesOnTruth": [
+        "T12",
+        "T2",
+        "T9"
+      ],
+      "rulesOnExtracted": [
+        "T12",
+        "T2",
+        "T9"
+      ]
+    },
+    {
+      "id": "US-008",
+      "expectedRules": [],
+      "rulesOnTruth": [],
+      "rulesOnExtracted": []
+    },
+    {
+      "id": "US-009",
+      "expectedRules": [
+        "T2",
+        "T7"
+      ],
+      "rulesOnTruth": [
+        "T2",
+        "T7"
+      ],
+      "rulesOnExtracted": [
+        "T2",
+        "T7"
+      ]
+    },
+    {
+      "id": "US-010",
+      "expectedRules": [
+        "T12",
+        "T7"
+      ],
+      "rulesOnTruth": [
+        "T12",
+        "T7"
+      ],
+      "rulesOnExtracted": [
+        "T12",
+        "T7"
+      ]
+    }
+  ]
+}

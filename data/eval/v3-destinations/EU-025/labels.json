@@ -1,0 +1,38 @@
+{
+  "id": "EU-025",
+  "errors": [
+    {
+      "kind": "hs_code_truncated",
+      "document": "invoice",
+      "field": "lines[1].hsCode",
+      "before": "8482.10",
+      "after": "8482",
+      "expectedRuleIds": [
+        "E3"
+      ],
+      "description": "HS code of line 2 cut to the heading (8482.10 -> 8482); ICS2 needs six digits."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 112,
+      "after": 113,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 113 packages instead of 112."
+    },
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "Logport-Allee 7",
+      "after": "Logport-Allee 15",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    }
+  ]
+}

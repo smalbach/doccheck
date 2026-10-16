@@ -1,0 +1,38 @@
+{
+  "id": "EU-013",
+  "errors": [
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "7080.00",
+      "after": "7174.40",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "PCLU4110130",
+      "after": "PCLU4110131",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: PCLU4110130 -> PCLU4110131."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "33913.20",
+      "after": "39313.20",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (33913.20 -> 39313.20)."
+    }
+  ]
+}

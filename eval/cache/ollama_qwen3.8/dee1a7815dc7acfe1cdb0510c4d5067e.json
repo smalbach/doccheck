@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 788,
+    "outputTokens": 972
+  },
+  "output": {
+    "blNumber": "PCCLCMT9824399",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "463153471",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "NORLAND PRECISION SCALES CO., LTD.",
+      "addressLines": [
+        "88 GAOXIN ROAD, BUILDING 3",
+        "NINGBO ZHEJIANG 315040"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "037N",
+    "placeOfReceipt": {
+      "name": "HO CHI MINH CITY, VN",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "CAI MEP, VN",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "VANCOUVER, CA",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "VANCOUVER, CA",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU8680929",
+        "seal": "PC1472899",
+        "type": "20GP",
+        "packages": "205",
+        "grossWeight": {
+          "value": "4059.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "17.22"
+      }
+    ],
+    "totalPackages": "205",
+    "totalGrossWeight": {
+      "value": "4059.00",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "COASTAL/PO-5313/C/NO. 1-205",
+    "cargoDescription": "SAID TO CONTAIN 205 CTNS MEN'S COTTON T-SHIRT",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/5859",
+      "PO-5313"
+    ],
+    "placeOfIssue": "CAI MEP",
+    "dateOfIssue": "01-OCT-2026",
+    "shippedOnBoardDate": "01-OCT-2026"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "CA-017",
+  "errors": [
+    {
+      "kind": "coo_exporter_mismatch",
+      "document": "certificateOfOrigin",
+      "field": "exporter.name",
+      "before": "Nordhafen Armaturen GmbH",
+      "after": "Golden Bridge Trading Co., Ltd.",
+      "expectedRuleIds": [
+        "T7"
+      ],
+      "description": "Certificate of origin made out by another exporter."
+    }
+  ]
+}

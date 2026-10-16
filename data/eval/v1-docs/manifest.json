@@ -1,0 +1,497 @@
+{
+  "version": "v1-docs",
+  "seed": 20261012,
+  "shipments": [
+    {
+      "id": "CA-001",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "woodPackaging"
+      ],
+      "errors": [
+        "coo_hs_mismatch"
+      ]
+    },
+    {
+      "id": "CA-002",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [],
+      "errors": []
+    },
+    {
+      "id": "CA-003",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [
+        "arrivalNotice",
+        "woodPackaging"
+      ],
+      "errors": []
+    },
+    {
+      "id": "CA-004",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "coo_hs_mismatch"
+      ]
+    },
+    {
+      "id": "CA-005",
+      "destination": "CA",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "certificateOfOrigin",
+        "arrivalNotice"
+      ],
+      "errors": []
+    },
+    {
+      "id": "CA-006",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [
+        "arrivalNotice"
+      ],
+      "errors": [
+        "ispm15_missing",
+        "arrival_notice_mismatch"
+      ]
+    },
+    {
+      "id": "CA-007",
+      "destination": "CA",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "certificateOfOrigin",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "coo_exporter_mismatch",
+        "coo_hs_mismatch"
+      ]
+    },
+    {
+      "id": "CA-008",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [
+        "arrivalNotice"
+      ],
+      "errors": [
+        "arrival_notice_mismatch"
+      ]
+    },
+    {
+      "id": "CA-009",
+      "destination": "CA",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "cusmaCertification"
+      ],
+      "errors": [
+        "cusma_missing_element",
+        "awb_weight_mismatch"
+      ]
+    },
+    {
+      "id": "CA-010",
+      "destination": "CA",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "certificateOfOrigin",
+        "arrivalNotice",
+        "woodPackaging"
+      ],
+      "errors": [
+        "coo_exporter_mismatch",
+        "arrival_notice_mismatch"
+      ]
+    },
+    {
+      "id": "CA-011",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "coo_unsigned"
+      ]
+    },
+    {
+      "id": "CA-012",
+      "destination": "CA",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "certificateOfOrigin",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "coo_hs_mismatch"
+      ]
+    },
+    {
+      "id": "CA-013",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "arrivalNotice",
+        "woodPackaging"
+      ],
+      "errors": [
+        "coo_exporter_mismatch"
+      ]
+    },
+    {
+      "id": "CA-014",
+      "destination": "CA",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "certificateOfOrigin",
+        "arrivalNotice",
+        "woodPackaging"
+      ],
+      "errors": [
+        "awb_pieces_mismatch",
+        "coo_hs_mismatch"
+      ]
+    },
+    {
+      "id": "CA-015",
+      "destination": "CA",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill"
+      ],
+      "errors": [
+        "awb_weight_mismatch"
+      ]
+    },
+    {
+      "id": "CA-016",
+      "destination": "CA",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "cusmaCertification",
+        "arrivalNotice",
+        "dangerousGoods"
+      ],
+      "errors": [
+        "cusma_missing_element"
+      ]
+    },
+    {
+      "id": "CA-017",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "woodPackaging"
+      ],
+      "errors": [
+        "coo_exporter_mismatch"
+      ]
+    },
+    {
+      "id": "CA-018",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin"
+      ],
+      "errors": [
+        "coo_unsigned"
+      ]
+    },
+    {
+      "id": "CA-019",
+      "destination": "CA",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "dangerousGoods"
+      ],
+      "errors": []
+    },
+    {
+      "id": "CA-020",
+      "destination": "CA",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill"
+      ],
+      "errors": []
+    },
+    {
+      "id": "US-001",
+      "destination": "US",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "coo_hs_mismatch"
+      ]
+    },
+    {
+      "id": "US-002",
+      "destination": "US",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin"
+      ],
+      "errors": []
+    },
+    {
+      "id": "US-003",
+      "destination": "US",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill"
+      ],
+      "errors": [
+        "awb_pieces_mismatch"
+      ]
+    },
+    {
+      "id": "US-004",
+      "destination": "US",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin"
+      ],
+      "errors": [
+        "ispm15_missing",
+        "dg_declaration_missing"
+      ]
+    },
+    {
+      "id": "US-005",
+      "destination": "US",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "cusmaCertification",
+        "arrivalNotice",
+        "dangerousGoods"
+      ],
+      "errors": [
+        "arrival_notice_mismatch"
+      ]
+    },
+    {
+      "id": "US-006",
+      "destination": "US",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "certificateOfOrigin",
+        "woodPackaging",
+        "dangerousGoods"
+      ],
+      "errors": [
+        "coo_hs_mismatch"
+      ]
+    },
+    {
+      "id": "US-007",
+      "destination": "US",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "cusmaCertification",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "cusma_missing_element",
+        "awb_pieces_mismatch"
+      ]
+    },
+    {
+      "id": "US-008",
+      "destination": "US",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "woodPackaging"
+      ],
+      "errors": []
+    },
+    {
+      "id": "US-009",
+      "destination": "US",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "certificateOfOrigin",
+        "woodPackaging"
+      ],
+      "errors": [
+        "coo_exporter_mismatch",
+        "awb_pieces_mismatch"
+      ]
+    },
+    {
+      "id": "US-010",
+      "destination": "US",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "arrival_notice_mismatch",
+        "coo_exporter_mismatch"
+      ]
+    },
+    {
+      "id": "US-011",
+      "destination": "US",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin"
+      ],
+      "errors": [
+        "coo_hs_mismatch"
+      ]
+    },
+    {
+      "id": "US-012",
+      "destination": "US",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "cusmaCertification",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "cusma_missing_element",
+        "awb_pieces_mismatch"
+      ]
+    },
+    {
+      "id": "US-013",
+      "destination": "US",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "certificateOfOrigin",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "coo_hs_mismatch",
+        "awb_check_digit"
+      ]
+    },
+    {
+      "id": "US-014",
+      "destination": "US",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin"
+      ],
+      "errors": [
+        "coo_exporter_mismatch",
+        "coo_hs_mismatch"
+      ]
+    },
+    {
+      "id": "US-015",
+      "destination": "US",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "coo_unsigned"
+      ]
+    },
+    {
+      "id": "US-016",
+      "destination": "US",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "cusmaCertification",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "awb_check_digit",
+        "cusma_missing_element"
+      ]
+    },
+    {
+      "id": "US-017",
+      "destination": "US",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "certificateOfOrigin"
+      ],
+      "errors": [
+        "awb_check_digit"
+      ]
+    },
+    {
+      "id": "US-018",
+      "destination": "US",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "arrivalNotice",
+        "woodPackaging"
+      ],
+      "errors": [
+        "coo_unsigned",
+        "coo_exporter_mismatch"
+      ]
+    },
+    {
+      "id": "US-019",
+      "destination": "US",
+      "mode": "AIR",
+      "documents": [
+        "airWaybill",
+        "certificateOfOrigin",
+        "arrivalNotice"
+      ],
+      "errors": [
+        "awb_pieces_mismatch",
+        "coo_hs_mismatch"
+      ]
+    },
+    {
+      "id": "US-020",
+      "destination": "US",
+      "mode": "SEA",
+      "documents": [
+        "certificateOfOrigin",
+        "arrivalNotice",
+        "woodPackaging"
+      ],
+      "errors": [
+        "coo_unsigned",
+        "arrival_notice_mismatch"
+      ]
+    }
+  ]
+}

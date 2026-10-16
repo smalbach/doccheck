@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 803,
+    "outputTokens": 896
+  },
+  "output": {
+    "blNumber": "PCCLSHK2852423",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "283970534",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Brightstar Toys Manufacturing Co., Ltd.",
+      "addressLines": [
+        "No. 18 Longgang Industrial Ave",
+        "Buji Subdistrict",
+        "Shenzhen, Guangdong, 518112"
+      ],
+      "city": "Shenzhen",
+      "region": "Guangdong",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "032S",
+    "placeOfReceipt": {
+      "name": "Shenzhen",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "Shekou",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU6568332",
+        "seal": "PC6364754",
+        "type": "20GP",
+        "packages": "203",
+        "grossWeight": {
+          "value": "7,062",
+          "unit": "LB"
+        },
+        "volumeM3": "12.03"
+      }
+    ],
+    "totalPackages": "203",
+    "totalGrossWeight": {
+      "value": "7,062",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "HARBORLINE/HA284597/C/NO. 1-203",
+    "cargoDescription": "SAID TO CONTAIN 203 CTNS JIGSAW PUZZLE 1000 PCS",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/8635",
+      "HA284597"
+    ],
+    "placeOfIssue": "Shekou",
+    "dateOfIssue": "2026-05-27",
+    "shippedOnBoardDate": "2026-05-27"
+  }
+}

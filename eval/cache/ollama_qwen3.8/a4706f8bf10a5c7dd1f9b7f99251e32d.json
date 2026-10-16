@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 851,
+    "outputTokens": 900
+  },
+  "output": {
+    "blNumber": "SILVHPH345910",
+    "documentTitle": "Bill of Lading",
+    "issuer": null,
+    "bookingNumber": "848846134",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Công ty Cổ phần May Đông Á",
+      "addressLines": [
+        "Lô C2, KCN Đồng Văn II",
+        "Duy Tiên, Hà Nam"
+      ],
+      "city": "Duy Tiên",
+      "region": "Hà Nam",
+      "postalCode": null,
+      "country": "VN",
+      "taxId": "0700123456"
+    },
+    "consignee": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8310 NW 27th St",
+        "Doral, FL, 33122"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "notifyParty": {
+      "name": "Peña Hermanos Distributors LLC",
+      "addressLines": [
+        "8250 NW 27th St",
+        "Doral, FL, 33122"
+      ],
+      "city": "Doral",
+      "region": "FL",
+      "postalCode": "33122",
+      "country": "US",
+      "taxId": "65-1234987"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "008N",
+    "placeOfReceipt": {
+      "name": "Duy Tiên",
+      "country": "VN"
+    },
+    "portOfLoading": {
+      "name": "Hai Phong",
+      "country": "VN"
+    },
+    "portOfDischarge": {
+      "name": "Miami",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Miami",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU9788346",
+        "seal": "MD6271039",
+        "type": "20GP",
+        "packages": "163",
+        "grossWeight": {
+          "value": "3,030.30",
+          "unit": "KG"
+        },
+        "volumeM3": "16.99"
+      }
+    ],
+    "totalPackages": "163",
+    "totalGrossWeight": {
+      "value": "2,575.76",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PEÑA/PO-72959/C/NO. 1-163",
+    "cargoDescription": "SAID TO CONTAIN 163 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "INV-2026-4623",
+      "PO-72959"
+    ],
+    "placeOfIssue": "Hai Phong",
+    "dateOfIssue": "2026-06-03",
+    "shippedOnBoardDate": "2026-06-03"
+  }
+}

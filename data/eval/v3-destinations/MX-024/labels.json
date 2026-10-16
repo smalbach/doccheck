@@ -1,0 +1,27 @@
+{
+  "id": "MX-024",
+  "errors": [
+    {
+      "kind": "missing_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "CBA990208H57",
+      "after": null,
+      "expectedRuleIds": [
+        "M1"
+      ],
+      "description": "Importer's RFC or EORI number missing from the invoice."
+    },
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "10251.90",
+      "after": "9944.34",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 0.97 against the packing list."
+    }
+  ]
+}

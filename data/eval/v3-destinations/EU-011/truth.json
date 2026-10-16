@@ -1,0 +1,314 @@
+{
+  "id": "EU-011",
+  "seed": 346509557,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "PUN2601284",
+      "invoiceDate": "2026-09-08",
+      "poNumber": "PO-53747",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "GB590330189000"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "GB590330189000"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-09-19",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Mundra",
+          "unLocode": "INMUN",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Mundra"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 13,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "13",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "84.83",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1102.79",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413"
+        }
+      ],
+      "grossWeight": {
+        "kg": "247.00",
+        "raw": {
+          "value": "247.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "188.50",
+        "raw": {
+          "value": "188.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "1102.79",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-PUN2601284",
+      "invoiceRef": "PUN2601284",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "GB590330189000"
+      },
+      "packages": [
+        {
+          "range": "1-13",
+          "count": 13,
+          "type": "CRT",
+          "marks": "MAISON/PO-53747/C/NO. 1-13",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "13",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "188.50",
+            "raw": {
+              "value": "188.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "247.00",
+            "raw": {
+              "value": "247.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 13,
+        "netWeight": {
+          "kg": "188.50",
+          "raw": {
+            "value": "188.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "247.00",
+          "raw": {
+            "value": "247.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "1.14"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVMUN638663",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "997849125",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "GB590330189000"
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "GB590330189000"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "065W",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Mundra",
+        "unLocode": "INMUN",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Marseille",
+        "unLocode": "FRMRS",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "TWEU4852278",
+          "seal": "TW7936470",
+          "type": "20GP",
+          "packages": 13,
+          "grossWeight": {
+            "kg": "247.00",
+            "raw": {
+              "value": "247.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "1.14"
+        }
+      ],
+      "totalPackages": 18,
+      "totalGrossWeight": {
+        "kg": "247.00",
+        "raw": {
+          "value": "247.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/PO-53747/C/NO. 1-13",
+      "cargoDescription": "SAID TO CONTAIN 13 CRTS CENTRIFUGAL PUMP 0.75 KW",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Mundra",
+      "dateOfIssue": "2026-09-19",
+      "shippedOnBoardDate": "2026-09-19",
+      "references": [
+        "PUN2601284",
+        "PO-53747"
+      ]
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 828,
+    "outputTokens": 927
+  },
+  "output": {
+    "blNumber": "MRDNBRV1561230",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "316064695",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Norland Precision Scales Co., Ltd.",
+      "addressLines": [
+        "88 Gaoxin Road, Building 3",
+        "Ningbo, Zhejiang, 315040"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "notifyParty": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "059E",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Winnipeg",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "MDOU3642282",
+        "seal": "MD6000788",
+        "type": "20GP",
+        "packages": "111",
+        "grossWeight": {
+          "value": "3,119.10",
+          "unit": "KG"
+        },
+        "volumeM3": "5.24"
+      }
+    ],
+    "totalPackages": "111",
+    "totalGrossWeight": {
+      "value": "3,119.10",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PRAIRIE/PR857633/C/NO. 1-111",
+    "cargoDescription": "SAID TO CONTAIN 111 CTNS BRASS BALL VALVE 2\"",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/4775",
+      "PR857633"
+    ],
+    "placeOfIssue": "Bremerhaven",
+    "dateOfIssue": "2026-07-24",
+    "shippedOnBoardDate": "2026-07-24"
+  }
+}

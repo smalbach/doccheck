@@ -8,7 +8,8 @@ import { ShipmentsService } from '../shipments/shipments.service';
 /**
  * Shipments past their organization's retention period, oldest first. The period runs from when the
  * shipment was created, per destination: retention_ca_years for Canada, retention_us_years for the US,
- * and the longer of both while the destination is not set. Expired is strictly older: a shipment on
+ * retention_mx_years, retention_eu_years and retention_gb_years for Mexico, the EU and the UK, and the
+ * longest of them while the destination is not set. Expired is strictly older: a shipment on
  * its last day is kept.
  */
 const EXPIRED = `
@@ -17,7 +18,8 @@ const EXPIRED = `
   where ($1::uuid is null or s.org_id = $1)
     and s.created_at < now() - make_interval(years => case s.destination
       when 'CA' then o.retention_ca_years when 'US' then o.retention_us_years
-      else greatest(o.retention_ca_years, o.retention_us_years) end)
+      when 'MX' then o.retention_mx_years when 'EU' then o.retention_eu_years when 'GB' then o.retention_gb_years
+      else greatest(o.retention_ca_years, o.retention_us_years, o.retention_mx_years, o.retention_eu_years, o.retention_gb_years) end)
   order by s.created_at limit $2`;
 
 export interface RetentionResult {
@@ -26,8 +28,8 @@ export interface RetentionResult {
 }
 
 /**
- * Deletes what has outlived the records retention period (CBSA 6 years, CBP 5 by default, set per
- * organization) once a day, and nothing else. Each deletion goes to the audit log with what was
+ * Deletes what has outlived the records retention period (CBSA 6 years, CBP 5, Mexico 5, EU 3, UK 4 by
+ * default, set per organization) once a day, and nothing else. Each deletion goes to the audit log with what was
  * deleted; a shipment still extracting is left for the next run.
  */
 @Injectable()

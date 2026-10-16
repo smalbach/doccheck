@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import type { TextLine } from '@doccheck/extraction';
-import type { Destination, DocumentStatus, DocumentType, Finding, Isf, Severity, Shipment, ShipmentDocument, ShipmentStatus, TransportMode } from '@doccheck/schemas';
+import type { Attestation, Destination, DocumentFormat, DocumentStatus, DocumentType, Finding, Isf, Severity, Shipment, ShipmentDocument, ShipmentStatus, TransportMode } from '@doccheck/schemas';
 import type { Pool, PoolClient } from 'pg';
 import { PG_POOL } from '../db/db.module';
 import type { FingerprintedFinding } from './reviews.types';
@@ -19,6 +19,8 @@ export interface ExtractionRow {
   pdfLines: TextLine[];
   inputTokens?: number;
   outputTokens?: number;
+  /** Signature and stamp seen on the paper (BL, certificates of origin); absent when not checked. */
+  attestation?: Attestation;
 }
 
 export interface IsfRow {
@@ -59,6 +61,8 @@ export interface ValidationRow {
   findings: Finding[];
   agent?: unknown;
   destination?: Destination;
+  /** The rule settings, tolerances, run date and account history the run applied (null before they were recorded). */
+  ruleConfig?: unknown;
   createdAt?: string;
 }
 
@@ -143,6 +147,7 @@ const toValidation = (r: Record<string, unknown>): Omit<ValidationRow, 'findings
   inputs: r.inputs as Record<string, string>,
   agent: r.agent ?? undefined,
   ...(r.destination ? { destination: r.destination as Destination } : {}),
+  ...(r.rule_config ? { ruleConfig: r.rule_config } : {}),
   createdAt: new Date(r.created_at as string).toISOString(),
 });
 
@@ -183,6 +188,9 @@ const toDocument = (r: Record<string, unknown>): ShipmentDocument => ({
   ...(r.language ? { language: r.language as string } : {}),
   status: r.status as DocumentStatus,
   ...(r.error ? { error: r.error as string } : {}),
+  ...(r.format && r.format !== 'PDF' ? { format: r.format as DocumentFormat } : {}),
+  ...(Array.isArray(r.pages) && r.pages.length ? { pages: r.pages as number[] } : {}),
+  ...(r.source_document_id ? { sourceDocumentId: r.source_document_id as string } : {}),
 });
 
 /** A value for a jsonb parameter; an absent value is SQL null. */
@@ -484,7 +492,8 @@ export class ShipmentsRepository {
       }
       await client.query('delete from shipments where id = $1', [id]);
       await client.query('commit');
-      return { keys: docs.rows.map((r) => r.storage_key) };
+      // Parts split from one upload share its file.
+      return { keys: [...new Set(docs.rows.map((r) => r.storage_key))] };
     } catch (err) {
       await client.query('rollback');
       throw err;
@@ -518,10 +527,15 @@ export class ShipmentsRepository {
 
   async insertDocument(doc: ShipmentDocument): Promise<void> {
     await this.pool.query(
-      `insert into documents (id, shipment_id, file_name, storage_key, sha256, status)
-       values ($1, $2, $3, $4, $5, $6)`,
-      [doc.id, doc.shipmentId, doc.fileName, doc.storageKey, doc.sha256, doc.status ?? 'QUEUED'],
+      `insert into documents (id, shipment_id, file_name, storage_key, sha256, status, format, pages, source_document_id)
+       values ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+      [doc.id, doc.shipmentId, doc.fileName, doc.storageKey, doc.sha256, doc.status ?? 'QUEUED', doc.format ?? 'PDF', doc.pages ?? null, doc.sourceDocumentId ?? null],
     );
+  }
+
+  /** The pages of its file a document covers (after its upload was split). */
+  async setDocumentPages(id: string, pages: number[]): Promise<void> {
+    await this.pool.query('update documents set pages = $2 where id = $1', [id, pages]);
   }
 
   async findDocument(id: string): Promise<ShipmentDocument | null> {
@@ -580,14 +594,15 @@ export class ShipmentsRepository {
       // A new extraction replaces the document: corrections made to the previous one no longer apply.
       await client.query('delete from corrections where document_id = $1', [documentId]);
       await client.query(
-        `insert into extractions (document_id, model, prompt_version, raw, data, issues, pdf_lines, input_tokens, output_tokens)
-         values ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        `insert into extractions (document_id, model, prompt_version, raw, data, issues, pdf_lines, input_tokens, output_tokens, attestation)
+         values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
          on conflict (document_id) do update set model = excluded.model, prompt_version = excluded.prompt_version, raw = excluded.raw,
            data = excluded.data, issues = excluded.issues, pdf_lines = excluded.pdf_lines, input_tokens = excluded.input_tokens,
-           output_tokens = excluded.output_tokens, model_data = null, created_at = now()`,
+           output_tokens = excluded.output_tokens, attestation = excluded.attestation, model_data = null, created_at = now()`,
         [
           documentId, extraction.model, extraction.promptVersion, JSON.stringify(extraction.raw), JSON.stringify(extraction.data),
           JSON.stringify(extraction.issues), JSON.stringify(extraction.pdfLines), extraction.inputTokens ?? null, extraction.outputTokens ?? null,
+          toJsonb(extraction.attestation),
         ],
       );
       await client.query('commit');
@@ -648,7 +663,7 @@ export class ShipmentsRepository {
 
   async findExtraction(shipmentId: string, documentId: string): Promise<(ExtractionRow & { document: ShipmentDocument }) | null> {
     const { rows } = await this.pool.query(
-      `select d.*, e.model, e.prompt_version, e.raw, e.data, e.model_data, e.issues, e.pdf_lines, e.input_tokens, e.output_tokens
+      `select d.*, e.model, e.prompt_version, e.raw, e.data, e.model_data, e.issues, e.pdf_lines, e.input_tokens, e.output_tokens, e.attestation
        from documents d join extractions e on e.document_id = d.id
        where d.shipment_id = $1 and d.id = $2`,
       [shipmentId, documentId],
@@ -659,7 +674,7 @@ export class ShipmentsRepository {
   /** Latest successfully extracted document of each type, oldest first so later uploads win. */
   async listExtractions(shipmentId: string): Promise<(ExtractionRow & { document: ShipmentDocument })[]> {
     const { rows } = await this.pool.query(
-      `select d.*, e.model, e.prompt_version, e.raw, e.data, e.model_data, e.issues, e.pdf_lines, e.input_tokens, e.output_tokens
+      `select d.*, e.model, e.prompt_version, e.raw, e.data, e.model_data, e.issues, e.pdf_lines, e.input_tokens, e.output_tokens, e.attestation
        from documents d join extractions e on e.document_id = d.id
        where d.shipment_id = $1 order by d.created_at`,
       [shipmentId],
@@ -751,8 +766,9 @@ export class ShipmentsRepository {
     const client = await this.pool.connect();
     try {
       await client.query('begin');
-      await client.query('insert into validations (id, shipment_id, ran, skipped, inputs, agent, destination) values ($1, $2, $3, $4, $5, $6, $7)', [
+      await client.query('insert into validations (id, shipment_id, ran, skipped, inputs, agent, destination, rule_config) values ($1, $2, $3, $4, $5, $6, $7, $8)', [
         v.id, v.shipmentId, JSON.stringify(v.ran), JSON.stringify(v.skipped), JSON.stringify(v.inputs), v.agent === undefined ? null : JSON.stringify(v.agent), v.destination ?? null,
+        v.ruleConfig === undefined ? null : JSON.stringify(v.ruleConfig),
       ]);
       for (const f of v.findings) {
         await client.query(
@@ -803,6 +819,7 @@ export class ShipmentsRepository {
       pdfLines: r.pdf_lines as TextLine[],
       inputTokens: (r.input_tokens as number | null) ?? undefined,
       outputTokens: (r.output_tokens as number | null) ?? undefined,
+      ...(r.attestation ? { attestation: r.attestation as Attestation } : {}),
     };
   }
 }

@@ -1,0 +1,373 @@
+{
+  "id": "GB-030",
+  "seed": 1597378197,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "PUN2603236",
+      "poNumber": "PO-82487",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-08-16",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Felixstowe"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 127,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "34",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "93.53",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3180.02",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "1860",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "13.44",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "24998.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3259.30",
+        "raw": {
+          "value": "3259.30",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3004.00",
+        "raw": {
+          "value": "3004.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "28178.42",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "835.00",
+          "currency": "EUR"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-PUN2603236",
+      "invoiceRef": "PUN2603236",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-34",
+          "count": 34,
+          "type": "CRT",
+          "marks": "PENNINE/PO-82487/C/NO. 1-127",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "34",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "493.00",
+            "raw": {
+              "value": "493.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "646.00",
+            "raw": {
+              "value": "646.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "35-127",
+          "count": 93,
+          "type": "CTN",
+          "marks": "PENNINE/PO-82487/C/NO. 1-127",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "1860",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2511.00",
+            "raw": {
+              "value": "2511.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2613.30",
+            "raw": {
+              "value": "2613.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 127,
+        "netWeight": {
+          "kg": "3004.00",
+          "raw": {
+            "value": "3004.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3259.30",
+          "raw": {
+            "value": "3259.30",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "7.39"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLNSA1740168",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "402942035",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd Unit 19"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "034N",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "PCRU2289429",
+          "seal": "PC1209278",
+          "type": "20GP",
+          "packages": 127,
+          "grossWeight": {
+            "kg": "3259.30",
+            "raw": {
+              "value": "3259.30",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "7.39"
+        }
+      ],
+      "totalPackages": 127,
+      "totalGrossWeight": {
+        "kg": "3259.30",
+        "raw": {
+          "value": "3259.30",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PO-82487/C/NO. 1-127",
+      "cargoDescription": "SAID TO CONTAIN 127 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-08-19",
+      "shippedOnBoardDate": "2026-08-19",
+      "references": [
+        "PUN2603236",
+        "PO-82487"
+      ]
+    }
+  }
+}

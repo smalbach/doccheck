@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 855,
+    "outputTokens": 942
+  },
+  "output": {
+    "blNumber": "COMPSHK400294",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "AURORA GLOBAL LINES (AGLX)",
+    "bookingNumber": "151871419",
+    "carrierName": "AURORA GLOBAL LINES (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "031W",
+    "placeOfReceipt": {
+      "name": "SHENZHEN",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "SHEKOU",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "NEWARK",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU7350080",
+        "seal": "AG8826900",
+        "type": "40HC",
+        "packages": "297",
+        "grossWeight": {
+          "value": "3442.32",
+          "unit": "KGS"
+        },
+        "volumeM3": "25.79"
+      }
+    ],
+    "totalPackages": "297",
+    "totalGrossWeight": {
+      "value": "3442.32",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-41584/C/NO. 1-297",
+    "cargoDescription": "SAID TO CONTAIN 297 CTNS PLUSH TEDDY BEAR 30 CM AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-1069",
+      "PO-41584"
+    ],
+    "placeOfIssue": "SHEKOU",
+    "dateOfIssue": "12-FEB-2026",
+    "shippedOnBoardDate": "12-FEB-2026"
+  }
+}

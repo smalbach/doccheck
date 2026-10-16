@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 921,
+    "outputTokens": 947
+  },
+  "output": {
+    "blNumber": "AGLXHAM1480533",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "AURORA GLOBAL LINES (AGLX)",
+    "bookingNumber": "438680005",
+    "carrierName": "AURORA GLOBAL LINES (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "NORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 9",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "089S",
+    "placeOfReceipt": {
+      "name": "BREMEN",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "HAMBURG",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU3501489",
+        "seal": "AG1150840",
+        "type": "20GP",
+        "packages": "27",
+        "grossWeight": {
+          "value": "513.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "2.38"
+      }
+    ],
+    "totalPackages": "27",
+    "totalGrossWeight": {
+      "value": "513.00",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/QU483031/C/NO. 1-27",
+    "cargoDescription": "SAID TO CONTAIN 27 CRTS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "CI/26/1259 / QU483031"
+    ],
+    "placeOfIssue": "HAMBURG",
+    "dateOfIssue": "25-JUN-2026",
+    "shippedOnBoardDate": "25-JUN-2026"
+  }
+}

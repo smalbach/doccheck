@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 878,
+    "outputTokens": 927
+  },
+  "output": {
+    "blNumber": "MRDNSHK3054623",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "658471059",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS DC",
+      "addressLines": [
+        "9820 WALLISVILLE RD",
+        "HOUSTON TX 77013"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "054E",
+    "placeOfReceipt": {
+      "name": "SHENZHEN",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "SHEKOU",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU2954960",
+        "seal": "MD2560299",
+        "type": "20GP",
+        "packages": "156",
+        "grossWeight": {
+          "value": "1591.20",
+          "unit": "KGS"
+        },
+        "volumeM3": "14.98"
+      }
+    ],
+    "totalPackages": "156",
+    "totalGrossWeight": {
+      "value": "1591.20",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "BLUEBONNET/PO-63402/C/NO. 1-156",
+    "cargoDescription": "SAID TO CONTAIN 156 CTNS PLUSH TEDDY BEAR 30 CM",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "BRI2608569",
+      "PO-63402"
+    ],
+    "placeOfIssue": "SHEKOU",
+    "dateOfIssue": "01-SEP-2026",
+    "shippedOnBoardDate": "01-SEP-2026"
+  }
+}

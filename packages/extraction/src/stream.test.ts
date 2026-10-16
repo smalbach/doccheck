@@ -59,7 +59,7 @@ describe('streaming parser', () => {
     const plain = await provider.generate(req);
     expect(pieces.join('')).toBe(answer);
     expect(streamed).toEqual(plain);
-    expect(streamed).toEqual({ output: { total: '12.50' }, usage: { inputTokens: 40, outputTokens: 18 } });
+    expect(streamed).toEqual({ output: { total: '12.50' }, content: answer, usage: { inputTokens: 40, outputTokens: 18 } });
     expect(fetch.mock.calls.map(([, init]) => JSON.parse(init.body as string).stream)).toEqual([true, false]);
   });
 

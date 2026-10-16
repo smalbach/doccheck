@@ -1,0 +1,314 @@
+{
+  "id": "EU-012",
+  "seed": 21387463,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5181",
+      "invoiceDate": "2026-09-16",
+      "poNumber": "MA824715",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-09-26",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Marseille"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 144,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "14400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.49",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "35856.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2851.20",
+        "raw": {
+          "value": "2851.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2736.00",
+        "raw": {
+          "value": "2736.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "35856.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5181",
+      "invoiceRef": "CI/26/5181",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "packages": [
+        {
+          "range": "1-144",
+          "count": 144,
+          "type": "CTN",
+          "marks": "MAISON/MA824715/C/NO. 1-144",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "14400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2736.00",
+            "raw": {
+              "value": "2736.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2851.20",
+            "raw": {
+              "value": "2851.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 144,
+        "netWeight": {
+          "kg": "2736.00",
+          "raw": {
+            "value": "2736.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2851.20",
+          "raw": {
+            "value": "2851.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "12.10"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPCMT767001",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "396990062",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "029W",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Marseille",
+        "unLocode": "FRMRS",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "PCLU4681437",
+          "seal": "PC5322525",
+          "type": "20GP",
+          "packages": 144,
+          "grossWeight": {
+            "kg": "2851.20",
+            "raw": {
+              "value": "2851.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "12.10"
+        }
+      ],
+      "totalPackages": 144,
+      "totalGrossWeight": {
+        "kg": "2851.20",
+        "raw": {
+          "value": "2851.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/MA824715/C/NO. 1-144",
+      "cargoDescription": "SAID TO CONTAIN 144 CTNS MEN'S COTTON T-SHIRT",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-09-26",
+      "shippedOnBoardDate": "2026-09-26",
+      "references": [
+        "CI/26/5181",
+        "MA824715"
+      ]
+    }
+  }
+}

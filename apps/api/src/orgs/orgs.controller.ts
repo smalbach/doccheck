@@ -71,7 +71,7 @@ export class OrgsController {
     return { ...org, permissions: permissionsOf(org.role), settings: await this.repo.settings(org.id) };
   }
 
-  /** { name?, retentionCaYears?, retentionUsYears?, requireApproval?, slaEtaLeadHours? } */
+  /** { name?, retentionCaYears?, retentionUsYears?, retentionMxYears?, retentionEuYears?, retentionGbYears?, requireApproval?, slaEtaLeadHours? } */
   @Patch('current')
   @Permission('org.settings')
   updateSettings(@CurrentOrg() org: OrgContext, @Body(new ZodValidationPipe(OrgSettingsDto)) dto: OrgSettingsDto) {

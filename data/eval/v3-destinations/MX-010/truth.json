@@ -1,0 +1,315 @@
+{
+  "id": "MX-010",
+  "seed": 1436358094,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "KÜC2607366",
+      "invoiceDate": "2026-06-15",
+      "poNumber": "PO-61648",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "buyer": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "exporter": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "shipmentDate": "2026-06-17",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Bremerhaven",
+          "unLocode": "DEBRV",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Manzanillo"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 237,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "948",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "21.34",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "20230.32",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2512.20",
+        "raw": {
+          "value": "2512.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2180.40",
+        "raw": {
+          "value": "2180.40",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "20230.32",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-KÜC2607366",
+      "invoiceRef": "KÜC2607366",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "packages": [
+        {
+          "range": "1-237",
+          "count": 237,
+          "type": "CTN",
+          "marks": "DISTRIBUIDORA/PO-61648/C/NO. 1-237",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "948",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2180.40",
+            "raw": {
+              "value": "2180.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2512.20",
+            "raw": {
+              "value": "2512.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 237,
+        "netWeight": {
+          "kg": "2180.40",
+          "raw": {
+            "value": "2180.40",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2512.20",
+          "raw": {
+            "value": "2512.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "26.66"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWEBRV1108867",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "996978760",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "notifyParty": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "022E",
+      "placeOfReceipt": {
+        "name": "Stuttgart",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Bremerhaven",
+        "unLocode": "DEBRV",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Manzanillo",
+        "unLocode": "MXZLO",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Guadalajara",
+        "unLocode": "MXGDL",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "TWEU6550317",
+          "seal": "TW5267338",
+          "type": "40HC",
+          "packages": 237,
+          "grossWeight": {
+            "kg": "2512.20",
+            "raw": {
+              "value": "2512.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "26.66"
+        }
+      ],
+      "totalPackages": 237,
+      "totalGrossWeight": {
+        "kg": "2512.20",
+        "raw": {
+          "value": "2512.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "DISTRIBUIDORA/PO-61648/C/NO. 1-237",
+      "cargoDescription": "SAID TO CONTAIN 237 CTNS BLENDER 600 W",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Bremerhaven",
+      "dateOfIssue": "2026-06-19",
+      "shippedOnBoardDate": "2026-06-19",
+      "references": [
+        "KÜC2607366",
+        "PO-61648"
+      ]
+    }
+  }
+}

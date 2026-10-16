@@ -1,0 +1,38 @@
+{
+  "id": "EU-001",
+  "errors": [
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "1369.50",
+      "after": "1468.50",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "1468.50",
+      "after": "1248.23",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 0.85 against the packing list."
+    },
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[1].contents[0].quantity.value",
+      "before": "11000",
+      "after": "10999",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "US-010",
+  "errors": [
+    {
+      "kind": "arrival_notice_mismatch",
+      "document": "arrivalNotice",
+      "field": "packages",
+      "before": 171,
+      "after": 174,
+      "expectedRuleIds": [
+        "T12"
+      ],
+      "description": "Arrival notice says 174 packages instead of 171."
+    },
+    {
+      "kind": "coo_exporter_mismatch",
+      "document": "certificateOfOrigin",
+      "field": "exporter.name",
+      "before": "Cafe Alto Huila Exportadores S.A.S.",
+      "after": "Golden Bridge Trading Co., Ltd.",
+      "expectedRuleIds": [
+        "T7"
+      ],
+      "description": "Certificate of origin made out by another exporter."
+    }
+  ]
+}

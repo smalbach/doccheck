@@ -1,0 +1,366 @@
+{
+  "id": "EU-029",
+  "seed": 743000803,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "ÖZD2604536",
+      "invoiceDate": "2026-04-04",
+      "poNumber": "PO-92888",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-04-11",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ambarlı"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 93,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "16",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "75.15",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1202.40",
+            "currency": "EUR"
+          },
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "1540",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "15.29",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "23546.60",
+            "currency": "EUR"
+          },
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2467.70",
+        "raw": {
+          "value": "2467.70",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2311.00",
+        "raw": {
+          "value": "2311.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "24749.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-ÖZD2604536",
+      "invoiceRef": "ÖZD2604536",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "packages": [
+        {
+          "range": "1-16",
+          "count": 16,
+          "type": "CRT",
+          "marks": "MAISON/PO-92888/C/NO. 1-93",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "16",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "232.00",
+            "raw": {
+              "value": "232.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "304.00",
+            "raw": {
+              "value": "304.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "17-93",
+          "count": 77,
+          "type": "CTN",
+          "marks": "MAISON/PO-92888/C/NO. 1-93",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "1516",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2079.00",
+            "raw": {
+              "value": "2079.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2163.70",
+            "raw": {
+              "value": "2163.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 93,
+        "netWeight": {
+          "kg": "2311.00",
+          "raw": {
+            "value": "2311.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2467.70",
+          "raw": {
+            "value": "2467.70",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "5.05"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXAMR3078385",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "493982555",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "058N",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "Le Havre",
+        "unLocode": "FRLEH",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "AGLU9363934",
+          "seal": "AG2554098",
+          "type": "20GP",
+          "packages": 93,
+          "grossWeight": {
+            "kg": "2467.70",
+            "raw": {
+              "value": "2467.70",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "5.05"
+        }
+      ],
+      "totalPackages": 93,
+      "totalGrossWeight": {
+        "kg": "2467.70",
+        "raw": {
+          "value": "2467.70",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/PO-92888/C/NO. 1-93",
+      "cargoDescription": "SAID TO CONTAIN 93 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-04-12",
+      "shippedOnBoardDate": "2026-04-12",
+      "references": [
+        "ÖZD2604536",
+        "PO-92888"
+      ]
+    }
+  }
+}

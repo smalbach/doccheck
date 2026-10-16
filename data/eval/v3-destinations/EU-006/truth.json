@@ -1,0 +1,368 @@
+{
+  "id": "EU-006",
+  "seed": 605432988,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/9366",
+      "invoiceDate": "2026-04-25",
+      "poNumber": "PO-72430",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "GB127856318000"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "GB127856318000"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-04-29",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Cai Mep"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 376,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "3600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "18.46",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "66456.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "19600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.24",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "43904.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6784.00",
+        "raw": {
+          "value": "6784.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7120.80",
+        "raw": {
+          "value": "7120.80",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "110360.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/9366",
+      "invoiceRef": "CI/26/9366",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "GB127856318000"
+      },
+      "packages": [
+        {
+          "range": "1-180",
+          "count": 180,
+          "type": "CTN",
+          "marks": "MAISON/PO-72430/C/NO. 1-376",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "3600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3060.00",
+            "raw": {
+              "value": "3060.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3240.00",
+            "raw": {
+              "value": "3240.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        },
+        {
+          "range": "181-376",
+          "count": 196,
+          "type": "CTN",
+          "marks": "MAISON/PO-72430/C/NO. 1-376",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "19600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3724.00",
+            "raw": {
+              "value": "3724.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3880.80",
+            "raw": {
+              "value": "3880.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 376,
+        "netWeight": {
+          "kg": "6784.00",
+          "raw": {
+            "value": "6784.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "7120.80",
+          "raw": {
+            "value": "7120.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "40.16"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXCMT3458478",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "514606594",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "GB127856318000"
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "GB127856318000"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "005N",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Marseille",
+        "unLocode": "FRMRS",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "AGLU3981215",
+          "seal": "AG6356892",
+          "type": "40HC",
+          "packages": 376,
+          "grossWeight": {
+            "kg": "7120.80",
+            "raw": {
+              "value": "7120.80",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "40.16"
+        }
+      ],
+      "totalPackages": 376,
+      "totalGrossWeight": {
+        "kg": "7120.80",
+        "raw": {
+          "value": "7120.80",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/PO-72430/C/NO. 1-376",
+      "cargoDescription": "SAID TO CONTAIN 376 CTNS WOMEN'S PADDED JACKET AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-05-02",
+      "shippedOnBoardDate": "2026-05-02",
+      "references": [
+        "CI/26/9366",
+        "PO-72430"
+      ]
+    }
+  }
+}

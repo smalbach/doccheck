@@ -1,0 +1,38 @@
+{
+  "id": "EU-011",
+  "errors": [
+    {
+      "kind": "hs_code_truncated",
+      "document": "invoice",
+      "field": "lines[0].hsCode",
+      "before": "8413.70",
+      "after": "8413",
+      "expectedRuleIds": [
+        "E3"
+      ],
+      "description": "HS code of line 1 cut to the heading (8413.70 -> 8413); ICS2 needs six digits."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 13,
+      "after": 18,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 18 packages instead of 13."
+    },
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "FR53829104700028",
+      "after": "GB590330189000",
+      "expectedRuleIds": [
+        "E2"
+      ],
+      "description": "Importer number FR53829104700028 replaced by GB590330189000."
+    }
+  ]
+}

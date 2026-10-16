@@ -1,0 +1,384 @@
+{
+  "id": "EU-020",
+  "seed": 677289618,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5138",
+      "invoiceDate": "2026-04-29",
+      "poNumber": "MA348341",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-05-04",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Yantian",
+          "unLocode": "CNYTN",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Marseille"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 267,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "4150",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.16",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "38014.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "PZ-1000",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+          "quantity": {
+            "value": "4416",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "5.02",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "22168.32",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3750.12",
+        "raw": {
+          "value": "3750.12",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3484.92",
+        "raw": {
+          "value": "3484.92",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "60182.32",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5138",
+      "invoiceRef": "CI/26/5138",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "packages": [
+        {
+          "range": "1-83",
+          "count": 83,
+          "type": "CTN",
+          "marks": "MAISON/MA348341/C/NO. 1-267",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "4140",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "747.00",
+            "raw": {
+              "value": "747.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "846.60",
+            "raw": {
+              "value": "846.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "84-267",
+          "count": 184,
+          "type": "CTN",
+          "marks": "MAISON/MA348341/C/NO. 1-267",
+          "contents": [
+            {
+              "sku": "PZ-1000",
+              "description": "Jigsaw puzzle 1000 pcs",
+              "quantity": {
+                "value": "4416",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2737.92",
+            "raw": {
+              "value": "2737.92",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2903.52",
+            "raw": {
+              "value": "2903.52",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 267,
+        "netWeight": {
+          "kg": "3484.92",
+          "raw": {
+            "value": "3484.92",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3750.12",
+          "raw": {
+            "value": "3750.12",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "18.88"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWEYTN2424423",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "659172465",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "039W",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Yantian",
+        "unLocode": "CNYTN",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Marseille",
+        "unLocode": "FRMRS",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "TWEU1639844",
+          "seal": "TW2832796",
+          "type": "20GP",
+          "packages": 267,
+          "grossWeight": {
+            "kg": "3750.12",
+            "raw": {
+              "value": "3750.12",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "18.88"
+        }
+      ],
+      "totalPackages": 267,
+      "totalGrossWeight": {
+        "kg": "3750.12",
+        "raw": {
+          "value": "3750.12",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/MA348341/C/NO. 1-267",
+      "cargoDescription": "SAID TO CONTAIN 267 CTNS PLUSH TEDDY BEAR 30 CM AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Yantian",
+      "dateOfIssue": "2026-05-06",
+      "shippedOnBoardDate": "2026-05-06",
+      "references": [
+        "CI/26/5138",
+        "MA348341"
+      ]
+    }
+  }
+}

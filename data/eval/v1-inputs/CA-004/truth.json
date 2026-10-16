@@ -1,0 +1,393 @@
+{
+  "id": "CA-004",
+  "seed": 690603849,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "combined": [
+    {
+      "document": "invoice",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "document": "packing-list",
+      "pages": [
+        2
+      ]
+    },
+    {
+      "document": "bill-of-lading",
+      "pages": [
+        3
+      ]
+    }
+  ],
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/1364",
+      "invoiceDate": "2026-09-10",
+      "poNumber": "PO-30786",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-09-19",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Shanghai",
+          "unLocode": "CNSHA",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Vancouver"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 119,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "656",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "15.90",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "10430.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "148",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.82",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3377.36",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1171.20",
+        "raw": {
+          "value": "1171.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1029.20",
+        "raw": {
+          "value": "1029.20",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "13807.76",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/1364",
+      "invoiceRef": "CI/26/1364",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-82",
+          "count": 82,
+          "type": "CTN",
+          "marks": "COASTAL/PO-30786/C/NO. 1-119",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "656",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "688.80",
+            "raw": {
+              "value": "688.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "779.00",
+            "raw": {
+              "value": "779.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "83-119",
+          "count": 37,
+          "type": "CTN",
+          "marks": "COASTAL/PO-30786/C/NO. 1-119",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "148",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "340.40",
+            "raw": {
+              "value": "340.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "392.20",
+            "raw": {
+              "value": "392.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 119,
+        "netWeight": {
+          "kg": "1029.20",
+          "raw": {
+            "value": "1029.20",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1171.20",
+          "raw": {
+            "value": "1171.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "12.69"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWESHA3733222",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "835755161",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "055E",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Shanghai",
+        "unLocode": "CNSHA",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Vancouver",
+        "unLocode": "CAVAN",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU4208373",
+          "seal": "TW5575561",
+          "type": "20GP",
+          "packages": 119,
+          "grossWeight": {
+            "kg": "1171.20",
+            "raw": {
+              "value": "1171.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "12.69"
+        }
+      ],
+      "totalPackages": 119,
+      "totalGrossWeight": {
+        "kg": "1171.20",
+        "raw": {
+          "value": "1171.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COASTAL/PO-30786/C/NO. 1-119",
+      "cargoDescription": "SAID TO CONTAIN 119 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Shanghai",
+      "dateOfIssue": "2026-09-22",
+      "shippedOnBoardDate": "2026-09-22",
+      "references": [
+        "CI/26/1364",
+        "PO-30786"
+      ]
+    }
+  }
+}
