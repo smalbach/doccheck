@@ -10,6 +10,7 @@ export const x3GrossWeight: Rule = {
     requires: ['PACKING_LIST', 'BILL_OF_LADING'],
     kind: 'DETERMINISTIC',
     severity: 'MEDIUM',
+    params: [{ key: 'grossWeightTolerance', unit: 'percent', min: 0, max: 0.2 }],
   },
   run(ctx, params) {
     const pl = ctx.packingList?.data.totals.grossWeight;

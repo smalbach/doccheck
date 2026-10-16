@@ -13,13 +13,14 @@ import { ResultsController } from './results/results.controller';
 import { HealthController } from './health/health.controller';
 import { RulesController } from './rules/rules.controller';
 import { OrgsModule } from './orgs/orgs.module';
+import { RulesModule } from './rules/rules.module';
 import { ShipmentsModule } from './shipments/shipments.module';
 import { StorageModule } from './storage/storage';
 
 @Module({
   imports: [
     DbModule, StorageModule, LlmModule, ProgressModule, AuditModule, NotificationsModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule,
-    OrgsModule, CollabModule,
+    OrgsModule, CollabModule, RulesModule,
   ],
   controllers: [HealthController, RulesController, ResultsController],
 })

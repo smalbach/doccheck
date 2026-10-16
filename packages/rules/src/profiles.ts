@@ -16,13 +16,13 @@ export interface CountryProfile {
   corpusTag: string;
 }
 
-const SHARED = ['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X12'];
+const SHARED = ['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X12', 'X13', 'X14', 'X15', 'X16', 'X17', 'X18', 'X19', 'X20', 'X21', 'X22', 'X23', 'X24'];
 
 export const PROFILES: Record<Destination, CountryProfile> = {
   // CBSA Memorandum D1-4-1: invoice in English or French.
-  CA: { code: 'CA', authority: 'CBSA', allowedInvoiceLanguages: ['en', 'fr'], rules: [...SHARED, 'C1', 'C2'], corpusTag: 'cbsa' },
+  CA: { code: 'CA', authority: 'CBSA', allowedInvoiceLanguages: ['en', 'fr'], rules: [...SHARED, 'C1', 'C2', 'C3'], corpusTag: 'cbsa' },
   // 19 CFR 141.86(d): invoice in English or with an English translation.
-  US: { code: 'US', authority: 'CBP', allowedInvoiceLanguages: ['en'], rules: [...SHARED, 'X11', 'U1'], corpusTag: 'cbp' },
+  US: { code: 'US', authority: 'CBP', allowedInvoiceLanguages: ['en'], rules: [...SHARED, 'X11', 'U1', 'U2', 'U3', 'U4'], corpusTag: 'cbp' },
   // RGCE regla 3.1.8: Spanish, English or French; any other language with a Spanish translation.
   MX: { code: 'MX', authority: 'ANAM', allowedInvoiceLanguages: ['es', 'en', 'fr'], rules: [...SHARED, 'M1', 'M2', 'M3'], corpusTag: 'anam' },
   // The UCC sets no invoice language; customs may ask for a translation (UCC Article 163(1)).

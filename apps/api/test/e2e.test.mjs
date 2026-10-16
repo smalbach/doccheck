@@ -80,10 +80,14 @@ const call = async (method, path, body, as = cookie) => {
   return { status: res.status, body: text ? JSON.parse(text) : undefined, cookie: sessionCookie(res) };
 };
 
-/** Signs up a new user and returns its session cookie. */
+/**
+ * Signs up a new user and returns its session cookie. The fixture BL's carrier SCAC (EXLN) is made up,
+ * so each account adds it to its known SCACs, as an account would add its NVOCCs' (rule X15).
+ */
 const signUp = async (name = 'Test user') => {
   const res = await call('POST', '/auth/register', { email: `${randomUUID()}@example.com`, password: 'correct horse battery', name }, '');
   assert.equal(res.status, 201);
+  await call('PUT', '/rules/settings', { params: { knownScacs: ['EXLN'] } }, res.cookie);
   return res.cookie;
 };
 
@@ -606,14 +610,16 @@ describe('ISF', () => {
     containerStuffingLocation: sampleInvoice.seller.address,
     consolidator: sampleInvoice.seller,
   };
-  const usInvoice = { ...sampleInvoice, portOfEntry: { name: 'Los Angeles', unLocode: 'USLAX', country: 'US' } };
+  const lax = { name: 'Los Angeles', unLocode: 'USLAX', country: 'US' };
+  const usInvoice = { ...sampleInvoice, portOfEntry: lax };
+  const usBillOfLading = { ...sampleBillOfLading, portOfDischarge: lax, placeOfDelivery: lax };
 
   it('is stored per US shipment and used by X11', async () => {
     const { body: s } = await call('POST', '/shipments', { destination: 'US' });
-    const docs = { invoice: usInvoice, packingList: samplePackingList, billOfLading: sampleBillOfLading };
+    const docs = { invoice: usInvoice, packingList: samplePackingList, billOfLading: usBillOfLading };
 
     const without = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs);
-    assert.deepEqual(without.body.skipped.map((x) => x.ruleId), ['X11']);
+    assert.deepEqual(without.body.skipped.map((x) => x.ruleId), ['X11', 'U2', 'U3', 'U4']);
 
     assert.equal((await call('PUT', `/shipments/${s.id}/isf`, isf)).status, 200);
     const clean = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs);
@@ -2209,5 +2215,84 @@ describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' 
     assert.equal(run.status, 200);
     const expected = JSON.parse(readFileSync(join(sample, 'labels.json'), 'utf8')).errors.flatMap((e) => e.expectedRuleIds).sort();
     assert.deepEqual([...new Set(run.body.findings.map((f) => f.ruleId))].sort(), expected);
+  });
+});
+
+describe('rule settings', () => {
+  it('turns rules off, changes severity and tolerances, and records them with each run', async () => {
+    const me = await signUp('Rules');
+    const defaults = await call('GET', '/rules/settings', undefined, me);
+    assert.equal(defaults.status, 200);
+    assert.deepEqual(defaults.body.config, { params: { knownScacs: ['EXLN'] } });
+    assert.ok(defaults.body.rules.some((r) => r.id === 'X24' && r.params.length === 2));
+    assert.equal(defaults.body.defaults.grossWeightTolerance, 0.005);
+
+    assert.equal((await call('PUT', '/rules/settings', { rules: { X99: { enabled: false } } }, me)).status, 400);
+    assert.equal((await call('PUT', '/rules/settings', { params: { grossWeightTolerance: 3 } }, me)).status, 400);
+
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' }, me);
+    const bl = { ...structuredClone(sampleBillOfLading), totalPackages: 121, totalGrossWeight: { kg: '1300', raw: { value: '1300', unit: 'KG' } } };
+    const docs = { invoice: sampleInvoice, packingList: samplePackingList, billOfLading: bl };
+    const before = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs, me);
+    assert.deepEqual(before.body.findings.map((f) => [f.ruleId, f.severity]), [['X2', 'HIGH'], ['X3', 'MEDIUM']]);
+
+    const saved = await call('PUT', '/rules/settings', { rules: { X2: { severity: 'LOW' }, X8: { enabled: true } }, params: { grossWeightTolerance: 0.05, knownScacs: ['exln'] } }, me);
+    assert.equal(saved.status, 200);
+    assert.deepEqual(saved.body.config, { rules: { X2: { severity: 'LOW' } }, params: { grossWeightTolerance: 0.05, knownScacs: ['EXLN'] } });
+    const after = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs, me);
+    assert.deepEqual(after.body.findings.map((f) => [f.ruleId, f.severity]), [['X2', 'LOW']]);
+
+    await call('PUT', '/rules/settings', { rules: { X2: { enabled: false } }, params: { knownScacs: ['EXLN'] } }, me);
+    const off = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs, me);
+    assert.deepEqual(off.body.findings.map((f) => f.ruleId), ['X3']);
+    assert.ok(!off.body.ran.includes('X2'));
+    const stored = (await call('GET', `/shipments/${s.id}/validation`, undefined, me)).body.ruleConfig;
+    assert.deepEqual(stored.config, { rules: { X2: { enabled: false } }, params: { knownScacs: ['EXLN'] } });
+    assert.deepEqual(stored.disabled, ['X2']);
+    assert.equal(stored.scope, 'organization');
+    assert.equal(stored.params.grossWeightTolerance, 0.005);
+    assert.match(stored.asOf, /^\d{4}-\d{2}-\d{2}$/);
+
+    // Settings are per organization (each account has its own personal one).
+    assert.deepEqual((await call('GET', '/rules/settings')).body.config, { params: { knownScacs: ['EXLN'] } });
+
+    const reset = await call('DELETE', '/rules/settings', undefined, me);
+    assert.deepEqual(reset.body.config, {});
+  });
+
+  it('imports purchase orders from CSV and JSON and matches the invoice against them', async () => {
+    const me = await signUp('Buyer');
+    const csv = 'PO Number,Line,SKU,Description,Qty,UOM,Unit Price,Currency\r\nPO-4411,1,TB-200,Plush teddy bear,5000,PCS,8.10,USD\r\n';
+    const form = new FormData();
+    form.append('file', new Blob([csv], { type: 'text/csv' }), 'orders.csv');
+    const imported = await send(`${base}/purchase-orders`, { method: 'POST', body: form }, me);
+    assert.equal(imported.status, 201);
+    const body = await imported.json();
+    assert.equal(body.created, 1);
+    assert.deepEqual(body.orders.map((o) => [o.poNumber, o.lines, o.currency, o.source]), [['PO-4411', 1, 'USD', 'orders.csv']]);
+
+    const bad = new FormData();
+    bad.append('file', new Blob(['PO Number,Qty\r\nPO-1,lots\r\n'], { type: 'text/csv' }), 'bad.csv');
+    const refused = await send(`${base}/purchase-orders`, { method: 'POST', body: bad }, me);
+    assert.equal(refused.status, 400);
+
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' }, me);
+    const docs = { invoice: sampleInvoice, packingList: samplePackingList, billOfLading: sampleBillOfLading };
+    const run = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs, me);
+    const x24 = run.body.findings.filter((f) => f.ruleId === 'X24');
+    assert.equal(x24.length, 2); // invoiced 6000 against 5000 ordered; packed 6000 too
+    assert.ok(x24[0].evidence.some((e) => e.documentId.startsWith('po:') && e.value === '5000'));
+    assert.equal((await call('GET', `/shipments/${s.id}/validation`, undefined, me)).body.ruleConfig.account.purchaseOrder, 'PO-4411');
+
+    // The same PO number replaces the order.
+    const json = await call('POST', '/purchase-orders', [{ poNumber: 'po 4411', currency: 'USD', lines: [{ sku: 'TB-200', quantity: '6000', unit: 'PCS', unitPrice: '8.10' }] }], me);
+    assert.equal(json.body.updated, 1);
+    const clean = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs, me);
+    assert.deepEqual(clean.body.findings, []);
+
+    const [order] = (await call('GET', '/purchase-orders', undefined, me)).body;
+    assert.equal((await call('GET', '/purchase-orders')).body.length, 0); // another account sees none
+    assert.equal((await call('DELETE', `/purchase-orders/${order.id}`)).status, 404);
+    assert.equal((await call('DELETE', `/purchase-orders/${order.id}`, undefined, me)).status, 204);
   });
 });

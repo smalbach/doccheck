@@ -1,4 +1,4 @@
-import { runRules, type ShipmentContext } from '@doccheck/rules';
+import { runRules, V1_RULE_IDS, type ShipmentContext } from '@doccheck/rules';
 import type { BillOfLading, CommercialInvoice, Destination, Isf, PackingList } from '@doccheck/schemas';
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
@@ -132,7 +132,7 @@ async function main() {
       // The ISF only counts when its PDF is in the set, so v1 reports stay comparable (X11 is not run there).
       const fromTruth = Object.fromEntries(DOCS.filter((d) => d.key !== 'isf' && !present.includes(d)).map((d) => [d.key, truth.documents[d.key]]));
       const truthDocs = present.some((d) => d.key === 'isf') ? truth.documents : { ...truth.documents, isf: undefined };
-      const ruleIds = (docs: Partial<Truth['documents']>) => [...new Set(runRules(ctx(docs)).findings.map((f) => f.ruleId))].sort();
+      const ruleIds = (docs: Partial<Truth['documents']>) => [...new Set(runRules(ctx(docs), {}, { only: V1_RULE_IDS }).findings.map((f) => f.ruleId))].sort();
       shipmentResults.push({
         id,
         expectedRules: [...new Set(labels.errors.flatMap((e) => e.expectedRuleIds))].sort(),

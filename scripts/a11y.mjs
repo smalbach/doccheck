@@ -90,6 +90,7 @@ const staticPages = [
   '/app/containers',
   '/app/data/shipments',
   '/app/rules',
+  '/app/rules/settings',
   '/app/results',
   '/app/account',
   '/app/team',

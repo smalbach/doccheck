@@ -14,6 +14,9 @@ import type {
   IsfFiling,
   Results,
   RuleDefinition,
+  PurchaseOrderSummary,
+  RuleConfig,
+  RuleSettings,
   Sample,
   Shipment,
   ShipmentDocument,
@@ -98,6 +101,16 @@ export const api = {
   validations: (id: string) => request<ValidationSummary[]>(`${shipmentPath(id)}/validations`),
   pastValidation: (id: string, validationId: string) => request<Validation>(`${shipmentPath(id)}/validations/${encodeURIComponent(validationId)}`),
   rules: (destination: Destination) => request<RuleDefinition[]>(`/rules?destination=${destination}`),
+  ruleSettings: () => request<RuleSettings>('/rules/settings'),
+  saveRuleSettings: (config: RuleConfig) => request<RuleSettings>('/rules/settings', jsonBody(config, 'PUT')),
+  resetRuleSettings: () => request<RuleSettings>('/rules/settings', { method: 'DELETE' }),
+  purchaseOrders: () => request<PurchaseOrderSummary[]>('/purchase-orders'),
+  importPurchaseOrders: (file: File) => {
+    const form = new FormData();
+    form.append('file', file);
+    return request<{ created: number; updated: number; orders: PurchaseOrderSummary[] }>('/purchase-orders', { method: 'POST', body: form });
+  },
+  deletePurchaseOrder: (id: string) => request<void>(`/purchase-orders/${encodeURIComponent(id)}`, { method: 'DELETE' }),
 
   isf: (id: string) => request<IsfFiling>(`${shipmentPath(id)}/isf`),
   saveIsf: (id: string, isf: unknown) => request<IsfFiling>(`${shipmentPath(id)}/isf`, jsonBody(isf, 'PUT')),
