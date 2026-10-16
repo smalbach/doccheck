@@ -14,12 +14,12 @@ export interface Answered {
 }
 
 /**
- * Asks the model for a query, checks it and runs it scoped to `userId`. When the guard refuses it,
+ * Asks the model for a query, checks it and runs it scoped to organization `orgId`. When the guard refuses it,
  * or the database cannot run it ("column ... does not exist"), the model gets one more try with that
  * reason. The reason is the guard's or the database's message about the query, never rows of data.
  * Used by the API and by the evaluation, so the measured accuracy is the app's.
  */
-export async function answerQuestion(llm: LlmClient, runner: QaRunner, userId: string, question: string, opts: { maxRows?: number } = {}): Promise<Answered> {
+export async function answerQuestion(llm: LlmClient, runner: QaRunner, orgId: string, question: string, opts: { maxRows?: number } = {}): Promise<Answered> {
   const system = qaSystemPrompt();
   let user = qaUserPrompt(question);
   for (let attempt = 0; ; attempt++) {
@@ -33,7 +33,7 @@ export async function answerQuestion(llm: LlmClient, runner: QaRunner, userId: s
       continue;
     }
     try {
-      return { output, result: await runner.run(userId, output.sql, opts), attempts: attempt };
+      return { output, result: await runner.run(orgId, output.sql, opts), attempts: attempt };
     } catch (err) {
       if (attempt >= QA_RETRIES || err instanceof SqlRejected) throw Object.assign(err instanceof Error ? err : new Error(String(err)), { sql: output.sql });
       reason = `the database could not run it: ${err instanceof Error ? err.message : String(err)}`;

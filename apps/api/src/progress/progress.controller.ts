@@ -1,11 +1,12 @@
 import { Controller, Get, Param, Query, Req, Res, UseGuards } from '@nestjs/common';
 import type { ProgressEvent } from '@doccheck/schemas';
 import type { Request, Response } from 'express';
-import type { PublicUser } from '../auth/auth.types';
-import { CurrentUser } from '../auth/current-user.decorator';
+import { CurrentOrg } from '../orgs/current-org.decorator';
+import type { OrgContext } from '../orgs/org.types';
+import { Permission } from '../orgs/permissions';
 import { ShipmentOwnerGuard } from '../shipments/shipment-owner.guard';
 import { ProgressEstimatesService } from './progress-estimates.service';
-import { ProgressRepository } from './progress.repository';
+import { ProgressRepository, type OrgProgressEvent } from './progress.repository';
 import { ProgressService } from './progress.service';
 import { resumeAfter, SSE_HEARTBEAT, sseEvent, sseNamed } from './sse';
 
@@ -42,6 +43,7 @@ export class ProgressController {
    * is the latest run of each document and the latest validation, enough to draw their timelines.
    */
   @Get('shipments/:id/events')
+  @Permission('shipment.read')
   @UseGuards(ShipmentOwnerGuard)
   shipment(@Param('id') id: string, @Query('after') after: unknown, @Req() req: Request, @Res() res: Response) {
     const from = resumeAfter(req.headers['last-event-id'], after);
@@ -49,29 +51,30 @@ export class ProgressController {
   }
 
   /**
-   * Every event of the user's shipments (activity panel, notifications). Without a position, the backlog
-   * is every event of their runs still going and of their 10 latest ended runs. Not the ephemeral ones
+   * Every event of the organization's shipments (activity panel, notifications). Without a position, the
+   * backlog is every event of its runs still going and of its 10 latest ended runs. Not the ephemeral ones
    * (the model's answer as it is written, never stored): those are for the shipment page.
    */
   @Get('events')
-  user(@CurrentUser() user: PublicUser, @Query('after') after: unknown, @Req() req: Request, @Res() res: Response) {
+  user(@CurrentOrg() org: OrgContext, @Query('after') after: unknown, @Req() req: Request, @Res() res: Response) {
     const from = resumeAfter(req.headers['last-event-id'], after);
-    this.stream(req, res, (e) => e.userId === user.id && !e.ephemeral, () => (from === undefined ? this.repo.userActivity(user.id, USER_FINISHED_RUNS) : this.repo.userAfter(user.id, from)));
+    this.stream(req, res, (e) => (e as OrgProgressEvent).orgId === org.id && !e.ephemeral, () => (from === undefined ? this.repo.orgActivity(org.id, USER_FINISHED_RUNS) : this.repo.orgAfter(org.id, from)));
   }
 
   /** Typical stage durations on this server, for remaining-time estimates (no user data; cached a minute). */
   @Get('events/estimates')
+  @Permission('shipment.read')
   estimatesOf() {
     return this.estimates.get();
   }
 
   /**
    * Names for the activity panel: ?shipments=<ids>&documents=<ids> (comma-separated, 100 each at most).
-   * Only the user's shipments and documents are returned; other ids are left out.
+   * Only the organization's shipments and documents are returned; other ids are left out.
    */
   @Get('events/labels')
-  labels(@CurrentUser() user: PublicUser, @Query('shipments') shipments: unknown, @Query('documents') documents: unknown) {
-    return this.repo.labels(user.id, uuidList(shipments), uuidList(documents));
+  labels(@CurrentOrg() org: OrgContext, @Query('shipments') shipments: unknown, @Query('documents') documents: unknown) {
+    return this.repo.labels(org.id, uuidList(shipments), uuidList(documents));
   }
 
   private stream(req: Request, res: Response, accept: (e: ProgressEvent) => boolean, backlog: () => Promise<ProgressEvent[]>) {

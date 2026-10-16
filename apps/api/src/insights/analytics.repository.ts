@@ -7,7 +7,7 @@ import type { CostFinding, CostShipment } from './cost/cost';
 import { median, supplierScore } from './score';
 
 /**
- * The account's validation history ($1 user, $2 destination, $3 from, $4 to): every run, the
+ * The organization's validation history ($1 organization, $2 destination, $3 from, $4 to): every run, the
  * shipments whose first validation falls in the range (`scope`), and one row per finding of those
  * shipments across runs (`hist`, a finding being its fingerprint): rule, severity, document type,
  * whether the first and the latest run had it, when it was first seen and, if a later run no longer
@@ -17,7 +17,7 @@ import { median, supplierScore } from './score';
 export const HISTORY = `
   with owned as (
     select id, reference, destination, transport_mode, created_at from shipments
-    where user_id = $1 and ($2::text is null or destination = $2)
+    where org_id = $1 and ($2::text is null or destination = $2)
   ), runs as (
     select v.id, v.shipment_id, v.created_at, v.ran,
       row_number() over (partition by v.shipment_id order by v.created_at, v.id) as n,
@@ -63,10 +63,10 @@ export const HISTORY = `
     select t.id, t.shipment_id, t.party_id, t.subject, t.status,
       (select min(coalesce(m.sent_at, m.created_at)) from mail_messages m where m.thread_id = t.id and m.direction = 'out') as sent_at,
       (select min(coalesce(m.received_at, m.created_at)) from mail_messages m where m.thread_id = t.id and m.direction = 'in') as reply_at
-    from mail_threads t join scope s on s.id = t.shipment_id where t.user_id = $1 and t.kind = 'correction_request'
+    from mail_threads t join scope s on s.id = t.shipment_id where t.org_id = $1 and t.kind = 'correction_request'
   )`;
 
-const params = (userId: string, q: AnalyticsQuery) => [userId, q.destination ?? null, q.from ?? null, q.to ?? null];
+const params = (orgId: string, q: AnalyticsQuery) => [orgId, q.destination ?? null, q.from ?? null, q.to ?? null];
 const hours = (ms: number) => Math.round((ms / 3_600_000) * 10) / 10;
 const iso = (d: unknown) => (d instanceof Date ? d.toISOString() : typeof d === 'string' ? d : undefined);
 
@@ -87,8 +87,8 @@ const toGroups = (rows: { key: string; label: string | null; shipments: number; 
 export class AnalyticsRepository {
   constructor(@Inject(PG_POOL) private readonly pool: Pool) {}
 
-  async kpis(userId: string, q: AnalyticsQuery): Promise<Kpis> {
-    const p = params(userId, q);
+  async kpis(orgId: string, q: AnalyticsQuery): Promise<Kpis> {
+    const p = params(orgId, q);
     const run = <T>(sql: string) => this.pool.query(`${HISTORY} ${sql}`, p).then((r) => r.rows as T[]);
     const [[totals], months, resolution, response, byRule, byDoc, bySupplier, byOrigin, byRoute] = await Promise.all([
       run<{ shipments: number; clean: number; first_findings: number; open: number; resolved: number; dismissed: number }>(`
@@ -137,19 +137,19 @@ export class AnalyticsRepository {
     };
   }
 
-  /** Every seller (or B/L shipper) of the account's validated shipments, scored and ranked. */
-  async suppliers(userId: string, q: AnalyticsQuery): Promise<SupplierRow[]> {
-    const rows = await this.supplierRows(userId, q);
+  /** Every seller (or B/L shipper) of the organization's validated shipments, scored and ranked. */
+  async suppliers(orgId: string, q: AnalyticsQuery): Promise<SupplierRow[]> {
+    const rows = await this.supplierRows(orgId, q);
     const ranked = [...rows].filter((r) => r.score.score !== null).sort((a, b) => b.score.score! - a.score.score! || b.validatedShipments - a.validatedShipments || a.name.localeCompare(b.name));
     ranked.forEach((r, i) => (r.rank = i + 1));
     return [...ranked, ...rows.filter((r) => r.score.score === null)];
   }
 
-  async supplier(userId: string, partyId: string, q: AnalyticsQuery): Promise<SupplierDetail | null> {
-    const all = await this.suppliers(userId, q);
+  async supplier(orgId: string, partyId: string, q: AnalyticsQuery): Promise<SupplierDetail | null> {
+    const all = await this.suppliers(orgId, q);
     const row = all.find((r) => r.partyId === partyId);
     if (!row) return null;
-    const p = [...params(userId, q), partyId];
+    const p = [...params(orgId, q), partyId];
     const run = <T>(sql: string) => this.pool.query(`${HISTORY} ${sql}`, p).then((r) => r.rows as T[]);
     const [months, rules, requests] = await Promise.all([
       run<KpiMonth>(`
@@ -181,7 +181,7 @@ export class AnalyticsRepository {
     };
   }
 
-  private async supplierRows(userId: string, q: AnalyticsQuery): Promise<SupplierRow[]> {
+  private async supplierRows(orgId: string, q: AnalyticsQuery): Promise<SupplierRow[]> {
     const { rows } = await this.pool.query(
       `${HISTORY}
        , per as (
@@ -201,7 +201,7 @@ export class AnalyticsRepository {
             where coalesce(r.party_id, a.seller_id) = p.id and r.sent_at is not null), '[]') as requests
        from per join parties p on p.id = per.seller_id
        group by p.id order by p.name`,
-      params(userId, q),
+      params(orgId, q),
     );
     return rows.map((r) => {
       const requests = (r.requests as { sent: string; reply: string | null }[]).map((x) => (x.reply ? hours(Date.parse(x.reply) - Date.parse(x.sent)) : null));
@@ -225,8 +225,8 @@ export class AnalyticsRepository {
   }
 
   /** Shipments and findings for the cost estimate (every finding the shipments ever had). */
-  async costInputs(userId: string, q: AnalyticsQuery): Promise<{ shipments: CostShipment[]; findings: CostFinding[] }> {
-    const p = params(userId, q);
+  async costInputs(orgId: string, q: AnalyticsQuery): Promise<{ shipments: CostShipment[]; findings: CostFinding[] }> {
+    const p = params(orgId, q);
     const [ships, finds] = await Promise.all([
       this.pool.query(`${HISTORY} select s.id, s.reference, s.destination, s.transport_mode, s.created_at, to_char(a.shipped_on_board_date, 'YYYY-MM-DD') as departure, a.containers
         from scope s join attrs a on a.id = s.id where s.destination is not null order by s.first_validated_at`, p),
@@ -246,16 +246,17 @@ export class AnalyticsRepository {
     };
   }
 
-  async costSettings(userId: string): Promise<unknown> {
-    const { rows } = await this.pool.query('select cost from analytics_settings where user_id = $1', [userId]);
+  /** The organization's cost assumptions, or null for the defaults. */
+  async costSettings(orgId: string): Promise<unknown> {
+    const { rows } = await this.pool.query('select cost from analytics_settings where org_id = $1', [orgId]);
     return rows[0]?.cost ?? null;
   }
 
-  async saveCostSettings(userId: string, cost: unknown | null): Promise<void> {
+  async saveCostSettings(orgId: string, userId: string, cost: unknown | null): Promise<void> {
     await this.pool.query(
-      `insert into analytics_settings (user_id, cost, updated_at) values ($1, $2, now())
-       on conflict (user_id) do update set cost = excluded.cost, updated_at = now()`,
-      [userId, cost === null ? null : JSON.stringify(cost)],
+      `insert into analytics_settings (org_id, cost, updated_by, updated_at) values ($1, $2, $3, now())
+       on conflict (org_id) do update set cost = excluded.cost, updated_by = excluded.updated_by, updated_at = now()`,
+      [orgId, cost === null ? null : JSON.stringify(cost), userId],
     );
   }
 }

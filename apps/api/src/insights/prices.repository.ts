@@ -6,7 +6,7 @@ import type { PriceGroup, PriceGroupDetail, PricePointRow } from './analytics.ty
 import { BASE } from './insights.repository';
 import { isOutlier, priceStats } from './price-stats';
 
-/** Most invoice lines read for the benchmark; an account with more sees its newest ones. */
+/** Most invoice lines read for the benchmark; an organization with more sees its newest ones. */
 const MAX_LINES = 20_000;
 
 interface LineRow {
@@ -27,7 +27,7 @@ interface LineRow {
 }
 
 /**
- * Unit prices across the account's history (the current invoice of each shipment, as the product
+ * Unit prices across the organization's history (the current invoice of each shipment, as the product
  * pages read them), grouped per product or per HS-6 subheading and origin, in one currency and
  * unit: prices in different currencies or units are never compared.
  */
@@ -35,7 +35,7 @@ interface LineRow {
 export class PricesRepository {
   constructor(@Inject(PG_POOL) private readonly pool: Pool) {}
 
-  private async lines(userId: string, destination?: string): Promise<LineRow[]> {
+  private async lines(orgId: string, destination?: string): Promise<LineRow[]> {
     const { rows } = await this.pool.query<LineRow>(
       `${BASE}
        select l.shipment_id, o.reference, l.invoice_number, to_char(l.invoice_date, 'YYYY-MM-DD') as invoice_date, l.seller_name, l.description,
@@ -44,7 +44,7 @@ export class PricesRepository {
        from lines l join owned o on o.id = l.shipment_id left join products p on p.id = l.product_id
        where l.unit_price is not null and l.unit_price_currency is not null
        order by o.created_at desc, l.idx limit ${MAX_LINES}`,
-      [userId, destination ?? null],
+      [orgId, destination ?? null],
     );
     return rows;
   }
@@ -67,10 +67,10 @@ export class PricesRepository {
     return [...groups.values()];
   }
 
-  async groups(userId: string, q: PricesQuery): Promise<PriceGroup[]> {
+  async groups(orgId: string, q: PricesQuery): Promise<PriceGroup[]> {
     const needle = q.q?.toLowerCase();
     const out: PriceGroup[] = [];
-    for (const g of this.group(q.by, await this.lines(userId, q.destination))) {
+    for (const g of this.group(q.by, await this.lines(orgId, q.destination))) {
       const stats = priceStats(g.rows.map((r) => r.unit_price))!;
       const outliers = g.rows.filter((r) => isOutlier(r.unit_price, stats)).length;
       if (q.outliers === 'true' && outliers === 0) continue;
@@ -80,8 +80,8 @@ export class PricesRepository {
     return out.sort((a, b) => b.outliers - a.outliers || b.stats.n - a.stats.n || a.label.localeCompare(b.label)).slice(0, 200);
   }
 
-  async group1(userId: string, q: PriceGroupQuery): Promise<PriceGroupDetail | null> {
-    const g = this.group(q.by, await this.lines(userId, q.destination)).find((x) => x.head.key === q.key && x.currency === q.currency && x.unit === q.unit);
+  async group1(orgId: string, q: PriceGroupQuery): Promise<PriceGroupDetail | null> {
+    const g = this.group(q.by, await this.lines(orgId, q.destination)).find((x) => x.head.key === q.key && x.currency === q.currency && x.unit === q.unit);
     if (!g) return null;
     const stats = priceStats(g.rows.map((r) => r.unit_price))!;
     const points: PricePointRow[] = g.rows

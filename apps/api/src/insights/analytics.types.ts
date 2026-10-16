@@ -77,7 +77,7 @@ export interface SupplierDetail extends SupplierRow {
 
 export interface CostReport extends CostEstimate {
   assumptions: CostAssumptions;
-  /** True when the account kept the defaults. */
+  /** True when the organization kept the defaults. */
   defaults: boolean;
   shipments: number;
 }

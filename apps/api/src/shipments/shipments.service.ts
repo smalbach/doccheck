@@ -13,12 +13,15 @@ import type { ProgressRun } from '../progress/progress-run';
 import { ProgressRepository } from '../progress/progress.repository';
 import { ProgressService } from '../progress/progress.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
+import { AuditService } from '../audit/audit.service';
+import { NotificationsService } from '../collab/notifications.service';
 import { DocumentProcessor } from './document.processor';
 import { ExtractionQueue } from './extraction.queue';
+import { ReviewRequestsRepository } from './review-requests.repository';
 import { FindingReviewsRepository } from './reviews.repository';
-import type { ReviewedFinding } from './reviews.types';
+import { CLOSING_STATUSES, type ReviewedFinding } from './reviews.types';
 import type { CreateShipmentDto, ListShipmentsQuery, ReviewFindingsDto, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
-import { ShipmentsRepository, type CorrectionResult, type ExtractionRow, type NewCorrection } from './shipments.repository';
+import { ShipmentsRepository, type CorrectionResult, type ExtractionRow, type NewCorrection, type ShipmentScope } from './shipments.repository';
 
 /** Citation progress events carry the passage's title cut to this length. */
 const CITATION_TITLE_CHARS = 120;
@@ -73,9 +76,13 @@ export class ShipmentsService {
     private readonly progressRepo: ProgressRepository,
     private readonly processor: DocumentProcessor,
     private readonly reviews: FindingReviewsRepository,
+    private readonly requests: ReviewRequestsRepository,
+    private readonly notifications: NotificationsService,
+    private readonly audit: AuditService,
   ) {}
 
-  async create(dto: CreateShipmentDto, userId: string): Promise<Shipment> {
+  /** A new shipment in the organization, created by `userId`. */
+  async create(dto: CreateShipmentDto, userId: string, orgId: string): Promise<Shipment> {
     const shipment: Shipment = {
       id: randomUUID(),
       reference: dto.reference,
@@ -85,31 +92,45 @@ export class ShipmentsService {
       documents: [],
       createdAt: new Date().toISOString(),
     };
-    await this.repo.createShipment(shipment, userId);
+    await this.repo.createShipment(shipment, userId, orgId);
+    this.audit.note({ orgId, action: 'shipment.create', entity: 'shipment', entityId: shipment.id, after: dto });
     return shipment;
   }
 
-  list(userId: string, query: ListShipmentsQuery) {
-    return this.repo.listShipments(userId, { ...query, q: query.q || undefined });
+  list(scope: ShipmentScope, query: ListShipmentsQuery) {
+    return this.repo.listShipments(scope, { ...query, q: query.q || undefined });
   }
 
   /** Edits the reference, destination or transport mode; earlier validations stay as history. */
   async update(id: string, dto: UpdateShipmentDto): Promise<Shipment> {
     if (!UUID.test(id)) throw new NotFoundException(`Shipment ${id} not found`);
     const reference = dto.reference === undefined ? undefined : dto.reference || null;
+    const before = await this.repo.findShipment(id);
     const res = await this.repo.updateShipment(id, { ...dto, reference });
     if (res === 'not-found') throw new NotFoundException(`Shipment ${id} not found`);
     if (res === 'pending') throw new ConflictException('Documents are still being extracted; change the destination when they are done');
     if (res === 'manual-isf') throw new ConflictException('The shipment has an ISF entered by hand, which only applies to the US; delete it first');
-    return this.get(id);
+    const after = await this.get(id);
+    const fields = (x: Shipment | null) => x && { reference: x.reference ?? null, destination: x.destination ?? null, transportMode: x.transportMode ?? null };
+    this.audit.note({ action: 'shipment.update', entity: 'shipment', entityId: id, before: fields(before), after: fields(after) });
+    return after;
   }
 
   /** Deletes a shipment with everything attached to it, PDFs included. Refused while documents are extracting. */
   async remove(id: string): Promise<void> {
     if (!UUID.test(id)) throw new NotFoundException(`Shipment ${id} not found`);
+    const before = await this.repo.findShipment(id);
     const res = await this.repo.deleteShipment(id);
     if (res === 'not-found') throw new NotFoundException(`Shipment ${id} not found`);
     if (res === 'pending') throw new ConflictException('Documents are still being extracted; delete the shipment when they are done');
+    if (before) {
+      this.audit.note({
+        action: 'shipment.delete',
+        entity: 'shipment',
+        entityId: id,
+        before: { reference: before.reference ?? null, destination: before.destination ?? null, documents: before.documents.map((d) => d.fileName) },
+      });
+    }
     // Database first: a document row pointing at a deleted file is worse than a leftover file, but a
     // leftover holds customs data, so say which ones are left.
     const failed = (await Promise.all(res.keys.map((k) => this.storage.delete(k).then(() => null, (err: Error) => `${k} (${err.message})`)))).filter(Boolean);
@@ -482,7 +503,10 @@ export class ShipmentsService {
     };
   }
 
-  /** Records a decision about findings of the latest run; responds with that run, as latestValidation. */
+  /**
+   * Records a decision about findings of the latest run. In an organization that requires approval,
+   * an accepted risk or false positive becomes a request reviewers are told about, and counts once approved.
+   */
   async reviewFindings(id: string, userId: string, dto: ReviewFindingsDto) {
     await this.get(id);
     const findings = await this.repo.latestFindings(id);
@@ -490,7 +514,26 @@ export class ShipmentsService {
     const unknown = dto.fingerprints.filter((fp) => !byFingerprint.has(fp));
     if (unknown.length) throw new BadRequestException(`Not findings of the latest validation: ${unknown.join(', ')}`);
     const picked = [...new Set(dto.fingerprints)].map((fp) => ({ fingerprint: fp, ruleId: byFingerprint.get(fp)!.ruleId }));
+    const policy = await this.repo.approvalPolicy(id);
+    const fingerprints = picked.map((p) => p.fingerprint);
+    if (policy?.requireApproval && CLOSING_STATUSES.includes(dto.status)) {
+      // Two-step: the decision waits for a reviewer who is not the one asking (POST :id/approvals/:requestId).
+      await this.requests.create(id, userId, picked, dto.status as 'accepted' | 'false_positive', dto.note ?? '');
+      this.audit.note({ action: 'finding.request', entity: 'shipment', entityId: id, after: { fingerprints, status: dto.status, note: dto.note } });
+      await this.notifications.notify({
+        userIds: policy.approvers,
+        kind: 'approval_requested',
+        orgId: policy.orgId,
+        shipmentId: id,
+        actorId: userId,
+        detail: { count: picked.length, status: dto.status, excerpt: dto.note },
+      });
+      return this.latestValidation(id);
+    }
+    const before = Object.fromEntries((await this.repo.findingStatuses(id, fingerprints)).map((r) => [r.fingerprint, r.status]));
+    await this.requests.withdraw(id, fingerprints, userId);
     await this.reviews.save(id, userId, picked, dto.status, dto.note || undefined);
+    this.audit.note({ action: 'finding.review', entity: 'shipment', entityId: id, before, after: { fingerprints, status: dto.status, note: dto.note } });
     return this.latestValidation(id);
   }
 

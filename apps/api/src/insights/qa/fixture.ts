@@ -22,7 +22,7 @@ export interface FixtureShipment {
   findings: number;
 }
 
-export async function buildFixture(pool: Pool, userId: string, evalDir: string, ids: readonly string[], now = new Date()): Promise<FixtureShipment[]> {
+export async function buildFixture(pool: Pool, owner: { userId: string; orgId: string }, evalDir: string, ids: readonly string[], now = new Date()): Promise<FixtureShipment[]> {
   const out: FixtureShipment[] = [];
   for (const [n, ref] of ids.entries()) {
     const truth = JSON.parse(await readFile(join(evalDir, ref, 'truth.json'), 'utf8'));
@@ -30,8 +30,8 @@ export async function buildFixture(pool: Pool, userId: string, evalDir: string, 
     // Newest first: shipment n is validated about 5n days ago (and spread across the hours).
     const validatedAt = new Date(now.getTime() - (n * 5 + 1) * DAY - (n % 7) * 3_600_000);
     const createdAt = new Date(validatedAt.getTime() - DAY);
-    await pool.query(`insert into shipments (id, reference, destination, transport_mode, status, user_id, created_at) values ($1, $2, $3, 'SEA', 'DONE', $4, $5)`, [
-      shipmentId, ref, truth.destination, userId, createdAt,
+    await pool.query(`insert into shipments (id, reference, destination, transport_mode, status, user_id, org_id, created_at) values ($1, $2, $3, 'SEA', 'DONE', $4, $5, $6)`, [
+      shipmentId, ref, truth.destination, owner.userId, owner.orgId, createdAt,
     ]);
     const ctx: ShipmentContext = { shipmentId, destination: truth.destination };
     for (const [slot, type] of Object.entries(SLOTS) as [keyof typeof SLOTS, string][]) {

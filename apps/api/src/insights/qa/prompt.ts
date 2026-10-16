@@ -10,7 +10,7 @@ export const QaOutput = z.object({
 });
 export type QaOutput = z.infer<typeof QaOutput>;
 
-/** The views the model may query, as it reads them. Each one holds only the asking account's rows. */
+/** The views the model may query, as it reads them. Each one holds only the active organization's rows. */
 export const VIEW_DOCS = `
 shipments(id uuid, reference text, destination text 'CA'|'US', transport_mode text 'SEA'|'AIR'|'ROAD', status text, created_at timestamptz, validated_at timestamptz -- latest validation)
 invoices(shipment_id uuid, invoice_number text, invoice_date date, po_number text, currency text, incoterm text, incoterm_place text, payment_terms text, seller_id uuid, seller_name text, buyer_id uuid, buyer_name text, port_of_entry_name text, port_of_entry_locode text, invoice_total numeric, invoice_total_currency text, lines_total numeric, line_count int, package_count int, gross_kg numeric, net_kg numeric, language text)

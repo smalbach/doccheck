@@ -10,6 +10,7 @@ import { Tag } from '../../components/ui/Tag';
 import { useQuery } from '../../hooks/useQuery';
 import { useI18n } from '../../i18n/useI18n';
 import { errorMessage } from '../../lib/errorMessage';
+import { useOrg } from '../team/useOrg';
 import { StatTile } from '../dashboard/StatTile';
 import { AnalyticsPage, filterKey } from './AnalyticsPage';
 import { CostAssumptionsForm } from './CostAssumptionsForm';
@@ -28,6 +29,8 @@ function CostBody({ filter }: { filter: AnalyticsFilter }) {
   const [version, setVersion] = useState(0);
   const [editing, setEditing] = useState(false);
   const [notice, setNotice] = useState<string>();
+  // The assumptions are the organization's: owners and admins change them, everyone else reads them.
+  const canEdit = useOrg().can('org.settings');
   const { data, error } = useQuery(`cost:${filterKey(filter)}:${version}`, () => analyticsApi.cost(filter));
   if (!data) return <LoadingCard error={error} />;
   const money = (totals: readonly Money[]) =>
@@ -72,7 +75,8 @@ function CostBody({ filter }: { filter: AnalyticsFilter }) {
       <Card
         title={t('analytics.cost.assumptions.title')}
         aside={
-          !editing && (
+          !editing &&
+          canEdit && (
             <div className="filters-right">
               <Button size="sm" onClick={() => setEditing(true)}>
                 {t('analytics.cost.assumptions.edit')}

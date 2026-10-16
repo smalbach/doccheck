@@ -71,8 +71,8 @@ describe('checkSql refuses', () => {
   });
 
   it('functions that read settings or files, change the account, or sleep', () => {
-    refused("select set_config('doccheck.qa_user', '00000000-0000-0000-0000-000000000000', true), * from shipments", /set_config/);
-    refused("select current_setting('doccheck.qa_user')", /current_setting/);
+    refused("select set_config('doccheck.qa_org', '00000000-0000-0000-0000-000000000000', true), * from shipments", /set_config/);
+    refused("select current_setting('doccheck.qa_org')", /current_setting/);
     refused('select pg_sleep(10)', /catalog/);
     refused("select pg_read_file('/etc/passwd')", /catalog/);
     refused("select lo_import('/etc/passwd')", /lo_import/);
@@ -80,7 +80,9 @@ describe('checkSql refuses', () => {
     refused('select pg_catalog.lower(reference) from shipments', /catalog/);
     refused('select public.dc_norm(reference) from shipments', /Qualified function/);
     refused('select "lower"(reference) from shipments', /not allowed/);
-    refused('select dc_qa_user()', /dc_qa_user/);
+    refused('select dc_qa_org()', /dc_qa_org/);
+    refused("select * from shipments where org_id = (select id from organizations limit 1)", /not one of the views/);
+    refused("with o as (select set_config('doccheck.qa_org', 'x', true)) select * from o, shipments", /set_config/);
     refused('select array(select email from users)', /array/);
     refused('select current_user', /CURRENT_USER/);
     refused('select user', /USER/);

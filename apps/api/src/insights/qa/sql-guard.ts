@@ -4,12 +4,12 @@
  * allow-listed views, calling only allow-listed functions, without comments, parameters, dollar
  * quotes, schema names, catalog names or casts to reg* types. The query then runs in a read-only
  * transaction with a statement timeout, as a role that can read only those views, which show only
- * the asking account's rows (migration 019). Anything the guard is unsure about is refused.
+ * the active organization's rows (migration 049). Anything the guard is unsure about is refused.
  */
 
 export class SqlRejected extends Error {}
 
-/** The views a question can read; each one only has the asking account's rows. */
+/** The views a question can read; each one only has the active organization's rows. */
 export const QA_VIEWS = ['shipments', 'invoices', 'invoice_lines', 'packing_lists', 'bills_of_lading', 'containers', 'isf', 'parties', 'products', 'findings', 'mail_requests'] as const;
 
 /** Functions a query may call. Nothing that reads settings, files, the catalog, or sleeps. */

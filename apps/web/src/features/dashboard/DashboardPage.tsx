@@ -6,7 +6,10 @@ import { PageHeader } from '../../components/ui/PageHeader';
 import { useDemo } from '../../hooks/useDemo';
 import { useShipmentList } from '../../hooks/useShipmentList';
 import { useI18n } from '../../i18n/useI18n';
+import { useEffect } from 'react';
+import { navigate } from '../../lib/navigate';
 import { useAuth } from '../auth/useAuth';
+import { useOrg } from '../team/useOrg';
 import { ShipmentsTable } from '../shipments/ShipmentsTable';
 import { AlertsCard } from './AlertsCard';
 import { DashboardStats } from './DashboardStats';
@@ -19,7 +22,12 @@ export function DashboardPage() {
   const { user } = useAuth();
   const { t } = useI18n();
   const demo = useDemo();
+  const { org, can } = useOrg();
   const { page, error } = useShipmentList({ limit: RECENT });
+  // A client sees only the shipments shared with them: their list is their home.
+  useEffect(() => {
+    if (org?.role === 'client') navigate('/app/shipments');
+  }, [org?.role]);
   if (!page) return <LoadingCard error={error} />;
 
   const firstName = user?.name.split(/\s+/)[0] ?? '';
@@ -29,7 +37,7 @@ export function DashboardPage() {
       {demo && <DemoNote />}
       <DashboardStats totals={page.summary} />
       <AlertsCard />
-      <QuickActions demo={demo} />
+      <QuickActions demo={demo || !can('shipment.write')} />
       <Card
         title={t('dashboard.recent')}
         aside={

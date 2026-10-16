@@ -5,7 +5,9 @@
 //
 //   npm run build && npm run test:e2e -w @doccheck/api
 //
-// Uses DATABASE_URL_ANALYTICS_TEST, or DATABASE_URL with the database renamed to doccheck_analytics_test.
+// Uses DATABASE_URL_ANALYTICS_TEST, else the database of DATABASE_URL_TEST (or doccheck_test) with
+// _test replaced by _analytics_test, on port E2E_PORT + 2.
+// Each account below is its own personal organization.
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { cpSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
@@ -23,14 +25,16 @@ try {
 
 const testUrl = (() => {
   if (process.env.DATABASE_URL_ANALYTICS_TEST) return process.env.DATABASE_URL_ANALYTICS_TEST;
-  const u = new URL(process.env.DATABASE_URL ?? 'postgres://doccheck:doccheck@localhost:5432/doccheck');
-  u.pathname = '/doccheck_analytics_test';
+  const u = new URL(process.env.DATABASE_URL_TEST ?? process.env.DATABASE_URL ?? 'postgres://doccheck:doccheck@localhost:5432/doccheck');
+  const name = process.env.DATABASE_URL_TEST ? u.pathname.slice(1) : 'doccheck_test';
+  if (!name.endsWith('_test')) throw new Error(`Refusing to derive a database from "${name}": the test database name must end in _test`);
+  u.pathname = `/${name.replace(/_test$/, '_analytics_test')}`;
   return u.toString();
 })();
 const dbName = new URL(testUrl).pathname.slice(1);
 if (!dbName.endsWith('_test')) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
 
-const port = Number(process.env.E2E_ANALYTICS_PORT ?? 3991);
+const port = Number(process.env.E2E_ANALYTICS_PORT ?? Number(process.env.E2E_PORT ?? 3990) + 2);
 const base = `http://localhost:${port}`;
 const require = createRequire(import.meta.url);
 const { buildFixture } = require(join(root, 'apps/api/dist/insights/qa/fixture.js'));
@@ -63,7 +67,8 @@ const call = async (method, path, body, as) => {
 const signUp = async (email = `${randomUUID()}@example.com`) => {
   const res = await call('POST', '/auth/register', { email, password: 'correct horse battery', name: 'Analytics' });
   assert.equal(res.status, 201);
-  return { cookie: res.cookie, id: res.body.id };
+  const orgId = (await call('GET', '/orgs', undefined, res.cookie)).body.active.id;
+  return { cookie: res.cookie, id: res.body.id, orgId };
 };
 
 const accounts = {};
@@ -109,8 +114,8 @@ before(async () => {
   accounts.b = await signUp();
   accounts.admin = await signUp('admin-analytics@example.com');
   const evalDir = join(root, 'data/eval/v1');
-  accounts.a.shipments = await buildFixture(pool, accounts.a.id, evalDir, ['CA-001', 'US-001', 'CA-002', 'US-002', 'CA-003', 'US-003', 'CA-004', 'US-004', 'CA-005', 'US-005', 'CA-006', 'US-006']);
-  accounts.b.shipments = await buildFixture(pool, accounts.b.id, evalDir, ['CA-050', 'US-050']);
+  accounts.a.shipments = await buildFixture(pool, { userId: accounts.a.id, orgId: accounts.a.orgId }, evalDir, ['CA-001', 'US-001', 'CA-002', 'US-002', 'CA-003', 'US-003', 'CA-004', 'US-004', 'CA-005', 'US-005', 'CA-006', 'US-006']);
+  accounts.b.shipments = await buildFixture(pool, { userId: accounts.b.id, orgId: accounts.b.orgId }, evalDir, ['CA-050', 'US-050']);
 });
 
 after(async () => {
@@ -244,7 +249,7 @@ describe('Data Q&A', () => {
       assert.ok(Number((await run(`select count(*) from ${view}`)).body.rows[0][0]) >= 0);
     }
     for (const [view, table] of [['parties', 'parties'], ['products', 'products']]) {
-      const n = (await pool.query(`select count(*)::text as n from ${table} where user_id = $1`, [accounts.a.id])).rows[0].n;
+      const n = (await pool.query(`select count(*)::text as n from ${table} where org_id = $1`, [accounts.a.orgId])).rows[0].n;
       assert.deepEqual((await run(`select count(*) from ${view}`)).body.rows, [[n]], view);
     }
     const big = await run('select s.reference from shipments s, invoice_lines l, invoice_lines m');
@@ -260,8 +265,8 @@ describe('Data Q&A', () => {
       'select password_hash from users',
       'select * from public.shipments',
       'select * from pg_user',
-      `select set_config('doccheck.qa_user', '${accounts.b.id}', true), * from shipments`,
-      "select current_setting('doccheck.qa_user')",
+      `select set_config('doccheck.qa_org', '${accounts.b.orgId}', true), * from shipments`,
+      "select current_setting('doccheck.qa_org')",
       'select 1; drop table shipments',
       'select pg_sleep(5)',
     ]) {

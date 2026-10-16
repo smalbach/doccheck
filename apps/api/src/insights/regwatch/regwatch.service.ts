@@ -72,8 +72,9 @@ export function excerptQuotes(excerpt: string, passage: string | undefined): boo
 /**
  * Re-reads the regulation corpus on a schedule, compares each passage's hash with the stored
  * snapshot, and records what was added, removed or changed with the rules that may cite it. The
- * first check of a document only stores its snapshot. Each account sees, per change, its shipments
- * whose open findings come from those rules, and whether their citation quotes the changed passage.
+ * first check of a document only stores its snapshot. The changes are global; each organization sees,
+ * per change, its shipments whose open findings come from those rules and whether their citation
+ * quotes the changed passage, and each member what is new since they last looked in that organization.
  */
 @Injectable()
 export class RegulationWatchService implements OnApplicationBootstrap, OnApplicationShutdown {
@@ -167,19 +168,19 @@ export class RegulationWatchService implements OnApplicationBootstrap, OnApplica
     }
   }
 
-  /** The latest changes for one account, with its affected shipments and what is unread. */
-  async changes(userId: string, limit = 100): Promise<RegulationChanges> {
+  /** The latest changes, with the organization's affected shipments and what this member has not seen. */
+  async changes(orgId: string, userId: string, limit = 100): Promise<RegulationChanges> {
     const [checks, changes, read, findings] = await Promise.all([
       this.pool.query('select * from regulation_checks order by started_at desc limit 10'),
       this.pool.query('select * from regulation_changes order by detected_at desc, document_id, section limit $1', [limit]),
-      this.pool.query<{ at: Date }>('select coalesce((select read_at from regulation_reads where user_id = $1), (select created_at from users where id = $1)) as at', [userId]),
-      // Open findings of the account's latest validations: rule, destination and the passage they cite.
+      this.pool.query<{ at: Date }>(READ_AT, [orgId, userId]),
+      // Open findings of the organization's latest validations: rule, destination and the passage they cite.
       this.pool.query(
         `select s.id as shipment_id, s.reference, lv.destination, f.rule_id, f.regulation
          from shipments s join dc_latest_validations lv on lv.shipment_id = s.id join findings f on f.validation_id = lv.validation_id
          left join finding_status fs on fs.shipment_id = f.shipment_id and fs.fingerprint = f.fingerprint
-         where s.user_id = $1 and coalesce(fs.status, 'open') in ('open', 'waiting_supplier')`,
-        [userId],
+         where s.org_id = $1 and coalesce(fs.status, 'open') in ('open', 'waiting_supplier')`,
+        [orgId],
       ),
     ]);
     const readAt = read.rows[0]?.at ?? new Date(0);
@@ -215,19 +216,24 @@ export class RegulationWatchService implements OnApplicationBootstrap, OnApplica
     return { checks: checks.rows.map(toCheck), changes: items, unread: items.filter((c) => c.unread).length, intervalHours: isDemo() ? 0 : watchHours() };
   }
 
-  async unread(userId: string): Promise<number> {
-    const { rows: [r] } = await this.pool.query<{ n: number }>(
-      `select count(*)::int as n from regulation_changes
-       where detected_at > coalesce((select read_at from regulation_reads where user_id = $1), (select created_at from users where id = $1))`,
-      [userId],
-    );
+  async unread(orgId: string, userId: string): Promise<number> {
+    const { rows: [r] } = await this.pool.query<{ n: number }>(`select count(*)::int as n from regulation_changes where detected_at > (${READ_AT})`, [orgId, userId]);
     return r.n;
   }
 
-  async markRead(userId: string): Promise<void> {
-    await this.pool.query('insert into regulation_reads (user_id, read_at) values ($1, now()) on conflict (user_id) do update set read_at = now()', [userId]);
+  async markRead(orgId: string, userId: string): Promise<void> {
+    await this.pool.query(
+      'insert into regulation_reads (org_id, user_id, read_at) values ($1, $2, now()) on conflict (org_id, user_id) do update set read_at = now()',
+      [orgId, userId],
+    );
   }
 }
+
+/** When the member ($2) last opened the changes in the organization ($1); before that, when they joined it. */
+const READ_AT = `select coalesce(
+  (select read_at from regulation_reads where org_id = $1 and user_id = $2),
+  (select created_at from org_members where org_id = $1 and user_id = $2),
+  now()) as at`;
 
 const toCheck = (r: Record<string, unknown>): RegulationCheck => ({
   id: r.id as string,

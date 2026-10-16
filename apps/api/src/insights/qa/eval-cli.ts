@@ -1,10 +1,10 @@
 /**
  * Data Q&A evaluation: questions with a known answer (eval/qa/questions.json, each with the SQL that
- * answers it) over a fixed account history built from the synthetic set. Each question goes to the
- * local model as in the app (answerQuestion, with its one retry); its query passes the guard and runs scoped to the account like any
+ * answers it) over a fixed organization's history built from the synthetic set. Each question goes to the
+ * local model as in the app (answerQuestion, with its one retry); its query passes the guard and runs scoped to the organization like any
  * other, and its result must contain the expected one: the same number of rows, each with the
  * expected values (column names and order, and extra columns, do not matter; numbers compared to
- * 2 decimals). A second account with its own shipments checks that no answer shows its rows.
+ * 2 decimals). A second organization with its own shipments checks that no answer shows its rows.
  *
  *   npm run eval:qa [-- --limit 5] [--replay]
  *
@@ -86,18 +86,22 @@ async function main() {
 
   const pool = new Pool({ connectionString: url, max: 4 });
   await migrate(pool);
-  const users = { a: randomUUID(), b: randomUUID() };
-  for (const [k, id] of Object.entries(users)) {
-    await pool.query(`insert into users (id, email, name, password_hash) values ($1, $2, $3, 'x')`, [id, `qa-eval-${k}@doccheck.invalid`, `QA eval ${k}`]);
+  // Two organizations, each with one owner: answers for A must never show B's rows.
+  const accounts = { a: { userId: randomUUID(), orgId: randomUUID() }, b: { userId: randomUUID(), orgId: randomUUID() } };
+  for (const [k, a] of Object.entries(accounts)) {
+    await pool.query(`insert into users (id, email, name, password_hash) values ($1, $2, $3, 'x')`, [a.userId, `qa-eval-${k}@doccheck.invalid`, `QA eval ${k}`]);
+    await pool.query(`insert into organizations (id, name, created_by) values ($1, $2, $3)`, [a.orgId, `QA eval ${k}`, a.userId]);
+    await pool.query(`insert into org_members (org_id, user_id, role) values ($1, $2, 'owner')`, [a.orgId, a.userId]);
   }
+  const users = { a: accounts.a.orgId, b: accounts.b.orgId };
   const evalDir = join(root, 'data/eval/v1');
   const ref = (p: string, n: number) => `${p}-${String(n).padStart(3, '0')}`;
   const mine = [...Array.from({ length: 20 }, (_, i) => ref('CA', i + 1)), ...Array.from({ length: 20 }, (_, i) => ref('US', i + 1))];
   const theirs = [ref('CA', 50), ref('US', 50), ref('US', 51)];
   // Interleave the destinations so both appear in every month.
   const order = mine.map((_, i) => mine[(i % 2) * 20 + Math.floor(i / 2)]);
-  await buildFixture(pool, users.a, evalDir, order);
-  await buildFixture(pool, users.b, evalDir, theirs);
+  await buildFixture(pool, accounts.a, evalDir, order);
+  await buildFixture(pool, accounts.b, evalDir, theirs);
 
   const model = process.env.LLM_MODEL || 'qwen3.8';
   const provider = new OllamaProvider(model, process.env.OLLAMA_BASE_URL || undefined);
@@ -147,7 +151,7 @@ async function main() {
   await mkdir(join(root, 'eval/reports'), { recursive: true });
   const file = join(root, 'eval/reports', `qa-${provider.id.replace(/[^a-z0-9.-]/gi, '_')}.json`);
   await writeFile(file, JSON.stringify(report, null, 2) + '\n');
-  console.log(`\n${correct}/${results.length} correct (${(report.accuracy * 100).toFixed(1)}%), ${report.rejected} refused by the guard, ${report.errors} failed, ${report.leaked} showing another account's rows. ${file}`);
+  console.log(`\n${correct}/${results.length} correct (${(report.accuracy * 100).toFixed(1)}%), ${report.rejected} refused by the guard, ${report.errors} failed, ${report.leaked} showing another organization's rows. ${file}`);
   await pool.end();
 }
 

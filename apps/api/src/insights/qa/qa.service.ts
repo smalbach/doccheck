@@ -11,7 +11,7 @@ import { SqlRejected } from './sql-guard';
 /**
  * Questions about the account's data in plain language. The local model sees the question and the
  * description of the views, never a row of data; it writes SQL, which the guard checks, and
- * QaRunner runs it scoped to the asking account (answerQuestion).
+ * QaRunner runs it scoped to the active organization (answerQuestion).
  */
 @Injectable()
 export class QaService {
@@ -23,12 +23,12 @@ export class QaService {
     @InjectLlm() private readonly llm: LlmClient,
   ) {
     this.runner = new QaRunner(pool);
-    void this.runner.hasRole().then((ok) => ok || this.logger.warn('Role doccheck_qa is missing: Data Q&A runs read-only behind the guard, without the role (see migration 019)'));
+    void this.runner.hasRole().then((ok) => ok || this.logger.warn('Role doccheck_qa is missing: Data Q&A runs read-only behind the guard, without the role (see migration 049)'));
   }
 
-  async ask(userId: string, question: string): Promise<QaAnswer> {
+  async ask(orgId: string, question: string): Promise<QaAnswer> {
     try {
-      const { output, result } = await answerQuestion(this.llm, this.runner, userId, question);
+      const { output, result } = await answerQuestion(this.llm, this.runner, orgId, question);
       return {
         question,
         sql: output.sql,
