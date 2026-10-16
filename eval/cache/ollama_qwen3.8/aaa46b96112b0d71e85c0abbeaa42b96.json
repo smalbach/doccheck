@@ -1,0 +1,87 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 816,
+    "outputTokens": 770
+  },
+  "output": {
+    "awbNumber": "PCCL267920",
+    "documentTitle": "HOUSE AIR WAYBILL",
+    "masterAwbNumber": "176-32614864",
+    "carrierName": "Pacific Crest Air Cargo",
+    "shipper": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "Ho Chi Minh City, 700000"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": null,
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "airportOfDeparture": {
+      "name": "Tan Son Nhat",
+      "code": "SGN"
+    },
+    "airportOfDestination": {
+      "name": "Montreal Trudeau",
+      "code": "YUL"
+    },
+    "routing": [
+      "PC778 / 29-MAY-2026"
+    ],
+    "flights": [
+      {
+        "flight": "PC778",
+        "date": "29-MAY-2026"
+      }
+    ],
+    "numberOfPieces": "449",
+    "grossWeight": {
+      "value": "8237.40",
+      "unit": "K"
+    },
+    "chargeableWeight": {
+      "value": "8237.40",
+      "unit": "K"
+    },
+    "volume": "45.54 M3",
+    "natureOfGoods": "WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "CC",
+    "handlingInformation": "invoice SAI2607606",
+    "references": [
+      "invoice SAI2607606"
+    ],
+    "placeOfExecution": "Tan Son Nhat",
+    "executedOn": "28-MAY-2026"
+  }
+}

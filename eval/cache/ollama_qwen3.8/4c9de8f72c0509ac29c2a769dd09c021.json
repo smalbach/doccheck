@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 787,
+    "outputTokens": 758
+  },
+  "output": {
+    "awbNumber": "KEYS329589",
+    "documentTitle": "HOUSE AIR WAYBILL",
+    "masterAwbNumber": "176-56685845",
+    "carrierName": "Pacific Crest Air Cargo",
+    "shipper": {
+      "name": "Norte Manufacturas S.A. de C.V.",
+      "addressLines": [
+        "Av. Industrial 2450",
+        "Monterrey, NL, 64000",
+        "MX"
+      ],
+      "city": "Monterrey",
+      "region": "NL",
+      "postalCode": "64000",
+      "country": "MX",
+      "taxId": "NMA981204KL3"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7",
+        "CA"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5",
+        "CA"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "airportOfDeparture": {
+      "name": "Mexico City",
+      "code": "MEX"
+    },
+    "airportOfDestination": {
+      "name": "Montreal Trudeau",
+      "code": "YUL"
+    },
+    "routing": [
+      "PC528 / 24-JAN-2026"
+    ],
+    "flights": [
+      {
+        "flight": "PC528",
+        "date": "24-JAN-2026"
+      }
+    ],
+    "pieces": "[219]",
+    "grossWeight": {
+      "value": "11983.68",
+      "unit": "K"
+    },
+    "chargeableWeight": {
+      "value": "13315.20",
+      "unit": "K"
+    },
+    "volume": "31.21 M3",
+    "natureOfGoods": "GREEN COFFEE ARABICA",
+    "freightTerms": "CC",
+    "handlingInformation": "invoice CI/26/1944",
+    "references": [
+      "invoice CI/26/1944"
+    ],
+    "placeOfExecution": "Mexico City",
+    "executedOn": "24-JAN-2026"
+  }
+}

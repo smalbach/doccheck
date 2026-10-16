@@ -38,7 +38,7 @@ export function pointerToField(pointer: string): string | undefined {
 /** The answer field a normalized field comes from, by REVIEW_FIELDS ("netWeight.kg" -> "netWeight.value"). */
 export function rawFieldOf(type: ExtractableType, field: string): string | undefined {
   const pattern = field.replace(/\[\d+\]/g, '[*]');
-  const entry = REVIEW_FIELDS[type].find(([normalized]) => normalized === pattern);
+  const entry = REVIEW_FIELDS[type]?.find(([normalized]) => normalized === pattern);
   if (!entry) return undefined;
   const indexes = [...field.matchAll(/\[(\d+)\]/g)].map((m) => m[1]);
   let i = 0;

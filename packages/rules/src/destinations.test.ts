@@ -3,7 +3,7 @@ import { sampleBillOfLading, sampleInvoice, samplePackingList, type Destination,
 import { runRules } from './engine';
 import { isValidEuEori, isValidGbEori } from './ids/eori';
 import { rfcCheckDigit, rfcProblem } from './ids/rfc';
-import { PROFILES } from './profiles';
+import { DOCUMENT_RULE_IDS, PROFILES } from './profiles';
 import { ALL_RULES } from './registry';
 import type { ShipmentContext } from './types';
 
@@ -52,7 +52,7 @@ describe('profiles', () => {
   it.each(['MX', 'EU', 'GB'] as const)('%s: a clean shipment raises nothing', (d) => {
     const out = runRules(shipment(d), PARAMS);
     expect(out.findings).toEqual([]);
-    expect(out.ran).toEqual(expect.arrayContaining(PROFILES[d].rules.filter((r) => r !== 'X11')));
+    expect(out.ran).toEqual(expect.arrayContaining(PROFILES[d].rules.filter((r) => r !== 'X11' && !DOCUMENT_RULE_IDS.includes(r))));
   });
 });
 

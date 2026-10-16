@@ -1,0 +1,343 @@
+{
+  "id": "US-017",
+  "seed": 14254332,
+  "destination": "US",
+  "mode": "AIR",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "attestations": {
+    "certificateOfOrigin": {
+      "signature": true,
+      "stamp": true
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CAF2606370",
+      "invoiceDate": "2026-02-13",
+      "poNumber": "HA611287",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-02-18",
+      "transport": {
+        "mode": "AIR"
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Cartagena"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 137,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "8220",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.44",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "36496.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "8329.60",
+        "raw": {
+          "value": "8329.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "8220.00",
+        "raw": {
+          "value": "8220.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "36496.80",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-CAF2606370",
+      "invoiceRef": "CAF2606370",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-137",
+          "count": 137,
+          "type": "BAG",
+          "marks": "HARBORLINE/HA611287/C/NO. 1-137",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "8220",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "8220.00",
+            "raw": {
+              "value": "8220.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "8329.60",
+            "raw": {
+              "value": "8329.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 137,
+        "netWeight": {
+          "kg": "8220.00",
+          "raw": {
+            "value": "8220.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "8329.60",
+          "raw": {
+            "value": "8329.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "19.52"
+      }
+    },
+    "airWaybill": {
+      "awbNumber": "160-21023053",
+      "issuer": "MAWB",
+      "carrier": {
+        "name": "Meridian Airfreight",
+        "iataPrefix": "160"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "airportOfDeparture": {
+        "name": "Bogota El Dorado",
+        "iata": "BOG"
+      },
+      "airportOfDestination": {
+        "name": "Los Angeles",
+        "iata": "LAX"
+      },
+      "flights": [
+        {
+          "flight": "MF526",
+          "date": "2026-02-19"
+        }
+      ],
+      "pieces": 137,
+      "grossWeight": {
+        "kg": "8329.60",
+        "raw": {
+          "value": "8329.60",
+          "unit": "KG"
+        }
+      },
+      "chargeableWeight": {
+        "kg": "8329.60",
+        "raw": {
+          "value": "8329.60",
+          "unit": "KG"
+        }
+      },
+      "volumeM3": "19.52",
+      "natureOfGoods": "GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "references": [
+        "CAF2606370"
+      ],
+      "placeOfExecution": "Bogota El Dorado",
+      "executedOn": "2026-02-18"
+    },
+    "certificateOfOrigin": {
+      "certificateNumber": "CO-CO-591692",
+      "issuer": "Cámara de Comercio de Bogotá",
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "CO",
+      "transport": "By air",
+      "goods": [
+        {
+          "itemNo": 1,
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "hsCode": "0901.11"
+        }
+      ],
+      "invoiceRefs": [
+        "CAF2606370"
+      ],
+      "placeOfIssue": "Neiva",
+      "dateOfIssue": "2026-02-14"
+    }
+  }
+}

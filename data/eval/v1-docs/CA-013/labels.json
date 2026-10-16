@@ -1,0 +1,16 @@
+{
+  "id": "CA-013",
+  "errors": [
+    {
+      "kind": "coo_exporter_mismatch",
+      "document": "certificateOfOrigin",
+      "field": "exporter.name",
+      "before": "Ceramiche Valle Secchia S.p.A.",
+      "after": "Golden Bridge Trading Co., Ltd.",
+      "expectedRuleIds": [
+        "T7"
+      ],
+      "description": "Certificate of origin made out by another exporter."
+    }
+  ]
+}

@@ -11,7 +11,7 @@ import { ReviewRepository } from './review.repository';
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 /** Where each document type prints the supplier: the company the examples are learned for. */
-const SUPPLIER_FIELD: Record<ExtractableType, string[]> = {
+const SUPPLIER_FIELD: Partial<Record<ExtractableType, string[]>> = {
   COMMERCIAL_INVOICE: ['/seller/name'],
   PACKING_LIST: ['/seller/name'],
   BILL_OF_LADING: ['/shipper/name'],
@@ -135,7 +135,7 @@ export class ReviewService implements OnApplicationBootstrap {
       await this.repo.saveReviews(e.documentId, userId, reviewed, 'corrected');
       if (reviewed.length) this.audit.note({ action: 'review.correct', entity: 'document', entityId: e.documentId, after: { paths: reviewed } });
       if (!learningOn() || !isExtractable(e.documentType)) return;
-      const name = SUPPLIER_FIELD[e.documentType].map((p) => readPointer(e.data, p)).find((v): v is string => typeof v === 'string' && v.trim() !== '');
+      const name = (SUPPLIER_FIELD[e.documentType] ?? []).map((p) => readPointer(e.data, p)).find((v): v is string => typeof v === 'string' && v.trim() !== '');
       if (!name || !supplierKey(name)) return;
       const examples = corrections
         .map((c) => exampleFromCorrection({ documentType: e.documentType as ExtractableType, path: c.path, newValue: c.newValue, raw: e.raw, pdf: { lines: e.pdfLines } }))

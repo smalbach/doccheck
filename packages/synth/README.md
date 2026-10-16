@@ -30,4 +30,21 @@ Scans (`scans.ts`) render each page as a grayscale image with a slight rotation,
 | `packing_list_quantity_mismatch` | packing list | X7 |
 | `missing_required_field` | invoice | C1 or U1 when the destination requires the field; none otherwise |
 
+Set v1-docs (`--docs`, `documents.ts`, `render-documents.ts`) adds the other documents to 40 clean v1 shipments and injects these errors:
+
+| Error kind | Document | Expected rule |
+| --- | --- | --- |
+| `awb_check_digit` | air waybill | T1 (and T12 with an arrival notice) |
+| `awb_pieces_mismatch` | air waybill | T2 (and T12) |
+| `awb_weight_mismatch` | air waybill | T3 (and T12) |
+| `coo_exporter_mismatch` | certificate of origin | T7 |
+| `coo_hs_mismatch` | certificate of origin | T8 |
+| `cusma_missing_element` | CUSMA certification | T9 |
+| `dg_declaration_missing` | dangerous goods declaration (dropped) | T10 |
+| `ispm15_missing` | heat-treatment certificate (dropped) | T11 |
+| `arrival_notice_mismatch` | arrival notice | T12 |
+| `coo_unsigned` | certificate of origin printed without signature and stamp | T13 |
+
+Set v1-inputs (`--inputs`, `inputs.ts`) writes, for 20 clean v1 shipments, the invoice as .xlsx and the packing list as .csv, the invoice as a phone photo (`photoOf`: turned on a desk, uneven light, JPEG) and the three documents in one PDF (`combineHtml`, with each document's CSS scoped to it).
+
 Not done yet from the original plan: 4–6 templates per document (3 so far) and tables split across pages on purpose.

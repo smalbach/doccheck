@@ -6,6 +6,9 @@ export const ShipmentStatus = z.enum([
 ]);
 export type ShipmentStatus = z.infer<typeof ShipmentStatus>;
 
+export const DocumentFormat = z.enum(['PDF', 'SPREADSHEET', 'IMAGE']);
+export type DocumentFormat = z.infer<typeof DocumentFormat>;
+
 export const DocumentStatus = z.enum(['QUEUED', 'EXTRACTING', 'EXTRACTED', 'FAILED']);
 export type DocumentStatus = z.infer<typeof DocumentStatus>;
 
@@ -21,6 +24,12 @@ export const ShipmentDocument = z.object({
   language: z.string().optional(),
   status: DocumentStatus.optional(),
   error: z.string().optional(),
+  /** What was uploaded: a PDF, a spreadsheet (.xlsx, .csv) or a photo (stored as an image-only PDF). Absent: PDF. */
+  format: DocumentFormat.optional(),
+  /** Pages of the uploaded PDF this document covers, when one PDF held several documents. */
+  pages: z.array(z.number().int().positive()).optional(),
+  /** The upload this document was split from (the first part keeps the upload's own id). */
+  sourceDocumentId: z.string().optional(),
 });
 export type ShipmentDocument = z.infer<typeof ShipmentDocument>;
 
@@ -35,7 +44,8 @@ export const Shipment = z.object({
 });
 export type Shipment = z.infer<typeof Shipment>;
 
-export const Severity = z.enum(['CRITICAL', 'HIGH', 'MEDIUM', 'LOW']);
+/** INFO: worth knowing, nothing to correct (a missing signature on a document that may be signed elsewhere). */
+export const Severity = z.enum(['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFO']);
 export type Severity = z.infer<typeof Severity>;
 
 export const Evidence = z.object({

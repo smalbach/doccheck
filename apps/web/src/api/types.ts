@@ -795,3 +795,9 @@ export interface MailServerSettings {
       })
     | null;
 }
+
+/** A spreadsheet document's cells (GET .../sheets), and the sheets (1-based) the document covers. */
+export interface SheetGrid {
+  sheets: { name: string; rows: string[][] }[];
+  pages: number[];
+}

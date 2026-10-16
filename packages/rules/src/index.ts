@@ -16,3 +16,6 @@ export { iso6346CheckDigit, isValidContainerNumber } from './rules/x10-container
 export * from './reference';
 export * from './rule-config';
 export { productKey, median, mad } from './rules/x23-price-history';
+export { awbCheckDigit, isValidAwbNumber } from './rules/t1-awb-check-digit';
+export { hazardMentions } from './rules/t10-dangerous-goods';
+export { CUSMA_ELEMENTS } from './rules/t9-cusma-elements';

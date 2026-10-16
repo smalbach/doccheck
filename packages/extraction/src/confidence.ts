@@ -43,9 +43,10 @@ const DISAGREE = 0.4;
 
 /**
  * The fields worth a person's check, as [normalized path, raw path] (raw-schemas.ts). [*] runs over
- * the items; the raw item at the same index is the one the normalized item came from.
+ * the items; the raw item at the same index is the one the normalized item came from. Other document
+ * types are scored only on the values their normalizer could not read.
  */
-export const REVIEW_FIELDS: Record<ExtractableType, [string, string][]> = {
+export const REVIEW_FIELDS: Partial<Record<ExtractableType, [string, string][]>> = {
   COMMERCIAL_INVOICE: [
     ['invoiceNumber', 'invoiceNumber'], ['invoiceDate', 'invoiceDate'], ['poNumber', 'poNumber'], ['shipmentDate', 'shipmentDate'],
     ['seller.name', 'seller.name'], ['buyer.name', 'buyer.name'], ['consignee.name', 'consignee.name'], ['portOfEntry.name', 'portOfEntry.name'],
@@ -147,7 +148,7 @@ export function fieldConfidence(input: ConfidenceInput): FieldConfidence[] {
   const out: FieldConfidence[] = [];
   const seen = new Set<string>();
 
-  for (const [pattern, rawPattern] of REVIEW_FIELDS[type]) {
+  for (const [pattern, rawPattern] of REVIEW_FIELDS[type] ?? []) {
     for (const field of expandPattern(data, pattern)) {
       const value = getPath(data, field);
       if (value === null || value === undefined || typeof value === 'object') continue;
