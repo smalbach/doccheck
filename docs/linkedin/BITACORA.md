@@ -175,6 +175,7 @@ para que la revises.
 | Correo dentro de la app: pedidos al proveedor, bandeja, hilos, cola de envío con reintentos, recepción por IMAP o webhook, adjuntos al envío, alertas | `19b9c23`, `4b011fa` | tests de la API 78 de 78 (uno cubre el ciclo completo: pedido, envío, respuesta con PDF, importación y respuesta) |
 | Buzón configurable desde Admin (SMTP/IMAP, contraseñas cifradas, pruebas) y documentos por correo: un correo con PDF se convierte en un envío extraído y validado sin abrir la app | (este commit) | tests de la API 81 de 81; envío real por Resend con dominio verificado |
 | README de portafolio: capturas, métricas con su fuente, qué hace, arquitectura; posts 6 (bandeja) y 7 (flujo de hallazgos) | `d22482c` | 22 de 22 capturas de `docs/screenshots/` enlazadas; `npm run metrics` regenera el bloque de métricas sin cambios desde `eval/reports` |
+| Apariencia personalizable en Cuenta: color de acento (6 preajustes o uno propio, ajustado solo lo justo para contraste AA en claro y oscuro), tono de fondo, bordes de paneles (suave, marcado, sombra, plano), esquinas, densidad, tipografía, barra lateral tintada y animaciones reducidas; se aplica antes del primer pintado | (este commit) | 59 de 59 tests del web; verificado en el navegador en claro, oscuro y a 375 px sin desbordes |
 
 Decisiones para contar:
 
@@ -217,3 +218,4 @@ puerto de entrada se conserva solo si el PDF lo imprime debajo de su etiqueta, e
 - 13 oct 2026: correo integrado en la app (sesión de la app).
 - 14 oct 2026: README de portafolio en la raíz y posts 6 y 7 (commit `d22482c`).
 - 14 oct 2026: buzón configurable y documentos por correo (sesión de la app).
+- 15 oct 2026: apariencia personalizable (sesión de la app).

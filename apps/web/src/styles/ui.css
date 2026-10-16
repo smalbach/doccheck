@@ -12,9 +12,9 @@
 .icon-btn { padding: 4px 8px; }
 
 /* Cards and banners */
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; min-width: 0; }
+.card { background: var(--surface); border: var(--panel-border); box-shadow: var(--panel-shadow); border-radius: var(--radius); padding: var(--panel-pad); margin-bottom: var(--panel-gap); min-width: 0; }
 .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
-.banner { border-radius: 8px; padding: 8px 12px; margin: 0 0 16px; }
+.banner { border-radius: var(--radius-md); padding: 8px 12px; margin: 0 0 16px; }
 .banner-error { background: var(--surface); border: 1px solid var(--critical); color: var(--critical); }
 .banner-ok { color: var(--ok); background: var(--accent-soft); }
 .banner-info { background: var(--accent-soft); }
@@ -38,7 +38,7 @@
 .select-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 8px; min-width: 170px; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-sm); padding: 6px 8px; cursor: pointer; }
 .select-trigger[data-placeholder] { color: var(--muted); }
 .select-icon { color: var(--muted); display: flex; }
-.select-content { background: var(--surface-raised); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 4px; min-width: var(--radix-select-trigger-width); z-index: 50; }
+.select-content { background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow); padding: 4px; min-width: var(--radix-select-trigger-width); z-index: 50; }
 .select-item { position: relative; display: flex; align-items: center; padding: 6px 28px 6px 10px; border-radius: 4px; cursor: pointer; outline: none; user-select: none; }
 .select-item[data-highlighted] { background: var(--accent-soft); color: var(--accent); }
 .select-item-indicator { position: absolute; right: 8px; display: flex; }
@@ -59,7 +59,7 @@
 .table-wrap { overflow-x: auto; position: relative; } /* positioned, so hidden absolute children (Radix Select's native select) are clipped too */
 .table { width: 100%; border-collapse: collapse; }
 .table th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--line); padding: 6px 8px; vertical-align: bottom; }
-.table td { padding: 8px; border-bottom: 1px solid var(--line); }
+.table td { padding: var(--cell-pad) 8px; border-bottom: 1px solid var(--line); }
 .table th.num, .table td.num { text-align: right; }
 .table-compact td, .table-compact th { padding: 4px 6px; font-size: 13px; }
 .table-clickable tbody tr { cursor: pointer; }
@@ -95,7 +95,7 @@
 .avatar-fallback { line-height: 1; }
 
 /* Dropdown menu */
-.menu { min-width: 200px; background: var(--surface-raised); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 4px; z-index: 50; }
+.menu { min-width: 200px; background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow); padding: 4px; z-index: 50; }
 .menu-item { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 4px; font-size: 13px; cursor: pointer; outline: none; user-select: none; }
 .menu-item[data-highlighted] { background: var(--accent-soft); color: var(--accent); }
 .menu-separator { height: 1px; background: var(--line); margin: 4px 0; }
@@ -158,3 +158,13 @@
 @keyframes fade-out { to { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .toast[data-state], .toast[data-swipe] { animation: none; transition: none; } }
 .notify-note { margin: 0; }
+
+/* Appearance: accent swatches and the custom colour input */
+.accent-picker { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+.swatch { display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 2px solid var(--surface); border-radius: 50%; box-shadow: 0 0 0 1px var(--line); color: #fff; font-weight: 700; cursor: pointer; }
+.swatch[data-state='on'] { box-shadow: 0 0 0 2px var(--text); }
+.swatch:focus-visible { outline-offset: 3px; }
+.swatch svg { filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.6)); }
+.color-input { display: inline-flex; align-items: center; gap: 8px; }
+.color-input input { width: 36px; height: 30px; padding: 0 2px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); cursor: pointer; }

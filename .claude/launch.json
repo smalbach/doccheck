@@ -28,6 +28,21 @@
       "env": {
         "API_URL": "http://localhost:4310"
       }
+    },
+    {
+      "name": "web-alt",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "vite",
+        "apps/web",
+        "--port",
+        "5174",
+        "--strictPort"
+      ],
+      "port": 5174,
+      "env": {
+        "API_URL": "http://localhost:4310"
+      }
     }
   ]
 }

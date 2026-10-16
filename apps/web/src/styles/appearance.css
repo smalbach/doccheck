@@ -1,0 +1,68 @@
+/*
+ * Appearance choices (preferences/appearance.ts) as data attributes on <html>. No attribute = the default
+ * in tokens.css. Colours use light-dark(), which follows the color-scheme tokens.css sets for each theme.
+ */
+
+/* Accent: each preset gives its colour and the text on it, for light and dark. */
+:root[data-accent='blue'] { --accent-l: #1d4ed8; --accent-d: #60a5fa; --on-accent-l: #ffffff; --on-accent-d: #0b1530; }
+:root[data-accent='indigo'] { --accent-l: #4338ca; --accent-d: #818cf8; --on-accent-l: #ffffff; --on-accent-d: #12103a; }
+:root[data-accent='violet'] { --accent-l: #7c3aed; --accent-d: #a78bfa; --on-accent-l: #ffffff; --on-accent-d: #1e0a45; }
+:root[data-accent='pink'] { --accent-l: #be185d; --accent-d: #f472b6; --on-accent-l: #ffffff; --on-accent-d: #3d0520; }
+:root[data-accent='graphite'] { --accent-l: #374151; --accent-d: #d1d5db; --on-accent-l: #ffffff; --on-accent-d: #111416; }
+/* custom: the four values are set inline by applyAppearance (and index.html before the first paint). */
+:root[data-accent] {
+  --accent: light-dark(var(--accent-l), var(--accent-d));
+  --accent-contrast: light-dark(var(--on-accent-l), var(--on-accent-d));
+  --accent-soft: light-dark(color-mix(in srgb, var(--accent-l) 11%, var(--surface)), color-mix(in srgb, var(--accent-d) 18%, var(--surface)));
+}
+
+/* Background tone: neutral grey (default), a cooler blue-grey or a warmer paper. */
+:root[data-tone='cool'] {
+  --bg: light-dark(#f2f5f9, #0e1318);
+  --surface: light-dark(#ffffff, #161d24);
+  --surface-raised: light-dark(#ffffff, #1d262e);
+  --line: light-dark(#dce3eb, #29333d);
+  --muted: light-dark(#56606c, #a0aab5);
+}
+:root[data-tone='warm'] {
+  --bg: light-dark(#f7f4ef, #14120f);
+  --surface: light-dark(#fffdf9, #1d1a16);
+  --surface-raised: light-dark(#fffdf9, #25221d);
+  --line: light-dark(#e6e0d6, #342f28);
+  --muted: light-dark(#635b51, #ada498);
+}
+
+/* Corner radius. */
+:root[data-radius='none'] { --radius: 0; --radius-sm: 0; --radius-md: 0; }
+:root[data-radius='small'] { --radius: 6px; --radius-sm: 4px; --radius-md: 5px; }
+:root[data-radius='large'] { --radius: 16px; --radius-sm: 10px; --radius-md: 12px; }
+
+/* Panel edges. Borders stay 1px (transparent when hidden) so nothing shifts between styles. */
+:root[data-panels='strong'] { --panel-border: 1px solid color-mix(in srgb, var(--text) 28%, var(--line)); }
+:root[data-panels='shadow'] {
+  --panel-border: 1px solid transparent;
+  --panel-shadow: 0 1px 2px light-dark(rgba(15, 20, 25, 0.06), rgba(0, 0, 0, 0.4)), 0 4px 14px light-dark(rgba(15, 20, 25, 0.07), rgba(0, 0, 0, 0.35));
+}
+:root[data-panels='flat'] { --panel-border: 1px solid transparent; }
+
+/* Density: padding inside and space between panels, and table rows. */
+:root[data-density='compact'] { --panel-pad: 12px; --panel-gap: 10px; --cell-pad: 5px; }
+:root[data-density='spacious'] { --panel-pad: 22px; --panel-gap: 22px; --cell-pad: 11px; }
+
+/* Typeface. */
+:root[data-font='humanist'] { --font: 'Avenir Next', Avenir, 'Segoe UI Variable Text', 'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif; }
+:root[data-font='serif'] { --font: 'Iowan Old Style', Charter, 'Palatino Linotype', Palatino, Georgia, serif; }
+
+/* Sidebar: plain surface (default) or washed with the accent. */
+:root[data-sidebar='tinted'] { --sidebar-bg: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
+:root[data-sidebar='tinted'] .sidebar-link:hover { background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+
+/* Reduced motion on request, whatever the system says. */
+:root[data-motion='reduced'] *,
+:root[data-motion='reduced'] *::before,
+:root[data-motion='reduced'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

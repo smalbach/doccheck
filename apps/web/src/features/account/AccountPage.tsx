@@ -1,5 +1,6 @@
 import { PageHeader } from '../../components/ui/PageHeader';
 import { useI18n } from '../../i18n/useI18n';
+import { AppearanceCard } from './AppearanceCard';
 import { DeleteAccountCard } from './DeleteAccountCard';
 import { IntakeAddressCard } from './IntakeAddressCard';
 import { PasswordCard } from './PasswordCard';
@@ -14,6 +15,7 @@ export function AccountPage() {
       <PageHeader title={t('account.title')} description={t('account.description')} />
       <ProfileCard />
       <PreferencesCard />
+      <AppearanceCard />
       <IntakeAddressCard />
       <PasswordCard />
       <SessionCard />
