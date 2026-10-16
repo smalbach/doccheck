@@ -79,11 +79,31 @@ export interface ShipmentListQuery {
   status: StatusGroup;
   destination?: Destination;
   q?: string;
+  /** overdue: past its due date and not done; soon: due in the next 48 hours. */
+  due?: 'overdue' | 'soon';
+  /** Assigned to this user (the shipment, or one of its findings). */
+  assignee?: string;
   limit: number;
   offset: number;
 }
 
-export type ShipmentSummary = Omit<Shipment, 'documents'> & { documentCount: number; findingCount: number | null };
+/**
+ * Whose shipments a list covers: the organization's, or for a client only those shared with them
+ * (`sharedWith`).
+ */
+export interface ShipmentScope {
+  orgId: string;
+  sharedWith?: string;
+}
+
+export type ShipmentSummary = Omit<Shipment, 'documents'> & {
+  documentCount: number;
+  findingCount: number | null;
+  dueAt?: string;
+  dueSource?: 'manual' | 'isf' | 'eta';
+  overdue?: boolean;
+  assignee?: { id: string; name: string };
+};
 
 export interface ShipmentPage {
   items: ShipmentSummary[];
@@ -92,7 +112,7 @@ export interface ShipmentPage {
   offset: number;
   /** Over all of the user's shipments, whatever the filters. */
   /** findings: open ones (not accepted nor marked false positive); waiting: asked of the supplier. */
-  summary: { all: number; open: number; attention: number; done: number; findings: number; waiting: number };
+  summary: { all: number; open: number; attention: number; done: number; findings: number; waiting: number; overdue: number; dueSoon: number };
 }
 
 export interface ShipmentPatch {
@@ -107,6 +127,13 @@ const STATUS_GROUP: Record<Exclude<StatusGroup, 'all'>, string> = {
   attention: `(status = 'NEEDS_INPUT' or (validated and finding_count > 0))`,
   done: `(status = 'DONE' and validated and finding_count = 0)`,
 };
+
+/** The organization's shipments ($1), only those shared with $2 when it is set (a client). */
+const SCOPE = `s.org_id = $1 and ($2::uuid is null or exists (select 1 from shipment_shares x where x.shipment_id = s.id and x.user_id = $2))`;
+
+/** On a row with due_effective and the columns of STATUS_GROUP: past due and not done, or due within 48 hours. */
+const DUE_FLAGS = `coalesce(due_effective < now() and not ${STATUS_GROUP.done}, false) as overdue,
+  coalesce(due_effective >= now() and due_effective < now() + interval '48 hours' and not ${STATUS_GROUP.done}, false) as due_soon`;
 
 const toValidation = (r: Record<string, unknown>): Omit<ValidationRow, 'findings'> & { createdAt: string } => ({
   id: r.id as string,
@@ -180,17 +207,28 @@ const toFinding = (r: Record<string, unknown>): FingerprintedFinding => ({
 export class ShipmentsRepository {
   constructor(@Inject(PG_POOL) private readonly pool: Pool) {}
 
-  async createShipment(s: Shipment, userId: string): Promise<void> {
+  async createShipment(s: Shipment, userId: string, orgId: string): Promise<void> {
     await this.pool.query(
-      'insert into shipments (id, reference, destination, transport_mode, status, created_at, user_id) values ($1, $2, $3, $4, $5, $6, $7)',
-      [s.id, s.reference ?? null, s.destination ?? null, s.transportMode ?? null, s.status, s.createdAt, userId],
+      'insert into shipments (id, reference, destination, transport_mode, status, created_at, user_id, org_id) values ($1, $2, $3, $4, $5, $6, $7, $8)',
+      [s.id, s.reference ?? null, s.destination ?? null, s.transportMode ?? null, s.status, s.createdAt, userId, orgId],
     );
   }
 
-  /** Whether the shipment exists and belongs to the user (shipments from before accounts belong to nobody). */
-  async isOwner(shipmentId: string, userId: string): Promise<boolean> {
-    const { rowCount } = await this.pool.query('select 1 from shipments where id = $1 and user_id = $2', [shipmentId, userId]);
-    return rowCount === 1;
+  /** Whether accepted risks and false positives need approval in the shipment's organization, and who may approve. */
+  async approvalPolicy(shipmentId: string): Promise<{ orgId: string; requireApproval: boolean; approvers: string[] } | null> {
+    const { rows } = await this.pool.query(
+      `select o.id, o.require_approval,
+         array(select m.user_id from org_members m where m.org_id = o.id and m.role in ('owner', 'admin', 'reviewer')) as approvers
+       from shipments s join organizations o on o.id = s.org_id where s.id = $1`,
+      [shipmentId],
+    );
+    return rows[0] ? { orgId: rows[0].id, requireApproval: rows[0].require_approval, approvers: rows[0].approvers } : null;
+  }
+
+  /** The current status of these findings, for the audit log's "before". */
+  async findingStatuses(shipmentId: string, fingerprints: string[]): Promise<{ fingerprint: string; status: string }[]> {
+    const { rows } = await this.pool.query('select fingerprint, status from finding_status where shipment_id = $1 and fingerprint = any($2)', [shipmentId, fingerprints]);
+    return rows;
   }
 
   async findShipment(id: string): Promise<Shipment | null> {
@@ -213,9 +251,15 @@ export class ShipmentsRepository {
    * One page of the user's shipments, most recent first, with counts for a list view; `total` is the
    * number matching the filters and `summary` counts all of the user's shipments per group.
    */
-  async listShipments(userId: string, q: ShipmentListQuery): Promise<ShipmentPage> {
-    const params: unknown[] = [userId];
+  async listShipments(scope: ShipmentScope, q: ShipmentListQuery): Promise<ShipmentPage> {
+    const params: unknown[] = [scope.orgId, scope.sharedWith ?? null];
     const where: string[] = [];
+    if (q.due === 'overdue') where.push(`overdue`);
+    if (q.due === 'soon') where.push(`due_soon`);
+    if (q.assignee) {
+      params.push(q.assignee);
+      where.push(`(assignee_id = $${params.length} or exists (select 1 from finding_assignments a where a.shipment_id = listed.id and a.assignee_id = $${params.length}))`);
+    }
     if (q.destination) {
       params.push(q.destination);
       where.push(`destination = $${params.length}`);
@@ -233,9 +277,13 @@ export class ShipmentsRepository {
            (select count(*)::int from findings f where f.validation_id =
               (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)
               and not dc_finding_closed(f.shipment_id, f.fingerprint)) as finding_count,
-           exists (select 1 from validations v where v.shipment_id = s.id) as validated
-         from shipments s where s.user_id = $1
-       ), matching as (select * from listed${where.length ? ` where ${where.join(' and ')}` : ''})
+           exists (select 1 from validations v where v.shipment_id = s.id) as validated,
+           d.due_at as due_effective, d.due_source, u.name as assignee_name
+         from shipments s left join shipment_due d on d.shipment_id = s.id left join users u on u.id = s.assignee_id
+         where ${SCOPE}
+       ), flagged as (
+         select listed.*, ${DUE_FLAGS} from listed
+       ), matching as (select * from flagged listed${where.length ? ` where ${where.join(' and ')}` : ''})
        select matching.*, count(*) over ()::int as total from matching
        order by created_at desc, id limit $${params.length - 1} offset $${params.length}`,
       params,
@@ -249,17 +297,21 @@ export class ShipmentsRepository {
            (select count(*)::int from findings f join finding_status st on st.shipment_id = f.shipment_id and st.fingerprint = f.fingerprint
             where f.validation_id = (select v.id from validations v where v.shipment_id = s.id order by v.created_at desc limit 1)
               and st.status = 'waiting_supplier') as waiting_count,
-           exists (select 1 from validations v where v.shipment_id = s.id) as validated
-         from shipments s where s.user_id = $1
-       )
+           exists (select 1 from validations v where v.shipment_id = s.id) as validated,
+           d.due_at as due_effective
+         from shipments s left join shipment_due d on d.shipment_id = s.id
+         where ${SCOPE}
+       ), flagged as (select listed.*, ${DUE_FLAGS} from listed)
        select count(*)::int as all,
          (count(*) filter (where ${STATUS_GROUP.open}))::int as open,
          (count(*) filter (where ${STATUS_GROUP.attention}))::int as attention,
          (count(*) filter (where ${STATUS_GROUP.done}))::int as done,
          coalesce(sum(finding_count) filter (where validated), 0)::int as findings,
-         coalesce(sum(waiting_count) filter (where validated), 0)::int as waiting
-       from listed`,
-      [userId],
+         coalesce(sum(waiting_count) filter (where validated), 0)::int as waiting,
+         (count(*) filter (where overdue))::int as overdue,
+         (count(*) filter (where due_soon))::int as "dueSoon"
+       from flagged listed`,
+      [scope.orgId, scope.sharedWith ?? null],
     );
     return {
       items: rows.map((r) => ({
@@ -271,8 +323,10 @@ export class ShipmentsRepository {
         createdAt: new Date(r.created_at).toISOString(),
         documentCount: r.document_count,
         findingCount: r.validated ? r.finding_count : null,
+        ...(r.due_effective ? { dueAt: new Date(r.due_effective).toISOString(), dueSource: r.due_source, overdue: r.overdue } : {}),
+        ...(r.assignee_id ? { assignee: { id: r.assignee_id, name: r.assignee_name ?? '' } } : {}),
       })),
-      total: rows[0]?.total ?? (q.offset > 0 ? await this.countMatching(userId, q) : 0),
+      total: rows[0]?.total ?? (q.offset > 0 ? await this.countMatching(scope, q) : 0),
       limit: q.limit,
       offset: q.offset,
       summary,
@@ -280,8 +334,8 @@ export class ShipmentsRepository {
   }
 
   /** `total` for a page past the end, where the windowed count has no row to ride on. */
-  private async countMatching(userId: string, q: ShipmentListQuery): Promise<number> {
-    const page = await this.listShipments(userId, { ...q, offset: 0, limit: 1 });
+  private async countMatching(scope: ShipmentScope, q: ShipmentListQuery): Promise<number> {
+    const page = await this.listShipments(scope, { ...q, offset: 0, limit: 1 });
     return page.total;
   }
 

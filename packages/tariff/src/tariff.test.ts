@@ -194,9 +194,12 @@ describe('P1: partner agencies', () => {
     expect(agencyRequirements('7208', 'CA').map((r) => r.id)).toEqual(['CA-GAC-STEEL']);
   });
 
-  it('reports one finding per requirement, with every line it covers and its source', () => {
+  it('reports one notice per requirement, with every line it covers and its source', () => {
     const ctx = shipment('US', [{ hsCode: '0901.11', description: 'Green coffee beans' }, { hsCode: '1509.20', description: 'Extra virgin olive oil' }, { hsCode: '7318.15', description: 'Bolts' }]);
-    const p1 = runTariffRules(ctx, { schedule: us.schedule }).findings.filter((f) => f.ruleId === 'P1');
+    const out = runTariffRules(ctx, { schedule: us.schedule });
+    // Informational: a notice for the tariff report, never an open finding.
+    expect(out.findings.map((f) => f.ruleId)).not.toContain('P1');
+    const p1 = out.notices.filter((f) => f.ruleId === 'P1');
     expect(p1).toHaveLength(1);
     expect(p1[0].severity).toBe('MEDIUM');
     expect(p1[0].evidence.map((e) => e.field)).toEqual(['lines[0].hsCode', 'lines[1].hsCode']);
@@ -213,8 +216,8 @@ describe('E1: export control hints', () => {
     expect(exportControlHints('880621', 'Camera drone').map((m) => m.hint.category)).toEqual([9]);
   });
 
-  it('is a LOW finding citing the destination list', () => {
-    const f = runTariffRules(shipment('CA', [{ hsCode: '8542.39', description: 'FPGA development board' }]), {}).findings.find((x) => x.ruleId === 'E1');
+  it('is a LOW notice citing the destination list', () => {
+    const f = runTariffRules(shipment('CA', [{ hsCode: '8542.39', description: 'FPGA development board' }]), {}).notices.find((x) => x.ruleId === 'E1');
     expect(f?.severity).toBe('LOW');
     expect(f?.regulation?.title).toMatch(/Export Control List/);
   });

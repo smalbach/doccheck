@@ -58,7 +58,7 @@ export class TariffService {
     const pg = new PgVectors(this.pool, destination, embedder);
     if ((await pg.count(edition)) === 0) {
       await pg.load(memory, edition);
-      this.logger.log(`Copied ${memory.codes.length} ${destination} subheading vectors into Postgres (pgvector)`);
+      this.logger.log(`Copied ${memory.codes.length} ${destination} tariff line vectors into Postgres (pgvector)`);
     }
     return pg;
   }

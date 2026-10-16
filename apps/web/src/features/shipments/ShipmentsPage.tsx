@@ -12,20 +12,25 @@ import { useDebouncedValue } from '../../hooks/useDebouncedValue';
 import { useDemo } from '../../hooks/useDemo';
 import { useShipmentList } from '../../hooks/useShipmentList';
 import { useI18n } from '../../i18n/useI18n';
+import { useOrg } from '../team/useOrg';
 import { ShipmentFilters } from './ShipmentFilters';
 import { ShipmentsTable } from './ShipmentsTable';
 
-/** The user's shipments, filtered and paged by the API. */
-export function ShipmentsPage() {
+/** The organization's shipments, filtered and paged by the API; `due` and `assignee` come from dashboard links. */
+export function ShipmentsPage({ due, assignee }: { due?: 'overdue' | 'soon'; assignee?: string } = {}) {
   const { t } = useI18n();
-  const demo = useDemo();
-  const [filters, setFilters] = useState<ShipmentFilterState>(INITIAL_SHIPMENT_FILTERS);
+  const { can } = useOrg();
+  // Read-only: the demo, or a role that cannot create shipments.
+  const demo = useDemo() || !can('shipment.write');
+  const [filters, setFilters] = useState<ShipmentFilterState>({ ...INITIAL_SHIPMENT_FILTERS, due: due ?? 'any', mine: assignee === 'me' });
   const [offset, setOffset] = useState(0);
   const query = useDebouncedValue(filters.query.trim(), SEARCH_DEBOUNCE_MS);
   const { page, error, loading } = useShipmentList({
     status: filters.status,
     destination: filters.destination === 'any' ? undefined : filters.destination,
     q: query || undefined,
+    due: filters.due === 'any' ? undefined : filters.due,
+    assignee: filters.mine ? 'me' : undefined,
     limit: SHIPMENTS_PAGE_SIZE,
     offset,
   });

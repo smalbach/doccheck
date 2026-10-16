@@ -9,6 +9,13 @@ const present = (ctx: ShipmentContext): Set<DocumentType> =>
       .map(([t]) => t),
   );
 
+export interface TariffRunOutput extends EngineOutput {
+  /** P1 and E1: what the entry may also need, cited like findings but never open. */
+  notices: Finding[];
+  /** Rules that need the schedule, not run without it. */
+  unavailable: string[];
+}
+
 export interface TariffRunOptions {
   /** Called after each rule, like the rule engine's hook; `index` continues from `offset`. */
   onRule?: (progress: RuleProgress) => void;
@@ -17,13 +24,14 @@ export interface TariffRunOptions {
 }
 
 /**
- * Runs the tariff rules (H1-H3, P1, E1) the way the rule engine runs X/C/U rules, so their
- * findings join the same list. A rule that needs the schedule does not run without it: it goes
- * to `unavailable` instead, and the API says so.
+ * Runs the tariff rules (H1-H3, P1, E1) the way the rule engine runs X/C/U rules. H1-H3 findings
+ * join the same list; P1 and E1 (informational) come back as `notices`, in the same shape, for the
+ * tariff report. A rule that needs the schedule does not run without it: it goes to `unavailable`
+ * instead, and the API says so.
  */
-export function runTariffRules(ctx: ShipmentContext, tariff: TariffContext, { onRule, offset = 0, total }: TariffRunOptions = {}): EngineOutput & { unavailable: string[] } {
+export function runTariffRules(ctx: ShipmentContext, tariff: TariffContext, { onRule, offset = 0, total }: TariffRunOptions = {}): TariffRunOutput {
   const have = present(ctx);
-  const output: EngineOutput & { unavailable: string[] } = { findings: [], ran: [], skipped: [], unavailable: [] };
+  const output: TariffRunOutput = { findings: [], notices: [], ran: [], skipped: [], unavailable: [] };
   const count = total ?? offset + TARIFF_RULES.length;
   const notify = (p: RuleProgress) => {
     try {
@@ -54,6 +62,11 @@ export function runTariffRules(ctx: ShipmentContext, tariff: TariffContext, { on
       ...(r.suggestedFix ? { suggestedFix: r.suggestedFix } : {}),
       ...(r.regulation ? { regulation: r.regulation } : {}),
     }));
+    if (rule.informational) {
+      output.notices.push(...found);
+      notify({ ...at, skipped: false, findings: 0, found: [] });
+      continue;
+    }
     output.findings.push(...found);
     notify({ ...at, skipped: false, findings: found.length, found });
   }

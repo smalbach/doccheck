@@ -5,8 +5,10 @@ import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { MailServerDto, MailTestDto } from './mail-settings.dto';
 import { MailSettingsService } from './mail-settings.service';
+import { NoOrg } from '../orgs/permissions';
 
 /** The mail server, set from the admin settings page (passwords are never sent back). */
+@NoOrg()
 @Controller('admin/mail')
 @UseGuards(AdminGuard)
 export class MailSettingsController {

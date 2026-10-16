@@ -14,6 +14,6 @@ A schedule entry is `[code, description, parent]`: `code` holds digits only (`""
 
 Notes are split into numbered notes (`Chapter 95, Note 1`, `Section XVI, Note 2`, `Chapter 95, Subheading Note 1`, `Chapter 84, Additional U.S. Note 3`), each with the URL of its PDF, so a finding can quote the one note it relies on. The text is extracted from PDFs and may carry small layout artifacts; always confirm against the source.
 
-When pgvector is installed in Postgres (migration `019_tariff_vectors.sql`), the API copies the index into the `tariff_vectors` table on first use and searches there; otherwise it keeps the vectors in memory. Without the index the search ranks by keywords only.
+When pgvector is installed in Postgres (migration `045_tariff_vectors.sql`), the API copies the index into the `tariff_vectors` table on first use and searches there; otherwise it keeps the vectors in memory. Without the index the search ranks by keywords only.
 
 Run the fetch again when a new revision is published (the HTSUS changes several times a year, the Customs Tariff every January 1 with consolidations during the year), then rebuild the index.

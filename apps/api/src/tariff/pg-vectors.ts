@@ -16,7 +16,7 @@ export class PgVectors implements VectorSource {
     this.id = embedder.id;
   }
 
-  /** pgvector is installed and migration 019 created the table. */
+  /** pgvector is installed and migration 045 created the table. */
   static async available(pool: Pool): Promise<boolean> {
     const { rows } = await pool.query<{ ok: boolean }>("select to_regclass('public.tariff_vectors') is not null as ok");
     return rows[0]?.ok ?? false;

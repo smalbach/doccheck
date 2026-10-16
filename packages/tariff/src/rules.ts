@@ -19,6 +19,11 @@ export interface TariffRule {
   definition: RuleDefinition;
   /** Runs only when the schedule is loaded. */
   needsSchedule?: boolean;
+  /**
+   * What it reports is not an error in the documents but what the entry may also need (P1, E1):
+   * it goes to the tariff report as a notice, cited like a finding, and never keeps a shipment open.
+   */
+  informational?: boolean;
   run(ctx: ShipmentContext, tariff: TariffContext): TariffRuleResult[];
 }
 
@@ -151,11 +156,12 @@ const regulationOf = (r: AgencyRequirement | { source: AgencyRequirement['source
 
 /**
  * P1: the declared codes fall under a partner government agency (US) or other government department
- * (CA) requirement. One finding per requirement, listing the lines it covers. Informational: the
+ * (CA) requirement. One notice per requirement, listing the lines it covers. Informational: the
  * documents are not wrong, but the entry will need this agency's data, permit or licence.
  */
 export const p1Agencies: TariffRule = {
-  definition: { id: 'P1', title: 'Partner government agency (PGA / OGD) data or permit likely needed for the HS codes', appliesTo: 'ALL', requires: ['COMMERCIAL_INVOICE'], kind: 'DETERMINISTIC', severity: 'LOW' },
+  definition: { id: 'P1', title: 'Partner government agency (PGA / OGD) data or permit likely needed for the HS codes (informational, tariff card)', appliesTo: 'ALL', requires: ['COMMERCIAL_INVOICE'], kind: 'DETERMINISTIC', severity: 'LOW' },
+  informational: true,
   run(ctx) {
     const hits = new Map<string, { req: AgencyRequirement; lines: ReturnType<typeof invoiceCodes> }>();
     for (const c of invoiceCodes(ctx)) {
@@ -173,7 +179,8 @@ export const p1Agencies: TariffRule = {
 
 /** E1: a line looks like a dual-use item (Wassenaar categories 3, 4, 5; also 6 and 9). Informational. */
 export const e1ExportControl: TariffRule = {
-  definition: { id: 'E1', title: 'Possible dual-use item (export control list categories 3, 4, 5)', appliesTo: 'ALL', requires: ['COMMERCIAL_INVOICE'], kind: 'DETERMINISTIC', severity: 'LOW' },
+  definition: { id: 'E1', title: 'Possible dual-use item (export control list categories 3, 4, 5; informational, tariff card)', appliesTo: 'ALL', requires: ['COMMERCIAL_INVOICE'], kind: 'DETERMINISTIC', severity: 'LOW' },
+  informational: true,
   run(ctx) {
     const inv = ctx.invoice;
     if (!inv) return [];

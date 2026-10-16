@@ -2,6 +2,7 @@ import type { Validation } from '../../api/types';
 import { Card } from '../../components/ui/Card';
 import { useI18n } from '../../i18n/useI18n';
 import { TariffLineItem } from './TariffLineItem';
+import { TariffNoticeItem } from './TariffNoticeItem';
 
 /** Per invoice line: declared HS code and its validity, the agent's view, suggested codes and agency flags. */
 export function TariffCard({ validation }: { validation?: Validation }) {
@@ -19,6 +20,16 @@ export function TariffCard({ validation }: { validation?: Validation }) {
       </p>
       <p className="muted small">{t('tariff.intro')}</p>
       {tariff.unavailable.length > 0 && <p className="muted small">{t('tariff.unavailable', { rules: tariff.unavailable.join(', ') })}</p>}
+      {tariff.notices && tariff.notices.length > 0 && (
+        <>
+          <h3 className="tariff-subtitle">{t('tariff.notices')}</h3>
+          <ul className="tariff-notices">
+            {tariff.notices.map((n) => (
+              <TariffNoticeItem key={n.id} notice={n} />
+            ))}
+          </ul>
+        </>
+      )}
       <ul className="tariff-lines">
         {tariff.lines.map((line) => (
           <TariffLineItem key={line.index} line={line} />
