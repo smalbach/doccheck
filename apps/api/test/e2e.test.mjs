@@ -483,7 +483,8 @@ describe('shipments', () => {
     assert.equal((await call('GET', '/shipments?limit=500')).status, 400);
     assert.equal((await call('GET', '/shipments/not-a-uuid')).status, 404);
     assert.equal((await call('GET', '/shipments/00000000-0000-0000-0000-000000000000')).status, 404);
-    assert.equal((await call('POST', '/shipments', { destination: 'MX' })).status, 400);
+    assert.equal((await call('POST', '/shipments', { destination: 'BR' })).status, 400);
+    assert.equal((await call('POST', '/shipments', { destination: 'MX' })).status, 201);
   });
 
   it('validates JSON documents, stores the run and returns it later', async () => {
@@ -525,7 +526,7 @@ describe('shipments', () => {
     assert.deepEqual((await page('q=pg_')).items.map((s) => s.reference), ['PG_%']); // _ and % are literal
     assert.deepEqual((await page('status=done')).items.map((s) => s.reference), ['PG-a']);
     assert.deepEqual((await page('status=open')).total, 3);
-    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0 });
+    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0, overdue: 0, dueSoon: 0 });
   });
 
   it('edits a shipment and keeps every validation run as history', async () => {

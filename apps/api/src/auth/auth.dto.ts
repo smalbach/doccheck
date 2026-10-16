@@ -35,3 +35,17 @@ export type ResetWithTokenDto = z.infer<typeof ResetWithTokenDto>;
 
 export const DeleteAccountDto = z.object({ password: z.string().min(1).max(200) });
 export type DeleteAccountDto = z.infer<typeof DeleteAccountDto>;
+
+const code = z.string().trim().min(6, 'Enter the code').max(20);
+
+export const MfaLoginDto = z.object({ ticket: z.string().min(1).max(200), code });
+export type MfaLoginDto = z.infer<typeof MfaLoginDto>;
+
+export const MfaCodeDto = z.object({ code });
+export type MfaCodeDto = z.infer<typeof MfaCodeDto>;
+
+export const MfaDisableDto = z.object({ password: z.string().min(1).max(200), code });
+export type MfaDisableDto = z.infer<typeof MfaDisableDto>;
+
+export const SsoDiscoverQuery = z.object({ email });
+export type SsoDiscoverQuery = z.infer<typeof SsoDiscoverQuery>;
