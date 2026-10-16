@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { Pool } from 'pg';
 import { PG_POOL } from '../db/db.module';
-import type { PublicUser, Role, UserRow } from './auth.types';
+import type { PublicUser, Role, SessionInfo, SessionOrigin, UserRow } from './auth.types';
 
 const toUser = (r: Record<string, unknown>): UserRow => ({
   id: r.id as string,
@@ -58,24 +58,39 @@ export class AuthRepository {
   }
 
   /**
-   * Deletes the user and, by cascade, sessions, shipments, documents, extractions, ISF and findings,
-   * unless a document is still extracting. Returns the storage keys of the user's PDFs.
+   * Deletes the user with the organizations only they belong to (by cascade their shipments, documents,
+   * extractions, ISF and findings), unless a document there is still extracting, or the user is the
+   * last owner of an organization others still use. Returns the storage keys of the deleted PDFs.
    */
-  async deleteUser(id: string): Promise<{ keys: string[] } | 'pending'> {
+  async deleteUser(id: string): Promise<{ keys: string[] } | 'pending' | { lastOwnerOf: string[] }> {
     const client = await this.pool.connect();
     try {
       await client.query('begin');
       await client.query('select 1 from users where id = $1 for update', [id]);
-      // Lock the user's shipments too, so an upload cannot slip a document in meanwhile.
-      await client.query('select 1 from shipments where user_id = $1 for update', [id]);
-      const docs = await client.query<{ storage_key: string; status: string }>(
-        'select d.storage_key, d.status from documents d join shipments s on s.id = d.shipment_id where s.user_id = $1',
+      const { rows: orgs } = await client.query<{ org_id: string; name: string; role: string; members: number; owners: number }>(
+        `select m.org_id, o.name, m.role,
+           (select count(*)::int from org_members x where x.org_id = m.org_id) as members,
+           (select count(*)::int from org_members x where x.org_id = m.org_id and x.role = 'owner') as owners
+         from org_members m join organizations o on o.id = m.org_id where m.user_id = $1 for update of m`,
         [id],
+      );
+      const lastOwnerOf = orgs.filter((o) => o.members > 1 && o.role === 'owner' && o.owners === 1).map((o) => o.name);
+      if (lastOwnerOf.length) {
+        await client.query('rollback');
+        return { lastOwnerOf };
+      }
+      const alone = orgs.filter((o) => o.members === 1).map((o) => o.org_id);
+      // Lock their shipments too, so an upload cannot slip a document in meanwhile.
+      await client.query('select 1 from shipments where org_id = any($1) for update', [alone]);
+      const docs = await client.query<{ storage_key: string; status: string }>(
+        'select d.storage_key, d.status from documents d join shipments s on s.id = d.shipment_id where s.org_id = any($1)',
+        [alone],
       );
       if (docs.rows.some((r) => r.status === 'QUEUED' || r.status === 'EXTRACTING')) {
         await client.query('rollback');
         return 'pending';
       }
+      await client.query('delete from organizations where id = any($1)', [alone]);
       await client.query('delete from users where id = $1', [id]);
       await client.query('commit');
       return { keys: docs.rows.map((r) => r.storage_key) };
@@ -87,14 +102,22 @@ export class AuthRepository {
     }
   }
 
-  async createSession(tokenHash: string, userId: string, expiresAt: Date): Promise<void> {
-    await this.pool.query('insert into sessions (token_hash, user_id, expires_at) values ($1, $2, $3)', [tokenHash, userId, expiresAt]);
+  async createSession(tokenHash: string, userId: string, expiresAt: Date, origin: SessionOrigin = {}): Promise<void> {
+    await this.pool.query(
+      `insert into sessions (token_hash, user_id, expires_at, ip, user_agent, method, org_id)
+       values ($1, $2, $3, $4, $5, $6, coalesce($7, (select last_org_id from users where id = $2)))`,
+      [tokenHash, userId, expiresAt, origin.ip ?? null, origin.userAgent?.slice(0, 300) ?? null, origin.method ?? 'password', origin.orgId ?? null],
+    );
   }
 
-  /** The user of a live session; expired sessions are removed on the way. */
-  async sessionUser(tokenHash: string): Promise<PublicUser | null> {
+  /**
+   * The user of a live session, with the session's id and organization; expired sessions are removed on
+   * the way. last_seen_at is written at most every five minutes.
+   */
+  async sessionUser(tokenHash: string): Promise<{ user: PublicUser; sessionId: string; orgId: string | null } | null> {
     const { rows } = await this.pool.query(
-      `select u.id, u.email, u.name, u.role, u.created_at, s.expires_at < now() as expired
+      `select u.id, u.email, u.name, u.role, u.created_at, s.id as session_id, s.org_id, s.expires_at < now() as expired,
+         s.last_seen_at < now() - interval '5 minutes' as stale
        from sessions s join users u on u.id = s.user_id where s.token_hash = $1`,
       [tokenHash],
     );
@@ -104,7 +127,32 @@ export class AuthRepository {
       await this.deleteSession(tokenHash);
       return null;
     }
-    return { id: r.id, email: r.email, name: r.name, role: r.role, createdAt: new Date(r.created_at).toISOString() };
+    if (r.stale) await this.pool.query('update sessions set last_seen_at = now() where token_hash = $1', [tokenHash]);
+    return { user: { id: r.id, email: r.email, name: r.name, role: r.role, createdAt: new Date(r.created_at).toISOString() }, sessionId: r.session_id, orgId: r.org_id };
+  }
+
+  async listSessions(userId: string, currentTokenHash?: string): Promise<SessionInfo[]> {
+    const { rows } = await this.pool.query(
+      `select id, method, ip, user_agent, created_at, last_seen_at, expires_at, token_hash = $2 as current
+       from sessions where user_id = $1 and expires_at > now() order by last_seen_at desc`,
+      [userId, currentTokenHash ?? null],
+    );
+    return rows.map((r) => ({
+      id: r.id,
+      current: r.current === true,
+      method: r.method,
+      ...(r.ip ? { ip: r.ip } : {}),
+      ...(r.user_agent ? { userAgent: r.user_agent } : {}),
+      createdAt: new Date(r.created_at).toISOString(),
+      lastSeenAt: new Date(r.last_seen_at).toISOString(),
+      expiresAt: new Date(r.expires_at).toISOString(),
+    }));
+  }
+
+  /** Signs out one of the user's sessions by its id. */
+  async deleteSessionById(userId: string, id: string): Promise<boolean> {
+    const res = await this.pool.query('delete from sessions where user_id = $1 and id = $2', [userId, id]);
+    return res.rowCount === 1;
   }
 
   async deleteSession(tokenHash: string): Promise<void> {

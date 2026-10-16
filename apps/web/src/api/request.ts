@@ -9,7 +9,7 @@ interface ErrorBody {
 export const UNAUTHORIZED_EVENT = 'doccheck:unauthorized';
 
 // A 401 from these is an answer about the credentials, not a lost session.
-const AUTH_ANSWERS = ['/auth/login', '/auth/me', '/auth/password'];
+const AUTH_ANSWERS = ['/auth/login', '/auth/me', '/auth/password', '/auth/mfa'];
 
 function messageOf(body: ErrorBody, res: Response): string {
   if (body.issues?.length) return body.issues.map((i) => i.message).join('. ');

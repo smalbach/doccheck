@@ -3,7 +3,7 @@ import type { RuleSettings } from '../../api/types';
 import { configOf, draftOf } from './ruleDraft';
 
 const settings: RuleSettings = {
-  scope: 'user',
+  scope: 'organization',
   config: { rules: { X8: { enabled: false } }, params: { grossWeightTolerance: 0.01, knownScacs: ['EXLN'] } },
   defaults: { grossWeightTolerance: 0.005, shipmentDateDays: 7, vgmTolerance: 0.05, priceDeviation: 0.3, priceScore: 3.5, priceMinHistory: 5, poQuantityTolerance: 0.05, poPriceTolerance: 0.02, isfLeadHours: 24, knownScacs: [] },
   bundledScacs: ['MAEU'],

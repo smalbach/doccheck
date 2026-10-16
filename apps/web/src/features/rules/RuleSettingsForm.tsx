@@ -18,14 +18,17 @@ const SEVERITIES = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW'] as const;
 export interface RuleSettingsFormProps {
   settings: RuleSettings;
   onSaved: (settings: RuleSettings) => void;
+  /** The member's role may change the organization's settings (org.settings). */
+  editable: boolean;
 }
 
 /** Each rule on or off with its severity and tolerances, plus the account's known SCACs; saved together. */
-export function RuleSettingsForm({ settings, onSaved }: RuleSettingsFormProps) {
+export function RuleSettingsForm({ settings, onSaved, editable }: RuleSettingsFormProps) {
   const { t, formatDateTime } = useI18n();
   const [draft, setDraft] = useState<RuleDraft>(() => draftOf(settings));
   const [status, setStatus] = useState<{ tone: 'ok' | 'error'; text: string }>();
-  const [busy, setBusy] = useState(false);
+  const [saving, setBusy] = useState(false);
+  const busy = saving || !editable;
   const saved = JSON.stringify(draftOf(settings));
   const dirty = JSON.stringify(draft) !== saved;
   const rules = [...settings.rules].sort((a, b) => compareRuleIds(a.id, b.id));
@@ -68,7 +71,8 @@ export function RuleSettingsForm({ settings, onSaved }: RuleSettingsFormProps) {
       aside={settings.updatedAt ? <span className="muted small">{t('ruleSettings.updated', { date: formatDateTime(settings.updatedAt) })}</span> : <span className="muted small">{t('ruleSettings.defaults')}</span>}
     >
       <p className="muted">{t('ruleSettings.rulesText')}</p>
-      <form onSubmit={submit} aria-busy={busy}>
+      {!editable && <Banner tone="info">{t('ruleSettings.readOnly')}</Banner>}
+      <form onSubmit={submit} aria-busy={saving}>
         {status && <Banner tone={status.tone}>{status.text}</Banner>}
         <ul className="rule-settings">
           {rules.map((r) => (
@@ -128,7 +132,7 @@ export function RuleSettingsForm({ settings, onSaved }: RuleSettingsFormProps) {
         </div>
         <div className="rule-settings-actions">
           <Button type="submit" variant="primary" disabled={busy || !dirty}>
-            {busy ? t('common.saving') : t('common.save')}
+            {saving ? t('common.saving') : t('common.save')}
           </Button>
           <Button onClick={() => void apply(() => api.resetRuleSettings(), t('ruleSettings.resetDone'))} disabled={busy || (!settings.updatedAt && !dirty)}>
             {t('ruleSettings.reset')}

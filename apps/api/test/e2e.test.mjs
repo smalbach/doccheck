@@ -529,7 +529,7 @@ describe('shipments', () => {
     assert.deepEqual((await page('q=pg_')).items.map((s) => s.reference), ['PG_%']); // _ and % are literal
     assert.deepEqual((await page('status=done')).items.map((s) => s.reference), ['PG-a']);
     assert.deepEqual((await page('status=open')).total, 3);
-    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0 });
+    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0, overdue: 0, dueSoon: 0 });
   });
 
   it('edits a shipment and keeps every validation run as history', async () => {
@@ -2248,11 +2248,11 @@ describe('rule settings', () => {
     const stored = (await call('GET', `/shipments/${s.id}/validation`, undefined, me)).body.ruleConfig;
     assert.deepEqual(stored.config, { rules: { X2: { enabled: false } }, params: { knownScacs: ['EXLN'] } });
     assert.deepEqual(stored.disabled, ['X2']);
-    assert.equal(stored.scope, 'user');
+    assert.equal(stored.scope, 'organization');
     assert.equal(stored.params.grossWeightTolerance, 0.005);
     assert.match(stored.asOf, /^\d{4}-\d{2}-\d{2}$/);
 
-    // Settings are per account.
+    // Settings are per organization (each account has its own personal one).
     assert.deepEqual((await call('GET', '/rules/settings')).body.config, { params: { knownScacs: ['EXLN'] } });
 
     const reset = await call('DELETE', '/rules/settings', undefined, me);

@@ -13,13 +13,14 @@ import {
   type RuleParams,
   type ShipmentContext,
 } from '@doccheck/rules';
+import { AuditService } from '../audit/audit.service';
 import { parsePurchaseOrdersCsv, PurchaseOrdersInput, type PurchaseOrderInput } from './purchase-orders';
 import { RuleSettingsRepository } from './rule-settings.repository';
 
 /** What a validation run applied, stored with it (validations.rule_config) so the run can be explained and replayed. */
 export interface AppliedRuleConfig {
-  scope: 'default' | 'user';
-  /** The account's changes to the defaults, as stored. */
+  scope: 'default' | 'organization';
+  /** The organization's changes to the defaults, as stored. */
   config: RuleConfig;
   /** Every tolerance in effect, defaults included. */
   params: RuleParams;
@@ -33,13 +34,16 @@ const todayUtc = () => new Date().toISOString().slice(0, 10);
 
 @Injectable()
 export class RuleSettingsService {
-  constructor(private readonly repo: RuleSettingsRepository) {}
+  constructor(
+    private readonly repo: RuleSettingsRepository,
+    private readonly audit: AuditService,
+  ) {}
 
-  /** The account's rule settings with the catalog the settings page edits them against. */
-  async settings(userId: string) {
-    const stored = await this.repo.get('user', userId);
+  /** The organization's rule settings with the catalog the settings page edits them against. */
+  async settings(orgId: string) {
+    const stored = await this.repo.get(orgId);
     return {
-      scope: 'user' as const,
+      scope: 'organization' as const,
       config: stored?.config ?? {},
       ...(stored?.updatedAt ? { updatedAt: stored.updatedAt } : {}),
       ...(stored?.updatedBy ? { updatedBy: stored.updatedBy } : {}),
@@ -52,29 +56,33 @@ export class RuleSettingsService {
     };
   }
 
-  async save(userId: string, body: unknown) {
+  async save(orgId: string, userId: string, body: unknown) {
     const parsed = RuleConfigSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException({ message: 'Invalid rule settings', issues: parsed.error.issues });
     const config = compactRuleConfig(parsed.data as RuleConfig);
-    if (Object.keys(config).length === 0) await this.repo.remove('user', userId);
-    else await this.repo.save('user', userId, config, userId);
-    return this.settings(userId);
+    const before = (await this.repo.get(orgId))?.config ?? {};
+    if (Object.keys(config).length === 0) await this.repo.remove(orgId);
+    else await this.repo.save(orgId, config, userId);
+    this.audit.note({ orgId, action: 'rules.settings', entity: 'organization', entityId: orgId, before, after: config });
+    return this.settings(orgId);
   }
 
-  async reset(userId: string) {
-    await this.repo.remove('user', userId);
-    return this.settings(userId);
+  async reset(orgId: string) {
+    const before = (await this.repo.get(orgId))?.config ?? {};
+    await this.repo.remove(orgId);
+    this.audit.note({ orgId, action: 'rules.settings.reset', entity: 'organization', entityId: orgId, before, after: {} });
+    return this.settings(orgId);
   }
 
   /**
-   * The config, account history and run date for validating a shipment, and the record of them to
-   * store with the run. A shipment without an owner (from before accounts) runs with the defaults.
-   * Organization settings will slot in here, under the user's.
+   * The config, history of the shipment's organization and run date for validating a shipment, and the
+   * record of them to store with the run. A shipment without an organization (from before accounts)
+   * runs with the defaults and no history.
    */
   async forValidation(ctx: ShipmentContext): Promise<{ config: RuleConfig; account: AccountHistory; asOf: string; applied: AppliedRuleConfig }> {
     const asOf = todayUtc();
-    const owner = await this.repo.shipmentOwner(ctx.shipmentId);
-    const stored = owner ? await this.repo.get('user', owner) : null;
+    const owner = await this.repo.shipmentOrg(ctx.shipmentId);
+    const stored = owner ? await this.repo.get(owner) : null;
     const config = stored?.config ?? {};
     const account: AccountHistory = {};
     if (owner && ctx.invoice) {
@@ -102,7 +110,7 @@ export class RuleSettingsService {
       account.purchaseOrders = po ? [po] : [];
     }
     const applied: AppliedRuleConfig = {
-      scope: stored ? 'user' : 'default',
+      scope: stored ? 'organization' : 'default',
       config,
       params: { ...DEFAULT_PARAMS, ...config.params },
       asOf,
@@ -116,12 +124,12 @@ export class RuleSettingsService {
     return { config, account, asOf, applied };
   }
 
-  listPurchaseOrders(userId: string) {
-    return this.repo.listPurchaseOrders(userId);
+  listPurchaseOrders(orgId: string) {
+    return this.repo.listPurchaseOrders(orgId);
   }
 
   /** Imports orders from a CSV or JSON file, or a JSON body; same PO number replaces the earlier one. */
-  async importPurchaseOrders(userId: string, input: { file?: { name: string; bytes: Buffer }; body?: unknown }) {
+  async importPurchaseOrders(orgId: string, userId: string, input: { file?: { name: string; bytes: Buffer }; body?: unknown }) {
     let orders: PurchaseOrderInput[];
     let source: string;
     if (input.file) {
@@ -144,12 +152,15 @@ export class RuleSettingsService {
       source = 'api';
       orders = this.parseJson(input.body);
     }
-    const result = await this.repo.upsertPurchaseOrders(userId, orders, source);
-    return { ...result, orders: await this.repo.listPurchaseOrders(userId) };
+    const result = await this.repo.upsertPurchaseOrders(orgId, userId, orders, source);
+    this.audit.note({ orgId, action: 'purchase_order.import', entity: 'purchase_order', after: { source, poNumbers: orders.map((o) => o.poNumber), ...result } });
+    return { ...result, orders: await this.repo.listPurchaseOrders(orgId) };
   }
 
-  async deletePurchaseOrder(userId: string, id: string) {
-    if (!/^[0-9a-f-]{36}$/i.test(id) || !(await this.repo.deletePurchaseOrder(userId, id))) throw new NotFoundException(`Purchase order ${id} not found`);
+  async deletePurchaseOrder(orgId: string, id: string) {
+    const poNumber = /^[0-9a-f-]{36}$/i.test(id) ? await this.repo.deletePurchaseOrder(orgId, id) : null;
+    if (!poNumber) throw new NotFoundException(`Purchase order ${id} not found`);
+    this.audit.note({ orgId, action: 'purchase_order.delete', entity: 'purchase_order', entityId: id, before: { poNumber } });
   }
 
   private parseJson(json: unknown): PurchaseOrderInput[] {

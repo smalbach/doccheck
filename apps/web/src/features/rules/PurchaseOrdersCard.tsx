@@ -11,10 +11,12 @@ import { errorMessage } from '../../lib/errorMessage';
 export interface PurchaseOrdersCardProps {
   orders: PurchaseOrderSummary[];
   onChange: (orders: PurchaseOrderSummary[]) => void;
+  /** The member's role may import and delete orders (shipment.write). */
+  editable: boolean;
 }
 
 /** Purchase orders imported from CSV or JSON, for the three-way match (rule X24). */
-export function PurchaseOrdersCard({ orders, onChange }: PurchaseOrdersCardProps) {
+export function PurchaseOrdersCard({ orders, onChange, editable }: PurchaseOrdersCardProps) {
   const { t, formatDateTime } = useI18n();
   const inputId = useId();
   const input = useRef<HTMLInputElement>(null);
@@ -60,15 +62,19 @@ export function PurchaseOrdersCard({ orders, onChange }: PurchaseOrdersCardProps
     { key: 'currency', header: t('ruleSettings.po.columns.currency'), cell: (o) => o.currency ?? t('common.none'), secondary: true },
     { key: 'source', header: t('ruleSettings.po.columns.source'), cell: (o) => <span className="muted small">{o.source ?? t('common.none')}</span>, secondary: true },
     { key: 'updated', header: t('ruleSettings.po.columns.updated'), cell: (o) => <span className="nowrap">{formatDateTime(o.updatedAt)}</span>, secondary: true },
-    {
-      key: 'actions',
-      header: <span className="visually-hidden">{t('ruleSettings.po.columns.actions')}</span>,
-      cell: (o) => (
-        <Button size="sm" variant="danger" onClick={() => remove(o)} disabled={busy} aria-label={t('ruleSettings.po.delete', { po: o.poNumber })}>
-          {t('ruleSettings.po.deleteShort')}
-        </Button>
-      ),
-    },
+    ...(editable
+      ? [
+          {
+            key: 'actions',
+            header: <span className="visually-hidden">{t('ruleSettings.po.columns.actions')}</span>,
+            cell: (o: PurchaseOrderSummary) => (
+              <Button size="sm" variant="danger" onClick={() => remove(o)} disabled={busy} aria-label={t('ruleSettings.po.delete', { po: o.poNumber })}>
+                {t('ruleSettings.po.deleteShort')}
+              </Button>
+            ),
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -78,15 +84,17 @@ export function PurchaseOrdersCard({ orders, onChange }: PurchaseOrdersCardProps
         {t('ruleSettings.po.format')} <code>PO Number, Line, SKU, Description, Qty, UOM, Unit Price, Currency</code>
       </p>
       {status && <Banner tone={status.tone}>{status.text}</Banner>}
-      <form className="rule-settings-upload" onSubmit={upload} aria-busy={busy}>
-        <label htmlFor={inputId} className="field-label">
-          {t('ruleSettings.po.file')}
-        </label>
-        <input id={inputId} ref={input} type="file" accept=".csv,.json,text/csv,application/json" onChange={(e) => setFile(e.target.files?.[0])} disabled={busy} />
-        <Button type="submit" disabled={busy || !file}>
-          {t('ruleSettings.po.upload')}
-        </Button>
-      </form>
+      {editable && (
+        <form className="rule-settings-upload" onSubmit={upload} aria-busy={busy}>
+          <label htmlFor={inputId} className="field-label">
+            {t('ruleSettings.po.file')}
+          </label>
+          <input id={inputId} ref={input} type="file" accept=".csv,.json,text/csv,application/json" onChange={(e) => setFile(e.target.files?.[0])} disabled={busy} />
+          <Button type="submit" disabled={busy || !file}>
+            {t('ruleSettings.po.upload')}
+          </Button>
+        </form>
+      )}
       {orders.length > 0 ? <DataTable columns={columns} rows={orders} rowKey={(o) => o.id} caption={t('ruleSettings.po.caption')} compact /> : <p className="muted">{t('ruleSettings.po.none')}</p>}
     </Card>
   );

@@ -4,6 +4,7 @@ import { PageBoundary } from './components/layout/PageBoundary';
 import { PublicRouteView } from './components/layout/PublicRouteView';
 import { RouteView } from './components/layout/RouteView';
 import { AuthProvider } from './features/auth/AuthProvider';
+import { OrgProvider } from './features/team/OrgProvider';
 import { I18nProvider } from './i18n/I18nProvider';
 import type { Locale } from './i18n/locales';
 import type { Messages } from './i18n/messages/en';
@@ -18,6 +19,7 @@ export function App({ initialLocale, initialMessages }: { initialLocale: Locale;
     <I18nProvider initialLocale={initialLocale} initialMessages={initialMessages}>
       <ThemeProvider>
         <AuthProvider>
+          <OrgProvider>
           <Tooltip.Provider delayDuration={300}>
         {isAppRoute(route) ? (
           <AppShell route={route}>
@@ -31,6 +33,7 @@ export function App({ initialLocale, initialMessages }: { initialLocale: Locale;
           </PageBoundary>
         )}
           </Tooltip.Provider>
+          </OrgProvider>
         </AuthProvider>
       </ThemeProvider>
     </I18nProvider>
