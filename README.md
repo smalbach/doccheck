@@ -69,6 +69,7 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 - **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a CBSA memorandum or 19 CFR passage found by hybrid search (embeddings + BM25). The model never writes the legal basis.
 - **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
 - **Talks to the supplier from the app**: the correction request is drafted from the findings in English, Spanish or French, sent over SMTP, and the reply comes back by IMAP or webhook into the same conversation, where its PDF is added to the shipment in one click ([docs/MESSAGING.md](docs/MESSAGING.md), in Spanish).
+- **Estimates duties and the landed cost** per line and per shipment: customs value from the invoice and its Incoterm (US transaction value on an FOB basis; Canadian value for duty at the place of direct shipment), HTSUS and Customs Tariff rates loaded from USITC and CBSA, dated tables of Section 301 / 232 / 122 duties and Canadian surtaxes, MPF and HMF, GST and HST, Bank of Canada and Federal Reserve exchange rates, free trade agreement checks (the nine CUSMA data elements, possible savings) and AD/CVD or SIMA cases flagged. What the documents do not say (related party, assists, freight under CIF) becomes a question, and the result prefills a CBP 7501 or CBSA CAD draft, never transmitted ([docs/DUTIES.md](docs/DUTIES.md), in Spanish).
 - **Measures itself** on a generated set of 200 labeled shipments (100 per destination, 293 injected errors), field by field and rule by rule, end to end on the extracted PDFs ([docs/METRICS.md](docs/METRICS.md)). Model answers are cached in `eval/cache`, so the evaluation reruns without a model.
 - **Works like a product**: accounts, private shipments, validation history, JSON export and printable report, aggregated extracted data with companies, products and containers, admin settings changed without a restart, and a read-only demo mode that replays cached model answers.
 
@@ -170,11 +171,13 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | `packages/extraction` | PDF text with positions (pdf.js), document classification, LLM extraction with Zod-validated output (Ollama), deterministic normalization, field-level scoring |
 | `packages/regulations` | Regulation corpus: chunking, local embeddings (bge-m3 via Ollama), hybrid search (vectors + BM25) with citations |
 | `packages/agent` | Citations on findings and model decisions on ambiguous cases (same consignee written differently, BL description vs invoice goods) |
+| `packages/duties` | Duty and tax estimate, customs value, landed cost, trade agreement checks and draft entry summaries (CBP 7501, CBSA CAD), pure functions over the rate tables in `data/duties` |
 | `packages/synth` | Synthetic shipment generator: ground-truth JSON, labeled error injection, HTML templates rendered to PDF |
 | `apps/api` | NestJS API; also serves the web app |
 | `apps/web` | Web app (Vite + React + Radix UI): shipments, PDF upload, findings with citations, PDF viewer with highlights. `src/features/<page>` holds one component per file, `src/components/ui` the Radix-based primitives, `src/lib` one helper per file |
 | `data/reference` | UN/LOCODE, ISO 3166, ISO 4217 tables (phase 2) |
 | `data/corpus` | CBSA memoranda (invoices D1-4-1, marking D11-3-1, proof of origin D11-4-2, valuation D13-4-3 and D13-4-7) and 19 CFR (141.83, 141.86, 141.89, Parts 134 and 149, Part 152 subpart E) as Markdown with URL and effective date, plus the embedding index |
+| `data/duties` | Rate tables with source and date: HTSUS and Customs Tariff (`npm run duties:fetch`), Bank of Canada and Federal Reserve exchange rates, and hand-edited additional duties, fees, taxes, AD/CVD cases and trade agreements |
 | `data/eval/v1` | Evaluation set: `truth.json` + `labels.json` per shipment (committed), PDFs (generated, git-ignored) |
 | `scripts/smoke.mjs` | End-to-end smoke test against the built API |
 
@@ -269,6 +272,8 @@ After the rules run, `/validate` does a second pass:
 | GET | `/shipments/:id/validation` | The last validation run with its findings and the destination it ran against |
 | GET | `/shipments/:id/validations` | Every validation run, newest first, with findings counted by severity; `/validations/:validationId` is one run with its findings |
 | GET | `/shipments/:id/findings` | Findings from the last validation |
+| GET | `/shipments/:id/duties` | Duty, taxes and landed cost per line and in total, with the findings that need an answer and the draft entry summary (`entry`, never transmitted) |
+| PUT / POST | `/shipments/:id/duties/inputs`, `/duties/preview` | Save the answers the documents do not give (related party, assists, freight, preference claimed, full tariff numbers…) and recalculate, or recalculate without saving |
 
 Documents passed as JSON in the body of `/validate` take precedence over extracted ones, which keeps the phase 0 flow working for tests.
 

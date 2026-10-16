@@ -10,6 +10,8 @@ import { evidencePointer } from '../../lib/findingReview';
 import { showFinding } from '../../lib/showFinding';
 import { liveValidationRun } from '../../lib/validationCaption';
 import { DocumentDataSheet } from '../document-data/DocumentDataSheet';
+import { DutiesCard } from '../duties/DutiesCard';
+import { useDuties } from '../duties/useDuties';
 import { ComposeDialog } from '../mail/ComposeDialog';
 import { ThreadsCard } from '../mail/ThreadsCard';
 import type { ViewerTarget } from '../pdf/types';
@@ -35,6 +37,9 @@ export function ShipmentPage({ id }: { id: string }) {
   const history = useValidationHistory(id, latest?.id);
   const [viewer, setViewer] = useState<ViewerTarget>();
   const [dataDoc, setDataDoc] = useState<{ doc: ShipmentDocument; focus?: string }>();
+  // The estimate is computed from the current documents: reload it when they or the destination change.
+  const dutiesVersion = `${shipment?.destination}|${latest?.id}|${[...documents.values()].map((d) => `${d.id}:${d.status}`).join(',')}`;
+  const duties = useDuties(id, dutiesVersion, !!shipment?.destination && !extracting, demo);
 
   if (!shipment) return <LoadingCard error={error} />;
   // A past run picked in the history replaces the latest one in Findings and in the export.
@@ -52,7 +57,7 @@ export function ShipmentPage({ id }: { id: string }) {
         actions={
           <>
             {!demo && <EditShipmentDialog shipment={shipment} extracting={extracting} onSave={update} />}
-            {validation && <ExportMenu shipment={shipment} validation={validation} />}
+            {validation && <ExportMenu shipment={shipment} validation={validation} duties={duties.view} />}
           </>
         }
       />
@@ -99,6 +104,7 @@ export function ShipmentPage({ id }: { id: string }) {
           notice={<ValidationNotice shipment={shipment} validation={validation} past={!!history.past} onShowLatest={history.showLatest} />}
         />
       </div>
+      {shipment.destination && <DutiesCard duties={duties} documents={documents} demo={demo} onOpen={setViewer} />}
       <ThreadsCard shipmentId={id} actions={!demo && <ComposeDialog mode="message" shipmentId={id} reference={shipment.reference ?? ''} />} />
       <ValidationHistory
         runs={history.runs}

@@ -1,0 +1,21 @@
+{
+  "name": "@doccheck/duties",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Duty and tax estimate, customs value, landed cost, free trade agreement checks and draft entry summaries (CBSA CAD / CBP 7501). Pure functions over dated rate tables in data/duties.",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@doccheck/schemas": "0.1.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "mdb-reader": "^3.0.0"
+  }
+}

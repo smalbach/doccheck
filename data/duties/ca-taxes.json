@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "table": "ca-taxes",
+    "source": "Excise Tax Act (GST/HST) and provincial rates published by the Canada Revenue Agency",
+    "version": "2026-10-16.1",
+    "dataDate": "2026-10-16",
+    "validThrough": "2026-10-16",
+    "note": "CBSA collects the 5 % GST on commercial imports. The provincial part of the HST on goods imported into a participating province is self-assessed by importers that are not registrants able to claim full input tax credits; PST, QST and RST are provincial and not collected at the border."
+  },
+  "gst": { "percent": "5", "from": "2008-01-01", "source": "Excise Tax Act, s. 212 and s. 215 (value for duty plus duties)" },
+  "provinces": [
+    { "province": "ON", "name": "Ontario", "hst": "13", "from": "2010-07-01" },
+    { "province": "NB", "name": "New Brunswick", "hst": "15", "from": "2016-07-01" },
+    { "province": "NL", "name": "Newfoundland and Labrador", "hst": "15", "from": "2016-07-01" },
+    { "province": "NS", "name": "Nova Scotia", "hst": "15", "from": "2010-07-01", "to": "2025-03-31" },
+    { "province": "NS", "name": "Nova Scotia", "hst": "14", "from": "2025-04-01" },
+    { "province": "PE", "name": "Prince Edward Island", "hst": "15", "from": "2016-10-01" },
+    { "province": "QC", "name": "Quebec", "pst": { "name": "QST", "percent": "9.975" }, "from": "2013-01-01" },
+    { "province": "BC", "name": "British Columbia", "pst": { "name": "PST", "percent": "7" }, "from": "2013-04-01" },
+    { "province": "MB", "name": "Manitoba", "pst": { "name": "RST", "percent": "7" }, "from": "2019-07-01" },
+    { "province": "SK", "name": "Saskatchewan", "pst": { "name": "PST", "percent": "6" }, "from": "2017-03-23" },
+    { "province": "AB", "name": "Alberta", "from": "2008-01-01" },
+    { "province": "YT", "name": "Yukon", "from": "2008-01-01" },
+    { "province": "NT", "name": "Northwest Territories", "from": "2008-01-01" },
+    { "province": "NU", "name": "Nunavut", "from": "2008-01-01" }
+  ],
+  "exciseChapters": [
+    { "chapter": "22", "note": "Beverages: excise duty on wine and spirits (Excise Act, 2001) and on beer (Excise Act) may apply." },
+    { "chapter": "24", "note": "Tobacco and vaping products: excise duty and stamping apply." },
+    { "chapter": "87", "note": "Automobiles: the excise tax on fuel-inefficient vehicles and air conditioners may apply (Excise Tax Act, Schedule I)." }
+  ]
+}
