@@ -1,0 +1,311 @@
+{
+  "id": "GB-016",
+  "seed": 431444847,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/3855",
+      "invoiceDate": "2026-04-08",
+      "poNumber": "TH409221",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-04-11",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ningbo",
+          "unLocode": "CNNGB",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ningbo"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "GBP",
+      "packageCount": 137,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "1096",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "11.61",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "12724.56",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8516.71"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1301.50",
+        "raw": {
+          "value": "1301.50",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1150.80",
+        "raw": {
+          "value": "1150.80",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "12724.56",
+        "currency": "GBP"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/3855",
+      "invoiceRef": "CI/26/3855",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-137",
+          "count": 137,
+          "type": "CTN",
+          "marks": "THAMESIDE/TH409221/C/NO. 1-137",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "1096",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1150.80",
+            "raw": {
+              "value": "1150.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1301.50",
+            "raw": {
+              "value": "1301.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 137,
+        "netWeight": {
+          "kg": "1150.80",
+          "raw": {
+            "value": "1150.80",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1301.50",
+          "raw": {
+            "value": "1301.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "14.24"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSNGB619164",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "921071605",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "069E",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Ningbo",
+        "unLocode": "CNNGB",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "London Gateway",
+        "unLocode": "GBLGP",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "AGXU7663499",
+          "seal": "AG7654905",
+          "type": "20GP",
+          "packages": 137,
+          "grossWeight": {
+            "kg": "1301.50",
+            "raw": {
+              "value": "1301.50",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "14.24"
+        }
+      ],
+      "totalPackages": 137,
+      "totalGrossWeight": {
+        "kg": "1301.50",
+        "raw": {
+          "value": "1301.50",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/TH409221/C/NO. 1-137",
+      "cargoDescription": "SAID TO CONTAIN 137 CTNS ELECTRIC KETTLE 1.7 L",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ningbo",
+      "dateOfIssue": "2026-04-14",
+      "shippedOnBoardDate": "2026-04-14",
+      "references": [
+        "CI/26/3855",
+        "TH409221"
+      ]
+    }
+  }
+}

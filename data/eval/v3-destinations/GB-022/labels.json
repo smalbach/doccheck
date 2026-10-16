@@ -1,0 +1,27 @@
+{
+  "id": "GB-022",
+  "errors": [
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "450.00",
+      "after": "510.00",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "GB284019376000",
+      "after": "IE433630209",
+      "expectedRuleIds": [
+        "K2"
+      ],
+      "description": "Importer number GB284019376000 replaced by IE433630209."
+    }
+  ]
+}

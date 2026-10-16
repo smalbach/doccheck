@@ -1,0 +1,27 @@
+{
+  "id": "MX-021",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "2359.20",
+      "after": "3259.20",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (2359.20 -> 3259.20)."
+    },
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "5190.00",
+      "after": "4411.50",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 0.85 against the packing list."
+    }
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "id": "GB-012",
+  "seed": 1790983178,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/3706",
+      "invoiceDate": "2026-02-16",
+      "poNumber": "TH835832",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-02-18",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cartagena",
+          "unLocode": "COCTG",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Felixstowe"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "GBP",
+      "packageCount": 285,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "17100",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.50",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "76950.00",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "17328.00",
+        "raw": {
+          "value": "17328.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "17100.00",
+        "raw": {
+          "value": "17100.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "76950.00",
+        "currency": "GBP"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/3706",
+      "invoiceRef": "CI/26/3706",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-285",
+          "count": 285,
+          "type": "BAG",
+          "marks": "THAMESIDE/TH835832/C/NO. 1-285",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "17100",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "17100.00",
+            "raw": {
+              "value": "17100.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "17328.00",
+            "raw": {
+              "value": "17328.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 285,
+        "netWeight": {
+          "kg": "17100.00",
+          "raw": {
+            "value": "17100.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "17328.00",
+          "raw": {
+            "value": "17328.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "40.61"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLCTG1893723",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "704997304",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "025E",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Cartagena",
+        "unLocode": "COCTG",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "PCLU2192199",
+          "seal": "PC1861641",
+          "type": "40GP",
+          "packages": 285,
+          "grossWeight": {
+            "kg": "17328.00",
+            "raw": {
+              "value": "17328.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "40.61"
+        }
+      ],
+      "totalPackages": 285,
+      "totalGrossWeight": {
+        "kg": "17328.00",
+        "raw": {
+          "value": "17328.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/TH835832/C/NO. 1-285",
+      "cargoDescription": "SAID TO CONTAIN 285 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Cartagena",
+      "dateOfIssue": "2026-02-20",
+      "shippedOnBoardDate": "2026-02-20",
+      "references": [
+        "CI/26/3706",
+        "TH835832"
+      ]
+    }
+  }
+}

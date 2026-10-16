@@ -12,7 +12,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { runRules } from '@doccheck/rules';
-import { buildDataset, EXTRA_ERROR_KINDS, injectErrors, Rng } from '@doccheck/synth';
+import { buildDataset, DESTINATION_ERROR_KINDS, EXTRA_ERROR_KINDS, injectErrors, Rng, V3_DESTINATIONS } from '@doccheck/synth';
 
 const { values } = parseArgs({ options: { model: { type: 'string', default: 'ollama_qwen3.8' }, reports: { type: 'string', default: 'eval/reports' } } });
 const pct = (x) => (x === null || x === undefined ? '—' : `${(x * 100).toFixed(1)}%`);
@@ -72,6 +72,35 @@ for (const id of ids) {
   }
 }
 const ruleOrder = (a, b) => a.localeCompare(b, 'en', { numeric: true });
+
+// Rules on the ground truth of data/eval/v3-destinations (Mexico, EU, UK): one table per destination.
+const destDir = 'data/eval/v3-destinations';
+const destinations = existsSync(destDir) ? await scoreTruth(destDir) : null;
+
+/** Per-destination, per-rule TP/FP/FN of the engine on a set's truth files, as for v1 above. */
+async function scoreTruth(set) {
+  const byDest = new Map();
+  for (const id of (await readdir(set, { withFileTypes: true })).filter((d) => d.isDirectory()).map((d) => d.name).sort()) {
+    const truth = JSON.parse(await readFile(join(set, id, 'truth.json'), 'utf8'));
+    const labels = JSON.parse(await readFile(join(set, id, 'labels.json'), 'utf8')).errors;
+    const dest = byDest.get(truth.destination) ?? { shipments: 0, errors: 0, covered: 0, rules: new Map() };
+    byDest.set(truth.destination, dest);
+    dest.shipments++;
+    dest.errors += labels.length;
+    dest.covered += labels.filter((l) => l.expectedRuleIds.length > 0).length;
+    const d = truth.documents;
+    const got = new Set(runRules({ shipmentId: id, destination: truth.destination, invoice: { id: 'invoice', data: d.invoice }, packingList: { id: 'packingList', data: d.packingList }, billOfLading: { id: 'billOfLading', data: d.billOfLading } }).findings.map((f) => f.ruleId));
+    const expected = new Set(labels.flatMap((l) => l.expectedRuleIds));
+    for (const r of new Set([...got, ...expected])) {
+      const row = dest.rules.get(r) ?? { tp: 0, fp: 0, fn: 0 };
+      if (got.has(r) && expected.has(r)) row.tp++;
+      else if (got.has(r)) row.fp++;
+      else row.fn++;
+      dest.rules.set(r, row);
+    }
+  }
+  return byDest;
+}
 const truthRules = [...perRule].sort(([a], [b]) => ruleOrder(a, b));
 const sum = (rows) => rows.reduce((a, [, r]) => ({ tp: a.tp + r.tp, fp: a.fp + r.fp, fn: a.fn + r.fn }), { tp: 0, fp: 0, fn: 0 });
 const pr = (r) => ({ recall: r.tp + r.fn ? r.tp / (r.tp + r.fn) : null, precision: r.tp + r.fp ? r.tp / (r.tp + r.fp) : null });
@@ -88,24 +117,30 @@ const toCtx = (s) => ({
   isf: s.documents.isf && { id: 'isf', data: s.documents.isf },
 });
 const cleans = buildDataset().map((e) => e.clean);
-const extraKinds = EXTRA_ERROR_KINDS.map((kind) => {
-  const row = { kind, rules: new Set(), injected: 0, tp: 0, fn: 0, fp: 0 };
-  cleans.forEach((clean, i) => {
-    const { shipment, labels } = injectErrors(clean, new Rng(0x9e37 + i), 1, [kind]);
-    const findings = runRules(toCtx(shipment)).findings;
-    for (const label of labels) {
-      row.injected++;
-      label.expectedRuleIds.forEach((r) => row.rules.add(r));
-      const hit = findings
-        .filter((f) => label.expectedRuleIds.includes(f.ruleId))
-        .some((f) => f.evidence.some((ev) => ev.documentId === label.document && ev.field === label.field));
-      if (hit) row.tp++;
-      else row.fn++;
-      row.fp += findings.filter((f) => !label.expectedRuleIds.includes(f.ruleId)).length;
-    }
+const extraKinds = coverage(EXTRA_ERROR_KINDS, cleans);
+// Destination error kinds alone on each clean v3-destinations shipment (each applies to some destinations only).
+const destinationKinds = coverage(DESTINATION_ERROR_KINDS, buildDataset(V3_DESTINATIONS).map((e) => e.clean));
+
+function coverage(kinds, cleans) {
+  return kinds.map((kind) => {
+    const row = { kind, rules: new Set(), injected: 0, tp: 0, fn: 0, fp: 0 };
+    cleans.forEach((clean, i) => {
+      const { shipment, labels } = injectErrors(clean, new Rng(0x9e37 + i), 1, [kind]);
+      const findings = runRules(toCtx(shipment)).findings;
+      for (const label of labels) {
+        row.injected++;
+        label.expectedRuleIds.forEach((r) => row.rules.add(r));
+        const hit = findings
+          .filter((f) => label.expectedRuleIds.includes(f.ruleId))
+          .some((f) => f.evidence.some((ev) => ev.documentId === label.document && ev.field === label.field));
+        if (hit) row.tp++;
+        else row.fn++;
+        row.fp += findings.filter((f) => !label.expectedRuleIds.includes(f.ruleId)).length;
+      }
+    });
+    return { ...row, ...pr(row) };
   });
-  return { ...row, ...pr(row) };
-});
+}
 
 const totalOf = (table) => pr(table.reduce((a, r) => ({ tp: a.tp + r.tp, fp: a.fp + r.fp, fn: a.fn + r.fn }), { tp: 0, fp: 0, fn: 0 }));
 const extRules = extraction?.rules.table ?? [];
@@ -114,6 +149,9 @@ const scanTotal = scans && totalOf(scans.rules.table);
 const isfX11 = isfSet?.rules.table.find((r) => r.rule === 'X11');
 const isfType = isfSet?.byType.find((t) => t.type === 'ISF');
 const agentRow = (kind) => agent?.summary.find((s) => s.kind === kind);
+
+const destTotal = destinations && pr(sum([...destinations.values()].flatMap((d) => [...d.rules])));
+const destCounts = destinations && [...destinations.values()].reduce((a, d) => ({ shipments: a.shipments + d.shipments, errors: a.errors + d.errors, covered: a.covered + d.covered }), { shipments: 0, errors: 0, covered: 0 });
 
 const headline = [
   '| Stage | Metric | Result |',
@@ -130,6 +168,7 @@ const headline = [
   isfX11 ? `| X11 on extracted ISF PDFs | Recall / precision, end to end | ${pct(isfX11.recall)} / ${pct(isfX11.precision)} |` : null,
   v2 ? `| Extraction, unseen formats (v2) | Field accuracy, ${v2.documents} PDFs (${v2.validDocuments ?? '?'} complete enough for the rules) | ${pct(v2.overall.accuracy)} |` : null,
   v2 ? `| Rules on v2 PDFs | Recall / precision, end to end | ${pct(totalOf(v2.rules.table).recall)} / ${pct(totalOf(v2.rules.table).precision)} |` : null,
+  destinations ? `| Rules on ground truth, Mexico / EU / UK (v3-destinations) | Recall / precision on ${destCounts.covered} covered errors (of ${destCounts.errors} injected, ${destCounts.shipments} shipments) | ${pct(destTotal.recall)} / ${pct(destTotal.precision)} |` : null,
   quirk ? `| Supplier learning | Supplier printing net and gross swapped (${quirk.documents} PDFs): weight fields without / with its corrected examples | ${pct(quirk.weightFields.baseline.accuracy)} / ${pct(quirk.weightFields.learning.accuracy)} |` : null,
   agentRow('party') ? `| Agent | Same consignee written differently (${agentRow('party').cases} cases): verdict / right action | ${pct(agentRow('party').accuracy)} / ${pct(agentRow('party').effectAccuracy)} (${agentRow('party').wrong} wrong, ${agentRow('party').unsure} unsure) |` : null,
   agentRow('description') ? `| Agent | BL description vs invoice goods (${agentRow('description').cases} cases): verdict / right action | ${pct(agentRow('description').accuracy)} / ${pct(agentRow('description').effectAccuracy)} (${agentRow('description').wrong} wrong, ${agentRow('description').unsure} unsure) |` : null,
@@ -157,6 +196,23 @@ const md = [
     return `| ${id} | ${pct(t.recall)} | ${pct(t.precision)} | ${pct(e?.recall)} | ${pct(e?.precision)} |`;
   }),
   '',
+  ...(destinations
+    ? [
+        '## Mexico, EU and UK (set v3-destinations)',
+        '',
+        `Ground truth only (no PDFs extracted yet): ${destCounts.shipments} synthetic shipments to Mexico (ANAM), the European Union (UCC) and the United Kingdom (HMRC), with the shared errors plus wrong or missing importer RFC/EORI numbers, HS codes cut short for ICS2, a missing TCA statement on origin and an invoice language Mexico does not accept. Generate with \`npm run synth -- --set v3-destinations --no-pdf\`.`,
+        '',
+        '| Destination | Rule | Recall (truth) | Precision (truth) | TP | FP | FN |',
+        '| --- | --- | --- | --- | --- | --- | --- |',
+        ...[...destinations].flatMap(([dest, d]) =>
+          [...d.rules].sort(([a], [b]) => ruleOrder(a, b)).map(([id, r]) => {
+            const t = pr(r);
+            return `| ${dest} | ${id} | ${pct(t.recall)} | ${pct(t.precision)} | ${r.tp} | ${r.fp} | ${r.fn} |`;
+          }),
+        ),
+        '',
+      ]
+    : []),
   '## Rule coverage on injected errors outside v1',
   '',
   `Ground truth only (no extraction, no model). Error kinds that dataset v1 does not inject, applied one at a time to each of its ${cleans.length} clean shipments; v1 itself is unchanged. A hit is the labeled rule citing the altered field; anything else the engine raises counts against precision.`,
@@ -164,6 +220,12 @@ const md = [
   '| Error kind | Rule | Injected | Caught | Missed | Other findings | Recall (truth) | Precision (truth) |',
   '| --- | --- | --- | --- | --- | --- | --- | --- |',
   ...extraKinds.map((k) => `| \`${k.kind}\` | ${[...k.rules].join(', ')} | ${k.injected} | ${k.tp} | ${k.fn} | ${k.fp} | ${pct(k.recall)} | ${pct(k.precision)} |`),
+  '',
+  'Destination error kinds, the same way on the clean shipments of set v3-destinations (each kind only where it applies: RFC and language to Mexico, ICS2 HS codes to the EU, the statement on origin to UK imports of EU goods):',
+  '',
+  '| Error kind | Rule | Injected | Caught | Missed | Other findings | Recall (truth) | Precision (truth) |',
+  '| --- | --- | --- | --- | --- | --- | --- | --- |',
+  ...destinationKinds.map((k) => `| \`${k.kind}\` | ${[...k.rules].join(', ')} | ${k.injected} | ${k.tp} | ${k.fn} | ${k.fp} | ${pct(k.recall)} | ${pct(k.precision)} |`),
   '',
   ...(extraction
     ? [

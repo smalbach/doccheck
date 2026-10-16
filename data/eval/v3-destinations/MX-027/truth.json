@@ -1,0 +1,422 @@
+{
+  "id": "MX-027",
+  "seed": 1108342409,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "PUN2608507",
+      "invoiceDate": "2026-04-29",
+      "poNumber": "PO-19156",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        }
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        }
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-05-02",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Nhava Sheva"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 395,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "3680",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "14.25",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "52440.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "33800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "0.95",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "32110.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 3,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "43",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "82.52",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3548.36",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "9309.50",
+        "raw": {
+          "value": "9309.50",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "9857.50",
+        "raw": {
+          "value": "9857.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "88098.36",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-PUN2608507",
+      "invoiceRef": "PUN2608507",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-184",
+          "count": 184,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-19156/C/NO. 1-396",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "3680",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4968.00",
+            "raw": {
+              "value": "4968.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "5170.40",
+            "raw": {
+              "value": "5170.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "185-353",
+          "count": 169,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-19156/C/NO. 1-396",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "33800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3718.00",
+            "raw": {
+              "value": "3718.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3870.10",
+            "raw": {
+              "value": "3870.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "354-396",
+          "count": 43,
+          "type": "CRT",
+          "marks": "COMERCIALIZADORA/PO-19156/C/NO. 1-396",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "43",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "623.50",
+            "raw": {
+              "value": "623.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "817.00",
+            "raw": {
+              "value": "817.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 396,
+        "netWeight": {
+          "kg": "9309.50",
+          "raw": {
+            "value": "9309.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "9857.50",
+          "raw": {
+            "value": "9857.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "17.55"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPNSA394087",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "327671123",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        }
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        }
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "093E",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "AGXU7851670",
+          "seal": "AG9624325",
+          "type": "20GP",
+          "packages": 396,
+          "grossWeight": {
+            "kg": "9857.50",
+            "raw": {
+              "value": "9857.50",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "17.55"
+        }
+      ],
+      "totalPackages": 396,
+      "totalGrossWeight": {
+        "kg": "9857.50",
+        "raw": {
+          "value": "9857.50",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-19156/C/NO. 1-396",
+      "cargoDescription": "SAID TO CONTAIN 396 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-05-04",
+      "shippedOnBoardDate": "2026-05-04",
+      "references": [
+        "PUN2608507",
+        "PO-19156"
+      ]
+    }
+  }
+}

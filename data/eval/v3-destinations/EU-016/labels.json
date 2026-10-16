@@ -1,0 +1,27 @@
+{
+  "id": "EU-016",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 185,
+      "after": 184,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 184 packages instead of 185."
+    },
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "DE482910375516203",
+      "after": "GB222593574000",
+      "expectedRuleIds": [
+        "E2"
+      ],
+      "description": "Importer number DE482910375516203 replaced by GB222593574000."
+    }
+  ]
+}

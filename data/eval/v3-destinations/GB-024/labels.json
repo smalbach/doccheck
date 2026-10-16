@@ -1,0 +1,26 @@
+{
+  "id": "GB-024",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "9054.08",
+      "after": "954.08",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (9054.08 -> 954.08)."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "INR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 1830.00 INR on an invoice in EUR."
+    }
+  ]
+}

@@ -18,7 +18,8 @@ export const IsoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Expected YYYY-MM
 export const DocumentType = z.enum(['COMMERCIAL_INVOICE', 'PACKING_LIST', 'BILL_OF_LADING', 'ISF', 'UNKNOWN']);
 export type DocumentType = z.infer<typeof DocumentType>;
 
-export const Destination = z.enum(['CA', 'US']);
+/** Import destination: a customs regime. EU is the customs union (one Union Customs Code), GB the United Kingdom. */
+export const Destination = z.enum(['CA', 'US', 'MX', 'EU', 'GB']);
 export type Destination = z.infer<typeof Destination>;
 
 export const TransportMode = z.enum(['SEA', 'AIR', 'ROAD']);

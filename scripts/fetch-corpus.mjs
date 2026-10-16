@@ -2,9 +2,12 @@
 //   data/corpus/<authority>/<id>.md
 // Sources are public government pages. Run again to refresh; the eCFR date is the latest available.
 //
-//   node scripts/fetch-corpus.mjs
+//   node scripts/fetch-corpus.mjs [--authority cbsa,cbp,anam,ucc,hmrc]
+// Mexico, EU and UK sources and their converters are in scripts/corpus-intl.mjs.
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { parseArgs } from 'node:util';
+import { convertIntl, INTL_SOURCES, isIntl } from './corpus-intl.mjs';
 
 const OUT = 'data/corpus';
 const UA = 'DocCheck-corpus/0.1 (portfolio project; https://github.com/)';
@@ -83,15 +86,27 @@ function ecfrToMarkdown(xml) {
 
 const frontMatter = (o) => `---\n${Object.entries(o).filter(([, v]) => v).map(([k, v]) => `${k}: ${JSON.stringify(v)}`).join('\n')}\n---\n\n`;
 
-const titles = JSON.parse(await get('https://www.ecfr.gov/api/versioner/v1/titles.json'));
-const ecfrDate = titles.titles.find((t) => t.number === 19).up_to_date_as_of;
+const { values } = parseArgs({ options: { authority: { type: 'string' } } });
+const only = values.authority?.split(',');
+const selected = [...SOURCES, ...INTL_SOURCES].filter((s) => !only || only.includes(s.authority));
+const ecfrDate = selected.some((s) => s.kind === 'ecfr')
+  ? JSON.parse(await get('https://www.ecfr.gov/api/versioner/v1/titles.json')).titles.find((t) => t.number === 19).up_to_date_as_of
+  : undefined;
 const retrievedAt = new Date().toISOString().slice(0, 10);
 
-for (const s of SOURCES) {
+for (const s of selected) {
   let markdown;
   let url;
   let effectiveDate;
-  if (s.kind === 'cbsa-html') {
+  if (isIntl(s)) {
+    try {
+      ({ markdown, url, effectiveDate } = await convertIntl(s));
+    } catch (err) {
+      if (!s.optional) throw err;
+      console.warn(`Skipped ${s.id} (optional): ${err.message}`);
+      continue;
+    }
+  } else if (s.kind === 'cbsa-html') {
     ({ markdown, effectiveDate } = cbsaToMarkdown(await get(s.url)));
     url = s.url;
   } else {

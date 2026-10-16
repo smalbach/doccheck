@@ -1,0 +1,368 @@
+{
+  "id": "MX-024",
+  "seed": 905207382,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/1585",
+      "invoiceDate": "2026-03-12",
+      "poNumber": "PO-13982",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        }
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        }
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-03-19",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "La Spezia",
+          "unLocode": "ITSPE",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "La Spezia"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 93,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5",
+          "description": "Extra virgin olive oil, 5 L tins",
+          "quantity": {
+            "value": "332",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "27.78",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "9222.96",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "400",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "10.39",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4156.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "10251.90",
+        "raw": {
+          "value": "10251.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "9927.20",
+        "raw": {
+          "value": "9927.20",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "13378.96",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/1585",
+      "invoiceRef": "CI/26/1585",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-83",
+          "count": 83,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-13982/C/NO. 1-93",
+          "contents": [
+            {
+              "sku": "OO-EV-5",
+              "description": "EV olive oil 5 L",
+              "quantity": {
+                "value": "332",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1527.20",
+            "raw": {
+              "value": "1527.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1601.90",
+            "raw": {
+              "value": "1601.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "84-93",
+          "count": 10,
+          "type": "PLT",
+          "marks": "COMERCIALIZADORA/PO-13982/C/NO. 1-93",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "400",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "8400.00",
+            "raw": {
+              "value": "8400.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "8650.00",
+            "raw": {
+              "value": "8650.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 93,
+        "netWeight": {
+          "kg": "9927.20",
+          "raw": {
+            "value": "9927.20",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "10251.90",
+          "raw": {
+            "value": "10251.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "12.13"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSSPE291975",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "276555258",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        }
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        }
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "061N",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "La Spezia",
+        "unLocode": "ITSPE",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "TWEU3179368",
+          "seal": "TW5764974",
+          "type": "20GP",
+          "packages": 93,
+          "grossWeight": {
+            "kg": "10251.90",
+            "raw": {
+              "value": "10251.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "12.13"
+        }
+      ],
+      "totalPackages": 93,
+      "totalGrossWeight": {
+        "kg": "9944.34",
+        "raw": {
+          "value": "9944.34",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-13982/C/NO. 1-93",
+      "cargoDescription": "SAID TO CONTAIN 93 PKGS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "La Spezia",
+      "dateOfIssue": "2026-03-19",
+      "shippedOnBoardDate": "2026-03-19",
+      "references": [
+        "CI/26/1585",
+        "PO-13982"
+      ]
+    }
+  }
+}

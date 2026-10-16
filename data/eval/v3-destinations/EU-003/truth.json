@@ -1,0 +1,368 @@
+{
+  "id": "EU-003",
+  "seed": 1786516508,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NIN2603158",
+      "invoiceDate": "2026-09-15",
+      "poNumber": "PO-54769",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-09-22",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Shanghai",
+          "unLocode": "CNSHA",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Le Havre"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 203,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "1192",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "15.63",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "18630.96",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "216",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.06",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "5628.96",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1987.90",
+        "raw": {
+          "value": "1987.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1748.40",
+        "raw": {
+          "value": "1748.40",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "24259.92",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-NIN2603158",
+      "invoiceRef": "NIN2603158",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "packages": [
+        {
+          "range": "1-149",
+          "count": 149,
+          "type": "CTN",
+          "marks": "MAISON/PO-54769/C/NO. 1-203",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "1192",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1251.60",
+            "raw": {
+              "value": "1251.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1415.50",
+            "raw": {
+              "value": "1415.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "150-203",
+          "count": 54,
+          "type": "CTN",
+          "marks": "MAISON/PO-54769/C/NO. 1-203",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "216",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "496.80",
+            "raw": {
+              "value": "496.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "572.40",
+            "raw": {
+              "value": "572.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 203,
+        "netWeight": {
+          "kg": "1748.40",
+          "raw": {
+            "value": "1748.40",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1987.90",
+          "raw": {
+            "value": "1987.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "21.56"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSSHA127503",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "494224322",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "058S",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Shanghai",
+        "unLocode": "CNSHA",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Le Havre",
+        "unLocode": "FRLEH",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "MDOU9438353",
+          "seal": "MD8660058",
+          "type": "20GP",
+          "packages": 203,
+          "grossWeight": {
+            "kg": "1987.90",
+            "raw": {
+              "value": "1987.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "21.56"
+        }
+      ],
+      "totalPackages": 203,
+      "totalGrossWeight": {
+        "kg": "1987.90",
+        "raw": {
+          "value": "1987.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/PO-54769/C/NO. 1-203",
+      "cargoDescription": "SAID TO CONTAIN 203 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Shanghai",
+      "dateOfIssue": "2026-09-25",
+      "shippedOnBoardDate": "2026-09-25",
+      "references": [
+        "NIN2603158",
+        "PO-54769"
+      ]
+    }
+  }
+}

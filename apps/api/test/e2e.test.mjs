@@ -490,7 +490,8 @@ describe('shipments', () => {
     assert.equal((await call('GET', '/shipments?limit=500')).status, 400);
     assert.equal((await call('GET', '/shipments/not-a-uuid')).status, 404);
     assert.equal((await call('GET', '/shipments/00000000-0000-0000-0000-000000000000')).status, 404);
-    assert.equal((await call('POST', '/shipments', { destination: 'MX' })).status, 400);
+    assert.equal((await call('POST', '/shipments', { destination: 'BR' })).status, 400);
+    assert.equal((await call('POST', '/shipments', { destination: 'MX' })).status, 201);
   });
 
   it('validates JSON documents, stores the run and returns it later', async () => {

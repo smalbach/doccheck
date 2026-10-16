@@ -1,0 +1,363 @@
+{
+  "id": "EU-014",
+  "seed": 1375322590,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-1129",
+      "invoiceDate": "2026-01-14",
+      "poNumber": "PO445227",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        }
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        }
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-01-21",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ningbo",
+          "unLocode": "CNNGB",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Rotterdam"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 195,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "1312",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "18.29",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "23996.48",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "124",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "19.61",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "2431.64",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1662.80",
+        "raw": {
+          "value": "1662.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1886.60",
+        "raw": {
+          "value": "1886.60",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "26428.12",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-1129",
+      "invoiceRef": "INV-2026-1129",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-164",
+          "count": 164,
+          "type": "CTN",
+          "marks": "POLDERHUIS/PO445227/C/NO. 1-195",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "1262",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1377.60",
+            "raw": {
+              "value": "1377.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1558.00",
+            "raw": {
+              "value": "1558.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "165-195",
+          "count": 31,
+          "type": "CTN",
+          "marks": "POLDERHUIS/PO445227/C/NO. 1-195",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "124",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "285.20",
+            "raw": {
+              "value": "285.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "328.60",
+            "raw": {
+              "value": "328.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 195,
+        "netWeight": {
+          "kg": "1662.80",
+          "raw": {
+            "value": "1662.80",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1886.60",
+          "raw": {
+            "value": "1886.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "20.54"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXNGB8212012",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "890779343",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        }
+      },
+      "notifyParty": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        }
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "031S",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Ningbo",
+        "unLocode": "CNNGB",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Rotterdam",
+        "unLocode": "NLRTM",
+        "country": "NL"
+      },
+      "placeOfDelivery": {
+        "name": "Rotterdam",
+        "unLocode": "NLRTM",
+        "country": "NL"
+      },
+      "containers": [
+        {
+          "number": "AGLU2970807",
+          "seal": "AG5615166",
+          "type": "20GP",
+          "packages": 195,
+          "grossWeight": {
+            "kg": "1886.60",
+            "raw": {
+              "value": "1886.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "20.54"
+        }
+      ],
+      "totalPackages": 195,
+      "totalGrossWeight": {
+        "kg": "1886.60",
+        "raw": {
+          "value": "1886.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "POLDERHUIS/PO445227/C/NO. 1-195",
+      "cargoDescription": "SAID TO CONTAIN 195 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Ningbo",
+      "dateOfIssue": "2026-01-24",
+      "shippedOnBoardDate": "2026-01-24",
+      "references": [
+        "INV-2026-1129",
+        "PO445227"
+      ]
+    }
+  }
+}

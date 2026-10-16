@@ -288,6 +288,12 @@ describe('organizations', () => {
     assert.equal((await call('GET', '/usage', undefined, a.cookie)).body.meters.find((m) => m.kind === 'validation').used, 1);
     assert.equal((await call('GET', '/usage', undefined, b.cookie)).body.meters.find((m) => m.kind === 'validation').used, 0);
     assert.equal((await call('GET', `/shipments/${s.id}/documents/${docId}/file`, undefined, b.cookie)).status, 404);
+    // The Mexico, EU and UK destinations filter within the organization too.
+    const eu = (await call('POST', '/shipments', { destination: 'EU', reference: 'EU-1' }, a.cookie)).body;
+    assert.equal((await call('GET', '/shipments?destination=EU', undefined, a.cookie)).body.total, 1);
+    assert.equal((await call('GET', '/shipments?destination=EU', undefined, b.cookie)).body.total, 0);
+    assert.equal((await call('PATCH', `/shipments/${eu.id}`, { destination: 'GB' }, b.cookie)).status, 404);
+    assert.equal((await call('GET', `/shipments/${eu.id}`, undefined, a.cookie)).body.destination, 'EU');
   });
 
   it('invites members by email, shares the organization’s shipments and keeps personal ones apart', async () => {
@@ -591,6 +597,30 @@ describe('audit log', () => {
     // Longer periods keep more.
     await call('PATCH', '/orgs/current', { retentionUsYears: 10 }, owner.cookie);
     assert.deepEqual((await call('GET', '/orgs/current/retention', undefined, owner.cookie)).body, { expired: 0 });
+  });
+
+  it('keeps Mexico, EU and UK shipments for their own periods: 5, 3 and 4 years by default', async () => {
+    const owner = await signUp('Retainer Intl');
+    await call('POST', '/orgs', { name: 'Retention Intl Co' }, owner.cookie);
+    const periods = (await call('GET', '/orgs/current', undefined, owner.cookie)).body.settings;
+    assert.deepEqual([periods.retentionMxYears, periods.retentionEuYears, periods.retentionGbYears], [5, 3, 4]);
+    const make = async (destination, yearsAgo) => {
+      const s = (await call('POST', '/shipments', { destination, reference: `${destination}-${yearsAgo}` }, owner.cookie)).body;
+      await pool.query(`update shipments set created_at = now() - make_interval(days => $2) where id = $1`, [s.id, Math.round(yearsAgo * 365.25)]);
+      return s;
+    };
+    const expired = [await make('MX', 5.5), await make('EU', 3.5), await make('GB', 4.5)];
+    const kept = [await make('MX', 4.5), await make('EU', 2.5), await make('GB', 3.5)];
+    const run = await call('POST', '/orgs/current/retention/run', undefined, owner.cookie);
+    assert.deepEqual(run.body, { deleted: 3, skipped: 0 });
+    const left = (await call('GET', '/shipments', undefined, owner.cookie)).body.items.map((x) => x.id).sort();
+    assert.deepEqual(left, kept.map((x) => x.id).sort());
+    const audit = (await call('GET', '/audit?action=retention.delete', undefined, owner.cookie)).body.items;
+    assert.deepEqual(audit.map((r) => r.entityId).sort(), expired.map((x) => x.id).sort());
+    // Each period is set on its own and checked like the others.
+    assert.equal((await call('PATCH', '/orgs/current', { retentionEuYears: 2 }, owner.cookie)).status, 200);
+    assert.deepEqual((await call('GET', '/orgs/current/retention', undefined, owner.cookie)).body, { expired: 1 });
+    assert.equal((await call('PATCH', '/orgs/current', { retentionGbYears: 0 }, owner.cookie)).status, 400);
   });
 });
 

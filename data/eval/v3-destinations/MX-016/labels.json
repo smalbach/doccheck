@@ -1,0 +1,16 @@
+{
+  "id": "MX-016",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 158,
+      "after": 159,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 159 packages instead of 158."
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "id": "MX-007",
+  "seed": 1603251074,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-7744",
+      "invoiceDate": "2026-02-24",
+      "poNumber": "PO-98696",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "shipmentDate": "2026-03-07",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Fos-sur-Mer",
+          "unLocode": "FRFOS",
+          "country": "FR"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Fos-sur-Mer"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 103,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "700",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.65",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "5355.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "PZ-1000",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+          "quantity": {
+            "value": "2136",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.75",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "10146.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1547.22",
+        "raw": {
+          "value": "1547.22",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1450.32",
+        "raw": {
+          "value": "1450.32",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "15501.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-7744",
+      "invoiceRef": "INV-2026-7744",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-14",
+          "count": 14,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-98696/C/NO. 1-103",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "700",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "126.00",
+            "raw": {
+              "value": "126.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "142.80",
+            "raw": {
+              "value": "142.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "15-103",
+          "count": 89,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-98696/C/NO. 1-103",
+          "contents": [
+            {
+              "sku": "PZ-1000",
+              "description": "Jigsaw puzzle 1000 pcs",
+              "quantity": {
+                "value": "2136",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1324.32",
+            "raw": {
+              "value": "1324.32",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1404.42",
+            "raw": {
+              "value": "1404.42",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 103,
+        "netWeight": {
+          "kg": "1450.32",
+          "raw": {
+            "value": "1450.32",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1547.22",
+          "raw": {
+            "value": "1547.22",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "6.62"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWEFOS9912573",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "594752226",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4142"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "075W",
+      "placeOfReceipt": {
+        "name": "Lyon",
+        "country": "FR"
+      },
+      "portOfLoading": {
+        "name": "Fos-sur-Mer",
+        "unLocode": "FRFOS",
+        "country": "FR"
+      },
+      "portOfDischarge": {
+        "name": "Manzanillo",
+        "unLocode": "MXZLO",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "TWEU6619434",
+          "seal": "TW3609587",
+          "type": "20GP",
+          "packages": 103,
+          "grossWeight": {
+            "kg": "1547.22",
+            "raw": {
+              "value": "1547.22",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "6.62"
+        }
+      ],
+      "totalPackages": 105,
+      "totalGrossWeight": {
+        "kg": "1547.22",
+        "raw": {
+          "value": "1547.22",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-98696/C/NO. 1-103",
+      "cargoDescription": "SAID TO CONTAIN 103 CTNS PLUSH TEDDY BEAR 30 CM AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Fos-sur-Mer",
+      "dateOfIssue": "2026-03-08",
+      "shippedOnBoardDate": "2026-03-08",
+      "references": [
+        "INV-2026-7744",
+        "PO-98696"
+      ]
+    }
+  }
+}

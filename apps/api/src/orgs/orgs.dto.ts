@@ -15,6 +15,9 @@ export const OrgSettingsDto = z
     name: z.string().trim().min(1).max(100),
     retentionCaYears: z.number().int().min(1).max(50),
     retentionUsYears: z.number().int().min(1).max(50),
+    retentionMxYears: z.number().int().min(1).max(50),
+    retentionEuYears: z.number().int().min(1).max(50),
+    retentionGbYears: z.number().int().min(1).max(50),
     requireApproval: z.boolean(),
     slaEtaLeadHours: z.number().int().min(0).max(720),
   })

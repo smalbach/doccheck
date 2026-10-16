@@ -1,0 +1,28 @@
+{
+  "id": "EU-022",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "14 quai Rambaud",
+      "after": "78 quai Rambaud",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[0].quantity.value",
+      "before": "3420",
+      "after": "34200",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 1 quantity changed without updating the line total."
+    }
+  ]
+}

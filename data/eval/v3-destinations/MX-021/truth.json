@@ -1,0 +1,319 @@
+{
+  "id": "MX-021",
+  "seed": 567644032,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CER2604949",
+      "invoiceDate": "2026-03-02",
+      "poNumber": "CO985625",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-03-04",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "La Spezia",
+          "unLocode": "ITSPE",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Veracruz"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 6,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "240",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.83",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3259.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "5190.00",
+        "raw": {
+          "value": "5190.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5040.00",
+        "raw": {
+          "value": "5040.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "2359.20",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL-CER2604949",
+      "invoiceRef": "CER2604949",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-6",
+          "count": 6,
+          "type": "PLT",
+          "marks": "COMERCIALIZADORA/CO985625/C/NO. 1-6",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "240",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "5040.00",
+            "raw": {
+              "value": "5040.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "5190.00",
+            "raw": {
+              "value": "5190.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 6,
+        "netWeight": {
+          "kg": "5040.00",
+          "raw": {
+            "value": "5040.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5190.00",
+          "raw": {
+            "value": "5190.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "5.18"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXSPE7211854",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "461237671",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "009E",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "La Spezia",
+        "unLocode": "ITSPE",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "AGXU4325163",
+          "seal": "AG6673889",
+          "type": "20GP",
+          "packages": 6,
+          "grossWeight": {
+            "kg": "5190.00",
+            "raw": {
+              "value": "5190.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "5.18"
+        }
+      ],
+      "totalPackages": 6,
+      "totalGrossWeight": {
+        "kg": "4411.50",
+        "raw": {
+          "value": "4411.50",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/CO985625/C/NO. 1-6",
+      "cargoDescription": "SAID TO CONTAIN 6 PLTS PORCELAIN TILE 60X60",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "La Spezia",
+      "dateOfIssue": "2026-03-06",
+      "shippedOnBoardDate": "2026-03-06",
+      "references": [
+        "CER2604949",
+        "CO985625"
+      ]
+    }
+  }
+}

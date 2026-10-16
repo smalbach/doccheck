@@ -1,0 +1,311 @@
+{
+  "id": "GB-015",
+  "seed": 2117155590,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "ÖZD2601691",
+      "invoiceDate": "2026-03-16",
+      "poNumber": "TH212214",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-03-19",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Felixstowe"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "GBP",
+      "packageCount": 186,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "3720",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "12.85",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "47802.00",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "5226.60",
+        "raw": {
+          "value": "5226.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5022.00",
+        "raw": {
+          "value": "5022.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "47802.00",
+        "currency": "GBP"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-ÖZD2601691",
+      "invoiceRef": "ÖZD2601691",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-186",
+          "count": 186,
+          "type": "CTN",
+          "marks": "THAMESIDE/TH212214/C/NO. 1-186",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "3670",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "5022.00",
+            "raw": {
+              "value": "5022.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "5226.60",
+            "raw": {
+              "value": "5226.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 186,
+        "netWeight": {
+          "kg": "5022.00",
+          "raw": {
+            "value": "5022.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5226.60",
+          "raw": {
+            "value": "5226.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "8.79"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPAMR303774",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "542937847",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "001N",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "TWEU8077203",
+          "seal": "TW9327765",
+          "type": "20GP",
+          "packages": 186,
+          "grossWeight": {
+            "kg": "5226.60",
+            "raw": {
+              "value": "5226.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "8.79"
+        }
+      ],
+      "totalPackages": 186,
+      "totalGrossWeight": {
+        "kg": "5226.60",
+        "raw": {
+          "value": "5226.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/TH212214/C/NO. 1-186",
+      "cargoDescription": "SAID TO CONTAIN 186 CTNS BRASS BALL VALVE 2\"",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-03-22",
+      "shippedOnBoardDate": "2026-03-22",
+      "references": [
+        "ÖZD2601691",
+        "TH212214"
+      ]
+    }
+  }
+}

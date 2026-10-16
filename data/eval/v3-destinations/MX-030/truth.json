@@ -1,0 +1,427 @@
+{
+  "id": "MX-030",
+  "seed": 1169785468,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "PUN2603341",
+      "invoiceDate": "2026-07-18",
+      "poNumber": "PO-78125",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H50"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H50"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-07-26",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Mundra",
+          "unLocode": "INMUN",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Mundra"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 441,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "43800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.13",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "49494.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "57",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "87.63",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4994.91",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 3,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "3300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "13.71",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "45243.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "10734.60",
+        "raw": {
+          "value": "10734.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "10099.50",
+        "raw": {
+          "value": "10099.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "99731.91",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-PUN2603341",
+      "invoiceRef": "PUN2603341",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H50"
+      },
+      "packages": [
+        {
+          "range": "1-219",
+          "count": 219,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-78125/C/NO. 1-441",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "43800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4818.00",
+            "raw": {
+              "value": "4818.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "5015.10",
+            "raw": {
+              "value": "5015.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        },
+        {
+          "range": "220-276",
+          "count": 57,
+          "type": "CRT",
+          "marks": "COMERCIALIZADORA/PO-78125/C/NO. 1-441",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "57",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "826.50",
+            "raw": {
+              "value": "826.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1083.00",
+            "raw": {
+              "value": "1083.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "277-441",
+          "count": 165,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-78125/C/NO. 1-441",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "3300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4455.00",
+            "raw": {
+              "value": "4455.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4636.50",
+            "raw": {
+              "value": "4636.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 441,
+        "netWeight": {
+          "kg": "10099.50",
+          "raw": {
+            "value": "10099.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "10734.60",
+          "raw": {
+            "value": "10734.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "19.38"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNMUN1844186",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "424295669",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H50"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H50"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "098S",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Mundra",
+        "unLocode": "INMUN",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "MDOU6234312",
+          "seal": "MD9815990",
+          "type": "20GP",
+          "packages": 441,
+          "grossWeight": {
+            "kg": "10734.60",
+            "raw": {
+              "value": "10734.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "19.38"
+        }
+      ],
+      "totalPackages": 441,
+      "totalGrossWeight": {
+        "kg": "10734.60",
+        "raw": {
+          "value": "10734.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-78125/C/NO. 1-441",
+      "cargoDescription": "SAID TO CONTAIN 441 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Mundra",
+      "dateOfIssue": "2026-07-27",
+      "shippedOnBoardDate": "2026-07-27",
+      "references": [
+        "PUN2603341",
+        "PO-78125"
+      ]
+    }
+  }
+}

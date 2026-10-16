@@ -1,0 +1,315 @@
+{
+  "id": "MX-028",
+  "seed": 952034979,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NOR2608374",
+      "invoiceDate": "2026-06-23",
+      "poNumber": "CO364659",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-07-04",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hamburg",
+          "unLocode": "DEHAM",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Hamburg"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 15,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "300",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.48",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "5244.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "421.50",
+        "raw": {
+          "value": "421.50",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "405.00",
+        "raw": {
+          "value": "405.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "5244.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL-NOR2608374",
+      "invoiceRef": "NOR2608374",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-15",
+          "count": 15,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/CO364659/C/NO. 1-15",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "300",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "405.00",
+            "raw": {
+              "value": "405.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "421.50",
+            "raw": {
+              "value": "421.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 15,
+        "netWeight": {
+          "kg": "405.00",
+          "raw": {
+            "value": "405.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "421.50",
+          "raw": {
+            "value": "421.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "0.71"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPHAM703372",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "972314260",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "094S",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Hamburg",
+        "unLocode": "DEHAM",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "TWEU5654364",
+          "seal": "TW9484289",
+          "type": "20GP",
+          "packages": 15,
+          "grossWeight": {
+            "kg": "421.50",
+            "raw": {
+              "value": "421.50",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "0.71"
+        }
+      ],
+      "totalPackages": 15,
+      "totalGrossWeight": {
+        "kg": "421.50",
+        "raw": {
+          "value": "421.50",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/CO364659/C/NO. 1-15",
+      "cargoDescription": "SAID TO CONTAIN 15 CTNS BRASS BALL VALVE 2\"",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Hamburg",
+      "dateOfIssue": "2026-07-07",
+      "shippedOnBoardDate": "2026-07-07",
+      "references": [
+        "NOR2608374",
+        "CO364659"
+      ]
+    }
+  }
+}

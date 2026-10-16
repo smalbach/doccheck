@@ -1,0 +1,373 @@
+{
+  "id": "MX-011",
+  "seed": 538810751,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-9921",
+      "invoiceDate": "2026-05-01",
+      "poNumber": "PO-20427",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-05-05",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ambarlı"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 194,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "3180",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.75",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "56445.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "25",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "90.36",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "3162.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "5132.90",
+        "raw": {
+          "value": "5132.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4800.50",
+        "raw": {
+          "value": "4800.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "59607.60",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-9921",
+      "invoiceRef": "INV-2026-9921",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-159",
+          "count": 159,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-20427/C/NO. 1-194",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "3180",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4293.00",
+            "raw": {
+              "value": "4293.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4467.90",
+            "raw": {
+              "value": "4467.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "160-194",
+          "count": 35,
+          "type": "CRT",
+          "marks": "COMERCIALIZADORA/PO-20427/C/NO. 1-194",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "35",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "507.50",
+            "raw": {
+              "value": "507.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "665.00",
+            "raw": {
+              "value": "665.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 194,
+        "netWeight": {
+          "kg": "4800.50",
+          "raw": {
+            "value": "4800.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5132.90",
+          "raw": {
+            "value": "5132.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "10.59"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXAMR8263155",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "478895462",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "041E",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "AGLU2559294",
+          "seal": "AG5517179",
+          "type": "20GP",
+          "packages": 194,
+          "grossWeight": {
+            "kg": "5132.90",
+            "raw": {
+              "value": "5132.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "10.59"
+        }
+      ],
+      "totalPackages": 194,
+      "totalGrossWeight": {
+        "kg": "5132.90",
+        "raw": {
+          "value": "5132.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-20427/C/NO. 1-194",
+      "cargoDescription": "SAID TO CONTAIN 194 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-05-06",
+      "shippedOnBoardDate": "2026-05-06",
+      "references": [
+        "INV-2026-9921",
+        "PO-20427"
+      ]
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { buildDataset, V1, V2, type DatasetEntry } from './dataset';
+import { buildDataset, V1, V2, V3_DESTINATIONS, type DatasetEntry } from './dataset';
 import { htmlToPdf, launchBrowser, renderHtml } from './pdf';
 import { buildIsfDataset, renderIsf } from './isf';
 import { renderScannedPdf, scanStyle } from './scans';
@@ -22,6 +22,8 @@ import { renderScannedPdf, scanStyle } from './scans';
  *   plus ISF/invoice mismatches for X11). It never touches data/eval/v1.
  * --set v2 writes set v2 (new layouts, multi-page line tables, non-English names; see V2 in
  *   dataset.ts) to data/eval/v2 unless --out is given. Seed and sizes come from V2 unless overridden.
+ * --set v3-destinations writes shipments to Mexico, the EU and the UK (V3_DESTINATIONS) to
+ *   data/eval/v3-destinations, the same way.
  */
 async function main() {
   const { values } = parseArgs({
@@ -38,8 +40,9 @@ async function main() {
       set: { type: 'string', default: 'v1' },
     },
   });
-  const preset = values.set === 'v2' ? V2 : V1;
-  if (values.set !== 'v1' && values.set !== 'v2') throw new Error(`Unknown set ${values.set}`);
+  const presets: Record<string, typeof V1> = { v1: V1, v2: V2, 'v3-destinations': V3_DESTINATIONS };
+  const preset = presets[values.set!];
+  if (!preset) throw new Error(`Unknown set ${values.set}`);
   if (preset !== V1) {
     // The defaults above are v1's; take the preset's unless they were given on the command line.
     if (values.seed === String(V1.seed)) values.seed = String(preset.seed);
