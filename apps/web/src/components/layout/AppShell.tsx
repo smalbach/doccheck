@@ -1,4 +1,5 @@
 import { useEffect, type ReactNode } from 'react';
+import { api } from '../../api/client';
 import { ActivityProvider } from '../../features/activity/ActivityProvider';
 import { useAuth } from '../../features/auth/useAuth';
 import { RunNotifications } from '../../features/notifications/RunNotifications';
@@ -21,7 +22,12 @@ import { Sidebar } from './Sidebar';
 export function AppShell({ route, children }: { route: AppRoute; children: ReactNode }) {
   const { user, logout } = useAuth();
   const demo = useDemo();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const userId = user?.id;
+  // Mail DocCheck writes on its own (the summary of documents sent by email) follows the app's language.
+  useEffect(() => {
+    if (userId) api.setLanguage(locale).catch(() => undefined);
+  }, [userId, locale]);
   useEffect(() => {
     // Only while still on an app page: signing out navigates away first, and StrictMode runs this twice.
     if (user === null && isAppRoute(parseRoute(window.location.hash))) navigate(`/login?next=${encodeURIComponent(currentPath())}`);

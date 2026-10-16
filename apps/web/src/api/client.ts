@@ -70,6 +70,7 @@ export const api = {
   resetPasswordWithToken: (body: { token: string; newPassword: string }) => request<void>('/auth/reset-password', jsonBody(body)),
   logout: () => request<void>('/auth/logout', { method: 'POST' }),
   updateProfile: (body: { name: string }) => request<User>('/auth/me', { ...jsonBody(body), method: 'PATCH' }),
+  setLanguage: (language: string) => request<void>('/auth/me/language', { ...jsonBody({ language }), method: 'PUT' }),
   changePassword: (body: { currentPassword: string; newPassword: string }) => request<void>('/auth/password', jsonBody(body)),
   deleteAccount: (password: string) => request<void>('/auth/me', { ...jsonBody({ password }), method: 'DELETE' }),
 

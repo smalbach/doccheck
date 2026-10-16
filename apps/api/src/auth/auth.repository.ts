@@ -49,6 +49,10 @@ export class AuthRepository {
     await this.pool.query('update users set name = $2, updated_at = now() where id = $1', [id, name]);
   }
 
+  async updateLanguage(id: string, language: string): Promise<void> {
+    await this.pool.query('update users set language = $2 where id = $1 and language is distinct from $2', [id, language]);
+  }
+
   async updatePasswordHash(id: string, passwordHash: string): Promise<void> {
     await this.pool.query('update users set password_hash = $2, updated_at = now() where id = $1', [id, passwordHash]);
   }

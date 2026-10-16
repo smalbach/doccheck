@@ -1960,12 +1960,19 @@ describe('mail server settings and documents by email', () => {
       const alerts = (await call('GET', '/shipments/alerts', undefined, user)).body;
       assert.deepEqual(alerts.items.filter((a) => a.kind === 'mail-intake').map((a) => a.detail.status), ['validated']);
 
-      // A second email naming the reference adds to that shipment.
+      // A second email naming the reference adds to that shipment; the summary is in the app's language.
+      assert.equal((await call('PUT', '/auth/me/language', { language: 'es' }, user)).status, 204);
       const more = await compose({ from: me.email, to: address, subject: 'PO-7781 documents: corrected invoice', messageId: '<intake-2@example.com>', text: 'Corrected.', attachments: [pdfs[0]] });
       await inbound(more);
       const second = (await call('GET', '/mail/threads?filter=all', undefined, user)).body.items.find((t) => t.subject.includes('corrected'));
       const detail = (await call('GET', `/mail/threads/${second.id}`, undefined, user)).body;
       assert.deepEqual([detail.intakes[0].shipmentId, detail.intakes[0].createdShipment], [intake.shipmentId, false]);
+      let reply;
+      for (let i = 0; i < 300 && !reply; i++) {
+        reply = (await call('GET', `/mail/threads/${second.id}`, undefined, user)).body.items.find((m) => m.direction === 'out');
+        if (!reply) await new Promise((r) => setTimeout(r, 200));
+      }
+      assert.match(reply.text, /^El envío PO-7781 documents se leyó y se validó/);
 
       // From the user's address without the intake address: only when the receiving server verified it.
       const spoofed = await compose({ from: me.email, to: 'docs@doccheck.example', subject: 'Unverified', messageId: '<intake-3@example.com>', text: 'x', attachments: [pdfs[0]] });

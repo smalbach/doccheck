@@ -1,7 +1,7 @@
-import { Body, Controller, Delete, Get, HttpCode, Patch, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Patch, Post, Put, Req, Res, UnauthorizedException } from '@nestjs/common';
 import type { Request, Response } from 'express';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
-import { ChangePasswordDto, DeleteAccountDto, ForgotPasswordDto, LoginDto, RegisterDto, ResetWithTokenDto, UpdateProfileDto } from './auth.dto';
+import { ChangePasswordDto, DeleteAccountDto, ForgotPasswordDto, LanguageDto, LoginDto, RegisterDto, ResetWithTokenDto, UpdateProfileDto } from './auth.dto';
 import { AuthService, type NewSession } from './auth.service';
 import type { AuthedRequest, PublicUser } from './auth.types';
 import { CurrentUser } from './current-user.decorator';
@@ -64,6 +64,12 @@ export class AuthController {
   @Patch('me')
   updateProfile(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(UpdateProfileDto)) dto: UpdateProfileDto) {
     return this.auth.updateProfile(user.id, dto.name);
+  }
+
+  @Put('me/language')
+  @HttpCode(204)
+  async setLanguage(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(LanguageDto)) dto: LanguageDto) {
+    await this.auth.setLanguage(user.id, dto.language);
   }
 
   /** Body { password }: deletes the account with its shipments and PDFs, and signs out. */

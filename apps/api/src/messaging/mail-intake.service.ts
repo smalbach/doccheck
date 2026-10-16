@@ -212,7 +212,7 @@ export class MailIntakeService implements OnApplicationBootstrap, OnApplicationS
     await this.repo.touchThreadIn(job.thread_id);
     if (process.env.MAIL_INTAKE_NOTIFY === 'false') return;
     const { rows } = await this.pool.query(
-      `select u.email, m.from_addr, m.message_id, m."references", t.subject, s.reference
+      `select u.email, u.language, m.from_addr, m.message_id, m."references", t.subject, s.reference
        from mail_intakes i join users u on u.id = i.user_id join mail_messages m on m.id = i.message_id
        join mail_threads t on t.id = i.thread_id left join shipments s on s.id = i.shipment_id where i.id = $1`,
       [job.id],
@@ -220,12 +220,7 @@ export class MailIntakeService implements OnApplicationBootstrap, OnApplicationS
     const r = rows[0];
     if (!r || addressOf(r.from_addr) !== r.email.toLowerCase()) return;
     const link = appUrl() ? `${appUrl()}/#/app/s/${job.shipment_id}` : '';
-    const lines =
-      status === 'validated'
-        ? [`Shipment ${r.reference ?? ''} was read and checked: ${findings === 0 ? 'no findings' : `${findings} finding(s) to review`}.`]
-        : status === 'needs_destination'
-          ? [`Shipment ${r.reference ?? ''} was read, but the documents do not say whether it goes to Canada or the United States. Set the destination to check it.`]
-          : [`Shipment ${r.reference ?? ''} could not be checked automatically. Open it to see why.`];
+    const lines = [summaryLine(r.language, status, r.reference ?? '', findings)];
     await this.repo.insertMessage({
       id: randomUUID(),
       threadId: job.thread_id,
@@ -254,6 +249,31 @@ export class MailIntakeService implements OnApplicationBootstrap, OnApplicationS
       [userId, subject],
     );
     return rows[0]?.id ?? null;
+  }
+}
+
+/** The summary sent back to the user, in the language they use the app in (English when unknown). */
+export function summaryLine(language: string | null, status: IntakeStatus, reference: string, findings: number): string {
+  const ref = reference.trim();
+  switch (language) {
+    case 'es':
+      return status === 'validated'
+        ? `El envío ${ref} se leyó y se validó: ${findings === 0 ? 'sin hallazgos' : findings === 1 ? '1 hallazgo por revisar' : `${findings} hallazgos por revisar`}.`
+        : status === 'needs_destination'
+          ? `El envío ${ref} se leyó, pero los documentos no dicen si va a Canadá o a Estados Unidos. Indica el destino para validarlo.`
+          : `El envío ${ref} no se pudo validar automáticamente. Ábrelo para ver por qué.`;
+    case 'fr':
+      return status === 'validated'
+        ? `L’envoi ${ref} a été lu et vérifié : ${findings === 0 ? 'aucun constat' : findings === 1 ? '1 constat à examiner' : `${findings} constats à examiner`}.`
+        : status === 'needs_destination'
+          ? `L’envoi ${ref} a été lu, mais les documents n’indiquent pas s’il va au Canada ou aux États-Unis. Indiquez la destination pour le vérifier.`
+          : `L’envoi ${ref} n’a pas pu être vérifié automatiquement. Ouvrez-le pour voir pourquoi.`;
+    default:
+      return status === 'validated'
+        ? `Shipment ${ref} was read and checked: ${findings === 0 ? 'no findings' : findings === 1 ? '1 finding to review' : `${findings} findings to review`}.`
+        : status === 'needs_destination'
+          ? `Shipment ${ref} was read, but the documents do not say whether it goes to Canada or the United States. Set the destination to check it.`
+          : `Shipment ${ref} could not be checked automatically. Open it to see why.`;
   }
 }
 

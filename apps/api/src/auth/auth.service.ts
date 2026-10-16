@@ -90,6 +90,11 @@ export class AuthService implements OnApplicationBootstrap {
     return this.repo.sessionUser(hashToken(token));
   }
 
+  /** The app's language, for mail DocCheck writes on its own. */
+  setLanguage(userId: string, language: string): Promise<void> {
+    return this.repo.updateLanguage(userId, language);
+  }
+
   async updateProfile(userId: string, name: string): Promise<PublicUser> {
     await this.repo.updateName(userId, name);
     const user = await this.repo.findById(userId);

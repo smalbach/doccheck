@@ -17,6 +17,9 @@ export type LoginDto = z.infer<typeof LoginDto>;
 export const UpdateProfileDto = z.object({ name });
 export type UpdateProfileDto = z.infer<typeof UpdateProfileDto>;
 
+export const LanguageDto = z.object({ language: z.enum(['en', 'es', 'fr']) });
+export type LanguageDto = z.infer<typeof LanguageDto>;
+
 export const ChangePasswordDto = z.object({ currentPassword: z.string().min(1).max(200), newPassword: password });
 export type ChangePasswordDto = z.infer<typeof ChangePasswordDto>;
 
