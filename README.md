@@ -288,3 +288,7 @@ Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs
 ## Disclaimer
 
 DocCheck is a portfolio and learning project. It is not customs advice and does not file anything with CBSA or CBP.
+
+## License
+
+[MIT](LICENSE) © 2026 Snheidert Smalbach
