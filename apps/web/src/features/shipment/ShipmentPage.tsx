@@ -14,6 +14,10 @@ import { DutiesCard } from '../duties/DutiesCard';
 import { useDuties } from '../duties/useDuties';
 import { ComposeDialog } from '../mail/ComposeDialog';
 import { ThreadsCard } from '../mail/ThreadsCard';
+import { ShipmentCollabCard } from '../team/ShipmentCollabCard';
+import { ShipmentCollabContext } from '../team/ShipmentCollabContext';
+import { useOrg } from '../team/useOrg';
+import { useShipmentCollabState } from '../team/useShipmentCollabState';
 import type { ViewerTarget } from '../pdf/types';
 import { DocumentsCard } from './DocumentsCard';
 import { EditShipmentDialog } from './EditShipmentDialog';
@@ -37,6 +41,11 @@ export function ShipmentPage({ id }: { id: string }) {
   const history = useValidationHistory(id, latest?.id);
   const [viewer, setViewer] = useState<ViewerTarget>();
   const [dataDoc, setDataDoc] = useState<{ doc: ShipmentDocument; focus?: string }>();
+  const { can } = useOrg();
+  const collab = useShipmentCollabState(id, `${latest?.id}:${reviewing}`);
+  // Viewers, reviewers and clients read; the demo is read-only for everyone.
+  const canWrite = !demo && can('shipment.write');
+  const canDecide = !demo && can('finding.decide');
   // The estimate is computed from the current documents: reload it when they or the destination change.
   const dutiesVersion = `${shipment?.destination}|${latest?.id}|${[...documents.values()].map((d) => `${d.id}:${d.status}`).join(',')}`;
   const duties = useDuties(id, dutiesVersion, !!shipment?.destination && !extracting, demo);
@@ -48,15 +57,16 @@ export function ShipmentPage({ id }: { id: string }) {
   const live = liveValidationRun(progress.validation, latest?.id, validationLoaded);
 
   return (
+    <ShipmentCollabContext.Provider value={collab}>
     <div className="page shipment">
       <ShipmentHeader
         shipment={shipment}
-        canDelete={!demo}
+        canDelete={canWrite}
         extracting={extracting}
         onDelete={() => void remove()}
         actions={
           <>
-            {!demo && <EditShipmentDialog shipment={shipment} extracting={extracting} onSave={update} />}
+            {canWrite && <EditShipmentDialog shipment={shipment} extracting={extracting} onSave={update} />}
             {validation && <ExportMenu shipment={shipment} validation={validation} duties={duties.view} />}
           </>
         }
@@ -69,7 +79,7 @@ export function ShipmentPage({ id }: { id: string }) {
           shipment={shipment}
           validation={validation}
           documents={documents}
-          readOnly={demo}
+          readOnly={!canWrite}
           busy={busy}
           extracting={extracting}
           runs={progress.documents}
@@ -88,7 +98,7 @@ export function ShipmentPage({ id }: { id: string }) {
           live={live}
           run={progress.validation}
           review={
-            !demo && !history.past && latest
+            canDecide && !history.past && latest
               ? {
                   busy: reviewing,
                   shipmentId: shipment.id,
@@ -104,8 +114,9 @@ export function ShipmentPage({ id }: { id: string }) {
           notice={<ValidationNotice shipment={shipment} validation={validation} past={!!history.past} onShowLatest={history.showLatest} />}
         />
       </div>
-      {shipment.destination && <DutiesCard duties={duties} documents={documents} demo={demo} onOpen={setViewer} />}
-      <ThreadsCard shipmentId={id} actions={!demo && <ComposeDialog mode="message" shipmentId={id} reference={shipment.reference ?? ''} />} />
+      {shipment.destination && <DutiesCard duties={duties} documents={documents} demo={demo} canAnswer={demo || canWrite} onOpen={setViewer} />}
+      <ShipmentCollabCard documents={shipment.documents} />
+      {can('data.read') && <ThreadsCard shipmentId={id} actions={canWrite && <ComposeDialog mode="message" shipmentId={id} reference={shipment.reference ?? ''} />} />}
       <ValidationHistory
         runs={history.runs}
         shownId={validation?.id}
@@ -120,7 +131,7 @@ export function ShipmentPage({ id }: { id: string }) {
           shipmentId={id}
           doc={dataDoc.doc}
           focus={dataDoc.focus}
-          readOnly={demo}
+          readOnly={!canWrite}
           onClose={() => setDataDoc(undefined)}
           onReextracted={() => {
             setDataDoc(undefined);
@@ -148,5 +159,6 @@ export function ShipmentPage({ id }: { id: string }) {
         </Suspense>
       )}
     </div>
+    </ShipmentCollabContext.Provider>
   );
 }

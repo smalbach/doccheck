@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { type DutyContext, type DutyEstimate, type DutyInputs, type EntryDraft, entryDraft, estimateDuties, loadDutyTables } from '@doccheck/duties';
 import { findFieldSource } from '@doccheck/extraction';
 import type { BillOfLading, CommercialInvoice, PackingList } from '@doccheck/schemas';
+import { AuditService } from '../audit/audit.service';
 import { ShipmentsRepository } from '../shipments/shipments.repository';
 import { ShipmentsService } from '../shipments/shipments.service';
 import { DutiesRepository } from './duties.repository';
@@ -26,12 +27,13 @@ export class DutiesService {
     private readonly shipments: ShipmentsService,
     private readonly repo: ShipmentsRepository,
     private readonly duties: DutiesRepository,
+    private readonly audit: AuditService,
   ) {}
 
-  async view(id: string, override?: DutyInputs): Promise<DutiesView> {
+  async view(id: string, orgId: string, override?: DutyInputs): Promise<DutiesView> {
     const shipment = await this.shipments.get(id);
     if (!shipment.destination) throw new BadRequestException('Set the destination (CA or US) before estimating duties');
-    const saved = await this.duties.inputs(id);
+    const saved = await this.duties.inputs(id, orgId);
     const inputs = override ?? saved.inputs;
 
     const ctx: DutyContext = { shipmentId: id, destination: shipment.destination, ...(shipment.reference ? { reference: shipment.reference } : {}), ...(shipment.transportMode ? { transportMode: shipment.transportMode } : {}) };
@@ -59,9 +61,11 @@ export class DutiesService {
     return { estimate, ...(entry ? { entry } : {}), ...(!override && saved.updatedAt ? { inputsUpdatedAt: saved.updatedAt } : {}) };
   }
 
-  async saveInputs(id: string, inputs: DutyInputs, userId: string): Promise<DutiesView> {
+  async saveInputs(id: string, orgId: string, inputs: DutyInputs, userId: string): Promise<DutiesView> {
     await this.shipments.get(id);
-    await this.duties.saveInputs(id, inputs, userId);
-    return this.view(id);
+    const before = await this.duties.inputs(id, orgId);
+    await this.duties.saveInputs(id, orgId, inputs, userId);
+    this.audit.note({ action: 'duties.inputs', entity: 'shipment', entityId: id, before: before.inputs, after: inputs });
+    return this.view(id, orgId);
   }
 }

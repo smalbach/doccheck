@@ -11,7 +11,7 @@ export interface DutyFindingListProps {
   documents: ReadonlyMap<string, ShipmentDocument>;
   onOpen: (target: ViewerTarget) => void;
   /** Focuses the question that answers a finding. */
-  onAnswer: (field: string) => void;
+  onAnswer?: (field: string) => void;
 }
 
 /** What could not be valued, classified or proven, each with its evidence and, where there is one, the regulation. */
@@ -46,7 +46,7 @@ export function DutyFindingList({ findings, documents, onOpen, onAnswer }: DutyF
                   </ul>
                 )}
                 {f.regulation && <RegulationQuote regulation={f.regulation} />}
-                {f.asks && (
+                {f.asks && onAnswer && (
                   <Button variant="link" size="sm" className="no-print" onClick={() => onAnswer(f.asks!)}>
                     {t('duties.findings.answer')}
                   </Button>

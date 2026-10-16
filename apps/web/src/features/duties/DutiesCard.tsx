@@ -21,11 +21,13 @@ export interface DutiesCardProps {
   duties: DutiesState;
   documents: ReadonlyMap<string, ShipmentDocument>;
   demo: boolean;
+  /** The user may answer the questions (shipment.write, or the demo, where answers are not saved). */
+  canAnswer: boolean;
   onOpen: (target: ViewerTarget) => void;
 }
 
 /** Duty, taxes and landed cost of the shipment, what is missing to value it, and the draft entry summary. */
-export function DutiesCard({ duties, documents, demo, onOpen }: DutiesCardProps) {
+export function DutiesCard({ duties, documents, demo, canAnswer, onOpen }: DutiesCardProps) {
   const { t } = useI18n();
   const [entryOpen, setEntryOpen] = useState(false);
   const [focus, setFocus] = useState<string>();
@@ -65,8 +67,8 @@ export function DutiesCard({ duties, documents, demo, onOpen }: DutiesCardProps)
           <DutyPreference estimate={estimate} />
         </>
       )}
-      {estimate && <DutyFindingList findings={estimate.findings} documents={documents} onOpen={onOpen} onAnswer={setFocus} />}
-      {estimate && (
+      {estimate && <DutyFindingList findings={estimate.findings} documents={documents} onOpen={onOpen} onAnswer={canAnswer ? setFocus : undefined} />}
+      {estimate && canAnswer && (
         <DutyQuestions key={view?.inputsUpdatedAt ?? 'new'} estimate={estimate} savedAt={view?.inputsUpdatedAt} busy={duties.busy} demo={demo} focus={focus} onFocused={() => setFocus(undefined)} onSubmit={duties.submit} />
       )}
       {estimate && estimate.tables.length > 0 && (

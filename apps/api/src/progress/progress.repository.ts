@@ -16,6 +16,7 @@ interface Row {
   id: string;
   shipment_id: string;
   user_id: string | null;
+  org_id: string | null;
   document_id: string | null;
   run_id: string;
   kind: ProgressEvent['kind'];
@@ -39,13 +40,17 @@ export interface DurationRow {
   ms: number;
 }
 
-const COLUMNS = 'id, shipment_id, user_id, document_id, run_id, kind, stage, status, at, duration_ms, detail';
+const COLUMNS = 'id, shipment_id, user_id, org_id, document_id, run_id, kind, stage, status, at, duration_ms, detail';
+
+/** A stored event carries the shipment's organization, for the organization-wide stream. */
+export type OrgProgressEvent = ProgressEvent & { orgId?: string | null };
 
 function toEvent(r: Row): ProgressEvent {
   return {
     id: Number(r.id),
     shipmentId: r.shipment_id,
     userId: r.user_id,
+    orgId: r.org_id,
     ...(r.document_id ? { documentId: r.document_id } : {}),
     runId: r.run_id,
     kind: r.kind,
@@ -68,8 +73,8 @@ export class ProgressRepository {
    */
   async insert(e: NewProgressEvent, notifyMax: number): Promise<ProgressEvent | null> {
     const { rows } = await this.pool.query<Row>(
-      `insert into progress_events (shipment_id, user_id, document_id, run_id, kind, stage, status, at, duration_ms, detail)
-       select s.id, s.user_id, $2, $3, $4, $5, $6, $7, $8, $9 from shipments s where s.id = $1
+      `insert into progress_events (shipment_id, user_id, org_id, document_id, run_id, kind, stage, status, at, duration_ms, detail)
+       select s.id, s.user_id, s.org_id, $2, $3, $4, $5, $6, $7, $8, $9 from shipments s where s.id = $1
        returning ${COLUMNS}`,
       [e.shipmentId, e.documentId ?? null, e.runId, e.kind, e.stage, e.status, e.at ?? new Date().toISOString(), e.durationMs ?? null, JSON.stringify(e.detail ?? {})],
     );
@@ -132,21 +137,21 @@ export class ProgressRepository {
     return rows.map(toEvent);
   }
 
-  /** A user's events after `afterId` (all their shipments), oldest first. */
-  async userAfter(userId: string, afterId: number, limit = REPLAY_LIMIT): Promise<ProgressEvent[]> {
-    const { rows } = await this.pool.query<Row>(`select ${COLUMNS} from progress_events where user_id = $1 and id > $2 order by id limit $3`, [userId, afterId, limit]);
+  /** An organization's events after `afterId` (all its shipments), oldest first. */
+  async orgAfter(orgId: string, afterId: number, limit = REPLAY_LIMIT): Promise<ProgressEvent[]> {
+    const { rows } = await this.pool.query<Row>(`select ${COLUMNS} from progress_events where org_id = $1 and id > $2 order by id limit $3`, [orgId, afterId, limit]);
     return rows.map(toEvent);
   }
 
   /**
-   * What an activity panel needs when it opens: every event of the user's runs still going (with an
-   * event in the last `runningHours`) and of their `finished` latest ended runs, oldest first.
+   * What an activity panel needs when it opens: every event of the organization's runs still going (with
+   * an event in the last `runningHours`) and of its `finished` latest ended runs, oldest first.
    */
-  async userActivity(userId: string, finished: number, runningHours = 6, limit = REPLAY_LIMIT): Promise<ProgressEvent[]> {
+  async orgActivity(orgId: string, finished: number, runningHours = 6, limit = REPLAY_LIMIT): Promise<ProgressEvent[]> {
     const { rows } = await this.pool.query<Row>(
       `with last as (
          select distinct on (run_id) run_id, id, at, (${RUN_ENDED}) as ended
-         from progress_events where user_id = $1 and at > now() - interval '1 day'
+         from progress_events where org_id = $1 and at > now() - interval '1 day'
          order by run_id, id desc
        ), chosen as (
          (select run_id from last where not ended and at > now() - make_interval(hours => $3))
@@ -154,9 +159,9 @@ export class ProgressRepository {
          (select run_id from last where ended order by id desc limit $2)
        )
        select ${COLUMNS} from progress_events
-       where user_id = $1 and run_id in (select run_id from chosen)
+       where org_id = $1 and run_id in (select run_id from chosen)
        order by id limit $4`,
-      [userId, finished, runningHours, limit],
+      [orgId, finished, runningHours, limit],
     );
     return rows.map(toEvent);
   }
@@ -239,13 +244,13 @@ export class ProgressRepository {
     return rows;
   }
 
-  /** References of the user's shipments and names of their documents among these ids (others are left out). */
-  async labels(userId: string, shipmentIds: string[], documentIds: string[]): Promise<ActivityLabels> {
+  /** References of the organization's shipments and names of their documents among these ids (others are left out). */
+  async labels(orgId: string, shipmentIds: string[], documentIds: string[]): Promise<ActivityLabels> {
     const [shipments, documents] = await Promise.all([
-      this.pool.query<{ id: string; reference: string | null; destination: string | null }>('select id, reference, destination from shipments where user_id = $1 and id = any($2::uuid[])', [userId, shipmentIds]),
+      this.pool.query<{ id: string; reference: string | null; destination: string | null }>('select id, reference, destination from shipments where org_id = $1 and id = any($2::uuid[])', [orgId, shipmentIds]),
       this.pool.query<{ id: string; shipment_id: string; file_name: string; status: string }>(
-        'select d.id, d.shipment_id, d.file_name, d.status from documents d join shipments s on s.id = d.shipment_id where s.user_id = $1 and d.id = any($2::uuid[])',
-        [userId, documentIds],
+        'select d.id, d.shipment_id, d.file_name, d.status from documents d join shipments s on s.id = d.shipment_id where s.org_id = $1 and d.id = any($2::uuid[])',
+        [orgId, documentIds],
       ),
     ]);
     return {
