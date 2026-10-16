@@ -1,0 +1,28 @@
+{
+  "id": "US-016",
+  "errors": [
+    {
+      "kind": "awb_check_digit",
+      "document": "airWaybill",
+      "field": "awbNumber",
+      "before": "176-88692435",
+      "after": "176-88692436",
+      "expectedRuleIds": [
+        "T1",
+        "T12"
+      ],
+      "description": "Air waybill number 176-88692436 has a wrong check digit."
+    },
+    {
+      "kind": "cusma_missing_element",
+      "document": "cusmaCertification",
+      "field": "goods[0].originCriterion",
+      "before": "B",
+      "after": null,
+      "expectedRuleIds": [
+        "T9"
+      ],
+      "description": "CUSMA certification without the origin criterion of the first good."
+    }
+  ]
+}

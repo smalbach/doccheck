@@ -1,9 +1,9 @@
 import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { buildExport, ConnectorRegistry, ExportInputError, MockConnector, type ExportFile, type ExportFormat, type ExportInput } from '@doccheck/integrations';
-import type { BillOfLading, CommercialInvoice, PackingList } from '@doccheck/schemas';
+import type { AirWaybill, BillOfLading, CommercialInvoice, PackingList } from '@doccheck/schemas';
 import { ShipmentsRepository } from '../shipments/shipments.repository';
 
-const SLOTS = { invoice: 'invoice', packingList: 'packingList', billOfLading: 'billOfLading' } as const;
+const SLOTS = { invoice: 'invoice', packingList: 'packingList', billOfLading: 'billOfLading', airWaybill: 'airWaybill' } as const;
 
 /**
  * Exports of a validated shipment (CargoWise Universal Shipment XML, X12 856 and 310), built from the
@@ -34,6 +34,7 @@ export class ExportsService {
       invoice: pick<CommercialInvoice>('invoice'),
       packingList: pick<PackingList>('packingList'),
       billOfLading: pick<BillOfLading>('billOfLading'),
+      airWaybill: pick<AirWaybill>('airWaybill'),
     };
   }
 

@@ -9,16 +9,22 @@ export const UNIVERSAL_NAMESPACE = 'http://www.cargowise.com/Schemas/Universal/2
  * from the extracted documents: bill of lading for route, vessel and containers; commercial invoice
  * for the parties, terms and lines; packing list for packages and weights where the BL has none.
  *
+ * An air shipment (air waybill, no bill of lading) is written with the AWB as the waybill, its
+ * pieces, weights, airports (by name: CargoWise port codes are UN/LOCODEs, the AWB prints IATA codes)
+ * and first flight, and no containers.
+ *
  * Values are written as the documents state them after normalization (decimal strings, ISO dates,
  * kilograms). Element names follow the Universal Shipment schema; check the mapping with your
  * CargoWise administrator before importing, since each installation can require more codes.
  */
 export function cargowiseXml(input: ExportInput): ExportFile {
-  const { invoice: inv, packingList: pl, billOfLading: bl, shipment } = input;
-  if (!inv && !bl) throw new ExportInputError('A CargoWise shipment needs at least the commercial invoice or the bill of lading');
-  const mode = shipment.transportMode ?? inv?.transport?.mode ?? (bl ? 'SEA' : undefined);
-  const packs = bl?.totalPackages ?? pl?.totals.packageCount ?? inv?.packageCount;
-  const weight = bl?.totalGrossWeight.kg ?? pl?.totals.grossWeight?.kg ?? inv?.grossWeight?.kg;
+  const { invoice: inv, packingList: pl, billOfLading: bl, airWaybill: awb, shipment } = input;
+  if (!inv && !bl && !awb) throw new ExportInputError('A CargoWise shipment needs at least the commercial invoice, the bill of lading or the air waybill');
+  const mode = shipment.transportMode ?? inv?.transport?.mode ?? (bl ? 'SEA' : awb ? 'AIR' : undefined);
+  const packs = bl?.totalPackages ?? awb?.pieces ?? pl?.totals.packageCount ?? inv?.packageCount;
+  const weight = bl?.totalGrossWeight.kg ?? awb?.grossWeight.kg ?? pl?.totals.grossWeight?.kg ?? inv?.grossWeight?.kg;
+  // Air: the AWB stands where the BL would; airports go by name.
+  const waybill = bl ? { number: bl.blNumber, type: bl.blType?.issuer === 'HBL' ? 'HWB' : 'MWB' } : awb ? { number: awb.awbNumber, type: awb.issuer === 'HAWB' ? 'HWB' : 'MWB' } : undefined;
   const packType = pl?.packages.every((p) => p.type === pl.packages[0]!.type) ? pl.packages[0]!.type : undefined;
 
   const doc: Node = {
@@ -27,30 +33,32 @@ export function cargowiseXml(input: ExportInput): ExportFile {
     children: [
       e('Shipment', [
         e('DataContext', [e('DataTargetCollection', [e('DataTarget', [t('Type', 'ForwardingShipment')])]), t('Company', undefined)]),
-        code('ContainerMode', bl ? (bl.containers.length ? 'FCL' : 'LCL') : undefined),
+        code('ContainerMode', bl ? (bl.containers.length ? 'FCL' : 'LCL') : awb ? 'LSE' : undefined),
         t('DocumentedWeight', weight),
-        t('GoodsDescription', bl?.cargoDescription ?? inv?.lines[0]?.description),
-        code('PortOfLoading', bl?.portOfLoading.unLocode ?? inv?.transport?.placeOfShipment?.unLocode, [t('Name', bl?.portOfLoading.name)]),
-        code('PortOfDischarge', bl?.portOfDischarge.unLocode ?? inv?.portOfEntry?.unLocode, [t('Name', bl?.portOfDischarge.name)]),
+        t('GoodsDescription', bl?.cargoDescription ?? awb?.natureOfGoods ?? inv?.lines[0]?.description),
+        code('PortOfLoading', bl?.portOfLoading.unLocode ?? (awb ? undefined : inv?.transport?.placeOfShipment?.unLocode), [t('Name', bl?.portOfLoading.name ?? awb?.airportOfDeparture.name)]),
+        code('PortOfDischarge', bl?.portOfDischarge.unLocode ?? (awb ? undefined : inv?.portOfEntry?.unLocode), [t('Name', bl?.portOfDischarge.name ?? awb?.airportOfDestination.name)]),
         code('PortOfOrigin', bl?.placeOfReceipt?.unLocode),
         code('PortOfDestination', bl?.placeOfDelivery?.unLocode),
         code('ShipmentIncoTerm', inv?.incoterm?.code),
         t('ShipmentIncoTermLocation', inv?.incoterm?.place),
-        code('FreightPaymentTerm', bl?.freightTerms === 'PREPAID' ? 'PPD' : bl?.freightTerms === 'COLLECT' ? 'CCX' : undefined),
+        code('FreightPaymentTerm', freight(bl?.freightTerms ?? awb?.freightTerms)),
         t('TotalNoOfPacks', packs),
         code('TotalNoOfPacksPackageType', packType),
         t('TotalWeight', weight),
         code('TotalWeightUnit', weight ? 'KG' : undefined),
-        t('TotalVolume', pl?.totals.volumeM3),
-        code('TotalVolumeUnit', pl?.totals.volumeM3 ? 'M3' : undefined),
+        t('TotalVolume', pl?.totals.volumeM3 ?? awb?.volumeM3),
+        code('TotalVolumeUnit', pl?.totals.volumeM3 ?? awb?.volumeM3 ? 'M3' : undefined),
+        t('ChargeableWeight', awb?.chargeableWeight?.kg),
         code('TransportMode', mode),
         t('VesselName', bl?.vessel),
-        t('VoyageFlightNo', bl?.voyage),
-        t('WayBillNumber', bl?.blNumber),
-        code('WayBillType', bl ? (bl.blType?.issuer === 'HBL' ? 'HWB' : 'MWB') : undefined),
+        t('VoyageFlightNo', bl?.voyage ?? awb?.flights?.[0]?.flight),
+        t('WayBillNumber', waybill?.number),
+        code('WayBillType', waybill?.type),
+        t('MasterBill', awb?.masterAwbNumber),
         t('BookingConfirmationReference', bl?.bookingNumber),
-        e('CarrierDetails', bl?.carrier ? [t('Name', bl.carrier.name), t('SCAC', bl.carrier.scac)] : []),
-        e('DateCollection', [date('OnBoard', bl?.shippedOnBoardDate), date('BillIssued', bl?.dateOfIssue), date('InvoiceDate', inv?.invoiceDate)]),
+        e('CarrierDetails', bl?.carrier ? [t('Name', bl.carrier.name), t('SCAC', bl.carrier.scac)] : awb?.carrier ? [t('Name', awb.carrier.name), t('IATAPrefix', awb.carrier.iataPrefix)] : []),
+        e('DateCollection', [date('OnBoard', bl?.shippedOnBoardDate ?? awb?.flights?.[0]?.date), date('BillIssued', bl?.dateOfIssue ?? awb?.executedOn), date('InvoiceDate', inv?.invoiceDate)]),
         e(
           'ContainerCollection',
           (bl?.containers ?? []).map((c) =>
@@ -60,12 +68,12 @@ export function cargowiseXml(input: ExportInput): ExportFile {
         e('AdditionalReferenceCollection', [
           ...(inv?.poNumber ? [reference('PON', inv.poNumber)] : []),
           ...(shipment.reference ? [reference('OTH', shipment.reference)] : []),
-          ...(bl?.references ?? []).map((r) => reference('OTH', r)),
+          ...(bl?.references ?? awb?.references ?? []).map((r) => reference('OTH', r)),
         ]),
         e('OrganizationAddressCollection', [
-          org('ConsignorDocumentaryAddress', bl?.shipper ?? inv?.seller),
-          org('ConsigneeDocumentaryAddress', bl?.consignee ?? inv?.consignee ?? inv?.buyer),
-          org('NotifyParty', bl?.notifyParty),
+          org('ConsignorDocumentaryAddress', bl?.shipper ?? awb?.shipper ?? inv?.seller),
+          org('ConsigneeDocumentaryAddress', bl?.consignee ?? awb?.consignee ?? inv?.consignee ?? inv?.buyer),
+          org('NotifyParty', bl?.notifyParty ?? awb?.notifyParty),
           org('SendersLocalClient', inv?.seller),
           org('ImporterDocumentaryAddress', inv?.buyer),
         ]),
@@ -104,10 +112,11 @@ export function cargowiseXml(input: ExportInput): ExportFile {
       ])!,
     ],
   };
-  const name = fileSafe(shipment.reference || bl?.blNumber || inv?.invoiceNumber || shipment.id);
+  const name = fileSafe(shipment.reference || bl?.blNumber || awb?.awbNumber || inv?.invoiceNumber || shipment.id);
   return { format: 'cargowise-xml', fileName: `${name}.cargowise.xml`, contentType: 'application/xml', body: `<?xml version="1.0" encoding="UTF-8"?>\n${render(doc)}\n` };
 }
 
+const freight = (terms: 'PREPAID' | 'COLLECT' | undefined) => (terms === 'PREPAID' ? 'PPD' : terms === 'COLLECT' ? 'CCX' : undefined);
 const date = (type: string, value: string | undefined) => e('Date', value ? [code('Type', type), t('IsEstimate', 'false'), t('Value', `${value}T00:00:00`)] : []);
 const reference = (type: string, value: string) => e('AdditionalReference', [code('Type', type), t('ReferenceNumber', value)]);
 

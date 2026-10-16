@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { sampleBillOfLading, sampleInvoice, samplePackingList, type BillOfLading } from '@doccheck/schemas';
+import { sampleAirWaybill, sampleBillOfLading, sampleInvoice, samplePackingList, type BillOfLading } from '@doccheck/schemas';
 import {
   buildExport, cargowiseXml, chatBody, checkPattern, ConnectorRegistry, eventType, ExportInputError, fromProject44, fromTerminal49, fromVizion, isChatWebhookUrl, isIngestible,
   MockConnector, mockEvents, MockTrackingProvider, normalizeVessel, normalizeVoyage, referenceFor, signPayload, trackingFindings, verifySignature, x12Asn856, x12Ocean310,
@@ -167,6 +167,32 @@ describe('X12', () => {
   });
 });
 
+describe('air shipments', () => {
+  const air = { shipment: { ...input.shipment, transportMode: 'AIR' as const }, invoice: sampleInvoice, airWaybill: sampleAirWaybill, createdAt: input.createdAt };
+
+  it('writes the air waybill in CargoWise XML: AWB as waybill, airports by name, pieces, first flight, no containers', () => {
+    const xml = cargowiseXml(air).body;
+    expect(xml).toContain('<WayBillNumber>176-12345675</WayBillNumber>');
+    expect(xml).toMatch(/<WayBillType>\s*<Code>MWB<\/Code>/);
+    expect(xml).toMatch(/<TransportMode>\s*<Code>AIR<\/Code>/);
+    expect(xml).toMatch(/<ContainerMode>\s*<Code>LSE<\/Code>/);
+    expect(xml).toMatch(/<PortOfLoading>\s*<Name>Shenzhen Bao’an<\/Name>/);
+    expect(xml).toContain('<VoyageFlightNo>XA 821</VoyageFlightNo>');
+    expect(xml).toContain('<TotalNoOfPacks>120</TotalNoOfPacks>');
+    expect(xml).toContain('<ChargeableWeight>1920</ChargeableWeight>');
+    expect(xml).not.toContain('<ContainerCollection>');
+  });
+
+  it('builds an 856 by air and refuses a 310 with a reason', () => {
+    const s = x12Asn856(air).body.split('~\n');
+    expect(s).toContain('TD5*B***A*Example Air Cargo');
+    expect(s).toContain('REF*AW*176-12345675');
+    expect(s).toContain('DTM*011*20261006');
+    expect(s.some((x) => x.startsWith('TD3'))).toBe(false);
+    expect(() => x12Ocean310(air)).toThrow(/air waybill/);
+  });
+});
+
 describe('connectors', () => {
   it('the mock connector takes complete files and rejects broken ones', async () => {
     const mock = new MockConnector();
@@ -193,7 +219,7 @@ describe('container tracking', () => {
 
   it('finds the vessel, port and gate-in conflicts, citing both sides', () => {
     const findings = trackingFindings('s1', blDoc, mockEvents(bl, 'CSQU3054383', 'conflicting'), 'mock');
-    expect(findings.map((f) => f.ruleId)).toEqual(['T1', 'T2', 'T3']);
+    expect(findings.map((f) => f.ruleId)).toEqual(['CT1', 'CT2', 'CT3']);
     expect(findings[0]!.evidence).toEqual([
       { documentId: 'doc-bl', field: 'vessel', value: 'M/V Example Star' },
       { documentId: 'tracking:mock', field: 'containers[0].events.loaded.vessel', value: 'MOCK DIFFERENT VESSEL' },
@@ -212,7 +238,7 @@ describe('container tracking', () => {
       ev({ containerNumber: 'MSCU1234565', type: 'GATE_IN', at: '2026-10-09T08:00:00Z' }),
     ];
     expect(trackingFindings('s1', blDoc, events, 'vizion')).toEqual([]);
-    expect(trackingFindings('s1', { id: 'b', data: { ...bl, shippedOnBoardDate: undefined, vessel: undefined, voyage: undefined } }, mockEvents(bl, 'CSQU3054383', 'conflicting'), 'mock').map((f) => f.ruleId)).toEqual(['T2']);
+    expect(trackingFindings('s1', { id: 'b', data: { ...bl, shippedOnBoardDate: undefined, vessel: undefined, voyage: undefined } }, mockEvents(bl, 'CSQU3054383', 'conflicting'), 'mock').map((f) => f.ruleId)).toEqual(['CT2']);
   });
 
   it('uses the terminal calendar date for the gate-in', () => {

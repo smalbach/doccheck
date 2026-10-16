@@ -39,6 +39,33 @@ export const SCORED_FIELDS: Record<ExtractableType, [path: string, kind: Kind][]
     ['shipToParty.name', 'text'], ['shipToParty.address.postalCode', 'code'], ['consolidator.name', 'text'],
     ['countryOfOrigin', 'code'], ['htsCode', 'code'], ['containerStuffingLocation.city', 'text'], ['containerStuffingLocation.country', 'code'],
   ],
+  AIR_WAYBILL: [
+    ['awbNumber', 'code'], ['issuer', 'code'], ['masterAwbNumber', 'code'], ['shipper.name', 'text'], ['consignee.name', 'text'],
+    ['airportOfDeparture.iata', 'code'], ['airportOfDestination.iata', 'code'], ['flights[0].flight', 'code'], ['flights[0].date', 'code'],
+    ['pieces', 'decimal'], ['grossWeight.kg', 'weight'], ['chargeableWeight.kg', 'weight'], ['natureOfGoods', 'text'], ['freightTerms', 'code'], ['executedOn', 'code'],
+  ],
+  CERTIFICATE_OF_ORIGIN: [
+    ['certificateNumber', 'code'], ['exporter.name', 'text'], ['consignee.name', 'text'], ['countryOfOrigin', 'code'],
+    ['goods[*].description', 'text'], ['goods[*].hsCode', 'code'], ['goods[*].quantity.value', 'decimal'], ['dateOfIssue', 'code'],
+  ],
+  CUSMA_CERTIFICATION: [
+    ['certifierRole', 'code'], ['certifier.name', 'text'], ['exporter.name', 'text'], ['producer.name', 'text'], ['producerStatement', 'code'], ['importer.name', 'text'],
+    ['goods[*].description', 'text'], ['goods[*].hsCode', 'code'], ['goods[*].originCriterion', 'code'],
+    ['blanketPeriod.from', 'code'], ['blanketPeriod.to', 'code'], ['signature.name', 'text'], ['signature.date', 'code'],
+  ],
+  ARRIVAL_NOTICE: [
+    ['noticeNumber', 'code'], ['transportDocumentNumber', 'code'], ['consignee.name', 'text'], ['estimatedArrival', 'code'],
+    ['containers[*].number', 'code'], ['packages', 'decimal'], ['grossWeight.kg', 'weight'], ['lastFreeDay', 'code'],
+  ],
+  WOOD_PACKAGING_CERTIFICATE: [
+    ['certificateNumber', 'code'], ['kind', 'code'], ['treatment', 'code'], ['ispmMark.country', 'code'], ['ispmMark.registration', 'code'],
+    ['treatmentDate', 'code'], ['exporter.name', 'text'], ['containers[*]', 'code'],
+  ],
+  DANGEROUS_GOODS_DECLARATION: [
+    ['shipper.name', 'text'], ['transportDocumentNumber', 'code'], ['regulation', 'code'],
+    ['items[*].unNumber', 'code'], ['items[*].properShippingName', 'text'], ['items[*].hazardClass', 'code'], ['items[*].packingGroup', 'code'],
+    ['items[*].quantity.value', 'decimal'],
+  ],
 };
 
 export type Outcome = 'correct' | 'wrong' | 'missing' | 'spurious';

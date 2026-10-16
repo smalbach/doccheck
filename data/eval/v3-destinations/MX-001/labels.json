@@ -1,0 +1,17 @@
+{
+  "id": "MX-001",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "incoterm",
+      "before": {
+        "code": "EXW",
+        "place": "Ambarlı"
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Terms of sale (Incoterm) missing from the invoice."
+    }
+  ]
+}

@@ -7,7 +7,7 @@
 //   npm run build && npm run test:e2e -w @doccheck/api
 //
 // The schema of its database is dropped and recreated.
-import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
+import { sampleAirWaybill, sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
@@ -26,8 +26,8 @@ try {
 const require = createRequire(import.meta.url);
 const { verifySignature } = require(join(root, 'packages/integrations/dist/index.js'));
 
-// Beside e2e.test.mjs (DATABASE_URL_TEST, E2E_PORT) and orgs.test.mjs (E2E_PORT + 1): the test
-// database name with "_integrations" before "_test", and port E2E_PORT + 2.
+// Beside e2e.test.mjs (DATABASE_URL_TEST, E2E_PORT) and orgs.test.mjs (E2E_PORT + 1) and usage-review.test.mjs (E2E_PORT + 2): the test
+// database name with "_integrations" before "_test", and port E2E_PORT + 3.
 const testUrl = (() => {
   const u = new URL(process.env.DATABASE_URL_TEST ?? process.env.DATABASE_URL ?? 'postgres://doccheck:doccheck@localhost:5432/doccheck');
   if (!process.env.DATABASE_URL_TEST) u.pathname = '/doccheck_test';
@@ -37,7 +37,7 @@ const testUrl = (() => {
 const dbName = new URL(testUrl).pathname.slice(1);
 if (!/_integrations_test($|_)/.test(dbName)) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
 
-const port = Number(process.env.E2E_PORT ?? 3990) + 2;
+const port = Number(process.env.E2E_PORT ?? 3990) + 3;
 const base = `http://localhost:${port}`;
 const inbox = mkdtempSync(join(tmpdir(), 'doccheck-inbox-'));
 let api;
@@ -219,7 +219,7 @@ describe('API keys', () => {
     assert.equal(created.status, 201);
     assert.deepEqual([created.body.reference, created.body.destination, created.body.status, created.body.documents], ['API-1', 'US', 'RECEIVED', []]);
     assert.equal((await v1('GET', `/shipments/${created.body.id}`, read.key)).body.id, created.body.id);
-    assert.equal((await v1('POST', '/shipments', write.key, { destination: 'MX' })).status, 400);
+    assert.equal((await v1('POST', '/shipments', write.key, { destination: 'XX' })).status, 400);
     assert.equal((await v1('POST', '/shipments', write.key, { destination: 'CA', extra: 1 })).status, 400);
 
     // Another organization's key sees neither the shipment nor its id.
@@ -278,7 +278,7 @@ describe('idempotency', () => {
     assert.equal((await upload(Buffer.from('%PDF-1.4\n% another\n'), 'up-1')).status, 422);
     assert.equal((await v1('GET', `/shipments/${s.id}`, key)).body.documents.length, 1);
     const notPdf = new FormData();
-    notPdf.append('files', new Blob(['hello']), 'x.txt');
+    notPdf.append('files', new Blob(['MZ\u0000\u0001binary']), 'run.exe');
     assert.equal((await fetch(`${base}/api/v1/shipments/${s.id}/documents`, { method: 'POST', headers: { authorization: `Bearer ${key}` }, body: notPdf })).status, 400);
   });
 });
@@ -293,7 +293,7 @@ describe('API v1 flow and OpenAPI', () => {
       '/api/v1/shipments/{id}/findings', '/api/v1/shipments/{id}/validate',
     ]);
     for (const id of ['Shipment', 'Document', 'Finding', 'Validation', 'ShipmentList', 'DocumentDetail', 'Error']) assert.ok(body.components.schemas[id], id);
-    assert.deepEqual(body.components.schemas.Shipment.properties.destination.enum, ['CA', 'US']);
+    assert.deepEqual(body.components.schemas.Shipment.properties.destination.enum, ['CA', 'US', 'MX', 'EU', 'GB']);
     assert.ok(body.webhooks['validation.completed']);
     assert.equal(body.servers[0].url, base);
   });
@@ -344,6 +344,37 @@ describe('API v1 flow and OpenAPI', () => {
   });
 });
 
+describe('API v1 with the new destinations, air waybills and plans', () => {
+  it('takes every destination, exports an air shipment from its air waybill, and counts validations on the plan', async () => {
+    const { key } = await newKey();
+    for (const destination of ['MX', 'EU', 'GB']) assert.equal((await v1('POST', '/shipments', key, { destination })).status, 201, destination);
+    const spec = (await call('GET', '/api/v1/openapi.json', undefined, { as: '' })).body;
+    assert.deepEqual(spec.components.schemas.CreateShipmentRequest.properties.destination.enum, ['CA', 'US', 'MX', 'EU', 'GB']);
+    assert.ok(spec.components.schemas.Document.properties.detectedType.enum.includes('AIR_WAYBILL'));
+
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA', transportMode: 'AIR', reference: 'AIR-1' });
+    for (const [type, data] of Object.entries({ COMMERCIAL_INVOICE: sampleInvoice, AIR_WAYBILL: sampleAirWaybill })) {
+      const id = randomUUID();
+      await repo.insertDocument({ id, shipmentId: s.id, fileName: `${type}.pdf`, storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+      await repo.saveExtraction(id, { pageCount: 1, detectedType: type, typeConfidence: 1 }, { documentId: id, documentType: type, model: 'test', promptVersion: 'test', raw: {}, data, issues: [], pdfLines: [] });
+    }
+    const validations = async () => (await call('GET', '/usage')).body.meters.find((m) => m.kind === 'validation').used;
+    const before = await validations();
+    assert.equal((await v1('POST', `/shipments/${s.id}/validate?agent=false&wait=true`, key)).status, 200);
+    assert.equal(await validations(), before + 1);
+
+    const xml = await fetch(`${base}/api/v1/shipments/${s.id}/exports/cargowise-xml`, { headers: { authorization: `Bearer ${key}` } });
+    assert.equal(xml.status, 200);
+    const text = await xml.text();
+    assert.match(text, /<WayBillNumber>176-12345675<\/WayBillNumber>/);
+    assert.match(text, /<TransportMode>\s*<Code>AIR<\/Code>/);
+    assert.match(await (await fetch(`${base}/api/v1/shipments/${s.id}/exports/x12-856`, { headers: { authorization: `Bearer ${key}` } })).text(), /^REF\*AW\*176-12345675~$/m);
+    const ocean = await v1('GET', `/shipments/${s.id}/exports/x12-310`, key);
+    assert.equal(ocean.status, 409);
+    assert.match(ocean.body.message, /air waybill/);
+  });
+});
+
 describe('webhooks', () => {
   it('refuses unsafe URLs when private addresses are not allowed', () => {
     const { checkUrl, isBlockedAddress } = require(join(root, 'apps/api/dist/integrations/safe-fetch.js'));
@@ -356,13 +387,16 @@ describe('webhooks', () => {
 
   it('sends a signed test event and logs the delivery', async () => {
     const hook = await receiver();
-    const created = await call('POST', '/integrations/webhooks', { url: hook.url, events: ['validation.completed'], description: 'ERP' });
+    // Its own account: a validation another test started in the background must not reach this webhook.
+    const me = await signUp('Signed');
+    const call_ = (method, path, body) => call(method, path, body, { as: me });
+    const created = await call_('POST', '/integrations/webhooks', { url: hook.url, events: ['validation.completed'], description: 'ERP' });
     assert.equal(created.status, 201);
     assert.match(created.body.secret, /^whsec_[A-Za-z0-9]{32}$/);
-    assert.equal((await call('GET', '/integrations/webhooks')).body.some((w) => 'secret' in w), false);
-    assert.equal((await call('POST', `/integrations/webhooks/${created.body.id}/secret`)).body.secret, created.body.secret);
+    assert.equal((await call_('GET', '/integrations/webhooks')).body.some((w) => 'secret' in w), false);
+    assert.equal((await call_('POST', `/integrations/webhooks/${created.body.id}/secret`)).body.secret, created.body.secret);
 
-    const test = await call('POST', `/integrations/webhooks/${created.body.id}/test`);
+    const test = await call_('POST', `/integrations/webhooks/${created.body.id}/test`);
     assert.equal(test.status, 200);
     await until(() => hook.requests.length === 1);
     const [req] = hook.requests;
@@ -372,14 +406,14 @@ describe('webhooks', () => {
     assert.equal(verifySignature(created.body.secret, req.body, req.headers['doccheck-signature']).ok, true);
     assert.equal(verifySignature('whsec_wrong', req.body, req.headers['doccheck-signature']).ok, false);
     const log = await until(async () => {
-      const d = (await call('GET', `/integrations/webhooks/${created.body.id}/deliveries`)).body;
+      const d = (await call_('GET', `/integrations/webhooks/${created.body.id}/deliveries`)).body;
       return d[0]?.status === 'succeeded' && d;
     });
     assert.deepEqual([log[0].attempts, log[0].responseStatus, log[0].eventType], [1, 200, 'ping']);
 
     // A rotated secret signs from then on.
-    const { body: rotated } = await call('POST', `/integrations/webhooks/${created.body.id}/rotate-secret`);
-    await call('POST', `/integrations/webhooks/${created.body.id}/test`);
+    const { body: rotated } = await call_('POST', `/integrations/webhooks/${created.body.id}/rotate-secret`);
+    await call_('POST', `/integrations/webhooks/${created.body.id}/test`);
     await until(() => hook.requests.length === 2);
     assert.equal(verifySignature(rotated.secret, hook.requests[1].body, hook.requests[1].headers['doccheck-signature']).ok, true);
     await hook.close();
@@ -387,13 +421,13 @@ describe('webhooks', () => {
 
   it('retries with backoff, gives up after the last attempt, and redelivers on request', async () => {
     const flaky = await receiver((n) => (n < 3 ? 500 : 200));
-    const { body: w } = await call('POST', '/integrations/webhooks', { url: flaky.url, events: ['validation.completed'] });
+    const { body: w } = await call('POST', '/integrations/webhooks', { url: flaky.url, events: ['supplier.replied'] });
     await call('POST', `/integrations/webhooks/${w.id}/test`);
     const ok = await until(async () => (await call('GET', `/integrations/webhooks/${w.id}/deliveries`)).body.find((d) => d.status !== 'pending'));
     assert.deepEqual([ok.status, ok.attempts, flaky.requests.length], ['succeeded', 3, 3]);
 
     const down = await receiver(() => 503);
-    const { body: w2 } = await call('POST', '/integrations/webhooks', { url: down.url, events: ['validation.completed'] });
+    const { body: w2 } = await call('POST', '/integrations/webhooks', { url: down.url, events: ['supplier.replied'] });
     await call('POST', `/integrations/webhooks/${w2.id}/test`);
     const failed = await until(async () => (await call('GET', `/integrations/webhooks/${w2.id}/deliveries`)).body.find((d) => d.status === 'failed'));
     assert.deepEqual([failed.attempts, failed.responseStatus, failed.error], [3, 503, 'Answered 503']);
@@ -497,12 +531,12 @@ describe('chat alerts', () => {
 describe('container tracking', () => {
   const bl = { ...sampleBillOfLading, vessel: 'EXAMPLE STAR', voyage: '012E', shippedOnBoardDate: '2026-10-05' };
 
-  it('is off by default and adds T findings from the provider when on', async () => {
+  it('is off by default and adds CT findings from the provider when on', async () => {
     const me = await signUp('Tracking');
     assert.deepEqual((await call('GET', '/integrations/tracking', undefined, { as: me })).body.enabled, false);
     const { shipment } = await extractedShipment(me, { bl });
     const first = await call('POST', `/shipments/${shipment.id}/validate?agent=false`, undefined, { as: me });
-    assert.equal(first.body.findings.some((f) => f.ruleId.startsWith('T')), false);
+    assert.equal(first.body.findings.some((f) => f.ruleId.startsWith('CT')), false);
 
     assert.equal((await call('PUT', '/integrations/tracking', { enabled: true, provider: 'vizion' }, { as: me })).status, 400);
     const saved = await call('PUT', '/integrations/tracking', { enabled: true, provider: 'mock', mockScenario: 'conflicting' }, { as: me });
@@ -510,21 +544,21 @@ describe('container tracking', () => {
     await call('POST', `/shipments/${shipment.id}/validate?agent=false`, undefined, { as: me });
     const latest = await until(async () => {
       const v = (await call('GET', `/shipments/${shipment.id}/validation`, undefined, { as: me })).body;
-      return v.findings.filter((f) => f.ruleId.startsWith('T')).length === 3 && v;
+      return v.findings.filter((f) => f.ruleId.startsWith('CT')).length === 3 && v;
     });
-    const t1 = latest.findings.find((f) => f.ruleId === 'T1');
+    const t1 = latest.findings.find((f) => f.ruleId === 'CT1');
     assert.deepEqual([...new Set(t1.evidence.map((e) => e.documentId))].length, 2);
     assert.ok(t1.evidence.some((e) => e.documentId === 'tracking:mock' && e.value === 'MOCK DIFFERENT VESSEL'));
     const events = (await call('GET', `/shipments/${shipment.id}/tracking`, undefined, { as: me })).body;
     assert.deepEqual([events.provider, events.findings, events.events.length], ['mock', 3, 4]);
 
-    // Consistent events: the T findings are gone on the next run.
+    // Consistent events: the CT findings are gone on the next run.
     await call('PUT', '/integrations/tracking', { enabled: true, provider: 'mock', mockScenario: 'consistent' }, { as: me });
     await call('POST', `/shipments/${shipment.id}/validate?agent=false`, undefined, { as: me });
     await until(async () => (await call('GET', `/shipments/${shipment.id}/tracking`, undefined, { as: me })).body.findings === 0);
     const after = (await call('GET', `/shipments/${shipment.id}/validation`, undefined, { as: me })).body;
-    assert.equal(after.findings.some((f) => f.ruleId.startsWith('T')), false);
-    assert.ok(after.resolved.some((f) => f.ruleId === 'T3'));
+    assert.equal(after.findings.some((f) => f.ruleId.startsWith('CT')), false);
+    assert.ok(after.resolved.some((f) => f.ruleId === 'CT3'));
   });
 });
 

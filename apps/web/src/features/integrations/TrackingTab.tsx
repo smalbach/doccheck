@@ -83,9 +83,9 @@ export function TrackingTab() {
       </form>
       <h3 className="section-title">{t('integrations.tracking.rules')}</h3>
       <ul className="plain-list">
-        <li>{t('integrations.tracking.T1')}</li>
-        <li>{t('integrations.tracking.T2')}</li>
-        <li>{t('integrations.tracking.T3')}</li>
+        <li>{t('integrations.tracking.CT1')}</li>
+        <li>{t('integrations.tracking.CT2')}</li>
+        <li>{t('integrations.tracking.CT3')}</li>
       </ul>
       <p className="muted small">{t('integrations.tracking.note')}</p>
     </Card>

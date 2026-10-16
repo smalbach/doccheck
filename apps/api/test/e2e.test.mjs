@@ -6,7 +6,10 @@
 //
 // Uses DATABASE_URL_TEST, or DATABASE_URL with the database renamed to doccheck_test. The schema is
 // dropped and recreated, so the database name must end in "_test".
-import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
+// The samples are set v1: labeled for the v1 rules. Rules added later read data v1 made up (BN, SCAC), see METRICS.md.
+import { V1_RULE_IDS } from '@doccheck/rules';
+import { sampleAirWaybill, sampleBillOfLading, sampleCertificateOfOrigin, sampleInvoice, samplePackingList } from '@doccheck/schemas';
+import { writeCsv, writeXlsx } from '@doccheck/extraction';
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';
@@ -80,10 +83,14 @@ const call = async (method, path, body, as = cookie) => {
   return { status: res.status, body: text ? JSON.parse(text) : undefined, cookie: sessionCookie(res) };
 };
 
-/** Signs up a new user and returns its session cookie. */
+/**
+ * Signs up a new user and returns its session cookie. The fixture BL's carrier SCAC (EXLN) is made up,
+ * so each account adds it to its known SCACs, as an account would add its NVOCCs' (rule X15).
+ */
 const signUp = async (name = 'Test user') => {
   const res = await call('POST', '/auth/register', { email: `${randomUUID()}@example.com`, password: 'correct horse battery', name }, '');
   assert.equal(res.status, 201);
+  await call('PUT', '/rules/settings', { params: { knownScacs: ['EXLN'] } }, res.cookie);
   return res.cookie;
 };
 
@@ -237,7 +244,14 @@ const mailsTo = (to) =>
   readdirSync(mailDir)
     .filter((f) => f.endsWith('.json'))
     .sort()
-    .map((f) => JSON.parse(readFileSync(join(mailDir, f), 'utf8')))
+    // A file still being written reads as invalid JSON: skip it, the next poll gets it whole.
+    .flatMap((f) => {
+      try {
+        return [JSON.parse(readFileSync(join(mailDir, f), 'utf8'))];
+      } catch {
+        return [];
+      }
+    })
     .filter((m) => m.to === to);
 
 /** Waits for the `count`-th email to `to` (sent after the API answered) and returns it. */
@@ -356,7 +370,7 @@ describe('admin', () => {
 
   it('changes settings, validates them and resets them to .env', async () => {
     const list = (await call('GET', '/admin/settings', undefined, admin)).body;
-    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'registrationOpen', 'ocrEngine', 'ocrUrl', 'ocrLanguages', 'ocrScale', 'ocrPsm']);
+    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'registrationOpen', 'ocrEngine', 'ocrUrl', 'ocrLanguages', 'ocrScale', 'ocrPsm', 'reviewThreshold', 'reviewSecondPass', 'supplierLearning', 'supplierExamples']);
     assert.equal(list.editable, true);
     assert.equal(list.settings.find((x) => x.key === 'agentEnabled').source, 'env');
 
@@ -483,7 +497,8 @@ describe('shipments', () => {
     assert.equal((await call('GET', '/shipments?limit=500')).status, 400);
     assert.equal((await call('GET', '/shipments/not-a-uuid')).status, 404);
     assert.equal((await call('GET', '/shipments/00000000-0000-0000-0000-000000000000')).status, 404);
-    assert.equal((await call('POST', '/shipments', { destination: 'MX' })).status, 400);
+    assert.equal((await call('POST', '/shipments', { destination: 'BR' })).status, 400);
+    assert.equal((await call('POST', '/shipments', { destination: 'MX' })).status, 201);
   });
 
   it('validates JSON documents, stores the run and returns it later', async () => {
@@ -605,14 +620,16 @@ describe('ISF', () => {
     containerStuffingLocation: sampleInvoice.seller.address,
     consolidator: sampleInvoice.seller,
   };
-  const usInvoice = { ...sampleInvoice, portOfEntry: { name: 'Los Angeles', unLocode: 'USLAX', country: 'US' } };
+  const lax = { name: 'Los Angeles', unLocode: 'USLAX', country: 'US' };
+  const usInvoice = { ...sampleInvoice, portOfEntry: lax };
+  const usBillOfLading = { ...sampleBillOfLading, portOfDischarge: lax, placeOfDelivery: lax };
 
   it('is stored per US shipment and used by X11', async () => {
     const { body: s } = await call('POST', '/shipments', { destination: 'US' });
-    const docs = { invoice: usInvoice, packingList: samplePackingList, billOfLading: sampleBillOfLading };
+    const docs = { invoice: usInvoice, packingList: samplePackingList, billOfLading: usBillOfLading };
 
     const without = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs);
-    assert.deepEqual(without.body.skipped.map((x) => x.ruleId), ['X11']);
+    assert.deepEqual(without.body.skipped.map((x) => x.ruleId), ['X11', 'U2', 'U3', 'U4']);
 
     assert.equal((await call('PUT', `/shipments/${s.id}/isf`, isf)).status, 200);
     const clean = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs);
@@ -810,7 +827,7 @@ describe('progress events', () => {
     assert.equal(events.find((e) => e.stage === 'agent').detail.reason, 'disabled');
 
     const rules = events.filter((e) => e.stage === 'rules' && e.status === 'progress');
-    assert.equal(rules.length, run.body.ran.length + run.body.skipped.length);
+    assert.equal(rules.length, run.body.ran.length + run.body.skipped.length + run.body.notApplicable.length);
     assert.deepEqual(rules.map((e) => e.detail.index), rules.map((_, i) => i + 1));
     assert.equal(rules.find((e) => e.detail.rule === 'X2').detail.findings, 1);
     assert.deepEqual(events.find((e) => e.stage === 'rules' && e.status === 'started').detail, { documents: 3 });
@@ -1212,7 +1229,7 @@ describe('PDF upload', { skip: !hasSample && 'evaluation set not generated' }, (
 
     const run = await call('POST', `/shipments/${s.id}/validate?agent=false`);
     const expected = JSON.parse(readFileSync(join(sample, 'labels.json'), 'utf8')).errors.flatMap((e) => e.expectedRuleIds).sort();
-    assert.deepEqual([...new Set(run.body.findings.map((f) => f.ruleId))].sort(), expected);
+    assert.deepEqual([...new Set(run.body.findings.filter((f) => V1_RULE_IDS.includes(f.ruleId)).map((f) => f.ruleId))].sort(), expected);
     assert.ok(run.body.findings.every((f) => f.evidence.some((e) => e.source?.page === 1)));
 
     const invoiceId = documents[0].document.id;
@@ -2207,6 +2224,178 @@ describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' 
     const run = await demoCall('POST', `/shipments/${a.body.id}/validate?agent=false`);
     assert.equal(run.status, 200);
     const expected = JSON.parse(readFileSync(join(sample, 'labels.json'), 'utf8')).errors.flatMap((e) => e.expectedRuleIds).sort();
-    assert.deepEqual([...new Set(run.body.findings.map((f) => f.ruleId))].sort(), expected);
+    assert.deepEqual([...new Set(run.body.findings.filter((f) => V1_RULE_IDS.includes(f.ruleId)).map((f) => f.ruleId))].sort(), expected);
+  });
+});
+
+describe('rule settings', () => {
+  it('turns rules off, changes severity and tolerances, and records them with each run', async () => {
+    const me = await signUp('Rules');
+    const defaults = await call('GET', '/rules/settings', undefined, me);
+    assert.equal(defaults.status, 200);
+    assert.deepEqual(defaults.body.config, { params: { knownScacs: ['EXLN'] } });
+    assert.ok(defaults.body.rules.some((r) => r.id === 'X24' && r.params.length === 2));
+    assert.equal(defaults.body.defaults.grossWeightTolerance, 0.005);
+
+    assert.equal((await call('PUT', '/rules/settings', { rules: { X99: { enabled: false } } }, me)).status, 400);
+    assert.equal((await call('PUT', '/rules/settings', { params: { grossWeightTolerance: 3 } }, me)).status, 400);
+
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' }, me);
+    const bl = { ...structuredClone(sampleBillOfLading), totalPackages: 121, totalGrossWeight: { kg: '1300', raw: { value: '1300', unit: 'KG' } } };
+    const docs = { invoice: sampleInvoice, packingList: samplePackingList, billOfLading: bl };
+    const before = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs, me);
+    assert.deepEqual(before.body.findings.map((f) => [f.ruleId, f.severity]), [['X2', 'HIGH'], ['X3', 'MEDIUM']]);
+
+    const saved = await call('PUT', '/rules/settings', { rules: { X2: { severity: 'LOW' }, X8: { enabled: true } }, params: { grossWeightTolerance: 0.05, knownScacs: ['exln'] } }, me);
+    assert.equal(saved.status, 200);
+    assert.deepEqual(saved.body.config, { rules: { X2: { severity: 'LOW' } }, params: { grossWeightTolerance: 0.05, knownScacs: ['EXLN'] } });
+    const after = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs, me);
+    assert.deepEqual(after.body.findings.map((f) => [f.ruleId, f.severity]), [['X2', 'LOW']]);
+
+    await call('PUT', '/rules/settings', { rules: { X2: { enabled: false } }, params: { knownScacs: ['EXLN'] } }, me);
+    const off = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs, me);
+    assert.deepEqual(off.body.findings.map((f) => f.ruleId), ['X3']);
+    assert.ok(!off.body.ran.includes('X2'));
+    const stored = (await call('GET', `/shipments/${s.id}/validation`, undefined, me)).body.ruleConfig;
+    assert.deepEqual(stored.config, { rules: { X2: { enabled: false } }, params: { knownScacs: ['EXLN'] } });
+    assert.deepEqual(stored.disabled, ['X2']);
+    assert.equal(stored.scope, 'organization');
+    assert.equal(stored.params.grossWeightTolerance, 0.005);
+    assert.match(stored.asOf, /^\d{4}-\d{2}-\d{2}$/);
+
+    // Settings are per organization (each account has its own personal one).
+    assert.deepEqual((await call('GET', '/rules/settings')).body.config, { params: { knownScacs: ['EXLN'] } });
+
+    const reset = await call('DELETE', '/rules/settings', undefined, me);
+    assert.deepEqual(reset.body.config, {});
+  });
+
+  it('imports purchase orders from CSV and JSON and matches the invoice against them', async () => {
+    const me = await signUp('Buyer');
+    const csv = 'PO Number,Line,SKU,Description,Qty,UOM,Unit Price,Currency\r\nPO-4411,1,TB-200,Plush teddy bear,5000,PCS,8.10,USD\r\n';
+    const form = new FormData();
+    form.append('file', new Blob([csv], { type: 'text/csv' }), 'orders.csv');
+    const imported = await send(`${base}/purchase-orders`, { method: 'POST', body: form }, me);
+    assert.equal(imported.status, 201);
+    const body = await imported.json();
+    assert.equal(body.created, 1);
+    assert.deepEqual(body.orders.map((o) => [o.poNumber, o.lines, o.currency, o.source]), [['PO-4411', 1, 'USD', 'orders.csv']]);
+
+    const bad = new FormData();
+    bad.append('file', new Blob(['PO Number,Qty\r\nPO-1,lots\r\n'], { type: 'text/csv' }), 'bad.csv');
+    const refused = await send(`${base}/purchase-orders`, { method: 'POST', body: bad }, me);
+    assert.equal(refused.status, 400);
+
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' }, me);
+    const docs = { invoice: sampleInvoice, packingList: samplePackingList, billOfLading: sampleBillOfLading };
+    const run = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs, me);
+    const x24 = run.body.findings.filter((f) => f.ruleId === 'X24');
+    assert.equal(x24.length, 2); // invoiced 6000 against 5000 ordered; packed 6000 too
+    assert.ok(x24[0].evidence.some((e) => e.documentId.startsWith('po:') && e.value === '5000'));
+    assert.equal((await call('GET', `/shipments/${s.id}/validation`, undefined, me)).body.ruleConfig.account.purchaseOrder, 'PO-4411');
+
+    // The same PO number replaces the order.
+    const json = await call('POST', '/purchase-orders', [{ poNumber: 'po 4411', currency: 'USD', lines: [{ sku: 'TB-200', quantity: '6000', unit: 'PCS', unitPrice: '8.10' }] }], me);
+    assert.equal(json.body.updated, 1);
+    const clean = await call('POST', `/shipments/${s.id}/validate?agent=false`, docs, me);
+    assert.deepEqual(clean.body.findings, []);
+
+    const [order] = (await call('GET', '/purchase-orders', undefined, me)).body;
+    assert.equal((await call('GET', '/purchase-orders')).body.length, 0); // another account sees none
+    assert.equal((await call('DELETE', `/purchase-orders/${order.id}`)).status, 404);
+    assert.equal((await call('DELETE', `/purchase-orders/${order.id}`, undefined, me)).status, 204);
+  });
+});
+
+describe('other documents and input formats', () => {
+  const invoiceRows = [
+    ['COMMERCIAL INVOICE'],
+    ['Invoice No.', 'INV-2026-0412', '', 'Date', '2026-10-01'],
+    ['Currency', 'USD', '', 'Terms of sale', 'FOB Shenzhen'],
+    ['Seller', '', '', 'Buyer'],
+    ['Acme Toys Co., Ltd.', '', '', 'Maple Retail Inc.'],
+    ['88 Industrial Rd', '', '', '100 King St W'],
+    ['Shenzhen, GD 518000', '', '', 'Toronto, ON M5H 1A1'],
+    ['China', '', '', 'Canada'],
+    [],
+    ['No.', 'SKU', 'Description', 'Origin', 'Qty', 'Unit', 'Unit price', 'Amount'],
+    ['1', 'TB-200', 'Plush teddy bear 30 cm', 'CN', '6000', 'PCS', '8.10', '48600.00'],
+    ['', '', 'TOTAL', '', '6000', '', '', '48600.00'],
+  ];
+  const packingRows = [
+    ['PACKING LIST'],
+    ['Packing list no.', 'PL-2026-0412', 'Invoice no.', 'INV-2026-0412'],
+    ['C/No.', 'Cartons', 'SKU', 'Description', 'Qty', 'Unit', 'G.W. (KG)'],
+    ['1-120', '120', 'TB-200', 'Plush teddy bear 30 cm', '5940', 'PCS', '1250'],
+    ['TOTAL', '120', '', '', '5940', '', '1250'],
+  ];
+  const upload = async (shipmentId, files) => {
+    const form = new FormData();
+    for (const [name, bytes, type] of files) form.append('files', new Blob([bytes], { type }), name);
+    const res = await send(`${base}/shipments/${shipmentId}/documents?wait=true`, { method: 'POST', body: form });
+    return { status: res.status, body: await res.json() };
+  };
+
+  it('reads an invoice workbook and a packing list CSV without a model, and cites the cell', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    const res = await upload(s.id, [
+      ['invoice.xlsx', writeXlsx([{ name: 'Invoice', rows: invoiceRows }]), 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
+      ['packing.csv', writeCsv(packingRows), 'text/csv'],
+    ]);
+    assert.equal(res.status, 202);
+    assert.deepEqual(res.body.documents.map((d) => [d.document.detectedType, d.document.format, d.document.status]), [
+      ['COMMERCIAL_INVOICE', 'SPREADSHEET', 'EXTRACTED'],
+      ['PACKING_LIST', 'SPREADSHEET', 'EXTRACTED'],
+    ]);
+    const [invoice, packing] = res.body.documents;
+    assert.equal(invoice.model, 'spreadsheet');
+    assert.equal(invoice.data.lines[0].lineTotal.amount, '48600.00');
+    const grid = await call('GET', `/shipments/${s.id}/documents/${invoice.document.id}/sheets`);
+    assert.deepEqual(grid.body.sheets[0].rows[10].slice(0, 3), ['1', 'TB-200', 'Plush teddy bear 30 cm']);
+    const file = await send(`${base}/shipments/${s.id}/documents/${invoice.document.id}/file`);
+    assert.equal(file.headers.get('content-type'), 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    const run = await call('POST', `/shipments/${s.id}/validate?agent=false`, { billOfLading: sampleBillOfLading });
+    const x7 = run.body.findings.find((f) => f.ruleId === 'X7');
+    assert.ok(x7, JSON.stringify(run.body.findings.map((f) => f.ruleId)));
+    const cited = x7.evidence.find((e) => e.documentId === packing.document.id);
+    assert.equal(cited.source.cell, 'E4');
+    assert.equal(cited.source.sheet, 'packing');
+  });
+
+  it('splits a workbook with two documents into two documents that share the file', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    const res = await upload(s.id, [['folder.xlsx', writeXlsx([{ name: 'Invoice', rows: invoiceRows }, { name: 'Packing list', rows: packingRows }]), 'application/octet-stream']]);
+    assert.equal(res.status, 202);
+    const { body: shipment } = await call('GET', `/shipments/${s.id}`);
+    assert.deepEqual(shipment.documents.map((d) => [d.detectedType, d.pages, d.status]), [
+      ['COMMERCIAL_INVOICE', [1], 'EXTRACTED'],
+      ['PACKING_LIST', [2], 'EXTRACTED'],
+    ]);
+    const [first, second] = shipment.documents;
+    assert.equal(second.sourceDocumentId, first.id);
+    assert.equal(second.storageKey, first.storageKey);
+    assert.equal(second.fileName, 'folder.xlsx (Packing list)');
+    assert.equal((await call('DELETE', `/shipments/${s.id}`)).status, 204);
+  });
+
+  it('runs the air waybill rules on an air shipment, and the ocean rules do not apply', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA', transportMode: 'AIR' });
+    const airWaybill = { ...sampleAirWaybill, awbNumber: '176-12345670', pieces: 118 };
+    const invoice = { ...sampleInvoice, transport: { mode: 'AIR' }, shipmentDate: '2026-10-05' };
+    const run = await call('POST', `/shipments/${s.id}/validate?agent=false`, { invoice, packingList: samplePackingList, airWaybill, certificateOfOrigin: sampleCertificateOfOrigin });
+    assert.equal(run.status, 200);
+    // X17 aside: earlier tests in this account used the same sample invoice number.
+    assert.deepEqual([...new Set(run.body.findings.filter((f) => f.ruleId !== 'X17').map((f) => f.ruleId))].sort(), ['T1', 'T2']);
+    assert.ok(run.body.notApplicable.includes('X2') && run.body.notApplicable.includes('X10'));
+    assert.deepEqual(run.body.skipped, []);
+    assert.ok(run.body.ran.includes('T7') && run.body.ran.includes('T8'));
+    assert.equal((await call('GET', `/shipments/${s.id}`)).body.status, 'DONE');
+  });
+
+  it('rejects a file that is neither a PDF, a photo nor a spreadsheet', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    const res = await upload(s.id, [['notes.docx', 'PK not really', 'application/octet-stream']]);
+    assert.equal(res.status, 400);
+    assert.match(res.body.message, /not a PDF, a photo \(JPEG, PNG, HEIC\) or a spreadsheet/);
   });
 });

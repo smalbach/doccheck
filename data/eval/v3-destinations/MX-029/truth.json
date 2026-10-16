@@ -1,0 +1,302 @@
+{
+  "id": "MX-029",
+  "seed": 2036163056,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "AZE2605751",
+      "invoiceDate": "2026-03-24",
+      "poNumber": "PO-30246",
+      "seller": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "shipmentDate": "2026-03-30",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Sines",
+          "unLocode": "PTSIE",
+          "country": "PT"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Sines"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "MXN",
+      "packageCount": 161,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5",
+          "description": "Extra virgin olive oil, 5 L tins",
+          "quantity": {
+            "value": "6440",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.40",
+            "currency": "MXN"
+          },
+          "lineTotal": {
+            "amount": "15069.60",
+            "currency": "MXN"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3107.30",
+        "raw": {
+          "value": "3107.30",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2962.40",
+        "raw": {
+          "value": "2962.40",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "15069.60",
+        "currency": "MXN"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "zh"
+    },
+    "packingList": {
+      "packingListNumber": "PL-AZE2605751",
+      "invoiceRef": "AZE2605751",
+      "seller": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-161",
+          "count": 161,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-30246/C/NO. 1-161",
+          "contents": [
+            {
+              "sku": "OO-EV-5",
+              "description": "EV olive oil 5 L",
+              "quantity": {
+                "value": "644",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2962.40",
+            "raw": {
+              "value": "2962.40",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3107.30",
+            "raw": {
+              "value": "3107.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 161,
+        "netWeight": {
+          "kg": "2962.40",
+          "raw": {
+            "value": "2962.40",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3107.30",
+          "raw": {
+            "value": "3107.30",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "6.76"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXSIE9347326",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "136244799",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "086W",
+      "placeOfReceipt": {
+        "name": "Beja",
+        "country": "PT"
+      },
+      "portOfLoading": {
+        "name": "Sines",
+        "unLocode": "PTSIE",
+        "country": "PT"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "AGLU2160874",
+          "seal": "AG9700820",
+          "type": "20GP",
+          "packages": 161,
+          "grossWeight": {
+            "kg": "3107.30",
+            "raw": {
+              "value": "3107.30",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "6.76"
+        }
+      ],
+      "totalPackages": 161,
+      "totalGrossWeight": {
+        "kg": "3107.30",
+        "raw": {
+          "value": "3107.30",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-30246/C/NO. 1-161",
+      "cargoDescription": "SAID TO CONTAIN 161 CTNS EV OLIVE OIL 5 L",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Sines",
+      "dateOfIssue": "2026-04-01",
+      "shippedOnBoardDate": "2026-04-01",
+      "references": [
+        "AZE2605751",
+        "PO-30246"
+      ]
+    }
+  }
+}

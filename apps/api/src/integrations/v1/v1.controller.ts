@@ -17,6 +17,7 @@ import { Permission } from '../../orgs/permissions';
 import { OrgsRepository } from '../../orgs/orgs.repository';
 import type { OrgRequest } from '../../orgs/org.types';
 import { ExportsService } from '../exports.service';
+import { UsageService } from '../../usage/usage.service';
 import { V1ErrorsFilter } from './v1-errors.filter';
 import { IdempotencyStore, requestHash, type IdempotentResult } from '../idempotency';
 import {
@@ -65,6 +66,7 @@ export class V1Controller {
     private readonly repo: ShipmentsRepository,
     private readonly idempotency: IdempotencyStore,
     private readonly exports: ExportsService,
+    private readonly usage: UsageService,
   ) {}
 
   @Get('shipments')
@@ -134,6 +136,8 @@ export class V1Controller {
     if (!shipment.destination) throw new BadRequestException('Set the destination (CA or US) before validating');
     const pending = await this.repo.pendingDocuments(id);
     if (pending > 0) throw new ConflictException(`${pending} document(s) are still being extracted; validate when they are done`);
+    // The plan's limit answers this request (402), not the background run.
+    await this.usage.assertAllowed(id, 'validation');
     void this.shipments.validate(id, {}, { agent }).catch((err: Error) => this.logger.warn(`Validation of ${id} requested through the API failed: ${err.message}`));
     res.status(202);
     return { shipmentId: id, status: 'VALIDATING' as const };

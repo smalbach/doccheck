@@ -1,0 +1,311 @@
+{
+  "id": "GB-020",
+  "seed": 1022652314,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-6922",
+      "invoiceDate": "2026-03-27",
+      "poNumber": "PE706616",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "shipmentDate": "2026-04-07",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Le Havre",
+          "unLocode": "FRLEH",
+          "country": "FR"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Le Havre"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 155,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "7750",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.47",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "57892.50",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1395.00",
+        "raw": {
+          "value": "1395.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1581.00",
+        "raw": {
+          "value": "1581.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "57892.50",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "originStatement": "The exporter of the products covered by this document (Exporter Reference No FRREX454505577) declares that, except where otherwise clearly indicated, these products are of EU preferential origin."
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-6922",
+      "invoiceRef": "INV-2026-6922",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-155",
+          "count": 155,
+          "type": "CTN",
+          "marks": "PENNINE/PE706616/C/NO. 1-155",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "7726",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1395.00",
+            "raw": {
+              "value": "1395.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1581.00",
+            "raw": {
+              "value": "1581.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 155,
+        "netWeight": {
+          "kg": "1395.00",
+          "raw": {
+            "value": "1395.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1581.00",
+          "raw": {
+            "value": "1581.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "14.88"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSLEH845873",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "922407544",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "050N",
+      "placeOfReceipt": {
+        "name": "Lyon",
+        "country": "FR"
+      },
+      "portOfLoading": {
+        "name": "Le Havre",
+        "unLocode": "FRLEH",
+        "country": "FR"
+      },
+      "portOfDischarge": {
+        "name": "Southampton",
+        "unLocode": "GBSOU",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "MDOU3209658",
+          "seal": "MD3325377",
+          "type": "20GP",
+          "packages": 155,
+          "grossWeight": {
+            "kg": "1581.00",
+            "raw": {
+              "value": "1581.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "14.88"
+        }
+      ],
+      "totalPackages": 155,
+      "totalGrossWeight": {
+        "kg": "1581.00",
+        "raw": {
+          "value": "1581.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PE706616/C/NO. 1-155",
+      "cargoDescription": "SAID TO CONTAIN 155 CTNS PLUSH TEDDY BEAR 30 CM",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Le Havre",
+      "dateOfIssue": "2026-04-07",
+      "shippedOnBoardDate": "2026-04-07",
+      "references": [
+        "INV-2026-6922",
+        "PE706616"
+      ]
+    }
+  }
+}

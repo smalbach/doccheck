@@ -1,6 +1,9 @@
 import { CLOSING_STATUSES, REVIEW_STATUSES } from './reviews.types';
 import { z } from 'zod';
-import { BillOfLading, CommercialInvoice, Destination, Isf, PackingList, TransportMode } from '@doccheck/schemas';
+import {
+  AirWaybill, ArrivalNotice, BillOfLading, CertificateOfOrigin, CommercialInvoice, CusmaCertification, DangerousGoodsDeclaration, Destination, DocumentType, Isf, PackingList,
+  TransportMode, WoodPackagingCertificate,
+} from '@doccheck/schemas';
 
 export const CreateShipmentDto = z.object({
   reference: z.string().optional(),
@@ -40,10 +43,16 @@ export const ValidateShipmentDto = z.object({
   packingList: PackingList.optional(),
   billOfLading: BillOfLading.optional(),
   isf: Isf.optional(),
+  airWaybill: AirWaybill.optional(),
+  certificateOfOrigin: CertificateOfOrigin.optional(),
+  cusmaCertification: CusmaCertification.optional(),
+  arrivalNotice: ArrivalNotice.optional(),
+  woodPackaging: WoodPackagingCertificate.optional(),
+  dangerousGoods: DangerousGoodsDeclaration.optional(),
 });
 export type ValidateShipmentDto = z.infer<typeof ValidateShipmentDto>;
 
-export const ReextractDto = z.object({ type: z.enum(['COMMERCIAL_INVOICE', 'PACKING_LIST', 'BILL_OF_LADING', 'ISF']) });
+export const ReextractDto = z.object({ type: DocumentType.exclude(['UNKNOWN']) });
 export type ReextractDto = z.infer<typeof ReextractDto>;
 
 /** Values corrected by hand: JSON pointers into the normalized document; null removes an optional field. */

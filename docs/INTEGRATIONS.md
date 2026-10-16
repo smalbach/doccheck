@@ -21,7 +21,7 @@ Bajo `/api/v1`, solo con clave de API (`Authorization: Bearer dck_…` o `X-API-
 | GET | `/api/v1/shipments?status=&destination=&q=&limit=&offset=` | read | Lista de envíos |
 | POST | `/api/v1/shipments` | write | Crea un envío `{ reference?, destination?, transportMode? }` (201) |
 | GET | `/api/v1/shipments/:id` | read | Envío, documentos y estado |
-| POST | `/api/v1/shipments/:id/documents` | write | Sube PDF (multipart `files`, hasta 10 de 20 MB); 202, la extracción sigue en segundo plano |
+| POST | `/api/v1/shipments/:id/documents` | write | Sube archivos (multipart `files`, hasta 10 de 20 MB): PDF (uno combinado se separa en sus documentos), planillas o fotos; 202, la extracción sigue en segundo plano |
 | GET | `/api/v1/shipments/:id/documents/:documentId` | read | Documento y datos extraídos normalizados |
 | POST | `/api/v1/shipments/:id/validate?agent=&wait=` | write | 202 y la validación corre; con `wait=true`, 200 con el resultado |
 | GET | `/api/v1/shipments/:id/findings` | read | Última validación con hallazgos, evidencia, cita y decisiones (404 antes de validar) |
@@ -32,6 +32,8 @@ Bajo `/api/v1`, solo con clave de API (`Authorization: Bearer dck_…` o `X-API-
 - **Claves:** `dck_<8 caracteres>_<32 secretos>`. Se muestran una sola vez; se guarda su SHA-256 y el prefijo para reconocerlas. Alcances `read` y/o `write`, límite por minuto (120 por defecto), último uso (anotado como máximo una vez por minuto) y revocación definitiva.
 - **Límite de solicitudes:** ventanas de un minuto por clave; con `REDIS_URL` el conteo es compartido por todos los procesos, sin Redis cada proceso cuenta el suyo. Cada respuesta lleva `RateLimit-Limit`, `RateLimit-Remaining` y `RateLimit-Reset`; un 429 lleva `Retry-After`.
 - **Idempotencia:** crear y subir aceptan `Idempotency-Key`. La primera solicitud reserva la clave; si sale bien, su respuesta se guarda 24 horas y un reintento igual la recibe de nuevo (`Idempotent-Replayed: true`) sin repetir el trabajo. La misma clave con otra solicitud da 422; mientras la primera corre, 409. Una solicitud que falla libera la clave.
+- **Plan de uso:** las subidas y validaciones de la API cuentan para el plan de la organización igual que las de la app ([BILLING.md](BILLING.md)); pasado un límite duro, la subida o la validación (también la que corre en segundo plano) responden 402 con el mismo cuerpo que la app.
+- **Destinos y documentos:** la API acepta los destinos CA, US, MX, EU y GB y devuelve todos los tipos de documento, con su esquema en el documento OpenAPI.
 - **Errores:** siempre `{ statusCode, error, message, issues? }` (`issues` por campo en un 400).
 - **OpenAPI:** se genera de los mismos esquemas Zod con que la API valida (`v1.schemas.ts` → `openapi.ts`, con `z.toJSONSchema`), así que no se desfasa. `node scripts/api-contract.mjs --write-only` lo escribe en [`docs/api/openapi.json`](api/openapi.json) junto con la colección de Postman.
 
@@ -96,19 +98,21 @@ De un envío validado, con los documentos que leyó su última validación (`val
 - **X12 004010 856** (aviso de embarque): niveles envío/pedido/artículo con BL, contenedores, bultos, peso, partes y una línea por línea de factura.
 - **X12 004010 310** (conocimiento marítimo): buque y viaje, puertos, partes, un bucle por contenedor y totales.
 
+Un envío **aéreo** (guía aérea, sin conocimiento de embarque) se exporta desde su guía: en CargoWise la guía va como waybill (MWB o HWB), con piezas, peso cobrable, aeropuertos por nombre (CargoWise usa UN/LOCODE y la guía imprime códigos IATA), el primer vuelo y sin contenedores; en el 856 con método de transporte `A` y `REF*AW`. El 310 es un conocimiento marítimo: para un envío aéreo se rechaza con 409 y el motivo.
+
 Los ids de intercambio vienen de `X12_SENDER_ID`, `X12_RECEIVER_ID` y `X12_USAGE` (`T` por defecto, `P` producción). Los nombres de elementos siguen los formatos públicos; cada instalación de CargoWise o guía de un socio puede pedir más códigos, así que hay que revisarlo con ellos antes de usarlo en producción. En la app: menú **Exportar** del envío.
 
 Un **conector** (`ShipmentConnector` en `packages/integrations`) envía una exportación a otro sistema. Viene uno simulado (`mock`, `EXPORT_MOCK_CONNECTOR=false` lo quita) que guarda en memoria lo recibido y rechaza archivos incompletos. Una conexión real con CargoWise o una VAN necesita las credenciales del socio y se agrega registrando otro conector.
 
 ## Seguimiento de contenedores
 
-Apagado hasta que la organización lo activa. Después de cada validación busca los contenedores del BL con el proveedor y agrega a esa misma validación tres reglas deterministas, con evidencia del BL y del proveedor (`documentId: "tracking:<proveedor>"`):
+Apagado hasta que la organización lo activa. Las reglas se llaman CT1–CT3 (container tracking): T1–T13 son las de los tipos de documento. Después de cada validación busca los contenedores del BL con el proveedor y agrega a esa misma validación tres reglas deterministas, con evidencia del BL y del proveedor (`documentId: "tracking:<proveedor>"`):
 
 | Regla | Qué revisa |
 | --- | --- |
-| T1 | Buque o viaje de la primera carga distintos de los del BL (normalizados: "M/V Ever Given" = "EVER-GIVEN", "012E" = "12E") |
-| T2 | Puerto de la primera carga distinto del puerto de carga del BL (UN/LOCODE si ambos lo tienen, si no el nombre) |
-| T3 | Entrada a la terminal (gate-in) después de la fecha de embarque a bordo del BL, comparando la fecha local de la terminal |
+| CT1 | Buque o viaje de la primera carga distintos de los del BL (normalizados: "M/V Ever Given" = "EVER-GIVEN", "012E" = "12E") |
+| CT2 | Puerto de la primera carga distinto del puerto de carga del BL (UN/LOCODE si ambos lo tienen, si no el nombre) |
+| CT3 | Entrada a la terminal (gate-in) después de la fecha de embarque a bordo del BL, comparando la fecha local de la terminal |
 
 Solo cuentan eventos reales, nunca estimados; si falta un dato en un lado, la regla no corre. Los eventos usados quedan en `tracking_snapshots` (`GET /shipments/:id/tracking`).
 
@@ -132,9 +136,9 @@ Proveedores: **simulado** (eventos armados con el propio BL: "coinciden" o "no c
 
 ## Tests
 
-- `packages/integrations`: firmas, mensajes de chat, agrupación, XML de CargoWise, X12 856 y 310 (sobre, conteos, separadores), conector simulado, normalizadores de proveedores y T1–T3.
+- `packages/integrations`: firmas, mensajes de chat, agrupación, XML de CargoWise, X12 856 y 310 (sobre, conteos, separadores), conector simulado, normalizadores de proveedores y CT1–CT3.
 - `packages/client`: cliente con `fetch` falso y `verifyWebhook` contra la firma del servidor.
-- `apps/api/test/integrations.test.mjs`: de punta a punta contra Postgres (su propia base, el nombre de la de pruebas con `_integrations` antes de `_test`, y el puerto `E2E_PORT + 2`): claves, permisos, límites, idempotencia, OpenAPI, webhooks firmados con reintentos y reenvío, eventos una sola vez, respuestas de proveedor, alertas de chat, exportaciones, seguimiento y carpetas.
+- `apps/api/test/integrations.test.mjs`: de punta a punta contra Postgres (su propia base, el nombre de la de pruebas con `_integrations` antes de `_test`, y el puerto `E2E_PORT + 3`): claves, permisos, límites, idempotencia, OpenAPI, webhooks firmados con reintentos y reenvío, eventos una sola vez, respuestas de proveedor, alertas de chat, exportaciones, seguimiento y carpetas.
 - `apps/api/test/orgs.test.mjs`: una clave de otra organización recibe 404 en cada ruta de `/api/v1` y en las exportaciones y el seguimiento de la app; viewer, client y analyst no administran integraciones (403); una clave crea envíos en su organización y la auditoría lo anota sin la clave.
 - `scripts/api-contract.mjs`: la colección de Postman contra un servidor.
 - `npm run a11y` revisa Integraciones (cada pestaña, con datos) y la Referencia de la API.

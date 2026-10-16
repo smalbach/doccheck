@@ -1,0 +1,16 @@
+{
+  "id": "US-001",
+  "errors": [
+    {
+      "kind": "coo_hs_mismatch",
+      "document": "certificateOfOrigin",
+      "field": "goods[0].hsCode",
+      "before": "8481.80",
+      "after": "3926.90",
+      "expectedRuleIds": [
+        "T8"
+      ],
+      "description": "Certificate of origin lists HS 3926.90 instead of 8481.80."
+    }
+  ]
+}

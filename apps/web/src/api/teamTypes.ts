@@ -16,7 +16,8 @@ export type OrgPermission =
   | 'org.settings'
   | 'audit.read'
   | 'integrations.manage'
-  | 'org.delete';
+  | 'org.delete'
+  | 'billing.manage';
 
 export interface OrgSummary {
   id: string;
@@ -31,6 +32,9 @@ export interface OrgSettings {
   name: string;
   retentionCaYears: number;
   retentionUsYears: number;
+  retentionMxYears: number;
+  retentionEuYears: number;
+  retentionGbYears: number;
   requireApproval: boolean;
   slaEtaLeadHours: number;
 }

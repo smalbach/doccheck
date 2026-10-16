@@ -1,0 +1,316 @@
+{
+  "id": "EU-024",
+  "seed": 503376823,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CÔN2604589",
+      "invoiceDate": "2026-04-06",
+      "poNumber": "PO731564",
+      "seller": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "buyer": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "exporter": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "shipmentDate": "2026-04-12",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hai Phong",
+          "unLocode": "VNHPH",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Rotterdam"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 128,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "12800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "2.87",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "36736.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2534.40",
+        "raw": {
+          "value": "2534.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2432.00",
+        "raw": {
+          "value": "2432.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "36736.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "1515.00",
+          "currency": "CNY"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-CÔN2604589",
+      "invoiceRef": "CÔN2604589",
+      "seller": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "packages": [
+        {
+          "range": "1-128",
+          "count": 128,
+          "type": "CTN",
+          "marks": "POLDERHUIS/PO731564/C/NO. 1-128",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "12800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2432.00",
+            "raw": {
+              "value": "2432.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2534.40",
+            "raw": {
+              "value": "2534.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 128,
+        "netWeight": {
+          "kg": "2432.00",
+          "raw": {
+            "value": "2432.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2534.40",
+          "raw": {
+            "value": "2534.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "10.75"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPHPH860095",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "894188221",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "notifyParty": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "003W",
+      "placeOfReceipt": {
+        "name": "Duy Tiên",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Hai Phong",
+        "unLocode": "VNHPH",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Rotterdam",
+        "unLocode": "NLRTM",
+        "country": "NL"
+      },
+      "placeOfDelivery": {
+        "name": "Rotterdam",
+        "unLocode": "NLRTM",
+        "country": "NL"
+      },
+      "containers": [
+        {
+          "number": "TWEU6433671",
+          "seal": "TW9745895",
+          "type": "20GP",
+          "packages": 128,
+          "grossWeight": {
+            "kg": "2534.40",
+            "raw": {
+              "value": "2534.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "10.75"
+        }
+      ],
+      "totalPackages": 128,
+      "totalGrossWeight": {
+        "kg": "2534.40",
+        "raw": {
+          "value": "2534.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "POLDERHUIS/PO731564/C/NO. 1-128",
+      "cargoDescription": "SAID TO CONTAIN 128 CTNS MEN'S COTTON T-SHIRT",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Hai Phong",
+      "dateOfIssue": "2026-04-15",
+      "shippedOnBoardDate": "2026-04-15",
+      "references": [
+        "CÔN2604589",
+        "PO731564"
+      ]
+    }
+  }
+}

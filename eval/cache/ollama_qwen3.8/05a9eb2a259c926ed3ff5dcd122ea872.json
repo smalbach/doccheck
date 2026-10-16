@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 883,
+    "outputTokens": 926
+  },
+  "output": {
+    "blNumber": "KEYSNGB702120",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "798767194",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4234 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "notifyParty": {
+      "name": "BLUEBONNET HOME GOODS LLC",
+      "addressLines": [
+        "4200 AMBASSADOR CAFFERY PKWY",
+        "HOUSTON TX 77041"
+      ],
+      "city": "HOUSTON",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "015S",
+    "placeOfReceipt": {
+      "name": "NINGBO",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "NINGBO",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "HOUSTON",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCLU7694253",
+        "seal": "PC5966816",
+        "type": "20GP",
+        "packages": "210",
+        "grossWeight": {
+          "value": "4907",
+          "unit": "LB"
+        },
+        "volumeM3": "23.63"
+      }
+    ],
+    "totalPackages": "210",
+    "totalGrossWeight": {
+      "value": "4907",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "BLUEBONNET/BL265643/C/NO. 1-210",
+    "cargoDescription": "SAID TO CONTAIN 210 CTNS BLENDER 600 W",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/0634",
+      "BL265643"
+    ],
+    "placeOfIssue": "NINGBO",
+    "dateOfIssue": "29-JUN-2026",
+    "shippedOnBoardDate": "29-JUN-2026"
+  }
+}

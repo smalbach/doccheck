@@ -1,0 +1,16 @@
+{
+  "id": "MX-020",
+  "errors": [
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "Carretera El Salto km 4.5",
+      "after": "Carretera El Salto km 8.5",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    }
+  ]
+}

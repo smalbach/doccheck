@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises';
-import type { Chunk } from './corpus';
+import type { Authority, Chunk } from './corpus';
 
 /** Text -> vector. The default implementation calls a local Ollama embedding model. */
 export interface Embedder {
@@ -84,7 +84,7 @@ export interface SearchHit {
 }
 
 export interface SearchOptions {
-  authority?: 'CBSA' | 'CBP';
+  authority?: Authority;
   /** Only chunks of documents whose id starts with one of these prefixes ("cbsa-d1-4-1" matches both languages). */
   documents?: string[];
   /** Preferred language; other languages are still returned when they rank higher. */

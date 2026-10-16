@@ -36,7 +36,7 @@ export interface NormalizeResult<T> {
 
 const KG_PER_LB = '0.45359237';
 
-const clean = (s: string | null | undefined): string | null => {
+export const clean = (s: string | null | undefined): string | null => {
   const t = s?.replace(/\s+/g, ' ').trim();
   return t ? t : null;
 };
@@ -210,7 +210,7 @@ export function transportMode(s: string | null | undefined): z.infer<typeof Tran
 }
 
 /** Keeps a value only when it passes its schema; otherwise records an issue and drops it. */
-function valid<S extends z.ZodType>(schema: S, value: unknown, field: string, issues: string[]): z.infer<S> | undefined {
+export function valid<S extends z.ZodType>(schema: S, value: unknown, field: string, issues: string[]): z.infer<S> | undefined {
   if (value === null || value === undefined) return undefined;
   const r = schema.safeParse(value);
   if (r.success) return r.data;
@@ -230,7 +230,7 @@ export function countryFromPostalCode(postalCode: string | null | undefined, reg
   return null;
 }
 
-function rawAddress(p: RawParty): Address {
+export function rawAddress(p: RawParty): Address {
   const address: Address = {
     lines: p.addressLines.map((l) => clean(l)).filter((l): l is string => !!l),
     city: clean(p.city) ?? undefined,
@@ -242,7 +242,7 @@ function rawAddress(p: RawParty): Address {
   return address;
 }
 
-function party(p: RawParty | null | undefined, field: string, issues: string[]): Party | undefined {
+export function party(p: RawParty | null | undefined, field: string, issues: string[]): Party | undefined {
   if (!p || !clean(p.name)) return undefined;
   return valid(Party, { name: clean(p.name), address: rawAddress(p), taxId: clean(p.taxId) ?? undefined }, field, issues);
 }
@@ -252,7 +252,7 @@ function party(p: RawParty | null | undefined, field: string, issues: string[]):
  * "Valencia (ESVLC)" -> name "Valencia", UN/LOCODE ESVLC, country ES. A place whose country is not
  * shown is kept without one.
  */
-function place(p: RawPlace | null | undefined, field: string, issues: string[]): Location | undefined {
+export function place(p: RawPlace | null | undefined, field: string, issues: string[]): Location | undefined {
   let name = clean(p?.name);
   if (!p || !name) return undefined;
   let country = countryCode(p.country);
@@ -279,7 +279,7 @@ function description(text: string | null, hsCode: string | null, sku: string | n
   return d.trim();
 }
 
-function reference(v: string | null, field: string, issues: string[]): string | undefined {
+export function reference(v: string | null, field: string, issues: string[]): string | undefined {
   const t = clean(v);
   if (!t) return undefined;
   if (/\d/.test(t)) return t;
@@ -287,9 +287,9 @@ function reference(v: string | null, field: string, issues: string[]): string | 
   return undefined;
 }
 
-const prune = <T extends object>(o: T): T => Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined && v !== null)) as T;
+export const prune = <T extends object>(o: T): T => Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined && v !== null)) as T;
 
-function finish<S extends z.ZodType>(schema: S, value: unknown, issues: string[]): NormalizeResult<z.infer<S>> {
+export function finish<S extends z.ZodType>(schema: S, value: unknown, issues: string[]): NormalizeResult<z.infer<S>> {
   const r = schema.safeParse(value);
   if (r.success) return { data: r.data, issues };
   return { data: null, partial: value, issues: [...issues, ...r.error.issues.map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`)] };

@@ -1,0 +1,38 @@
+{
+  "id": "MX-003",
+  "errors": [
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "DPN070315K24",
+      "after": "DPN070315K20",
+      "expectedRuleIds": [
+        "M2"
+      ],
+      "description": "Importer number DPN070315K24 replaced by DPN070315K20."
+    },
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "Av. Vallarta 6503, Local 12",
+      "after": "Av. Vallarta 6575, Local 12",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    },
+    {
+      "kind": "invoice_language_not_accepted",
+      "document": "invoice",
+      "field": "language",
+      "before": "en",
+      "after": "pt",
+      "expectedRuleIds": [
+        "M3"
+      ],
+      "description": "Invoice in \"pt\" without a Spanish translation."
+    }
+  ]
+}

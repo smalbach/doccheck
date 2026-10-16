@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 556,
+    "outputTokens": 607
+  },
+  "output": {
+    "packingListNumber": "PL-2026-3407",
+    "invoiceRef": "INV-2026-3407",
+    "seller": {
+      "name": "Norland Precision Scales Co., Ltd.",
+      "addressLines": [
+        "88 Gaoxin Road, Building 3",
+        "Ningbo, Zhejiang, 315040"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "marks": "NORTHERN/NO400840/C/NO. 1-146",
+    "packages": [
+      {
+        "range": "1-146",
+        "count": "146 CTN",
+        "packageType": "CTN",
+        "sku": "EK-17",
+        "description": "Electric kettle 1.7 L",
+        "quantity": "1,168 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,387.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "1,226.40",
+          "unit": "KG"
+        },
+        "dimensionsCm": "55 × 45 × 42"
+      }
+    ],
+    "totalPackages": "146",
+    "totalNetWeight": {
+      "value": "1,387.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "1,226.40",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "15.18"
+  }
+}

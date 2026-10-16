@@ -1,0 +1,433 @@
+{
+  "id": "CA-007",
+  "seed": 1141614320,
+  "destination": "CA",
+  "mode": "AIR",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "attestations": {
+    "certificateOfOrigin": {
+      "signature": true,
+      "stamp": true
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SAI2607606",
+      "invoiceDate": "2026-05-24",
+      "poNumber": "CO367969",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-05-28",
+      "transport": {
+        "mode": "AIR"
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Cai Mep"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 449,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "53280",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "1.85",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "98568.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        },
+        {
+          "lineNo": 2,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "4540",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.89",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "103920.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "8237.40",
+        "raw": {
+          "value": "8237.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7855.00",
+        "raw": {
+          "value": "7855.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "202488.60",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-SAI2607606",
+      "invoiceRef": "SAI2607606",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-222",
+          "count": 222,
+          "type": "CTN",
+          "marks": "COASTAL/CO367969/C/NO. 1-449",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "53280",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3996.00",
+            "raw": {
+              "value": "3996.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4151.40",
+            "raw": {
+              "value": "4151.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        },
+        {
+          "range": "223-449",
+          "count": 227,
+          "type": "CTN",
+          "marks": "COASTAL/CO367969/C/NO. 1-449",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "4540",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3859.00",
+            "raw": {
+              "value": "3859.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4086.00",
+            "raw": {
+              "value": "4086.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 449,
+        "netWeight": {
+          "kg": "7855.00",
+          "raw": {
+            "value": "7855.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "8237.40",
+          "raw": {
+            "value": "8237.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "45.54"
+      }
+    },
+    "airWaybill": {
+      "awbNumber": "PCCL267920",
+      "issuer": "HAWB",
+      "masterAwbNumber": "176-32614864",
+      "carrier": {
+        "name": "Pacific Crest Air Cargo"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "notifyParty": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "airportOfDeparture": {
+        "name": "Tan Son Nhat",
+        "iata": "SGN"
+      },
+      "airportOfDestination": {
+        "name": "Montreal Trudeau",
+        "iata": "YUL"
+      },
+      "flights": [
+        {
+          "flight": "PC778",
+          "date": "2026-05-29"
+        }
+      ],
+      "pieces": 449,
+      "grossWeight": {
+        "kg": "8237.40",
+        "raw": {
+          "value": "8237.40",
+          "unit": "KG"
+        }
+      },
+      "chargeableWeight": {
+        "kg": "8237.40",
+        "raw": {
+          "value": "8237.40",
+          "unit": "KG"
+        }
+      },
+      "volumeM3": "45.54",
+      "natureOfGoods": "WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "references": [
+        "SAI2607606"
+      ],
+      "placeOfExecution": "Tan Son Nhat",
+      "executedOn": "2026-05-28"
+    },
+    "certificateOfOrigin": {
+      "certificateNumber": "CO-VN-643148",
+      "issuer": "Vietnam Chamber of Commerce and Industry",
+      "exporter": {
+        "name": "Golden Bridge Trading Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Harbour Rd"
+          ],
+          "city": "Hong Kong",
+          "country": "HK"
+        }
+      },
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "countryOfOrigin": "VN",
+      "transport": "By air",
+      "goods": [
+        {
+          "itemNo": 1,
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "hsCode": "3926.90"
+        },
+        {
+          "itemNo": 2,
+          "description": "Women's padded jacket, woven polyester shell",
+          "hsCode": "6202.40"
+        }
+      ],
+      "invoiceRefs": [
+        "SAI2607606"
+      ],
+      "placeOfIssue": "Ho Chi Minh City",
+      "dateOfIssue": "2026-05-25"
+    },
+    "arrivalNotice": {
+      "noticeNumber": "AN-11046",
+      "carrier": {
+        "name": "Pacific Crest Air Cargo"
+      },
+      "mode": "AIR",
+      "transportDocumentNumber": "PCCL267920",
+      "flight": "PC778",
+      "estimatedArrival": "2026-05-30",
+      "consignee": {
+        "name": "Coastal Mountain Hardware Ltd.",
+        "address": {
+          "lines": [
+            "3900 North Fraser Way"
+          ],
+          "city": "Burnaby",
+          "region": "BC",
+          "postalCode": "V5J 5H6",
+          "country": "CA"
+        },
+        "taxId": "845678901RM0001"
+      },
+      "packages": 449,
+      "grossWeight": {
+        "kg": "8237.40",
+        "raw": {
+          "value": "8237.40",
+          "unit": "KG"
+        }
+      },
+      "cargoDescription": "WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "lastFreeDay": "2026-06-02"
+    }
+  }
+}

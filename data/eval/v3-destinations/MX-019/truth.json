@@ -1,0 +1,312 @@
+{
+  "id": "MX-019",
+  "seed": 1584363194,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/9254",
+      "invoiceDate": "2026-05-22",
+      "poNumber": "PO-90407",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "buyer": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "exporter": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "shipmentDate": "2026-05-27",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Fos-sur-Mer",
+          "unLocode": "FRFOS",
+          "country": "FR"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Lazaro Cardenas"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 101,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "5100",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.49",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "43299.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1040.40",
+        "raw": {
+          "value": "1040.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "918.00",
+        "raw": {
+          "value": "918.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "43299.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/9254",
+      "invoiceRef": "CI/26/9254",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-102",
+          "count": 102,
+          "type": "CTN",
+          "marks": "DISTRIBUIDORA/PO-90407/C/NO. 1-102",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "5100",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "918.00",
+            "raw": {
+              "value": "918.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1040.40",
+            "raw": {
+              "value": "1040.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 102,
+        "netWeight": {
+          "kg": "918.00",
+          "raw": {
+            "value": "918.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1040.40",
+          "raw": {
+            "value": "1040.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "9.79"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPFOS746398",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "713155905",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "notifyParty": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "005E",
+      "placeOfReceipt": {
+        "name": "Lyon",
+        "country": "FR"
+      },
+      "portOfLoading": {
+        "name": "Fos-sur-Mer",
+        "unLocode": "FRFOS",
+        "country": "FR"
+      },
+      "portOfDischarge": {
+        "name": "Lazaro Cardenas",
+        "unLocode": "MXLZC",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Guadalajara",
+        "unLocode": "MXGDL",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "PCLU5178540",
+          "seal": "PC5501411",
+          "type": "20GP",
+          "packages": 102,
+          "grossWeight": {
+            "kg": "1040.40",
+            "raw": {
+              "value": "1040.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "9.79"
+        }
+      ],
+      "totalPackages": 102,
+      "totalGrossWeight": {
+        "kg": "1040.40",
+        "raw": {
+          "value": "1040.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "DISTRIBUIDORA/PO-90407/C/NO. 1-102",
+      "cargoDescription": "SAID TO CONTAIN 102 CTNS PLUSH TEDDY BEAR 30 CM",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Fos-sur-Mer",
+      "dateOfIssue": "2026-05-28",
+      "shippedOnBoardDate": "2026-05-28",
+      "references": [
+        "CI/26/9254",
+        "PO-90407"
+      ]
+    }
+  }
+}

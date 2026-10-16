@@ -30,6 +30,8 @@ export const PERMISSIONS = {
   /** Retention, approval policy, due date lead time, SSO. */
   'org.settings': ['owner', 'admin'],
   'audit.read': ['owner', 'admin'],
+  /** Buy or change the organization's plan (Stripe Checkout and customer portal). */
+  'billing.manage': ['owner', 'admin'],
   /** API keys, webhooks, chat alerts, watched folders and container tracking (docs/INTEGRATIONS.md). */
   'integrations.manage': ['owner', 'admin'],
   'org.delete': ['owner'],

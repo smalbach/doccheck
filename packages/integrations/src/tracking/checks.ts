@@ -6,15 +6,15 @@ import type { ContainerEvent, TrackingProviderId } from './types';
  * Deterministic: the same BL and events give the same findings. Only actual events count (never
  * estimates), and a check with nothing to compare on one side is skipped, never guessed.
  *
- * T1 vessel/voyage: the container was loaded on another vessel or voyage than the BL names.
- * T2 port of loading: the container was first loaded at another port than the BL's port of loading.
- * T3 gate-in after on board: the container entered the terminal after the BL's shipped-on-board
+ * CT1 vessel/voyage: the container was loaded on another vessel or voyage than the BL names.
+ * CT2 port of loading: the container was first loaded at another port than the BL's port of loading.
+ * CT3 gate-in after on board: the container entered the terminal after the BL's shipped-on-board
  *    date, which is impossible for a correct on-board date (backdated or wrong BL).
  */
 export const TRACKING_RULES = {
-  T1: 'Vessel or voyage on the BL differs from the carrier events',
-  T2: 'Port of loading on the BL differs from where the container was loaded',
-  T3: 'Container gated in after the BL shipped-on-board date',
+  CT1: 'Vessel or voyage on the BL differs from the carrier events',
+  CT2: 'Port of loading on the BL differs from where the container was loaded',
+  CT3: 'Container gated in after the BL shipped-on-board date',
 } as const;
 
 /** The pseudo document id tracking evidence cites: "tracking:<provider>". */
@@ -48,12 +48,12 @@ export function trackingFindings(shipmentId: string, bl: { id: string; data: Bil
     // The first loading is at the port of loading; later ones are transshipments.
     const load = list.find((e) => e.type === 'LOADED') ?? list.find((e) => e.type === 'DEPARTED');
 
-    // T1: compare with the first loading's vessel and voyage when both sides have them.
+    // CT1: compare with the first loading's vessel and voyage when both sides have them.
     if (load) {
       const vesselDiffers = !!(bl.data.vessel && load.vessel && normalizeVessel(bl.data.vessel) !== normalizeVessel(load.vessel));
       const voyageDiffers = !!(bl.data.voyage && load.voyage && normalizeVoyage(bl.data.voyage) !== normalizeVoyage(load.voyage));
       if (vesselDiffers || voyageDiffers) {
-        add('T1', {
+        add('CT1', {
           severity: 'HIGH',
           message: `Container ${container.number} was loaded on ${[load.vessel, load.voyage && `voyage ${load.voyage}`].filter(Boolean).join(' ')} (${provider}), but the bill of lading says ${[bl.data.vessel, bl.data.voyage && `voyage ${bl.data.voyage}`].filter(Boolean).join(' ')}.`,
           evidence: [
@@ -65,14 +65,14 @@ export function trackingFindings(shipmentId: string, bl: { id: string; data: Bil
       }
     }
 
-    // T2: UN/LOCODEs when both sides have one, else the port names.
+    // CT2: UN/LOCODEs when both sides have one, else the port names.
     const pol = bl.data.portOfLoading;
     const at = load?.location;
     if (load && at && (at.unLocode || at.name)) {
       const differs = pol.unLocode && at.unLocode ? pol.unLocode.toUpperCase() !== at.unLocode.toUpperCase() : !!(at.name && normalizeName(pol.name) !== normalizeName(at.name));
       if (differs) {
         const printed = pol.unLocode && at.unLocode ? { bl: pol.unLocode, ev: at.unLocode } : { bl: pol.name, ev: at.name! };
-        add('T2', {
+        add('CT2', {
           severity: 'HIGH',
           message: `Container ${container.number} was loaded at ${at.name ?? at.unLocode}${at.unLocode && at.name ? ` (${at.unLocode})` : ''}, but the bill of lading's port of loading is ${pol.name}${pol.unLocode ? ` (${pol.unLocode})` : ''}.`,
           evidence: [
@@ -84,11 +84,11 @@ export function trackingFindings(shipmentId: string, bl: { id: string; data: Bil
       }
     }
 
-    // T3: the first gate-in, by the terminal's calendar date, after the on-board date.
+    // CT3: the first gate-in, by the terminal's calendar date, after the on-board date.
     const gateIn = list.find((e) => e.type === 'GATE_IN');
     const onBoard = bl.data.shippedOnBoardDate;
     if (gateIn && onBoard && localDate(gateIn.at) > onBoard) {
-      add('T3', {
+      add('CT3', {
         severity: 'HIGH',
         message: `Container ${container.number} entered the terminal on ${localDate(gateIn.at)} (${provider}), after the bill of lading's shipped-on-board date ${onBoard}.`,
         evidence: [

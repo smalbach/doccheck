@@ -1,0 +1,27 @@
+{
+  "id": "MX-008",
+  "errors": [
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "DPN070315K24",
+      "after": "DPN070315K21",
+      "expectedRuleIds": [
+        "M2"
+      ],
+      "description": "Importer number DPN070315K24 replaced by DPN070315K21."
+    },
+    {
+      "kind": "package_count_mismatch",
+      "document": "invoice",
+      "field": "packageCount",
+      "before": 14,
+      "after": 12,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "Invoice declares 12 packages instead of 14."
+    }
+  ]
+}

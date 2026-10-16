@@ -1,0 +1,369 @@
+{
+  "id": "GB-023",
+  "seed": 1379317719,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5357",
+      "invoiceDate": "2026-04-12",
+      "poNumber": "PE490378",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-04-22",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "La Spezia",
+          "unLocode": "ITSPE",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "La Spezia"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 110,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "680",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.91",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "6738.80",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        },
+        {
+          "lineNo": 2,
+          "sku": "OO-EV-5",
+          "description": "Extra virgin olive oil, 5 L tins",
+          "quantity": {
+            "value": "372",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "28.84",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "10728.48",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        }
+      ],
+      "grossWeight": {
+        "kg": "16499.90",
+        "raw": {
+          "value": "16499.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "15991.20",
+        "raw": {
+          "value": "15991.20",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "17467.28",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "originStatement": "The exporter of the products covered by this document (Exporter Reference No ITREX553815607) declares that, except where otherwise clearly indicated, these products are of EU preferential origin."
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5357",
+      "invoiceRef": "CI/26/5357",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-17",
+          "count": 17,
+          "type": "PLT",
+          "marks": "PENNINE/PE490378/C/NO. 1-110",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "680",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "14280.00",
+            "raw": {
+              "value": "14280.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "14705.00",
+            "raw": {
+              "value": "14705.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        },
+        {
+          "range": "18-110",
+          "count": 93,
+          "type": "CTN",
+          "marks": "PENNINE/PE490378/C/NO. 1-110",
+          "contents": [
+            {
+              "sku": "OO-EV-5",
+              "description": "EV olive oil 5 L",
+              "quantity": {
+                "value": "372",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1711.20",
+            "raw": {
+              "value": "1711.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1794.90",
+            "raw": {
+              "value": "1794.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 110,
+        "netWeight": {
+          "kg": "15991.20",
+          "raw": {
+            "value": "15991.20",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "16499.90",
+          "raw": {
+            "value": "16499.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "18.59"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSSPE667150",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "662129477",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd Unit 14"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "098S",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "La Spezia",
+        "unLocode": "ITSPE",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Southampton",
+        "unLocode": "GBSOU",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "PCLU5661815",
+          "seal": "PC6916011",
+          "type": "20GP",
+          "packages": 110,
+          "grossWeight": {
+            "kg": "16499.90",
+            "raw": {
+              "value": "16499.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "18.59"
+        }
+      ],
+      "totalPackages": 110,
+      "totalGrossWeight": {
+        "kg": "14024.92",
+        "raw": {
+          "value": "14024.92",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PE490378/C/NO. 1-110",
+      "cargoDescription": "SAID TO CONTAIN 110 PKGS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "La Spezia",
+      "dateOfIssue": "2026-04-22",
+      "shippedOnBoardDate": "2026-04-22",
+      "references": [
+        "CI/26/5357",
+        "PE490378"
+      ]
+    }
+  }
+}

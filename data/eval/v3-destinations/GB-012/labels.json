@@ -1,0 +1,16 @@
+{
+  "id": "GB-012",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "PCLU2192191",
+      "after": "PCLU2192199",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: PCLU2192191 -> PCLU2192199."
+    }
+  ]
+}

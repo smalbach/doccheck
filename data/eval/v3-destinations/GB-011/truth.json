@@ -1,0 +1,311 @@
+{
+  "id": "GB-011",
+  "seed": 2074631874,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5156",
+      "invoiceDate": "2026-03-01",
+      "poNumber": "PO-34164",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-03-13",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ho Chi Minh City",
+          "unLocode": "VNSGN",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ho Chi Minh City"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "GBP",
+      "packageCount": 128,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "12800",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.43",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "43904.00",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2534.40",
+        "raw": {
+          "value": "2534.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2432.00",
+        "raw": {
+          "value": "2432.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "43904.00",
+        "currency": "GBP"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5156",
+      "invoiceRef": "CI/26/5156",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-128",
+          "count": 128,
+          "type": "CTN",
+          "marks": "THAMESIDE/PO-34164/C/NO. 1-128",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "12800",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2432.00",
+            "raw": {
+              "value": "2432.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2534.40",
+            "raw": {
+              "value": "2534.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 128,
+        "netWeight": {
+          "kg": "2432.00",
+          "raw": {
+            "value": "2432.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2534.40",
+          "raw": {
+            "value": "2534.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "10.75"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVSGN809154",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "351023797",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "039S",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Ho Chi Minh City",
+        "unLocode": "VNSGN",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "TWEU1744958",
+          "seal": "TW4110665",
+          "type": "20GP",
+          "packages": 128,
+          "grossWeight": {
+            "kg": "2534.40",
+            "raw": {
+              "value": "2534.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "10.75"
+        }
+      ],
+      "totalPackages": 128,
+      "totalGrossWeight": {
+        "kg": "2585.09",
+        "raw": {
+          "value": "2585.09",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/PO-34164/C/NO. 1-128",
+      "cargoDescription": "SAID TO CONTAIN 128 CTNS MEN'S COTTON T-SHIRT",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ho Chi Minh City",
+      "dateOfIssue": "2026-03-15",
+      "shippedOnBoardDate": "2026-03-15",
+      "references": [
+        "CI/26/5156",
+        "PO-34164"
+      ]
+    }
+  }
+}

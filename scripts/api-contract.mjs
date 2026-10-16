@@ -117,7 +117,7 @@ const collection = {
       ]),
     ),
     item('Same idempotency key, other request: 422', { method: 'POST', header: [{ key: 'Idempotency-Key', value: '{{createKey}}' }], body: json({ reference: 'OTHER' }), url: url('/api/v1/shipments') }, expect(422, 'Error')),
-    item('Invalid body: 400', { method: 'POST', body: json({ destination: 'MX' }), url: url('/api/v1/shipments') }, expect(400, 'Error')),
+    item('Invalid body: 400', { method: 'POST', body: json({ destination: 'XX' }), url: url('/api/v1/shipments') }, expect(400, 'Error')),
     item('Get shipment', { method: 'GET', url: url('/api/v1/shipments/{{shipmentId}}') }, expect(200, 'Shipment')),
     item('Unknown shipment: 404', { method: 'GET', url: url(`/api/v1/shipments/${randomUUID()}`) }, expect(404, 'Error')),
     item(

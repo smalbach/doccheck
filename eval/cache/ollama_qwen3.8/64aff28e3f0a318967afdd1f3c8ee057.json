@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 987,
+    "outputTokens": 756
+  },
+  "output": {
+    "packingListNumber": "PL-2026-4225",
+    "invoiceRef": "INV-2026-4225",
+    "seller": {
+      "name": "NORLAND PRECISION SCALES CO., LTD.",
+      "addressLines": [
+        "88 GAOXIN ROAD, BUILDING 3",
+        "NINGBO ZHEJIANG 315040"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/CO709122/C/NO. 1-328",
+    "packages": [
+      {
+        "range": "1-219",
+        "count": "219",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "WOOL SOCKS 3-PACK",
+        "quantity": "52560",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "4095.30",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3942.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "220-328",
+        "count": "109",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "MEN'S COTTON T-SHIRT",
+        "quantity": "10900",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2158.20",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "2071.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "328",
+    "totalNetWeight": {
+      "value": "6253.50",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "6013.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "24.60"
+  }
+}

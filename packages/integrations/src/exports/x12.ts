@@ -5,6 +5,7 @@ import { ExportInputError, fileSafe, type ExportFile, type ExportInput } from '.
  * ANSI X12 (version 004010) from the extracted documents:
  * - 856 Ship Notice/Manifest (ASN): shipment, order and item levels (HL S/O/I), with the BL, containers,
  *   packages, weight and parties, and one item per invoice line.
+ *   An air shipment uses the air waybill: transport method A, REF AW, pieces and weight, no containers.
  * - 310 Freight Receipt and Invoice (Ocean): the bill of lading as a carrier sends it, with vessel,
  *   ports, parties, one LX loop per container and totals.
  *
@@ -71,29 +72,32 @@ function party(s: Segments, code: string, p: Party | undefined) {
 const equipment = (n: string) => [n.slice(0, 4), n.slice(4)] as const;
 
 export function x12Asn856(input: ExportInput, opts: X12Options = {}): ExportFile {
-  const { invoice: inv, packingList: pl, billOfLading: bl, shipment } = input;
-  if (!bl && !inv) throw new ExportInputError('An 856 needs at least the bill of lading or the commercial invoice');
+  const { invoice: inv, packingList: pl, billOfLading: bl, airWaybill: awb, shipment } = input;
+  if (!bl && !awb && !inv) throw new ExportInputError('An 856 needs at least the bill of lading, the air waybill or the commercial invoice');
   const now = new Date(input.createdAt ?? Date.now());
   const s = new Segments();
   s.add('BSN', '00', shipment.reference || shipment.id.slice(0, 30), ccyymmdd(now), hhmm(now), '0001');
   let hl = 0;
   const shipmentHl = ++hl;
   s.add('HL', shipmentHl, '', 'S');
-  const packs = bl?.totalPackages ?? pl?.totals.packageCount ?? inv?.packageCount;
+  const packs = bl?.totalPackages ?? awb?.pieces ?? pl?.totals.packageCount ?? inv?.packageCount;
   const packType = pl?.packages[0] ? PACKAGING[pl.packages[0].type] : 'PKG';
-  const weight = bl?.totalGrossWeight.kg ?? pl?.totals.grossWeight?.kg ?? inv?.grossWeight?.kg;
+  const weight = bl?.totalGrossWeight.kg ?? awb?.grossWeight.kg ?? pl?.totals.grossWeight?.kg ?? inv?.grossWeight?.kg;
   if (packs !== undefined || weight) s.add('TD1', packType, packs, '', '', '', weight ? 'G' : '', weight, weight ? 'KG' : '');
   if (bl) s.add('TD5', 'B', bl.carrier?.scac ? '2' : '', bl.carrier?.scac, 'O', bl.carrier?.name);
+  else if (awb) s.add('TD5', 'B', '', '', 'A', awb.carrier?.name);
   for (const c of bl?.containers ?? []) {
     const [initial, number] = equipment(c.number);
     s.add('TD3', 'CN', initial, number, '', '', '', '', '', c.seal);
   }
   if (bl) s.add('REF', 'BM', bl.blNumber);
+  if (awb) s.add('REF', 'AW', awb.awbNumber);
   if (bl?.bookingNumber) s.add('REF', 'BN', bl.bookingNumber);
   if (inv) s.add('REF', 'IV', inv.invoiceNumber);
-  if (bl?.shippedOnBoardDate ?? inv?.shipmentDate) s.add('DTM', '011', ccyymmdd((bl?.shippedOnBoardDate ?? inv?.shipmentDate)!));
-  party(s, 'SF', bl?.shipper ?? inv?.seller);
-  party(s, 'ST', bl?.consignee ?? inv?.consignee ?? inv?.buyer);
+  const shipped = bl?.shippedOnBoardDate ?? awb?.flights?.[0]?.date ?? awb?.executedOn ?? inv?.shipmentDate;
+  if (shipped) s.add('DTM', '011', ccyymmdd(shipped));
+  party(s, 'SF', bl?.shipper ?? awb?.shipper ?? inv?.seller);
+  party(s, 'ST', bl?.consignee ?? awb?.consignee ?? inv?.consignee ?? inv?.buyer);
   party(s, 'SE', inv?.seller);
   party(s, 'BY', inv?.buyer);
   if (inv) {
@@ -108,12 +112,13 @@ export function x12Asn856(input: ExportInput, opts: X12Options = {}): ExportFile
     }
   }
   s.add('CTT', hl);
-  const name = fileSafe(shipment.reference || bl?.blNumber || inv?.invoiceNumber || shipment.id);
+  const name = fileSafe(shipment.reference || bl?.blNumber || awb?.awbNumber || inv?.invoiceNumber || shipment.id);
   return { format: 'x12-856', fileName: `${name}.856.x12`, contentType: 'application/edi-x12', body: envelope('SH', '856', s, opts, now) };
 }
 
 export function x12Ocean310(input: ExportInput, opts: X12Options = {}): ExportFile {
   const { billOfLading: bl, shipment, invoice: inv } = input;
+  if (!bl && input.airWaybill) throw new ExportInputError('A 310 is an ocean bill of lading and this shipment travels on an air waybill: export the 856 or CargoWise XML instead');
   if (!bl) throw new ExportInputError('A 310 is a bill of lading: the shipment needs one');
   const now = new Date(input.createdAt ?? Date.now());
   const s = new Segments();

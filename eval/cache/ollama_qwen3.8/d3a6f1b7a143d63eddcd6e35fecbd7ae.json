@@ -1,0 +1,102 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 869,
+    "outputTokens": 968
+  },
+  "output": {
+    "blNumber": "TDWENSA5583887",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "209433623",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026",
+        "IN"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6",
+        "CA"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6",
+        "CA"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "041N",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "NHAVA SHEVA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU7612434",
+        "seal": "TW6190298",
+        "type": "20GP",
+        "packages": "34",
+        "grossWeight": {
+          "value": "646.00",
+          "unit": "KGS"
+        },
+        "volumeM3": "2.99"
+      }
+    ],
+    "totalPackages": "34",
+    "totalGrossWeight": {
+      "value": "594.32",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/PO-19368/C/NO. 1-34",
+    "cargoDescription": "SAID TO CONTAIN 34 CRTS CENTRIFUGAL PUMP 0.75 KW",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "PUN2607625",
+      "PO-19368"
+    ],
+    "placeOfIssue": "NHAVA SHEVA",
+    "dateOfIssue": "11-AUG-2026",
+    "shippedOnBoardDate": "11-AUG-2026"
+  }
+}

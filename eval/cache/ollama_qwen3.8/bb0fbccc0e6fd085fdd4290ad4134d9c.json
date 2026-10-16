@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 837,
+    "outputTokens": 934
+  },
+  "output": {
+    "blNumber": "COMPCTG100065",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines (TDWE)",
+    "bookingNumber": "399428073",
+    "carrierName": "Tidewater Express Lines (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Norland Precision Scales Co., Ltd.",
+      "addressLines": [
+        "88 Gaoxin Road, Building 3",
+        "Ningbo, Zhejiang, 315040"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3950 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "059N",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU7306774",
+        "seal": "TW8372715",
+        "type": "40GP",
+        "packages": "176",
+        "grossWeight": {
+          "value": "10,700.80",
+          "unit": "KG"
+        },
+        "volumeM3": "25.08"
+      }
+    ],
+    "totalPackages": "176",
+    "totalGrossWeight": {
+      "value": "10,700.80",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/PO-13564/C/NO. 1-176",
+    "cargoDescription": "SAID TO CONTAIN 176 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-9613",
+      "PO-13564"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "2026-06-06",
+    "shippedOnBoardDate": "2026-06-06"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 555,
+    "outputTokens": 503
+  },
+  "output": {
+    "certificateNumber": "CO-DE-267051",
+    "issuer": "Industrie- und Handelskammer Hamburg",
+    "exporter": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "producer": null,
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd",
+        "Fontana, CA, 92335"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "countryOfOrigin": "DE",
+    "transport": "By air",
+    "goods": [
+      {
+        "itemNo": "1",
+        "description": "Brass ball valves 2 inch, threaded",
+        "hsCode": "3926.90",
+        "quantity": null,
+        "unit": null,
+        "grossWeight": null,
+        "marks": null
+      },
+      {
+        "itemNo": "2",
+        "description": "Centrifugal water pump 0.75 kW, cast iron body",
+        "hsCode": "8413.70",
+        "quantity": null,
+        "unit": null,
+        "grossWeight": null,
+        "marks": null
+      }
+    ],
+    "invoiceRefs": [
+      "NOR2601049"
+    ],
+    "placeOfIssue": "Bremen",
+    "dateOfIssue": "2026-02-19"
+  }
+}

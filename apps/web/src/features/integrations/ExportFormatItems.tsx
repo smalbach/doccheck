@@ -18,13 +18,14 @@ async function download(shipmentId: string, format: ExportFormat) {
 
 /**
  * CargoWise XML and X12 items of the shipment's Export menu. A format that needs a document the
- * shipment has not got extracted (a 310 is a bill of lading) is not offered.
+ * shipment has not got extracted (a 310 is an ocean bill of lading) is not offered.
  */
 export function ExportFormatItems({ shipmentId, documents, onError }: { shipmentId: string; documents: ShipmentDocument[]; onError?: (message: string) => void }) {
   const { t } = useI18n();
   const has = (type: ShipmentDocument['detectedType']) => documents.some((d) => d.detectedType === type && d.status === 'EXTRACTED');
   const bl = has('BILL_OF_LADING');
-  const formats: ExportFormat[] = bl ? ['cargowise-xml', 'x12-856', 'x12-310'] : has('COMMERCIAL_INVOICE') ? ['cargowise-xml', 'x12-856'] : [];
+  // A 310 is an ocean bill of lading: an air shipment exports its air waybill as CargoWise XML or an 856.
+  const formats: ExportFormat[] = bl ? ['cargowise-xml', 'x12-856', 'x12-310'] : has('AIR_WAYBILL') || has('COMMERCIAL_INVOICE') ? ['cargowise-xml', 'x12-856'] : [];
   if (!formats.length) return null;
   return (
     <>

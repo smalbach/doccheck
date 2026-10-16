@@ -1,4 +1,4 @@
-import type { BillOfLading, CommercialInvoice, Destination, PackingList, TransportMode } from '@doccheck/schemas';
+import type { AirWaybill, BillOfLading, CommercialInvoice, Destination, PackingList, TransportMode } from '@doccheck/schemas';
 
 /** What an export is built from: the shipment and the extracted (normalized) documents the validation used. */
 export interface ExportInput {
@@ -6,6 +6,8 @@ export interface ExportInput {
   invoice?: CommercialInvoice;
   packingList?: PackingList;
   billOfLading?: BillOfLading;
+  /** An air shipment carries an air waybill instead of a bill of lading. */
+  airWaybill?: AirWaybill;
   /** When the export is made (ISO date-time); fixed in tests. */
   createdAt?: string;
 }

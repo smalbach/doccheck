@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 899,
+    "outputTokens": 882
+  },
+  "output": {
+    "blNumber": "COMPCTG283784",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "bookingNumber": "548892630",
+    "carrierName": "MERIDIAN OCEAN SHIPPING (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "CAFE ALTO HUILA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40"
+      ],
+      "city": "NEIVA",
+      "region": "HUILA",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "041W",
+    "placeOfReceipt": {
+      "name": "NEIVA",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "CARTAGENA",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "NEWARK",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU7266907",
+        "seal": "MD8778944",
+        "type": "40HC",
+        "packages": "199",
+        "grossWeight": {
+          "value": "12099.20",
+          "unit": "KGS"
+        },
+        "volumeM3": "28.36"
+      }
+    ],
+    "totalPackages": "199",
+    "totalGrossWeight": {
+      "value": "12099.20",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "HARBORLINE/HA575046/C/NO. 1-199",
+    "cargoDescription": "SAID TO CONTAIN 199 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "CI/26/8283",
+      "HA575046"
+    ],
+    "placeOfIssue": "CARTAGENA",
+    "dateOfIssue": "27-FEB-2026",
+    "shippedOnBoardDate": "27-FEB-2026"
+  }
+}

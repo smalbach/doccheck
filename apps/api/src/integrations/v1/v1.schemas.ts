@@ -1,4 +1,4 @@
-import { BillOfLading, CommercialInvoice, Destination, DocumentStatus, DocumentType, Finding, Isf, PackingList, ShipmentStatus, TransportMode, type Shipment, type ShipmentDocument } from '@doccheck/schemas';
+import { DOCUMENT_SCHEMAS, Destination, DocumentFormat, DocumentStatus, DocumentType, Finding, ShipmentStatus, TransportMode, type Shipment, type ShipmentDocument } from '@doccheck/schemas';
 import { z } from 'zod';
 import type { ReviewedFinding } from '../../shipments/reviews.types';
 import { REVIEW_STATUSES } from '../../shipments/reviews.types';
@@ -12,7 +12,7 @@ import { REVIEW_STATUSES } from '../../shipments/reviews.types';
 export const CreateShipmentRequest = z
   .object({
     reference: z.string().trim().min(1).max(200).optional().describe('Your reference: a file number, PO or booking.'),
-    destination: Destination.optional().describe('CA (CBSA) or US (CBP). Needed before validating.'),
+    destination: Destination.optional().describe('CA (CBSA), US (CBP), MX (SAT/ANAM), EU (Union Customs Code) or GB (HMRC). Needed before validating.'),
     transportMode: TransportMode.optional(),
   })
   .strict()
@@ -38,6 +38,7 @@ export const V1Document = z
   .object({
     id: z.uuid(),
     fileName: z.string(),
+    format: DocumentFormat.optional().describe('How it was uploaded when not a PDF: a spreadsheet, or a photo (made into a PDF).'),
     sha256: z.string(),
     pageCount: z.number().int(),
     detectedType: DocumentType,
@@ -85,7 +86,7 @@ export const V1DocumentDetail = z
   .object({
     document: V1Document,
     documentType: DocumentType.optional(),
-    data: z.union([CommercialInvoice, PackingList, BillOfLading, Isf]).nullable().optional().describe('Normalized values, as the validation reads them. Absent until extracted.'),
+    data: z.union(Object.values(DOCUMENT_SCHEMAS) as unknown as [z.ZodType, z.ZodType, ...z.ZodType[]]).nullable().optional().describe('Normalized values, as the validation reads them. Absent until extracted.'),
     issues: z.array(z.string()).optional(),
     corrected: z.array(z.object({ path: z.string(), modelValue: z.unknown() })).optional().describe('Values corrected by hand in the app, with what the model had read.'),
   })
@@ -133,6 +134,7 @@ export type V1Shipment = z.infer<typeof V1Shipment>;
 export const toV1Document = (d: ShipmentDocument): z.infer<typeof V1Document> => ({
   id: d.id,
   fileName: d.fileName,
+  ...(d.format ? { format: d.format } : {}),
   sha256: d.sha256,
   pageCount: d.pageCount,
   detectedType: d.detectedType,

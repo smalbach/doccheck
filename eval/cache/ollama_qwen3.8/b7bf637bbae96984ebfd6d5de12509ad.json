@@ -1,0 +1,97 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 893,
+    "outputTokens": 890
+  },
+  "output": {
+    "blNumber": "PCCLSHA5849159",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "400403056",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1208 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "080E",
+    "placeOfReceipt": {
+      "name": "NINGBO",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "SHANGHAI",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "NEWARK",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCLU9025025",
+        "seal": "PC2648339",
+        "type": "20GP",
+        "packages": "129",
+        "grossWeight": {
+          "value": "1225.50",
+          "unit": "KGS"
+        },
+        "volumeM3": "13.41"
+      }
+    ],
+    "totalPackages": "129",
+    "totalGrossWeight": {
+      "value": "1225.50",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-84474/C/NO. 1-129",
+    "cargoDescription": "SAID TO CONTAIN 129 CTNS ELECTRIC KETTLE 1.7 L",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-3564",
+      "PO-84474"
+    ],
+    "placeOfIssue": "SHANGHAI",
+    "dateOfIssue": "04-APR-2026",
+    "shippedOnBoardDate": "04-APR-2026"
+  }
+}

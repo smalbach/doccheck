@@ -31,7 +31,7 @@ const errors = (...codes: number[]) =>
   Object.fromEntries(
     codes.map((c) => [
       String(c),
-      json('Error', ({ 400: 'Invalid request', 401: 'Missing, invalid or revoked API key', 403: 'The key lacks the scope', 404: 'Not found (or not this account’s)', 409: 'Not possible in the current state', 422: 'Idempotency-Key reused for another request', 429: 'Rate limit reached; see Retry-After' } as Record<number, string>)[c] ?? 'Error'),
+      json('Error', ({ 400: 'Invalid request', 402: 'The organization\u2019s plan limit is reached', 401: 'Missing, invalid or revoked API key', 403: 'The key lacks the scope', 404: 'Not found (or not this account’s)', 409: 'Not possible in the current state', 422: 'Idempotency-Key reused for another request', 429: 'Rate limit reached; see Retry-After' } as Record<number, string>)[c] ?? 'Error'),
     ]),
   );
 const common = [401, 403, 429];
@@ -45,7 +45,7 @@ export function openApiDocument(serverUrl = '/'): Json {
       title: 'DocCheck API',
       version: '1.0.0',
       description:
-        'Create shipments, upload their freight documents (commercial invoice, packing list, bill of lading, ISF), validate them against CBSA and CBP requirements and read the findings. Authenticate with an API key from Integrations → API keys: `Authorization: Bearer dck_...`. Keys have the read and/or write scope and a limit of requests per minute (RateLimit-* headers). Events (' +
+        'Create shipments, upload their freight documents (commercial invoice, packing list, bill of lading or air waybill, ISF, certificates of origin and the other supported types), validate them against the requirements of Canada, the US, Mexico, the EU or the UK and read the findings. Authenticate with an API key from Integrations → API keys: `Authorization: Bearer dck_...`. Keys have the read and/or write scope and a limit of requests per minute (RateLimit-* headers). Events (' +
         EVENT_TYPES.join(', ') +
         ') are pushed to webhooks signed with HMAC-SHA256 (DocCheck-Signature header).',
       license: { name: 'MIT', identifier: 'MIT' },
@@ -87,14 +87,14 @@ export function openApiDocument(serverUrl = '/'): Json {
         post: {
           operationId: 'uploadDocuments',
           tags: ['Documents'],
-          summary: 'Upload PDFs',
-          description: 'Scope: write. Up to 10 PDFs of 20 MB each in the multipart field "files". Each is classified and extracted by the local model; document.extracted follows for each.',
+          summary: 'Upload documents',
+          description: 'Scope: write. Up to 10 files of 20 MB each in the multipart field "files": PDFs (a combined PDF is split into its documents), spreadsheets (.xlsx, .csv) or photos (JPEG, PNG, HEIC; straightened into a PDF). Each is classified and extracted by the local model; document.extracted follows for each. Every file counts as an extraction of the organization\'s plan: past a hard limit the upload is refused with 402.',
           parameters: [shipmentId, idempotencyKey],
           requestBody: {
             required: true,
-            content: { 'multipart/form-data': { schema: { type: 'object', properties: { files: { type: 'array', items: { type: 'string', contentMediaType: 'application/pdf' } } }, required: ['files'] } } },
+            content: { 'multipart/form-data': { schema: { type: 'object', properties: { files: { type: 'array', items: { type: 'string', format: 'binary' } } }, required: ['files'] } } },
           },
-          responses: { 202: json('UploadResult', 'Queued for extraction'), ...errors(400, 404, 409, 422, ...common) },
+          responses: { 202: json('UploadResult', 'Queued for extraction'), ...errors(400, 402, 404, 409, 422, ...common) },
         },
       },
       '/api/v1/shipments/{id}/documents/{documentId}': {
@@ -114,7 +114,7 @@ export function openApiDocument(serverUrl = '/'): Json {
           summary: 'Validate the shipment',
           description: 'Scope: write. Runs the deterministic rules on the extracted documents, cites regulations and lets the local model review ambiguous cases. Answers 202 at once (validation.completed follows), or 200 with the validation when wait=true.',
           parameters: [shipmentId, ...queryParams(ValidateQuery)],
-          responses: { 200: json('Validation', 'Done (wait=true)'), 202: json('ValidationQueued', 'Started'), ...errors(400, 404, 409, ...common) },
+          responses: { 200: json('Validation', 'Done (wait=true)'), 202: json('ValidationQueued', 'Started'), ...errors(400, 402, 404, 409, ...common) },
         },
       },
       '/api/v1/shipments/{id}/findings': {
@@ -132,7 +132,7 @@ export function openApiDocument(serverUrl = '/'): Json {
           operationId: 'exportShipment',
           tags: ['Exports'],
           summary: 'Download an export',
-          description: 'Scope: read. CargoWise Universal Shipment XML or ANSI X12 004010 (856 ship notice, 310 ocean freight receipt), built from the documents the latest validation read. 409 before validation or when a document the format needs is missing.',
+          description: 'Scope: read. CargoWise Universal Shipment XML or ANSI X12 004010 (856 ship notice, 310 ocean freight receipt), built from the documents the latest validation read; an air shipment exports from its air waybill (the 310, an ocean bill of lading, is refused for it). 409 before validation or when a document the format needs is missing.',
           parameters: [shipmentId, { name: 'format', in: 'path', required: true, schema: z.toJSONSchema(ExportFormatParam) }],
           responses: {
             200: { description: 'The file', content: { 'application/xml': { schema: { type: 'string' } }, 'application/edi-x12': { schema: { type: 'string' } } } },

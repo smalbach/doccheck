@@ -36,7 +36,7 @@ const guardedFetch: FetchLike = async (url, init) => {
 
 /**
  * Container tracking (off by default): after a validation, the BL's containers are looked up with
- * the account's provider and the T1-T3 consistency findings are added to that validation, so they
+ * the organization's provider and the CT1-CT3 consistency findings are added to that validation, so they
  * show, get reviewed and reach the supplier like any other finding. The events are kept with the
  * validation (tracking_snapshots).
  */

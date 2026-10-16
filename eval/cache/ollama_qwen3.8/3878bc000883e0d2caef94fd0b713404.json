@@ -1,0 +1,69 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 811,
+    "outputTokens": 577
+  },
+  "output": {
+    "packingListNumber": "PL/26/2001",
+    "invoiceRef": "CI/26/2001",
+    "seller": {
+      "name": "NINGBO EVERBRIGHT APPLIANCE CO., LTD.",
+      "addressLines": [
+        "366 JIANGNAN RD",
+        "BEILUN DISTRICT",
+        "NINGBO ZHEJIANG 315800"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST",
+        "CHICAGO IL 60661"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "marks": "LAKESHORE/PO-76046/C/NO. 1-232",
+    "packages": [
+      {
+        "range": "1-232",
+        "count": "232 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BLENDER 600 W",
+        "quantity": "928 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2134.40",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "2459.20",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "232 PKGS",
+    "totalNetWeight": {
+      "value": "2134.40",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "2459.20",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "26.10"
+  }
+}

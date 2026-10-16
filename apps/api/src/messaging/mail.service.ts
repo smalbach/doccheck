@@ -9,6 +9,7 @@ import { ShipmentsService } from '../shipments/shipments.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { ImapPoller } from './imap.poller';
 import type { PoolClient } from 'pg';
+import { inputFormat } from '@doccheck/extraction';
 import { addressOf, adminsOnly, followUpDays, mailFrom, messageIdDomain, replyAddress, SEND_LIMITS } from './mail.config';
 import type { NewThreadDto, ReplyDto, ThreadsQuery } from './mail.dto';
 import { MailIntakeService } from './mail-intake.service';
@@ -193,15 +194,15 @@ export class MailService {
     return { name: a.filename, contentType: a.contentType, bytes: await this.storage.get(a.storageKey) };
   }
 
-  /** Adds a received PDF to the thread's shipment as a document, which extracts as any upload. */
+  /** Adds a received PDF, photo or spreadsheet to the thread's shipment as a document, which extracts as any upload. */
   async importAttachment(actor: MailActor, attachmentId: string) {
     const a = await this.repo.attachment(attachmentId);
     if (!a || a.orgId !== actor.orgId) throw new NotFoundException('Attachment not found');
     if (a.documentId) throw new BadRequestException('This attachment is already in the shipment');
     const thread = (await this.repo.findThread(a.threadId!))!;
     if (!thread.shipmentId) throw new BadRequestException('The conversation is not about a shipment');
-    if (a.contentType !== 'application/pdf') throw new BadRequestException('Only PDF attachments can be added as documents');
     const bytes = await this.storage.get(a.storageKey);
+    if (!inputFormat(a.filename, new Uint8Array(bytes))) throw new BadRequestException('Only PDF, photo and spreadsheet attachments can be added as documents');
     const { documents } = await this.shipments.addDocuments(thread.shipmentId, [{ name: a.filename, bytes }]);
     const added = documents[0]!;
     const documentId = 'document' in added ? added.document.id : added.id;

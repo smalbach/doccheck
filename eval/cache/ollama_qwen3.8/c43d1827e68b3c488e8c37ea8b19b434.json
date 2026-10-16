@@ -1,0 +1,118 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 794,
+    "outputTokens": 1089
+  },
+  "output": {
+    "invoiceNumber": "PO-64140",
+    "invoiceDate": "2026-09-22",
+    "poNumber": "PO-64140",
+    "seller": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F175"
+    },
+    "buyer": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "us",
+      "taxId": "74-3812456"
+    },
+    "shipmentDate": "2026-09-25",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Mundra",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "Mundra",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "USD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": null,
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "41,400",
+        "unit": "PCS",
+        "unitPrice": "0.98",
+        "unitPriceCurrency": null,
+        "lineTotal": "40,572.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "IN",
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": null,
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "3,400",
+        "unit": "PCS",
+        "unitPrice": "16.01",
+        "unitPriceCurrency": null,
+        "lineTotal": "54,434.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8481.80"
+      },
+      {
+        "lineNo": null,
+        "sku": null,
+        "description": "Centrifugal water pump 0.75 k'W, cast iron body",
+        "quantity": "16",
+        "unit": "PCS",
+        "unitPrice": "79.27",
+        "unitPriceCurrency": null,
+        "lineTotal": "1,268.32",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "IN",
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "3193",
+    "grossWeight": {
+      "value": "9,821.30",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "9,376.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "96,274.32",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}
