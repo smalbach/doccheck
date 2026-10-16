@@ -31,6 +31,8 @@ export interface MailMessage {
   readAt?: string;
   /** The receiving server reported a failed DMARC, DKIM or SPF check: the From may be forged. */
   senderUnverified?: boolean;
+  /** Uploaded by the supplier through the portal (docs/PORTAL.md), not emailed. */
+  viaPortal?: boolean;
   createdAt: string;
   attachments: MailAttachment[];
 }

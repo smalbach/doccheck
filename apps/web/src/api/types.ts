@@ -727,6 +727,8 @@ export interface MailMessage {
   readAt?: string;
   /** The receiving server reported a failed DMARC, DKIM or SPF check: the From may be forged. */
   senderUnverified?: boolean;
+  /** Uploaded by the supplier through the portal, not emailed. */
+  viaPortal?: boolean;
   createdAt: string;
   attachments: MailAttachment[];
 }
@@ -812,6 +814,8 @@ export interface NewThread {
   body: string;
   language?: string;
   fingerprints: string[];
+  /** A correction request with a supplier portal link, where the text says {{portal-link}}. */
+  portal?: boolean;
 }
 
 export interface MailServerInput {
@@ -852,4 +856,97 @@ export interface MailServerSettings {
 export interface SheetGrid {
   sheets: { name: string; rows: string[][] }[];
   pages: number[];
+}
+
+/** A denied or restricted party list as cached on the server (GET /screening/lists). */
+export interface ScreeningList {
+  id: string;
+  name: string;
+  publisher: string;
+  page: string;
+  downloads: string[];
+  versionDate: string;
+  fetchedAt: string;
+  sha256: string;
+  entries: number;
+  cached: boolean;
+  lastError?: string;
+  lastErrorAt?: string;
+}
+
+export interface ScreeningRefresh {
+  startedAt: string;
+  by: string;
+  finishedAt?: string;
+  outcomes?: { source: string; ok: boolean; lists: string[]; error?: string }[];
+  error?: string;
+}
+
+export interface ScreeningThresholds {
+  match: number;
+  review: number;
+  source: 'admin' | 'env' | 'default';
+  updatedAt?: string;
+  updatedBy?: string;
+  defaults: { match: number; review: number };
+}
+
+export interface ScreeningStatus {
+  dir: string;
+  editable: boolean;
+  entries: number;
+  refreshedAt?: string;
+  lists: ScreeningList[];
+  refreshing: ScreeningRefresh | null;
+  lastRefresh?: ScreeningRefresh;
+  thresholds: ScreeningThresholds;
+}
+
+export interface ScreeningEntry {
+  id: string;
+  list: string;
+  name: string;
+  aliases: string[];
+  type: 'entity' | 'individual' | 'vessel' | 'aircraft' | 'unknown';
+  countries: string[];
+  addresses: { text: string; city?: string; country?: string }[];
+  programs: string[];
+  remarks?: string;
+  url?: string;
+  listedOn?: string;
+}
+
+export interface ScreeningMatch {
+  list: string;
+  listName: string;
+  entry: ScreeningEntry;
+  matchedName: string;
+  score: number;
+  nameScore: number;
+  countryAdjust: number;
+  cityAdjust: number;
+  outcome: 'match' | 'review' | 'below';
+}
+
+export interface ScreeningSearch {
+  entries: number;
+  thresholds: { match: number; review: number };
+  matches: ScreeningMatch[];
+}
+
+export interface AllowlistItem {
+  id: string;
+  orgId: string;
+  organization: string;
+  partyName: string;
+  partyKey: string;
+  list: string;
+  entryId: string;
+  entryName: string;
+  reason: string;
+  createdAt: string;
+  createdBy?: string;
+  removedAt?: string;
+  removedBy?: string;
+  removedReason?: string;
 }

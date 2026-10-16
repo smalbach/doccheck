@@ -13,6 +13,7 @@ import { ResultsController } from './results/results.controller';
 import { ReviewModule } from './review/review.module';
 import { HealthController } from './health/health.controller';
 import { RulesController } from './rules/rules.controller';
+import { ScreeningModule } from './screening/screening.module';
 import { OrgsModule } from './orgs/orgs.module';
 import { RulesModule } from './rules/rules.module';
 import { ShipmentsModule } from './shipments/shipments.module';
@@ -23,7 +24,7 @@ import { UsageModule } from './usage/usage.module';
 @Module({
   imports: [
     DbModule, StorageModule, LlmModule, ProgressModule, AuditModule, NotificationsModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule,
-    OrgsModule, CollabModule, RulesModule, UsageModule, ReviewModule, TariffModule,
+    OrgsModule, CollabModule, RulesModule, UsageModule, ReviewModule, ScreeningModule, TariffModule,
   ],
   controllers: [HealthController, RulesController, ResultsController],
 })

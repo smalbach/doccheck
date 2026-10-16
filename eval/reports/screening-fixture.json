@@ -1,0 +1,118 @@
+{
+  "thresholds": {
+    "match": 0.92,
+    "review": 0.82
+  },
+  "lists": {
+    "entries": 47,
+    "source": "fixture"
+  },
+  "shipments": 260,
+  "injected": 260,
+  "recall": {
+    "exact": {
+      "cases": 44,
+      "flagged": 44,
+      "hit": 44
+    },
+    "case-and-legal-form": {
+      "cases": 44,
+      "flagged": 44,
+      "hit": 44
+    },
+    "alias": {
+      "cases": 43,
+      "flagged": 43,
+      "hit": 43
+    },
+    "typo": {
+      "cases": 43,
+      "flagged": 43,
+      "hit": 41
+    },
+    "extra-word": {
+      "cases": 43,
+      "flagged": 38,
+      "hit": 8
+    },
+    "word-order": {
+      "cases": 43,
+      "flagged": 43,
+      "hit": 43
+    }
+  },
+  "precision": {
+    "findings": 265,
+    "correct": 265,
+    "s1Findings": 232,
+    "s1Correct": 232
+  },
+  "falsePositives": [],
+  "misses": [
+    {
+      "shipmentId": "v1/CA-059",
+      "kind": "injected",
+      "variant": "extra-word",
+      "role": "invoice.seller",
+      "written": "Huawei Technologies Co., Ltd. Industrial",
+      "entry": {
+        "list": "bis-el",
+        "id": "03af7d6df1cb349107d67791c92fcfba4422eda0c148aad1b730fc89",
+        "name": "Huawei Technologies Co., Ltd."
+      },
+      "got": []
+    },
+    {
+      "shipmentId": "v1/US-031",
+      "kind": "injected",
+      "variant": "extra-word",
+      "role": "billOfLading.notifyParty",
+      "written": "STAN LLC Trading",
+      "entry": {
+        "list": "eu-fsf",
+        "id": "174792",
+        "name": "STAN LLC"
+      },
+      "got": []
+    },
+    {
+      "shipmentId": "v1/US-049",
+      "kind": "injected",
+      "variant": "extra-word",
+      "role": "invoice.buyer",
+      "written": "ROSOBORONEKSPORT OAO Trading",
+      "entry": {
+        "list": "ofac-sdn",
+        "id": "18782",
+        "name": "ROSOBORONEKSPORT OAO"
+      },
+      "got": []
+    },
+    {
+      "shipmentId": "v1/US-091",
+      "kind": "injected",
+      "variant": "extra-word",
+      "role": "invoice.seller",
+      "written": "CIMEX Trading",
+      "entry": {
+        "list": "ofac-sdn",
+        "id": "535",
+        "name": "CIMEX"
+      },
+      "got": []
+    },
+    {
+      "shipmentId": "v2/CA-021",
+      "kind": "injected",
+      "variant": "extra-word",
+      "role": "billOfLading.shipper",
+      "written": "ADF Group",
+      "entry": {
+        "list": "un-sc",
+        "id": "CDe.001",
+        "name": "ADF"
+      },
+      "got": []
+    }
+  ]
+}

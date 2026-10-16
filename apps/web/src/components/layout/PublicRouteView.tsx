@@ -5,6 +5,7 @@ import { RegisterPage } from '../../features/auth/RegisterPage';
 import { ResetPasswordPage } from '../../features/auth/ResetPasswordPage';
 import { useAuth } from '../../features/auth/useAuth';
 import { LandingPage } from '../../features/landing/LandingPage';
+import { PortalPage } from '../../features/portal/PortalPage';
 import { InvitePage } from '../../features/team/InvitePage';
 import { navigate } from '../../lib/navigate';
 import type { PublicRoute } from '../../lib/parseRoute';
@@ -34,6 +35,8 @@ export function PublicRouteView({ route }: { route: PublicRoute }) {
       return <ForgotPasswordPage />;
     case 'reset-password':
       return <ResetPasswordPage token={route.token} />;
+    case 'portal':
+      return <PortalPage token={route.token} />;
     case 'invite':
       return <InvitePage token={route.token} />;
   }

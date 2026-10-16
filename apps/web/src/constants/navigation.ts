@@ -1,4 +1,4 @@
-import { MixerHorizontalIcon, ActivityLogIcon, CheckboxIcon, MixIcon, TokensIcon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
+import { MixerHorizontalIcon, MagnifyingGlassIcon, LockClosedIcon, ActivityLogIcon, CheckboxIcon, MixIcon, TokensIcon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
 import type { ComponentType } from 'react';
 import type { MessageKey } from '../i18n/keys';
 import type { AppRoute } from '../lib/parseRoute';
@@ -52,6 +52,7 @@ export const NAVIGATION: NavGroup[] = [
       { labelKey: 'nav.rules', href: '#/app/rules', icon: ReaderIcon, matches: ['rules'] },
       { labelKey: 'nav.ruleSettings', href: '#/app/rules/settings', icon: MixerHorizontalIcon, matches: ['rule-settings'], writes: true },
       { labelKey: 'nav.evaluation', href: '#/app/results', icon: BarChartIcon, matches: ['results'] },
+      { labelKey: 'screening.nav', href: '#/app/screening', icon: MagnifyingGlassIcon, matches: ['screening'] },
     ],
   },
   {
@@ -62,6 +63,7 @@ export const NAVIGATION: NavGroup[] = [
       { labelKey: 'admin.users', href: '#/app/admin/users', icon: PersonIcon, matches: ['admin-users'] },
       { labelKey: 'admin.system', href: '#/app/admin/system', icon: ActivityLogIcon, matches: ['admin-system'] },
       { labelKey: 'plans.nav', href: '#/app/admin/plans', icon: MixIcon, matches: ['admin-plans'] },
+      { labelKey: 'screening.admin.nav', href: '#/app/admin/screening', icon: LockClosedIcon, matches: ['admin-screening'] },
     ],
   },
 ];

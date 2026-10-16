@@ -15,6 +15,7 @@ import { MailInbox } from './mail-inbox';
 import { MAIL_LOGO_PNG } from './mail-logo';
 import { MailIntakeService } from './mail-intake.service';
 import { MailService, type MailActor } from './mail.service';
+import { expandLinks, portalPath, portalUrl } from '../portal/portal-token';
 
 const actor = (user: PublicUser, org: OrgContext): MailActor => ({ userId: user.id, orgId: org.id });
 
@@ -63,7 +64,9 @@ export class MailController {
   @Post('preview')
   @HttpCode(200)
   preview(@Body(new ZodValidationPipe(PreviewDto)) dto: PreviewDto) {
-    return { html: mailHtml({ subject: dto.subject, text: dto.body, language: dto.language, logoSrc: `data:image/png;base64,${MAIL_LOGO_PNG.toString('base64')}` }) };
+    // A portal link is made only when the email is sent: the preview shows where it goes.
+    const text = expandLinks(dto.body, portalUrl('…') ?? portalPath('…'));
+    return { html: mailHtml({ subject: dto.subject, text, language: dto.language, logoSrc: `data:image/png;base64,${MAIL_LOGO_PNG.toString('base64')}` }) };
   }
 
   /** Starts a conversation (or a request for corrected documents) and queues its first message. */

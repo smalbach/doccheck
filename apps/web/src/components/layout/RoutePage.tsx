@@ -12,6 +12,8 @@ import type { AppRoute } from '../../lib/parseRoute';
 const AccountPage = lazy(() => import('../../features/account/AccountPage').then((m) => ({ default: m.AccountPage })));
 const SettingsPage = lazy(() => import('../../features/admin/settings/SettingsPage').then((m) => ({ default: m.SettingsPage })));
 const SystemPage = lazy(() => import('../../features/admin/system/SystemPage').then((m) => ({ default: m.SystemPage })));
+const ScreeningPage = lazy(() => import('../../features/screening/ScreeningPage').then((m) => ({ default: m.ScreeningPage })));
+const ScreeningAdminPage = lazy(() => import('../../features/admin/screening/ScreeningAdminPage').then((m) => ({ default: m.ScreeningAdminPage })));
 const UsersPage = lazy(() => import('../../features/admin/users/UsersPage').then((m) => ({ default: m.UsersPage })));
 const InboxPage = lazy(() => import('../../features/mail/InboxPage').then((m) => ({ default: m.InboxPage })));
 const ThreadPage = lazy(() => import('../../features/mail/ThreadPage').then((m) => ({ default: m.ThreadPage })));
@@ -110,6 +112,14 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return (
         <AdminOnly>
           <PlansPage />
+        </AdminOnly>
+      );
+    case 'screening':
+      return <ScreeningPage />;
+    case 'admin-screening':
+      return (
+        <AdminOnly>
+          <ScreeningAdminPage />
         </AdminOnly>
       );
     case 'team':

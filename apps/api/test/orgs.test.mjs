@@ -181,6 +181,9 @@ const startIdp = () =>
     });
   });
 
+const screeningDir = mkdtempSync(join(tmpdir(), 'doccheck-orgs-screening-'));
+cpSync(join(root, 'packages/screening/fixtures'), screeningDir, { recursive: true });
+
 before(async () => {
   await resetDatabase(testUrl);
   await startIdp();
@@ -203,6 +206,10 @@ before(async () => {
       SETTINGS_KEY_FILE: join(mkdtempSync(join(tmpdir(), 'doccheck-orgs-key-')), 'settings.key'),
       APP_URL: base,
       ADMIN_EMAILS: '',
+      // The committed denied-party fixture, copied so nothing the API writes lands in the repository.
+      SCREENING_DIR: screeningDir,
+      SCREENING_MATCH_THRESHOLD: '',
+      SCREENING_REVIEW_THRESHOLD: '',
     },
     stdio: ['ignore', 'ignore', 'inherit'],
   });
@@ -388,6 +395,55 @@ describe('organizations', () => {
     // A member can leave.
     assert.equal((await call('DELETE', `/orgs/current/members/${viewer.id}`, undefined, viewer.cookie)).status, 204);
     assert.equal((await call('GET', `/shipments/${s.id}`, undefined, viewer.cookie)).status, 404);
+  });
+
+  it('keeps each organization’s screening allowlist to itself, and lets only roles that decide findings change it', async () => {
+    const owner = await signUp('Screener');
+    await call('POST', '/orgs', { name: 'Screening Co' }, owner.cookie);
+    const viewer = await signUp('Screen viewer');
+    const reviewer = await signUp('Screen reviewer');
+    const client = await signUp('Screen client');
+    await join_(owner, viewer, 'viewer');
+    await join_(owner, reviewer, 'reviewer');
+    await join_(owner, client, 'client');
+    const outsider = await signUp('Screen outsider');
+
+    const seller = 'Hetian Taida Apparel Co., Ltd.';
+    const validate = async (cookie) => {
+      const s = (await call('POST', '/shipments', { destination: 'CA' }, cookie)).body;
+      const res = await call('POST', `/shipments/${s.id}/validate?agent=false`, { invoice: { ...sampleInvoice, seller: { ...sampleInvoice.seller, name: seller } }, packingList: samplePackingList, billOfLading: sampleBillOfLading }, cookie);
+      return res.body.findings.filter((f) => /^S\d$/.test(f.ruleId)).map((f) => f.ruleId);
+    };
+    const entryId = (await call('GET', `/screening/search?q=${encodeURIComponent(seller)}`, undefined, owner.cookie)).body.matches.find((m) => m.list === 'dhs-uflpa').entry.id;
+    const body = { partyName: seller, list: 'dhs-uflpa', entryId, reason: 'Different company: checked the business licence' };
+
+    // Viewers read but cannot write; clients see nothing of the organization.
+    assert.equal((await call('GET', '/screening/allowlist', undefined, viewer.cookie)).status, 200);
+    assert.equal((await call('POST', '/screening/allowlist', body, viewer.cookie)).status, 403);
+    assert.equal((await call('GET', '/screening/allowlist', undefined, client.cookie)).status, 403);
+    assert.equal((await call('POST', '/screening/allowlist', body, client.cookie)).status, 403);
+    assert.equal((await call('GET', '/screening/lists', undefined, client.cookie)).status, 403);
+    // Only server admins see every organization's, and only they refresh lists or set thresholds.
+    assert.equal((await call('GET', '/screening/allowlist?all=true', undefined, owner.cookie)).status, 403);
+    assert.equal((await call('POST', '/admin/screening/refresh', {}, owner.cookie)).status, 403);
+    assert.equal((await call('PUT', '/admin/screening/thresholds', { match: 0.95, review: 0.9 }, owner.cookie)).status, 403);
+
+    // A reviewer decides findings, so it can set a match aside for the organization.
+    const added = await call('POST', '/screening/allowlist', body, reviewer.cookie);
+    assert.equal(added.status, 201, JSON.stringify(added.body));
+    assert.equal(added.body.organization, 'Screening Co');
+    assert.deepEqual(await validate(owner.cookie), ['S3']);
+    // Another organization does not see it, cannot remove it, and still gets the hit.
+    assert.deepEqual((await call('GET', '/screening/allowlist?history=true', undefined, outsider.cookie)).body, []);
+    assert.equal((await call('DELETE', `/screening/allowlist/${added.body.id}`, {}, outsider.cookie)).status, 404);
+    assert.deepEqual(await validate(outsider.cookie), ['S1', 'S3']);
+    // The viewer cannot put it back; the owner can, and the audit log says who did what.
+    assert.equal((await call('DELETE', `/screening/allowlist/${added.body.id}`, {}, viewer.cookie)).status, 403);
+    assert.equal((await call('DELETE', `/screening/allowlist/${added.body.id}`, { reason: 'Licence was forged' }, owner.cookie)).status, 200);
+    assert.deepEqual(await validate(owner.cookie), ['S1', 'S3']);
+    const log = (await call('GET', '/audit?q=screening', undefined, owner.cookie)).body;
+    const actions = (log.items ?? log).map((r) => r.action);
+    assert.ok(actions.includes('screening.allowlist.add') && actions.includes('screening.allowlist.remove'), actions.join(', '));
   });
 
   it('lets a client read only the shipments shared with them', async () => {

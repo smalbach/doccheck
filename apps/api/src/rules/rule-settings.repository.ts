@@ -63,6 +63,15 @@ export class RuleSettingsRepository {
     await this.pool.query('delete from rule_settings where org_id = $1', [orgId]);
   }
 
+  /**
+   * A supplier's pre-shipment draft (docs/PORTAL.md): not the organization's history, and checked
+   * without it, so a draft never makes a real shipment look like a duplicate or a price change.
+   */
+  async isPreShipmentDraft(shipmentId: string): Promise<boolean> {
+    const { rowCount } = await this.pool.query(`select 1 from portal_requests where shipment_id = $1 and kind = 'pre_shipment'`, [shipmentId]);
+    return (rowCount ?? 0) > 0;
+  }
+
   /** The organization the shipment belongs to (null for rows from before accounts existed). */
   async shipmentOrg(shipmentId: string): Promise<string | null> {
     const { rows } = await this.pool.query('select org_id from shipments where id = $1', [shipmentId]);
@@ -76,7 +85,8 @@ export class RuleSettingsRepository {
     const { rows } = await this.pool.query(
       `select i.document_id, i.shipment_id, s.reference, i.invoice_number, i.seller_name, i.invoice_date
        from invoices i join shipments s on s.id = i.shipment_id
-       where i.org_id = $1 and i.shipment_id <> $2 and upper(regexp_replace(coalesce(i.invoice_number, ''), '[^A-Za-z0-9]', '', 'g')) = $3
+       where i.org_id = $1 and i.shipment_id <> $2 and not exists (select 1 from portal_requests pr where pr.shipment_id = i.shipment_id and pr.kind = 'pre_shipment')
+         and upper(regexp_replace(coalesce(i.invoice_number, ''), '[^A-Za-z0-9]', '', 'g')) = $3
        order by i.invoice_date desc nulls last limit 50`,
       [orgId, shipmentId, key],
     );
@@ -97,7 +107,7 @@ export class RuleSettingsRepository {
       `select l.document_id, l.idx, l.shipment_id, l.sku, l.description, l.unit_price::text as unit_price, l.unit_price_currency, l.quantity_unit,
               i.invoice_number, coalesce(i.invoice_date, i.shipment_date) as date
        from invoice_lines l join invoices i on i.document_id = l.document_id
-       where l.org_id = $1 and l.shipment_id <> $2 and l.unit_price is not null and l.unit_price_currency is not null
+       where l.org_id = $1 and l.shipment_id <> $2 and not exists (select 1 from portal_requests pr where pr.shipment_id = l.shipment_id and pr.kind = 'pre_shipment') and l.unit_price is not null and l.unit_price_currency is not null
          and (upper(trim(l.sku)) = any($3::text[])
               or (dc_text(l.sku) is null and dc_norm(l.description) = any(select dc_norm(d) from unnest($4::text[]) d)))
        order by date desc nulls last limit ${MAX_PRICE_ROWS}`,

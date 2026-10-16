@@ -79,10 +79,12 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 - **Runs 53 deterministic rules** (listed [below](#rules-implemented)): package counts and weights across documents, invoice arithmetic, currency, quantities and units per SKU, dates, terms of sale vs freight terms and invoice charges, ISO 6346 container check digits, UN/LOCODEs and port coherence, vessel IMO and carrier SCAC, container capacity and VGM, BL type, ISF 10+2 completeness and the 24-hour filing deadline, importer numbers (Canadian BN/RM, US EIN), duplicate invoices, unit prices against the organization's own price history, the three-way match against imported purchase orders, the invoice fields CBSA (CI1), CBP (19 CFR 141.86), Mexico (RGCE regla 3.1.8), the EU (UCC Annex B) and HMRC require, Mexican RFC and EU/UK EORI numbers, the EU's ICS2 pre-loading data and the UK-EU TCA statement on origin, and the T rules on the other documents: air waybill check digit, pieces and weights (the ocean rules run on the AWB for air freight), certificate of origin parties and goods, the nine CUSMA data elements, dangerous goods without a declaration, wood packaging without ISPM 15 evidence, the arrival notice against the BL or AWB, and an informational check that the original BL and the certificate of origin are signed or stamped (a layout check on the rendered page). Money and weights use fixed-point arithmetic, never floats.
 - **Checks tariff classification**: each HS code on the invoice and ISF is checked for length and against the destination schedule (HTSUS or Canadian Customs Tariff; Mexico, the EU and the UK get the format and consistency checks only), the same product must keep one subheading, and the codes are mapped to the other agencies the entry may need (FDA, USDA, EPA, FCC, CPSC, NHTSA, ATF, DEA; CFIA, Health Canada, ECCC, Transport Canada, Global Affairs Canada) and to possible dual-use items. The model checks whether the description fits the declared heading, with the section and chapter notes in front of it, and suggests up to three subheadings for lines without a code; it never changes a declared code.
 - **Lets each organization tune the rules**: turn a rule off, change its severity, edit tolerances (weight %, days, price deviation, PO tolerances, ISF lead time) and add the carrier SCACs it works with, from the Rule settings page. Each validation run records the settings, tolerances, run date and organization history it used, so its findings stay explainable and the run can be replayed.
+- **Screens every party against denied and restricted party lists** (OFAC SDN and Consolidated, BIS Entity List, Denied Persons, Unverified and Military End-User, Canada SEMA, UN Security Council, EU financial sanctions, DHS UFLPA Entity List), cached on the server with source, version date and checksum, and flags forced-labour risk (Xinjiang links, Chinese-origin cotton, apparel, polysilicon, tomatoes). False positives go on the organization's allowlist with a reason, recorded in the audit log ([docs/SCREENING.md](docs/SCREENING.md), in Spanish).
 - **Asks the model narrow questions only where rules cannot decide**: is a differently written consignee the same company, does the BL cargo description match the invoice goods. Each answer comes with verdict, confidence and rationale; it acts only at confidence ≥ 0.7 (`ACT_CONFIDENCE` in [`packages/agent/src/review.ts`](packages/agent/src/review.ts)) and "unsure" never dismisses a finding.
 - **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a passage of the destination's regulations (CBSA memoranda, 19 CFR, the RGCE and Ley Aduanera, EU customs law, HMRC guidance) found by hybrid search (embeddings + BM25). The model never writes the legal basis.
 - **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
 - **Talks to the supplier from the app**: the correction request is drafted from the findings in English, Spanish or French, sent over SMTP, and the reply comes back by IMAP or webhook into the same conversation, where its PDF is added to the shipment in one click ([docs/MESSAGING.md](docs/MESSAGING.md), in Spanish).
+- **Gives the supplier a portal, no account needed**: the request carries a signed, expiring link to a page where the supplier sees what to fix in their language and uploads corrected PDFs, which are filed in the conversation and checked at once; before shipping, a supplier can check draft invoices and packing lists the same way, with the rules that need the B/L left for later ([docs/PORTAL.md](docs/PORTAL.md), in Spanish).
 - **Sends unsure values to a review queue**: every extracted value gets a confidence from signals the pipeline already has (is the value printed on the PDF as copied, OCR word scores, values the normalizer could not read, an optional second reading). A review screen shows the PDF beside the values with the cited line outlined, driven from the keyboard (J/K, A accept, E edit, N next document), and corrects through the same audited corrections ([docs/REVIEW.md](docs/REVIEW.md), in Spanish).
 - **Learns each supplier's quirks** (admin switch): a value corrected on a supplier's document becomes an example in the local model's prompt for that supplier's next documents. On a synthetic supplier that prints net and gross weights under each other's label, weight fields go from 21.8% to 52.7% correct; on the regular sets nothing drops (v1 99.8% → 99.8%, unseen formats v2 98.8% → 99.4%; [docs/METRICS.md](docs/METRICS.md#supplier-learning)).
 - **Meters usage per plan**: documents extracted and validations per organization and month, Free/Pro/Business limits editable by server admins, bought by the organization's owners and admins, a warning before the limit and either a refusal (402) or an overage notice at it, and an optional Stripe integration that only accepts test-mode keys ([docs/BILLING.md](docs/BILLING.md), in Spanish).
@@ -143,6 +145,7 @@ cp .env.example .env
 docker compose up -d                          # Postgres + pgvector, Redis, MinIO
 ollama pull qwen3.8 && ollama pull bge-m3
 npm run synth                                 # the 200 sample shipments as PDFs (~1 min)
+npm run screening:fetch                       # denied-party lists for screening (~20 MB)
 scripts/start-local.sh                        # checks every dependency, builds, serves http://localhost:3000
 ```
 
@@ -168,6 +171,8 @@ npm run smoke     # starts the API, validates a shipment with one injected error
 npm run test:e2e -w @doccheck/api   # API end to end against the doccheck_test database (reset on every run)
 npm run synth     # regenerates data/eval/v1 (200 shipments + PDFs, ~1 min)
 npm run eval:extraction -- --limit 10   # extracts 10 shipments with the local model and writes eval/reports
+npm run screening:fetch   # downloads the denied-party lists into data/screening (~20 MB, a few minutes)
+npm run eval:screening    # list names injected into the synthetic shipments: recall and precision
 npm run dev       # API with hot reload on http://localhost:3000
 ```
 
@@ -189,6 +194,7 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | `packages/extraction` | PDF text with positions (pdf.js), document classification, LLM extraction with Zod-validated output (Ollama), deterministic normalization, field-level scoring |
 | `packages/regulations` | Regulation corpus: chunking, local embeddings (bge-m3 via Ollama), hybrid search (vectors + BM25) with citations |
 | `packages/agent` | Citations on findings and model decisions on ambiguous cases (same consignee written differently, BL description vs invoice goods) |
+| `packages/screening` | Denied-party lists (download, normalization, cache with checksums), the name matcher, rules S1–S3 and their evaluation; `fixtures` holds a small set of real entries for the tests |
 | `packages/tariff` | US HTSUS and Canadian Customs Tariff: HS code format and existence checks, section and chapter notes, description-to-subheading hybrid search, partner agency and export control tables, rules H1–H5 |
 | `packages/synth` | Synthetic shipment generator: ground-truth JSON, labeled error injection, HTML templates rendered to PDF |
 | `apps/api` | NestJS API; also serves the web app |
@@ -256,6 +262,11 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | T11 | Wood packaging the documents declare ("WOODEN PALLETS") comes with ISPM 15 evidence; a no-wood declaration does not contradict them | All | Medium |
 | T12 | Arrival notice agrees with the BL or AWB: number, containers, packages, weight, consignee | All | Medium |
 | T13 | Original BL and certificate of origin show a signature or stamp (informational) | All | Info |
+| S1 | A party (seller, shipper, buyer, consignee, notify party, exporter, ISF manufacturer, ship-to, consolidator) is on a denied or restricted party list: score ≥ match threshold (0.92) | All | High |
+| S2 | A party may be on a list: score between the review (0.82) and match thresholds; the agent may compare, never clears | All | Medium |
+| S3 | Forced-labour risk: a party linked to Xinjiang with goods of Chinese origin, or Chinese-origin cotton (52), apparel (61, 62), polysilicon (2804.61) or tomatoes (0702, 2002); cites UFLPA (US) or tariff item 9897.00.00 (CA) | All | Medium |
+
+S1–S3 run after the document rules against the lists cached in `data/screening` (`npm run screening:fetch`, or Administration › Screening). The match score is deterministic: X1's name normalization, word-by-word Jaro-Winkler weighted by how rare each word is across the lists, aliases, and small country and city adjustments. Each finding cites the list entry, its list, the score and the entry's link. On the 260 synthetic shipments with list names injected six ways and decoys sharing a word (`npm run eval:screening -- --lists data/screening`, 38,383 entries): no false positives, 99.2% of injected entries flagged, 100% as S1 when written exactly, with another legal form, as an alias or in another word order. Details in [docs/SCREENING.md](docs/SCREENING.md).
 
 ### Tariff rules (packages/tariff)
 
@@ -363,7 +374,9 @@ After the rules run, `/validate` does a second pass:
 
 Documents passed as JSON in the body of `/validate` take precedence over extracted ones, which keeps the phase 0 flow working for tests.
 
-Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs/FINDINGS.md](docs/FINDINGS.md), and the supplier mail routes (`/mail/...`) in [docs/MESSAGING.md](docs/MESSAGING.md).
+Party screening (`/screening/...` and `/admin/screening/...`: lists, checking a name, the allowlist, refresh and thresholds) is described in [docs/SCREENING.md](docs/SCREENING.md).
+
+Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs/FINDINGS.md](docs/FINDINGS.md), the supplier mail routes (`/mail/...`) in [docs/MESSAGING.md](docs/MESSAGING.md), and the supplier portal (`/portal/...`, `/supplier-portal/...`) in [docs/PORTAL.md](docs/PORTAL.md).
 
 ## Roadmap
 

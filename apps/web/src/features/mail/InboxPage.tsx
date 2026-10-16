@@ -17,6 +17,8 @@ import { useQuery } from '../../hooks/useQuery';
 import { useI18n } from '../../i18n/useI18n';
 import { ThreadTable } from './ThreadTable';
 import { UnassignedMail } from './UnassignedMail';
+import { PreShipmentCard } from '../portal/PreShipmentCard';
+import { useDemo } from '../../hooks/useDemo';
 
 const FILTERS: readonly ThreadFilter[] = ['open', 'unread', 'awaiting', 'overdue', 'failed', 'closed', 'all'];
 const PAGE = 30;
@@ -25,6 +27,7 @@ const PAGE = 30;
 export function InboxPage({ initialFilter }: { initialFilter?: string }) {
   const { t } = useI18n();
   const { user } = useAuth();
+  const demo = useDemo();
   const summary = useMailSummary();
   const [filter, setFilter] = useState<ThreadFilter>(FILTERS.includes(initialFilter as ThreadFilter) ? (initialFilter as ThreadFilter) : 'open');
   const [search, setSearch] = useState('');
@@ -76,6 +79,7 @@ export function InboxPage({ initialFilter }: { initialFilter?: string }) {
           </>
         )}
       </Card>
+      <PreShipmentCard readOnly={demo} />
       {user?.role === 'admin' && <UnassignedMail count={summary?.unassigned ?? 0} />}
     </div>
   );

@@ -17,6 +17,10 @@ import { MailRepository } from './mail.repository';
 import { MailTransport } from './mail-transport';
 import type { ThreadDetail } from './mail.types';
 import { OutboxWorker } from './outbox.worker';
+import { PortalRepository } from '../portal/portal.repository';
+import { openPortalRequest } from '../portal/portal-links';
+import { withLinkLine } from '../portal/portal-text';
+import type { PortalKind } from '../portal/portal.types';
 
 const EMAIL = /^[^\s@,;<>"]+@[^\s@,;<>"]+\.[^\s@,;<>"]+$/;
 
@@ -46,10 +50,20 @@ export class MailService {
     private readonly intake: MailIntakeService,
     @Inject(STORAGE) private readonly storage: ObjectStorage,
     private readonly audit: AuditService,
+    private readonly portal: PortalRepository,
   ) {}
 
-  /** Starts a conversation, or a request for corrected documents, and queues its first message. */
-  async createThread(actor: MailActor, dto: NewThreadDto, admin = false): Promise<ThreadDetail> {
+  /**
+   * Starts a conversation, or a request for corrected documents, and queues its first message. With a
+   * portal (dto.portal on a correction request, or `portal` for a pre-shipment check), the request and
+   * its first link are made in the same transaction, and the text gets the link line if it has none.
+   */
+  async createThread(
+    actor: MailActor,
+    dto: NewThreadDto,
+    admin = false,
+    portal?: { kind: PortalKind; reference?: string; supplierName?: string; days?: number },
+  ): Promise<ThreadDetail> {
     const { userId, orgId } = actor;
     if (dto.shipmentId) await this.ownShipment(orgId, dto.shipmentId);
     const partyId = dto.partyId ?? (dto.shipmentId ? await this.sellerOf(dto.shipmentId) : undefined);
@@ -64,6 +78,9 @@ export class MailService {
     }
     const threadId = randomUUID();
     const token = newToken();
+    const withPortal = portal ?? (dto.portal && dto.kind === 'correction_request' ? { kind: 'correction' as const } : undefined);
+    const body = withPortal ? withLinkLine(dto.body, withPortal.kind, dto.language) : dto.body;
+    let opened: { requestId: string; linkId: string } | undefined;
     await this.repo.transaction(async (db) => {
       await this.reserve(db, userId, admin);
       await this.repo.insertThread(
@@ -71,10 +88,28 @@ export class MailService {
         db,
       );
       await this.repo.insertMessage(
-        { id: randomUUID(), threadId, userId, direction: 'out', status: 'queued', from: mailFrom(), to: dto.to, cc: dto.cc, subject: dto.subject, text: dto.body, messageId: newMessageId(), inReplyTo: null, references: [] },
+        { id: randomUUID(), threadId, userId, direction: 'out', status: 'queued', from: mailFrom(), to: dto.to, cc: dto.cc, subject: dto.subject, text: body, messageId: newMessageId(), inReplyTo: null, references: [] },
         db,
       );
+      if (withPortal && dto.shipmentId) {
+        opened = await openPortalRequest(this.portal, db, {
+          orgId,
+          userId,
+          kind: withPortal.kind,
+          shipmentId: dto.shipmentId,
+          partyId,
+          supplierName: withPortal.supplierName,
+          threadId,
+          reference: withPortal.reference,
+          language: dto.language,
+          fingerprints: findings.map((f) => f.fingerprint),
+          days: withPortal.days,
+        });
+      }
     });
+    if (opened && withPortal) {
+      this.audit.note({ orgId, action: 'portal.create', entity: 'portal_request', entityId: opened.requestId, after: { kind: withPortal.kind, threadId, shipmentId: dto.shipmentId, partyId, supplier: withPortal.supplierName, reference: withPortal.reference, linkId: opened.linkId } });
+    }
     await this.repo.saveContacts(orgId, userId, partyId, [...dto.to, ...dto.cc]);
     if (findings.length) await this.reviews.save(dto.shipmentId!, userId, findings, 'waiting_supplier', `→ ${dto.to.join(', ')}`);
     void this.outbox.kick();

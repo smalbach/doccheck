@@ -13,3 +13,5 @@ data/eval/**/*.csv
 .data/
 .claude/worktrees/
 data/tariff/index/
+# Denied-party lists downloaded by npm run screening:fetch (about 20 MB); tests use packages/screening/fixtures.
+data/screening/
