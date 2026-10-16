@@ -9,6 +9,7 @@ import type { MessageKey } from '../../i18n/keys';
 import { useI18n } from '../../i18n/useI18n';
 import { errorMessage } from '../../lib/errorMessage';
 import { PortalStatusTag } from './PortalStatusTag';
+import { useOrg } from '../team/useOrg';
 
 type PortalEvent = PortalRequestDetail['events'][number];
 
@@ -16,8 +17,10 @@ type PortalEvent = PortalRequestDetail['events'][number];
  * The supplier portal of a conversation, for the importer: where the request stands, the link (copy,
  * replace, turn off), closing it, and what the supplier did with it.
  */
-export function PortalPanel({ thread, readOnly, refreshKey }: { thread: ThreadDetail; readOnly: boolean; refreshKey: number }) {
+export function PortalPanel({ thread, readOnly: demo, refreshKey }: { thread: ThreadDetail; readOnly: boolean; refreshKey: number }) {
   const { t, formatDateTime } = useI18n();
+  // Making, copying and stopping links needs shipment.write (the API checks again).
+  const readOnly = demo || !useOrg().can('shipment.write');
   const [request, setRequest] = useState<PortalRequestDetail | null>();
   const [error, setError] = useState<string>();
   const [notice, setNotice] = useState<string>();

@@ -6,7 +6,8 @@ import { createHash, randomUUID } from 'node:crypto';
 import { isDemo } from '../demo/demo-mode';
 import { MAX_ATTACHMENT_BYTES, MAX_ATTACHMENTS, MAX_ATTACHMENTS_BYTES, addressOf, messageIdDomain } from '../messaging/mail.config';
 import { MailRepository } from '../messaging/mail.repository';
-import { MailService } from '../messaging/mail.service';
+import { MailService, type MailActor } from '../messaging/mail.service';
+import { AuditService } from '../audit/audit.service';
 import { ShipmentsService } from '../shipments/shipments.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import type { NewPreShipmentDto, RequestsQuery } from './portal.dto';
@@ -19,6 +20,9 @@ import type {
 
 /** Refused accesses that matched no request are kept this long (for abuse checks only). */
 const DENIED_RETENTION_DAYS = 30;
+
+/** An opening of the page goes to the audit log at most this often per link and address (the page polls while checking). */
+const AUDIT_OPEN_MS = 10 * 60_000;
 
 /** Ids the validation gives documents sent as JSON instead of an upload. */
 const SLOT_TYPES: Record<string, DocumentType> = { invoice: 'COMMERCIAL_INVOICE', 'packing-list': 'PACKING_LIST', 'bill-of-lading': 'BILL_OF_LADING', isf: 'ISF', stored: 'ISF' };
@@ -59,6 +63,7 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
   private timer?: NodeJS.Timeout;
   private pruner?: NodeJS.Timeout;
   private running?: Promise<void>;
+  private readonly auditedOpens = new Map<string, number>();
 
   constructor(
     private readonly repo: PortalRepository,
@@ -66,6 +71,7 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
     private readonly mail: MailService,
     private readonly shipments: ShipmentsService,
     @Inject(STORAGE) private readonly storage: ObjectStorage,
+    private readonly audit: AuditService,
   ) {}
 
   onApplicationBootstrap() {
@@ -86,14 +92,14 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
 
   // Importer ----------------------------------------------------------------------------------------
 
-  async list(userId: string, q: RequestsQuery) {
-    const { items, total } = await this.repo.listRequests(userId, q);
+  async list(actor: MailActor, q: RequestsQuery) {
+    const { items, total } = await this.repo.listRequests(actor.orgId, q);
     const summaries = await Promise.all(items.map((r) => this.summary(r)));
     return { items: summaries, total, limit: q.limit, offset: q.offset };
   }
 
-  async detail(userId: string, id: string): Promise<PortalRequestDetail> {
-    const r = await this.own(userId, id);
+  async detail(actor: MailActor, id: string): Promise<PortalRequestDetail> {
+    const r = await this.own(actor, id);
     const [summary, links, events] = await Promise.all([this.summary(r), this.repo.links(id), this.repo.events(id)]);
     return {
       ...summary,
@@ -118,46 +124,53 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
   }
 
   /** The link that works now, to copy (the same link every time until it is revoked or expires). */
-  async currentLink(userId: string, id: string) {
-    await this.own(userId, id);
+  async currentLink(actor: MailActor, id: string) {
+    await this.own(actor, id);
     const link = await this.repo.activeLink(id);
     if (!link) throw new NotFoundException('This request has no working link: make a new one');
     return this.linkOut(link);
   }
 
   /** A new link; the ones before it stop working. */
-  async newLink(userId: string, id: string, days?: number) {
-    const r = await this.own(userId, id);
+  async newLink(actor: MailActor, id: string, days?: number) {
+    const r = await this.own(actor, id);
     if (r.closedAt) throw new BadRequestException('The request is closed: reopen it first');
-    const linkId = await this.repo.transaction(async (db) => {
-      for (const revoked of await this.repo.revoke(id, undefined, db)) await this.repo.event({ id: randomUUID(), requestId: id, linkId: revoked, kind: 'link_revoked', detail: { reason: 'replaced' } }, db);
-      return insertLink(this.repo, db, id, userId, days);
+    const { linkId, revoked } = await this.repo.transaction(async (db) => {
+      const revoked = await this.repo.revoke(id, undefined, db);
+      for (const old of revoked) await this.repo.event({ id: randomUUID(), requestId: id, linkId: old, kind: 'link_revoked', detail: { reason: 'replaced' } }, db);
+      return { linkId: await insertLink(this.repo, db, id, actor.userId, days), revoked };
     });
-    return this.linkOut((await this.repo.link(linkId))!);
+    const link = (await this.repo.link(linkId))!;
+    this.audit.note({ orgId: r.orgId, action: 'portal.link_create', entity: 'portal_request', entityId: id, after: { linkId, expiresAt: link.expiresAt, replaced: revoked } });
+    return this.linkOut(link);
   }
 
-  async revoke(userId: string, id: string, linkId?: string) {
-    await this.own(userId, id);
-    for (const revoked of await this.repo.revoke(id, linkId)) await this.repo.event({ id: randomUUID(), requestId: id, linkId: revoked, kind: 'link_revoked', detail: { reason: 'revoked' } });
-    return this.detail(userId, id);
+  async revoke(actor: MailActor, id: string, linkId?: string) {
+    const r = await this.own(actor, id);
+    const revoked = await this.repo.revoke(id, linkId);
+    for (const old of revoked) await this.repo.event({ id: randomUUID(), requestId: id, linkId: old, kind: 'link_revoked', detail: { reason: 'revoked' } });
+    this.audit.note({ orgId: r.orgId, action: 'portal.link_revoke', entity: 'portal_request', entityId: id, after: { revoked } });
+    return this.detail(actor, id);
   }
 
-  async close(userId: string, id: string, closed: boolean) {
-    await this.own(userId, id);
+  async close(actor: MailActor, id: string, closed: boolean) {
+    const r = await this.own(actor, id);
     await this.repo.close(id, closed);
-    return this.detail(userId, id);
+    this.audit.note({ orgId: r.orgId, action: closed ? 'portal.close' : 'portal.reopen', entity: 'portal_request', entityId: id, before: { closed: !!r.closedAt }, after: { closed } });
+    return this.detail(actor, id);
   }
 
   /** A portal for a correction request sent before links existed (or without one). */
-  async forThread(userId: string, threadId: string, days?: number) {
+  async forThread(actor: MailActor, threadId: string, days?: number) {
     const thread = await this.mailRepo.findThread(threadId);
-    if (!thread || thread.userId !== userId) throw new NotFoundException('Conversation not found');
+    if (!thread || thread.orgId !== actor.orgId) throw new NotFoundException('Conversation not found');
     if (thread.kind !== 'correction_request' || !thread.shipmentId) throw new BadRequestException('Only a correction request about a shipment can have a portal link');
-    const existing = (await this.repo.listRequests(userId, { threadId, limit: 1, offset: 0 })).items[0];
-    if (existing) return this.detail(userId, existing.id);
-    const { requestId } = await this.repo.transaction((db) =>
+    const existing = (await this.repo.listRequests(actor.orgId, { threadId, limit: 1, offset: 0 })).items[0];
+    if (existing) return this.detail(actor, existing.id);
+    const { requestId, linkId } = await this.repo.transaction((db) =>
       openPortalRequest(this.repo, db, {
-        userId,
+        orgId: actor.orgId,
+        userId: actor.userId,
         kind: 'correction',
         shipmentId: thread.shipmentId!,
         partyId: thread.partyId,
@@ -167,19 +180,20 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
         days,
       }),
     );
-    return this.detail(userId, requestId);
+    this.audit.note({ orgId: actor.orgId, action: 'portal.create', entity: 'portal_request', entityId: requestId, after: { kind: 'correction', threadId, linkId } });
+    return this.detail(actor, requestId);
   }
 
   /**
-   * A pre-shipment check: a draft shipment for the supplier's documents, and a conversation whose first
-   * email carries the link.
+   * A pre-shipment check: a draft shipment for the supplier's documents in the organization, and a
+   * conversation whose first email carries the link.
    */
-  async createPreShipment(userId: string, admin: boolean, dto: NewPreShipmentDto): Promise<PortalRequestDetail> {
-    const shipment = await this.shipments.create({ reference: `${dto.reference} (pre-shipment)`, destination: dto.destination }, userId);
+  async createPreShipment(actor: MailActor, admin: boolean, dto: NewPreShipmentDto): Promise<PortalRequestDetail> {
+    const shipment = await this.shipments.create({ reference: `${dto.reference} (pre-shipment)`, destination: dto.destination }, actor.userId, actor.orgId);
     let thread;
     try {
       thread = await this.mail.createThread(
-        userId,
+        actor,
         { kind: 'conversation', shipmentId: shipment.id, partyId: dto.partyId, to: dto.to, cc: dto.cc, subject: dto.subject, body: dto.body, language: dto.language, fingerprints: [], portal: false },
         admin,
         { kind: 'pre_shipment', reference: dto.reference, supplierName: dto.partyId ? undefined : dto.supplierName, days: dto.days },
@@ -188,13 +202,14 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
       await this.shipments.remove(shipment.id).catch(() => undefined);
       throw err;
     }
-    const request = (await this.repo.listRequests(userId, { threadId: thread.id, limit: 1, offset: 0 })).items[0]!;
-    return this.detail(userId, request.id);
+    const request = (await this.repo.listRequests(actor.orgId, { threadId: thread.id, limit: 1, offset: 0 })).items[0]!;
+    return this.detail(actor, request.id);
   }
 
-  private async own(userId: string, id: string): Promise<PortalRequestRow> {
+  /** A request of the actor's organization; any other answers 404, the same as one that does not exist. */
+  private async own(actor: MailActor, id: string): Promise<PortalRequestRow> {
     const r = /^[0-9a-f-]{36}$/i.test(id) ? await this.repo.request(id) : null;
-    if (!r || r.userId !== userId) throw new NotFoundException('Portal request not found');
+    if (!r || r.orgId !== actor.orgId) throw new NotFoundException('Portal request not found');
     return r;
   }
 
@@ -245,6 +260,7 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
     const reason = request.closedAt ? 'closed' : link.revokedAt ? 'revoked' : new Date(link.expiresAt).getTime() <= Date.now() ? 'expired' : null;
     if (reason) {
       await deny(request.id, link.id, reason);
+      await this.supplierAudit({ link, request, ip, userAgent }, 'portal.denied', { reason });
       throw new HttpException({ statusCode: 410, message: `This link is ${reason === 'closed' ? 'for a closed request' : reason}`, reason }, HttpStatus.GONE);
     }
     await this.repo.touchLink(link.id);
@@ -254,14 +270,23 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
   /** The portal page: the request's findings as the supplier may see them, uploads, and earlier requests. */
   async view(access: PortalAccess, record = true): Promise<PortalView> {
     const { request: r, link } = access;
-    if (record) await this.repo.event({ id: randomUUID(), requestId: r.id, linkId: link.id, kind: 'opened', ip: access.ip, userAgent: access.userAgent });
-    const [importer, latest, uploads, uploaded, docs, history] = await Promise.all([
-      this.repo.importerName(r.userId),
+    if (record) {
+      await this.repo.event({ id: randomUUID(), requestId: r.id, linkId: link.id, kind: 'opened', ip: access.ip, userAgent: access.userAgent });
+      const key = `${link.id}:${access.ip}`;
+      const now = Date.now();
+      if (now - (this.auditedOpens.get(key) ?? 0) > AUDIT_OPEN_MS) {
+        this.auditedOpens.set(key, now);
+        if (this.auditedOpens.size > 10_000) this.auditedOpens.clear();
+        await this.supplierAudit(access, 'portal.open', { userAgent: access.userAgent.slice(0, 200) });
+      }
+    }
+    const importer = r.orgName;
+    const [latest, uploads, uploaded, docs, history] = await Promise.all([
       this.repo.latestValidation(r.shipmentId),
       this.repo.uploads(r.id),
       this.repo.uploadedDocuments(r.id),
       this.repo.documents(r.shipmentId),
-      r.partyId ? this.repo.history(r.userId, r.partyId) : Promise.resolve([r]),
+      r.partyId ? this.repo.history(r.orgId, r.partyId) : Promise.resolve([r]),
     ]);
     const findings: PortalFinding[] = [];
     // A pre-shipment draft has nothing to check until the supplier uploads something.
@@ -325,7 +350,10 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
   async upload(access: PortalAccess, files: PortalFile[], note: string | undefined): Promise<PortalView> {
     const { request: r, link } = access;
     const refuse = async (reason: string, message: string) => {
-      await this.repo.event({ id: randomUUID(), requestId: r.id, linkId: link.id, kind: 'upload_refused', ip: access.ip, userAgent: access.userAgent, detail: { reason, files: files.map((f) => ({ name: cleanName(f.originalname), size: f.size })) } });
+      const detail = { reason, files: files.map((f) => ({ name: cleanName(f.originalname), size: f.size })) };
+      await this.repo.event({ id: randomUUID(), requestId: r.id, linkId: link.id, kind: 'upload_refused', ip: access.ip, userAgent: access.userAgent, detail });
+      // Written now: the request fails, and a failed request's notes are not written.
+      await this.supplierAudit(access, 'portal.upload_refused', detail, true);
       throw new BadRequestException(message);
     };
     if (files.length === 0) throw new BadRequestException('Send at least one PDF in the "files" field');
@@ -388,10 +416,25 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
       userAgent: access.userAgent,
       detail: { files: named.map((f) => ({ name: f.name, size: f.size, sha256: createHash('sha256').update(f.buffer).digest('hex') })), ...(note ? { note: true } : {}) },
     });
+    await this.supplierAudit(access, 'portal.upload', { shipmentId: r.shipmentId, documentIds, messageId, files: named.map((f) => ({ name: f.name, size: f.size })) });
     if (r.threadId) await this.mailRepo.touchThreadIn(r.threadId);
     this.logger.log(`Portal: ${files.length} PDF(s) for request ${r.id}`);
     void this.kick();
     return this.view({ ...access, request: (await this.repo.request(r.id))! }, false);
+  }
+
+  /**
+   * The audit log, with the supplier as actor: no user, the organization the token belongs to (never a
+   * session's), the link and the client address. Inside a request it is written when the request
+   * succeeds; elsewhere, or with `now` (a refusal, whose request fails), at once.
+   */
+  private async supplierAudit(access: PortalAccess, action: string, after: Record<string, unknown>, now = false) {
+    const actor = { orgId: access.request.orgId, userId: null, email: `supplier:${access.request.supplierName ?? 'unknown'} (portal link ${access.link.id.slice(0, 8)})`, ip: access.ip };
+    const entry = { orgId: access.request.orgId, action, entity: 'portal_request', entityId: access.request.id, after: { linkId: access.link.id, ...after } };
+    if (this.audit.scope() && !now) {
+      this.audit.setActor(actor);
+      this.audit.note(entry);
+    } else await this.audit.record(actor, entry);
   }
 
   // Checking uploads ---------------------------------------------------------------------------------

@@ -2,7 +2,8 @@ import type { ShipmentPage } from '../../api/types';
 import { Select } from '../../components/ui/Select';
 import { TextInput } from '../../components/ui/TextInput';
 import { ToggleChips } from '../../components/ui/ToggleChips';
-import { DESTINATION_FILTERS, STATUS_FILTERS, type ShipmentFilterState } from '../../constants/shipmentFilters';
+import { DESTINATION_FILTERS, DUE_FILTERS, STATUS_FILTERS, type DueFilter, type ShipmentFilterState } from '../../constants/shipmentFilters';
+import { Switch } from '../../components/ui/Switch';
 import { useI18n } from '../../i18n/useI18n';
 
 export interface ShipmentFiltersProps {
@@ -23,6 +24,13 @@ export function ShipmentFilters({ value, counts, onChange }: ShipmentFiltersProp
         ariaLabel={t('shipments.filterStatus')}
       />
       <div className="filters-right">
+        <Switch label={t('team.filters.mine')} checked={!!value.mine} onCheckedChange={(mine) => onChange({ ...value, mine })} />
+        <Select<DueFilter>
+          value={value.due ?? 'any'}
+          options={DUE_FILTERS.map((f) => ({ value: f.value, label: f.value === 'overdue' && counts.overdue !== undefined ? `${t(f.labelKey)} (${counts.overdue})` : t(f.labelKey) }))}
+          onValueChange={(due) => onChange({ ...value, due })}
+          ariaLabel={t('team.filters.due')}
+        />
         <Select
           value={value.destination}
           options={DESTINATION_FILTERS.map((f) => ({ value: f.value, label: t(f.labelKey) }))}

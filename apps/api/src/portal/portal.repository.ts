@@ -12,7 +12,7 @@ const iso = (v: unknown) => (v ? new Date(v as string).toISOString() : undefined
  * about and any finding citing a document the supplier uploaded.
  */
 const REQUEST_SELECT = `
-  select r.*, s.reference as shipment_reference, s.destination, p.name as party_name,
+  select r.*, o.name as org_name, s.reference as shipment_reference, s.destination, p.name as party_name,
     (select count(*) from portal_uploads u where u.request_id = r.id and u.status in ('extracting', 'validating'))::int as pending,
     (select count(*) from portal_uploads u where u.request_id = r.id)::int as uploads,
     (select u.status from portal_uploads u where u.request_id = r.id order by u.created_at desc limit 1) as last_upload_status,
@@ -23,13 +23,16 @@ const REQUEST_SELECT = `
     ))::int as open,
     (select max(e.created_at) from portal_events e where e.request_id = r.id and e.kind <> 'denied') as last_activity_at
   from portal_requests r
+  join organizations o on o.id = r.org_id
   join shipments s on s.id = r.shipment_id
   left join parties p on p.id = r.party_id
   left join lateral (select v.id, v.created_at from validations v where v.shipment_id = r.shipment_id order by v.created_at desc limit 1) lv on true`;
 
 const toRequest = (r: Record<string, unknown>): PortalRequestRow => ({
   id: r.id as string,
-  userId: r.user_id as string,
+  orgId: r.org_id as string,
+  orgName: r.org_name as string,
+  ...(r.user_id ? { userId: r.user_id as string } : {}),
   kind: r.kind as PortalKind,
   shipmentId: r.shipment_id as string,
   ...(r.party_id ? { partyId: r.party_id as string } : {}),
@@ -62,6 +65,7 @@ const toLink = (r: Record<string, unknown>): PortalLinkRow => ({
 
 export interface NewPortalRequest {
   id: string;
+  orgId: string;
   userId: string;
   kind: PortalKind;
   shipmentId: string;
@@ -106,9 +110,9 @@ export class PortalRepository {
 
   async insertRequest(r: NewPortalRequest, db: PoolClient | Pool = this.pool): Promise<void> {
     await db.query(
-      `insert into portal_requests (id, user_id, kind, shipment_id, party_id, supplier_name, thread_id, reference, language, fingerprints)
-       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
-      [r.id, r.userId, r.kind, r.shipmentId, r.partyId ?? null, r.supplierName ?? null, r.threadId ?? null, r.reference ?? null, r.language ?? null, r.fingerprints],
+      `insert into portal_requests (id, org_id, user_id, kind, shipment_id, party_id, supplier_name, thread_id, reference, language, fingerprints)
+       values ($1, $11, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+      [r.id, r.userId, r.kind, r.shipmentId, r.partyId ?? null, r.supplierName ?? null, r.threadId ?? null, r.reference ?? null, r.language ?? null, r.fingerprints, r.orgId],
     );
   }
 
@@ -117,9 +121,9 @@ export class PortalRepository {
     return rows[0] ? toRequest(rows[0]) : null;
   }
 
-  async listRequests(userId: string, q: { partyId?: string; threadId?: string; shipmentId?: string; kind?: PortalKind; limit: number; offset: number }) {
-    const params: unknown[] = [userId];
-    const where = ['r.user_id = $1'];
+  async listRequests(orgId: string, q: { partyId?: string; threadId?: string; shipmentId?: string; kind?: PortalKind; limit: number; offset: number }) {
+    const params: unknown[] = [orgId];
+    const where = ['r.org_id = $1'];
     const add = (sql: string, value: unknown) => {
       params.push(value);
       where.push(sql.replace('?', `$${params.length}`));
@@ -134,9 +138,9 @@ export class PortalRepository {
     return { items: rows.map(toRequest), total: count.n as number };
   }
 
-  /** The supplier's requests from the same importer (same company), newest first. */
-  async history(userId: string, partyId: string, limit = 20): Promise<PortalRequestRow[]> {
-    const { rows } = await this.pool.query(`${REQUEST_SELECT} where r.user_id = $1 and r.party_id = $2 order by r.created_at desc limit $3`, [userId, partyId, limit]);
+  /** The supplier's requests from the same organization (same company), newest first. */
+  async history(orgId: string, partyId: string, limit = 20): Promise<PortalRequestRow[]> {
+    const { rows } = await this.pool.query(`${REQUEST_SELECT} where r.org_id = $1 and r.party_id = $2 order by r.created_at desc limit $3`, [orgId, partyId, limit]);
     return rows.map(toRequest);
   }
 
@@ -144,15 +148,13 @@ export class PortalRepository {
     await this.pool.query(`update portal_requests set closed_at = case when $2 then coalesce(closed_at, now()) else null end where id = $1`, [id, closed]);
   }
 
-  async importerName(userId: string): Promise<string> {
-    const { rows } = await this.pool.query<{ name: string }>('select name from users where id = $1', [userId]);
-    return rows[0]?.name ?? '';
-  }
-
   // Links -------------------------------------------------------------------------------------------
 
   async insertLink(l: { id: string; requestId: string; tokenHash: Buffer; createdBy: string | null; expiresAt: string }, db: PoolClient | Pool = this.pool): Promise<void> {
-    await db.query('insert into portal_links (id, request_id, token_hash, created_by, expires_at) values ($1, $2, $3, $4, $5)', [l.id, l.requestId, l.tokenHash, l.createdBy, l.expiresAt]);
+    await db.query(
+      'insert into portal_links (id, request_id, org_id, token_hash, created_by, expires_at) values ($1, $2, (select org_id from portal_requests where id = $2), $3, $4, $5)',
+      [l.id, l.requestId, l.tokenHash, l.createdBy, l.expiresAt],
+    );
   }
 
   async link(id: string): Promise<PortalLinkRow | null> {
@@ -204,7 +206,7 @@ export class PortalRepository {
     e: { id: string; requestId: string | null; linkId: string | null; kind: PortalEventKind; ip?: string; userAgent?: string; detail?: Record<string, unknown> },
     db: PoolClient | Pool = this.pool,
   ): Promise<void> {
-    await db.query('insert into portal_events (id, request_id, link_id, kind, ip, user_agent, detail) values ($1, $2, $3, $4, $5, $6, $7)', [
+    await db.query('insert into portal_events (id, request_id, org_id, link_id, kind, ip, user_agent, detail) values ($1, $2, (select org_id from portal_requests where id = $2), $3, $4, $5, $6, $7)', [
       e.id, e.requestId, e.linkId, e.kind, e.ip?.slice(0, 64) ?? null, e.userAgent?.slice(0, 300) ?? null, e.detail ? JSON.stringify(e.detail) : null,
     ]);
   }
@@ -234,7 +236,10 @@ export class PortalRepository {
   // Uploads -----------------------------------------------------------------------------------------
 
   async insertUpload(u: { id: string; requestId: string; messageId: string | null; documentIds: string[] }): Promise<void> {
-    await this.pool.query(`insert into portal_uploads (id, request_id, message_id, document_ids, status) values ($1, $2, $3, $4, 'extracting')`, [u.id, u.requestId, u.messageId, u.documentIds]);
+    await this.pool.query(
+      `insert into portal_uploads (id, request_id, org_id, message_id, document_ids, status) values ($1, $2, (select org_id from portal_requests where id = $2), $3, $4, 'extracting')`,
+      [u.id, u.requestId, u.messageId, u.documentIds],
+    );
   }
 
   async uploads(requestId: string, limit = 20): Promise<PortalUploadView[]> {

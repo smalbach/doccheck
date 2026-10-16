@@ -1,12 +1,16 @@
 -- Supplier portal (docs/PORTAL.md): a page a supplier opens from a link, without an account, to see
 -- what to correct and upload corrected documents (a correction request), or to check draft documents
 -- before shipping (a pre-shipment check). Every link reaches one request and nothing else.
+-- Everything belongs to the organization of the request's shipment (docs/ORGANIZATIONS.md); a
+-- token resolves its organization from its own request, never from a session.
 
 -- What a supplier is asked through the portal: the corrections of a correction-request conversation,
 -- or a pre-shipment check of a draft shipment made for it. Its conversation shows what happens.
 create table portal_requests (
   id uuid primary key,
-  user_id uuid not null references users (id) on delete cascade,
+  org_id uuid not null references organizations (id) on delete cascade,
+  -- Who made it (stays when they leave the organization).
+  user_id uuid references users (id) on delete set null,
   kind text not null check (kind in ('correction', 'pre_shipment')),
   -- correction: the importer's shipment; pre_shipment: the draft shipment the supplier's uploads go to.
   shipment_id uuid not null references shipments (id) on delete cascade,
@@ -22,7 +26,7 @@ create table portal_requests (
   created_at timestamptz not null default now(),
   closed_at timestamptz
 );
-create index portal_requests_user_idx on portal_requests (user_id, created_at desc);
+create index portal_requests_org_idx on portal_requests (org_id, created_at desc);
 create index portal_requests_party_idx on portal_requests (party_id, created_at desc);
 create index portal_requests_thread_idx on portal_requests (thread_id);
 
@@ -31,6 +35,7 @@ create index portal_requests_thread_idx on portal_requests (thread_id);
 create table portal_links (
   id uuid primary key,
   request_id uuid not null references portal_requests (id) on delete cascade,
+  org_id uuid not null references organizations (id) on delete cascade,
   token_hash bytea not null unique,
   created_by uuid references users (id) on delete set null,
   expires_at timestamptz not null,
@@ -44,6 +49,8 @@ create index portal_links_request_idx on portal_links (request_id, created_at de
 create table portal_events (
   id uuid primary key,
   request_id uuid references portal_requests (id) on delete cascade,
+  -- Null with the request, for a token that matched nothing.
+  org_id uuid references organizations (id) on delete cascade,
   link_id uuid references portal_links (id) on delete set null,
   kind text not null check (kind in ('link_created', 'link_revoked', 'opened', 'uploaded', 'upload_refused', 'checked', 'denied')),
   ip text,
@@ -58,6 +65,7 @@ create index portal_events_denied_idx on portal_events (created_at) where reques
 create table portal_uploads (
   id uuid primary key,
   request_id uuid not null references portal_requests (id) on delete cascade,
+  org_id uuid not null references organizations (id) on delete cascade,
   -- The received message of the conversation that holds the files as attachments.
   message_id uuid references mail_messages (id) on delete set null,
   document_ids uuid[] not null default '{}',

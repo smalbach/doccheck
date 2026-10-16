@@ -106,6 +106,10 @@ const staticPages = [
   '/app/rules',
   '/app/results',
   '/app/account',
+  '/app/team',
+  '/app/notifications',
+  '/app/approvals',
+  '/app/audit',
   ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system'] : []),
 ];
 const locales = values.quick ? ['en'] : ['en', 'es', 'fr'];
@@ -136,7 +140,7 @@ for (const locale of locales) {
       // The sign-in forms redirect signed-in visitors: check them signed out.
       await context.clearCookies();
       // The supplier portal needs no account: a link that works and one that does not.
-      for (const path of ['/', '/portal?t=example', '/login', '/register', '/forgot-password', '/reset-password?token=example', ...portal.portal]) await visit(path);
+      for (const path of ['/', '/portal?t=example', '/login', '/register', '/forgot-password', '/reset-password?token=example', '/invite?token=example', ...portal.portal]) await visit(path);
     }
   }
 }

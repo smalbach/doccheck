@@ -14,7 +14,7 @@ export const linkDays = () => {
 export async function openPortalRequest(
   repo: PortalRepository,
   db: PoolClient,
-  input: { userId: string; kind: PortalKind; shipmentId: string; partyId?: string; supplierName?: string; threadId: string; reference?: string; language?: string; fingerprints: string[]; days?: number },
+  input: { orgId: string; userId: string; kind: PortalKind; shipmentId: string; partyId?: string; supplierName?: string; threadId: string; reference?: string; language?: string; fingerprints: string[]; days?: number },
 ): Promise<{ requestId: string; linkId: string }> {
   const requestId = randomUUID();
   await repo.insertRequest({ id: requestId, ...input }, db);

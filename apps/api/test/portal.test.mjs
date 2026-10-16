@@ -3,7 +3,8 @@
 //
 //   npm run build && npm run test:e2e -w @doccheck/api
 //
-// Uses DATABASE_URL_TEST (or DATABASE_URL) with the database renamed to doccheck_portal_test.
+// Uses the test database name (DATABASE_URL_TEST, else doccheck_test) with "_portal" before "_test",
+// and port E2E_PORT + 7.
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
@@ -20,12 +21,20 @@ try {
   process.loadEnvFile(join(root, '.env'));
 } catch {}
 
-const testUrl = (() => {
-  const u = new URL(process.env.DATABASE_URL_TEST ?? process.env.DATABASE_URL ?? 'postgres://doccheck:doccheck@localhost:5432/doccheck');
-  u.pathname = '/doccheck_portal_test';
+const baseUrl = (() => {
+  if (process.env.DATABASE_URL_TEST) return process.env.DATABASE_URL_TEST;
+  const u = new URL(process.env.DATABASE_URL ?? 'postgres://doccheck:doccheck@localhost:5432/doccheck');
+  u.pathname = '/doccheck_test';
   return u.toString();
 })();
-const dbName = new URL(testUrl).pathname.slice(1);
+const baseName = new URL(baseUrl).pathname.slice(1);
+if (!baseName.endsWith('_test')) throw new Error(`Refusing to reset "${baseName}": the test database name must end in _test`);
+const dbName = baseName.replace(/_test$/, '_portal_test');
+const testUrl = (() => {
+  const u = new URL(baseUrl);
+  u.pathname = `/${dbName}`;
+  return u.toString();
+})();
 
 const port = Number(process.env.E2E_PORT ?? 3990) + 7;
 const base = `http://localhost:${port}`;
@@ -57,11 +66,28 @@ const call = async (method, path, body, as) => {
   const text = await res.text();
   return { status: res.status, body: text ? JSON.parse(text) : undefined, headers: res.headers };
 };
-const signUp = async (name) => {
-  const res = await send(`${base}/auth/register`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email: `${randomUUID()}@example.com`, password: 'correct horse battery', name }) });
+const signUp = async (name) => (await account(name)).cookie;
+/** A new account: { cookie, email }. */
+const account = async (name) => {
+  const email = `${randomUUID()}@example.com`;
+  const res = await send(`${base}/auth/register`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email, password: 'correct horse battery', name }) });
   assert.equal(res.status, 201);
-  return sessionCookie(res);
+  return { cookie: sessionCookie(res), email };
 };
+/** Invites `who` into the active organization of `by` with `role`, and accepts. */
+const joinOrg = async (by, who, role) => {
+  assert.equal((await call('POST', '/orgs/current/invites', { email: who.email, role }, by)).status, 201);
+  const mail = await until(() =>
+    readdirSync(mailDir)
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => JSON.parse(readFileSync(join(mailDir, f), 'utf8')))
+      .find((m) => m.to === who.email),
+  );
+  const token = /token=([\w-]+)/.exec(mail.text)[1];
+  assert.equal((await call('POST', '/orgs/invites/accept', { token }, who.cookie)).status, 200);
+};
+/** The audit rows about a portal request, oldest first. */
+const auditOf = (requestId) => pool.query(`select action, org_id, user_id, user_email, ip from audit_log where entity = 'portal_request' and entity_id = $1 order by id`, [requestId]).then((r) => r.rows);
 
 /** The supplier's calls: the token in X-Portal-Token, no cookie. */
 const portal = (token, path = '/portal/session', init = {}) =>
@@ -120,6 +146,8 @@ before(async () => {
       SETTINGS_KEY_FILE: join(mkdtempSync(join(tmpdir(), 'doccheck-portal-key-')), 'settings.key'),
       IMAP_URL: '',
       APP_URL: 'http://app.example/',
+      RETENTION_JOB: 'off',
+      ADMIN_EMAILS: '',
     },
     stdio: ['ignore', 'ignore', 'inherit'],
   });
@@ -311,6 +339,65 @@ describe('supplier portal', () => {
     // The importer sees each supplier's status.
     const list = (await call('GET', `/supplier-portal/requests?kind=pre_shipment&partyId=${partyId}`, undefined, importer)).body;
     assert.deepEqual(list.items.map((r) => [r.reference, r.status]), [['PO-77', after.status]]);
+  });
+
+  it('keeps requests in their organization, records supplier activity in the audit log as the supplier', async () => {
+    const orgId = (await call('GET', '/orgs', undefined, importer)).body.active.id;
+    const { rows: [row] } = await pool.query('select r.org_id, s.org_id as shipment_org, t.org_id as thread_org from portal_requests r join shipments s on s.id = r.shipment_id join mail_threads t on t.id = r.thread_id where r.id = $1', [requestId]);
+    assert.deepEqual([row.org_id, row.shipment_org, row.thread_org], [orgId, orgId, orgId]);
+    // Portal uploads landed in the shipment's organization.
+    const { rows: docs } = await pool.query('select distinct d.shipment_id, s.org_id from portal_uploads u join documents d on d.id = any(u.document_ids) join shipments s on s.id = d.shipment_id where u.request_id = $1', [requestId]);
+    assert.deepEqual(docs.map((d) => d.org_id), [orgId]);
+
+    const rows = await auditOf(requestId);
+    const actions = new Set(rows.map((r) => r.action));
+    for (const a of ['portal.create', 'portal.open', 'portal.upload', 'portal.upload_refused', 'portal.denied', 'portal.link_create', 'portal.link_revoke', 'portal.close', 'portal.reopen']) assert.ok(actions.has(a), a);
+    assert.ok(rows.every((r) => r.org_id === orgId));
+    for (const r of rows.filter((r) => ['portal.open', 'portal.upload', 'portal.upload_refused', 'portal.denied'].includes(r.action))) {
+      assert.equal(r.user_id, null, r.action);
+      assert.match(r.user_email, /^supplier:.*\(portal link [0-9a-f]{8}\)$/, r.action);
+    }
+    assert.ok(rows.filter((r) => r.action === 'portal.link_create').every((r) => r.user_id));
+    // A member of the importer's organization signed in on the same browser does not change whose activity it is.
+    const member = await account('Signed-in member');
+    const good = tokenIn((await call('POST', `/supplier-portal/requests/${requestId}/links`, {}, importer)).body.path);
+    assert.equal((await fetch(`${base}/portal/session`, { headers: { 'x-portal-token': good, cookie: member.cookie } })).status, 200);
+  });
+
+  it('answers 404 to another organization and lets only owners, admins and analysts make links', async () => {
+    const stranger = await signUp('Other organization');
+    const routes = [
+      ['GET', `/supplier-portal/requests/${requestId}`],
+      ['GET', `/supplier-portal/requests/${requestId}/link`],
+      ['POST', `/supplier-portal/requests/${requestId}/links`, {}],
+      ['POST', `/supplier-portal/requests/${requestId}/revoke`, {}],
+      ['POST', `/supplier-portal/requests/${requestId}/close`, { closed: true }],
+      ['POST', `/supplier-portal/threads/${thread.id}/request`, {}],
+    ];
+    for (const [method, path, body] of routes) assert.equal((await call(method, path, body, stranger)).status, 404, `${method} ${path}`);
+    assert.equal((await call('GET', '/supplier-portal/requests', undefined, stranger)).body.total, 0);
+    // A pre-shipment check cannot name another organization's company or shipment.
+    const pre = { partyId: thread.partyId, reference: 'X', destination: 'CA', language: 'en', to: ['s@example.com'], subject: 's', body: 'b' };
+    assert.equal((await call('POST', '/supplier-portal/requests', pre, stranger)).status, 404);
+
+    // Members of the importer's organization, by role.
+    const [viewer, client, analyst] = [await account('Viewer'), await account('Client'), await account('Analyst')];
+    await joinOrg(importer, viewer, 'viewer');
+    await joinOrg(importer, client, 'client');
+    await joinOrg(importer, analyst, 'analyst');
+    for (const who of [viewer, client]) {
+      for (const [method, path, body] of routes.slice(1)) assert.equal((await call(method, path, body, who.cookie)).status, 403, `${method} ${path}`);
+      assert.equal((await call('POST', '/supplier-portal/requests', pre, who.cookie)).status, 403);
+    }
+    // A viewer reads where requests stand; a client sees nothing of them.
+    assert.equal((await call('GET', `/supplier-portal/requests/${requestId}`, undefined, viewer.cookie)).status, 200);
+    assert.equal((await call('GET', '/supplier-portal/requests', undefined, client.cookie)).status, 403);
+    // An analyst works the team's requests, made by someone else.
+    const made = await call('POST', `/supplier-portal/requests/${requestId}/links`, {}, analyst.cookie);
+    assert.equal(made.status, 201);
+    assert.equal((await portal(tokenIn(made.body.path))).status, 200);
+    const madeByAnalyst = (await auditOf(requestId)).filter((r) => r.action === 'portal.link_create').at(-1);
+    assert.ok(madeByAnalyst.user_id);
   });
 
   it('throttles an address that keeps trying links that do not work', async () => {

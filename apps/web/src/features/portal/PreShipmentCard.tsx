@@ -6,10 +6,13 @@ import { useQuery } from '../../hooks/useQuery';
 import { useI18n } from '../../i18n/useI18n';
 import { PortalStatusTag } from './PortalStatusTag';
 import { PreShipmentDialog } from './PreShipmentDialog';
+import { useOrg } from '../team/useOrg';
 
 /** Pre-shipment checks and where each supplier stands, with the button to start one (for one company with `partyId`). */
-export function PreShipmentCard({ partyId, partyName, readOnly }: { partyId?: string; partyName?: string; readOnly: boolean }) {
+export function PreShipmentCard({ partyId, partyName, readOnly: demo }: { partyId?: string; partyName?: string; readOnly: boolean }) {
   const { t, formatDateTime } = useI18n();
+  const { can } = useOrg();
+  const readOnly = demo || !can('shipment.write');
   const { data, error } = useQuery(`portal:pre:${partyId ?? ''}`, () => portalApi.requests({ kind: 'pre_shipment', partyId, limit: 20 }));
   const columns: Column<PortalRequest>[] = [
     ...(partyId ? [] : [{ key: 'supplier', header: t('portal.columns.supplier'), cell: (r: PortalRequest) => r.supplier ?? '—' }]),

@@ -5,6 +5,8 @@ import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
+import { CurrentOrg } from '../orgs/current-org.decorator';
+import type { OrgContext } from '../orgs/org.types';
 import { InjectLlm } from '../llm/llm.module';
 import { ShipmentsService } from '../shipments/shipments.service';
 import { isDemo } from './demo-mode';
@@ -63,25 +65,25 @@ export class DemoController implements OnApplicationBootstrap {
   }
 
   @Post('samples/:sampleId')
-  async load(@CurrentUser() user: PublicUser, @Param('sampleId') sampleId: string) {
+  async load(@CurrentUser() user: PublicUser, @CurrentOrg() org: OrgContext, @Param('sampleId') sampleId: string) {
     if (!this.dir || !/^(CA|US)-\d{3}$/.test(sampleId) || !existsSync(join(this.dir, sampleId)) || !(await this.extractionCached(sampleId))) throw new NotFoundException(`Sample ${sampleId} not found`);
-    if (!isDemo()) return this.create(sampleId, user.id);
-    // Each user gets one shipment per sample (shipments are private), so the demo database grows by
-    // at most users x samples.
-    const key = `${user.id}:${sampleId}`;
+    if (!isDemo()) return this.create(sampleId, user.id, org.id);
+    // Each organization gets one shipment per sample (shipments are private), so the demo database
+    // grows by at most organizations x samples.
+    const key = `${org.id}:${sampleId}`;
     let pending = this.loading.get(key);
     if (!pending) {
       pending = this.shipments
-        .list(user.id, { status: 'all', q: `Sample ${sampleId}`, limit: 100, offset: 0 })
-        .then(async (page): Promise<{ id: string }> => page.items.find((s) => s.reference === `Sample ${sampleId}`) ?? this.create(sampleId, user.id))
+        .list({ orgId: org.id }, { status: 'all', q: `Sample ${sampleId}`, limit: 100, offset: 0 })
+        .then(async (page): Promise<{ id: string }> => page.items.find((s) => s.reference === `Sample ${sampleId}`) ?? this.create(sampleId, user.id, org.id))
         .finally(() => this.loading.delete(key));
       this.loading.set(key, pending);
     }
     return pending;
   }
 
-  private async create(sampleId: string, userId: string) {
-    const shipment = await this.shipments.create({ reference: `Sample ${sampleId}`, destination: sampleId.slice(0, 2) as 'CA' | 'US', transportMode: 'SEA' }, userId);
+  private async create(sampleId: string, userId: string, orgId: string) {
+    const shipment = await this.shipments.create({ reference: `Sample ${sampleId}`, destination: sampleId.slice(0, 2) as 'CA' | 'US', transportMode: 'SEA' }, userId, orgId);
     const files = await Promise.all(FILES.map(async (f) => ({ name: `${sampleId}-${f}`, bytes: await readFile(join(this.dir!, sampleId, f)) })));
     // US samples come with their ISF, which is filed electronically rather than as a PDF.
     const truth = JSON.parse(await readFile(join(this.dir!, sampleId, 'truth.json'), 'utf8'));

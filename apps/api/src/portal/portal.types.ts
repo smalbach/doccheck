@@ -13,7 +13,12 @@ export type PortalEventKind = 'link_created' | 'link_revoked' | 'opened' | 'uplo
 /** A request as its row and counts, before it is shown to anyone. */
 export interface PortalRequestRow {
   id: string;
-  userId: string;
+  /** The organization it belongs to: the shipment's. */
+  orgId: string;
+  /** Its name: who the supplier deals with. */
+  orgName: string;
+  /** Who made it, while they have an account. */
+  userId?: string;
   kind: PortalKind;
   shipmentId: string;
   partyId?: string;
