@@ -85,7 +85,8 @@ export class RuleSettingsService {
     const stored = owner ? await this.repo.get(owner) : null;
     const config = stored?.config ?? {};
     const account: AccountHistory = {};
-    if (owner && ctx.invoice) {
+    // A supplier's pre-shipment draft is checked without the organization's records (X17, X23, X24).
+    if (owner && ctx.invoice && !(await this.repo.isPreShipmentDraft(ctx.shipmentId))) {
       const inv = ctx.invoice.data;
       const [invoices, prices, poCount, po] = await Promise.all([
         this.repo.invoicesNumbered(owner, ctx.shipmentId, inv.invoiceNumber),

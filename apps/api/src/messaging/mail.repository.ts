@@ -41,6 +41,7 @@ export interface NewMessage {
 /** An outgoing message claimed by the outbox, with what sending it needs. */
 export interface OutboxItem {
   id: string;
+  threadId: string | null;
   threadToken: string | null;
   /** The thread's language, else its owner's: for the HTML footer. */
   language: string | null;
@@ -111,6 +112,7 @@ const toMessage = (r: Record<string, unknown>, attachments: MailAttachment[]): M
   ...(r.received_at ? { receivedAt: iso(r.received_at) } : {}),
   ...(r.read_at ? { readAt: iso(r.read_at) } : {}),
   ...(r.sender_check === 'fail' ? { senderUnverified: true } : {}),
+  ...(typeof r.message_id === 'string' && r.message_id.startsWith('portal-') ? { viaPortal: true } : {}),
   createdAt: iso(r.created_at)!,
   attachments,
 });
@@ -275,6 +277,7 @@ export class MailRepository {
     );
     return rows.map((r) => ({
       id: r.id,
+      threadId: r.thread_id,
       threadToken: r.token,
       language: r.language,
       from: r.from_addr,

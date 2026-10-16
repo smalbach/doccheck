@@ -10,6 +10,7 @@ Las conversaciones con proveedores viven en DocCheck: se escriben, se envían, s
 - **Conversación:** todos los correos en orden, el estado de entrega de cada uno (en cola, enviando, enviado, no enviado con su error y "Reenviar"), los adjuntos recibidos, los hallazgos consultados con su estado actual, responder y cerrar o reabrir.
 - **Adjuntos:** un PDF recibido se agrega al envío con un clic y se lee como cualquier carga. Después se vuelve a validar y los hallazgos corregidos aparecen como resueltos.
 - **Alertas** en el panel: respuesta del proveedor, sin respuesta pasada la fecha de seguimiento, correo no enviado.
+- **Portal de proveedores:** la solicitud de corrección puede llevar un enlace para que el proveedor, sin cuenta, vea qué corregir en su idioma y suba los PDF corregidos, que llegan a la conversación y se revisan; también hay revisiones previas al embarque. Ver [PORTAL.md](PORTAL.md).
 - **Admin:** correo recibido que no responde a ninguna conversación ("sin asignar"), para asignarlo; y en Sistema, cómo envía y recibe este servidor.
 
 ## Cómo funciona

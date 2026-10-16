@@ -14,6 +14,7 @@ import { useI18n } from '../../i18n/useI18n';
 import { StatTile } from '../dashboard/StatTile';
 import { ComposeDialog } from '../mail/ComposeDialog';
 import { ThreadsCard } from '../mail/ThreadsCard';
+import { PreShipmentCard } from '../portal/PreShipmentCard';
 import { AddressList } from './AddressList';
 import { GoodsPanel } from './GoodsPanel';
 import { MoneyList } from './MoneyList';
@@ -137,6 +138,7 @@ export function CompanyPage({ id }: { id: string }) {
         <DataTable compact columns={shipmentColumns} rows={data.recentShipments} rowKey={(s) => s.shipmentId} caption={t('insights.parties.detail.shipments')} />
       </Card>
       <ThreadsCard partyId={id} actions={!demo && <ComposeDialog mode="message" partyId={id} />} />
+      <PreShipmentCard partyId={id} partyName={data.name} readOnly={demo} />
       {data.lines > 0 && (
         <Card title={t('insights.company.goods')}>
           <GoodsPanel destination={destination} filters={goodsFilters} onFiltersChange={setGoodsFilters} scope={{ party: id }} />

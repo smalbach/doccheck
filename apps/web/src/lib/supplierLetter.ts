@@ -2,6 +2,7 @@ import type { ShipmentDocument, ValidationFinding } from '../api/types';
 import { DOCUMENT_TYPE_KEY } from '../constants/documentTypes';
 import type { MessageKey, MessageVars } from '../i18n/keys';
 import { ruleGuideKey } from './findingReview';
+import { LINK_PLACEHOLDER } from '../api/portal';
 
 type Translate = (key: MessageKey, vars?: MessageVars) => string;
 
@@ -9,7 +10,7 @@ type Translate = (key: MessageKey, vars?: MessageVars) => string;
  * A plain-text message asking the supplier for corrected documents: each finding's problem, the values
  * each document gives and what to correct, in the language `t` speaks (not necessarily the UI's).
  */
-export function supplierLetter(t: Translate, opts: { reference: string; findings: readonly ValidationFinding[]; documents: ReadonlyMap<string, ShipmentDocument>; signature?: string }) {
+export function supplierLetter(t: Translate, opts: { reference: string; findings: readonly ValidationFinding[]; documents: ReadonlyMap<string, ShipmentDocument>; signature?: string; portalLink?: boolean }) {
   const subject = t('letter.subject', { reference: opts.reference });
   const items = opts.findings.map((f, i) => {
     const problemKey = ruleGuideKey(f.ruleId, 'problem');
@@ -23,6 +24,6 @@ export function supplierLetter(t: Translate, opts: { reference: string; findings
     if (actionKey) lines.push(`   ${t('letter.whatToDo')}: ${t(actionKey)}`);
     return lines.join('\n');
   });
-  const body = [t('letter.greeting'), '', t('letter.intro', { reference: opts.reference }), '', items.join('\n\n'), '', t('letter.closing'), ...(opts.signature ? [opts.signature] : [])].join('\n');
+  const body = [t('letter.greeting'), '', t('letter.intro', { reference: opts.reference }), '', items.join('\n\n'), '', ...(opts.portalLink ? [t('portal.letterLine'), LINK_PLACEHOLDER, ''] : []), t('letter.closing'), ...(opts.signature ? [opts.signature] : [])].join('\n');
   return { subject, body };
 }

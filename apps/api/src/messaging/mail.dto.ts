@@ -18,6 +18,8 @@ export const NewThreadDto = z
     language: z.enum(['en', 'es', 'fr']).optional(),
     /** Findings of the shipment's latest validation the request is about. */
     fingerprints: z.array(z.string().regex(/^[0-9a-f]{32}$/)).max(200).default([]),
+    /** A correction request with a supplier portal link (docs/PORTAL.md), put where the text says {{portal-link}}. */
+    portal: z.boolean().default(false),
   })
   .refine((d) => d.kind !== 'correction_request' || (d.shipmentId && d.fingerprints.length > 0), {
     message: 'A correction request needs a shipment and at least one finding',

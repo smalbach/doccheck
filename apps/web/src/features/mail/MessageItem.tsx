@@ -4,6 +4,7 @@ import { Tag } from '../../components/ui/Tag';
 import { useI18n } from '../../i18n/useI18n';
 import { cx } from '../../lib/cx';
 import { AttachmentList } from './AttachmentList';
+import { LINK_PLACEHOLDER } from '../../api/portal';
 
 export interface MessageItemProps {
   message: MailMessage;
@@ -24,6 +25,7 @@ export function MessageItem({ message: m, shipmentId, readOnly, onRetry, onAdded
       <header className="mail-message-head">
         <strong>{out ? (m.userName ?? t('mail.you')) : m.from}</strong>
         <Tag tone={m.status === 'failed' ? 'neutral' : out ? 'ok' : 'accent'}>{t(`mail.messageStatus.${m.status}`)}</Tag>
+        {m.viaPortal && <Tag>{t('portal.viaPortal')}</Tag>}
         {m.senderUnverified && (
           <span title={t('mail.unverifiedHint')}>
             <Tag>{t('mail.unverified')}</Tag>
@@ -33,10 +35,12 @@ export function MessageItem({ message: m, shipmentId, readOnly, onRetry, onAdded
           {formatDateTime(at)}
         </time>
       </header>
-      <p className="muted small mail-recipients">
-        {t('mail.toLine', { to: m.to.join(', ') })}
-        {m.cc.length > 0 && ` · ${t('mail.ccLine', { cc: m.cc.join(', ') })}`}
-      </p>
+      {m.to.length > 0 && (
+        <p className="muted small mail-recipients">
+          {t('mail.toLine', { to: m.to.join(', ') })}
+          {m.cc.length > 0 && ` · ${t('mail.ccLine', { cc: m.cc.join(', ') })}`}
+        </p>
+      )}
       {m.status === 'failed' && (
         <div className="mail-error" role="alert">
           <span className="small">
@@ -50,7 +54,8 @@ export function MessageItem({ message: m, shipmentId, readOnly, onRetry, onAdded
         </div>
       )}
       {m.transport === 'log' && <p className="muted small mail-dev-note">{t('mail.captured')}</p>}
-      <div className="mail-body">{m.text}</div>
+      {/* The portal link is put in only when the email is sent: here it is a marker. */}
+      {m.text && <div className="mail-body">{m.text.split(LINK_PLACEHOLDER).join(t('portal.linkInText'))}</div>}
       <AttachmentList attachments={m.attachments} shipmentId={shipmentId} readOnly={readOnly} onAdded={onAdded} onError={onError} />
     </article>
   );

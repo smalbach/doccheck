@@ -675,6 +675,8 @@ export interface MailMessage {
   readAt?: string;
   /** The receiving server reported a failed DMARC, DKIM or SPF check: the From may be forged. */
   senderUnverified?: boolean;
+  /** Uploaded by the supplier through the portal, not emailed. */
+  viaPortal?: boolean;
   createdAt: string;
   attachments: MailAttachment[];
 }
@@ -760,6 +762,8 @@ export interface NewThread {
   body: string;
   language?: string;
   fingerprints: string[];
+  /** A correction request with a supplier portal link, where the text says {{portal-link}}. */
+  portal?: boolean;
 }
 
 export interface MailServerInput {
