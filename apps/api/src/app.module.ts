@@ -9,11 +9,12 @@ import { ProgressModule } from './progress/progress.module';
 import { ResultsController } from './results/results.controller';
 import { HealthController } from './health/health.controller';
 import { RulesController } from './rules/rules.controller';
+import { ScreeningModule } from './screening/screening.module';
 import { ShipmentsModule } from './shipments/shipments.module';
 import { StorageModule } from './storage/storage';
 
 @Module({
-  imports: [DbModule, StorageModule, LlmModule, ProgressModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule],
+  imports: [DbModule, StorageModule, LlmModule, ProgressModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule, ScreeningModule],
   controllers: [HealthController, RulesController, ResultsController],
 })
 export class AppModule {}

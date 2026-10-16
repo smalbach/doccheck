@@ -9,7 +9,7 @@
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
@@ -45,6 +45,10 @@ writeFileSync(join(reportsDir, 'extraction-ollama_test-v1-scans.json'), '{"provi
 writeFileSync(join(reportsDir, 'agent-ollama_aaa.json'), JSON.stringify({ provider: 'ollama:other', summary: [] }));
 writeFileSync(join(reportsDir, 'agent-ollama_test.json'), JSON.stringify({ provider, summary: [] }));
 utimesSync(join(reportsDir, 'agent-ollama_test.json'), new Date(0), new Date(0));
+
+// Denied-party lists: the committed fixture, copied so nothing the API writes lands in the repository.
+const screeningDir = mkdtempSync(join(tmpdir(), 'doccheck-e2e-screening-'));
+cpSync(join(root, 'packages/screening/fixtures'), screeningDir, { recursive: true });
 
 // E2E_PORT lets several checkouts run the suite at once (each with its own DATABASE_URL_TEST).
 const port = Number(process.env.E2E_PORT ?? 3990);
@@ -100,6 +104,9 @@ before(async () => {
       S3_ENDPOINT: '',
       STORAGE_DIR: mkdtempSync(join(tmpdir(), 'doccheck-e2e-')),
       REPORTS_DIR: reportsDir,
+      SCREENING_DIR: screeningDir,
+      SCREENING_MATCH_THRESHOLD: '',
+      SCREENING_REVIEW_THRESHOLD: '',
       ADMIN_EMAILS: 'admin-e2e@example.com',
       LLM_CACHE_DIR: llmCacheDir,
       LLM_CACHE_MODE: 'replay',
@@ -1766,6 +1773,104 @@ describe('finding reviews', () => {
 
     const other = await signUp('Not theirs');
     assert.equal((await call('POST', `/shipments/${s.id}/findings/review`, { fingerprints: [fp], status: 'open' }, other)).status, 404);
+  });
+});
+
+describe('party screening', () => {
+  const admin = async () => {
+    let res = await call('POST', '/auth/login', { email: 'admin-e2e@example.com', password: 'admin password' }, '');
+    if (res.status === 401) res = await call('POST', '/auth/register', { email: 'admin-e2e@example.com', password: 'admin password', name: 'Admin' }, '');
+    return res.cookie;
+  };
+  /** Validates a CA shipment whose seller (and BL shipper) is `seller`, as `user`; returns the S findings. */
+  const validateWithSeller = async (user, seller, shipment) => {
+    const s = shipment ?? (await call('POST', '/shipments', { destination: 'CA' }, user)).body;
+    const invoice = { ...sampleInvoice, seller: { ...sampleInvoice.seller, name: seller } };
+    const res = await call('POST', `/shipments/${s.id}/validate?agent=false`, { invoice, packingList: samplePackingList, billOfLading: sampleBillOfLading }, user);
+    assert.equal(res.status, 200);
+    return { s, res: res.body, screening: res.body.findings.filter((f) => /^S\d$/.test(f.ruleId)) };
+  };
+
+  it('lists the cached lists, versions and thresholds, and the rules catalog has S1-S3', async () => {
+    const { status, body } = await call('GET', '/screening/lists');
+    assert.equal(status, 200);
+    assert.equal(body.lists.length, 10);
+    assert.ok(body.entries > 40);
+    const uflpa = body.lists.find((l) => l.id === 'dhs-uflpa');
+    assert.equal(uflpa.cached, true);
+    assert.match(uflpa.versionDate, /^\d{4}-\d{2}-\d{2}$/);
+    assert.match(uflpa.sha256, /^[0-9a-f]{64}$/);
+    assert.deepEqual([body.thresholds.match, body.thresholds.review, body.thresholds.source], [0.92, 0.82, 'default']);
+    const rules = (await call('GET', '/rules?destination=CA')).body.map((r) => r.id);
+    assert.deepEqual(rules.slice(-3), ['S1', 'S2', 'S3']);
+  });
+
+  it('flags a listed seller (S1) and its Xinjiang link (S3), citing the list entry', async () => {
+    const { res, screening } = await validateWithSeller(cookie, 'Hetian Taida Apparel Co., Ltd.');
+    assert.ok(res.ran.includes('S1') && res.ran.includes('S3'));
+    assert.deepEqual(screening.map((f) => [f.ruleId, f.severity]), [['S1', 'HIGH'], ['S3', 'MEDIUM']]);
+    const [s1] = screening;
+    assert.match(s1.message, /DHS UFLPA Entity List \(score 1\.00\)/);
+    assert.equal(s1.regulation.url, 'https://www.dhs.gov/uflpa-entity-list');
+    assert.deepEqual(s1.evidence.map((e) => [e.documentId, e.field]), [['invoice', 'seller.name']]);
+    assert.match(screening[1].regulation.title, /9897\.00\.00/);
+    // The clean sample has nothing to screen out.
+    assert.deepEqual((await validateWithSeller(cookie, sampleInvoice.seller.name)).screening, []);
+  });
+
+  it('checks a name against the lists', async () => {
+    const { status, body } = await call('GET', '/screening/search?q=Huawei%20Technologies%20Co%20Ltd&country=CN');
+    assert.equal(status, 200);
+    assert.deepEqual(body.matches.slice(0, 2).map((m) => [m.list, m.outcome, m.score]), [['ofac-cons', 'match', 1], ['bis-el', 'match', 1]]);
+    assert.equal((await call('GET', '/screening/search?q=x')).status, 400);
+  });
+
+  it('sets a match aside per account, with a reason, and keeps the audit trail when it is put back', async () => {
+    const user = await signUp('Screening user');
+    const other = await signUp('Other account');
+    const { s, screening } = await validateWithSeller(user, 'Hetian Taida Apparel Co., Ltd.');
+    const entryId = (await call('GET', '/screening/search?q=Hetian%20Taida%20Apparel', undefined, user)).body.matches.find((m) => m.list === 'dhs-uflpa').entry.id;
+    assert.equal(screening[0].ruleId, 'S1');
+
+    const add = (body, as = user) => call('POST', '/screening/allowlist', body, as);
+    assert.equal((await add({ partyName: 'Hetian Taida Apparel Co., Ltd.', list: 'dhs-uflpa', entryId })).status, 400); // a reason is required
+    assert.equal((await add({ partyName: 'Hetian Taida Apparel Co., Ltd.', list: 'dhs-uflpa', entryId: 'nope', reason: 'Different company' })).status, 404);
+    const added = await add({ partyName: 'Hetian Taida Apparel Co., Ltd.', list: 'dhs-uflpa', entryId, reason: 'Checked the business licence: a different company' });
+    assert.equal(added.status, 201);
+    assert.equal((await add({ partyName: 'HETIAN TAIDA APPAREL CO LTD', list: 'dhs-uflpa', entryId, reason: 'again' })).status, 409);
+
+    // Set aside for this account only: the forced-labour flag stays.
+    assert.deepEqual((await validateWithSeller(user, 'Hetian Taida Apparel Co., Ltd.', s)).screening.map((f) => f.ruleId), ['S3']);
+    assert.deepEqual((await validateWithSeller(other, 'Hetian Taida Apparel Co., Ltd.')).screening.map((f) => f.ruleId), ['S1', 'S3']);
+    assert.equal((await call('GET', '/screening/allowlist', undefined, other)).body.length, 0);
+    assert.equal((await call('GET', '/screening/allowlist?all=true', undefined, other)).status, 403);
+    assert.equal((await call('DELETE', `/screening/allowlist/${added.body.id}`, {}, other)).status, 404);
+
+    const removed = await call('DELETE', `/screening/allowlist/${added.body.id}`, { reason: 'Licence was forged' }, user);
+    assert.equal(removed.status, 200);
+    assert.deepEqual([removed.body.removedBy !== undefined, removed.body.removedReason], [true, 'Licence was forged']);
+    assert.equal((await call('GET', '/screening/allowlist', undefined, user)).body.length, 0);
+    const history = (await call('GET', '/screening/allowlist?history=true', undefined, user)).body;
+    assert.deepEqual(history.map((h) => [h.reason, h.removedReason, h.account]), [['Checked the business licence: a different company', 'Licence was forged', history[0].account]]);
+    assert.deepEqual((await validateWithSeller(user, 'Hetian Taida Apparel Co., Ltd.', s)).screening.map((f) => f.ruleId), ['S1', 'S3']);
+    // Admins see every account's trail.
+    const all = (await call('GET', '/screening/allowlist?all=true&history=true', undefined, await admin())).body;
+    assert.ok(all.some((h) => h.id === added.body.id));
+  });
+
+  it('lets admins set the thresholds, within bounds, and reset them', async () => {
+    const adm = await admin();
+    assert.equal((await call('PUT', '/admin/screening/thresholds', { match: 0.95, review: 0.9 })).status, 403);
+    assert.equal((await call('PUT', '/admin/screening/thresholds', { match: 0.9, review: 0.95 }, adm)).status, 400);
+    assert.equal((await call('PUT', '/admin/screening/thresholds', { match: 1.2, review: 0.9 }, adm)).status, 400);
+    const set = await call('PUT', '/admin/screening/thresholds', { match: 0.999, review: 0.9 }, adm);
+    assert.deepEqual([set.status, set.body.thresholds.match, set.body.thresholds.source, set.body.thresholds.updatedBy], [200, 0.999, 'admin', 'admin-e2e@example.com']);
+    // A typo that was a hit is now only a possible match.
+    assert.deepEqual((await validateWithSeller(cookie, 'Bremino Gruop')).screening.map((f) => f.ruleId), ['S2']);
+    const reset = await call('DELETE', '/admin/screening/thresholds', undefined, adm);
+    assert.deepEqual([reset.body.thresholds.match, reset.body.thresholds.source], [0.92, 'default']);
+    assert.equal((await call('GET', '/admin/screening')).status, 403);
+    assert.equal((await call('GET', '/admin/screening', undefined, adm)).status, 200);
   });
 });
 

@@ -1,0 +1,10 @@
+/* Party screening pages. */
+.screening-error { color: var(--critical); }
+.screening-outcome-match { color: var(--high); font-weight: 600; }
+.screening-outcome-review { color: var(--medium); font-weight: 600; }
+.screening-thresholds { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+.screening-thresholds .field { width: 200px; }
+@media (max-width: 600px) { .screening-thresholds .field { width: 100%; } }
+.screening-check .input-country { width: 110px; }
+@media (max-width: 600px) { .screening-check .input-country { width: 100%; } }
+.screening-removed { opacity: 0.75; }

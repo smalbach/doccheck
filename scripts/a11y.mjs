@@ -91,8 +91,9 @@ const staticPages = [
   '/app/data/shipments',
   '/app/rules',
   '/app/results',
+  '/app/screening',
   '/app/account',
-  ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system'] : []),
+  ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system', '/app/admin/screening'] : []),
 ];
 const locales = values.quick ? ['en'] : ['en', 'es', 'fr'];
 

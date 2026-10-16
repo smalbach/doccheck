@@ -27,6 +27,8 @@ export type AppRoute =
   | { name: 'admin-settings' }
   | { name: 'admin-users' }
   | { name: 'admin-system' }
+  | { name: 'screening' }
+  | { name: 'admin-screening' }
   | { name: 'not-found' };
 
 export type Route = PublicRoute | AppRoute;
@@ -55,6 +57,8 @@ const APP_PAGES: Record<string, AppRoute> = {
   '/app/admin/settings': { name: 'admin-settings' },
   '/app/admin/users': { name: 'admin-users' },
   '/app/admin/system': { name: 'admin-system' },
+  '/app/screening': { name: 'screening' },
+  '/app/admin/screening': { name: 'admin-screening' },
 };
 
 /**

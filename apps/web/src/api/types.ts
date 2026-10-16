@@ -723,3 +723,96 @@ export interface MailServerSettings {
       })
     | null;
 }
+
+/** A denied or restricted party list as cached on the server (GET /screening/lists). */
+export interface ScreeningList {
+  id: string;
+  name: string;
+  publisher: string;
+  page: string;
+  downloads: string[];
+  versionDate: string;
+  fetchedAt: string;
+  sha256: string;
+  entries: number;
+  cached: boolean;
+  lastError?: string;
+  lastErrorAt?: string;
+}
+
+export interface ScreeningRefresh {
+  startedAt: string;
+  by: string;
+  finishedAt?: string;
+  outcomes?: { source: string; ok: boolean; lists: string[]; error?: string }[];
+  error?: string;
+}
+
+export interface ScreeningThresholds {
+  match: number;
+  review: number;
+  source: 'admin' | 'env' | 'default';
+  updatedAt?: string;
+  updatedBy?: string;
+  defaults: { match: number; review: number };
+}
+
+export interface ScreeningStatus {
+  dir: string;
+  editable: boolean;
+  entries: number;
+  refreshedAt?: string;
+  lists: ScreeningList[];
+  refreshing: ScreeningRefresh | null;
+  lastRefresh?: ScreeningRefresh;
+  thresholds: ScreeningThresholds;
+}
+
+export interface ScreeningEntry {
+  id: string;
+  list: string;
+  name: string;
+  aliases: string[];
+  type: 'entity' | 'individual' | 'vessel' | 'aircraft' | 'unknown';
+  countries: string[];
+  addresses: { text: string; city?: string; country?: string }[];
+  programs: string[];
+  remarks?: string;
+  url?: string;
+  listedOn?: string;
+}
+
+export interface ScreeningMatch {
+  list: string;
+  listName: string;
+  entry: ScreeningEntry;
+  matchedName: string;
+  score: number;
+  nameScore: number;
+  countryAdjust: number;
+  cityAdjust: number;
+  outcome: 'match' | 'review' | 'below';
+}
+
+export interface ScreeningSearch {
+  entries: number;
+  thresholds: { match: number; review: number };
+  matches: ScreeningMatch[];
+}
+
+export interface AllowlistItem {
+  id: string;
+  userId: string;
+  account: string;
+  partyName: string;
+  partyKey: string;
+  list: string;
+  entryId: string;
+  entryName: string;
+  reason: string;
+  createdAt: string;
+  createdBy?: string;
+  removedAt?: string;
+  removedBy?: string;
+  removedReason?: string;
+}
