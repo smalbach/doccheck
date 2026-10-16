@@ -1,0 +1,314 @@
+{
+  "id": "EU-022",
+  "seed": 483908882,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-8020",
+      "invoiceDate": "2026-02-04",
+      "poNumber": "PO-88134",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-02-13",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Mundra",
+          "unLocode": "INMUN",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Le Havre"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 171,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "34200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.02",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "54788.40",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4805.10",
+        "raw": {
+          "value": "4805.10",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4617.00",
+        "raw": {
+          "value": "4617.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "54788.40",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-8020",
+      "invoiceRef": "INV-2026-8020",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "packages": [
+        {
+          "range": "1-171",
+          "count": 171,
+          "type": "CTN",
+          "marks": "MAISON/PO-88134/C/NO. 1-171",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "3420",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4617.00",
+            "raw": {
+              "value": "4617.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4805.10",
+            "raw": {
+              "value": "4805.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 171,
+        "netWeight": {
+          "kg": "4617.00",
+          "raw": {
+            "value": "4617.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4805.10",
+          "raw": {
+            "value": "4805.10",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "8.08"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVMUN133232",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "293897378",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "78 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "020W",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Mundra",
+        "unLocode": "INMUN",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Le Havre",
+        "unLocode": "FRLEH",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "PCRU8365634",
+          "seal": "PC9282608",
+          "type": "20GP",
+          "packages": 171,
+          "grossWeight": {
+            "kg": "4805.10",
+            "raw": {
+              "value": "4805.10",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "8.08"
+        }
+      ],
+      "totalPackages": 171,
+      "totalGrossWeight": {
+        "kg": "4805.10",
+        "raw": {
+          "value": "4805.10",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/PO-88134/C/NO. 1-171",
+      "cargoDescription": "SAID TO CONTAIN 171 CTNS BRASS BALL VALVE 2\"",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Mundra",
+      "dateOfIssue": "2026-02-13",
+      "shippedOnBoardDate": "2026-02-13",
+      "references": [
+        "INV-2026-8020",
+        "PO-88134"
+      ]
+    }
+  }
+}

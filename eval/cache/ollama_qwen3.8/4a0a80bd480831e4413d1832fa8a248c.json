@@ -1,0 +1,103 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 706,
+    "outputTokens": 915
+  },
+  "output": {
+    "invoiceNumber": "QIN2605408",
+    "invoiceDate": "Feb 19, 2026",
+    "poNumber": "PO-55862]",
+    "seller": {
+      "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+      "addressLines": [
+        "55 Huangpu Rd",
+        "Huangdao District",
+        "Qingdao, Shandong",
+        "CN"
+      ],
+      "city": "Qingdao",
+      "region": "Shandong",
+      "postalCode": null,
+      "country": "CN",
+      "taxId": null
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5",
+        "CA"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway",
+        "Brampton, ON, LOT 4X7",
+        "CA"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "LOT 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "shipmentDate": "Mar2, 2026",
+    "transportMode": "SEA",
+    "placeOfShipment": null,
+    "portOfEntry": null,
+    "incotermCode": "FCA",
+    "incotermPlace": "Qingdao",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": "BE-6204",
+        "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+        "quantity": "8,800",
+        "unit": "PCS",
+        "unitPrice": "1.17",
+        "unitPriceCurrency": null,
+        "lineTotal": "10,296.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8482.10"
+      },
+      {
+        "lineNo": "2",
+        "sku": "HB-M12",
+        "description": "Hex baits M12 x 60, carbon steel, zinc plated",
+        "quantity": "3,000",
+        "unit": "KG",
+        "unitPrice": "2.10",
+        "unitPriceCurrency": null,
+        "lineTotal": "6,300.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "7318.15"
+      }
+    ],
+    "totalPackages": "50",
+    "grossWeight": {
+      "value": "4,139.60",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "3,968.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "16,596.00",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

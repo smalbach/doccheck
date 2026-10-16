@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 589,
+    "outputTokens": 606
+  },
+  "output": {
+    "packingListNumber": "PL-2026-7065",
+    "invoiceRef": "INV-2026-7065",
+    "seller": {
+      "name": "NORLAND PRECISION SCALES CO., LTD.",
+      "addressLines": [
+        "88 GAOXIN ROAD, BUILDING 3",
+        "NINGBO ZHEJIANG 315040"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "COASTAL MOUNTAIN HARDWARE LTD.",
+      "addressLines": [
+        "3900 NORTH FRASER WAY",
+        "BURNABY BC V5J 5H6"
+      ],
+      "city": "BURNABY",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/CO183787/C/NO. 1-18",
+    "packages": [
+      {
+        "range": "1-18",
+        "count": "18 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "PORCELAIN TILE 60X60",
+        "quantity": "720 M2",
+        "unit": "M2",
+        "netWeight": {
+          "value": "15570.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "15120.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "18",
+    "totalNetWeight": {
+      "value": "15570.00",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "15120.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "15.55"
+  }
+}

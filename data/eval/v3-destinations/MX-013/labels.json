@@ -1,0 +1,15 @@
+{
+  "id": "MX-013",
+  "errors": [
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CNY",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 2495.00 CNY on an invoice in MXN."
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "id": "EU-023",
+  "seed": 888685741,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "QIN2601865",
+      "poNumber": "PO126054",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-03-01",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Qingdao"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 41,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "41",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "91.05",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "3733.05",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "779.00",
+        "raw": {
+          "value": "779.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "594.50",
+        "raw": {
+          "value": "594.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "3733.05",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-QIN2601865",
+      "invoiceRef": "QIN2601865",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "packages": [
+        {
+          "range": "1-41",
+          "count": 41,
+          "type": "CRT",
+          "marks": "POLDERHUIS/PO126054/C/NO. 1-41",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "36",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "594.50",
+            "raw": {
+              "value": "594.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "779.00",
+            "raw": {
+              "value": "779.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 41,
+        "netWeight": {
+          "kg": "594.50",
+          "raw": {
+            "value": "594.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "779.00",
+          "raw": {
+            "value": "779.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "3.61"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPTAO450739",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "926649266",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "notifyParty": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "056N",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Rotterdam",
+        "unLocode": "NLRTM",
+        "country": "NL"
+      },
+      "placeOfDelivery": {
+        "name": "Rotterdam",
+        "unLocode": "NLRTM",
+        "country": "NL"
+      },
+      "containers": [
+        {
+          "number": "TWEU8395159",
+          "seal": "TW4190884",
+          "type": "20GP",
+          "packages": 41,
+          "grossWeight": {
+            "kg": "779.00",
+            "raw": {
+              "value": "779.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "3.61"
+        }
+      ],
+      "totalPackages": 42,
+      "totalGrossWeight": {
+        "kg": "779.00",
+        "raw": {
+          "value": "779.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "POLDERHUIS/PO126054/C/NO. 1-41",
+      "cargoDescription": "SAID TO CONTAIN 41 CRTS CENTRIFUGAL PUMP 0.75 KW",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-03-04",
+      "shippedOnBoardDate": "2026-03-04",
+      "references": [
+        "QIN2601865",
+        "PO126054"
+      ]
+    }
+  }
+}

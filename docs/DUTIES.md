@@ -103,6 +103,12 @@ Calculados a mano y comprobados en `packages/duties/src/*.test.ts`.
 | Costo puesto en destino | 27 750 + 2 250 + 4 995 + 1 637,25 | 36 632,25 |
 | Con CETA reclamado y prueba de origen | arancel 0, GST 1 387,50 | ahorro 5 244,75 |
 
+## Otros documentos y destinos
+
+- **Certificación de origen CUSMA** (tipo `CUSMA_CERTIFICATION`, la que revisa la regla T9): si el envío la tiene, sus nueve elementos cuentan para un reclamo CUSMA (`cusmaElements`: el exportador no hace falta si certifica el productor; el período general vale como "envío único" si nombra la factura). Las casillas del formulario completan lo que le falte. Si está pero no se reclama la preferencia, D8 lo dice.
+- **Envíos aéreos**: la guía aérea (`AIR_WAYBILL`) da la fecha del vuelo para el tipo de cambio, el número, la aerolínea y los aeropuertos del borrador (7501 casilla 9 = 40 Air) y quita la HMF, que es solo marítima. La guía no imprime el monto del flete: bajo términos C o D sale de la factura o de la respuesta (D1 lo indica).
+- **México, UE y Reino Unido**: no hay tablas de tasas para esos destinos, así que no hay estimación ni borrador; la tarjeta lo dice en lugar de mostrar números equivocados.
+
 ## Límites
 
 - Con 6 dígitos la partida no es única: la estimación usa la tasa más alta y lo dice. La clasificación completa la da el usuario (o la búsqueda de nomenclatura de otra parte de DocCheck).

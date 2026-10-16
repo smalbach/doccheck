@@ -1,0 +1,27 @@
+{
+  "id": "EU-007",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "TWEU8116090",
+      "after": "TWEU8116097",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: TWEU8116090 -> TWEU8116097."
+    },
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "14 quai Rambaud",
+      "after": "76 quai Rambaud",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    }
+  ]
+}

@@ -29,6 +29,8 @@ export interface ValuationInput {
   inputs: DutyInputs;
   /** BL port of loading / place of shipment names, to tell an FCA place inland from the port. */
   placesOfShipment: string[];
+  /** Air shipment: the air waybill prints no freight amount, so it cannot fill one in. */
+  air?: boolean;
 }
 
 export interface ValuationResult {
@@ -113,7 +115,7 @@ export function valuation(v: ValuationInput): ValuationResult {
       finding('D1', {
         severity: 'MEDIUM',
         message: `The terms of sale are ${terms}, so the price includes ${kind === 'freight' ? 'international freight' : 'insurance'}, but the invoice does not show how much. It cannot be deducted, and the ${destination === 'US' ? 'entered value' : 'value for duty'} below is overstated by that amount.`,
-        suggestedFix: `Ask the seller to show the ${kind} amount on the invoice, or enter it from the freight bill.`,
+        suggestedFix: `Ask the seller to show the ${kind} amount on the invoice, or enter it from the freight bill${v.air ? ' (the air waybill does not give it)' : ''}.`,
         evidence: [ev('incoterm.code', code!), ev('invoiceTotal.amount', invoice.invoiceTotal.amount)],
         regulation,
         asks: kind,

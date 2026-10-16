@@ -1,0 +1,314 @@
+{
+  "id": "GB-014",
+  "seed": 775369491,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NIN2607201",
+      "invoiceDate": "2026-02-05",
+      "poNumber": "PE418516",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-02-17",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Shanghai",
+          "unLocode": "CNSHA",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Shanghai"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 14,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "56",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.40",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1310.40",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "148.40",
+        "raw": {
+          "value": "148.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "128.80",
+        "raw": {
+          "value": "128.80",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "1310.40",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-NIN2607201",
+      "invoiceRef": "NIN2607201",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-14",
+          "count": 14,
+          "type": "CTN",
+          "marks": "PENNINE/PE418516/C/NO. 1-14",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "56",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "128.80",
+            "raw": {
+              "value": "128.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "148.40",
+            "raw": {
+              "value": "148.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 14,
+        "netWeight": {
+          "kg": "128.80",
+          "raw": {
+            "value": "128.80",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "148.40",
+          "raw": {
+            "value": "148.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "1.57"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWESHA6400841",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "773933392",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "035N",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Shanghai",
+        "unLocode": "CNSHA",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "TWEU1529364",
+          "seal": "TW7021684",
+          "type": "20GP",
+          "packages": 14,
+          "grossWeight": {
+            "kg": "148.40",
+            "raw": {
+              "value": "148.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "1.58"
+        }
+      ],
+      "totalPackages": 14,
+      "totalGrossWeight": {
+        "kg": "148.40",
+        "raw": {
+          "value": "148.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PE418516/C/NO. 1-14",
+      "cargoDescription": "SAID TO CONTAIN 14 CTNS BLENDER 600 W",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Shanghai",
+      "dateOfIssue": "2026-02-18",
+      "shippedOnBoardDate": "2026-02-18",
+      "references": [
+        "NIN2607201",
+        "PE418516"
+      ]
+    }
+  }
+}

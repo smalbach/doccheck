@@ -19,6 +19,8 @@ import type { DutiesState } from './useDuties';
 
 export interface DutiesCardProps {
   duties: DutiesState;
+  /** The destination has rate tables (Canada, US). */
+  supported: boolean;
   documents: ReadonlyMap<string, ShipmentDocument>;
   demo: boolean;
   /** The user may answer the questions (shipment.write, or the demo, where answers are not saved). */
@@ -27,19 +29,19 @@ export interface DutiesCardProps {
 }
 
 /** Duty, taxes and landed cost of the shipment, what is missing to value it, and the draft entry summary. */
-export function DutiesCard({ duties, documents, demo, canAnswer, onOpen }: DutiesCardProps) {
+export function DutiesCard({ duties, supported, documents, demo, canAnswer, onOpen }: DutiesCardProps) {
   const { t } = useI18n();
   const [entryOpen, setEntryOpen] = useState(false);
   const [focus, setFocus] = useState<string>();
   const { view, error } = duties;
-  const estimate = view?.estimate;
+  const estimate = supported ? view?.estimate : undefined;
 
   return (
     <Card
       className="duties"
       title={t('duties.title')}
       aside={
-        view?.entry && (
+        supported && view?.entry && (
           <Button className="no-print" onClick={() => setEntryOpen(true)}>
             <FileTextIcon aria-hidden /> {t('duties.entry.open')}
           </Button>
@@ -47,8 +49,9 @@ export function DutiesCard({ duties, documents, demo, canAnswer, onOpen }: Dutie
       }
     >
       <p className="small muted">{t('duties.note')}</p>
+      {!supported && <p className="muted">{t('duties.otherDestination')}</p>}
       {error && <Banner tone="error">{error}</Banner>}
-      {!estimate && !error && (
+      {supported && !estimate && !error && (
         <p className="muted" role="status">
           {t('duties.loading')}
         </p>

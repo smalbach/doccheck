@@ -181,6 +181,7 @@ export interface DutyTables {
 
 /** The header of each table, as listed in an estimate ("which data, from when"). */
 export function tableSources(t: DutyTables, destination: Destination): TableMeta[] {
+  if (destination !== 'CA' && destination !== 'US') return [];
   const shared = [t.adcvd.meta, t.fta.meta];
   return destination === 'US'
     ? [t.usHts.meta, t.usAdditional.meta, t.usFees.meta, t.fxUs.meta, ...shared]

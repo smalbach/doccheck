@@ -1,4 +1,5 @@
 import { LoadingCard } from '../../components/layout/LoadingCard';
+import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import { PageHeader } from '../../components/ui/PageHeader';
 import { Tabs } from '../../components/ui/Tabs';
@@ -13,7 +14,15 @@ export function RulesPage() {
   if (!rules) return <LoadingCard error={error} />;
   return (
     <div className="page">
-      <PageHeader title={t('rules.title')} description={t('rules.description')} />
+      <PageHeader
+        title={t('rules.title')}
+        description={t('rules.description')}
+        actions={
+          <Button asChild>
+            <a href="#/app/rules/settings">{t('rules.settingsLink')}</a>
+          </Button>
+        }
+      />
       <Card>
         <Tabs
           ariaLabel={t('rules.destination')}

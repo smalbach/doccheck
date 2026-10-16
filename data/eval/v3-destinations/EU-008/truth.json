@@ -1,0 +1,307 @@
+{
+  "id": "EU-008",
+  "seed": 858467842,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "COO2601618",
+      "invoiceDate": "2026-06-16",
+      "poNumber": "RH166374",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "buyer": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "DE482910375516203"
+      },
+      "consignee": {
+        "name": "Rheinufer Logistikzentrum",
+        "address": {
+          "lines": [
+            "Logport-Allee 7"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47229",
+          "country": "DE"
+        }
+      },
+      "exporter": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "shipmentDate": "2026-06-27",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Callao",
+          "unLocode": "PECLL",
+          "country": "PE"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Callao"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 210,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "12600",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.99",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "75474.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "12768.00",
+        "raw": {
+          "value": "12768.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "12600.00",
+        "raw": {
+          "value": "12600.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "75474.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-COO2601618",
+      "invoiceRef": "COO2601618",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Rheinufer Logistikzentrum",
+        "address": {
+          "lines": [
+            "Logport-Allee 7"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47229",
+          "country": "DE"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-210",
+          "count": 210,
+          "type": "BAG",
+          "marks": "RHEINUFER/RH166374/C/NO. 1-210",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "12600",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "12600.00",
+            "raw": {
+              "value": "12600.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "12768.00",
+            "raw": {
+              "value": "12768.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 210,
+        "netWeight": {
+          "kg": "12600.00",
+          "raw": {
+            "value": "12600.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "12768.00",
+          "raw": {
+            "value": "12768.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "29.93"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPCLL711449",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "209252313",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Rheinufer Logistikzentrum",
+        "address": {
+          "lines": [
+            "Logport-Allee 7"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47229",
+          "country": "DE"
+        }
+      },
+      "notifyParty": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "DE482910375516203"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "083W",
+      "placeOfReceipt": {
+        "name": "San Martín de Pangoa",
+        "country": "PE"
+      },
+      "portOfLoading": {
+        "name": "Callao",
+        "unLocode": "PECLL",
+        "country": "PE"
+      },
+      "portOfDischarge": {
+        "name": "Rotterdam",
+        "unLocode": "NLRTM",
+        "country": "NL"
+      },
+      "placeOfDelivery": {
+        "name": "Duisburg",
+        "unLocode": "DEDUI",
+        "country": "DE"
+      },
+      "containers": [
+        {
+          "number": "TWEU7181846",
+          "seal": "TW6658107",
+          "type": "40HC",
+          "packages": 210,
+          "grossWeight": {
+            "kg": "12768.00",
+            "raw": {
+              "value": "12768.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "29.92"
+        }
+      ],
+      "totalPackages": 210,
+      "totalGrossWeight": {
+        "kg": "12768.00",
+        "raw": {
+          "value": "12768.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "RHEINUFER/RH166374/C/NO. 1-210",
+      "cargoDescription": "SAID TO CONTAIN 210 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Callao",
+      "dateOfIssue": "2026-06-30",
+      "shippedOnBoardDate": "2026-06-30",
+      "references": [
+        "COO2601618",
+        "RH166374"
+      ]
+    }
+  }
+}

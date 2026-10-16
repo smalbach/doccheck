@@ -117,7 +117,7 @@ export function DutyQuestions({ estimate, savedAt, busy, demo, focus, onFocused,
               id={id}
               value={form.preference || 'none'}
               onValueChange={(v) => set('preference', v === 'none' ? '' : v)}
-              options={[{ value: 'none', label: t('duties.questions.noPreference') }, ...AGREEMENTS[estimate.destination].map((a) => ({ value: a, label: a }))]}
+              options={[{ value: 'none', label: t('duties.questions.noPreference') }, ...((AGREEMENTS as Record<string, readonly string[]>)[estimate.destination] ?? []).map((a) => ({ value: a, label: a }))]}
             />
           )}
         </Field>

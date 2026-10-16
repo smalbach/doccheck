@@ -1,0 +1,46 @@
+{
+  "id": "GB-006",
+  "errors": [
+    {
+      "kind": "package_count_mismatch",
+      "document": "billOfLading",
+      "field": "totalPackages",
+      "before": 6,
+      "after": 5,
+      "expectedRuleIds": [
+        "X2"
+      ],
+      "description": "BL declares 5 packages instead of 6."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "EUR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 3094.00 EUR on an invoice in USD."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Consignee missing from the invoice."
+    }
+  ]
+}

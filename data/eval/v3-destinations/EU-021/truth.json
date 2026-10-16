@@ -1,0 +1,325 @@
+{
+  "id": "EU-021",
+  "seed": 774334806,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-7837",
+      "invoiceDate": "2026-08-04",
+      "poNumber": "PO-70825",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        }
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        }
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-08-08",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Yantian",
+          "unLocode": "CNYTN",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Yantian"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 138,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "6900",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.63",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "66447.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1407.60",
+        "raw": {
+          "value": "1407.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1242.00",
+        "raw": {
+          "value": "1242.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "66447.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-7837",
+      "invoiceRef": "INV-2026-7837",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-138",
+          "count": 138,
+          "type": "CTN",
+          "marks": "MAISON/PO-70825/C/NO. 1-138",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "6900",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1242.00",
+            "raw": {
+              "value": "1242.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1407.60",
+            "raw": {
+              "value": "1407.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 138,
+        "netWeight": {
+          "kg": "1242.00",
+          "raw": {
+            "value": "1242.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1407.60",
+          "raw": {
+            "value": "1407.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "13.25"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLYTN2267535",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "575669176",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        }
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        }
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "028W",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Yantian",
+        "unLocode": "CNYTN",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Marseille",
+        "unLocode": "FRMRS",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "PCRU4605573",
+          "seal": "PC2015685",
+          "type": "20GP",
+          "packages": 138,
+          "grossWeight": {
+            "kg": "1407.60",
+            "raw": {
+              "value": "1407.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "13.25"
+        }
+      ],
+      "totalPackages": 138,
+      "totalGrossWeight": {
+        "kg": "1407.60",
+        "raw": {
+          "value": "1407.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/PO-70825/C/NO. 1-138",
+      "cargoDescription": "SAID TO CONTAIN 138 CTNS PLUSH TEDDY BEAR 30 CM",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Yantian",
+      "dateOfIssue": "2026-08-11",
+      "shippedOnBoardDate": "2026-08-11",
+      "references": [
+        "INV-2026-7837",
+        "PO-70825"
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "GB-027",
+  "errors": [
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CNY",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 1216.00 CNY on an invoice in EUR."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "GB-019",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "MDOU2806406",
+      "after": "MDOU2806407",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: MDOU2806406 -> MDOU2806407."
+    },
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "2774.80",
+      "after": "7274.80",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (2774.80 -> 7274.80)."
+    }
+  ]
+}

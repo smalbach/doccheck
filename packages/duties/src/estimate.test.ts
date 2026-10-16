@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { ctx, invoice, line, testTables } from './__fixtures__/tables';
-import { estimateDuties } from './estimate';
+import { sampleAirWaybill, sampleCusmaCertification } from '@doccheck/schemas';
+import { cusmaElements, estimateDuties } from './estimate';
 import { exchangeRate } from './fx';
 import { lookupTariff } from './tariff';
 import { CUSMA_ELEMENTS, type DutyInputs } from './types';
@@ -285,5 +286,47 @@ describe('CA: value for duty, MFN and preferences, GST and HST', () => {
     const ns = (date: string) => run(ctx('CA', invoice({ lines: [line(1, '7318.15.00.10', 'CN', '1000.00')] })), { ...answered, province: 'NS', entryDate: date }).taxes.find((t) => t.code === 'HST')?.percent;
     expect(ns('2025-03-01')).toBe('10');
     expect(ns('2026-03-25')).toBe('9');
+  });
+});
+
+describe('documents added on main: CUSMA certification, air waybill, other destinations', () => {
+  it('reads the nine data elements from an uploaded CUSMA certification', () => {
+    expect(cusmaElements(sampleCusmaCertification)).toEqual({
+      certifierRole: true, certifier: true, exporter: true, producer: true, importer: true, descriptionAndHs: true, originCriterion: true, blanketPeriod: true, signatureAndDate: true,
+    });
+    const { signature: _s, ...unsigned } = sampleCusmaCertification;
+    expect(cusmaElements({ ...unsigned, goods: [{ description: 'Bear', hsCode: '9503' }] })).toMatchObject({ signatureAndDate: false, descriptionAndHs: false, originCriterion: false });
+  });
+
+  it('accepts a CUSMA claim on the uploaded certification, and names what it lacks', () => {
+    const us = invoice({ lines: [line(1, '6109.10.00', 'US', '1000.00')] });
+    const cert = { id: 'cert-1', data: sampleCusmaCertification };
+    const ok = run(ctx('CA', us, { cusmaCertification: cert }), { ...answered, preference: { agreement: 'CUSMA' } });
+    expect(ok.preference).toMatchObject({ certification: 'complete', documentId: 'cert-1' });
+    expect(codes(ok)).not.toContain('D7');
+    const { signature: _s, ...unsigned } = sampleCusmaCertification;
+    const lacking = run(ctx('CA', us, { cusmaCertification: { id: 'cert-1', data: unsigned } }), { ...answered, preference: { agreement: 'CUSMA' } });
+    expect(lacking.preference?.missingElements).toEqual(['signatureAndDate']);
+    expect(lacking.findings.find((f) => f.code === 'D7')?.evidence[0].documentId).toBe('cert-1');
+    // Not claimed although the certification is there: the saving says so.
+    expect(run(ctx('CA', us, { cusmaCertification: cert }), answered).findings.find((f) => f.code === 'D8')?.message).toContain('certification of origin is among');
+  });
+
+  it('dates an air shipment by its flight and charges no harbor maintenance fee', () => {
+    const inv = invoice({ shipmentDate: undefined, lines: [line(1, '8482.10.50.08', 'CN', '1000.00')] });
+    const awb = { ...sampleAirWaybill, flights: [{ flight: 'CA1234', date: '2026-03-23' }] };
+    const e = run(ctx('US', inv, { transportMode: undefined, airWaybill: { id: 'awb-1', data: awb } }), answered);
+    expect(e.fees.map((f) => f.code)).toEqual(['MPF']);
+    const eur = run(ctx('US', invoice({ currency: 'EUR', shipmentDate: undefined, lines: [line(1, '8482.10.50.08', 'DE', '1000.00', 'EUR')] }), { transportMode: undefined, airWaybill: { id: 'awb-1', data: awb } }), answered);
+    expect(eur.exchange[0]).toMatchObject({ date: '2026-03-23', published: '1.0900' });
+  });
+
+  it('gives no numbers for destinations without rate tables', () => {
+    for (const destination of ['MX', 'EU', 'GB'] as const) {
+      const e = estimateDuties({ ...ctx('US', invoice({ lines: [line(1, '8482.10.50.08', 'CN', '1000.00')] })), destination }, {}, tables, { today: '2026-10-16' });
+      expect(e.status).toBe('unavailable');
+      expect(e.unavailableReason).toContain('No duty estimate for this destination');
+      expect(e.lines).toEqual([]);
+    }
   });
 });

@@ -1,0 +1,69 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 783,
+    "outputTokens": 583
+  },
+  "output": {
+    "packingListNumber": "PL/26/0634",
+    "invoiceRef": "CI/26/0634",
+    "seller": {
+      "name": "Ningbo Everbright Appliance Co., Ltd.",
+      "addressLines": [
+        "366 Jiangnan Rd",
+        "Beilun District",
+        "Ningbo, Zhejiang, 315800"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315800",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy",
+        "Houston, TX, 77041"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "marks": "BLUEBONNET/BL265643/C/NO. 1-210",
+    "packages": [
+      {
+        "range": "1-210",
+        "count": "210 CTN",
+        "packageType": "CTN",
+        "sku": "BL-600",
+        "description": "Blender 600 W",
+        "quantity": "840 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1,932.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "2,226.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "50 × 50 × 45"
+      }
+    ],
+    "totalPackages": "210",
+    "totalNetWeight": {
+      "value": "1,932.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "2,226.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "23.63"
+  }
+}

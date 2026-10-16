@@ -1,4 +1,4 @@
-import type { Destination, Evidence } from '@doccheck/schemas';
+import type { CusmaCertification, Destination, Evidence } from '@doccheck/schemas';
 import { CITATIONS } from './citations';
 import { add, allocate, clamp, dec, div, type Fixed, fmt, fmtRate, HUNDRED, max, mul, pct, round, sub, sum } from './decimal';
 import { convert, type ExchangeRate, exchangeRate, manualRate } from './fx';
@@ -52,7 +52,8 @@ export interface EstimateOptions {
 export function estimateDuties(ctx: DutyContext, inputsIn: DutyInputs | undefined, tables: DutyTables, opts: EstimateOptions): DutyEstimate {
   const inputs = inputsIn ?? {};
   const destination = ctx.destination;
-  const currency = destination === 'CA' ? 'CAD' : 'USD';
+  const supported = destination === 'CA' || destination === 'US';
+  const currency = { CA: 'CAD', US: 'USD', MX: 'MXN', EU: 'EUR', GB: 'GBP' }[destination];
   const entryDate = inputs.entryDate ?? opts.today;
   const findings: DutyFinding[] = [];
   const base = {
@@ -78,14 +79,17 @@ export function estimateDuties(ctx: DutyContext, inputsIn: DutyInputs | undefine
     totals: zeroTotals(currency),
     findings,
   });
+  // Rate tables exist for Canada and the US only: no numbers rather than wrong ones.
+  if (!supported) return empty(`No duty estimate for this destination (${destination}): DocCheck has rate tables for Canada and the United States only.`);
   if (!ctx.invoice) return empty('The shipment has no extracted commercial invoice.');
   const invoiceId = ctx.invoice.id;
   const invoice = ctx.invoice.data;
   const bl = ctx.billOfLading?.data;
+  const awb = ctx.airWaybill?.data;
   const ev = (field: string, value: string): Evidence => ({ documentId: invoiceId, field, value });
 
-  // Exchange: the date of direct shipment (CA) / exportation (US), from the BL, else the invoice.
-  const fxDate = bl?.shippedOnBoardDate ?? invoice.shipmentDate ?? bl?.dateOfIssue ?? invoice.invoiceDate ?? entryDate;
+  // Exchange: the date of direct shipment (CA) / exportation (US), from the BL or the air waybill, else the invoice.
+  const fxDate = bl?.shippedOnBoardDate ?? awb?.flights?.[0]?.date ?? awb?.executedOn ?? invoice.shipmentDate ?? bl?.dateOfIssue ?? invoice.invoiceDate ?? entryDate;
   const rates = new Map<string, ExchangeRate>();
   const missingFx = new Set<string>();
   const rateFor = (cur: string): ExchangeRate | undefined => {
@@ -116,8 +120,8 @@ export function estimateDuties(ctx: DutyContext, inputsIn: DutyInputs | undefine
 
   // Line values in the destination currency, at full precision.
   const lineValues = invoice.lines.map((l) => toDest(l.lineTotal.amount, l.lineTotal.currency) ?? toDest(l.lineTotal.amount, invoice.currency)!);
-  const places = [bl?.portOfLoading?.name, bl?.placeOfReceipt?.name, invoice.transport?.placeOfShipment?.name].filter((p): p is string => !!p);
-  const val = valuation({ destination, invoiceId, invoice, lineValues, toDest, inputs, placesOfShipment: places });
+  const places = [bl?.portOfLoading?.name, bl?.placeOfReceipt?.name, awb?.airportOfDeparture.name, awb?.airportOfDeparture.iata, invoice.transport?.placeOfShipment?.name].filter((p): p is string => !!p);
+  const val = valuation({ destination, invoiceId, invoice, lineValues, toDest, inputs, placesOfShipment: places, air: !!awb });
   findings.push(...val.findings);
   for (const cur of missingFx) {
     if (cur === invoice.currency) continue;
@@ -475,7 +479,7 @@ export function estimateDuties(ctx: DutyContext, inputsIn: DutyInputs | undefine
       });
       allocate(amount, mpfWeights).forEach((a, i) => (feeByLine[i] += a));
     }
-    const mode = ctx.transportMode ?? invoice.transport?.mode ?? (bl ? 'SEA' : undefined);
+    const mode = ctx.transportMode ?? invoice.transport?.mode ?? (awb ? 'AIR' : bl ? 'SEA' : undefined);
     const hmf = tables.usFees.hmf.find((h) => inRange(entryDate, h.from, h.to) && mode && h.modes.includes(mode));
     const total = sum(dutiableByLine);
     if (hmf && total > 0n) {
@@ -546,12 +550,15 @@ export function estimateDuties(ctx: DutyContext, inputsIn: DutyInputs | undefine
     const missing: CusmaElement[] = [];
     let certification: NonNullable<DutyEstimate['preference']>['certification'] = 'not-checked';
     if (claimed.certification === 'cusma') {
-      const cert = inputs.preference?.certification ?? {};
+      // An uploaded certification counts element by element; the answers fill what it lacks.
+      const fromDoc = ctx.cusmaCertification ? cusmaElements(ctx.cusmaCertification.data) : {};
+      const cert = { ...fromDoc, ...Object.fromEntries(Object.entries(inputs.preference?.certification ?? {}).filter(([, v]) => v)) };
       missing.push(...CUSMA_ELEMENTS.filter((e) => !cert[e]));
       certification = missing.length === CUSMA_ELEMENTS.length ? 'missing' : missing.length ? 'incomplete' : 'complete';
     } else certification = inputs.preference?.proofOnFile ? 'complete' : 'missing';
-    preference = { agreement: claimed.id, name: claimed.name, lines: claimedLines, certification, missingElements: missing };
-    const evidence = claimedLines.length ? claimedLines.map((n) => ev(`lines[${invoice.lines.findIndex((l) => l.lineNo === n)}].countryOfOrigin`, invoice.lines.find((l) => l.lineNo === n)?.countryOfOrigin ?? '')) : [ev('lines[0].countryOfOrigin', invoice.lines[0]?.countryOfOrigin ?? '')];
+    preference = { agreement: claimed.id, name: claimed.name, lines: claimedLines, certification, missingElements: missing, ...(claimed.certification === 'cusma' && ctx.cusmaCertification ? { documentId: ctx.cusmaCertification.id } : {}) };
+    const certEvidence: Evidence[] = claimed.certification === 'cusma' && ctx.cusmaCertification ? [{ documentId: ctx.cusmaCertification.id, field: 'goods[0].description', value: ctx.cusmaCertification.data.goods[0]?.description ?? '' }] : [];
+    const evidence = [...certEvidence, ...(claimedLines.length ? claimedLines.map((n) => ev(`lines[${invoice.lines.findIndex((l) => l.lineNo === n)}].countryOfOrigin`, invoice.lines.find((l) => l.lineNo === n)?.countryOfOrigin ?? '')) : [ev('lines[0].countryOfOrigin', invoice.lines[0]?.countryOfOrigin ?? '')])];
     if (claimedLines.length === 0) {
       findings.push(
         finding('D7', {
@@ -610,7 +617,7 @@ export function estimateDuties(ctx: DutyContext, inputsIn: DutyInputs | undefine
     findings.push(
       finding('D8', {
         severity: 'LOW',
-        message: `Line${s.lines.length > 1 ? 's' : ''} ${s.lines.join(', ')} ${s.lines.length > 1 ? 'have' : 'has'} an origin covered by ${a.name}: if the goods qualify, the preference would save about ${money(s.saving)} ${currency} in duty.`,
+        message: `Line${s.lines.length > 1 ? 's' : ''} ${s.lines.join(', ')} ${s.lines.length > 1 ? 'have' : 'has'} an origin covered by ${a.name}: if the goods qualify, the preference would save about ${money(s.saving)} ${currency} in duty.${a.id === 'CUSMA' && ctx.cusmaCertification ? ' A CUSMA certification of origin is among the shipment\u2019s documents, but the preference is not claimed.' : ''}`,
         suggestedFix: `Check the rule of origin with the supplier and get the ${a.proof.toLowerCase()}.`,
         evidence: s.lines.map((n) => {
           const i = invoice.lines.findIndex((x) => x.lineNo === n);
@@ -681,12 +688,32 @@ export function estimateDuties(ctx: DutyContext, inputsIn: DutyInputs | undefine
   };
 }
 
+/**
+ * Which of the nine CUSMA minimum data elements an uploaded certification has (Annex 5-A). The
+ * exporter is not needed when the producer certifies; the blanket period stands for "single
+ * shipment" when the certification names the invoice instead.
+ */
+export function cusmaElements(c: CusmaCertification): Partial<Record<CusmaElement, boolean>> {
+  const goods = c.goods;
+  return {
+    certifierRole: !!c.certifierRole,
+    certifier: !!c.certifier,
+    exporter: !!c.exporter || c.certifierRole === 'PRODUCER',
+    producer: !!c.producer || !!c.producerStatement,
+    importer: !!c.importer,
+    descriptionAndHs: goods.length > 0 && goods.every((g) => g.description && (g.hsCode ?? '').replace(/\D/g, '').length >= 6),
+    originCriterion: goods.length > 0 && goods.every((g) => !!g.originCriterion),
+    blanketPeriod: !!c.blanketPeriod || (c.invoiceRefs?.length ?? 0) > 0,
+    signatureAndDate: !!c.signature?.name && !!c.signature?.date,
+  };
+}
+
 function eligibleAgreements(agreements: Agreement[], destination: Destination, origin: string | undefined): Agreement[] {
   if (!origin) return [];
   return agreements.filter((a) => (destination === 'CA' ? !!a.CA?.treatments[origin] : !!a.US?.origins.includes(origin)));
 }
 
-const SEVERITY_ORDER = { CRITICAL: 0, HIGH: 1, MEDIUM: 2, LOW: 3 } as const;
+const SEVERITY_ORDER = { CRITICAL: 0, HIGH: 1, MEDIUM: 2, LOW: 3, INFO: 4 } as const;
 function sortFindings(f: DutyFinding[]): DutyFinding[] {
   return f.map((x, i) => ({ x, i })).sort((a, b) => SEVERITY_ORDER[a.x.severity] - SEVERITY_ORDER[b.x.severity] || a.i - b.i).map(({ x }) => x);
 }

@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { type DutyContext, type DutyEstimate, type DutyInputs, type EntryDraft, entryDraft, estimateDuties, loadDutyTables } from '@doccheck/duties';
 import { findFieldSource } from '@doccheck/extraction';
-import type { BillOfLading, CommercialInvoice, PackingList } from '@doccheck/schemas';
+import type { AirWaybill, BillOfLading, CommercialInvoice, CusmaCertification, PackingList } from '@doccheck/schemas';
 import { AuditService } from '../audit/audit.service';
 import { ShipmentsRepository } from '../shipments/shipments.repository';
 import { ShipmentsService } from '../shipments/shipments.service';
@@ -14,7 +14,7 @@ export interface DutiesView {
   inputsUpdatedAt?: string;
 }
 
-const SLOT = { COMMERCIAL_INVOICE: 'invoice', PACKING_LIST: 'packingList', BILL_OF_LADING: 'billOfLading' } as const;
+const SLOT = { COMMERCIAL_INVOICE: 'invoice', PACKING_LIST: 'packingList', BILL_OF_LADING: 'billOfLading', AIR_WAYBILL: 'airWaybill', CUSMA_CERTIFICATION: 'cusmaCertification' } as const;
 
 /**
  * Duty and landed-cost estimate of a shipment, from its latest extracted documents, the answers
@@ -46,6 +46,8 @@ export class DutiesService {
       if (slot === 'invoice') ctx.invoice = { id: e.documentId, data: e.data as CommercialInvoice };
       if (slot === 'packingList') ctx.packingList = { id: e.documentId, data: e.data as PackingList };
       if (slot === 'billOfLading') ctx.billOfLading = { id: e.documentId, data: e.data as BillOfLading };
+      if (slot === 'airWaybill') ctx.airWaybill = { id: e.documentId, data: e.data as AirWaybill };
+      if (slot === 'cusmaCertification') ctx.cusmaCertification = { id: e.documentId, data: e.data as CusmaCertification };
     }
 
     const today = new Date().toISOString();

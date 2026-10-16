@@ -1,0 +1,512 @@
+{
+  "id": "CA-016",
+  "seed": 1378679672,
+  "destination": "CA",
+  "mode": "AIR",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "attestations": {
+    "cusmaCertification": {
+      "signature": true,
+      "stamp": false
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NIN2607782",
+      "invoiceDate": "2026-01-22",
+      "poNumber": "PO-47083",
+      "seller": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "buyer": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "exporter": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "shipmentDate": "2026-01-30",
+      "transport": {
+        "mode": "AIR"
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ningbo"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "CAD",
+      "packageCount": 317,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V, with lithium-ion battery UN3481",
+          "quantity": {
+            "value": "1864",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "18.34",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "34185.76",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "MX",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "336",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "20.85",
+            "currency": "CAD"
+          },
+          "lineTotal": {
+            "amount": "7005.60",
+            "currency": "CAD"
+          },
+          "countryOfOrigin": "MX",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3103.90",
+        "raw": {
+          "value": "3103.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2730.00",
+        "raw": {
+          "value": "2730.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "41191.36",
+        "currency": "CAD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-NIN2607782",
+      "invoiceRef": "NIN2607782",
+      "seller": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-233",
+          "count": 233,
+          "type": "CTN",
+          "marks": "PRAIRIE/PO-47083/C/NO. 1-317",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "1864",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1957.20",
+            "raw": {
+              "value": "1957.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2213.50",
+            "raw": {
+              "value": "2213.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "234-317",
+          "count": 84,
+          "type": "CTN",
+          "marks": "PRAIRIE/PO-47083/C/NO. 1-317",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "336",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "772.80",
+            "raw": {
+              "value": "772.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "890.40",
+            "raw": {
+              "value": "890.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 317,
+        "netWeight": {
+          "kg": "2730.00",
+          "raw": {
+            "value": "2730.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3103.90",
+          "raw": {
+            "value": "3103.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "33.67"
+      }
+    },
+    "airWaybill": {
+      "awbNumber": "MRDN683176",
+      "issuer": "HAWB",
+      "masterAwbNumber": "160-49040460",
+      "carrier": {
+        "name": "Meridian Airfreight"
+      },
+      "shipper": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "notifyParty": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "airportOfDeparture": {
+        "name": "Monterrey",
+        "iata": "MTY"
+      },
+      "airportOfDestination": {
+        "name": "Montreal Trudeau",
+        "iata": "YUL"
+      },
+      "flights": [
+        {
+          "flight": "MF475",
+          "date": "2026-01-30"
+        }
+      ],
+      "pieces": 317,
+      "grossWeight": {
+        "kg": "3103.90",
+        "raw": {
+          "value": "3103.90",
+          "unit": "KG"
+        }
+      },
+      "chargeableWeight": {
+        "kg": "5622.89",
+        "raw": {
+          "value": "5622.89",
+          "unit": "KG"
+        }
+      },
+      "volumeM3": "33.67",
+      "natureOfGoods": "ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "references": [
+        "NIN2607782"
+      ],
+      "placeOfExecution": "Monterrey",
+      "executedOn": "2026-01-30"
+    },
+    "cusmaCertification": {
+      "certifierRole": "EXPORTER",
+      "certifier": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "exporter": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "producer": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "importer": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "goods": [
+        {
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "hsCode": "8516.71",
+          "countryOfOrigin": "MX"
+        },
+        {
+          "description": "Countertop blender 600 W with glass jar",
+          "hsCode": "8509.40",
+          "originCriterion": "B",
+          "countryOfOrigin": "MX"
+        }
+      ],
+      "signature": {
+        "name": "Ana Ruiz Treviño",
+        "title": "Export Manager",
+        "date": "2026-01-23"
+      },
+      "invoiceRefs": [
+        "NIN2607782"
+      ]
+    },
+    "arrivalNotice": {
+      "noticeNumber": "AN-75813",
+      "carrier": {
+        "name": "Meridian Airfreight"
+      },
+      "mode": "AIR",
+      "transportDocumentNumber": "MRDN683176",
+      "flight": "MF475",
+      "estimatedArrival": "2026-01-31",
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": 317,
+      "grossWeight": {
+        "kg": "3103.90",
+        "raw": {
+          "value": "3103.90",
+          "unit": "KG"
+        }
+      },
+      "cargoDescription": "ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "lastFreeDay": "2026-02-03"
+    },
+    "dangerousGoods": {
+      "shipper": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "transportDocumentNumber": "MRDN683176",
+      "mode": "AIR",
+      "regulation": "IATA",
+      "items": [
+        {
+          "unNumber": "UN3481",
+          "properShippingName": "LITHIUM ION BATTERIES CONTAINED IN EQUIPMENT",
+          "hazardClass": "9",
+          "packingGroup": "II",
+          "quantity": {
+            "value": "1864",
+            "unit": "PCS"
+          }
+        }
+      ],
+      "emergencyContact": "+1 613 996 6666",
+      "signatory": {
+        "name": "Li Wei",
+        "place": "Monterrey",
+        "date": "2026-01-23"
+      }
+    }
+  }
+}

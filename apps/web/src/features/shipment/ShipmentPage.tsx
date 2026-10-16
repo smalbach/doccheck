@@ -33,6 +33,7 @@ import { ValidationProgress } from './ValidationProgress';
 
 // pdf.js is large: load it only when a document is opened.
 const PdfViewerSheet = lazy(() => import('../pdf/PdfViewerSheet').then((m) => ({ default: m.PdfViewerSheet })));
+const SheetViewerSheet = lazy(() => import('../sheet/SheetViewerSheet').then((m) => ({ default: m.SheetViewerSheet })));
 
 export function ShipmentPage({ id }: { id: string }) {
   const { t } = useI18n();
@@ -48,7 +49,9 @@ export function ShipmentPage({ id }: { id: string }) {
   const canDecide = !demo && can('finding.decide');
   // The estimate is computed from the current documents: reload it when they or the destination change.
   const dutiesVersion = `${shipment?.destination}|${latest?.id}|${[...documents.values()].map((d) => `${d.id}:${d.status}`).join(',')}`;
-  const duties = useDuties(id, dutiesVersion, !!shipment?.destination && !extracting, demo);
+  // Rate tables exist for Canada and the US only; other destinations get a note, not numbers.
+  const dutiesSupported = shipment?.destination === 'CA' || shipment?.destination === 'US';
+  const duties = useDuties(id, dutiesVersion, dutiesSupported && !extracting, demo);
 
   if (!shipment) return <LoadingCard error={error} />;
   // A past run picked in the history replaces the latest one in Findings and in the export.
@@ -114,7 +117,7 @@ export function ShipmentPage({ id }: { id: string }) {
           notice={<ValidationNotice shipment={shipment} validation={validation} past={!!history.past} onShowLatest={history.showLatest} />}
         />
       </div>
-      {shipment.destination && <DutiesCard duties={duties} documents={documents} demo={demo} canAnswer={demo || canWrite} onOpen={setViewer} />}
+      {shipment.destination && <DutiesCard duties={duties} supported={dutiesSupported} documents={documents} demo={demo} canAnswer={demo || canWrite} onOpen={setViewer} />}
       <ShipmentCollabCard documents={shipment.documents} />
       {can('data.read') && <ThreadsCard shipmentId={id} actions={canWrite && <ComposeDialog mode="message" shipmentId={id} reference={shipment.reference ?? ''} />} />}
       <ValidationHistory
@@ -150,12 +153,16 @@ export function ShipmentPage({ id }: { id: string }) {
             </Sheet>
           }
         >
-          <PdfViewerSheet
-            shipmentId={id}
-            target={viewer}
-            onClose={() => setViewer(undefined)}
-            liveText={textBeingWritten(progress.documents[viewer.doc.id], progress.outputs?.[viewer.doc.id])}
-          />
+          {viewer.doc.format === 'SPREADSHEET' ? (
+            <SheetViewerSheet shipmentId={id} target={viewer} onClose={() => setViewer(undefined)} />
+          ) : (
+            <PdfViewerSheet
+              shipmentId={id}
+              target={viewer}
+              onClose={() => setViewer(undefined)}
+              liveText={textBeingWritten(progress.documents[viewer.doc.id], progress.outputs?.[viewer.doc.id])}
+            />
+          )}
         </Suspense>
       )}
     </div>

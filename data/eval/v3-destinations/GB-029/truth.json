@@ -1,0 +1,310 @@
+{
+  "id": "GB-029",
+  "seed": 594190658,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-8461",
+      "invoiceDate": "2026-08-21",
+      "poNumber": "PO-4837",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "shipmentDate": "2026-09-01",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Callao",
+          "unLocode": "PECLL",
+          "country": "PE"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Callao"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "GBP",
+      "packageCount": 277,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "16620",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.59",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "92905.80",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "16841.60",
+        "raw": {
+          "value": "16841.60",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "16620.00",
+        "raw": {
+          "value": "16620.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "92905.80",
+        "currency": "GBP"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-8461",
+      "invoiceRef": "INV-2026-8461",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-277",
+          "count": 277,
+          "type": "BAG",
+          "marks": "PENNINE/PO-4837/C/NO. 1-277",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "16620",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "16620.00",
+            "raw": {
+              "value": "16620.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "16841.60",
+            "raw": {
+              "value": "16841.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 277,
+        "netWeight": {
+          "kg": "16620.00",
+          "raw": {
+            "value": "16620.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "16841.60",
+          "raw": {
+            "value": "16841.60",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "39.47"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPCLL383328",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "470101720",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "025W",
+      "placeOfReceipt": {
+        "name": "San Martín de Pangoa",
+        "country": "PE"
+      },
+      "portOfLoading": {
+        "name": "Callao",
+        "unLocode": "PECLL",
+        "country": "PE"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "TWEU9311044",
+          "seal": "TW7144724",
+          "type": "40GP",
+          "packages": 277,
+          "grossWeight": {
+            "kg": "16841.60",
+            "raw": {
+              "value": "16841.60",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "39.47"
+        }
+      ],
+      "totalPackages": 277,
+      "totalGrossWeight": {
+        "kg": "16841.60",
+        "raw": {
+          "value": "16841.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PO-4837/C/NO. 1-277",
+      "cargoDescription": "SAID TO CONTAIN 277 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Callao",
+      "dateOfIssue": "2026-09-01",
+      "shippedOnBoardDate": "2026-09-01",
+      "references": [
+        "INV-2026-8461",
+        "PO-4837"
+      ]
+    }
+  }
+}

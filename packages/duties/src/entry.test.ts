@@ -8,6 +8,7 @@ import { estimateDuties } from './estimate';
 import { loadDutyTables } from './load';
 import { manufacturerId } from './mid';
 import { lookupTariff } from './tariff';
+import { sampleAirWaybill } from '@doccheck/schemas';
 
 const tables = testTables();
 
@@ -108,5 +109,14 @@ describe('the committed rate tables', () => {
       expect(e.status, id).not.toBe('unavailable');
       expect(entryDraft(c, e), id).toBeDefined();
     }
+  });
+});
+
+describe('draft entry of an air shipment', () => {
+  it('takes the waybill number, flight and airports', () => {
+    const c = ctx('US', invoice({ lines: [line(1, '8482.10.50.08', 'CN', '1000.00')] }), { transportMode: undefined, airWaybill: { id: 'awb-1', data: { ...sampleAirWaybill, flights: [{ flight: 'CA1234', date: '2026-03-23' }] } } });
+    const d = entryDraft(c, estimateDuties(c, {}, tables, { today: '2026-10-16' })) as Cbp7501Draft;
+    expect(d.header).toMatchObject({ blOrAwbNumber: '176-12345675', modeOfTransport: '40 Air', exportDate: '2026-03-23', importingCarrier: 'Example Air Cargo / CA1234' });
+    expect(d.header.foreignPortOfLading).toContain('SZX');
   });
 });

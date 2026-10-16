@@ -1,0 +1,27 @@
+{
+  "id": "EU-006",
+  "errors": [
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "6784.00",
+      "after": "7120.80",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "FR53829104700028",
+      "after": "GB127856318000",
+      "expectedRuleIds": [
+        "E2"
+      ],
+      "description": "Importer number FR53829104700028 replaced by GB127856318000."
+    }
+  ]
+}

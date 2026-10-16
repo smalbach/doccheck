@@ -7,6 +7,7 @@
 //
 // Runs beside e2e.test.mjs: its own database (the test database name with "_orgs" before "_test") and
 // port (E2E_PORT + 1).
+import { writeCsv, writeXlsx } from '@doccheck/extraction';
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
 import { createHash, createSign, generateKeyPairSync, randomUUID } from 'node:crypto';
@@ -260,6 +261,9 @@ describe('organizations', () => {
       ['GET', `/shipments/${s.id}/duties`],
       ['PUT', `/shipments/${s.id}/duties/inputs`, { relatedParty: true }],
       ['POST', `/shipments/${s.id}/duties/preview`, { relatedParty: true }],
+      ['GET', `/review/documents/${docId}`],
+      ['POST', `/review/documents/${docId}/accept`, { paths: ['/invoiceNumber'] }],
+      ['DELETE', `/review/documents/${docId}/accept`],
     ];
     for (const [method, path, body] of routes) assert.equal((await call(method, path, body, b.cookie)).status, 404, `${method} ${path}`);
     assert.equal((await call('GET', '/shipments', undefined, b.cookie)).body.total, 0);
@@ -281,7 +285,19 @@ describe('organizations', () => {
     const aProducts = (await call('GET', '/insights/products', undefined, a.cookie)).body.items;
     assert.equal((await call('GET', `/insights/products/${aProducts[0].id}`, undefined, b.cookie)).status, 404);
     assert.equal((await call('GET', '/insights/lines', undefined, b.cookie)).body.total, 0);
+    // The review queue, supplier examples and usage are per organization too.
+    assert.equal((await call('GET', `/review/documents/${docId}`, undefined, a.cookie)).status, 200);
+    assert.equal((await call('GET', '/review/queue', undefined, b.cookie)).body.total, 0);
+    assert.deepEqual((await call('GET', '/suppliers/examples', undefined, b.cookie)).body.suppliers, []);
+    assert.equal((await call('GET', '/usage', undefined, a.cookie)).body.meters.find((m) => m.kind === 'validation').used, 1);
+    assert.equal((await call('GET', '/usage', undefined, b.cookie)).body.meters.find((m) => m.kind === 'validation').used, 0);
     assert.equal((await call('GET', `/shipments/${s.id}/documents/${docId}/file`, undefined, b.cookie)).status, 404);
+    // The Mexico, EU and UK destinations filter within the organization too.
+    const eu = (await call('POST', '/shipments', { destination: 'EU', reference: 'EU-1' }, a.cookie)).body;
+    assert.equal((await call('GET', '/shipments?destination=EU', undefined, a.cookie)).body.total, 1);
+    assert.equal((await call('GET', '/shipments?destination=EU', undefined, b.cookie)).body.total, 0);
+    assert.equal((await call('PATCH', `/shipments/${eu.id}`, { destination: 'GB' }, b.cookie)).status, 404);
+    assert.equal((await call('GET', `/shipments/${eu.id}`, undefined, a.cookie)).body.destination, 'EU');
   });
 
   it('invites members by email, shares the organization’s shipments and keeps personal ones apart', async () => {
@@ -342,6 +358,15 @@ describe('organizations', () => {
     assert.equal((await call('PUT', `/shipments/${s.id}/duties/inputs`, { relatedParty: false }, owner.cookie)).status, 200);
     assert.deepEqual((await call('GET', `/shipments/${s.id}/duties`, undefined, viewer.cookie)).body.estimate.inputs, { relatedParty: false });
     assert.equal((await call('POST', '/orgs/current/invites', { email: 'x@example.com', role: 'viewer' }, viewer.cookie)).status, 403);
+    // Viewers read the review queue and usage, but neither review values nor buy a plan.
+    assert.equal((await call('GET', '/review/queue', undefined, viewer.cookie)).status, 200);
+    assert.equal((await call('GET', '/usage', undefined, viewer.cookie)).status, 200);
+    assert.equal((await call('POST', `/review/documents/${randomUUID()}/accept`, { paths: ['/invoiceNumber'] }, viewer.cookie)).status, 403);
+    assert.equal((await call('DELETE', '/suppliers/examples/ACME', undefined, viewer.cookie)).status, 403);
+    assert.equal((await call('POST', '/billing/checkout', { plan: 'pro' }, viewer.cookie)).status, 403);
+    assert.equal((await call('POST', '/billing/portal', undefined, viewer.cookie)).status, 403);
+    // An admin may manage billing (here it is not set up: 503, not 403).
+    assert.notEqual((await call('POST', '/billing/checkout', { plan: 'pro' }, admin.cookie)).status, 403);
 
     // An admin manages members but cannot make owners; the last owner cannot step down.
     assert.equal((await call('PATCH', `/orgs/current/members/${viewer.id}`, { role: 'reviewer' }, admin.cookie)).status, 200);
@@ -375,7 +400,7 @@ describe('organizations', () => {
     assert.equal((await call('GET', `/shipments/${shared.id}`, undefined, client.cookie)).status, 200);
     assert.equal((await call('GET', `/shipments/${shared.id}/collab`, undefined, client.cookie)).status, 200);
     assert.equal((await call('GET', `/shipments/${other.id}`, undefined, client.cookie)).status, 404);
-    for (const path of ['/insights/summary', '/shipments/alerts', '/orgs/current/members', '/mail/threads', `/shipments/${shared.id}/comments`, '/events/labels']) {
+    for (const path of ['/insights/summary', '/shipments/alerts', '/orgs/current/members', '/mail/threads', `/shipments/${shared.id}/comments`, '/events/labels', '/review/queue', '/review/summary', '/suppliers/examples', '/usage']) {
       assert.equal((await call('GET', path, undefined, client.cookie)).status, 403, path);
     }
     assert.equal((await call('PATCH', `/shipments/${shared.id}`, { reference: 'x' }, client.cookie)).status, 403);
@@ -585,6 +610,30 @@ describe('audit log', () => {
     await call('PATCH', '/orgs/current', { retentionUsYears: 10 }, owner.cookie);
     assert.deepEqual((await call('GET', '/orgs/current/retention', undefined, owner.cookie)).body, { expired: 0 });
   });
+
+  it('keeps Mexico, EU and UK shipments for their own periods: 5, 3 and 4 years by default', async () => {
+    const owner = await signUp('Retainer Intl');
+    await call('POST', '/orgs', { name: 'Retention Intl Co' }, owner.cookie);
+    const periods = (await call('GET', '/orgs/current', undefined, owner.cookie)).body.settings;
+    assert.deepEqual([periods.retentionMxYears, periods.retentionEuYears, periods.retentionGbYears], [5, 3, 4]);
+    const make = async (destination, yearsAgo) => {
+      const s = (await call('POST', '/shipments', { destination, reference: `${destination}-${yearsAgo}` }, owner.cookie)).body;
+      await pool.query(`update shipments set created_at = now() - make_interval(days => $2) where id = $1`, [s.id, Math.round(yearsAgo * 365.25)]);
+      return s;
+    };
+    const expired = [await make('MX', 5.5), await make('EU', 3.5), await make('GB', 4.5)];
+    const kept = [await make('MX', 4.5), await make('EU', 2.5), await make('GB', 3.5)];
+    const run = await call('POST', '/orgs/current/retention/run', undefined, owner.cookie);
+    assert.deepEqual(run.body, { deleted: 3, skipped: 0 });
+    const left = (await call('GET', '/shipments', undefined, owner.cookie)).body.items.map((x) => x.id).sort();
+    assert.deepEqual(left, kept.map((x) => x.id).sort());
+    const audit = (await call('GET', '/audit?action=retention.delete', undefined, owner.cookie)).body.items;
+    assert.deepEqual(audit.map((r) => r.entityId).sort(), expired.map((x) => x.id).sort());
+    // Each period is set on its own and checked like the others.
+    assert.equal((await call('PATCH', '/orgs/current', { retentionEuYears: 2 }, owner.cookie)).status, 200);
+    assert.deepEqual((await call('GET', '/orgs/current/retention', undefined, owner.cookie)).body, { expired: 1 });
+    assert.equal((await call('PATCH', '/orgs/current', { retentionGbYears: 0 }, owner.cookie)).status, 400);
+  });
 });
 
 describe('sign-in', () => {
@@ -713,5 +762,112 @@ describe('migration to organizations', () => {
     } finally {
       await p.end();
     }
+  });
+});
+
+describe('rule settings and purchase orders', () => {
+  it('belong to the organization: members read them, owners and admins change settings, viewers and clients change nothing', async () => {
+    const owner = await signUp('Rules owner');
+    await call('POST', '/orgs', { name: 'Rules Co' }, owner.cookie);
+    const analyst = await signUp('Rules analyst');
+    const viewer = await signUp('Rules viewer');
+    const client = await signUp('Rules client');
+    const outsider = await signUp('Rules outsider');
+    await join_(owner, analyst, 'analyst');
+    await join_(owner, viewer, 'viewer');
+    await join_(owner, client, 'client');
+
+    const config = { rules: { X8: { enabled: false } }, params: { knownScacs: ['EXLN'] } };
+    assert.equal((await call('PUT', '/rules/settings', config, owner.cookie)).status, 200);
+    for (const m of [analyst, viewer]) assert.deepEqual((await call('GET', '/rules/settings', undefined, m.cookie)).body.config, config);
+    for (const m of [analyst, viewer, client]) {
+      assert.equal((await call('PUT', '/rules/settings', {}, m.cookie)).status, 403);
+      assert.equal((await call('DELETE', '/rules/settings', undefined, m.cookie)).status, 403);
+    }
+    assert.equal((await call('GET', '/rules/settings', undefined, client.cookie)).status, 403);
+    // Another organization has its own (none).
+    assert.deepEqual((await call('GET', '/rules/settings', undefined, outsider.cookie)).body.config, {});
+
+    // Purchase orders: analysts import, viewers and clients cannot, outsiders do not see them.
+    const po = [{ poNumber: 'PO-4411', currency: 'USD', lines: [{ sku: 'TB-200', quantity: '6000', unit: 'PCS', unitPrice: '8.10' }] }];
+    assert.equal((await call('POST', '/purchase-orders', po, viewer.cookie)).status, 403);
+    assert.equal((await call('POST', '/purchase-orders', po, client.cookie)).status, 403);
+    assert.equal((await call('POST', '/purchase-orders', po, analyst.cookie)).status, 201);
+    const [order] = (await call('GET', '/purchase-orders', undefined, viewer.cookie)).body;
+    assert.equal(order.poNumber, 'PO-4411');
+    assert.equal((await call('GET', '/purchase-orders', undefined, client.cookie)).status, 403);
+    assert.deepEqual((await call('GET', '/purchase-orders', undefined, outsider.cookie)).body, []);
+    assert.equal((await call('DELETE', `/purchase-orders/${order.id}`, undefined, outsider.cookie)).status, 404);
+    assert.equal((await call('DELETE', `/purchase-orders/${order.id}`, undefined, viewer.cookie)).status, 403);
+
+    // A run in the organization applies its settings and matches its PO; the run records them.
+    const { s } = await shipmentWithFinding(analyst.cookie);
+    const run = (await call('GET', `/shipments/${s.id}/validation`, undefined, analyst.cookie)).body;
+    assert.deepEqual(run.findings.map((f) => f.ruleId), ['X2']);
+    assert.equal(run.ruleConfig.scope, 'organization');
+    assert.deepEqual(run.ruleConfig.disabled, ['X8']);
+    assert.equal(run.ruleConfig.account.purchaseOrder, 'PO-4411');
+    assert.equal((await call('DELETE', `/purchase-orders/${order.id}`, undefined, analyst.cookie)).status, 204);
+  });
+
+  it('finds a duplicate invoice only among the organization’s own shipments', async () => {
+    const a = await signUp('Dup A');
+    const b = await signUp('Dup B');
+    for (const m of [a, b]) await call('PUT', '/rules/settings', { params: { knownScacs: ['EXLN'] } }, m.cookie);
+    // An earlier shipment of A with the same invoice, extracted (projected to the invoices table).
+    const { body: first } = await call('POST', '/shipments', { destination: 'CA', reference: 'first' }, a.cookie);
+    const docId = randomUUID();
+    await repo.insertDocument({ id: docId, shipmentId: first.id, fileName: 'invoice.pdf', storageKey: 'none', sha256: '0', status: 'EXTRACTING' });
+    await repo.saveExtraction(docId, { pageCount: 1, detectedType: 'COMMERCIAL_INVOICE', typeConfidence: 1 }, { documentId: docId, documentType: 'COMMERCIAL_INVOICE', model: 'test', promptVersion: 'test', raw: {}, data: sampleInvoice, issues: [], pdfLines: [] });
+
+    const docs = { invoice: sampleInvoice, packingList: samplePackingList, billOfLading: sampleBillOfLading };
+    const again = (await call('POST', '/shipments', { destination: 'CA' }, a.cookie)).body;
+    const mine = (await call('POST', `/shipments/${again.id}/validate?agent=false`, docs, a.cookie)).body;
+    assert.deepEqual(mine.findings.map((f) => f.ruleId), ['X17']);
+    assert.ok(mine.findings[0].evidence.some((e) => e.documentId === docId));
+    const other = (await call('POST', '/shipments', { destination: 'CA' }, b.cookie)).body;
+    assert.deepEqual((await call('POST', `/shipments/${other.id}/validate?agent=false`, docs, b.cookie)).body.findings, []);
+  });
+});
+
+describe('other documents and input formats', () => {
+  const invoice = [['COMMERCIAL INVOICE'], ['Invoice No.', 'INV-1'], ['Currency', 'USD'], ['Description', 'Qty', 'Unit price', 'Amount'], ['Plush bear', '10', '8.10', '81.00'], ['TOTAL', '10', '', '81.00']];
+  const packing = [['PACKING LIST'], ['Packing list no.', 'PL-1'], ['C/No.', 'Cartons', 'Description', 'Qty'], ['1-2', '2', 'Plush bear', '10'], ['TOTAL', '2', '', '10']];
+  const upload = async (cookie, shipmentId, name, bytes) => {
+    const form = new FormData();
+    form.append('files', new Blob([bytes]), name);
+    const res = await fetch(`${base}/shipments/${shipmentId}/documents?wait=true`, { method: 'POST', body: form, headers: { cookie } });
+    return { status: res.status, body: await res.json().catch(() => undefined) };
+  };
+
+  it('keeps spreadsheets, split parts and their cells inside the organization, and closed to viewers', async () => {
+    const owner = await signUp('Sheets');
+    await call('POST', '/orgs', { name: 'Sheets Co' }, owner.cookie);
+    const s = (await call('POST', '/shipments', { destination: 'CA' }, owner.cookie)).body;
+    const res = await upload(owner.cookie, s.id, 'folder.xlsx', writeXlsx([{ name: 'Invoice', rows: invoice }, { name: 'Packing list', rows: packing }]));
+    assert.equal(res.status, 202, JSON.stringify(res.body));
+    const docs = (await call('GET', `/shipments/${s.id}`, undefined, owner.cookie)).body.documents;
+    assert.deepEqual(docs.map((d) => [d.detectedType, d.pages]), [['COMMERCIAL_INVOICE', [1]], ['PACKING_LIST', [2]]]);
+    const part = docs[1];
+    assert.equal((await call('GET', `/shipments/${s.id}/documents/${part.id}/sheets`, undefined, owner.cookie)).status, 200);
+
+    // Another organization's member: everything is 404, as if the shipment did not exist.
+    const stranger = await signUp('Stranger sheets');
+    for (const [method, path, body] of [
+      ['GET', `/shipments/${s.id}/documents/${part.id}/sheets`],
+      ['GET', `/shipments/${s.id}/documents/${part.id}/file`],
+      ['GET', `/shipments/${s.id}/documents/${part.id}`],
+      ['POST', `/shipments/${s.id}/documents/${part.id}/reextract`, { type: 'PACKING_LIST' }],
+      ['POST', `/shipments/${s.id}/documents/${part.id}/cancel`],
+      ['POST', `/shipments/${s.id}/validate?agent=false`, { airWaybill: undefined }],
+    ]) assert.equal((await call(method, path, body, stranger.cookie)).status, 404, `${method} ${path}`);
+    assert.equal((await upload(stranger.cookie, s.id, 'packing.csv', writeCsv(packing))).status, 404);
+
+    // A viewer reads the cells but uploads and re-extracts nothing.
+    const viewer = await signUp('Viewer sheets');
+    await join_(owner, viewer, 'viewer');
+    assert.equal((await call('GET', `/shipments/${s.id}/documents/${part.id}/sheets`, undefined, viewer.cookie)).status, 200);
+    assert.equal((await upload(viewer.cookie, s.id, 'packing.csv', writeCsv(packing))).status, 403);
+    assert.equal((await call('POST', `/shipments/${s.id}/documents/${part.id}/reextract`, { type: 'PACKING_LIST' }, viewer.cookie)).status, 403);
   });
 });

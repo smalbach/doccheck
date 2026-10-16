@@ -49,7 +49,7 @@ export function OrgSettingsCard({ settings, onSaved }: { settings: OrgSettings; 
       setError(errorMessage(err));
     }
   };
-  const number = (key: 'retentionCaYears' | 'retentionUsYears' | 'slaEtaLeadHours', label: string, min: number, max: number) => (
+  const number = (key: 'retentionCaYears' | 'retentionUsYears' | 'retentionMxYears' | 'retentionEuYears' | 'retentionGbYears' | 'slaEtaLeadHours', label: string, min: number, max: number) => (
     <Field label={label}>
       {(id) => (
         <TextInput
@@ -82,6 +82,9 @@ export function OrgSettingsCard({ settings, onSaved }: { settings: OrgSettings; 
           <div className="setting-row">
             {number('retentionCaYears', t('team.retention.ca'), 1, 50)}
             {number('retentionUsYears', t('team.retention.us'), 1, 50)}
+            {number('retentionMxYears', t('team.retention.mx'), 1, 50)}
+            {number('retentionEuYears', t('team.retention.eu'), 1, 50)}
+            {number('retentionGbYears', t('team.retention.gb'), 1, 50)}
           </div>
           <p className="muted small">{t('team.retention.help')}</p>
         </fieldset>

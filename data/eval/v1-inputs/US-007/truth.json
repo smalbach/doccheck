@@ -1,0 +1,447 @@
+{
+  "id": "US-007",
+  "seed": 1572027974,
+  "destination": "US",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "combined": [
+    {
+      "document": "invoice",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "document": "packing-list",
+      "pages": [
+        2
+      ]
+    },
+    {
+      "document": "bill-of-lading",
+      "pages": [
+        3
+      ]
+    }
+  ],
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/8635",
+      "invoiceDate": "2026-05-22",
+      "poNumber": "HA284597",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-05-25",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Shekou",
+          "unLocode": "CNSHK",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Shekou"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 203,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "PZ-1000",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+          "quantity": {
+            "value": "4872",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "4.14",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "20170.08",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3203.34",
+        "raw": {
+          "value": "3203.34",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3020.64",
+        "raw": {
+          "value": "3020.64",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "20170.08",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/8635",
+      "invoiceRef": "CI/26/8635",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-203",
+          "count": 203,
+          "type": "CTN",
+          "marks": "HARBORLINE/HA284597/C/NO. 1-203",
+          "contents": [
+            {
+              "sku": "PZ-1000",
+              "description": "Jigsaw puzzle 1000 pcs",
+              "quantity": {
+                "value": "4872",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3020.64",
+            "raw": {
+              "value": "3020.64",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3203.34",
+            "raw": {
+              "value": "3203.34",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 203,
+        "netWeight": {
+          "kg": "3020.64",
+          "raw": {
+            "value": "3020.64",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3203.34",
+          "raw": {
+            "value": "3203.34",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "12.03"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLSHK2852423",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "283970534",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "032S",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Shekou",
+        "unLocode": "CNSHK",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      },
+      "placeOfDelivery": {
+        "name": "Newark",
+        "unLocode": "USEWR",
+        "country": "US"
+      },
+      "containers": [
+        {
+          "number": "PCRU6568334",
+          "seal": "PC6364754",
+          "type": "20GP",
+          "packages": 203,
+          "grossWeight": {
+            "kg": "3203.34",
+            "raw": {
+              "value": "7062",
+              "unit": "LB"
+            }
+          },
+          "volumeM3": "12.03"
+        }
+      ],
+      "totalPackages": 203,
+      "totalGrossWeight": {
+        "kg": "3203.34",
+        "raw": {
+          "value": "7062",
+          "unit": "LB"
+        }
+      },
+      "marksAndNumbers": "HARBORLINE/HA284597/C/NO. 1-203",
+      "cargoDescription": "SAID TO CONTAIN 203 CTNS JIGSAW PUZZLE 1000 PCS",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Shekou",
+      "dateOfIssue": "2026-05-27",
+      "shippedOnBoardDate": "2026-05-27",
+      "references": [
+        "CI/26/8635",
+        "HA284597"
+      ]
+    },
+    "isf": {
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "importerOfRecordNumber": "22-451987300",
+      "consigneeNumber": "22-451987300",
+      "manufacturer": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipToParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "countryOfOrigin": "CN",
+      "htsCode": "950300",
+      "containerStuffingLocation": {
+        "lines": [
+          "No. 18 Longgang Industrial Ave",
+          "Buji Subdistrict"
+        ],
+        "city": "Shenzhen",
+        "region": "Guangdong",
+        "postalCode": "518112",
+        "country": "CN"
+      },
+      "consolidator": {
+        "name": "Silverline Logistics (HK) Ltd.",
+        "address": {
+          "lines": [
+            "Unit 1203, 12/F, Harbour Centre",
+            "25 Harbour Rd"
+          ],
+          "city": "Wan Chai",
+          "country": "HK"
+        }
+      }
+    }
+  }
+}

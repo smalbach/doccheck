@@ -1,0 +1,315 @@
+{
+  "id": "GB-019",
+  "seed": 83041503,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-1173",
+      "invoiceDate": "2026-04-09",
+      "poNumber": "PE590471",
+      "seller": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "shipmentDate": "2026-04-13",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Valencia",
+          "unLocode": "ESVLC",
+          "country": "ES"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Valencia"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "GBP",
+      "packageCount": 7,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "280",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.91",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "7274.80",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "ES",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6055.00",
+        "raw": {
+          "value": "6055.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5880.00",
+        "raw": {
+          "value": "5880.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "2774.80",
+        "currency": "GBP"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "originStatement": "The exporter of the products covered by this document (Exporter Reference No ESREX134229938) declares that, except where otherwise clearly indicated, these products are of EU preferential origin."
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-1173",
+      "invoiceRef": "INV-2026-1173",
+      "seller": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-7",
+          "count": 7,
+          "type": "PLT",
+          "marks": "PENNINE/PE590471/C/NO. 1-7",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "280",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "5880.00",
+            "raw": {
+              "value": "5880.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "6055.00",
+            "raw": {
+              "value": "6055.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 7,
+        "netWeight": {
+          "kg": "5880.00",
+          "raw": {
+            "value": "5880.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6055.00",
+          "raw": {
+            "value": "6055.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "6.05"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNVLC2145893",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "800453127",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "050N",
+      "placeOfReceipt": {
+        "name": "Vila-real",
+        "country": "ES"
+      },
+      "portOfLoading": {
+        "name": "Valencia",
+        "unLocode": "ESVLC",
+        "country": "ES"
+      },
+      "portOfDischarge": {
+        "name": "Southampton",
+        "unLocode": "GBSOU",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "MDOU2806407",
+          "seal": "MD9355257",
+          "type": "20GP",
+          "packages": 7,
+          "grossWeight": {
+            "kg": "6055.00",
+            "raw": {
+              "value": "6055.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "6.05"
+        }
+      ],
+      "totalPackages": 7,
+      "totalGrossWeight": {
+        "kg": "6055.00",
+        "raw": {
+          "value": "6055.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PE590471/C/NO. 1-7",
+      "cargoDescription": "SAID TO CONTAIN 7 PLTS PORCELAIN TILE 60X60",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Valencia",
+      "dateOfIssue": "2026-04-13",
+      "shippedOnBoardDate": "2026-04-13",
+      "references": [
+        "INV-2026-1173",
+        "PE590471"
+      ]
+    }
+  }
+}

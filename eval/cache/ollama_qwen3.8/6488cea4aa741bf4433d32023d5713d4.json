@@ -1,0 +1,87 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 789,
+    "outputTokens": 738
+  },
+  "output": {
+    "awbNumber": "618-98428271",
+    "documentTitle": "AIR WAYBILL",
+    "masterAwbNumber": null,
+    "carrierName": "Aurora Cargo Airlines",
+    "shipper": {
+      "name": "Norte Manufacturas S.A. de C.V.",
+      "addressLines": [
+        "Av. Industrial 2450",
+        "Monterrey, NL, 64000"
+      ],
+      "city": "Monterrey",
+      "region": "NL",
+      "postalCode": "64000",
+      "country": "MX",
+      "taxId": "NMA981204KL3"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "airportOfDeparture": {
+      "name": "Monterrey",
+      "code": "MTY"
+    },
+    "airportOfDestination": {
+      "name": "Chicago O’Hare",
+      "code": "ORD"
+    },
+    "routing": [
+      "Monterrey (MTY)",
+      "Chicago O’Hare (ORD)"
+    ],
+    "flights": [
+      {
+        "flight": "AU608",
+        "date": "26-MAY-2026"
+      }
+    ],
+    "pieces": "[208]",
+    "grossWeight": {
+      "value": "3203.34",
+      "unit": "K"
+    },
+    "chargeableWeight": {
+      "value": "3203.34",
+      "unit": "K"
+    },
+    "volume": "12.03 M3",
+    "natureOfGoods": "JIGSAW PUZZLE 1000 PCS",
+    "freightTerms": "CC",
+    "handlingInformation": "invoice CI/26/8635",
+    "references": [
+      "invoice CI/26/8635"
+    ],
+    "placeOfExecution": "Monterrey",
+    "executedOn": "25-MAY-2026"
+  }
+}

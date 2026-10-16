@@ -150,14 +150,17 @@ export function entryDraft(ctx: DutyContext, estimate: DutyEstimate, inputs: Dut
   return ctx.destination === 'US' ? cbp7501(ctx, estimate, inputs) : cbsaCad(ctx, estimate, inputs);
 }
 
+const airport = (a: { name: string; iata?: string }) => `${a.name}${a.iata ? ` (${a.iata})` : ''}`;
+
 function cbp7501(ctx: DutyContext, e: DutyEstimate, inputs: DutyInputs): Cbp7501Draft {
   const inv = ctx.invoice!.data;
   const bl = ctx.billOfLading?.data;
+  const awb = ctx.airWaybill?.data;
   const origins = [...new Set(e.lines.map((l) => l.origin).filter(Boolean))];
   const manufacturer = inv.seller;
   const mid = manufacturerId(manufacturer);
   const relationship = inputs.relatedParty === undefined ? '' : inputs.relatedParty ? 'Y' : 'N';
-  const mode = ctx.transportMode ?? inv.transport?.mode ?? (bl ? 'SEA' : undefined);
+  const mode = ctx.transportMode ?? inv.transport?.mode ?? (awb ? 'AIR' : bl ? 'SEA' : undefined);
   const modeCode = mode === 'AIR' ? '40 Air' : mode === 'ROAD' ? '30 Truck' : bl?.containers.length ? '11 Vessel, container' : '10 Vessel, non-container';
   const fees = e.fees.map((f) => ({ classCode: f.code === 'MPF' ? '499' : '501', name: f.name, amount: f.amount }));
   const otherTotal = sum(fees.map((f) => dec(f.amount)));
@@ -178,15 +181,15 @@ function cbp7501(ctx: DutyContext, e: DutyEstimate, inputs: DutyInputs): Cbp7501
       filerCodeEntryNumber: '',
       entryType: '01 Consumption',
       entryDate: e.entryDate,
-      importingCarrier: [bl?.vessel, bl?.voyage].filter(Boolean).join(' / '),
+      importingCarrier: bl ? [bl.vessel, bl.voyage].filter(Boolean).join(' / ') : awb ? [awb.carrier?.name, awb.flights?.[0]?.flight].filter(Boolean).join(' / ') : '',
       modeOfTransport: modeCode,
       countryOfOrigin: origins.length === 1 ? origins[0]! : origins.length > 1 ? 'MULTI' : '',
-      blOrAwbNumber: bl?.blNumber ?? '',
+      blOrAwbNumber: bl?.blNumber ?? awb?.awbNumber ?? '',
       ...(mid ? { manufacturerId: mid } : {}),
       exportingCountry: bl?.portOfLoading.country ?? inv.transport?.placeOfShipment?.country ?? inv.seller.address.country ?? '',
-      exportDate: bl?.shippedOnBoardDate ?? inv.shipmentDate ?? '',
-      foreignPortOfLading: bl ? `${bl.portOfLoading.name}${bl.portOfLoading.unLocode ? ` (${bl.portOfLoading.unLocode})` : ''}` : '',
-      usPortOfUnlading: bl ? `${bl.portOfDischarge.name}${bl.portOfDischarge.unLocode ? ` (${bl.portOfDischarge.unLocode})` : ''}` : (inv.portOfEntry?.name ?? ''),
+      exportDate: bl?.shippedOnBoardDate ?? awb?.flights?.[0]?.date ?? awb?.executedOn ?? inv.shipmentDate ?? '',
+      foreignPortOfLading: bl ? `${bl.portOfLoading.name}${bl.portOfLoading.unLocode ? ` (${bl.portOfLoading.unLocode})` : ''}` : awb ? airport(awb.airportOfDeparture) : '',
+      usPortOfUnlading: bl ? `${bl.portOfDischarge.name}${bl.portOfDischarge.unLocode ? ` (${bl.portOfDischarge.unLocode})` : ''}` : awb ? airport(awb.airportOfDestination) : (inv.portOfEntry?.name ?? ''),
       referenceNumber: ctx.reference ?? inv.invoiceNumber,
       ...(formParty(inv.consignee ?? bl?.consignee) ? { ultimateConsignee: formParty(inv.consignee ?? bl?.consignee) } : {}),
       ...(formParty(inv.buyer) ? { importerOfRecord: formParty(inv.buyer) } : {}),
@@ -215,10 +218,11 @@ function cbp7501(ctx: DutyContext, e: DutyEstimate, inputs: DutyInputs): Cbp7501
 function cbsaCad(ctx: DutyContext, e: DutyEstimate, inputs: DutyInputs): CbsaCadDraft {
   const inv = ctx.invoice!.data;
   const bl = ctx.billOfLading?.data;
+  const awb = ctx.airWaybill?.data;
   const fx = e.exchange.find((r) => r.from === inv.currency);
   const vfd = inputs.relatedParty === undefined ? '' : inputs.relatedParty ? '23' : '13';
   const gst = e.taxes.find((t) => t.code === 'GST');
-  const mode = ctx.transportMode ?? inv.transport?.mode ?? (bl ? 'SEA' : undefined);
+  const mode = ctx.transportMode ?? inv.transport?.mode ?? (awb ? 'AIR' : bl ? 'SEA' : undefined);
   const lineGst = (l: DutyEstimate['lines'][number]) => l.taxes;
   const duty = dec(e.totals.duty);
   const surtax = dec(e.totals.additional);
@@ -242,10 +246,10 @@ function cbsaCad(ctx: DutyContext, e: DutyEstimate, inputs: DutyInputs): CbsaCad
       importerBusinessNumber: (inv.consignee ?? inv.buyer).taxId ?? '',
       vendor: formParty(inv.seller)!,
       countryOfExport: bl?.portOfLoading.country ?? inv.transport?.placeOfShipment?.country ?? inv.seller.address.country ?? '',
-      placeOfExport: bl?.portOfLoading.name ?? inv.transport?.placeOfShipment?.name ?? '',
-      directShipmentDate: bl?.shippedOnBoardDate ?? inv.shipmentDate ?? '',
+      placeOfExport: bl?.portOfLoading.name ?? (awb ? airport(awb.airportOfDeparture) : undefined) ?? inv.transport?.placeOfShipment?.name ?? '',
+      directShipmentDate: bl?.shippedOnBoardDate ?? awb?.flights?.[0]?.date ?? awb?.executedOn ?? inv.shipmentDate ?? '',
       modeOfTransport: mode === 'AIR' ? 'Air' : mode === 'ROAD' ? 'Highway' : 'Marine',
-      portOfEntry: bl ? `${bl.portOfDischarge.name}${bl.portOfDischarge.unLocode ? ` (${bl.portOfDischarge.unLocode})` : ''}` : (inv.portOfEntry?.name ?? ''),
+      portOfEntry: bl ? `${bl.portOfDischarge.name}${bl.portOfDischarge.unLocode ? ` (${bl.portOfDischarge.unLocode})` : ''}` : awb ? airport(awb.airportOfDestination) : (inv.portOfEntry?.name ?? ''),
       cargoControlNumber: '',
       currency: inv.currency,
       exchangeRate: fx?.rate ?? '',

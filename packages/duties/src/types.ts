@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { BillOfLading, CommercialInvoice, Destination, Evidence, PackingList, Severity, TransportMode } from '@doccheck/schemas';
+import type { AirWaybill, BillOfLading, CommercialInvoice, CusmaCertification, Destination, Evidence, PackingList, Severity, TransportMode } from '@doccheck/schemas';
 import type { Citation } from './citations';
 import type { TableMeta } from './tables';
 
@@ -12,6 +12,10 @@ export interface DutyContext {
   invoice?: { id: string; data: CommercialInvoice };
   packingList?: { id: string; data: PackingList };
   billOfLading?: { id: string; data: BillOfLading };
+  /** Air shipments: dates, airports and the waybill number (it prints no freight amount). */
+  airWaybill?: { id: string; data: AirWaybill };
+  /** CUSMA certification of origin uploaded with the shipment: its data elements count for a CUSMA claim. */
+  cusmaCertification?: { id: string; data: CusmaCertification };
 }
 
 /** The nine minimum data elements of a CUSMA certification of origin (Annex 5-A). */
@@ -254,6 +258,8 @@ export interface DutyEstimate {
     lines: number[];
     certification: 'complete' | 'incomplete' | 'missing' | 'not-checked';
     missingElements: CusmaElement[];
+    /** The certification document the elements were read from, when one was uploaded. */
+    documentId?: string;
   };
   cusma: { lineNo: number; origin: string; hint: string }[];
   findings: DutyFinding[];

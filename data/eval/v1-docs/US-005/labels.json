@@ -1,0 +1,16 @@
+{
+  "id": "US-005",
+  "errors": [
+    {
+      "kind": "arrival_notice_mismatch",
+      "document": "arrivalNotice",
+      "field": "packages",
+      "before": 279,
+      "after": 282,
+      "expectedRuleIds": [
+        "T12"
+      ],
+      "description": "Arrival notice says 282 packages instead of 279."
+    }
+  ]
+}

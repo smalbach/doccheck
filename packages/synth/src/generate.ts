@@ -1,4 +1,4 @@
-import { fromFixed, iso6346CheckDigit, mul, toFixed } from '@doccheck/rules';
+import { EU_MEMBER_STATES, fromFixed, iso6346CheckDigit, mul, toFixed } from '@doccheck/rules';
 import type {
   BillOfLading,
   CommercialInvoice,
@@ -64,6 +64,20 @@ export interface GenerateOptions {
 }
 
 const LB_PER_KG = '2.20462';
+
+/**
+ * Destination-specific invoice details, drawn from their own generator so the shared draws stay put.
+ * MX: about half the invoices are in Spanish (English and French are accepted too). GB: goods of EU
+ * origin carry the TCA statement on origin, with the exporter's REX number.
+ */
+function addDestinationDetails(invoice: CommercialInvoice, destination: Destination, rng: Rng) {
+  if (destination === 'MX') invoice.language = rng.chance(0.5) ? 'es' : 'en';
+  const origin = invoice.seller.address.country!;
+  if (destination === 'GB' && EU_MEMBER_STATES.includes(origin)) {
+    const rex = `${origin}REX${String(rng.int(100000000, 999999999))}`;
+    invoice.originStatement = `The exporter of the products covered by this document (Exporter Reference No ${rex}) declares that, except where otherwise clearly indicated, these products are of EU preferential origin.`;
+  }
+}
 const VESSELS = ['PACIFIC CREST HARMONY', 'MERIDIAN STAR', 'AURORA BOREAS', 'TIDEWATER SPIRIT', 'NORTHERN VEGA', 'CAPE ALBATROSS'];
 
 /** kg weight with the original unit; `rawUnit` LB converts the printed value, kg stays exact. */
@@ -174,6 +188,19 @@ function shortName(party: Party): string {
   return party.name.split(/[\s,.]+/).filter((w) => w.length > 2)[0].toUpperCase();
 }
 
+/**
+ * Whether a seller fits a destination: an import must cross a customs border (no EU seller for the
+ * EU), and the value data of a Mexican import carries the seller's tax number (RGCE regla 1.9.19). CA and US take every
+ * seller, so their shipments stay as they were.
+ */
+function sellsTo(seller: Seller, destination: Destination): boolean {
+  const country = seller.party.address.country!;
+  if (destination === 'EU') return !EU_MEMBER_STATES.includes(country);
+  if (destination === 'GB') return country !== 'GB';
+  if (destination === 'MX') return country !== 'MX' && !!seller.party.taxId;
+  return true;
+}
+
 /** Builds one clean, internally consistent shipment. Every shared rule must pass on it. */
 export function generateShipment(id: string, destination: Destination, seed: number, opts: GenerateOptions = {}): SyntheticShipment {
   const rng = new Rng(seed);
@@ -181,7 +208,7 @@ export function generateShipment(id: string, destination: Destination, seed: num
   const countryOf = (p: Party) => p.address.country!;
   const templates = opts.templates ?? TEMPLATES;
   const buyer = rng.pick((opts.buyers ?? BUYERS).filter((b) => b.destination === destination));
-  const seller = rng.pick(opts.sellers ?? SELLERS);
+  const seller = rng.pick((opts.sellers ?? SELLERS).filter((s) => sellsTo(s, destination)));
   const carrier = rng.pick(CARRIERS);
   const forwarder = rng.pick(FORWARDERS);
   const portOfLoading = rng.pick(seller.ports);
@@ -249,6 +276,7 @@ export function generateShipment(id: string, destination: Destination, seed: num
     language: render.bilingual ? 'fr' : 'en',
   };
   if (destination === 'US') invoice.portOfEntry = portOfDischarge;
+  if (destination === 'MX' || destination === 'GB') addDestinationDetails(invoice, destination, new Rng(seed ^ 0x6d2b79f5));
 
   let firstPackage = 1;
   const packages: PackageGroup[] = lines.map((l) => {

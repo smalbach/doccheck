@@ -42,6 +42,14 @@ Números en `numeric` (sin floats), fechas en `date`, pesos en kg con el valor y
 
 - **`current_documents`**: el documento de cada tipo que usa la validación (el último extraído).
 
+### Reglas por organización (migración 041)
+
+No son proyección de documentos: las escribe la organización (ver [ORGANIZATIONS.md](ORGANIZATIONS.md)).
+
+- **`rule_settings`**: ajustes de reglas por organización (`org_id`). `config` guarda solo lo que difiere de los valores por defecto (`RuleConfig`: reglas apagadas, severidad, tolerancias, SCAC conocidos); sin fila, la validación se comporta igual que sin ajustes.
+- **`purchase_orders`**: órdenes de compra de la organización (`org_id`; `user_id` = quién la importó), importadas (CSV o JSON) para la regla X24. `po_key` (mayúsculas, solo letras y dígitos) las encuentra desde el PO de la factura; `lines` en jsonb con cantidades y precios como texto decimal. El mismo número reemplaza la orden anterior.
+- **`validations.rule_config`**: lo que aplicó cada validación: ajustes, todas las tolerancias vigentes, fecha de la corrida (`asOf`), reglas apagadas y cuánta historia de la organización comparó (facturas, precios, orden de compra). Las reglas X17 y X23 leen `invoices` e `invoice_lines` de los otros envíos de la organización (`org_id`).
+
 ## En la app
 
 Grupo **Datos** del menú lateral, una página por módulo:
@@ -75,3 +83,13 @@ where l.product_id = $1 order by i.invoice_date;
 -- Líneas cuyo total no cuadra con cantidad × precio
 select * from invoice_lines where user_id = $1 and computed_total <> line_total;
 ```
+
+## Documentos que no son un PDF por documento
+
+Migración `042_document_sources.sql`:
+
+- **`documents.format`**: `PDF`, `SPREADSHEET` (.xlsx o .csv, guardado tal cual) o `IMAGE` (foto guardada como PDF de una página, enderezada y recortada).
+- **`documents.pages`** y **`documents.source_document_id`**: un PDF (o libro de Excel) con varios documentos se divide al leerlo; cada parte es un documento que comparte el archivo (`storage_key`), con las páginas (u hojas) que cubre numeradas como en el archivo, y apunta a la subida de la que salió. La primera parte conserva el id de la subida.
+- **`extractions.attestation`**: firma y sello vistos en el papel (BL, certificados de origen), para la regla T13.
+
+Los tipos nuevos (guía aérea, certificados de origen, aviso de llegada, certificado de embalaje de madera, declaración de mercancías peligrosas) quedan en `extractions.data`; `dc_project_document` todavía no los proyecta a tablas.

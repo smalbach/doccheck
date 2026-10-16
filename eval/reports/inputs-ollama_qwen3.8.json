@@ -1,0 +1,507 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "ocrEngine": "tesseract",
+  "shipments": 20,
+  "spreadsheets": {
+    "invoice": {
+      "documents": 20,
+      "valid": 20,
+      "total": 569,
+      "correct": 569,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    "packingList": {
+      "documents": 20,
+      "valid": 20,
+      "total": 326,
+      "correct": 326,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    "overall": {
+      "total": 895,
+      "correct": 895,
+      "wrong": 0,
+      "missing": 0,
+      "spurious": 0,
+      "accuracy": 1
+    },
+    "headersMappedByModel": 14,
+    "findingsOnCleanShipments": 0
+  },
+  "photos": {
+    "documents": 20,
+    "classified": 20,
+    "valid": 18,
+    "findings": 29,
+    "total": 571,
+    "correct": 521,
+    "wrong": 33,
+    "missing": 15,
+    "spurious": 2,
+    "accuracy": 0.9124,
+    "meanAngleError": 0.030000000000000016
+  },
+  "combined": {
+    "files": 20,
+    "documents": 60,
+    "exact": 60,
+    "pages": 60,
+    "pagesRight": 60,
+    "documentAccuracy": 1,
+    "pageAccuracy": 1
+  },
+  "seconds": 1663,
+  "detail": [
+    {
+      "id": "CA-001",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [],
+      "photo": {
+        "rotated": 2,
+        "drawn": 2,
+        "ocrConfidence": 88,
+        "issues": [
+          "Read with OCR (page 1, confidence 88%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "CA-002",
+      "sheetFindings": [],
+      "sheetIssues": [
+        "Columns mapped by the model from their header: \"Pieces shipped\", \"Price each\""
+      ],
+      "photoFindings": [
+        "X1"
+      ],
+      "photo": {
+        "rotated": -2.4,
+        "drawn": -2.4,
+        "ocrConfidence": 87,
+        "issues": [
+          "Read with OCR (page 1, confidence 87%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "CA-003",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [
+        "X8"
+      ],
+      "photo": {
+        "rotated": 2.8,
+        "drawn": 2.9,
+        "ocrConfidence": 90,
+        "issues": [
+          "Read with OCR (page 1, confidence 90%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "CA-004",
+      "sheetFindings": [],
+      "sheetIssues": [
+        "Columns mapped by the model from their header: \"Pieces shipped\", \"Price each\""
+      ],
+      "photoFindings": [
+        "X5",
+        "C1"
+      ],
+      "photo": {
+        "rotated": 2.4,
+        "drawn": 2.3,
+        "ocrConfidence": 83,
+        "issues": [
+          "Read with OCR (page 1, confidence 83%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "CA-005",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [
+        "X1"
+      ],
+      "photo": {
+        "rotated": 2.7,
+        "drawn": 2.7,
+        "ocrConfidence": 86,
+        "issues": [
+          "Read with OCR (page 1, confidence 86%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "CA-006",
+      "sheetFindings": [],
+      "sheetIssues": [
+        "Columns mapped by the model from their header: \"Pieces shipped\", \"Price each\""
+      ],
+      "photoFindings": [
+        "X1",
+        "X7",
+        "X7",
+        "C1"
+      ],
+      "photo": {
+        "rotated": -3.9,
+        "drawn": -4,
+        "ocrConfidence": 89,
+        "issues": [
+          "Read with OCR (page 1, confidence 89%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "CA-007",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photo": {
+        "rotated": 3.9,
+        "drawn": 3.9,
+        "ocrConfidence": 88,
+        "issues": [
+          "Read with OCR (page 1, confidence 88%): check values against the scan",
+          "lines.0.unitPrice: Invalid input: expected object, received undefined",
+          "lines.1.unitPrice: Invalid input: expected object, received undefined",
+          "invoiceTotal: Invalid input: expected object, received undefined"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "CA-008",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [
+        "X1",
+        "X8"
+      ],
+      "photo": {
+        "rotated": -5,
+        "drawn": -5,
+        "ocrConfidence": 85,
+        "issues": [
+          "Read with OCR (page 1, confidence 85%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "CA-009",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [
+        "X5",
+        "X8"
+      ],
+      "photo": {
+        "rotated": -2.6,
+        "drawn": -2.6,
+        "ocrConfidence": 82,
+        "issues": [
+          "Read with OCR (page 1, confidence 82%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "CA-010",
+      "sheetFindings": [],
+      "sheetIssues": [
+        "Columns mapped by the model from their header: \"Pieces shipped\", \"Price each\""
+      ],
+      "photoFindings": [
+        "X5",
+        "X8"
+      ],
+      "photo": {
+        "rotated": 1.9,
+        "drawn": 1.8,
+        "ocrConfidence": 82,
+        "issues": [
+          "Read with OCR (page 1, confidence 82%): check values against the scan",
+          "lines[0].hsCode: could not normalize \"K451 60\"",
+          "lines[1].hsCode: could not normalize \"B413.70\""
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "US-001",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [],
+      "photo": {
+        "rotated": -3.5,
+        "drawn": -3.4,
+        "ocrConfidence": 88,
+        "issues": [
+          "Read with OCR (page 1, confidence 88%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "US-002",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [
+        "X1",
+        "X7",
+        "X7",
+        "X8"
+      ],
+      "photo": {
+        "rotated": 3,
+        "drawn": 3.1,
+        "ocrConfidence": 84,
+        "issues": [
+          "Read with OCR (page 1, confidence 84%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "US-003",
+      "sheetFindings": [],
+      "sheetIssues": [
+        "Columns mapped by the model from their header: \"Pieces shipped\", \"Price each\""
+      ],
+      "photoFindings": [
+        "X5"
+      ],
+      "photo": {
+        "rotated": 5.6,
+        "drawn": 5.6,
+        "ocrConfidence": 88,
+        "issues": [
+          "Read with OCR (page 1, confidence 88%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "US-004",
+      "sheetFindings": [],
+      "sheetIssues": [
+        "Columns mapped by the model from their header: \"Pieces shipped\", \"Price each\""
+      ],
+      "photoFindings": [
+        "X2",
+        "U1"
+      ],
+      "photo": {
+        "rotated": 3.9,
+        "drawn": 3.9,
+        "ocrConfidence": 89,
+        "issues": [
+          "Read with OCR (page 1, confidence 89%): check values against the scan",
+          "lines[1].hsCode: could not normalize \"B481.80\""
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "US-005",
+      "sheetFindings": [],
+      "sheetIssues": [
+        "Columns mapped by the model from their header: \"Pieces shipped\", \"Price each\""
+      ],
+      "photoFindings": [
+        "X8"
+      ],
+      "photo": {
+        "rotated": -3.1,
+        "drawn": -3.1,
+        "ocrConfidence": 91,
+        "issues": [
+          "Read with OCR (page 1, confidence 91%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "US-006",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photo": {
+        "rotated": -5.5,
+        "drawn": -5.5,
+        "ocrConfidence": 86,
+        "issues": [
+          "Read with OCR (page 1, confidence 86%): check values against the scan",
+          "lines.0.unitPrice: Invalid input: expected object, received undefined"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "US-007",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [],
+      "photo": {
+        "rotated": 5.6,
+        "drawn": 5.6,
+        "ocrConfidence": 92,
+        "issues": [
+          "Read with OCR (page 1, confidence 92%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "US-008",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [
+        "X1",
+        "X8"
+      ],
+      "photo": {
+        "rotated": 5,
+        "drawn": 5,
+        "ocrConfidence": 90,
+        "issues": [
+          "Read with OCR (page 1, confidence 90%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "US-009",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [
+        "X2",
+        "X8"
+      ],
+      "photo": {
+        "rotated": -2,
+        "drawn": -2,
+        "ocrConfidence": 89,
+        "issues": [
+          "Read with OCR (page 1, confidence 89%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    },
+    {
+      "id": "US-010",
+      "sheetFindings": [],
+      "sheetIssues": [],
+      "photoFindings": [
+        "X5",
+        "X5"
+      ],
+      "photo": {
+        "rotated": -3.3,
+        "drawn": -3.3,
+        "ocrConfidence": 92,
+        "issues": [
+          "Read with OCR (page 1, confidence 92%): check values against the scan"
+        ]
+      },
+      "combined": [
+        "COMMERCIAL_INVOICE:1",
+        "PACKING_LIST:2",
+        "BILL_OF_LADING:3"
+      ]
+    }
+  ]
+}

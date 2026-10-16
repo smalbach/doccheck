@@ -1,0 +1,83 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 874,
+    "outputTokens": 752
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-9613",
+    "invoiceDate": null,
+    "poNumber": "PO-13564",
+    "seller": {
+      "name": "Norland Precision Scales Co., Ltd.",
+      "addressLines": [
+        "88 Gaoxin Road, Building 3"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "buyer": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "shipmentDate": "2026-06-05",
+    "transportMode": "SEA",
+    "placeOfShipment": null,
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "Cartagena",
+    "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+    "currency": "CAD",
+    "countryOfOrigin": "CO",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+        "quantity": "10,560 KG",
+        "unit": "KG",
+        "unitPrice": "5.31",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "56,073.60",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CO",
+        "hsCode": "0901.11"
+      }
+    ],
+    "totalPackages": "176",
+    "grossWeight": {
+      "value": "10,700.80",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "10,560.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "56,073.60",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

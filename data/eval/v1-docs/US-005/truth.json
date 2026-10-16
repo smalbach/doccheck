@@ -1,0 +1,453 @@
+{
+  "id": "US-005",
+  "seed": 523460491,
+  "destination": "US",
+  "mode": "AIR",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "attestations": {
+    "cusmaCertification": {
+      "signature": true,
+      "stamp": false
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/0789",
+      "invoiceDate": "2026-02-04",
+      "poNumber": "PO-1208",
+      "seller": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "exporter": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "shipmentDate": "2026-02-15",
+      "transport": {
+        "mode": "AIR"
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Buenaventura"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 279,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags, with lithium-ion battery UN3481",
+          "quantity": {
+            "value": "16740",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.95",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "99603.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "MX",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "16963.20",
+        "raw": {
+          "value": "16963.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "16740.00",
+        "raw": {
+          "value": "16740.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "99603.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/0789",
+      "invoiceRef": "CI/26/0789",
+      "seller": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-279",
+          "count": 279,
+          "type": "BAG",
+          "marks": "BLUEBONNET/PO-1208/C/NO. 1-279",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "16740",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "16740.00",
+            "raw": {
+              "value": "16740.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "16963.20",
+            "raw": {
+              "value": "16963.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 279,
+        "netWeight": {
+          "kg": "16740.00",
+          "raw": {
+            "value": "16740.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "16963.20",
+          "raw": {
+            "value": "16963.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "39.76"
+      }
+    },
+    "airWaybill": {
+      "awbNumber": "176-59163366",
+      "issuer": "MAWB",
+      "carrier": {
+        "name": "Pacific Crest Air Cargo",
+        "iataPrefix": "176"
+      },
+      "shipper": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "notifyParty": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "airportOfDeparture": {
+        "name": "Mexico City",
+        "iata": "MEX"
+      },
+      "airportOfDestination": {
+        "name": "Los Angeles",
+        "iata": "LAX"
+      },
+      "flights": [
+        {
+          "flight": "PC146",
+          "date": "2026-02-16"
+        }
+      ],
+      "pieces": 279,
+      "grossWeight": {
+        "kg": "16963.20",
+        "raw": {
+          "value": "16963.20",
+          "unit": "KG"
+        }
+      },
+      "chargeableWeight": {
+        "kg": "16963.20",
+        "raw": {
+          "value": "16963.20",
+          "unit": "KG"
+        }
+      },
+      "volumeM3": "39.76",
+      "natureOfGoods": "GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "references": [
+        "CI/26/0789"
+      ],
+      "placeOfExecution": "Mexico City",
+      "executedOn": "2026-02-15"
+    },
+    "cusmaCertification": {
+      "certifierRole": "EXPORTER",
+      "certifier": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "exporter": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "producer": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "importer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "goods": [
+        {
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "hsCode": "0901.11",
+          "originCriterion": "C",
+          "countryOfOrigin": "MX"
+        }
+      ],
+      "signature": {
+        "name": "Ana Ruiz Treviño",
+        "title": "Export Manager",
+        "date": "2026-02-05"
+      },
+      "invoiceRefs": [
+        "CI/26/0789"
+      ]
+    },
+    "arrivalNotice": {
+      "noticeNumber": "AN-10039",
+      "carrier": {
+        "name": "Pacific Crest Air Cargo"
+      },
+      "mode": "AIR",
+      "transportDocumentNumber": "176-59163366",
+      "flight": "PC146",
+      "estimatedArrival": "2026-02-17",
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "packages": 282,
+      "grossWeight": {
+        "kg": "16963.20",
+        "raw": {
+          "value": "16963.20",
+          "unit": "KG"
+        }
+      },
+      "cargoDescription": "GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "lastFreeDay": "2026-02-20"
+    },
+    "dangerousGoods": {
+      "shipper": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods DC",
+        "address": {
+          "lines": [
+            "9800 Wallisville Rd"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77013",
+          "country": "US"
+        }
+      },
+      "transportDocumentNumber": "176-59163366",
+      "mode": "AIR",
+      "regulation": "IATA",
+      "items": [
+        {
+          "unNumber": "UN3481",
+          "properShippingName": "LITHIUM ION BATTERIES CONTAINED IN EQUIPMENT",
+          "hazardClass": "9",
+          "packingGroup": "II",
+          "quantity": {
+            "value": "16740",
+            "unit": "KG"
+          }
+        }
+      ],
+      "emergencyContact": "+1 613 996 6666",
+      "signatory": {
+        "name": "Li Wei",
+        "place": "Monterrey",
+        "date": "2026-02-05"
+      }
+    }
+  }
+}

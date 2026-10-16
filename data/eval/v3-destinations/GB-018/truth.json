@@ -1,0 +1,365 @@
+{
+  "id": "GB-018",
+  "seed": 1425159034,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "ÖZD2607798",
+      "invoiceDate": "2026-01-15",
+      "poNumber": "PO-95934",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-01-21",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Ambarlı"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 68,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "940",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.57",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "16515.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "21",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "76.89",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "1614.69",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1719.70",
+        "raw": {
+          "value": "1719.70",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1573.50",
+        "raw": {
+          "value": "1573.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "18130.49",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-ÖZD2607798",
+      "invoiceRef": "ÖZD2607798",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-47",
+          "count": 47,
+          "type": "CTN",
+          "marks": "THAMESIDE/PO-95934/C/NO. 1-68",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "940",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1269.00",
+            "raw": {
+              "value": "1269.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1320.70",
+            "raw": {
+              "value": "1320.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "48-68",
+          "count": 21,
+          "type": "CRT",
+          "marks": "THAMESIDE/PO-95934/C/NO. 1-68",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "21",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "304.50",
+            "raw": {
+              "value": "304.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "399.00",
+            "raw": {
+              "value": "399.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 68,
+        "netWeight": {
+          "kg": "1573.50",
+          "raw": {
+            "value": "1573.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1719.70",
+          "raw": {
+            "value": "1719.70",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.07"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNAMR7149616",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "765893053",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "024E",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "London Gateway",
+        "unLocode": "GBLGP",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "MDOU9489474",
+          "seal": "MD8422207",
+          "type": "20GP",
+          "packages": 68,
+          "grossWeight": {
+            "kg": "1719.70",
+            "raw": {
+              "value": "1719.70",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.07"
+        }
+      ],
+      "totalPackages": 68,
+      "totalGrossWeight": {
+        "kg": "1719.70",
+        "raw": {
+          "value": "1719.70",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/PO-95934/C/NO. 1-68",
+      "cargoDescription": "SAID TO CONTAIN 68 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-01-22",
+      "shippedOnBoardDate": "2026-01-22",
+      "references": [
+        "ÖZD2607798",
+        "PO-95934"
+      ]
+    }
+  }
+}
