@@ -1,5 +1,14 @@
 import { c1CaInvoiceFields } from './rules/c1-ca-invoice-fields';
 import { c2InvoiceLanguage } from './rules/c2-invoice-language';
+import { e1EuInvoiceFields } from './rules/e1-eu-invoice-fields';
+import { e2EuEori } from './rules/e2-eu-eori';
+import { e3Ics2Data } from './rules/e3-ics2-data';
+import { k1GbInvoiceFields } from './rules/k1-gb-invoice-fields';
+import { k2GbEori } from './rules/k2-gb-eori';
+import { k3TcaOriginStatement } from './rules/k3-tca-origin-statement';
+import { m1MxInvoiceFields } from './rules/m1-mx-invoice-fields';
+import { m2MxRfc } from './rules/m2-mx-rfc';
+import { m3MxInvoiceLanguage } from './rules/m3-mx-invoice-language';
 import { u1UsInvoiceFields } from './rules/u1-us-invoice-fields';
 import { x10ContainerCheckDigit } from './rules/x10-container-check-digit';
 import { x11IsfConsistency } from './rules/x11-isf-consistency';
@@ -31,4 +40,13 @@ export const ALL_RULES: Rule[] = [
   c1CaInvoiceFields,
   c2InvoiceLanguage,
   u1UsInvoiceFields,
+  m1MxInvoiceFields,
+  m2MxRfc,
+  m3MxInvoiceLanguage,
+  e1EuInvoiceFields,
+  e2EuEori,
+  e3Ics2Data,
+  k1GbInvoiceFields,
+  k2GbEori,
+  k3TcaOriginStatement,
 ];

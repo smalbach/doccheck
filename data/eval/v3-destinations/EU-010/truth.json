@@ -1,0 +1,374 @@
+{
+  "id": "EU-010",
+  "seed": 613338728,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/8364",
+      "invoiceDate": "2026-04-16",
+      "poNumber": "PO-93051",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-04-26",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ho Chi Minh City",
+          "unLocode": "VNSGN",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ho Chi Minh City"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 333,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "46080",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "2.98",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "137318.40",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        },
+        {
+          "lineNo": 2,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "2820",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.25",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "62745.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6128.40",
+        "raw": {
+          "value": "6128.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5853.00",
+        "raw": {
+          "value": "5853.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "200063.40",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "1228.00",
+          "currency": "INR"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/8364",
+      "invoiceRef": "CI/26/8364",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "packages": [
+        {
+          "range": "1-192",
+          "count": 192,
+          "type": "CTN",
+          "marks": "MAISON/PO-93051/C/NO. 1-333",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "46080",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3456.00",
+            "raw": {
+              "value": "3456.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3590.40",
+            "raw": {
+              "value": "3590.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        },
+        {
+          "range": "193-333",
+          "count": 141,
+          "type": "CTN",
+          "marks": "MAISON/PO-93051/C/NO. 1-333",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "2820",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2397.00",
+            "raw": {
+              "value": "2397.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2538.00",
+            "raw": {
+              "value": "2538.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 333,
+        "netWeight": {
+          "kg": "5853.00",
+          "raw": {
+            "value": "5853.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6128.40",
+          "raw": {
+            "value": "6128.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "32.10"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSSGN247926",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "159598886",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "041N",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Ho Chi Minh City",
+        "unLocode": "VNSGN",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Le Havre",
+        "unLocode": "FRLEH",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "AGXU1625017",
+          "seal": "AG7376951",
+          "type": "40GP",
+          "packages": 333,
+          "grossWeight": {
+            "kg": "6128.40",
+            "raw": {
+              "value": "6128.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "32.10"
+        }
+      ],
+      "totalPackages": 333,
+      "totalGrossWeight": {
+        "kg": "6128.40",
+        "raw": {
+          "value": "6128.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/PO-93051/C/NO. 1-333",
+      "cargoDescription": "SAID TO CONTAIN 333 CTNS WOOL SOCKS 3-PACK AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ho Chi Minh City",
+      "dateOfIssue": "2026-04-27",
+      "shippedOnBoardDate": "2026-04-27",
+      "references": [
+        "CI/26/8364",
+        "PO-93051"
+      ]
+    }
+  }
+}

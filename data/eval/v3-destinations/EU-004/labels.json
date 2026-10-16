@@ -1,0 +1,38 @@
+{
+  "id": "EU-004",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "108072.00",
+      "after": "18072.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (108072.00 -> 18072.00)."
+    },
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "4266.00",
+      "after": "4431.90",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[0].contents[0].quantity.value",
+      "before": "56880",
+      "after": "56879",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    }
+  ]
+}

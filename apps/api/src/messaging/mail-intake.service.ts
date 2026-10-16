@@ -1,5 +1,7 @@
 import { Inject, Injectable, Logger, type OnApplicationBootstrap, type OnApplicationShutdown } from '@nestjs/common';
 import { randomBytes, randomUUID } from 'node:crypto';
+import { EU_MEMBER_STATES } from '@doccheck/rules';
+import type { Destination } from '@doccheck/schemas';
 import type { Pool } from 'pg';
 import { appUrl } from '../auth/app-url';
 import { PG_POOL } from '../db/db.module';
@@ -192,19 +194,25 @@ export class MailIntakeService implements OnApplicationBootstrap, OnApplicationS
     }
   }
 
-  /** CA or US from the extracted documents: the B/L's discharge or delivery port, the port of entry, the consignee's country. */
-  private async destinationOf(shipmentId: string): Promise<'CA' | 'US' | null> {
+  /**
+   * The destination from the extracted documents: the B/L's discharge or delivery port, the port of
+   * entry, the consignee's country. A member state of the EU means the EU.
+   */
+  private async destinationOf(shipmentId: string): Promise<Destination | null> {
+    const countries = ['CA', 'US', 'MX', 'GB', ...EU_MEMBER_STATES];
     const { rows } = await this.pool.query<{ d: string | null }>(
       `with cur as (select document_id from current_documents where shipment_id = $1)
        select coalesce(
-         (select b.port_of_discharge_country from bills_of_lading b join cur using (document_id) where b.port_of_discharge_country in ('CA', 'US') limit 1),
-         (select b.place_of_delivery_country from bills_of_lading b join cur using (document_id) where b.place_of_delivery_country in ('CA', 'US') limit 1),
-         (select i.port_of_entry_country from invoices i join cur using (document_id) where i.port_of_entry_country in ('CA', 'US') limit 1),
-         (select dp.country from document_parties dp join cur using (document_id) where dp.role in ('consignee', 'buyer') and dp.country in ('CA', 'US') limit 1)
+         (select b.port_of_discharge_country from bills_of_lading b join cur using (document_id) where b.port_of_discharge_country = any($2) limit 1),
+         (select b.place_of_delivery_country from bills_of_lading b join cur using (document_id) where b.place_of_delivery_country = any($2) limit 1),
+         (select i.port_of_entry_country from invoices i join cur using (document_id) where i.port_of_entry_country = any($2) limit 1),
+         (select dp.country from document_parties dp join cur using (document_id) where dp.role in ('consignee', 'buyer') and dp.country = any($2) limit 1)
        ) as d`,
-      [shipmentId],
+      [shipmentId, countries],
     );
-    return (rows[0]?.d as 'CA' | 'US' | null) ?? null;
+    const d = rows[0]?.d ?? null;
+    if (!d) return null;
+    return EU_MEMBER_STATES.includes(d) ? 'EU' : (d as Destination);
   }
 
   /** The conversation shows something new; the sender gets a summary when they are the user. */

@@ -99,6 +99,9 @@ function labels(bilingual: boolean, style: Style) {
   };
 }
 
+/** The UK-EU TCA statement on origin, printed above the signature when the invoice carries one. */
+const originStatement = (inv: CommercialInvoice) => (inv.originStatement ? `<div class="note">${esc(inv.originStatement)}</div>` : '');
+
 export function renderInvoice(inv: CommercialInvoice, opts: RenderOptions): string {
   const style = opts.invoiceTemplate as Style;
   const L = labels(opts.bilingual, style);
@@ -139,7 +142,7 @@ export function renderInvoice(inv: CommercialInvoice, opts: RenderOptions): stri
         <tbody class="totals"><tr><td colspan="5">${L('Total')} ${esc(inv.invoiceTotal.currency)}</td><td class="num">${money(inv.invoiceTotal.amount)}</td></tr></tbody></table><br>
       <table class="grid"><tr><td>${L('Packages')}: ${inv.packageCount ?? ''}<br>${L('Gross Weight')}: ${w(inv.grossWeight, style)}<br>${L('Net Weight')}: ${w(inv.netWeight, style)}</td>
         <td>${charges ? `<table>${charges}</table>` : ''}</td></tr></table>
-      <div class="sign">I declare that all the information contained in this invoice is true and correct.<br><br>________________________<br>${esc(inv.responsiblePerson)}</div>`;
+      ${originStatement(inv)}<div class="sign">I declare that all the information contained in this invoice is true and correct.<br><br>________________________<br>${esc(inv.responsiblePerson)}</div>`;
   } else if (style === 'modern') {
     body = `<header><div><h1>${L('Commercial Invoice')}</h1>${party(inv.seller, style)}</div>
         <div class="meta"><b>${L('Invoice No.')}</b>${esc(inv.invoiceNumber)}<br><b>${L('Date')}</b>${date(inv.invoiceDate, style)}<br><b>PO</b>${esc(inv.poNumber)}<br><b>${L('Terms of Sale')}</b>${esc(terms)}</div></header>
@@ -148,14 +151,14 @@ export function renderInvoice(inv: CommercialInvoice, opts: RenderOptions): stri
       <table><thead>${head}</thead><tbody>${rows}</tbody></table>
       <table class="totals"><tr><td>${L('Net Weight')}</td><td class="num">${w(inv.netWeight, style)}</td></tr><tr><td>${L('Gross Weight')}</td><td class="num">${w(inv.grossWeight, style)}</td></tr>${charges}
         <tr><td>${L('Total')}</td><td class="num">${esc(inv.invoiceTotal.currency)} ${money(inv.invoiceTotal.amount)}</td></tr></table>
-      <div class="note">Payment terms: ${esc(inv.paymentTerms)}. ${esc(inv.responsiblePerson)}.</div>`;
+      <div class="note">Payment terms: ${esc(inv.paymentTerms)}. ${esc(inv.responsiblePerson)}.</div>${originStatement(inv)}`;
   } else {
     body = `<h1>${L('Commercial Invoice')}</h1>
       <table><tr><td class="box" style="width:55%"><span class="label">SHIPPER/EXPORTER:</span>${party(inv.seller, style)}</td><td class="box">INV NO: ${esc(inv.invoiceNumber)}<br>DATE: ${date(inv.invoiceDate, style)}<br>P/O: ${esc(inv.poNumber)}<br>TERMS: ${esc(terms.toUpperCase())}<br>CURRENCY: ${esc(cur)}</td></tr>
         <tr><td class="box"><span class="label">SOLD TO:</span>${party(inv.buyer, style)}</td><td class="box"><span class="label">SHIP TO:</span>${party(inv.consignee, style)}</td></tr>
         <tr><td class="box" colspan="2">FROM: ${place(inv.transport?.placeOfShipment, style)} BY ${esc(inv.transport?.mode)} ON/ABT ${date(inv.shipmentDate, style)}${inv.portOfEntry ? ` · PORT OF ENTRY: ${place(inv.portOfEntry, style)}` : ''} · ORIGIN: ${esc(origins)}</td></tr></table><br>
       <table><thead>${head}</thead><tbody>${rows}</tbody><tbody class="totals"><tr><td></td><td>TOTAL ${esc(inv.packageCount ?? '')} PKGS</td><td></td><td class="num">${esc(inv.invoiceTotal.currency)}</td><td class="num">${money(inv.invoiceTotal.amount)}</td></tr></tbody></table><br>
-      <pre>N.W.: ${w(inv.netWeight, style)}    G.W.: ${w(inv.grossWeight, style)}${inv.charges?.freight ? `\nFREIGHT: ${esc(inv.charges.freight.currency)} ${money(inv.charges.freight.amount)}` : ''}\nPAYMENT: ${esc(inv.paymentTerms?.toUpperCase())}</pre>`;
+      <pre>N.W.: ${w(inv.netWeight, style)}    G.W.: ${w(inv.grossWeight, style)}${inv.charges?.freight ? `\nFREIGHT: ${esc(inv.charges.freight.currency)} ${money(inv.charges.freight.amount)}` : ''}\nPAYMENT: ${esc(inv.paymentTerms?.toUpperCase())}</pre>${originStatement(inv)}`;
   }
   return page(`Commercial invoice ${inv.invoiceNumber}`, style, body);
 }

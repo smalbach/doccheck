@@ -21,7 +21,7 @@ export type {
   ValidationStage,
 } from '@doccheck/schemas';
 
-export type Destination = 'CA' | 'US';
+export type Destination = 'CA' | 'US' | 'MX' | 'EU' | 'GB';
 export type TransportMode = 'SEA' | 'AIR' | 'ROAD';
 
 /** Status groups the list filters on, computed by the API. */

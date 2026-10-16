@@ -1,12 +1,16 @@
 import type { Destination } from '@doccheck/schemas';
 
+/** Customs authority (or, for the EU, the customs law) whose regulations a destination's findings cite. */
+export type Authority = 'CBSA' | 'CBP' | 'ANAM' | 'UCC' | 'HMRC';
+
 /**
  * A country profile = which rules run + which regulation corpus the agent searches.
- * X* rules compare documents and run everywhere they apply; C* are CBSA-specific, U* CBP-specific.
+ * X* rules compare documents and run everywhere they apply; C* are CBSA-specific, U* CBP-specific,
+ * M* Mexico (ANAM, RGCE), E* European Union (Union Customs Code), K* United Kingdom (HMRC).
  */
 export interface CountryProfile {
   code: Destination;
-  authority: 'CBSA' | 'CBP';
+  authority: Authority;
   allowedInvoiceLanguages: string[];
   rules: string[];
   corpusTag: string;
@@ -19,4 +23,9 @@ export const PROFILES: Record<Destination, CountryProfile> = {
   CA: { code: 'CA', authority: 'CBSA', allowedInvoiceLanguages: ['en', 'fr'], rules: [...SHARED, 'C1', 'C2'], corpusTag: 'cbsa' },
   // 19 CFR 141.86(d): invoice in English or with an English translation.
   US: { code: 'US', authority: 'CBP', allowedInvoiceLanguages: ['en'], rules: [...SHARED, 'X11', 'U1'], corpusTag: 'cbp' },
+  // RGCE regla 3.1.8: Spanish, English or French; any other language with a Spanish translation.
+  MX: { code: 'MX', authority: 'ANAM', allowedInvoiceLanguages: ['es', 'en', 'fr'], rules: [...SHARED, 'M1', 'M2', 'M3'], corpusTag: 'anam' },
+  // The UCC sets no invoice language; customs may ask for a translation (UCC Article 163(1)).
+  EU: { code: 'EU', authority: 'UCC', allowedInvoiceLanguages: [], rules: [...SHARED, 'E1', 'E2', 'E3'], corpusTag: 'ucc' },
+  GB: { code: 'GB', authority: 'HMRC', allowedInvoiceLanguages: [], rules: [...SHARED, 'K1', 'K2', 'K3'], corpusTag: 'hmrc' },
 };

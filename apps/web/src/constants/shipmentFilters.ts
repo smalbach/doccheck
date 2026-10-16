@@ -1,5 +1,6 @@
-import type { StatusGroup } from '../api/types';
+import type { Destination, StatusGroup } from '../api/types';
 import type { MessageKey } from '../i18n/keys';
+import { DESTINATION_OPTION_KEY, DESTINATIONS } from './destinations';
 
 export type StatusFilter = StatusGroup;
 
@@ -10,12 +11,11 @@ export const STATUS_FILTERS: readonly { value: StatusFilter; labelKey: MessageKe
   { value: 'done', labelKey: 'shipments.statusFilters.done' },
 ];
 
-export type DestinationFilter = 'any' | 'CA' | 'US';
+export type DestinationFilter = 'any' | Destination;
 
 export const DESTINATION_FILTERS: readonly { value: DestinationFilter; labelKey: MessageKey }[] = [
   { value: 'any', labelKey: 'shipments.anyDestination' },
-  { value: 'CA', labelKey: 'destinations.CA' },
-  { value: 'US', labelKey: 'destinations.US' },
+  ...DESTINATIONS.map((d) => ({ value: d, labelKey: DESTINATION_OPTION_KEY[d] })),
 ];
 
 export interface ShipmentFilterState {

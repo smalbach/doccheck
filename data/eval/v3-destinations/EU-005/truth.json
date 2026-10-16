@@ -1,0 +1,418 @@
+{
+  "id": "EU-005",
+  "seed": 1993136075,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/3570",
+      "invoiceDate": "2026-02-17",
+      "poNumber": "PO-58748",
+      "seller": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "buyer": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "DE482910375516203"
+      },
+      "consignee": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "DE482910375516203"
+      },
+      "exporter": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "shipmentDate": "2026-02-25",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hai Phong",
+          "unLocode": "VNHPH",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Hai Phong"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 431,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TS-CTN-M",
+          "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+          "quantity": {
+            "value": "15000",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "3.32",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "49800.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6109.10"
+        },
+        {
+          "lineNo": 2,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "18480",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "2.52",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "46569.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        },
+        {
+          "lineNo": 3,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "4080",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "20.29",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "82783.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "8081.90",
+        "raw": {
+          "value": "8081.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7704.00",
+        "raw": {
+          "value": "7704.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "179152.80",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/3570",
+      "invoiceRef": "CI/26/3570",
+      "seller": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "consignee": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "DE482910375516203"
+      },
+      "packages": [
+        {
+          "range": "1-150",
+          "count": 150,
+          "type": "CTN",
+          "marks": "RHEINUFER/PO-58748/C/NO. 1-431",
+          "contents": [
+            {
+              "sku": "TS-CTN-M",
+              "description": "Men's cotton T-shirt",
+              "quantity": {
+                "value": "15000",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2850.00",
+            "raw": {
+              "value": "2850.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2970.00",
+            "raw": {
+              "value": "2970.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            35
+          ]
+        },
+        {
+          "range": "151-227",
+          "count": 77,
+          "type": "CTN",
+          "marks": "RHEINUFER/PO-58748/C/NO. 1-431",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "18480",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1386.00",
+            "raw": {
+              "value": "1386.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1439.90",
+            "raw": {
+              "value": "1439.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        },
+        {
+          "range": "228-431",
+          "count": 204,
+          "type": "CTN",
+          "marks": "RHEINUFER/PO-58748/C/NO. 1-431",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "4080",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3468.00",
+            "raw": {
+              "value": "3468.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3672.00",
+            "raw": {
+              "value": "3672.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 431,
+        "netWeight": {
+          "kg": "7704.00",
+          "raw": {
+            "value": "7704.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "8081.90",
+          "raw": {
+            "value": "8081.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "44.88"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNHPH7712859",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "574563841",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "consignee": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "DE482910375516203"
+      },
+      "notifyParty": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "DE482910375516203"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "092E",
+      "placeOfReceipt": {
+        "name": "Duy Tiên",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Hai Phong",
+        "unLocode": "VNHPH",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Hamburg",
+        "unLocode": "DEHAM",
+        "country": "DE"
+      },
+      "placeOfDelivery": {
+        "name": "Duisburg",
+        "unLocode": "DEDUI",
+        "country": "DE"
+      },
+      "containers": [
+        {
+          "number": "MDOU2100338",
+          "seal": "MD5360424",
+          "type": "40HC",
+          "packages": 431,
+          "grossWeight": {
+            "kg": "8081.90",
+            "raw": {
+              "value": "8081.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "44.88"
+        }
+      ],
+      "totalPackages": 431,
+      "totalGrossWeight": {
+        "kg": "8081.90",
+        "raw": {
+          "value": "8081.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "RHEINUFER/PO-58748/C/NO. 1-431",
+      "cargoDescription": "SAID TO CONTAIN 431 CTNS MEN'S COTTON T-SHIRT AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Hai Phong",
+      "dateOfIssue": "2026-02-28",
+      "shippedOnBoardDate": "2026-02-28",
+      "references": [
+        "CI/26/3570",
+        "PO-58748"
+      ]
+    }
+  }
+}

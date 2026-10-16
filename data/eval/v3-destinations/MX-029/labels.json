@@ -1,0 +1,49 @@
+{
+  "id": "MX-029",
+  "errors": [
+    {
+      "kind": "invoice_language_not_accepted",
+      "document": "invoice",
+      "field": "language",
+      "before": "es",
+      "after": "zh",
+      "expectedRuleIds": [
+        "M3"
+      ],
+      "description": "Invoice in \"zh\" without a Spanish translation."
+    },
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[0].quantity.value",
+      "before": "644",
+      "after": "6440",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 1 quantity changed without updating the line total."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "consignee.name",
+      "before": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Consignee missing from the invoice."
+    }
+  ]
+}

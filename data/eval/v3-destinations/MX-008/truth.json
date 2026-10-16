@@ -1,0 +1,319 @@
+{
+  "id": "MX-008",
+  "seed": 1529881851,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "IND2607439",
+      "invoiceDate": "2026-06-21",
+      "poNumber": "DI682207",
+      "seller": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "buyer": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K21"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K21"
+      },
+      "exporter": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "shipmentDate": "2026-06-28",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Valencia",
+          "unLocode": "ESVLC",
+          "country": "ES"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Valencia"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 12,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "560",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.02",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "5051.20",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "ES",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "12110.00",
+        "raw": {
+          "value": "12110.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "11760.00",
+        "raw": {
+          "value": "11760.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "5051.20",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-IND2607439",
+      "invoiceRef": "IND2607439",
+      "seller": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K21"
+      },
+      "packages": [
+        {
+          "range": "1-14",
+          "count": 14,
+          "type": "PLT",
+          "marks": "DISTRIBUIDORA/DI682207/C/NO. 1-14",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "560",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "11760.00",
+            "raw": {
+              "value": "11760.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "12110.00",
+            "raw": {
+              "value": "12110.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 14,
+        "netWeight": {
+          "kg": "11760.00",
+          "raw": {
+            "value": "11760.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "12110.00",
+          "raw": {
+            "value": "12110.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "12.10"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVVLC291314",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "675890678",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K21"
+      },
+      "notifyParty": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K21"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "072W",
+      "placeOfReceipt": {
+        "name": "Vila-real",
+        "country": "ES"
+      },
+      "portOfLoading": {
+        "name": "Valencia",
+        "unLocode": "ESVLC",
+        "country": "ES"
+      },
+      "portOfDischarge": {
+        "name": "Lazaro Cardenas",
+        "unLocode": "MXLZC",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Guadalajara",
+        "unLocode": "MXGDL",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "PCRU2309016",
+          "seal": "PC7610722",
+          "type": "20GP",
+          "packages": 14,
+          "grossWeight": {
+            "kg": "12110.00",
+            "raw": {
+              "value": "12110.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "12.10"
+        }
+      ],
+      "totalPackages": 14,
+      "totalGrossWeight": {
+        "kg": "12110.00",
+        "raw": {
+          "value": "12110.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "DISTRIBUIDORA/DI682207/C/NO. 1-14",
+      "cargoDescription": "SAID TO CONTAIN 14 PLTS PORCELAIN TILE 60X60",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Valencia",
+      "dateOfIssue": "2026-06-30",
+      "shippedOnBoardDate": "2026-06-30",
+      "references": [
+        "IND2607439",
+        "DI682207"
+      ]
+    }
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "id": "GB-007",
+  "seed": 671983443,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-6679",
+      "invoiceDate": "2026-05-24",
+      "poNumber": "PE384039",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-06-01",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Yantian",
+          "unLocode": "CNYTN",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Yantian"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 19,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "1450",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.22",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "11919.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "295.80",
+        "raw": {
+          "value": "295.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "261.00",
+        "raw": {
+          "value": "261.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "11919.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-6679",
+      "invoiceRef": "INV-2026-6679",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-29",
+          "count": 29,
+          "type": "CTN",
+          "marks": "PENNINE/PE384039/C/NO. 1-29",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "1450",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "261.00",
+            "raw": {
+              "value": "261.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "295.80",
+            "raw": {
+              "value": "295.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 29,
+        "netWeight": {
+          "kg": "261.00",
+          "raw": {
+            "value": "261.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "295.80",
+          "raw": {
+            "value": "295.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "2.78"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVYTN893419",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "760983136",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd Unit 9"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "002N",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Yantian",
+        "unLocode": "CNYTN",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Southampton",
+        "unLocode": "GBSOU",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "PCRU6202854",
+          "seal": "PC9648319",
+          "type": "20GP",
+          "packages": 29,
+          "grossWeight": {
+            "kg": "295.80",
+            "raw": {
+              "value": "295.80",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "2.78"
+        }
+      ],
+      "totalPackages": 29,
+      "totalGrossWeight": {
+        "kg": "295.80",
+        "raw": {
+          "value": "295.80",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PE384039/C/NO. 1-29",
+      "cargoDescription": "SAID TO CONTAIN 29 CTNS PLUSH TEDDY BEAR 30 CM",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Yantian",
+      "dateOfIssue": "2026-06-03",
+      "shippedOnBoardDate": "2026-06-03",
+      "references": [
+        "INV-2026-6679",
+        "PE384039"
+      ]
+    }
+  }
+}

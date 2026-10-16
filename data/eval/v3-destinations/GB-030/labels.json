@@ -1,0 +1,35 @@
+{
+  "id": "GB-030",
+  "errors": [
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "invoiceDate",
+      "before": "2026-08-14",
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Invoice date missing."
+    },
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "EUR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 835.00 EUR on an invoice in USD."
+    },
+    {
+      "kind": "consignee_address_mismatch",
+      "document": "billOfLading",
+      "field": "consignee.address.lines[0]",
+      "before": "Trafford Wharf Rd",
+      "after": "Trafford Wharf Rd Unit 19",
+      "expectedRuleIds": [
+        "X1"
+      ],
+      "description": "Consignee street address on the BL differs from the invoice."
+    }
+  ]
+}

@@ -1,0 +1,319 @@
+{
+  "id": "MX-026",
+  "seed": 750468377,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-0407",
+      "invoiceDate": "2026-08-05",
+      "poNumber": "DI694844",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-08-07",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Lazaro Cardenas"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 171,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "3420",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "14.47",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "49487.40",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4805.10",
+        "raw": {
+          "value": "4805.10",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4617.00",
+        "raw": {
+          "value": "4617.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "49487.40",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-0407",
+      "invoiceRef": "INV-2026-0407",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "packages": [
+        {
+          "range": "1-171",
+          "count": 171,
+          "type": "CTN",
+          "marks": "DISTRIBUIDORA/DI694844/C/NO. 1-171",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "3420",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4617.00",
+            "raw": {
+              "value": "4617.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4805.10",
+            "raw": {
+              "value": "4805.10",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 171,
+        "netWeight": {
+          "kg": "4617.00",
+          "raw": {
+            "value": "4617.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4805.10",
+          "raw": {
+            "value": "4805.10",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "8.08"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWEAMR5986805",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "255591727",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "notifyParty": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "056N",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "Lazaro Cardenas",
+        "unLocode": "MXLZC",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Guadalajara",
+        "unLocode": "MXGDL",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "TWEU1013402",
+          "seal": "TW2750232",
+          "type": "20GP",
+          "packages": 171,
+          "grossWeight": {
+            "kg": "4805.10",
+            "raw": {
+              "value": "4805.10",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "8.08"
+        }
+      ],
+      "totalPackages": 171,
+      "totalGrossWeight": {
+        "kg": "4805.10",
+        "raw": {
+          "value": "4805.10",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "DISTRIBUIDORA/DI694844/C/NO. 1-171",
+      "cargoDescription": "SAID TO CONTAIN 171 CTNS BRASS BALL VALVE 2\"",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-08-08",
+      "shippedOnBoardDate": "2026-08-08",
+      "references": [
+        "INV-2026-0407",
+        "DI694844"
+      ]
+    }
+  }
+}

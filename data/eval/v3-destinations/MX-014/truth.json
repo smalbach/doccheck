@@ -1,0 +1,312 @@
+{
+  "id": "MX-014",
+  "seed": 2139442164,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-5246",
+      "invoiceDate": "2026-04-04",
+      "poNumber": "PO-64418",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-04-15",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hamburg",
+          "unLocode": "DEHAM",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Hamburg"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 28,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "28",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "88.26",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "4271.28",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "532.00",
+        "raw": {
+          "value": "532.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "406.00",
+        "raw": {
+          "value": "406.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "2471.28",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-5246",
+      "invoiceRef": "INV-2026-5246",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-28",
+          "count": 28,
+          "type": "CRT",
+          "marks": "DISTRIBUIDORA/PO-64418/C/NO. 1-28",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "18",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "406.00",
+            "raw": {
+              "value": "406.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "532.00",
+            "raw": {
+              "value": "532.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 28,
+        "netWeight": {
+          "kg": "406.00",
+          "raw": {
+            "value": "406.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "532.00",
+          "raw": {
+            "value": "532.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "2.46"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPHAM401016",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "457634487",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "notifyParty": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "058S",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Hamburg",
+        "unLocode": "DEHAM",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Lazaro Cardenas",
+        "unLocode": "MXLZC",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Guadalajara",
+        "unLocode": "MXGDL",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "MDOU8079773",
+          "seal": "MD5530495",
+          "type": "20GP",
+          "packages": 28,
+          "grossWeight": {
+            "kg": "532.00",
+            "raw": {
+              "value": "532.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "2.46"
+        }
+      ],
+      "totalPackages": 28,
+      "totalGrossWeight": {
+        "kg": "558.60",
+        "raw": {
+          "value": "558.60",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "DISTRIBUIDORA/PO-64418/C/NO. 1-28",
+      "cargoDescription": "SAID TO CONTAIN 28 CRTS CENTRIFUGAL PUMP 0.75 KW",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Hamburg",
+      "dateOfIssue": "2026-04-18",
+      "shippedOnBoardDate": "2026-04-18",
+      "references": [
+        "INV-2026-5246",
+        "PO-64418"
+      ]
+    }
+  }
+}

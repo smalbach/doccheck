@@ -1,0 +1,310 @@
+{
+  "id": "EU-013",
+  "seed": 586950795,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/2464",
+      "invoiceDate": "2026-09-02",
+      "poNumber": "PO147956",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "buyer": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "exporter": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "shipmentDate": "2026-09-09",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Callao",
+          "unLocode": "PECLL",
+          "country": "PE"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Antwerp"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 118,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "7080",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.79",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "39313.20",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PE",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "7080.00",
+        "raw": {
+          "value": "7080.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "7174.40",
+        "raw": {
+          "value": "7174.40",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "33913.20",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/2464",
+      "invoiceRef": "CI/26/2464",
+      "seller": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "packages": [
+        {
+          "range": "1-118",
+          "count": 118,
+          "type": "BAG",
+          "marks": "POLDERHUIS/PO147956/C/NO. 1-118",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "7080",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "7080.00",
+            "raw": {
+              "value": "7080.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "7174.40",
+            "raw": {
+              "value": "7174.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 118,
+        "netWeight": {
+          "kg": "7080.00",
+          "raw": {
+            "value": "7080.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "7174.40",
+          "raw": {
+            "value": "7174.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "16.82"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLCLL7011990",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "474034239",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Cooperativa Agraria Cafetalera Pangoa Ltda.",
+        "address": {
+          "lines": [
+            "Av. Túpac Amaru 315"
+          ],
+          "city": "San Martín de Pangoa",
+          "region": "Junín",
+          "country": "PE"
+        },
+        "taxId": "20123456789"
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "notifyParty": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "013W",
+      "placeOfReceipt": {
+        "name": "San Martín de Pangoa",
+        "country": "PE"
+      },
+      "portOfLoading": {
+        "name": "Callao",
+        "unLocode": "PECLL",
+        "country": "PE"
+      },
+      "portOfDischarge": {
+        "name": "Antwerp",
+        "unLocode": "BEANR",
+        "country": "BE"
+      },
+      "placeOfDelivery": {
+        "name": "Rotterdam",
+        "unLocode": "NLRTM",
+        "country": "NL"
+      },
+      "containers": [
+        {
+          "number": "PCLU4110131",
+          "seal": "PC3672400",
+          "type": "20GP",
+          "packages": 118,
+          "grossWeight": {
+            "kg": "7174.40",
+            "raw": {
+              "value": "7174.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "16.81"
+        }
+      ],
+      "totalPackages": 118,
+      "totalGrossWeight": {
+        "kg": "7174.40",
+        "raw": {
+          "value": "7174.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "POLDERHUIS/PO147956/C/NO. 1-118",
+      "cargoDescription": "SAID TO CONTAIN 118 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Callao",
+      "dateOfIssue": "2026-09-10",
+      "shippedOnBoardDate": "2026-09-10",
+      "references": [
+        "CI/26/2464",
+        "PO147956"
+      ]
+    }
+  }
+}

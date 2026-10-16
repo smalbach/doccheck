@@ -1,0 +1,306 @@
+{
+  "id": "GB-009",
+  "seed": 2060120835,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NOR2601521",
+      "invoiceDate": "2026-03-02",
+      "poNumber": "PO-36454",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        }
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-03-12",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hamburg",
+          "unLocode": "DEHAM",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Hamburg"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "EUR",
+      "packageCount": 11,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "11",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "75.10",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "826.10",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "209.00",
+        "raw": {
+          "value": "209.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "159.50",
+        "raw": {
+          "value": "159.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "826.10",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "originStatement": "The exporter of the products covered by this document (Exporter Reference No DEREX495696889) declares that, except where otherwise clearly indicated, these products are of EU preferential origin."
+    },
+    "packingList": {
+      "packingListNumber": "PL-NOR2601521",
+      "invoiceRef": "NOR2601521",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-11",
+          "count": 11,
+          "type": "CRT",
+          "marks": "THAMESIDE/PO-36454/C/NO. 1-11",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "11",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "159.50",
+            "raw": {
+              "value": "159.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "209.00",
+            "raw": {
+              "value": "209.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 11,
+        "netWeight": {
+          "kg": "159.50",
+          "raw": {
+            "value": "159.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "209.00",
+          "raw": {
+            "value": "209.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "0.97"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSHAM317502",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "209885905",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        }
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "033E",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Hamburg",
+        "unLocode": "DEHAM",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "PCRU6973276",
+          "seal": "PC8420090",
+          "type": "20GP",
+          "packages": 11,
+          "grossWeight": {
+            "kg": "209.00",
+            "raw": {
+              "value": "209.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "0.97"
+        }
+      ],
+      "totalPackages": 11,
+      "totalGrossWeight": {
+        "kg": "209.00",
+        "raw": {
+          "value": "209.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/PO-36454/C/NO. 1-11",
+      "cargoDescription": "SAID TO CONTAIN 11 CRTS CENTRIFUGAL PUMP 0.75 KW",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Hamburg",
+      "dateOfIssue": "2026-03-12",
+      "shippedOnBoardDate": "2026-03-12",
+      "references": [
+        "NOR2601521",
+        "PO-36454"
+      ]
+    }
+  }
+}

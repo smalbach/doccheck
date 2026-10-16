@@ -1,0 +1,314 @@
+{
+  "id": "GB-004",
+  "seed": 1580357509,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "ÖZD2608634",
+      "invoiceDate": "2026-02-13",
+      "poNumber": "PE102383",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "shipmentDate": "2026-02-22",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ambarlı",
+          "unLocode": "TRAMR",
+          "country": "TR"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Ambarlı"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 34,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "680",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.53",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "11240.40",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "TR",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "955.40",
+        "raw": {
+          "value": "955.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "918.00",
+        "raw": {
+          "value": "918.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "11240.40",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-ÖZD2608634",
+      "invoiceRef": "ÖZD2608634",
+      "seller": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-34",
+          "count": 34,
+          "type": "CTN",
+          "marks": "PENNINE/PE102383/C/NO. 1-34",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "680",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "918.00",
+            "raw": {
+              "value": "918.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "955.40",
+            "raw": {
+              "value": "955.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 34,
+        "netWeight": {
+          "kg": "918.00",
+          "raw": {
+            "value": "918.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "955.40",
+          "raw": {
+            "value": "955.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "1.61"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLAMR3040725",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "149278498",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Özdemir Vana Sanayi ve Ticaret A.Ş.",
+        "address": {
+          "lines": [
+            "İkitelli OSB, Demirciler Sitesi C Blok No: 9"
+          ],
+          "city": "Başakşehir",
+          "region": "İstanbul",
+          "postalCode": "34490",
+          "country": "TR"
+        },
+        "taxId": "6810123456"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "029W",
+      "placeOfReceipt": {
+        "name": "Başakşehir",
+        "country": "TR"
+      },
+      "portOfLoading": {
+        "name": "Ambarlı",
+        "unLocode": "TRAMR",
+        "country": "TR"
+      },
+      "portOfDischarge": {
+        "name": "Southampton",
+        "unLocode": "GBSOU",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "PCRU5910627",
+          "seal": "PC6787237",
+          "type": "20GP",
+          "packages": 34,
+          "grossWeight": {
+            "kg": "955.40",
+            "raw": {
+              "value": "955.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "1.61"
+        }
+      ],
+      "totalPackages": 34,
+      "totalGrossWeight": {
+        "kg": "955.40",
+        "raw": {
+          "value": "955.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PE102383/C/NO. 1-34",
+      "cargoDescription": "SAID TO CONTAIN 34 CTNS BRASS BALL VALVE 2\"",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ambarlı",
+      "dateOfIssue": "2026-02-23",
+      "shippedOnBoardDate": "2026-02-23",
+      "references": [
+        "ÖZD2608634",
+        "PE102383"
+      ]
+    }
+  }
+}

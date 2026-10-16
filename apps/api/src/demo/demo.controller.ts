@@ -1,5 +1,6 @@
 import { Controller, Get, NotFoundException, Param, Post, type OnApplicationBootstrap } from '@nestjs/common';
 import { extractionRequest, PROMPT_VERSION, readPdfText, type ExtractableType, type LlmClient } from '@doccheck/extraction';
+import type { Destination } from '@doccheck/schemas';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
@@ -81,7 +82,7 @@ export class DemoController implements OnApplicationBootstrap {
   }
 
   private async create(sampleId: string, userId: string) {
-    const shipment = await this.shipments.create({ reference: `Sample ${sampleId}`, destination: sampleId.slice(0, 2) as 'CA' | 'US', transportMode: 'SEA' }, userId);
+    const shipment = await this.shipments.create({ reference: `Sample ${sampleId}`, destination: sampleId.slice(0, 2) as Destination, transportMode: 'SEA' }, userId);
     const files = await Promise.all(FILES.map(async (f) => ({ name: `${sampleId}-${f}`, bytes: await readFile(join(this.dir!, sampleId, f)) })));
     // US samples come with their ISF, which is filed electronically rather than as a PDF.
     const truth = JSON.parse(await readFile(join(this.dir!, sampleId, 'truth.json'), 'utf8'));

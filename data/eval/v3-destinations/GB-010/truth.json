@@ -1,0 +1,384 @@
+{
+  "id": "GB-010",
+  "seed": 889239136,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "BRI2604833",
+      "invoiceDate": "2026-06-18",
+      "poNumber": "PO-4412",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "shipmentDate": "2026-06-24",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Shekou",
+          "unLocode": "CNSHK",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Shekou"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 408,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "PZ-1000",
+          "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+          "quantity": {
+            "value": "4968",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "5.00",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "24840.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        },
+        {
+          "lineNo": 2,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "10050",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "9.40",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "94470.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "5316.66",
+        "raw": {
+          "value": "5316.66",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4889.16",
+        "raw": {
+          "value": "4889.16",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "119310.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-BRI2604833",
+      "invoiceRef": "BRI2604833",
+      "seller": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-207",
+          "count": 207,
+          "type": "CTN",
+          "marks": "PENNINE/PO-4412/C/NO. 1-408",
+          "contents": [
+            {
+              "sku": "PZ-1000",
+              "description": "Jigsaw puzzle 1000 pcs",
+              "quantity": {
+                "value": "4968",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3080.16",
+            "raw": {
+              "value": "3080.16",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3266.46",
+            "raw": {
+              "value": "3266.46",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            52,
+            38,
+            30
+          ]
+        },
+        {
+          "range": "208-408",
+          "count": 201,
+          "type": "CTN",
+          "marks": "PENNINE/PO-4412/C/NO. 1-408",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "10050",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1809.00",
+            "raw": {
+              "value": "1809.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2050.20",
+            "raw": {
+              "value": "2050.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 408,
+        "netWeight": {
+          "kg": "4889.16",
+          "raw": {
+            "value": "4889.16",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5316.66",
+          "raw": {
+            "value": "5316.66",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "31.57"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPSHK624763",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "366771651",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Brightstar Toys Manufacturing Co., Ltd.",
+        "address": {
+          "lines": [
+            "No. 18 Longgang Industrial Ave",
+            "Buji Subdistrict"
+          ],
+          "city": "Shenzhen",
+          "region": "Guangdong",
+          "postalCode": "518112",
+          "country": "CN"
+        },
+        "contact": {
+          "name": "Lily Chen",
+          "email": "export@brightstar-toys.example"
+        }
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd Unit 15"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "082E",
+      "placeOfReceipt": {
+        "name": "Shenzhen",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Shekou",
+        "unLocode": "CNSHK",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Southampton",
+        "unLocode": "GBSOU",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "MDOU1947694",
+          "seal": "MD4563507",
+          "type": "40GP",
+          "packages": 408,
+          "grossWeight": {
+            "kg": "5316.66",
+            "raw": {
+              "value": "5316.66",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "31.57"
+        }
+      ],
+      "totalPackages": 408,
+      "totalGrossWeight": {
+        "kg": "5316.66",
+        "raw": {
+          "value": "5316.66",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PO-4412/C/NO. 1-408",
+      "cargoDescription": "SAID TO CONTAIN 408 CTNS JIGSAW PUZZLE 1000 PCS AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Shekou",
+      "dateOfIssue": "2026-06-25",
+      "shippedOnBoardDate": "2026-06-25",
+      "references": [
+        "BRI2604833",
+        "PO-4412"
+      ]
+    }
+  }
+}

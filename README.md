@@ -1,6 +1,6 @@
 # DocCheck
 
-**Catch freight document errors before customs does.** DocCheck reads the commercial invoice, packing list, bill of lading and, for US ocean freight, the ISF 10+2 filing, then cross-checks them against each other and against CBSA (Canada) and CBP (US) requirements. A local model copies the values as printed, plain tested code normalizes them, and fifteen deterministic rules do the checking. The model comes back only for the narrow cases a rule cannot settle alone. Every finding links to the exact line in the PDF it comes from and to the regulation passage behind it, and the supplier can be asked for corrected documents without leaving the app. The models run locally: no document goes to an outside AI service.
+**Catch freight document errors before customs does.** DocCheck reads the commercial invoice, packing list, bill of lading and, for US ocean freight, the ISF 10+2 filing, then cross-checks them against each other and against the requirements of the destination: CBSA (Canada), CBP (US), ANAM (Mexico), the Union Customs Code (EU) or HMRC (UK). A local model copies the values as printed, plain tested code normalizes them, and 24 deterministic rules do the checking. The model comes back only for the narrow cases a rule cannot settle alone. Every finding links to the exact line in the PDF it comes from and to the regulation passage behind it, and the supplier can be asked for corrected documents without leaving the app. The models run locally: no document goes to an outside AI service.
 
 <p align="center">
   <img src="docs/screenshots/flow.webp" width="900" alt="Opening a sample shipment, validating it, and clicking a finding's evidence: the invoice PDF opens with the cited line highlighted">
@@ -25,6 +25,7 @@ Measured on synthetic shipments generated from a fixed seed (there is no public 
 | X11 on extracted ISF PDFs | Recall / precision, end to end | 100.0% / 100.0% |
 | Extraction, unseen formats (v2) | Field accuracy, 180 PDFs (177 complete enough for the rules) | 98.8% |
 | Rules on v2 PDFs | Recall / precision, end to end | 100.0% / 100.0% |
+| Rules on ground truth, Mexico / EU / UK (v3-destinations) | Recall / precision on 116 covered errors (of 124 injected, 90 shipments) | 100.0% / 100.0% |
 | Agent | Same consignee written differently (40 cases): verdict / right action | 87.5% / 100.0% (0 wrong, 5 unsure) |
 | Agent | BL description vs invoice goods (40 cases): verdict / right action | 100.0% / 100.0% (0 wrong, 0 unsure) |
 
@@ -64,9 +65,9 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 
 - **Reads the PDFs**, text layer or scans (OCR with bundled English and French models, or optionally Unlimited-OCR on Apple Silicon), and classifies each one as invoice, packing list, bill of lading or ISF filing confirmation.
 - **Extracts typed data with a local model** (Ollama, `qwen3.8`): the model fills a Zod schema with values exactly as printed, and tested code converts them to decimals, ISO dates, kilograms and ISO country codes. A required value the model fills in although the invoice leaves it blank is dropped.
-- **Runs 15 deterministic rules** (listed [below](#rules-implemented)): package counts and weights across documents, invoice arithmetic, currency, quantities per SKU, dates, terms of sale vs freight terms, ISO 6346 container check digits, ISF consistency, and the invoice fields CBSA (CI1) and CBP (19 CFR 141.86) require. Money and weights use fixed-point arithmetic, never floats.
+- **Runs 24 deterministic rules** (listed [below](#rules-implemented)): package counts and weights across documents, invoice arithmetic, currency, quantities per SKU, dates, terms of sale vs freight terms, ISO 6346 container check digits, ISF consistency, the invoice fields CBSA (CI1), CBP (19 CFR 141.86), Mexico (RGCE regla 3.1.8), the EU (UCC Annex B) and HMRC require, Mexican RFC and EU/UK EORI numbers, the EU's ICS2 pre-loading data and the UK-EU TCA statement on origin. Money and weights use fixed-point arithmetic, never floats.
 - **Asks the model narrow questions only where rules cannot decide**: is a differently written consignee the same company, does the BL cargo description match the invoice goods. Each answer comes with verdict, confidence and rationale; it acts only at confidence ≥ 0.7 (`ACT_CONFIDENCE` in [`packages/agent/src/review.ts`](packages/agent/src/review.ts)) and "unsure" never dismisses a finding.
-- **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a CBSA memorandum or 19 CFR passage found by hybrid search (embeddings + BM25). The model never writes the legal basis.
+- **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a passage of the destination's regulations (CBSA memoranda, 19 CFR, the RGCE and Ley Aduanera, EU customs law, HMRC guidance) found by hybrid search (embeddings + BM25). The model never writes the legal basis.
 - **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
 - **Talks to the supplier from the app**: the correction request is drafted from the findings in English, Spanish or French, sent over SMTP, and the reply comes back by IMAP or webhook into the same conversation, where its PDF is added to the shipment in one click ([docs/MESSAGING.md](docs/MESSAGING.md), in Spanish).
 - **Measures itself** on a generated set of 200 labeled shipments (100 per destination, 293 injected errors), field by field and rule by rule, end to end on the extracted PDFs ([docs/METRICS.md](docs/METRICS.md)). Model answers are cached in `eval/cache`, so the evaluation reruns without a model.
@@ -99,7 +100,7 @@ flowchart LR
   LLM -.-> Ollama{{"Ollama (local)<br/>qwen3.8 · bge-m3"}}
   Agent -.-> Ollama
   Cite -.-> Ollama
-  Cite --- Corpus[/"CBSA memoranda<br/>19 CFR"/]
+  Cite --- Corpus[/"CBSA memoranda, 19 CFR<br/>RGCE, EU customs law, HMRC guidance"/]
 ```
 
 ## Tech stack
@@ -174,7 +175,7 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | `apps/api` | NestJS API; also serves the web app |
 | `apps/web` | Web app (Vite + React + Radix UI): shipments, PDF upload, findings with citations, PDF viewer with highlights. `src/features/<page>` holds one component per file, `src/components/ui` the Radix-based primitives, `src/lib` one helper per file |
 | `data/reference` | UN/LOCODE, ISO 3166, ISO 4217 tables (phase 2) |
-| `data/corpus` | CBSA memoranda (invoices D1-4-1, marking D11-3-1, proof of origin D11-4-2, valuation D13-4-3 and D13-4-7) and 19 CFR (141.83, 141.86, 141.89, Parts 134 and 149, Part 152 subpart E) as Markdown with URL and effective date, plus the embedding index |
+| `data/corpus` | CBSA memoranda (invoices D1-4-1, marking D11-3-1, proof of origin D11-4-2, valuation D13-4-3 and D13-4-7), 19 CFR (141.83, 141.86, 141.89, Parts 134 and 149, Part 152 subpart E), the RGCE 2026 (reglas 1.9.19 and 3.1.8), the Union Customs Code and Annex B of Delegated Regulation 2015/2446, HMRC's CDS completion guide, EORI manual and TCA origin guidance, as Markdown with URL and effective date, plus the embedding index |
 | `data/eval/v1` | Evaluation set: `truth.json` + `labels.json` per shipment (committed), PDFs (generated, git-ignored) |
 | `scripts/smoke.mjs` | End-to-end smoke test against the built API |
 
@@ -182,23 +183,32 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 
 | ID | Rule | Applies to | Severity |
 | --- | --- | --- | --- |
-| X1 | Consignee matches between invoice and BL (after normalizing case, punctuation, abbreviations, legal form) | CA, US | Medium |
-| X2 | Package count matches across invoice, packing list and BL | CA, US | High |
-| X3 | Gross weight matches between packing list and BL (0.5% tolerance, configurable) | CA, US | Medium |
-| X4 | Net weight is not greater than gross weight | CA, US | Medium |
-| X5 | Quantity × unit price = line total; lines sum to the invoice total | CA, US | High |
-| X6 | Every amount on the invoice uses the declared currency | CA, US | Medium |
-| X7 | Invoice quantities match the packing list, per SKU | CA, US | High |
-| X8 | Packing list refers to the invoice number | CA, US | Low |
-| X9 | Invoice shipment date within 7 days of the BL shipped-on-board date | CA, US | Low |
-| X10 | Container numbers have a valid ISO 6346 check digit | CA, US | Medium |
+| X1 | Consignee matches between invoice and BL (after normalizing case, punctuation, abbreviations, legal form) | All | Medium |
+| X2 | Package count matches across invoice, packing list and BL | All | High |
+| X3 | Gross weight matches between packing list and BL (0.5% tolerance, configurable) | All | Medium |
+| X4 | Net weight is not greater than gross weight | All | Medium |
+| X5 | Quantity × unit price = line total; lines sum to the invoice total | All | High |
+| X6 | Every amount on the invoice uses the declared currency | All | Medium |
+| X7 | Invoice quantities match the packing list, per SKU | All | High |
+| X8 | Packing list refers to the invoice number | All | Low |
+| X9 | Invoice shipment date within 7 days of the BL shipped-on-board date | All | Low |
+| X10 | Container numbers have a valid ISO 6346 check digit | All | Medium |
 | X11 | ISF agrees with the invoice: seller, buyer, country of origin, HTS heading | US | High |
-| X12 | Terms of sale agree with the BL freight terms (CIF/CFR: prepaid, FOB/FCA/EXW: collect) | CA, US | Low |
+| X12 | Terms of sale agree with the BL freight terms (CIF/CFR: prepaid, FOB/FCA/EXW: collect) | All | Low |
 | C1 | Invoice has the fields CBSA requires (CI1 fields 1–17: vendor, consignee, origin, terms of sale, currency, packages, description, quantity, price, total, weights) | CA | per field |
 | C2 | Invoice is in English or French | CA | Medium |
 | U1 | Invoice has the information 19 CFR 141.86(a) requires (port of entry, time of sale, parties, description, quantity, price, currency, origin) | US | per field |
+| M1 | Invoice has the data RGCE 2026 regla 3.1.8 requires (place and date, consignee, detailed description, quantity, unit and total value, seller, document number, commercial value and currency) and the tax numbers regla 1.9.19 asks for in the pedimento's value data (seller's tax ID, consignee's RFC) | MX | per field |
+| M2 | Importer's RFC is well formed: 3 or 4 letters, a real YYMMDD date, homoclave, SAT check digit (the generic XAXX/XEXX RFCs accepted) | MX | High |
+| M3 | Invoice is in Spanish, English or French; any other language needs a Spanish translation | MX | Medium |
+| E1 | Invoice has the data the EU customs declaration takes from it (Annex B to Delegated Regulation 2015/2446: seller, buyer, importer EORI, delivery terms with place, description, item amount, origin, currency, total) | EU | per field |
+| E2 | Importer's EORI number is valid in the EU: member-state prefix (or XI) and at most 15 characters | EU | High |
+| E3 | Invoice and BL carry the ICS2 entry summary data for ocean freight: six-digit HS code per line, seller, buyer and consignee (the notify party on a to-order bill) with their countries | EU | High |
+| K1 | Invoice has the details an HMRC (CDS) import declaration is completed from, by data element: seller 3/24, buyer 3/26, importer EORI 3/16, delivery terms 4/1, description 6/8, commodity code 6/14, item price 4/14, currency 4/10, origin 5/15 | GB | per field |
+| K2 | Importer's EORI number has the UK format: GB (or XI) and 12 digits | GB | High |
+| K3 | Goods of EU origin carry a TCA statement on origin that declares preferential origin and, above EUR 6 000, quotes the exporter's REX number | GB | Low when absent, Medium when wrong |
 
-Completeness rules report one finding per missing field, citing the CI1 field or the 141.86 paragraph. Regulation excerpts are attached by the agent in phase 4.
+Completeness rules report one finding per missing field, citing the CI1 field, the 141.86 paragraph, the fracción of RGCE regla 3.1.8 or 1.9.19, the Annex B data element or the CDS data element. The RFC check digit is SAT's modulo 11 over its character table; EORI numbers are checked for shape only (their national part is not public), and K3 only sees a statement on origin entered on the invoice data: extraction does not read it from PDFs yet, so on extracted documents K3 points out its absence at Low severity. Regulation excerpts are attached by the agent in phase 4.
 
 Money and weights are decimal strings and use fixed-point arithmetic — never JavaScript floats.
 
@@ -209,6 +219,8 @@ Money and weights are decimal strings and use fixed-point arithmetic — never J
 Each injected error has a label with the document, field path, before/after values and the rules expected to flag it for that destination. 274 of the 293 injected errors are covered by a rule; the rest are fields the destination does not require (for example terms of sale on a US invoice) or an error hidden by another one. A test checks that the engine flags exactly the expected rules on all 200 shipments and nothing on the clean versions; `npm run eval:extraction` measures recall and precision per rule on the extracted documents.
 
 `npm run synth -- --set v2` builds a second, smaller set (60 shipments, 16 clean) to check that extraction holds up on formats the prompt was never tuned on: two new layouts per document (a European letterhead with "48.600,00", "1 140,50 kg" and "14.03.2026", and a numbered-box form), line tables of 6 to 40 rows that run onto a second page, and parties with accented, non-English names (French, German, Spanish, Vietnamese, Portuguese, Turkish). The v1 layouts stay in the mix as a control group. Set v1 does not change: a test checks every `truth.json` against the published files.
+
+`npm run synth -- --set v3-destinations --no-pdf` builds 90 shipments to the newer destinations (30 each to Mexico, the EU and the UK, 8 clean per destination) in `data/eval/v3-destinations`. Importers carry RFCs with a correct check digit or EORI numbers of the right country; EU imports come only from sellers outside the EU; UK invoices for EU goods carry the TCA statement on origin; about half the Mexican invoices are in Spanish. On top of the shared errors it injects wrong and missing importer numbers, HS codes cut to four digits (ICS2), a missing statement on origin and an invoice language Mexico does not accept. Sets v1 and v2 are unchanged: each destination draws from its own random stream. Only the ground truth is scored so far; the metrics are in [docs/METRICS.md](docs/METRICS.md).
 
 PDF rendering uses Playwright's Chromium, or the local Chrome when that build is not installed (`npx playwright install chromium`).
 
@@ -249,8 +261,8 @@ After the rules run, `/validate` does a second pass:
 | GET | `/admin/models`, `/admin/system` | Admin: installed Ollama models with their measured accuracy; what the server runs with |
 | GET / PATCH | `/admin/users`, `/admin/users/:id` | Admin: accounts and `{ role }` (nobody changes their own; the last admin stays) |
 | GET | `/rules?destination=CA` | Active rules for a destination |
-| POST | `/shipments` | Create a shipment: `{ reference?, destination: "CA" \| "US", transportMode? }` |
-| GET | `/shipments` | The user's shipments, a page at a time: `?status=all\|open\|attention\|done&destination=CA\|US&q=text&limit=25&offset=0` → `{ items, total, limit, offset, summary }` (`summary` counts every shipment per status group) |
+| POST | `/shipments` | Create a shipment: `{ reference?, destination: "CA" \| "US" \| "MX" \| "EU" \| "GB", transportMode? }` |
+| GET | `/shipments` | The user's shipments, a page at a time: `?status=all\|open\|attention\|done&destination=CA\|US\|MX\|EU\|GB&q=text&limit=25&offset=0` → `{ items, total, limit, offset, summary }` (`summary` counts every shipment per status group) |
 | GET | `/shipments/:id` | Shipment and status |
 | PATCH | `/shipments/:id` | `{ reference?, destination?, transportMode? }`. The destination is refused while documents extract and, leaving the US, while the ISF was entered by hand (409); one read from a PDF is set aside and comes back with the US |
 | DELETE | `/shipments/:id` | Delete the shipment with its documents, PDFs, extractions, ISF and findings (409 while extracting) |
@@ -287,7 +299,7 @@ Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs
 
 ## Disclaimer
 
-DocCheck is a portfolio and learning project. It is not customs advice and does not file anything with CBSA or CBP.
+DocCheck is a portfolio and learning project. It is not customs advice and does not file anything with any customs authority.
 
 ## License
 
