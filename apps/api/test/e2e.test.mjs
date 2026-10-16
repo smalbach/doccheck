@@ -6,6 +6,8 @@
 //
 // Uses DATABASE_URL_TEST, or DATABASE_URL with the database renamed to doccheck_test. The schema is
 // dropped and recreated, so the database name must end in "_test".
+// The samples are set v1: labeled for the v1 rules. Rules added later read data v1 made up (BN, SCAC), see METRICS.md.
+import { V1_RULE_IDS } from '@doccheck/rules';
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
@@ -1219,7 +1221,7 @@ describe('PDF upload', { skip: !hasSample && 'evaluation set not generated' }, (
 
     const run = await call('POST', `/shipments/${s.id}/validate?agent=false`);
     const expected = JSON.parse(readFileSync(join(sample, 'labels.json'), 'utf8')).errors.flatMap((e) => e.expectedRuleIds).sort();
-    assert.deepEqual([...new Set(run.body.findings.map((f) => f.ruleId))].sort(), expected);
+    assert.deepEqual([...new Set(run.body.findings.filter((f) => V1_RULE_IDS.includes(f.ruleId)).map((f) => f.ruleId))].sort(), expected);
     assert.ok(run.body.findings.every((f) => f.evidence.some((e) => e.source?.page === 1)));
 
     const invoiceId = documents[0].document.id;
@@ -2214,7 +2216,7 @@ describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' 
     const run = await demoCall('POST', `/shipments/${a.body.id}/validate?agent=false`);
     assert.equal(run.status, 200);
     const expected = JSON.parse(readFileSync(join(sample, 'labels.json'), 'utf8')).errors.flatMap((e) => e.expectedRuleIds).sort();
-    assert.deepEqual([...new Set(run.body.findings.map((f) => f.ruleId))].sort(), expected);
+    assert.deepEqual([...new Set(run.body.findings.filter((f) => V1_RULE_IDS.includes(f.ruleId)).map((f) => f.ruleId))].sort(), expected);
   });
 });
 
