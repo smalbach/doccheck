@@ -288,45 +288,48 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
         await this.supplierAudit(access, 'portal.open', { userAgent: access.userAgent.slice(0, 200) });
       }
     }
-    const importer = r.orgName;
-    const [latest, uploads, uploaded, docs, history] = await Promise.all([
-      this.repo.latestValidation(r.shipmentId),
-      this.repo.uploads(r.id),
-      this.repo.uploadedDocuments(r.id),
-      this.repo.documents(r.shipmentId),
-      r.partyId ? this.repo.history(r.orgId, r.partyId) : Promise.resolve([r]),
-    ]);
-    const findings: PortalFinding[] = [];
-    // A pre-shipment draft has nothing to check until the supplier uploads something.
-    const current = latest && (r.kind === 'correction' || r.uploads > 0) ? await this.repo.findingsOf(latest.id) : [];
-    const cites = (f: Record<string, unknown>) => (f.evidence as Evidence[]).some((ev) => uploaded.has(ev.documentId));
-    for (const f of current) {
-      if (r.kind === 'pre_shipment' || r.fingerprints.includes(f.fingerprint) || cites(f)) findings.push(this.supplierFinding(f, 'open', docs, r.partyId, uploaded));
-    }
-    if (r.kind === 'correction') {
-      const present = new Set(current.map((f) => f.fingerprint as string));
-      const gone = r.fingerprints.filter((fp) => !present.has(fp));
-      for (const f of await this.repo.findingsByFingerprint(r.shipmentId, gone)) findings.push(this.supplierFinding(f, 'fixed', docs, r.partyId, uploaded));
-    }
-    return {
-      kind: r.kind,
-      status: statusOf(r),
-      ...((r.reference ?? r.shipmentReference) ? { reference: r.reference ?? r.shipmentReference } : {}),
-      ...(r.destination ? { destination: r.destination } : {}),
-      importer,
-      ...(r.supplierName ? { supplier: r.supplierName } : {}),
-      ...(r.language ? { language: r.language } : {}),
-      expiresAt: link.expiresAt,
-      findings,
-      skipped:
-        r.kind === 'pre_shipment' && latest && r.uploads > 0
-          ? [...latest.skipped, ...latest.ran.filter((id) => HISTORY_RULES.includes(id)).map((ruleId) => ({ ruleId, missing: [], reason: 'history' as const }))]
-          : [],
-      ...(latest && (r.kind === 'correction' || r.uploads > 0) ? { validatedAt: latest.createdAt } : {}),
-      uploads,
-      history: history.map((h) => ({ kind: h.kind, ...((h.reference ?? h.shipmentReference) ? { reference: h.reference ?? h.shipmentReference } : {}), status: statusOf(h), createdAt: h.createdAt, current: h.id === r.id })),
-      limits: { maxFileBytes: MAX_ATTACHMENT_BYTES, maxFiles: MAX_ATTACHMENTS, maxTotalBytes: MAX_ATTACHMENTS_BYTES },
-    };
+    // Everything the page shows is read from one snapshot, the request row included (the guard's copy
+    // is older): its status, uploads and findings then always agree, whatever the check is doing.
+    return this.repo.snapshot(async (db) => {
+      const r = (await db.request(access.request.id)) ?? access.request;
+      const importer = r.orgName;
+      const latest = await db.latestValidation(r.shipmentId);
+      const uploads = await db.uploads(r.id);
+      const uploaded = await db.uploadedDocuments(r.id);
+      const docs = await db.documents(r.shipmentId);
+      const history = r.partyId ? await db.history(r.orgId, r.partyId) : [r];
+      const findings: PortalFinding[] = [];
+      // A pre-shipment draft has nothing to check until the supplier uploads something.
+      const current = latest && (r.kind === 'correction' || r.uploads > 0) ? await db.findingsOf(latest.id) : [];
+      const cites = (f: Record<string, unknown>) => (f.evidence as Evidence[]).some((ev) => uploaded.has(ev.documentId));
+      for (const f of current) {
+        if (r.kind === 'pre_shipment' || r.fingerprints.includes(f.fingerprint) || cites(f)) findings.push(this.supplierFinding(f, 'open', docs, r.partyId, uploaded));
+      }
+      if (r.kind === 'correction') {
+        const present = new Set(current.map((f) => f.fingerprint as string));
+        const gone = r.fingerprints.filter((fp) => !present.has(fp));
+        for (const f of await db.findingsByFingerprint(r.shipmentId, gone)) findings.push(this.supplierFinding(f, 'fixed', docs, r.partyId, uploaded));
+      }
+      return {
+        kind: r.kind,
+        status: statusOf(r),
+        ...((r.reference ?? r.shipmentReference) ? { reference: r.reference ?? r.shipmentReference } : {}),
+        ...(r.destination ? { destination: r.destination } : {}),
+        importer,
+        ...(r.supplierName ? { supplier: r.supplierName } : {}),
+        ...(r.language ? { language: r.language } : {}),
+        expiresAt: link.expiresAt,
+        findings,
+        skipped:
+          r.kind === 'pre_shipment' && latest && r.uploads > 0
+            ? [...latest.skipped, ...latest.ran.filter((id) => HISTORY_RULES.includes(id)).map((ruleId) => ({ ruleId, missing: [], reason: 'history' as const }))]
+            : [],
+        ...(latest && (r.kind === 'correction' || r.uploads > 0) ? { validatedAt: latest.createdAt } : {}),
+        uploads,
+        history: history.map((h) => ({ kind: h.kind, ...((h.reference ?? h.shipmentReference) ? { reference: h.reference ?? h.shipmentReference } : {}), status: statusOf(h), createdAt: h.createdAt, current: h.id === r.id })),
+        limits: { maxFileBytes: MAX_ATTACHMENT_BYTES, maxFiles: MAX_ATTACHMENTS, maxTotalBytes: MAX_ATTACHMENTS_BYTES },
+      };
+    });
   }
 
   /**
