@@ -16,6 +16,7 @@ import { IntakePanel } from './IntakePanel';
 import { MessageItem } from './MessageItem';
 import { ReplyBox } from './ReplyBox';
 import { ThreadTags } from './ThreadTags';
+import { PortalPanel } from '../portal/PortalPanel';
 
 /** Fast while a message is on its way out, slow otherwise (replies arrive every minute at most). */
 const FAST_MS = 2000;
@@ -103,6 +104,7 @@ export function ThreadPage({ id }: { id: string }) {
       {notice && <Banner tone="ok">{notice}</Banner>}
       {thread.intakes && <IntakePanel intakes={thread.intakes} readOnly={demo} onChanged={() => void load()} onError={setError} />}
       {thread.fingerprints.length > 0 && thread.shipmentId && <ThreadFindings fingerprints={thread.fingerprints} validation={validation} />}
+      <PortalPanel thread={thread} readOnly={demo} refreshKey={thread.items.length} />
       <Card>
         <ol className="mail-thread">
           {thread.items.map((m) => (

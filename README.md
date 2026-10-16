@@ -69,6 +69,7 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 - **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a CBSA memorandum or 19 CFR passage found by hybrid search (embeddings + BM25). The model never writes the legal basis.
 - **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
 - **Talks to the supplier from the app**: the correction request is drafted from the findings in English, Spanish or French, sent over SMTP, and the reply comes back by IMAP or webhook into the same conversation, where its PDF is added to the shipment in one click ([docs/MESSAGING.md](docs/MESSAGING.md), in Spanish).
+- **Gives the supplier a portal, no account needed**: the request carries a signed, expiring link to a page where the supplier sees what to fix in their language and uploads corrected PDFs, which are filed in the conversation and checked at once; before shipping, a supplier can check draft invoices and packing lists the same way, with the rules that need the B/L left for later ([docs/PORTAL.md](docs/PORTAL.md), in Spanish).
 - **Measures itself** on a generated set of 200 labeled shipments (100 per destination, 293 injected errors), field by field and rule by rule, end to end on the extracted PDFs ([docs/METRICS.md](docs/METRICS.md)). Model answers are cached in `eval/cache`, so the evaluation reruns without a model.
 - **Works like a product**: accounts, private shipments, validation history, JSON export and printable report, aggregated extracted data with companies, products and containers, admin settings changed without a restart, and a read-only demo mode that replays cached model answers.
 
@@ -272,7 +273,7 @@ After the rules run, `/validate` does a second pass:
 
 Documents passed as JSON in the body of `/validate` take precedence over extracted ones, which keeps the phase 0 flow working for tests.
 
-Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs/FINDINGS.md](docs/FINDINGS.md), and the supplier mail routes (`/mail/...`) in [docs/MESSAGING.md](docs/MESSAGING.md).
+Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs/FINDINGS.md](docs/FINDINGS.md), the supplier mail routes (`/mail/...`) in [docs/MESSAGING.md](docs/MESSAGING.md), and the supplier portal (`/portal/...`, `/supplier-portal/...`) in [docs/PORTAL.md](docs/PORTAL.md).
 
 ## Roadmap
 

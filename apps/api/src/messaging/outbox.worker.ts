@@ -1,8 +1,10 @@
 import { Injectable, Logger, type OnApplicationBootstrap, type OnApplicationShutdown } from '@nestjs/common';
 import { isDemo } from '../demo/demo-mode';
 import { MAX_ATTEMPTS, retryDelayMs, UNASSIGNED_RETENTION_DAYS } from './mail.config';
-import { MailRepository } from './mail.repository';
+import { MailRepository, type OutboxItem } from './mail.repository';
 import { MailTransport } from './mail-transport';
+import { expandLinks, LINK_PLACEHOLDER, linkToken, portalUrl } from '../portal/portal-token';
+import { PortalRepository } from '../portal/portal.repository';
 
 /**
  * Sends queued messages from the database (an outbox): a message is stored first, then sent, so a
@@ -20,6 +22,7 @@ export class OutboxWorker implements OnApplicationBootstrap, OnApplicationShutdo
   constructor(
     private readonly repo: MailRepository,
     private readonly transport: MailTransport,
+    private readonly portal: PortalRepository,
   ) {}
 
   onApplicationBootstrap() {
@@ -48,13 +51,23 @@ export class OutboxWorker implements OnApplicationBootstrap, OnApplicationShutdo
     return this.running;
   }
 
+  /**
+   * The conversation's portal link in place of {{portal-link}}: made from the link id only now, so the
+   * stored text never holds a working link (a line whose link is revoked or expired is dropped).
+   */
+  private async withPortalLink(item: OutboxItem): Promise<OutboxItem> {
+    if (!item.text.includes(LINK_PLACEHOLDER)) return item;
+    const link = item.threadId ? await this.portal.activeLinkForThread(item.threadId) : null;
+    return { ...item, text: expandLinks(item.text, link ? portalUrl(linkToken(link.id)) : undefined) };
+  }
+
   private async drain() {
     for (;;) {
       const batch = await this.repo.claimOutbox(5);
       if (batch.length === 0) return;
       for (const item of batch) {
         try {
-          await this.repo.markSent(item.id, await this.transport.send(item));
+          await this.repo.markSent(item.id, await this.transport.send(await this.withPortalLink(item)));
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
           // A 5xx SMTP answer is permanent (unverified sender domain, refused recipient): no retry.

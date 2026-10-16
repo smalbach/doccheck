@@ -2,5 +2,8 @@ import type { Route } from '../hooks/useRoute';
 
 /** A key per page, so page state (and its error boundary) resets on navigation. */
 export function routeKey(route: Route): string {
-  return route.name === 'shipment' ? `shipment:${route.id}` : route.name;
+  if (route.name === 'shipment') return `shipment:${route.id}`;
+  // Another portal link opened in the same tab starts over.
+  if (route.name === 'portal') return `portal:${route.token ?? ''}`;
+  return route.name;
 }

@@ -60,6 +60,8 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
   const [preview, setPreview] = useState<string>();
   const [error, setError] = useState<string>();
   const [sending, setSending] = useState(false);
+  // A request carries a supplier portal link unless unticked (docs/PORTAL.md).
+  const [portalLink, setPortalLink] = useState(true);
   const request = mode === 'request';
 
   useEffect(() => {
@@ -76,10 +78,10 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
   useEffect(() => {
     if (!request || !dictionary) return;
     const tt = (key: MessageKey, vars?: MessageVars) => translate(dictionary, language, key, vars);
-    const letter = supplierLetter(tt, { reference, findings: chosen, documents });
+    const letter = supplierLetter(tt, { reference, findings: chosen, documents, portalLink });
     setSubject(letter.subject);
     setBody(letter.body);
-  }, [request, dictionary, language, reference, chosen, documents]);
+  }, [request, dictionary, language, reference, chosen, documents, portalLink]);
 
   // The preview is the HTML part the server sends, built from what is written now.
   useEffect(() => {
@@ -100,6 +102,7 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
   const openWith = (next: boolean) => {
     if (next) {
       setPicked(new Set(preselect ?? findings.flatMap((f) => (f.fingerprint ? [f.fingerprint] : []))));
+      setPortalLink(true);
       setLanguage(locale);
       setTo('');
       setCc('');
@@ -155,6 +158,7 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
         body: body.trim(),
         language,
         fingerprints: request ? chosen.map((f) => f.fingerprint!) : [],
+        ...(request ? { portal: portalLink } : {}),
       });
       refreshMailSummary();
       setOpen(false);
@@ -237,6 +241,7 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
                     })}
                   </div>
                 </fieldset>
+                <Checkbox label={t('portal.includeLink')} checked={portalLink} onCheckedChange={setPortalLink} />
                 <Field label={t('mail.compose.language')}>
                   {(id) => <Select id={id} value={language} options={LOCALES.map((l) => ({ value: l.value, label: l.label }))} onValueChange={setLanguage} />}
                 </Field>

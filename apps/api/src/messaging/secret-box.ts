@@ -1,5 +1,5 @@
 import { Logger } from '@nestjs/common';
-import { createCipheriv, createDecipheriv, randomBytes } from 'node:crypto';
+import { createCipheriv, createDecipheriv, hkdfSync, randomBytes } from 'node:crypto';
 import { chmodSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
@@ -51,4 +51,9 @@ export function open(sealed: Sealed): string | undefined {
   } catch {
     return undefined;
   }
+}
+
+/** A key for another purpose (`label`), derived from the same secret: never the sealing key itself. */
+export function derivedKey(label: string): Buffer {
+  return Buffer.from(hkdfSync('sha256', key(), Buffer.alloc(0), `doccheck:${label}`, 32));
 }

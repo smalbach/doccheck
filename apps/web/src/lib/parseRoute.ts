@@ -3,7 +3,8 @@ export type PublicRoute =
   | { name: 'login'; next?: string }
   | { name: 'register'; next?: string }
   | { name: 'forgot-password' }
-  | { name: 'reset-password'; token?: string };
+  | { name: 'reset-password'; token?: string }
+  | { name: 'portal'; token?: string };
 
 export type AppRoute =
   | { name: 'dashboard' }
@@ -73,6 +74,8 @@ export function parseRoute(hash: string): Route {
   if (path === '/register') return { name: 'register', next };
   if (path === '/forgot-password') return { name: 'forgot-password' };
   if (path === '/reset-password') return { name: 'reset-password', token: params.get('token') ?? undefined };
+  // A supplier portal link (docs/PORTAL.md): "#/portal?t=<token>".
+  if (path === '/portal') return { name: 'portal', token: params.get('t') ?? undefined };
   const id = SHIPMENT.exec(path)?.[1];
   if (id) return { name: 'shipment', id };
   const thread = THREAD.exec(path)?.[1];

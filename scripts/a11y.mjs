@@ -77,6 +77,20 @@ async function signUpWithSample() {
   return `/app/s/${shipment.id}`;
 }
 
+/**
+ * A pre-shipment check of the signed-in account, in `locale`: its conversation (with the portal panel)
+ * and the supplier's portal page for its link. None when the request is refused (mail off for users).
+ */
+async function portalPages(locale) {
+  const res = await page.request.post(`${base}/supplier-portal/requests`, {
+    data: { supplierName: 'Accessibility supplier', reference: 'A11Y-1', destination: 'CA', language: locale, to: ['supplier@doccheck.invalid'], subject: 'Pre-shipment check', body: 'Upload here: {{portal-link}}' },
+  });
+  if (!res.ok()) return { app: [], portal: [] };
+  const request = await res.json();
+  const link = await (await page.request.get(`${base}/supplier-portal/requests/${request.id}/link`)).json();
+  return { app: [`/app/inbox/${request.threadId}`], portal: [link.path.replace(/^\/#/, '')] };
+}
+
 const staticPages = [
   '/app',
   '/app/shipments',
@@ -107,6 +121,7 @@ for (const locale of locales) {
         localStorage.setItem('doccheck.theme', t);
       }, [locale, theme]);
       const shipmentPath = await signUpWithSample();
+      const portal = await portalPages(locale);
       // A query per round makes the first visit a real page load (a hash change alone is not), so the
       // stored language and theme apply; later hash changes keep that document, like a user would.
       const round = `${locale}-${theme}-${width}`;
@@ -117,10 +132,11 @@ for (const locale of locales) {
         const n = await audit(page, `${locale}/${theme}/${width} ${path}`);
         console.log(`${n ? '✗' : '✓'} ${locale} ${theme} ${width}px ${path}${n ? ` (${n})` : ''}`);
       };
-      for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), '/']) await visit(path);
+      for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), ...portal.app, '/']) await visit(path);
       // The sign-in forms redirect signed-in visitors: check them signed out.
       await context.clearCookies();
-      for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example']) await visit(path);
+      // The supplier portal needs no account: a link that works and one that does not.
+      for (const path of ['/', '/portal?t=example', '/login', '/register', '/forgot-password', '/reset-password?token=example', ...portal.portal]) await visit(path);
     }
   }
 }
