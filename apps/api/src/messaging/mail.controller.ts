@@ -100,7 +100,7 @@ export class MailController {
 
   @Get('contacts')
   contacts(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(ContactsQuery)) query: ContactsQuery) {
-    return this.mail.contacts(user.id, query.partyId);
+    return this.mail.contacts(user.id, query.partyId, query.shipmentId);
   }
 
   @Get('attachments/:id/file')

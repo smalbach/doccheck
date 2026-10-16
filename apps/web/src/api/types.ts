@@ -673,7 +673,8 @@ export interface MailStatus {
 export interface MailContact {
   email: string;
   name?: string;
-  source: 'saved' | 'document';
+  /** received: it emailed this shipment's documents in. */
+  source: 'received' | 'saved' | 'document';
   partyId?: string;
 }
 

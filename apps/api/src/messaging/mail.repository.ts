@@ -367,20 +367,28 @@ export class MailRepository {
   // Contacts ---------------------------------------------------------------------------------------
 
   /**
-   * Addresses to suggest: the user's saved contacts (for the company first), then the emails the
-   * company's documents print.
+   * Addresses to suggest: whoever emailed the shipment's documents in (newest first), then the
+   * user's saved contacts (for the company first), then the emails the company's documents print.
    */
-  async contacts(userId: string, partyId?: string): Promise<{ email: string; name?: string; source: 'saved' | 'document'; partyId?: string }[]> {
+  async contacts(userId: string, partyId?: string, shipmentId?: string): Promise<{ email: string; name?: string; source: 'received' | 'saved' | 'document'; partyId?: string }[]> {
     const { rows } = await this.pool.query(
       `select email, name, source, party_id from (
-         select lower(c.email) as email, c.name, 'saved' as source, c.party_id, (c.party_id is not distinct from $2::uuid) as same, c.last_used_at as at
+         select lower(coalesce(substring(m.from_addr from '<([^<>]+)>\\s*$'), m.from_addr)) as email,
+                nullif(trim(both ' "' from substring(m.from_addr from '^(.*)<[^<>]+>\\s*$')), '') as name,
+                'received' as source, t.party_id, 0 as rank, m.received_at as at
+         from mail_messages m join mail_threads t on t.id = m.thread_id
+         where $3::uuid is not null and t.shipment_id = $3 and t.user_id = $1 and m.direction = 'in' and m.status = 'received'
+           and m.sender_check is distinct from 'fail'
+         union all
+         select lower(c.email), c.name, 'saved', c.party_id, case when c.party_id is not distinct from $2::uuid then 1 else 3 end, c.last_used_at
          from mail_contacts c where c.user_id = $1
          union all
-         select lower(dp.contact_email), dp.contact_name, 'document', dp.party_id, true, null
+         select lower(dp.contact_email), dp.contact_name, 'document', dp.party_id, 2, null
          from document_parties dp where dp.user_id = $1 and dp.contact_email ~ '^[^@\\s]+@[^@\\s]+$' and $2::uuid is not null and dp.party_id = $2
        ) c
-       order by same desc, source desc, at desc nulls last`,
-      [userId, partyId ?? null],
+       where email ~ '^[^@\\s]+@[^@\\s]+$'
+       order by rank, at desc nulls last`,
+      [userId, partyId ?? null, shipmentId ?? null],
     );
     const seen = new Set<string>();
     return rows

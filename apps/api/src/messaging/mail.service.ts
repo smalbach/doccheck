@@ -153,8 +153,8 @@ export class MailService {
     return this.repo.summary(userId, admin);
   }
 
-  contacts(userId: string, partyId?: string) {
-    return this.repo.contacts(userId, partyId);
+  contacts(userId: string, partyId?: string, shipmentId?: string) {
+    return this.repo.contacts(userId, partyId, shipmentId);
   }
 
   /** Everyone learns whether mail is really delivered; admins also see the queue and the mailboxes. */

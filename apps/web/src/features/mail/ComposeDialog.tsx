@@ -109,7 +109,15 @@ export function ComposeDialog({ mode, shipmentId, partyId, reference = '', findi
         setSubject(reference ? `${reference}: ` : '');
         setBody('');
       }
-      api.mailContacts(partyId).then(setContacts, () => setContacts([]));
+      // The address the shipment's documents came from is the default recipient.
+      api.mailContacts(partyId, shipmentId).then(
+        (list) => {
+          setContacts(list);
+          const sender = list.find((c) => c.source === 'received');
+          if (sender) setTo((current) => current || sender.email);
+        },
+        () => setContacts([]),
+      );
       api.mailStatus().then(
         (s) => {
           setLogOnly(s.sending === 'log');

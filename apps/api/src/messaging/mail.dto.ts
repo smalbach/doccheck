@@ -56,5 +56,5 @@ export const ThreadsQuery = z.object({
 });
 export type ThreadsQuery = z.infer<typeof ThreadsQuery>;
 
-export const ContactsQuery = z.object({ partyId: z.string().uuid().optional() });
+export const ContactsQuery = z.object({ partyId: z.string().uuid().optional(), shipmentId: z.string().uuid().optional() });
 export type ContactsQuery = z.infer<typeof ContactsQuery>;
