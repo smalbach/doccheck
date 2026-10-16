@@ -356,7 +356,7 @@ describe('admin', () => {
 
   it('changes settings, validates them and resets them to .env', async () => {
     const list = (await call('GET', '/admin/settings', undefined, admin)).body;
-    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'registrationOpen', 'ocrEngine', 'ocrUrl', 'ocrLanguages', 'ocrScale', 'ocrPsm']);
+    assert.deepEqual(list.settings.map((x) => x.key), ['llmModel', 'agentEnabled', 'registrationOpen', 'ocrEngine', 'ocrUrl', 'ocrLanguages', 'ocrScale', 'ocrPsm', 'reviewThreshold', 'reviewSecondPass', 'supplierLearning', 'supplierExamples']);
     assert.equal(list.editable, true);
     assert.equal(list.settings.find((x) => x.key === 'agentEnabled').source, 'env');
 

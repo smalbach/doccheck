@@ -59,6 +59,14 @@ async function entityPages() {
   return [...(company ? [`/app/companies/${company}`] : []), ...(product ? [`/app/products/${product}`] : [])];
 }
 
+/** The review screen of the sample's first extracted document (none if extraction has not finished). */
+async function reviewPages(shipmentPath) {
+  if (!shipmentPath) return [];
+  const shipment = await (await page.request.get(`${base}/shipments/${shipmentPath.split('/').pop()}`)).json();
+  const doc = shipment.documents?.find((d) => d.status === 'EXTRACTED');
+  return doc ? [`/app/review/${doc.id}`] : [];
+}
+
 async function signUpWithSample() {
   await context.clearCookies();
   if (admin) {
@@ -92,7 +100,9 @@ const staticPages = [
   '/app/rules',
   '/app/results',
   '/app/account',
-  ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system'] : []),
+  '/app/review',
+  '/app/usage',
+  ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system', '/app/admin/plans'] : []),
 ];
 const locales = values.quick ? ['en'] : ['en', 'es', 'fr'];
 
@@ -117,7 +127,7 @@ for (const locale of locales) {
         const n = await audit(page, `${locale}/${theme}/${width} ${path}`);
         console.log(`${n ? '✗' : '✓'} ${locale} ${theme} ${width}px ${path}${n ? ` (${n})` : ''}`);
       };
-      for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), '/']) await visit(path);
+      for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), ...(await reviewPages(shipmentPath)), '/']) await visit(path);
       // The sign-in forms redirect signed-in visitors: check them signed out.
       await context.clearCookies();
       for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example']) await visit(path);

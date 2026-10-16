@@ -26,6 +26,12 @@ const ProductPage = lazy(() => data().then((m) => ({ default: m.ProductPage })))
 const ContainersPage = lazy(() => data().then((m) => ({ default: m.ContainersPage })));
 const DataShipmentsPage = lazy(() => data().then((m) => ({ default: m.DataShipmentsPage })));
 const ResultsPage = lazy(() => import('../../features/results/ResultsPage').then((m) => ({ default: m.ResultsPage })));
+// Review queue, usage and plans share one chunk.
+const more = () => import('../../features/review/pages');
+const ReviewQueuePage = lazy(() => more().then((m) => ({ default: m.ReviewQueuePage })));
+const ReviewDocumentPage = lazy(() => more().then((m) => ({ default: m.ReviewDocumentPage })));
+const UsagePage = lazy(() => more().then((m) => ({ default: m.UsagePage })));
+const PlansPage = lazy(() => more().then((m) => ({ default: m.PlansPage })));
 const RulesPage = lazy(() => import('../../features/rules/RulesPage').then((m) => ({ default: m.RulesPage })));
 
 /** The page component of an app route. */
@@ -83,6 +89,18 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return (
         <AdminOnly>
           <SystemPage />
+        </AdminOnly>
+      );
+    case 'review-queue':
+      return <ReviewQueuePage />;
+    case 'review-document':
+      return <ReviewDocumentPage key={route.id} id={route.id} />;
+    case 'usage':
+      return <UsagePage checkout={route.checkout} />;
+    case 'admin-plans':
+      return (
+        <AdminOnly>
+          <PlansPage />
         </AdminOnly>
       );
     case 'not-found':

@@ -7,13 +7,15 @@ import { LlmModule } from './llm/llm.module';
 import { MailModule } from './messaging/mail.module';
 import { ProgressModule } from './progress/progress.module';
 import { ResultsController } from './results/results.controller';
+import { ReviewModule } from './review/review.module';
 import { HealthController } from './health/health.controller';
 import { RulesController } from './rules/rules.controller';
 import { ShipmentsModule } from './shipments/shipments.module';
 import { StorageModule } from './storage/storage';
+import { UsageModule } from './usage/usage.module';
 
 @Module({
-  imports: [DbModule, StorageModule, LlmModule, ProgressModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule],
+  imports: [DbModule, StorageModule, LlmModule, ProgressModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule, UsageModule, ReviewModule],
   controllers: [HealthController, RulesController, ResultsController],
 })
 export class AppModule {}

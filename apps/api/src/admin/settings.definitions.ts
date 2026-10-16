@@ -96,6 +96,37 @@ export const SETTINGS = {
     toEnv: (v) => v,
     fromEnv: (raw) => raw,
   }),
+  // Review queue: fields under this confidence wait for a person (packages/extraction/src/confidence.ts).
+  reviewThreshold: define<number>({
+    env: 'REVIEW_THRESHOLD',
+    defaultValue: 0.85,
+    schema: z.number().min(0.1).max(1),
+    toEnv: (v) => String(v),
+    fromEnv: (raw) => Number(raw),
+  }),
+  // A second reading of every document, compared field by field: twice the model time.
+  reviewSecondPass: define<boolean>({
+    env: 'REVIEW_SECOND_PASS',
+    defaultValue: false,
+    schema: z.boolean(),
+    toEnv: (v) => String(v),
+    fromEnv: (raw) => raw === 'true',
+  }),
+  // Supplier learning: corrected values become examples in the prompt for the same supplier's next documents.
+  supplierLearning: define<boolean>({
+    env: 'SUPPLIER_LEARNING',
+    defaultValue: false,
+    schema: z.boolean(),
+    toEnv: (v) => String(v),
+    fromEnv: (raw) => raw === 'true',
+  }),
+  supplierExamples: define<number>({
+    env: 'SUPPLIER_EXAMPLES',
+    defaultValue: 3,
+    schema: z.number().int().min(1).max(10),
+    toEnv: (v) => String(v),
+    fromEnv: (raw) => Number(raw),
+  }),
 };
 
 export type SettingKey = keyof typeof SETTINGS;

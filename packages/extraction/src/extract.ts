@@ -7,6 +7,7 @@ import { normalizeBillOfLading, normalizeInvoice, normalizeIsf, normalizePacking
 import { readPdfText, type PdfText } from './pdf-text';
 import { RawBillOfLading, RawInvoice, RawIsf, RawPackingList } from './raw-schemas';
 import { throttleOutput } from './stream';
+import { examplesPrompt, type SupplierExample } from './supplier-examples';
 
 /**
  * Bump when a prompt changes, so cached responses from the old prompt are not reused. Adding a
@@ -60,12 +61,33 @@ export interface ExtractionResult<T = CommercialInvoice | PackingList | BillOfLa
   issues: string[];
   usage?: Usage;
   cached: boolean;
+  /** Lowest token log-probability per answer field, when the provider gave them (LLM_LOGPROBS=true). */
+  logprobs?: Record<string, number>;
+  /** The second pass's answer (ExtractOptions.secondPass), compared field by field for confidence. */
+  secondRaw?: unknown;
 }
 
-/** The model request for a document of this type; also lets callers check the cache (`llm.isCached`). */
-export function extractionRequest(pdf: PdfText, type: ExtractableType) {
+/** Corrections from earlier documents of the supplier this one comes from (supplier-examples.ts). */
+export interface SupplierContext {
+  supplier: string;
+  examples: SupplierExample[];
+}
+
+/**
+ * A second reading of the document for the confidence check: same document, the instructions in
+ * another order and wording, so a value only one reading agrees on stands out.
+ */
+const SECOND_PASS = `Read the document once more, slowly, as a second reviewer would. Check each value against its label and its table column before copying it; values must still be copied exactly as printed.`;
+const SECOND_PASS_VERSION = `${PROMPT_VERSION}-second`;
+
+/**
+ * The model request for a document of this type; also lets callers check the cache (`llm.isCached`).
+ * Without supplier examples the prompt is exactly the one the evaluation set was measured with.
+ */
+export function extractionRequest(pdf: PdfText, type: ExtractableType, supplier?: SupplierContext) {
+  const examples = supplier ? examplesPrompt(supplier.supplier, supplier.examples.filter((e) => e.documentType === type)) : '';
   return {
-    system: `${COMMON}\n\n${SPECIFIC[type]}`,
+    system: `${COMMON}\n\n${SPECIFIC[type]}${examples ? `\n\n${examples}` : ''}`,
     user: `<document>\n${pdf.text}\n</document>`,
     schema: PIPELINES[type].schema,
   };
@@ -82,14 +104,16 @@ export async function extractFromText<K extends ExtractableType>(
   llm: LlmClient,
   onProgress?: ProgressCallback<ExtractionDetail>,
   signal?: AbortSignal,
+  { supplier, secondPass = false }: Pick<ExtractOptions, 'supplier' | 'secondPass'> = {},
 ): Promise<Omit<ExtractionResult<Canonical[K]>, 'documentType' | 'typeConfidence' | 'pdf'>> {
   const pipeline = PIPELINES[type];
   const model = llm.provider.id;
-  const { output, usage, cached } = await withStage(
+  const logprobs = process.env.LLM_LOGPROBS === 'true';
+  const { output, usage, cached, logprobs: fieldLogprobs } = await withStage(
     onProgress,
     'extracting',
     async (stage) => {
-      const req = { ...extractionRequest(pdf, type), signal };
+      const req = { ...extractionRequest(pdf, type, supplier), signal, ...(logprobs ? { logprobs } : {}) };
       if (!onProgress) return llm.call(PROMPT_VERSION, req);
       const stream = throttleOutput((delta) => stage.progress(delta, { ephemeral: true }));
       try {
@@ -102,6 +126,20 @@ export async function extractFromText<K extends ExtractableType>(
     (r) => ({ model, documentType: type, cached: r.cached, inputTokens: r.usage?.inputTokens, outputTokens: r.usage?.outputTokens }),
     { model, documentType: type },
   );
+  // Not streamed and not a stage of its own: it only feeds the confidence of each field.
+  let secondRaw: unknown;
+  if (secondPass) {
+    signal?.throwIfAborted();
+    const req = extractionRequest(pdf, type, supplier);
+    try {
+      secondRaw = (await llm.call(SECOND_PASS_VERSION, { ...req, system: `${req.system}\n\n${SECOND_PASS}`, signal })).output;
+    } catch (err) {
+      // Best effort: without a second reading the other signals still give a confidence.
+      signal?.throwIfAborted();
+      secondRaw = undefined;
+      void err;
+    }
+  }
   const { data, partial, issues } = await withStage(
     onProgress,
     'normalizing',
@@ -113,7 +151,7 @@ export async function extractFromText<K extends ExtractableType>(
     },
     (r) => ({ normalized: r.data !== null, issues: r.issues.length }),
   );
-  return { raw: output, data, partial, issues, usage, cached };
+  return { raw: output, data, partial, issues, usage, cached, ...(fieldLogprobs ? { logprobs: fieldLogprobs } : {}), ...(secondPass ? { secondRaw } : {}) };
 }
 
 export interface ExtractOptions {
@@ -124,10 +162,19 @@ export interface ExtractOptions {
    * passed to the model call. The promise then rejects with the signal's reason, the stage it was in failed.
    */
   signal?: AbortSignal;
+  /** Corrected examples from the document's supplier, added to the prompt (supplier learning). */
+  supplier?: SupplierContext;
+  /** Reads the document a second time to compare the answers (twice the model time). */
+  secondPass?: boolean;
+  /**
+   * Called once the document is read and classified, before the model: returns the supplier examples
+   * for this document (the supplier is recognized in its text). Wins over `supplier`.
+   */
+  supplierFor?: (pdf: PdfText, type: ExtractableType) => Promise<SupplierContext | undefined> | SupplierContext | undefined;
 }
 
 /** PDF bytes -> classified, extracted and normalized document. `type` skips classification. */
-export async function extractDocument(pdfBytes: Uint8Array, llm: LlmClient, type?: ExtractableType, { onProgress, signal }: ExtractOptions = {}): Promise<ExtractionResult> {
+export async function extractDocument(pdfBytes: Uint8Array, llm: LlmClient, type?: ExtractableType, { onProgress, signal, supplier, secondPass, supplierFor }: ExtractOptions = {}): Promise<ExtractionResult> {
   signal?.throwIfAborted();
   const pdf = await withStage(onProgress, 'reading', () => readPdfText(pdfBytes, { onProgress, signal }), (p) => ({ pages: p.pageCount, ...(p.ocrPages ? { ocrPages: p.ocrPages } : {}) }));
   if (pdf.lines.length === 0) {
@@ -144,7 +191,8 @@ export async function extractDocument(pdfBytes: Uint8Array, llm: LlmClient, type
   if (!(detected.type in PIPELINES)) {
     return { documentType: detected.type, typeConfidence: detected.confidence, pdf, raw: null, data: null, issues: [`Unsupported document type ${detected.type}`], cached: false };
   }
-  const result = await extractFromText(pdf, detected.type as ExtractableType, llm, onProgress, signal);
+  const context = supplierFor ? await supplierFor(pdf, detected.type as ExtractableType) : supplier;
+  const result = await extractFromText(pdf, detected.type as ExtractableType, llm, onProgress, signal, { supplier: context, secondPass });
   if (pdf.ocrPages) result.issues.unshift(`Read with OCR (page${pdf.ocrPages.length > 1 ? 's' : ''} ${pdf.ocrPages.join(', ')}${pdf.ocrConfidence !== undefined ? `, confidence ${pdf.ocrConfidence}%` : ''}): check values against the scan`);
   return { documentType: detected.type, typeConfidence: detected.confidence, pdf, ...result };
 }

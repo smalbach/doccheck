@@ -1,10 +1,12 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger, Optional } from '@nestjs/common';
 import { extractDocument, PROMPT_VERSION, type ExtractableType, type LlmClient } from '@doccheck/extraction';
 import { CANCELLED_ERROR, errorText, startStage, type CommercialInvoice, type Isf, type ShipmentDocument } from '@doccheck/schemas';
 import { InjectLlm } from '../llm/llm.module';
 import { ProgressRepository } from '../progress/progress.repository';
 import { ProgressService } from '../progress/progress.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
+import { ReviewService } from '../review/review.service';
+import { UsageService } from '../usage/usage.service';
 import { ShipmentsRepository } from './shipments.repository';
 
 export interface ProcessOptions {
@@ -44,6 +46,9 @@ export class DocumentProcessor {
     @InjectLlm() private readonly llm: LlmClient,
     private readonly progress: ProgressService,
     private readonly progressRepo: ProgressRepository,
+    // Optional so the processor can be built by hand (tests) without metering or the review queue.
+    @Optional() private readonly usage?: UsageService,
+    @Optional() private readonly review?: ReviewService,
   ) {
     // Cancel requests reach every process (the worker may be another one); the one running the document stops it.
     this.progress.cancelRequests.subscribe((documentId) => this.running.get(documentId)?.controller.abort(new ExtractionCancelledError()));
@@ -96,7 +101,13 @@ export class DocumentProcessor {
     const started = Date.now();
     try {
       const bytes = await this.storage.get(doc.storageKey);
-      const { pdf, ...result } = await extractDocument(new Uint8Array(bytes), this.llm, type, { onProgress: run.report, signal });
+      const { pdf, ...result } = await extractDocument(new Uint8Array(bytes), this.llm, type, {
+        onProgress: run.report,
+        signal,
+        // Supplier learning (admin setting): corrected examples of the supplier this document comes from.
+        supplierFor: (text, detected) => this.review?.supplierContext(doc.shipmentId, text, detected),
+        secondPass: process.env.REVIEW_SECOND_PASS === 'true',
+      });
       // An ISF filing confirmation becomes the shipment's ISF (US only), replacing the earlier one.
       let isf: Isf | undefined;
       if (result.documentType === 'ISF' && result.data) {
@@ -129,6 +140,10 @@ export class DocumentProcessor {
         isf && { shipmentId: doc.shipmentId, data: isf, since: isfSince },
       );
       await saved.done({ documentType: result.documentType, normalized: result.data !== null, pages: pdf.pageCount });
+      // A document read by the model counts once per extraction (a re-extraction counts again).
+      await this.usage?.record(doc.shipmentId, 'extraction');
+      // How sure it is of each value: the unsure ones go to the review queue.
+      await this.review?.scoreExtraction({ documentId, documentType: result.documentType, raw: result.raw, data: result.data, partial: result.partial, issues: result.issues, pdf, logprobs: result.logprobs, secondRaw: result.secondRaw });
       this.logger.log(`${doc.fileName}: ${result.documentType} in ${Math.round((Date.now() - started) / 1000)} s${result.data ? '' : ' (not normalized)'}`);
     } catch (err) {
       // A cancelled extraction is never retried, whatever error the abort caused on the way out.

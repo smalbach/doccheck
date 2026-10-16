@@ -8,3 +8,5 @@ export * from './stream';
 export * from './provenance';
 export * from './extract';
 export * from './score';
+export * from './confidence';
+export * from './supplier-examples';

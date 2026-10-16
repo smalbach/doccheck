@@ -1,6 +1,9 @@
+import { extraFr } from './extra-fr';
+import { captureFr } from './capture';
 import type { Messages } from './en';
 
 export const fr: Messages = {
+  ...extraFr,
   common: { loading: 'Chargement…', cancel: 'Annuler', save: 'Enregistrer', saving: 'Enregistrement…', close: 'Fermer', none: '—' },
   app: {
     tagline: 'Documents de transport vérifiés avant d’arriver à l’ASFC ou au CBP',
@@ -1156,4 +1159,5 @@ export const fr: Messages = {
     deleting: 'Suppression…',
     wrongPassword: 'Le mot de passe est incorrect.',
   },
+  capture: captureFr,
 };

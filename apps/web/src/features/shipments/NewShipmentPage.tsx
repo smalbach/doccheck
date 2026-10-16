@@ -1,5 +1,6 @@
 import { api } from '../../api/client';
 import { Banner } from '../../components/ui/Banner';
+import { UsageNotice } from '../usage/UsageNotice';
 import { Card } from '../../components/ui/Card';
 import { PageHeader } from '../../components/ui/PageHeader';
 import { useDemo } from '../../hooks/useDemo';
@@ -14,6 +15,7 @@ export function NewShipmentPage() {
   return (
     <div className="page page-narrow">
       <PageHeader title={t('newShipment.title')} description={t('newShipment.description')} />
+      {!demo && <UsageNotice />}
       {error && <Banner tone="error">{error}</Banner>}
       {demo ? (
         <Card>
@@ -22,7 +24,19 @@ export function NewShipmentPage() {
           </p>
         </Card>
       ) : (
-        <NewShipmentCard busy={busy === 'create'} disabled={busy !== undefined} onCreate={(input) => void open('create', () => api.create(input))} />
+        <NewShipmentCard
+          busy={busy === 'create'}
+          scanning={busy === 'scan'}
+          disabled={busy !== undefined}
+          onCreate={(input) => void open('create', () => api.create(input))}
+          onScan={(input, pdf) =>
+            void open('scan', async () => {
+              const shipment = await api.create(input);
+              await api.upload(shipment.id, [pdf]);
+              return shipment;
+            })
+          }
+        />
       )}
     </div>
   );

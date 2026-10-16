@@ -1,4 +1,4 @@
-import { ActivityLogIcon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
+import { ActivityLogIcon, CheckboxIcon, MixIcon, TokensIcon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
 import type { ComponentType } from 'react';
 import type { MessageKey } from '../i18n/keys';
 import type { AppRoute } from '../lib/parseRoute';
@@ -31,6 +31,8 @@ export const NAVIGATION: NavGroup[] = [
       { labelKey: 'nav.inbox', href: '#/app/inbox', icon: EnvelopeClosedIcon, matches: ['inbox', 'thread'], badge: 'mail' },
       { labelKey: 'nav.newShipment', href: '#/app/shipments/new', icon: PlusIcon, matches: ['new-shipment'], writes: true },
       { labelKey: 'nav.samples', href: '#/app/samples', icon: LayersIcon, matches: ['samples'] },
+      { labelKey: 'reviewQueue.nav', href: '#/app/review', icon: CheckboxIcon, matches: ['review-queue', 'review-document'] },
+      { labelKey: 'usage.nav', href: '#/app/usage', icon: TokensIcon, matches: ['usage'] },
     ],
   },
   {
@@ -58,6 +60,7 @@ export const NAVIGATION: NavGroup[] = [
       { labelKey: 'admin.settings', href: '#/app/admin/settings', icon: GearIcon, matches: ['admin-settings'] },
       { labelKey: 'admin.users', href: '#/app/admin/users', icon: PersonIcon, matches: ['admin-users'] },
       { labelKey: 'admin.system', href: '#/app/admin/system', icon: ActivityLogIcon, matches: ['admin-system'] },
+      { labelKey: 'plans.nav', href: '#/app/admin/plans', icon: MixIcon, matches: ['admin-plans'] },
     ],
   },
 ];
