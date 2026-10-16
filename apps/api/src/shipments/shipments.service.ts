@@ -7,7 +7,7 @@ import {
   applyPointerChanges, CANCELLED_ERROR, clip, DOCUMENT_SCHEMAS, diffPointers, fieldPointer, findingPreview, FINDING_PREVIEWS_PER_RULE, readPointer, startStage, toPointer,
   type Attestation, type BillOfLading, type CommercialInvoice, type Destination, type DocumentFormat, type Isf, type PackingList, type PointerChange, type Shipment, type ShipmentDocument,
 } from '@doccheck/schemas';
-import { CONTEXT_SLOTS, type ContextSlot } from '@doccheck/rules';
+import { ALL_RULES, CONTEXT_SLOTS, type ContextSlot } from '@doccheck/rules';
 import { isDemo } from '../demo/demo-mode';
 import { InjectLlm, RegulationsService } from '../llm/llm.module';
 import type { ProgressRun } from '../progress/progress-run';
@@ -26,6 +26,8 @@ const CITATION_TITLE_CHARS = 120;
 
 /** The context slot each extracted document type fills. ISF PDFs fill none: validation reads the shipment's ISF filing. */
 const SLOT = Object.fromEntries(Object.entries(CONTEXT_SLOTS).filter(([slot]) => slot !== 'isf').map(([slot, type]) => [type, slot])) as Record<string, Exclude<ContextSlot, 'isf'>>;
+
+const slotOf = (type: string) => (Object.keys(CONTEXT_SLOTS) as ContextSlot[]).find((slot) => CONTEXT_SLOTS[slot] === type)!;
 
 /** The schema a corrected document must still pass, per document type. */
 const SCHEMA = DOCUMENT_SCHEMAS;
@@ -350,7 +352,10 @@ export class ShipmentsService {
     const extracted = new Map<string, Source>();
     // ISF PDFs do not fill a slot here: the processor stores them as the shipment's ISF, read below.
     const isfPdfs = new Map<string, Source>();
+    // Documents uploaded but not usable (not normalized): their rules are skipped for input, not "not applicable".
+    const unusable = new Set<string>();
     for (const e of await this.repo.listExtractions(id)) {
+      if (!e.data) unusable.add(e.documentType);
       const slot = SLOT[e.documentType as keyof typeof SLOT];
       const ocr = e.issues.some((i) => i.startsWith('Read with OCR'));
       const pdf = { pageCount: e.document.pageCount, lines: e.pdfLines, text: '' };
@@ -406,6 +411,14 @@ export class ShipmentsService {
         void rules.progress({ rule, index, total, skipped, findings, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) }),
     });
     const notApplicable = output.notApplicable?.length ?? 0;
+    // An optional rule whose document is there but could not be read is missing input, so the user sees it.
+    for (const ruleId of [...(output.notApplicable ?? [])]) {
+      const def = ALL_RULES.find((r) => r.definition.id === ruleId)?.definition;
+      const missing = def ? [...def.requires, ...(def.requiresAny ?? [])].filter((t) => unusable.has(t) && !(ctx[slotOf(t)] ?? false)) : [];
+      if (!missing.length) continue;
+      output.notApplicable = output.notApplicable!.filter((r) => r !== ruleId);
+      output.skipped.push({ ruleId, missing });
+    }
     await rules.done({ ran: output.ran.length, skipped: output.skipped.length, total: output.ran.length + output.skipped.length + notApplicable, findings: output.findings.length });
 
     const sources = [...extracted.values(), ...(isfPdf ? [isfPdf] : [])];

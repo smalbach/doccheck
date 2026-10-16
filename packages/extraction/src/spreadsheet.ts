@@ -33,8 +33,15 @@ export const storedSpreadsheetFormat = (bytes: Uint8Array): SpreadsheetFormat =>
  */
 export function readSpreadsheet(bytes: Uint8Array, fileName: string, format = spreadsheetFormat(fileName, bytes)): Sheet[] {
   if (format === 'xlsx') return readXlsx(bytes);
-  if (format === 'csv') return [{ name: fileName.replace(/^.*[\\/]/, '').replace(/\s*\([^)]*\)$/, '').replace(/\.[^.]+$/, ''), rows: readCsv(new TextDecoder().decode(bytes)) }];
+  if (format === 'csv') return [{ name: fileName.replace(/^.*[\\/]/, '').replace(/\s*\([^)]*\)$/, '').replace(/\.[^.]+$/, ''), rows: readCsv(decodeText(bytes)) }];
   throw new Error(`${fileName} is not an .xlsx or .csv spreadsheet`);
+}
+
+/** UTF-8, or UTF-16 when the file starts with its byte order mark (Excel's "Unicode Text" export). */
+export function decodeText(bytes: Uint8Array): string {
+  if (bytes[0] === 0xff && bytes[1] === 0xfe) return new TextDecoder('utf-16le').decode(bytes.subarray(2));
+  if (bytes[0] === 0xfe && bytes[1] === 0xff) return new TextDecoder('utf-16be').decode(bytes.subarray(2));
+  return new TextDecoder().decode(bytes);
 }
 
 /** "C12" for row 11, column 2 (both from 0). */
@@ -57,7 +64,8 @@ export function parseCellRef(ref: string): [row: number, col: number] {
 /** RFC 4180 with the delimiter guessed from the first line (comma, semicolon or tab); a BOM is dropped. */
 export function readCsv(text: string): string[][] {
   const src = text.replace(/^﻿/, '');
-  const first = src.split(/\r?\n/, 1)[0] ?? '';
+  // Delimiters counted outside quotes ("Acme, Inc";Qty is semicolon-separated).
+  const first = (src.split(/\r?\n/, 1)[0] ?? '').replace(/"[^"]*"/g, '');
   const delimiter = [',', ';', '\t'].map((d) => ({ d, n: first.split(d).length })).sort((a, b) => b.n - a.n)[0].d;
   const rows: string[][] = [];
   let row: string[] = [];

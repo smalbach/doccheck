@@ -93,14 +93,15 @@ export class DocumentProcessor {
         this.logger.log(`${doc.fileName}: no longer waiting (cancelled?), not extracted`);
         return;
       }
-      await this.extract(doc, type, controller.signal, options);
+      await this.extract(doc, type, controller.signal, options, entry);
     } finally {
-      if (this.running.get(documentId) === entry) this.running.delete(documentId);
+      // The parts split from this file ran under the same entry.
+      for (const [id, e] of this.running) if (e === entry) this.running.delete(id);
       finish();
     }
   }
 
-  private async extract(doc: ShipmentDocument, type: ExtractableType | undefined, signal: AbortSignal, { willRetry = false, runId, queuedAt }: ProcessOptions): Promise<void> {
+  private async extract(doc: ShipmentDocument, type: ExtractableType | undefined, signal: AbortSignal, { willRetry = false, runId, queuedAt }: ProcessOptions, entry: Running): Promise<void> {
     const documentId = doc.id;
     const run = this.progress.run('extraction', doc.shipmentId, { documentId, runId });
     await run.emit({ stage: 'queued', status: 'done', durationMs: queuedAt ? Math.max(0, Date.now() - queuedAt) : 0 });
@@ -119,7 +120,6 @@ export class DocumentProcessor {
         const found = documentParts(stored).filter((p) => p.pages.length);
         if (found.length > 1) {
           pages = found[0].pages;
-          await this.repo.setDocumentPages(documentId, pages);
           for (const part of found.slice(1)) {
             const sibling: ShipmentDocument = {
               ...doc, id: randomUUID(), fileName: partName(doc.fileName, part.pages, stored), pages: part.pages, sourceDocumentId: documentId,
@@ -127,8 +127,12 @@ export class DocumentProcessor {
             };
             delete sibling.error;
             await this.repo.insertDocument(sibling);
+            // A cancel of any part stops the job that extracts them all.
+            this.running.set(sibling.id, entry);
             parts.push(sibling);
           }
+          // Only once every part exists: a retry of a document with pages would not split it again.
+          await this.repo.setDocumentPages(documentId, pages);
           this.logger.log(`${doc.fileName}: ${found.length} documents in one file (${found.map((f) => `${f.type} ${f.pages.join(',')}`).join('; ')})`);
         }
       }

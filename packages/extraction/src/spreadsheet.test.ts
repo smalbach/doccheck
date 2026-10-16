@@ -157,3 +157,33 @@ describe('a workbook with several documents', () => {
     expect(findSource(pl.pdf, 'd2', '1250')).toMatchObject({ page: 2, sheet: 'Packing List', cell: 'E4' });
   });
 });
+
+describe('spreadsheet edge cases', () => {
+  it('guesses the delimiter outside quotes and reads UTF-16 exports', async () => {
+    const { decodeText } = await import('./spreadsheet');
+    expect(readCsv('"Acme, Inc";Qty;Value\n"Bear";10;81\n')[0]).toEqual(['Acme, Inc', 'Qty', 'Value']);
+    const utf16 = new Uint8Array([0xff, 0xfe, ...[...'Qty\tUnit'].flatMap((c) => [c.charCodeAt(0), 0])]);
+    expect(decodeText(utf16)).toBe('Qty\tUnit');
+  });
+
+  it('maps "Unit value" to the unit price, and reads past spacer rows, subtotals and a goods name with "Total"', async () => {
+    const sheet: Sheet = {
+      name: 'Invoice',
+      rows: [
+        ['COMMERCIAL INVOICE'], ['Invoice No.', 'INV-9'], ['Currency', 'USD'],
+        ['Description', 'Qty', 'Unit value', 'Total value'],
+        ['Total cotton tee', '10', '2.00', '20.00'],
+        [],
+        ['Plush bear', '5', '8.00', '40.00'],
+        ['Subtotal', '', '', '60.00'],
+        ['Wooden puzzle', '1', '5.00', '5.00'],
+        ['TOTAL', '16', '', '65.00'],
+      ],
+    };
+    const out = await extractSheets([sheet], 'COMMERCIAL_INVOICE');
+    expect((out.raw as { lines: { description: string; unitPrice: string }[] }).lines.map((l) => [l.description, l.unitPrice])).toEqual([
+      ['Total cotton tee', '2.00'], ['Plush bear', '8.00'], ['Wooden puzzle', '5.00'],
+    ]);
+    expect((out.raw as { invoiceTotal: string }).invoiceTotal).toBe('65.00');
+  });
+});

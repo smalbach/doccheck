@@ -25,7 +25,7 @@ type Column = InvoiceColumn | PackingColumn;
 
 /** Header vocabulary per field, most specific first: "Unit price" is a price before "price" alone is a total. */
 const INVOICE_COLUMNS: [InvoiceColumn, RegExp][] = [
-  ['unitPrice', /\b(unit ?price|u\/p|price ?\/ ?unit|price per unit|prix unitaire|precio unitario|unit cost|rate)\b/i],
+  ['unitPrice', /\b(unit ?price|unit ?value|u\/p|price ?\/ ?unit|price per unit|value per unit|prix unitaire|precio unitario|unit cost|rate)\b/i],
   ['lineTotal', /\b(amount|line total|total( value| price| amount)?|extended|ext\.? price|montant|importe|value)\b/i],
   ['hsCode', /\b(hs|hts|h\.s\.|tariff|harmoni[sz]ed|commodity code)\b/i],
   ['countryOfOrigin', /\b(origin|coo|made in|pays d'origine)\b/i],
@@ -107,6 +107,8 @@ function mapHeaders(headers: string[], vocabulary: [Column, RegExp][]): Map<numb
   return map;
 }
 
+const TOTAL = /^(sub[- ]?)?totals?\b|^grand total\b/i;
+
 /** The row with the most fields named, among the first 60 rows; at least two. */
 function findTable(sheet: Sheet, sheetIndex: number, vocabulary: [Column, RegExp][]): Table | undefined {
   let best: { row: number; columns: Map<number, Column> } | undefined;
@@ -117,13 +119,21 @@ function findTable(sheet: Sheet, sheetIndex: number, vocabulary: [Column, RegExp
   if (!best) return undefined;
   const rows: number[] = [];
   let totalsRow: number | undefined;
+  const descriptionCol = [...best.columns].find(([, f]) => f === 'description')?.[0];
+  const filled = (r: string[]) => [...best!.columns.keys()].filter((c) => r[c]).length;
   for (let i = best.row + 1; i < sheet.rows.length; i++) {
     const r = sheet.rows[i] ?? [];
     if (r.every((c) => !c)) {
-      if (rows.length) break;
+      // A spacer row between blocks: the table goes on if the next filled row still reads as a line.
+      const next = sheet.rows.slice(i + 1).find((x) => x?.some(Boolean));
+      if (rows.length && !(next && filled(next) >= 2 && !next.some((c) => TOTAL.test(c)))) break;
       continue;
     }
-    if (r.some((c) => /^(sub)?total\b|^grand total\b|^totals?:?$/i.test(c))) {
+    // "Total" (or "Grand total") in a cell that is not a goods description ends the table; a subtotal is skipped.
+    const total = r.findIndex((c, j) => j !== descriptionCol && TOTAL.test(c));
+    const totalInDescription = descriptionCol !== undefined && /^(grand |sub[- ]?)?totals?:?$/i.test(r[descriptionCol] ?? '');
+    if (total >= 0 || totalInDescription) {
+      if (/^sub/i.test((total >= 0 ? r[total] : r[descriptionCol!]) ?? '')) continue;
       totalsRow = i;
       break;
     }
