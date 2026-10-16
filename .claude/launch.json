@@ -8,10 +8,12 @@
         "apps/api/dist/main.js"
       ],
       "env": {
-        "PORT": "3000",
-        "LLM_CACHE_DIR": "eval/cache/ollama_qwen3.8"
+        "PORT": "4310",
+        "LLM_CACHE_DIR": "eval/cache/ollama_qwen3.8",
+        "APP_URL": "http://localhost:4310"
       },
-      "port": 3000
+      "port": 4310,
+      "autoPort": false
     },
     {
       "name": "web",
@@ -22,7 +24,10 @@
         "-w",
         "@doccheck/web"
       ],
-      "port": 5173
+      "port": 5173,
+      "env": {
+        "API_URL": "http://localhost:4310"
+      }
     }
   ]
 }
