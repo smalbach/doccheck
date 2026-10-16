@@ -3,7 +3,7 @@ import { AsyncLocalStorage } from 'node:async_hooks';
 import type { Pool } from 'pg';
 import { PG_POOL } from '../db/db.module';
 
-/** One audit row before it is chained (migration 030). */
+/** One audit row before it is chained (migration 040). */
 export interface AuditEntry {
   action: string;
   entity?: string;

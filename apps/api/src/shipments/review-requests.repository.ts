@@ -37,7 +37,7 @@ const SELECT = `select r.*, a.name as requester_name, b.name as decider_name fro
   left join users a on a.id = r.requested_by left join users b on b.id = r.decided_by`;
 
 /**
- * Two-step decisions (migration 030): an accepted risk or a false positive waits here for a reviewer
+ * Two-step decisions (migration 040): an accepted risk or a false positive waits here for a reviewer
  * who did not ask for it. Approving it records the decision in finding_reviews, in the requester's
  * name with the approver beside it.
  */

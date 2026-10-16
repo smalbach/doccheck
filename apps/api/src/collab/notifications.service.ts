@@ -111,7 +111,7 @@ export class NotificationsService {
   private async email(id: string, to: string, lang: Lang, kind: NotificationKind, actor: string, ref: string, shipmentId: string | undefined, detail?: Record<string, unknown>) {
     const subject = SUBJECTS[kind][lang](actor, ref);
     const base = appUrl();
-    const link = base && shipmentId ? `${base}/#/app/shipments/${shipmentId}` : base;
+    const link = base && shipmentId ? `${base}/#/app/s/${shipmentId}` : base;
     const quote = typeof detail?.excerpt === 'string' ? detail.excerpt : undefined;
     const text = [subject, ...(quote ? ['', `"${quote}"`] : []), ...(link ? ['', `${OPEN[lang]}: ${link}`] : []), '', SETTINGS[lang]].join('\n');
     const html = `<!doctype html>

@@ -15,7 +15,7 @@ const toSettings = (r: Record<string, unknown>): OrgSettings => ({
   slaEtaLeadHours: r.sla_eta_lead_hours as number,
 });
 
-/** Organizations, members, invitations and shares (migration 030). */
+/** Organizations, members, invitations and shares (migration 040). */
 @Injectable()
 export class OrgsRepository {
   constructor(@Inject(PG_POOL) private readonly pool: Pool) {}

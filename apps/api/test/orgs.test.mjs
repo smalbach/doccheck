@@ -394,7 +394,7 @@ describe('collaboration', () => {
     assert.equal(notes.unread, 2);
     assert.deepEqual(notes.items.map((n) => [n.kind, n.shipmentId, n.actorName]), [['assignment', s.id, 'Lead'], ['assignment', s.id, 'Lead']]);
     const mail = await waitForMail((m) => m.to === analyst.email && /assigned you/.test(m.subject));
-    assert.ok(mail.text.includes(`${base}/#/app/shipments/${s.id}`));
+    assert.ok(mail.text.includes(`${base}/#/app/s/${s.id}`));
     const list = (await call('GET', '/shipments?assignee=me', undefined, analyst.cookie)).body;
     assert.deepEqual(list.items.map((x) => [x.id, x.assignee?.name]), [[s.id, 'Worker']]);
     assert.equal((await call('POST', '/notifications/read', { ids: 'all' }, analyst.cookie)).status, 204);
@@ -677,7 +677,7 @@ describe('migration to organizations', () => {
     await resetDatabase(migrationUrl);
     const dir = mkdtempSync(join(tmpdir(), 'doccheck-migrations-'));
     const all = readdirSync(MIGRATIONS_DIR).filter((f) => /^\d+_.+\.sql$/.test(f)).sort();
-    const before_ = all.filter((f) => f < '030_');
+    const before_ = all.filter((f) => f < '040_');
     for (const f of before_) cpSync(join(MIGRATIONS_DIR, f), join(dir, f));
     const p = new pg.Pool({ connectionString: migrationUrl });
     try {
