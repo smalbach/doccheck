@@ -1,4 +1,5 @@
 import { fromFixed, mul } from '@doccheck/rules';
+import type { Destination } from '@doccheck/schemas';
 import type { SyntheticShipment } from './generate';
 import { weight } from './generate';
 import type { Rng } from './rng';
@@ -18,7 +19,13 @@ export type ErrorKind =
   | 'missing_required_field'
   // Outside v1 (see EXTRA_ERROR_KINDS): only injected when asked for by name.
   | 'onboard_date_shift'
-  | 'freight_terms_flipped';
+  | 'freight_terms_flipped'
+  // Destination set (MX, EU, GB) only: see DESTINATION_INJECTORS.
+  | 'invalid_importer_number'
+  | 'missing_importer_number'
+  | 'hs_code_truncated'
+  | 'origin_statement_missing'
+  | 'invoice_language_not_accepted';
 
 /** Ground truth for one injected error. The evaluation matches findings against these. */
 export interface ErrorLabel {
@@ -40,6 +47,10 @@ interface Injector {
 }
 
 const pct = (kg: string, factor: string) => fromFixed(mul(kg, factor));
+
+/** The invoice completeness rule of each destination. */
+const COMPLETENESS: Record<Destination, string> = { CA: 'C1', US: 'U1', MX: 'M1', EU: 'E1', GB: 'K1' };
+const NEW_DESTINATIONS: Destination[] = ['MX', 'EU', 'GB'];
 
 const INJECTORS: Injector[] = [
   {
@@ -168,18 +179,18 @@ const INJECTORS: Injector[] = [
     applies: () => true,
     apply(s, rng) {
       const inv = s.documents.invoice;
-      const completeness = s.destination === 'CA' ? 'C1' : 'U1';
-      // Which rule requires the field depends on the destination: CBSA CI1 vs 19 CFR 141.86(a).
+      const completeness = COMPLETENESS[s.destination];
+      // Which rule requires the field depends on the destination: CBSA CI1, 19 CFR 141.86(a), RGCE 3.1.8, UCC Annex B or HMRC's CDS guide.
       const options = [
         () => {
           const before = inv.lines.map((l) => l.countryOfOrigin);
           inv.lines.forEach((l) => delete l.countryOfOrigin);
-          return { field: 'lines[*].countryOfOrigin', before, rules: [completeness], description: 'Country of origin missing on every invoice line.' };
+          return { field: 'lines[*].countryOfOrigin', before, rules: s.destination === 'MX' ? [] : [completeness], description: 'Country of origin missing on every invoice line.' };
         },
         () => {
           const before = inv.incoterm;
           delete inv.incoterm;
-          return { field: 'incoterm', before, rules: s.destination === 'CA' ? ['C1'] : [], description: 'Terms of sale (Incoterm) missing from the invoice.' };
+          return { field: 'incoterm', before, rules: ['CA', 'EU', 'GB'].includes(s.destination) ? [completeness] : [], description: 'Terms of sale (Incoterm) missing from the invoice.' };
         },
         () => {
           const before = inv.consignee;
@@ -189,7 +200,7 @@ const INJECTORS: Injector[] = [
         () => {
           const before = inv.invoiceDate;
           delete inv.invoiceDate;
-          return { field: 'invoiceDate', before, rules: s.destination === 'US' ? ['U1'] : [], description: 'Invoice date missing.' };
+          return { field: 'invoiceDate', before, rules: ['US', 'MX'].includes(s.destination) ? [completeness] : [], description: 'Invoice date missing.' };
         },
       ];
       const r = rng.pick(options)();
@@ -229,11 +240,87 @@ const EXTRA_INJECTORS: Injector[] = [
   },
 ];
 
+/**
+ * Errors specific to the destinations Mexico, EU and UK (set V3): importer numbers, ICS2 HS codes, the
+ * TCA statement on origin and the invoice language. They only apply to shipments to those destinations.
+ */
+const DESTINATION_INJECTORS: Injector[] = [
+  {
+    kind: 'invalid_importer_number',
+    applies: (s) => NEW_DESTINATIONS.includes(s.destination) && !!s.documents.invoice.buyer.taxId,
+    apply(s, rng) {
+      const buyer = s.documents.invoice.buyer;
+      const before = buyer.taxId!;
+      let after: string;
+      let rule: string;
+      if (s.destination === 'MX') {
+        // A keying error in the homoclave: the check digit no longer matches.
+        const last = before.slice(-1);
+        after = `${before.slice(0, -1)}${rng.pick([...'0123456789'].filter((d) => d !== last))}`;
+        rule = 'M2';
+      } else if (s.destination === 'EU') {
+        // The UK number of the same company, a common mix-up since 2021.
+        after = `GB${String(rng.int(100000000, 999999999))}000`;
+        rule = 'E2';
+      } else {
+        after = `${rng.pick(['DE', 'NL', 'IE'])}${String(rng.int(100000000, 999999999))}`;
+        rule = 'K2';
+      }
+      buyer.taxId = after;
+      return { kind: this.kind, document: 'invoice', field: 'buyer.taxId', before, after, expectedRuleIds: [rule], description: `Importer number ${before} replaced by ${after}.` };
+    },
+  },
+  {
+    kind: 'missing_importer_number',
+    applies: (s) => NEW_DESTINATIONS.includes(s.destination) && !!s.documents.invoice.buyer.taxId,
+    apply(s) {
+      const inv = s.documents.invoice;
+      const before = inv.buyer.taxId;
+      delete inv.buyer.taxId;
+      if (inv.consignee) delete inv.consignee.taxId;
+      return { kind: this.kind, document: 'invoice', field: 'buyer.taxId', before, after: null, expectedRuleIds: [COMPLETENESS[s.destination]], description: "Importer's RFC or EORI number missing from the invoice." };
+    },
+  },
+  {
+    kind: 'hs_code_truncated',
+    applies: (s) => s.destination === 'EU' && s.documents.invoice.lines.some((l) => !!l.hsCode),
+    apply(s, rng) {
+      const lines = s.documents.invoice.lines;
+      const i = rng.pick(lines.map((l, k) => (l.hsCode ? k : -1)).filter((k) => k >= 0));
+      const before = lines[i].hsCode!;
+      lines[i].hsCode = before.replace(/\D/g, '').slice(0, 4);
+      return { kind: this.kind, document: 'invoice', field: `lines[${i}].hsCode`, before, after: lines[i].hsCode, expectedRuleIds: ['E3'], description: `HS code of line ${lines[i].lineNo} cut to the heading (${before} -> ${lines[i].hsCode}); ICS2 needs six digits.` };
+    },
+  },
+  {
+    kind: 'origin_statement_missing',
+    applies: (s) => s.destination === 'GB' && !!s.documents.invoice.originStatement,
+    apply(s) {
+      const inv = s.documents.invoice;
+      const before = inv.originStatement;
+      delete inv.originStatement;
+      return { kind: this.kind, document: 'invoice', field: 'originStatement', before, after: null, expectedRuleIds: ['K3'], description: 'Statement on origin left off an invoice for goods of EU origin.' };
+    },
+  },
+  {
+    kind: 'invoice_language_not_accepted',
+    applies: (s) => s.destination === 'MX',
+    apply(s, rng) {
+      const inv = s.documents.invoice;
+      const before = inv.language;
+      inv.language = rng.pick(['zh', 'vi', 'pt', 'it']);
+      return { kind: this.kind, document: 'invoice', field: 'language', before, after: inv.language, expectedRuleIds: ['M3'], description: `Invoice in "${inv.language}" without a Spanish translation.` };
+    },
+  },
+];
+
 /** Kinds used by dataset v1 and the default of injectErrors. */
 export const ERROR_KINDS: ErrorKind[] = INJECTORS.map((i) => i.kind);
 /** Kinds outside v1; injectErrors only uses them when they are passed in `kinds`. */
 export const EXTRA_ERROR_KINDS: ErrorKind[] = EXTRA_INJECTORS.map((i) => i.kind);
-const ALL_INJECTORS = [...INJECTORS, ...EXTRA_INJECTORS];
+/** Kinds of the destinations set (V3), on top of ERROR_KINDS. */
+export const DESTINATION_ERROR_KINDS: ErrorKind[] = DESTINATION_INJECTORS.map((i) => i.kind);
+const ALL_INJECTORS = [...INJECTORS, ...EXTRA_INJECTORS, ...DESTINATION_INJECTORS];
 
 /** Returns a copy of the shipment with `count` errors of distinct kinds, plus a label for each. */
 export function injectErrors(shipment: SyntheticShipment, rng: Rng, count: number, kinds: ErrorKind[] = ERROR_KINDS): { shipment: SyntheticShipment; labels: ErrorLabel[] } {
@@ -247,6 +334,12 @@ export function injectErrors(shipment: SyntheticShipment, rng: Rng, count: numbe
       l.expectedRuleIds = [];
       l.description += ' Not detectable: the invoice has no consignee to compare with.';
     }
+  }
+  // The importer number can only be wrong or missing, not both: the later of the two errors wins.
+  const importer = labels.filter((l) => l.kind === 'invalid_importer_number' || l.kind === 'missing_importer_number');
+  if (importer.length === 2) {
+    importer[0].expectedRuleIds = [];
+    importer[0].description += ` Not detectable: overwritten by the later error (${importer[1].kind}).`;
   }
   return { shipment: copy, labels };
 }

@@ -1,0 +1,15 @@
+{
+  "id": "EU-010",
+  "errors": [
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "INR",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 1228.00 INR on an invoice in EUR."
+    }
+  ]
+}

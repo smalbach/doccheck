@@ -1,0 +1,317 @@
+{
+  "id": "GB-024",
+  "seed": 811799925,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-1747",
+      "invoiceDate": "2026-06-09",
+      "poNumber": "TH438971",
+      "seller": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "exporter": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "shipmentDate": "2026-06-12",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Sines",
+          "unLocode": "PTSIE",
+          "country": "PT"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Sines"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 94,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5",
+          "description": "Extra virgin olive oil, 5 L tins",
+          "quantity": {
+            "value": "376",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.08",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "954.08",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "PT",
+          "hsCode": "1509.20"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1814.20",
+        "raw": {
+          "value": "1814.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1729.60",
+        "raw": {
+          "value": "1729.60",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "9054.08",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "originStatement": "The exporter of the products covered by this document (Exporter Reference No PTREX571771877) declares that, except where otherwise clearly indicated, these products are of EU preferential origin.",
+      "charges": {
+        "freight": {
+          "amount": "1830.00",
+          "currency": "INR"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-1747",
+      "invoiceRef": "INV-2026-1747",
+      "seller": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "packages": [
+        {
+          "range": "1-94",
+          "count": 94,
+          "type": "CTN",
+          "marks": "THAMESIDE/TH438971/C/NO. 1-94",
+          "contents": [
+            {
+              "sku": "OO-EV-5",
+              "description": "EV olive oil 5 L",
+              "quantity": {
+                "value": "376",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1729.60",
+            "raw": {
+              "value": "1729.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1814.20",
+            "raw": {
+              "value": "1814.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 94,
+        "netWeight": {
+          "kg": "1729.60",
+          "raw": {
+            "value": "1729.60",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1814.20",
+          "raw": {
+            "value": "1814.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "3.95"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLSIE4658136",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "454363200",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Azeites do Alentejo, Lda.",
+        "address": {
+          "lines": [
+            "Rua da Fábrica, 7"
+          ],
+          "city": "Beja",
+          "postalCode": "7800-309",
+          "country": "PT"
+        },
+        "taxId": "PT509876543"
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "014E",
+      "placeOfReceipt": {
+        "name": "Beja",
+        "country": "PT"
+      },
+      "portOfLoading": {
+        "name": "Sines",
+        "unLocode": "PTSIE",
+        "country": "PT"
+      },
+      "portOfDischarge": {
+        "name": "London Gateway",
+        "unLocode": "GBLGP",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "PCRU7213365",
+          "seal": "PC3973844",
+          "type": "20GP",
+          "packages": 94,
+          "grossWeight": {
+            "kg": "1814.20",
+            "raw": {
+              "value": "1814.20",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "3.95"
+        }
+      ],
+      "totalPackages": 94,
+      "totalGrossWeight": {
+        "kg": "1814.20",
+        "raw": {
+          "value": "1814.20",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/TH438971/C/NO. 1-94",
+      "cargoDescription": "SAID TO CONTAIN 94 CTNS EV OLIVE OIL 5 L",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Sines",
+      "dateOfIssue": "2026-06-15",
+      "shippedOnBoardDate": "2026-06-15",
+      "references": [
+        "INV-2026-1747",
+        "TH438971"
+      ]
+    }
+  }
+}

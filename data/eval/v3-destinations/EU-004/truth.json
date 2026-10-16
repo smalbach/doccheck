@@ -1,0 +1,314 @@
+{
+  "id": "EU-004",
+  "seed": 1764119509,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SAI2608644",
+      "invoiceDate": "2026-08-17",
+      "poNumber": "PO-22274",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-08-28",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cai Mep",
+          "unLocode": "VNCMT",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Le Havre"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 237,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "56880",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "1.90",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "18072.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4266.00",
+        "raw": {
+          "value": "4266.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4431.90",
+        "raw": {
+          "value": "4431.90",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "108072.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-SAI2608644",
+      "invoiceRef": "SAI2608644",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "packages": [
+        {
+          "range": "1-237",
+          "count": 237,
+          "type": "CTN",
+          "marks": "MAISON/PO-22274/C/NO. 1-237",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "56879",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4266.00",
+            "raw": {
+              "value": "4266.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4431.90",
+            "raw": {
+              "value": "4431.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 237,
+        "netWeight": {
+          "kg": "4266.00",
+          "raw": {
+            "value": "4266.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4431.90",
+          "raw": {
+            "value": "4431.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "16.72"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSCMT869380",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "979821731",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "notifyParty": {
+        "name": "Maison Rhodanienne Équipement S.A.S.",
+        "address": {
+          "lines": [
+            "14 quai Rambaud"
+          ],
+          "city": "Lyon",
+          "postalCode": "69002",
+          "country": "FR"
+        },
+        "taxId": "FR53829104700028"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "080N",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Cai Mep",
+        "unLocode": "VNCMT",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Le Havre",
+        "unLocode": "FRLEH",
+        "country": "FR"
+      },
+      "placeOfDelivery": {
+        "name": "Lyon",
+        "unLocode": "FRLIO",
+        "country": "FR"
+      },
+      "containers": [
+        {
+          "number": "MDOU5296749",
+          "seal": "MD9276365",
+          "type": "20GP",
+          "packages": 237,
+          "grossWeight": {
+            "kg": "4431.90",
+            "raw": {
+              "value": "4431.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "16.72"
+        }
+      ],
+      "totalPackages": 237,
+      "totalGrossWeight": {
+        "kg": "4431.90",
+        "raw": {
+          "value": "4431.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "MAISON/PO-22274/C/NO. 1-237",
+      "cargoDescription": "SAID TO CONTAIN 237 CTNS WOOL SOCKS 3-PACK",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Cai Mep",
+      "dateOfIssue": "2026-08-29",
+      "shippedOnBoardDate": "2026-08-29",
+      "references": [
+        "SAI2608644",
+        "PO-22274"
+      ]
+    }
+  }
+}

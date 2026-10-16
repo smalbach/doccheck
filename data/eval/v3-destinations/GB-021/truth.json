@@ -1,0 +1,310 @@
+{
+  "id": "GB-021",
+  "seed": 1645247456,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-4596",
+      "invoiceDate": "2026-08-07",
+      "poNumber": "PO-37883",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-08-17",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cartagena",
+          "unLocode": "COCTG",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Southampton"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "GBP",
+      "packageCount": 300,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "18000",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.40",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "97200.00",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "18240.00",
+        "raw": {
+          "value": "18240.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "18000.00",
+        "raw": {
+          "value": "18000.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "97200.00",
+        "currency": "GBP"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-4596",
+      "invoiceRef": "INV-2026-4596",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-300",
+          "count": 300,
+          "type": "BAG",
+          "marks": "PENNINE/PO-37883/C/NO. 1-300",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "18000",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "18000.00",
+            "raw": {
+              "value": "18000.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "18240.00",
+            "raw": {
+              "value": "18240.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 300,
+        "netWeight": {
+          "kg": "18000.00",
+          "raw": {
+            "value": "18000.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "18240.00",
+          "raw": {
+            "value": "18240.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "42.75"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWECTG6688057",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "862493328",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd Unit 18"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "048W",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Cartagena",
+        "unLocode": "COCTG",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Southampton",
+        "unLocode": "GBSOU",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "TWEU5814816",
+          "seal": "TW5045110",
+          "type": "40GP",
+          "packages": 300,
+          "grossWeight": {
+            "kg": "18240.00",
+            "raw": {
+              "value": "18240.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "42.75"
+        }
+      ],
+      "totalPackages": 300,
+      "totalGrossWeight": {
+        "kg": "18240.00",
+        "raw": {
+          "value": "18240.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PO-37883/C/NO. 1-300",
+      "cargoDescription": "SAID TO CONTAIN 300 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Cartagena",
+      "dateOfIssue": "2026-08-17",
+      "shippedOnBoardDate": "2026-08-17",
+      "references": [
+        "INV-2026-4596",
+        "PO-37883"
+      ]
+    }
+  }
+}

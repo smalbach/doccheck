@@ -1,0 +1,315 @@
+{
+  "id": "MX-022",
+  "seed": 1668704672,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/4997",
+      "invoiceDate": "2026-03-08",
+      "poNumber": "PO-51464",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "shipmentDate": "2026-03-15",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Bremerhaven",
+          "unLocode": "DEBRV",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Bremerhaven"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 15,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "60",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.13",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "1327.80",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "159.00",
+        "raw": {
+          "value": "159.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "138.00",
+        "raw": {
+          "value": "138.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "1327.80",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "pt"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/4997",
+      "invoiceRef": "CI/26/4997",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-15",
+          "count": 15,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-51464/C/NO. 1-15",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "60",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "138.00",
+            "raw": {
+              "value": "138.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "159.00",
+            "raw": {
+              "value": "159.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 15,
+        "netWeight": {
+          "kg": "138.00",
+          "raw": {
+            "value": "138.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "159.00",
+          "raw": {
+            "value": "159.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "1.69"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "PCCLBRV5531499",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "222473671",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "085N",
+      "placeOfReceipt": {
+        "name": "Stuttgart",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Bremerhaven",
+        "unLocode": "DEBRV",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Manzanillo",
+        "unLocode": "MXZLO",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "PCRU3206236",
+          "seal": "PC7756908",
+          "type": "20GP",
+          "packages": 15,
+          "grossWeight": {
+            "kg": "159.00",
+            "raw": {
+              "value": "159.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "1.69"
+        }
+      ],
+      "totalPackages": 15,
+      "totalGrossWeight": {
+        "kg": "159.00",
+        "raw": {
+          "value": "159.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-51464/C/NO. 1-15",
+      "cargoDescription": "SAID TO CONTAIN 15 CTNS BLENDER 600 W",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Bremerhaven",
+      "dateOfIssue": "2026-03-15",
+      "shippedOnBoardDate": "2026-03-15",
+      "references": [
+        "CI/26/4997",
+        "PO-51464"
+      ]
+    }
+  }
+}

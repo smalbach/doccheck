@@ -1,0 +1,365 @@
+{
+  "id": "GB-013",
+  "seed": 1627993603,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "NOR2603337",
+      "invoiceDate": "2026-04-13",
+      "poNumber": "PO-87338",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-04-24",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Bremerhaven",
+          "unLocode": "DEBRV",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Bremerhaven"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 141,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "2380",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "13.27",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "31582.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "22",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "79.24",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "7143.28",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3761.90",
+        "raw": {
+          "value": "3761.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3532.00",
+        "raw": {
+          "value": "3532.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "33325.88",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "originStatement": "The exporter of the products covered by this document (Exporter Reference No DEREX726711042) declares that, except where otherwise clearly indicated, these products are of EU preferential origin."
+    },
+    "packingList": {
+      "packingListNumber": "PL-NOR2603337",
+      "invoiceRef": "NOR2603337",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "packages": [
+        {
+          "range": "1-119",
+          "count": 119,
+          "type": "CTN",
+          "marks": "THAMESIDE/PO-87338/C/NO. 1-141",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "2380",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3213.00",
+            "raw": {
+              "value": "3213.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3343.90",
+            "raw": {
+              "value": "3343.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "120-141",
+          "count": 22,
+          "type": "CRT",
+          "marks": "THAMESIDE/PO-87338/C/NO. 1-141",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "22",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "319.00",
+            "raw": {
+              "value": "319.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "418.00",
+            "raw": {
+              "value": "418.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 141,
+        "netWeight": {
+          "kg": "3532.00",
+          "raw": {
+            "value": "3532.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3761.90",
+          "raw": {
+            "value": "3761.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "7.56"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWEBRV5332442",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "875676357",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "PACIFIC CREST HARMONY",
+      "voyage": "026E",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Bremerhaven",
+        "unLocode": "DEBRV",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "TWEU7004352",
+          "seal": "TW1855310",
+          "type": "20GP",
+          "packages": 141,
+          "grossWeight": {
+            "kg": "3761.90",
+            "raw": {
+              "value": "3761.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "7.56"
+        }
+      ],
+      "totalPackages": 141,
+      "totalGrossWeight": {
+        "kg": "3761.90",
+        "raw": {
+          "value": "3761.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/PO-87338/C/NO. 1-141",
+      "cargoDescription": "SAID TO CONTAIN 141 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Bremerhaven",
+      "dateOfIssue": "2026-04-24",
+      "shippedOnBoardDate": "2026-04-24",
+      "references": [
+        "NOR2603337",
+        "PO-87338"
+      ]
+    }
+  }
+}

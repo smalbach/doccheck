@@ -1,0 +1,319 @@
+{
+  "id": "MX-017",
+  "seed": 62785646,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5795",
+      "invoiceDate": "2026-01-22",
+      "poNumber": "DI820605",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-01-31",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Nhava Sheva",
+          "unLocode": "INNSA",
+          "country": "IN"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Nhava Sheva"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 22,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "22",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "91.46",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2012.12",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "418.00",
+        "raw": {
+          "value": "418.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "319.00",
+        "raw": {
+          "value": "319.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "2012.12",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "zh"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5795",
+      "invoiceRef": "CI/26/5795",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "packages": [
+        {
+          "range": "1-22",
+          "count": 22,
+          "type": "CRT",
+          "marks": "DISTRIBUIDORA/DI820605/C/NO. 1-22",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "22",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "319.00",
+            "raw": {
+              "value": "319.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "418.00",
+            "raw": {
+              "value": "418.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 22,
+        "netWeight": {
+          "kg": "319.00",
+          "raw": {
+            "value": "319.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "418.00",
+          "raw": {
+            "value": "418.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "1.94"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSNSA141926",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "950876254",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "notifyParty": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "086N",
+      "placeOfReceipt": {
+        "name": "Pune",
+        "country": "IN"
+      },
+      "portOfLoading": {
+        "name": "Nhava Sheva",
+        "unLocode": "INNSA",
+        "country": "IN"
+      },
+      "portOfDischarge": {
+        "name": "Lazaro Cardenas",
+        "unLocode": "MXLZC",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Guadalajara",
+        "unLocode": "MXGDL",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "PCRU8435476",
+          "seal": "PC6763849",
+          "type": "20GP",
+          "packages": 22,
+          "grossWeight": {
+            "kg": "418.00",
+            "raw": {
+              "value": "418.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "1.94"
+        }
+      ],
+      "totalPackages": 22,
+      "totalGrossWeight": {
+        "kg": "418.00",
+        "raw": {
+          "value": "418.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "DISTRIBUIDORA/DI820605/C/NO. 1-22",
+      "cargoDescription": "SAID TO CONTAIN 22 CRTS CENTRIFUGAL PUMP 0.75 KW",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Nhava Sheva",
+      "dateOfIssue": "2026-01-31",
+      "shippedOnBoardDate": "2026-01-31",
+      "references": [
+        "CI/26/5795",
+        "DI820605"
+      ]
+    }
+  }
+}

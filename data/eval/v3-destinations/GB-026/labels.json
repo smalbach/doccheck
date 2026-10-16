@@ -1,0 +1,27 @@
+{
+  "id": "GB-026",
+  "errors": [
+    {
+      "kind": "line_total_typo",
+      "document": "invoice",
+      "field": "lines[0].lineTotal.amount",
+      "before": "6216.00",
+      "after": "2616.00",
+      "expectedRuleIds": [
+        "X5"
+      ],
+      "description": "Line 1 total mistyped (6216.00 -> 2616.00)."
+    },
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "GB284019376000",
+      "after": "NL711014188",
+      "expectedRuleIds": [
+        "K2"
+      ],
+      "description": "Importer number GB284019376000 replaced by NL711014188."
+    }
+  ]
+}

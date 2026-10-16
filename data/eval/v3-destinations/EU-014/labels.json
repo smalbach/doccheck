@@ -1,0 +1,38 @@
+{
+  "id": "EU-014",
+  "errors": [
+    {
+      "kind": "packing_list_quantity_mismatch",
+      "document": "packingList",
+      "field": "packages[0].contents[0].quantity.value",
+      "before": "1312",
+      "after": "1262",
+      "expectedRuleIds": [
+        "X7"
+      ],
+      "description": "Packing list quantity differs from the invoice line."
+    },
+    {
+      "kind": "net_exceeds_gross",
+      "document": "invoice",
+      "field": "netWeight.kg",
+      "before": "1662.80",
+      "after": "1886.60",
+      "expectedRuleIds": [
+        "X4"
+      ],
+      "description": "Net and gross weight swapped on the invoice."
+    },
+    {
+      "kind": "missing_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "NL861234905",
+      "after": null,
+      "expectedRuleIds": [
+        "E1"
+      ],
+      "description": "Importer's RFC or EORI number missing from the invoice."
+    }
+  ]
+}
