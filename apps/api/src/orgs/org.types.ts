@@ -17,6 +17,9 @@ export interface OrgSettings {
   name: string;
   retentionCaYears: number;
   retentionUsYears: number;
+  retentionMxYears: number;
+  retentionEuYears: number;
+  retentionGbYears: number;
   requireApproval: boolean;
   slaEtaLeadHours: number;
 }

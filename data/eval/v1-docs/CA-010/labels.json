@@ -1,0 +1,27 @@
+{
+  "id": "CA-010",
+  "errors": [
+    {
+      "kind": "coo_exporter_mismatch",
+      "document": "certificateOfOrigin",
+      "field": "exporter.name",
+      "before": "Pune Precision Engineering Pvt. Ltd.",
+      "after": "Golden Bridge Trading Co., Ltd.",
+      "expectedRuleIds": [
+        "T7"
+      ],
+      "description": "Certificate of origin made out by another exporter."
+    },
+    {
+      "kind": "arrival_notice_mismatch",
+      "document": "arrivalNotice",
+      "field": "packages",
+      "before": 283,
+      "after": 284,
+      "expectedRuleIds": [
+        "T12"
+      ],
+      "description": "Arrival notice says 284 packages instead of 283."
+    }
+  ]
+}

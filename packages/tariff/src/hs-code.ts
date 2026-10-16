@@ -37,4 +37,7 @@ export function hsFormat(raw: string): HsFormat {
 export const ENTRY_CODE: Record<Destination, string> = {
   US: 'the 10-digit HTSUS statistical reporting number',
   CA: 'the 10-digit classification number (8-digit tariff item and 2-digit statistical suffix)',
+  MX: 'the 8-digit TIGIE tariff fraction and its 2-digit NICO',
+  EU: 'the 8-digit Combined Nomenclature code (10-digit TARIC code at import)',
+  GB: 'the 10-digit UK commodity code',
 };

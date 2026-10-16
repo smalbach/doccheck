@@ -1,0 +1,16 @@
+{
+  "id": "GB-011",
+  "errors": [
+    {
+      "kind": "gross_weight_mismatch",
+      "document": "billOfLading",
+      "field": "totalGrossWeight.kg",
+      "before": "2534.40",
+      "after": "2585.09",
+      "expectedRuleIds": [
+        "X3"
+      ],
+      "description": "BL gross weight off by a factor of 1.02 against the packing list."
+    }
+  ]
+}

@@ -15,6 +15,14 @@ export interface TextLine {
   page: number;
   text: string;
   bbox: BBox;
+  /** Spreadsheets (spreadsheet.ts): the sheet's name and the row's cells, so a value can cite its cell. */
+  sheet?: string;
+  cells?: { ref: string; text: string }[];
+  /**
+   * OCR lines only (tesseract): each word as [first character, end, confidence 0-100] in `text`, so the
+   * confidence of a value is that of the words it is read from.
+   */
+  ocr?: [number, number, number][];
 }
 
 export interface PdfText {
@@ -42,6 +50,8 @@ interface Item {
   y: number;
   w: number;
   h: number;
+  /** OCR words: the engine's confidence, 0-100. */
+  confidence?: number;
 }
 
 /** Items closer than this vertically (points) belong to the same row. */
@@ -122,6 +132,7 @@ const COLUMN_PT = 4;
 function toLine(page: number, row: Item[]): TextLine {
   let text = '';
   let cursor: number | undefined;
+  const ocr: [number, number, number][] = [];
   for (const it of row) {
     if (cursor !== undefined) {
       const gap = it.x - cursor;
@@ -135,6 +146,8 @@ function toLine(page: number, row: Item[]): TextLine {
     } else {
       text = ' '.repeat(Math.max(0, Math.round(it.x / COLUMN_PT) - 9));
     }
+    // Unlimited-OCR gives no confidence (it reports 100): only real scores are kept.
+    if (it.confidence !== undefined && it.confidence < 100) ocr.push([text.length, text.length + it.str.length, Math.round(it.confidence)]);
     text += it.str;
     cursor = it.x + it.w;
   }
@@ -143,5 +156,5 @@ function toLine(page: number, row: Item[]): TextLine {
   const x1 = Math.max(...row.map((i) => i.x + i.w));
   const y1 = Math.max(...row.map((i) => i.y + i.h));
   const r = (n: number) => Math.round(n * 10) / 10;
-  return { page, text: text.replace(/\s+$/, ''), bbox: [r(x0), r(y0), r(x1), r(y1)] };
+  return { page, text: text.replace(/\s+$/, ''), bbox: [r(x0), r(y0), r(x1), r(y1)], ...(ocr.length ? { ocr } : {}) };
 }

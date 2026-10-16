@@ -1,0 +1,28 @@
+{
+  "id": "CA-014",
+  "errors": [
+    {
+      "kind": "awb_pieces_mismatch",
+      "document": "airWaybill",
+      "field": "pieces",
+      "before": 231,
+      "after": 228,
+      "expectedRuleIds": [
+        "T2",
+        "T12"
+      ],
+      "description": "Air waybill says 228 pieces instead of 231."
+    },
+    {
+      "kind": "coo_hs_mismatch",
+      "document": "certificateOfOrigin",
+      "field": "goods[0].hsCode",
+      "before": "1509.20",
+      "after": "3926.90",
+      "expectedRuleIds": [
+        "T8"
+      ],
+      "description": "Certificate of origin lists HS 3926.90 instead of 1509.20."
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "id": "MX-015",
+  "seed": 26372772,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-0897",
+      "invoiceDate": "2026-02-11",
+      "poNumber": "DI502953",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "buyer": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K20"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "exporter": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "shipmentDate": "2026-02-23",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Bremerhaven",
+          "unLocode": "DEBRV",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Bremerhaven"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 114,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "45",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "77.06",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "3467.70",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "1390",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.63",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "24329.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8481.80"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2793.90",
+        "raw": {
+          "value": "2793.90",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2515.50",
+        "raw": {
+          "value": "2515.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "27797.10",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-0897",
+      "invoiceRef": "INV-2026-0897",
+      "seller": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-45",
+          "count": 45,
+          "type": "CRT",
+          "marks": "DISTRIBUIDORA/DI502953/C/NO. 1-114",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "45",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "652.50",
+            "raw": {
+              "value": "652.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "855.00",
+            "raw": {
+              "value": "855.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "46-114",
+          "count": 69,
+          "type": "CTN",
+          "marks": "DISTRIBUIDORA/DI502953/C/NO. 1-114",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "1380",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1863.00",
+            "raw": {
+              "value": "1863.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1938.90",
+            "raw": {
+              "value": "1938.90",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 114,
+        "netWeight": {
+          "kg": "2515.50",
+          "raw": {
+            "value": "2515.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2793.90",
+          "raw": {
+            "value": "2793.90",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "7.22"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWEBRV6043837",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "466558355",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Nordhafen Armaturen GmbH",
+        "address": {
+          "lines": [
+            "Industriestrasse 9"
+          ],
+          "city": "Bremen",
+          "postalCode": "28197",
+          "country": "DE"
+        },
+        "taxId": "DE812345678"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte – CEDIS El Salto",
+        "address": {
+          "lines": [
+            "Carretera El Salto km 4.5"
+          ],
+          "city": "El Salto",
+          "region": "JAL",
+          "postalCode": "45680",
+          "country": "MX"
+        }
+      },
+      "notifyParty": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K20"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "026W",
+      "placeOfReceipt": {
+        "name": "Bremen",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Bremerhaven",
+        "unLocode": "DEBRV",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Lazaro Cardenas",
+        "unLocode": "MXLZC",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Guadalajara",
+        "unLocode": "MXGDL",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "TWEU1697413",
+          "seal": "TW6600473",
+          "type": "20GP",
+          "packages": 114,
+          "grossWeight": {
+            "kg": "2793.90",
+            "raw": {
+              "value": "2793.90",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "7.22"
+        }
+      ],
+      "totalPackages": 114,
+      "totalGrossWeight": {
+        "kg": "2793.90",
+        "raw": {
+          "value": "2793.90",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "DISTRIBUIDORA/DI502953/C/NO. 1-114",
+      "cargoDescription": "SAID TO CONTAIN 114 PKGS CENTRIFUGAL PUMP 0.75 KW AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Bremerhaven",
+      "dateOfIssue": "2026-02-24",
+      "shippedOnBoardDate": "2026-02-24",
+      "references": [
+        "INV-2026-0897",
+        "DI502953"
+      ]
+    }
+  }
+}

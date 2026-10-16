@@ -1,5 +1,5 @@
-import type { EngineOutput, RuleProgress, ShipmentContext } from '@doccheck/rules';
-import type { DocumentType, Finding } from '@doccheck/schemas';
+import type { EngineOutput, RuleConfig, RuleProgress, ShipmentContext } from '@doccheck/rules';
+import type { Destination, DocumentType, Finding } from '@doccheck/schemas';
 import { TARIFF_RULES, type TariffContext } from './rules';
 
 const present = (ctx: ShipmentContext): Set<DocumentType> =>
@@ -10,7 +10,7 @@ const present = (ctx: ShipmentContext): Set<DocumentType> =>
   );
 
 export interface TariffRunOutput extends EngineOutput {
-  /** P1 and E1: what the entry may also need, cited like findings but never open. */
+  /** H4 and H5: what the entry may also need, cited like findings but never open. */
   notices: Finding[];
   /** Rules that need the schedule, not run without it. */
   unavailable: string[];
@@ -21,18 +21,30 @@ export interface TariffRunOptions {
   onRule?: (progress: RuleProgress) => void;
   offset?: number;
   total?: number;
+  /** The organization's rule settings: rules turned off, a different severity (same as the rule engine). */
+  config?: RuleConfig;
 }
 
+const off = (config: RuleConfig | undefined, id: string) => config?.rules?.[id]?.enabled === false;
+
+/** The tariff rules that apply to a destination, in order (H2, H4, H5 and A2 only where a schedule is loaded: CA, US). */
+export const tariffRulesFor = (destination: Destination) => TARIFF_RULES.filter((r) => r.definition.appliesTo === 'ALL' || r.definition.appliesTo.includes(destination));
+
+/** How many rules runTariffRules reports for a destination and settings, for progress totals. */
+export const tariffRuleCount = (destination: Destination, config?: RuleConfig) => tariffRulesFor(destination).filter((r) => !off(config, r.definition.id)).length;
+
 /**
- * Runs the tariff rules (H1-H3, P1, E1) the way the rule engine runs X/C/U rules. H1-H3 findings
- * join the same list; P1 and E1 (informational) come back as `notices`, in the same shape, for the
+ * Runs the tariff rules (H1-H5) the way the rule engine runs X/C/U rules. H1-H3 findings
+ * join the same list; H4 and H5 (informational) come back as `notices`, in the same shape, for the
  * tariff report. A rule that needs the schedule does not run without it: it goes to `unavailable`
  * instead, and the API says so.
  */
-export function runTariffRules(ctx: ShipmentContext, tariff: TariffContext, { onRule, offset = 0, total }: TariffRunOptions = {}): TariffRunOutput {
+export function runTariffRules(ctx: ShipmentContext, tariff: TariffContext, { onRule, offset = 0, total, config }: TariffRunOptions = {}): TariffRunOutput {
   const have = present(ctx);
-  const output: TariffRunOutput = { findings: [], notices: [], ran: [], skipped: [], unavailable: [] };
-  const count = total ?? offset + TARIFF_RULES.length;
+  const applicable = tariffRulesFor(ctx.destination);
+  const rules = applicable.filter((r) => !off(config, r.definition.id));
+  const output: TariffRunOutput = { findings: [], notices: [], ran: [], skipped: [], disabled: applicable.filter((r) => off(config, r.definition.id)).map((r) => r.definition.id), unavailable: [] };
+  const count = total ?? offset + rules.length;
   const notify = (p: RuleProgress) => {
     try {
       onRule?.(p);
@@ -40,7 +52,7 @@ export function runTariffRules(ctx: ShipmentContext, tariff: TariffContext, { on
       // Progress must not break the run.
     }
   };
-  for (const [i, rule] of TARIFF_RULES.entries()) {
+  for (const [i, rule] of rules.entries()) {
     const def = rule.definition;
     const at = { rule: def.id, index: offset + i + 1, total: count };
     const missing = def.requires.filter((t) => !have.has(t));
@@ -55,7 +67,7 @@ export function runTariffRules(ctx: ShipmentContext, tariff: TariffContext, { on
       id: `${ctx.shipmentId}:${def.id}:${k}`,
       shipmentId: ctx.shipmentId,
       ruleId: def.id,
-      severity: r.severity ?? def.severity,
+      severity: config?.rules?.[def.id]?.severity ?? r.severity ?? def.severity,
       decidedBy: 'RULE',
       message: r.message,
       evidence: r.evidence,
@@ -73,5 +85,3 @@ export function runTariffRules(ctx: ShipmentContext, tariff: TariffContext, { on
   return output;
 }
 
-/** How many rules runTariffRules reports, for progress totals. */
-export const TARIFF_RULE_COUNT = TARIFF_RULES.length;

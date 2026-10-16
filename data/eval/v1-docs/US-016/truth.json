@@ -1,0 +1,408 @@
+{
+  "id": "US-016",
+  "seed": 1452606246,
+  "destination": "US",
+  "mode": "AIR",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "classic",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "attestations": {
+    "cusmaCertification": {
+      "signature": true,
+      "stamp": false
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/9067",
+      "invoiceDate": "2026-04-20",
+      "poNumber": "PO-40035",
+      "seller": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "buyer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "exporter": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "shipmentDate": "2026-04-30",
+      "transport": {
+        "mode": "AIR"
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Yantian"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 51,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "2550",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "7.44",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "18972.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "MX",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "520.20",
+        "raw": {
+          "value": "520.20",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "459.00",
+        "raw": {
+          "value": "459.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "18972.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "portOfEntry": {
+        "name": "Houston",
+        "unLocode": "USHOU",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/9067",
+      "invoiceRef": "CI/26/9067",
+      "seller": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "packages": [
+        {
+          "range": "1-51",
+          "count": 51,
+          "type": "CTN",
+          "marks": "BLUEBONNET/PO-40035/C/NO. 1-51",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "2550",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "459.00",
+            "raw": {
+              "value": "459.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "520.20",
+            "raw": {
+              "value": "520.20",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 51,
+        "netWeight": {
+          "kg": "459.00",
+          "raw": {
+            "value": "459.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "520.20",
+          "raw": {
+            "value": "520.20",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.90"
+      }
+    },
+    "airWaybill": {
+      "awbNumber": "176-88692436",
+      "issuer": "MAWB",
+      "carrier": {
+        "name": "Pacific Crest Air Cargo",
+        "iataPrefix": "176"
+      },
+      "shipper": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "notifyParty": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "airportOfDeparture": {
+        "name": "Mexico City",
+        "iata": "MEX"
+      },
+      "airportOfDestination": {
+        "name": "Chicago O’Hare",
+        "iata": "ORD"
+      },
+      "flights": [
+        {
+          "flight": "PC412",
+          "date": "2026-05-01"
+        }
+      ],
+      "pieces": 51,
+      "grossWeight": {
+        "kg": "520.20",
+        "raw": {
+          "value": "520.20",
+          "unit": "KG"
+        }
+      },
+      "chargeableWeight": {
+        "kg": "818.30",
+        "raw": {
+          "value": "818.30",
+          "unit": "KG"
+        }
+      },
+      "volumeM3": "4.90",
+      "natureOfGoods": "PLUSH TEDDY BEAR 30 CM",
+      "freightTerms": "COLLECT",
+      "references": [
+        "CI/26/9067"
+      ],
+      "placeOfExecution": "Mexico City",
+      "executedOn": "2026-04-30"
+    },
+    "cusmaCertification": {
+      "certifierRole": "EXPORTER",
+      "certifier": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "exporter": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "producer": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "importer": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "goods": [
+        {
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "hsCode": "9503.00",
+          "countryOfOrigin": "MX"
+        }
+      ],
+      "signature": {
+        "name": "Ana Ruiz Treviño",
+        "title": "Export Manager",
+        "date": "2026-04-21"
+      },
+      "invoiceRefs": [
+        "CI/26/9067"
+      ]
+    },
+    "arrivalNotice": {
+      "noticeNumber": "AN-80727",
+      "carrier": {
+        "name": "Pacific Crest Air Cargo"
+      },
+      "mode": "AIR",
+      "transportDocumentNumber": "176-88692435",
+      "flight": "PC412",
+      "estimatedArrival": "2026-05-02",
+      "consignee": {
+        "name": "Bluebonnet Home Goods LLC",
+        "address": {
+          "lines": [
+            "4200 Ambassador Caffery Pkwy"
+          ],
+          "city": "Houston",
+          "region": "TX",
+          "postalCode": "77041",
+          "country": "US"
+        },
+        "taxId": "74-3812456"
+      },
+      "packages": 51,
+      "grossWeight": {
+        "kg": "520.20",
+        "raw": {
+          "value": "520.20",
+          "unit": "KG"
+        }
+      },
+      "cargoDescription": "PLUSH TEDDY BEAR 30 CM",
+      "freightTerms": "COLLECT",
+      "lastFreeDay": "2026-05-05"
+    }
+  }
+}

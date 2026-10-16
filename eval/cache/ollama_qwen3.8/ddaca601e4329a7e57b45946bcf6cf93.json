@@ -1,0 +1,54 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 523,
+    "outputTokens": 432
+  },
+  "output": {
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Pacific Trail Fulfillment Center",
+      "addressLines": [
+        "13500 Valley Blvd",
+        "Fontana, CA, 92335"
+      ],
+      "city": "Fontana",
+      "region": "CA",
+      "postalCode": "92335",
+      "country": "US",
+      "taxId": null
+    },
+    "transportDocumentNumber": "TDWE714726",
+    "mode": "Air",
+    "regulation": "IATA",
+    "items": [
+      {
+        "unNumber": "UN 3481",
+        "properShippingName": "LITHIUM ION BATTERIES CONTAINED IN EQUIPMENT",
+        "hazardClass": "9",
+        "subsidiaryRisk": null,
+        "packingGroup": "II",
+        "quantity": "4640 PCS",
+        "unit": "PCS",
+        "packages": null
+      }
+    ],
+    "emergencyContact": "+1 613 996 6666",
+    "signatoryName": "Li Wei",
+    "signatoryPlace": "Bremen",
+    "signatureDate": "2026-02-19"
+  }
+}

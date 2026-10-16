@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 642,
+    "outputTokens": 770
+  },
+  "output": {
+    "invoiceNumber": "CL'26/4775",
+    "invoiceDate": "2026-07-13",
+    "poNumber": "PRR57633",
+    "seller": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "buyer": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "8567890|2RM0001"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "shipmentDate": "2026-07-22",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfEntry": null,
+    "incotermCode": "EXW",
+    "incotermPlace": "Bremerhaven",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Brass ball valves 2 inch, threaded",
+        "quantity": "2,220",
+        "unit": "PCS",
+        "unitPrice": "12.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "28,083.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "DE",
+        "hsCode": null
+      }
+    ],
+    "totalPackages": "111",
+    "grossWeight": {
+      "value": "3,119.10",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "2,997.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "28,083.00",
+    "invoiceTotalCurrency": null,
+    "charges": []
+  }
+}

@@ -20,7 +20,7 @@ export interface TariffRule {
   /** Runs only when the schedule is loaded. */
   needsSchedule?: boolean;
   /**
-   * What it reports is not an error in the documents but what the entry may also need (P1, E1):
+   * What it reports is not an error in the documents but what the entry may also need (H4, H5):
    * it goes to the tariff report as a notice, cited like a finding, and never keeps a shipment open.
    */
   informational?: boolean;
@@ -71,7 +71,7 @@ export const h1HsFormat: TariffRule = {
 
 /** H2: each declared code exists in the destination's schedule (the HS subheading, then the national digits). */
 export const h2HsExists: TariffRule = {
-  definition: { id: 'H2', title: "HS codes exist in the destination's tariff schedule", appliesTo: 'ALL', requires: ['COMMERCIAL_INVOICE'], kind: 'DETERMINISTIC', severity: 'HIGH' },
+  definition: { id: 'H2', title: "HS codes exist in the destination's tariff schedule", appliesTo: ['CA', 'US'], requires: ['COMMERCIAL_INVOICE'], kind: 'DETERMINISTIC', severity: 'HIGH' },
   needsSchedule: true,
   run(ctx, { schedule }) {
     if (!schedule) return [];
@@ -155,12 +155,12 @@ export const h3HsConsistent: TariffRule = {
 const regulationOf = (r: AgencyRequirement | { source: AgencyRequirement['source'] }): Finding['regulation'] => ({ title: r.source.title, url: r.source.url, excerpt: r.source.excerpt });
 
 /**
- * P1: the declared codes fall under a partner government agency (US) or other government department
+ * H4: the declared codes fall under a partner government agency (US) or other government department
  * (CA) requirement. One notice per requirement, listing the lines it covers. Informational: the
  * documents are not wrong, but the entry will need this agency's data, permit or licence.
  */
 export const p1Agencies: TariffRule = {
-  definition: { id: 'P1', title: 'Partner government agency (PGA / OGD) data or permit likely needed for the HS codes (informational, tariff card)', appliesTo: 'ALL', requires: ['COMMERCIAL_INVOICE'], kind: 'DETERMINISTIC', severity: 'LOW' },
+  definition: { id: 'H4', title: 'Partner government agency (PGA / OGD) data or permit likely needed for the HS codes (informational, tariff card)', appliesTo: ['CA', 'US'], requires: ['COMMERCIAL_INVOICE'], kind: 'DETERMINISTIC', severity: 'LOW' },
   informational: true,
   run(ctx) {
     const hits = new Map<string, { req: AgencyRequirement; lines: ReturnType<typeof invoiceCodes> }>();
@@ -177,9 +177,9 @@ export const p1Agencies: TariffRule = {
   },
 };
 
-/** E1: a line looks like a dual-use item (Wassenaar categories 3, 4, 5; also 6 and 9). Informational. */
+/** H5: a line looks like a dual-use item (Wassenaar categories 3, 4, 5; also 6 and 9). Informational. */
 export const e1ExportControl: TariffRule = {
-  definition: { id: 'E1', title: 'Possible dual-use item (export control list categories 3, 4, 5; informational, tariff card)', appliesTo: 'ALL', requires: ['COMMERCIAL_INVOICE'], kind: 'DETERMINISTIC', severity: 'LOW' },
+  definition: { id: 'H5', title: 'Possible dual-use item (export control list categories 3, 4, 5; informational, tariff card)', appliesTo: ['CA', 'US'], requires: ['COMMERCIAL_INVOICE'], kind: 'DETERMINISTIC', severity: 'LOW' },
   informational: true,
   run(ctx) {
     const inv = ctx.invoice;
@@ -194,7 +194,7 @@ export const e1ExportControl: TariffRule = {
           ...(line.hsCode ? [{ documentId: inv.id, field: `lines[${i}].hsCode`, value: line.hsCode }] : []),
         ],
         suggestedFix: "Ask the seller for the item's export classification (ECCN or ECL item) and whether it shipped under an export licence; a re-export may need one too.",
-        regulation: regulationOf({ source: EXPORT_CONTROL_SOURCE[ctx.destination as Destination] }),
+        regulation: regulationOf({ source: EXPORT_CONTROL_SOURCE[ctx.destination as 'CA' | 'US'] }),
       }));
     });
   },
@@ -206,7 +206,7 @@ export const TARIFF_RULES: TariffRule[] = [h1HsFormat, h2HsExists, h3HsConsisten
 export const A2_DEFINITION: RuleDefinition = {
   id: 'A2',
   title: 'Declared HS heading fits the goods description (agent, with the tariff notes)',
-  appliesTo: 'ALL',
+  appliesTo: ['CA', 'US'],
   requires: ['COMMERCIAL_INVOICE'],
   kind: 'AGENT',
   severity: 'MEDIUM',

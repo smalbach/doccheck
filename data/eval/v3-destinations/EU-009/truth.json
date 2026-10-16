@@ -1,0 +1,313 @@
+{
+  "id": "EU-009",
+  "seed": 652053604,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-2913",
+      "invoiceDate": "2026-09-18",
+      "poNumber": "RH721730",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "DE482910375516203"
+      },
+      "consignee": {
+        "name": "Rheinufer Logistikzentrum",
+        "address": {
+          "lines": [
+            "Logport-Allee 7"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47229",
+          "country": "DE"
+        }
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-09-29",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Cartagena",
+          "unLocode": "COCTG",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Cartagena"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "USD",
+      "packageCount": 103,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "6180",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "5.50",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "33990.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "6262.40",
+        "raw": {
+          "value": "6262.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "6180.00",
+        "raw": {
+          "value": "6180.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "33990.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "2810.00",
+          "currency": "CAD"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-2913",
+      "invoiceRef": "INV-2026-2913",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Rheinufer Logistikzentrum",
+        "address": {
+          "lines": [
+            "Logport-Allee 7"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47229",
+          "country": "DE"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-103",
+          "count": 103,
+          "type": "BAG",
+          "marks": "RHEINUFER/RH721730/C/NO. 1-103",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "6180",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "6180.00",
+            "raw": {
+              "value": "6180.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "6262.40",
+            "raw": {
+              "value": "6262.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 103,
+        "netWeight": {
+          "kg": "6180.00",
+          "raw": {
+            "value": "6180.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "6262.40",
+          "raw": {
+            "value": "6262.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "14.68"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPCTG371449",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "272692004",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Rheinufer Logistikzentrum",
+        "address": {
+          "lines": [
+            "Logport-Allee 7"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47229",
+          "country": "DE"
+        }
+      },
+      "notifyParty": {
+        "name": "Rheinufer Haushaltswaren GmbH",
+        "address": {
+          "lines": [
+            "Hafenstrasse 112"
+          ],
+          "city": "Duisburg",
+          "postalCode": "47119",
+          "country": "DE"
+        },
+        "taxId": "DE482910375516203"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "052N",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Cartagena",
+        "unLocode": "COCTG",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Hamburg",
+        "unLocode": "DEHAM",
+        "country": "DE"
+      },
+      "placeOfDelivery": {
+        "name": "Duisburg",
+        "unLocode": "DEDUI",
+        "country": "DE"
+      },
+      "containers": [
+        {
+          "number": "TWEU2890031",
+          "seal": "TW1938890",
+          "type": "20GP",
+          "packages": 103,
+          "grossWeight": {
+            "kg": "6262.40",
+            "raw": {
+              "value": "6262.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "14.68"
+        }
+      ],
+      "totalPackages": 103,
+      "totalGrossWeight": {
+        "kg": "6262.40",
+        "raw": {
+          "value": "6262.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "RHEINUFER/RH721730/C/NO. 1-103",
+      "cargoDescription": "SAID TO CONTAIN 103 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Cartagena",
+      "dateOfIssue": "2026-10-01",
+      "shippedOnBoardDate": "2026-10-01",
+      "references": [
+        "INV-2026-2913",
+        "RH721730"
+      ]
+    }
+  }
+}

@@ -183,7 +183,7 @@ describe('H3: consistent across documents', () => {
   });
 });
 
-describe('P1: partner agencies', () => {
+describe('H4: partner agencies', () => {
   it('maps food, toys and radios to the agency of each destination', () => {
     expect(agencyRequirements('0901110000', 'US').map((r) => r.id)).toEqual(['US-FDA-FOOD']);
     expect(agencyRequirements('0901110000', 'CA').map((r) => r.id)).toEqual(['CA-CFIA-FOOD']);
@@ -198,8 +198,8 @@ describe('P1: partner agencies', () => {
     const ctx = shipment('US', [{ hsCode: '0901.11', description: 'Green coffee beans' }, { hsCode: '1509.20', description: 'Extra virgin olive oil' }, { hsCode: '7318.15', description: 'Bolts' }]);
     const out = runTariffRules(ctx, { schedule: us.schedule });
     // Informational: a notice for the tariff report, never an open finding.
-    expect(out.findings.map((f) => f.ruleId)).not.toContain('P1');
-    const p1 = out.notices.filter((f) => f.ruleId === 'P1');
+    expect(out.findings.map((f) => f.ruleId)).not.toContain('H4');
+    const p1 = out.notices.filter((f) => f.ruleId === 'H4');
     expect(p1).toHaveLength(1);
     expect(p1[0].severity).toBe('MEDIUM');
     expect(p1[0].evidence.map((e) => e.field)).toEqual(['lines[0].hsCode', 'lines[1].hsCode']);
@@ -207,7 +207,7 @@ describe('P1: partner agencies', () => {
   });
 });
 
-describe('E1: export control hints', () => {
+describe('H5: export control hints', () => {
   it('needs a matching word for broad codes, and flags encryption anywhere', () => {
     expect(exportControlHints('847130', 'Laptop computer 14 inch')).toEqual([]);
     expect(exportControlHints('847150', 'Rack server, 2U, dual CPU').map((m) => m.hint.category)).toEqual([4]);
@@ -217,9 +217,21 @@ describe('E1: export control hints', () => {
   });
 
   it('is a LOW notice citing the destination list', () => {
-    const f = runTariffRules(shipment('CA', [{ hsCode: '8542.39', description: 'FPGA development board' }]), {}).notices.find((x) => x.ruleId === 'E1');
+    const f = runTariffRules(shipment('CA', [{ hsCode: '8542.39', description: 'FPGA development board' }]), {}).notices.find((x) => x.ruleId === 'H5');
     expect(f?.severity).toBe('LOW');
     expect(f?.regulation?.title).toMatch(/Export Control List/);
+  });
+});
+
+describe('destinations without a bundled schedule', () => {
+  it('check format and consistency only for Mexico, the EU and the UK', () => {
+    for (const destination of ['MX', 'EU', 'GB'] as const) {
+      const ctx = { ...shipment('US', [{ hsCode: '9503' }, { hsCode: '0901.11', description: 'Green coffee beans' }]), destination };
+      const out = runTariffRules(ctx, { schedule: us.schedule });
+      expect(out.ran).toEqual(['H1', 'H3']);
+      expect(out.findings.map((f) => f.ruleId)).toEqual(['H1']);
+      expect(out.notices).toEqual([]);
+    }
   });
 });
 

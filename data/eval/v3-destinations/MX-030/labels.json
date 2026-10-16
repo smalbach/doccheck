@@ -1,0 +1,27 @@
+{
+  "id": "MX-030",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "MDOU6234314",
+      "after": "MDOU6234312",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: MDOU6234314 -> MDOU6234312."
+    },
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "CBA990208H57",
+      "after": "CBA990208H50",
+      "expectedRuleIds": [
+        "M2"
+      ],
+      "description": "Importer number CBA990208H57 replaced by CBA990208H50."
+    }
+  ]
+}

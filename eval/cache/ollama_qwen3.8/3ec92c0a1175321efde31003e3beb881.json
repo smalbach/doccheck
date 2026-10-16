@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 829,
+    "outputTokens": 911
+  },
+  "output": {
+    "blNumber": "PCCLNSA2380432",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "121097988",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave",
+        "Elizabeth, NJ, 07201"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "077W",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU9834187",
+        "seal": "PC2251251",
+        "type": "20GP",
+        "packages": "231",
+        "grossWeight": {
+          "value": "5,969.80",
+          "unit": "KG"
+        },
+        "volumeM3": "9.97"
+      }
+    ],
+    "totalPackages": "231",
+    "totalGrossWeight": {
+      "value": "5,969.80",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "HARBORLINE/HA289831/C/NO. 1-231",
+    "cargoDescription": "SAID TO CONTAIN 231 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-0560",
+      "HA289831"
+    ],
+    "placeOfIssue": "Nhava Sheva",
+    "dateOfIssue": "2026-03-11",
+    "shippedOnBoardDate": "2026-03-11"
+  }
+}

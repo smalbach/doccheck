@@ -1,4 +1,3 @@
-import type { Destination } from '@doccheck/schemas';
 import type { AgencySource } from './agencies';
 
 /**
@@ -72,7 +71,7 @@ export const EXPORT_CONTROL_HINTS: ExportControlHint[] = [
   },
 ];
 
-export const EXPORT_CONTROL_SOURCE: Record<Destination, AgencySource> = {
+export const EXPORT_CONTROL_SOURCE: Record<'CA' | 'US', AgencySource> = {
   US: {
     title: '15 CFR Part 774: The Commerce Control List',
     url: 'https://www.ecfr.gov/current/title-15/part-774',

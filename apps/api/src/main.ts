@@ -23,6 +23,8 @@ async function bootstrap() {
   // Received mail arrives raw (up to 25 MB with attachments); every other body is JSON. The secret is
   // checked first, so nobody without it can make the server read a large body.
   app.use('/mail/inbound', inboundSecretGuard, raw({ type: () => true, limit: '25mb' }));
+  // Stripe signs the exact bytes it sends: the billing webhook keeps its body raw.
+  app.use('/billing/webhook', raw({ type: () => true, limit: '1mb' }));
   app.use(sameOriginGuard);
   if (isDemo()) {
     app.use(readOnlyGuard);
@@ -35,7 +37,7 @@ async function bootstrap() {
     app.useStaticAssets(web, {
       index: 'index.html',
       setHeaders: (res, path) => {
-        if (path.endsWith('.html')) res.setHeader('cache-control', 'no-cache');
+        if (path.endsWith('.html') || path.endsWith('sw.js') || path.endsWith('manifest.webmanifest')) res.setHeader('cache-control', 'no-cache');
       },
     });
   }

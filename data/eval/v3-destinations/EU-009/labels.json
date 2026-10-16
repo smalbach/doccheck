@@ -1,0 +1,15 @@
+{
+  "id": "EU-009",
+  "errors": [
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CAD",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 2810.00 CAD on an invoice in USD."
+    }
+  ]
+}

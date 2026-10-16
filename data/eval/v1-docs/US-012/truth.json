@@ -1,0 +1,408 @@
+{
+  "id": "US-012",
+  "seed": 1820239384,
+  "destination": "US",
+  "mode": "AIR",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "LB",
+    "bilingual": false
+  },
+  "attestations": {
+    "cusmaCertification": {
+      "signature": true,
+      "stamp": false
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-7465",
+      "invoiceDate": "2026-06-26",
+      "poNumber": "PO-18529",
+      "seller": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "buyer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "exporter": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "shipmentDate": "2026-07-03",
+      "transport": {
+        "mode": "AIR"
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Shanghai"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 23,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "92",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "26.09",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2400.28",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "MX",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "243.80",
+        "raw": {
+          "value": "243.80",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "211.60",
+        "raw": {
+          "value": "211.60",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "2400.28",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "portOfEntry": {
+        "name": "New York",
+        "unLocode": "USNYC",
+        "country": "US"
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-7465",
+      "invoiceRef": "INV-2026-7465",
+      "seller": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": [
+        {
+          "range": "1-23",
+          "count": 23,
+          "type": "CTN",
+          "marks": "HARBORLINE/PO-18529/C/NO. 1-23",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "92",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "211.60",
+            "raw": {
+              "value": "211.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "243.80",
+            "raw": {
+              "value": "243.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 23,
+        "netWeight": {
+          "kg": "211.60",
+          "raw": {
+            "value": "211.60",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "243.80",
+          "raw": {
+            "value": "243.80",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "2.59"
+      }
+    },
+    "airWaybill": {
+      "awbNumber": "618-17722434",
+      "issuer": "MAWB",
+      "carrier": {
+        "name": "Aurora Cargo Airlines",
+        "iataPrefix": "618"
+      },
+      "shipper": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "notifyParty": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "airportOfDeparture": {
+        "name": "Monterrey",
+        "iata": "MTY"
+      },
+      "airportOfDestination": {
+        "name": "Chicago O’Hare",
+        "iata": "ORD"
+      },
+      "flights": [
+        {
+          "flight": "AU435",
+          "date": "2026-07-03"
+        }
+      ],
+      "pieces": 28,
+      "grossWeight": {
+        "kg": "243.80",
+        "raw": {
+          "value": "243.80",
+          "unit": "KG"
+        }
+      },
+      "chargeableWeight": {
+        "kg": "432.53",
+        "raw": {
+          "value": "432.53",
+          "unit": "KG"
+        }
+      },
+      "volumeM3": "2.59",
+      "natureOfGoods": "BLENDER 600 W",
+      "freightTerms": "COLLECT",
+      "references": [
+        "INV-2026-7465"
+      ],
+      "placeOfExecution": "Monterrey",
+      "executedOn": "2026-07-03"
+    },
+    "cusmaCertification": {
+      "certifierRole": "EXPORTER",
+      "certifier": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "exporter": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "producer": {
+        "name": "Norte Manufacturas S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Industrial 2450"
+          ],
+          "city": "Monterrey",
+          "region": "NL",
+          "postalCode": "64000",
+          "country": "MX"
+        },
+        "taxId": "NMA981204KL3"
+      },
+      "importer": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "goods": [
+        {
+          "description": "Countertop blender 600 W with glass jar",
+          "hsCode": "8509.40",
+          "countryOfOrigin": "MX"
+        }
+      ],
+      "signature": {
+        "name": "Ana Ruiz Treviño",
+        "title": "Export Manager",
+        "date": "2026-06-27"
+      },
+      "invoiceRefs": [
+        "INV-2026-7465"
+      ]
+    },
+    "arrivalNotice": {
+      "noticeNumber": "AN-63246",
+      "carrier": {
+        "name": "Aurora Cargo Airlines"
+      },
+      "mode": "AIR",
+      "transportDocumentNumber": "618-17722434",
+      "flight": "AU435",
+      "estimatedArrival": "2026-07-04",
+      "consignee": {
+        "name": "Harborline Industrial Supply Inc.",
+        "address": {
+          "lines": [
+            "1200 Port Ave"
+          ],
+          "city": "Elizabeth",
+          "region": "NJ",
+          "postalCode": "07201",
+          "country": "US"
+        },
+        "taxId": "22-4519873"
+      },
+      "packages": 23,
+      "grossWeight": {
+        "kg": "243.80",
+        "raw": {
+          "value": "243.80",
+          "unit": "KG"
+        }
+      },
+      "cargoDescription": "BLENDER 600 W",
+      "freightTerms": "COLLECT",
+      "lastFreeDay": "2026-07-07"
+    }
+  }
+}

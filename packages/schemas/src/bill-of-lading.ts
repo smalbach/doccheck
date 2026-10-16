@@ -11,6 +11,10 @@ export const Container = z.object({
   packages: z.number().int().nonnegative().optional(),
   grossWeight: Weight.optional(),
   volumeM3: z.string().optional(),
+  /** Verified gross mass (SOLAS VI/2): cargo, packing and the container's own tare. */
+  vgm: Weight.optional(),
+  /** Tare as printed on the container or the BL, when shown. */
+  tareWeight: Weight.optional(),
 });
 export type Container = z.infer<typeof Container>;
 
@@ -23,6 +27,8 @@ export const BillOfLading = z.object({
   consignee: Party,
   notifyParty: Party.optional(),
   vessel: z.string().optional(),
+  /** IMO ship identification number: 7 digits, the last a check digit. */
+  vesselImo: z.string().optional(),
   voyage: z.string().optional(),
   placeOfReceipt: Location.optional(),
   portOfLoading: Location,
@@ -37,6 +43,12 @@ export const BillOfLading = z.object({
   placeOfIssue: z.string().optional(),
   dateOfIssue: IsoDate.optional(),
   shippedOnBoardDate: IsoDate.optional(),
+  /** Estimated arrival at the port of discharge, when the BL or arrival notice gives it. */
+  estimatedArrivalDate: IsoDate.optional(),
+  /** "Number of original Bs/L" box: how many originals make up the full set. */
+  numberOfOriginals: z.number().int().nonnegative().optional(),
+  /** Consigned "to order" (negotiable) rather than to a named consignee. */
+  toOrder: z.boolean().optional(),
   references: z.array(z.string()).optional(), // invoice or PO numbers quoted on the BL
 });
 export type BillOfLading = z.infer<typeof BillOfLading>;

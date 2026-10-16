@@ -9,12 +9,12 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/synth -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/tariff -w @doccheck/agent && npm run build -w @doccheck/api -w @doccheck/web",
+    "build": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/synth -w @doccheck/regulations -w @doccheck/tariff -w @doccheck/agent && npm run build -w @doccheck/api -w @doccheck/web",
     "test": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/tariff && npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "dev": "npm run start:dev -w @doccheck/api",
     "smoke": "node scripts/smoke.mjs",
-    "synth": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/synth && node packages/synth/dist/cli.js",
+    "synth": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/synth && node packages/synth/dist/cli.js",
     "eval:extraction": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction && node packages/extraction/dist/eval-cli.js",
     "eval:agent": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/tariff -w @doccheck/agent && node packages/agent/dist/eval-cli.js",
     "eval:classification": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/tariff -w @doccheck/agent && node packages/agent/dist/classification-eval-cli.js",

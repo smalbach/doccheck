@@ -32,6 +32,7 @@ import { ValidationProgress } from './ValidationProgress';
 
 // pdf.js is large: load it only when a document is opened.
 const PdfViewerSheet = lazy(() => import('../pdf/PdfViewerSheet').then((m) => ({ default: m.PdfViewerSheet })));
+const SheetViewerSheet = lazy(() => import('../sheet/SheetViewerSheet').then((m) => ({ default: m.SheetViewerSheet })));
 
 export function ShipmentPage({ id }: { id: string }) {
   const { t } = useI18n();
@@ -146,12 +147,16 @@ export function ShipmentPage({ id }: { id: string }) {
             </Sheet>
           }
         >
-          <PdfViewerSheet
-            shipmentId={id}
-            target={viewer}
-            onClose={() => setViewer(undefined)}
-            liveText={textBeingWritten(progress.documents[viewer.doc.id], progress.outputs?.[viewer.doc.id])}
-          />
+          {viewer.doc.format === 'SPREADSHEET' ? (
+            <SheetViewerSheet shipmentId={id} target={viewer} onClose={() => setViewer(undefined)} />
+          ) : (
+            <PdfViewerSheet
+              shipmentId={id}
+              target={viewer}
+              onClose={() => setViewer(undefined)}
+              liveText={textBeingWritten(progress.documents[viewer.doc.id], progress.outputs?.[viewer.doc.id])}
+            />
+          )}
         </Suspense>
       )}
     </div>

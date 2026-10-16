@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 899,
+    "outputTokens": 918
+  },
+  "output": {
+    "blNumber": "TDWEBRV7805746",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Tidewater Express Lines",
+    "bookingNumber": "677589033",
+    "carrierName": "Tidewater Express Lines",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Nordhafen Armaturen GmbH",
+      "addressLines": [
+        "Industriestrasse 9",
+        "Bremen, 28197"
+      ],
+      "city": "Bremen",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE812345678"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "330 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "070N",
+    "placeOfReceipt": {
+      "name": "Bremen",
+      "country": "DE"
+    },
+    "portOfLoading": {
+      "name": "Bremerhaven",
+      "country": "DE"
+    },
+    "portOfDischarge": {
+      "name": "Prince Rupert",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU1393684",
+        "seal": "TW4304374",
+        "type": "20GP",
+        "packages": "148",
+        "grossWeight": {
+          "value": "4,040.50",
+          "unit": "KG"
+        },
+        "volumeM3": "7.52"
+      }
+    ],
+    "totalPackages": "148",
+    "totalGrossWeight": {
+      "value": "4,040.50",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/PO-81212/C/NO. 1-148",
+    "cargoDescription": "SAID TO CONTAIN 148 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "NOR2603412",
+      "PO-81212"
+    ],
+    "placeOfIssue": "Bremerhaven",
+    "dateOfIssue": "Jun 23, 2026",
+    "shippedOnBoardDate": "Jun 23, 2026"
+  }
+}

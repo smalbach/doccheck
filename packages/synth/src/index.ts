@@ -1,6 +1,7 @@
 export * from './rng';
 export * from './catalog';
 export * from './catalog-v2';
+export * from './catalog-destinations';
 export * from './generate';
 export * from './errors';
 export * from './dataset';
@@ -8,3 +9,7 @@ export * from './render';
 export * from './render-v2';
 export * from './pdf';
 export * from './isf';
+export * from './rules-set';
+export * from './documents';
+export * from './render-documents';
+export * from './inputs';

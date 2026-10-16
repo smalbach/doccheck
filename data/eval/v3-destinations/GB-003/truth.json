@@ -1,0 +1,310 @@
+{
+  "id": "GB-003",
+  "seed": 340741960,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/7641",
+      "invoiceDate": "2026-06-16",
+      "poNumber": "TH942687",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "exporter": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-06-21",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Qingdao",
+          "unLocode": "CNTAO",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Qingdao"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "GBP",
+      "packageCount": 49,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "49",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "93.50",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "4581.50",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8413.70"
+        }
+      ],
+      "grossWeight": {
+        "kg": "931.00",
+        "raw": {
+          "value": "931.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "710.50",
+        "raw": {
+          "value": "710.50",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "4581.50",
+        "currency": "GBP"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/7641",
+      "invoiceRef": "CI/26/7641",
+      "seller": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "packages": [
+        {
+          "range": "1-49",
+          "count": 49,
+          "type": "CRT",
+          "marks": "THAMESIDE/TH942687/C/NO. 1-49",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "49",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "710.50",
+            "raw": {
+              "value": "710.50",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "931.00",
+            "raw": {
+              "value": "931.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 49,
+        "netWeight": {
+          "kg": "710.50",
+          "raw": {
+            "value": "710.50",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "931.00",
+          "raw": {
+            "value": "931.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.31"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "TDWETAO2496502",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "545741553",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Qingdao Hengli Fasteners & Machinery Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Huangpu Rd",
+            "Huangdao District"
+          ],
+          "city": "Qingdao",
+          "region": "Shandong",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "AURORA BOREAS",
+      "voyage": "003E",
+      "placeOfReceipt": {
+        "name": "Qingdao",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Qingdao",
+        "unLocode": "CNTAO",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "London Gateway",
+        "unLocode": "GBLGP",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "TWEU4576307",
+          "seal": "TW7025143",
+          "type": "20GP",
+          "packages": 49,
+          "grossWeight": {
+            "kg": "931.00",
+            "raw": {
+              "value": "931.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.31"
+        }
+      ],
+      "totalPackages": 49,
+      "totalGrossWeight": {
+        "kg": "931.00",
+        "raw": {
+          "value": "931.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/TH942687/C/NO. 1-49",
+      "cargoDescription": "SAID TO CONTAIN 49 CRTS CENTRIFUGAL PUMP 0.75 KW",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Qingdao",
+      "dateOfIssue": "2026-06-24",
+      "shippedOnBoardDate": "2026-06-24",
+      "references": [
+        "CI/26/7641",
+        "TH942687"
+      ]
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 990,
+    "outputTokens": 599
+  },
+  "output": {
+    "packingListNumber": "PL/26/4775",
+    "invoiceRef": "CI/26/4775",
+    "seller": {
+      "name": "Norland Precision Scales Co., Ltd.",
+      "addressLines": [
+        "88 Gaoxin Road, Building 3",
+        "Ningbo, Zhejiang, 315040"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "Prairie Roasters Co-operative",
+      "addressLines": [
+        "77 Commerce Dr",
+        "Winnipeg, MB, R3P 1A2"
+      ],
+      "city": "Winnipeg",
+      "region": "MB",
+      "postalCode": "R3P 1A2",
+      "country": "CA",
+      "taxId": "856789012RM0001"
+    },
+    "marks": "PRAIRIE/PR857633/C/NO. 1-111",
+    "packages": [
+      {
+        "range": "1-111",
+        "count": "111 CTN",
+        "packageType": "CTN",
+        "sku": "BV-2IN",
+        "description": "Brass ball valve 2\"",
+        "quantity": "2,220 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "2,997.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,119.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": "45 × 35 × 30"
+      }
+    ],
+    "totalPackages": "111",
+    "totalNetWeight": {
+      "value": "2,997.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,119.10",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "5.24"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "CA-018",
+  "errors": [
+    {
+      "kind": "coo_unsigned",
+      "document": "certificateOfOrigin",
+      "field": "attestation",
+      "before": "signed and stamped",
+      "after": "blank",
+      "expectedRuleIds": [
+        "T13"
+      ],
+      "description": "Certificate of origin printed without signature or stamp."
+    }
+  ]
+}

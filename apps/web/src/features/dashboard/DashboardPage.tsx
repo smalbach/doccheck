@@ -15,6 +15,8 @@ import { AlertsCard } from './AlertsCard';
 import { DashboardStats } from './DashboardStats';
 import { DemoNote } from './DemoNote';
 import { QuickActions } from './QuickActions';
+import { WorkloadTiles } from './WorkloadTiles';
+import { UsageNotice } from '../usage/UsageNotice';
 
 const RECENT = 5;
 
@@ -35,7 +37,9 @@ export function DashboardPage() {
     <div className="page">
       <PageHeader title={t('dashboard.hello', { name: firstName })} description={t('dashboard.subtitle')} />
       {demo && <DemoNote />}
+      <UsageNotice />
       <DashboardStats totals={page.summary} />
+      <WorkloadTiles />
       <AlertsCard />
       <QuickActions demo={demo || !can('shipment.write')} />
       <Card

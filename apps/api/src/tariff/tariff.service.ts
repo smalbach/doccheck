@@ -36,6 +36,8 @@ export class TariffService {
   }
 
   private async load(destination: Destination): Promise<ClassificationResources | null> {
+    // Schedules are bundled for Canada and the US; other destinations get the format checks only.
+    if (destination !== 'US' && destination !== 'CA') return null;
     const dir = findTariffDir();
     if (!dir) {
       this.logger.warn('No tariff data (data/tariff); run npm run tariff:fetch. HS codes will only be checked for format.');

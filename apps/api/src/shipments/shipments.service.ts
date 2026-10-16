@@ -1,22 +1,26 @@
 import { BadRequestException, ConflictException, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { createHash, randomUUID } from 'node:crypto';
 import { attachRegulations, classificationExtension, reviewFindings, type AgentDecision } from '@doccheck/agent';
-import { findFieldSource, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
+import { findFieldSource, inputFormat, prepareImage, readSpreadsheet, storedSpreadsheetFormat, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
 import { runRules, type EngineOutput, type RuleProgress, type ShipmentContext } from '@doccheck/rules';
-import { runTariffRules, TARIFF_RULE_COUNT, tariffLines, type TariffLineReport } from '@doccheck/tariff';
+import { runTariffRules, tariffLines, tariffRuleCount, type TariffLineReport } from '@doccheck/tariff';
 import {
-  applyPointerChanges, BillOfLading, CANCELLED_ERROR, clip, CommercialInvoice, diffPointers, fieldPointer, findingPreview, FINDING_PREVIEWS_PER_RULE, Isf, PackingList, readPointer, startStage, toPointer,
-  type Destination, type Finding, type PointerChange, type Shipment, type ShipmentDocument,
+  applyPointerChanges, CANCELLED_ERROR, clip, DOCUMENT_SCHEMAS, diffPointers, fieldPointer, findingPreview, FINDING_PREVIEWS_PER_RULE, readPointer, startStage, toPointer,
+  type Attestation, type BillOfLading, type CommercialInvoice, type Destination, type DocumentFormat, type Finding, type Isf, type PackingList, type PointerChange, type Shipment, type ShipmentDocument,
 } from '@doccheck/schemas';
+import { ALL_RULES, CONTEXT_SLOTS, type ContextSlot } from '@doccheck/rules';
 import { isDemo } from '../demo/demo-mode';
 import { InjectLlm, RegulationsService } from '../llm/llm.module';
 import type { ProgressRun } from '../progress/progress-run';
+import { RuleSettingsService } from '../rules/rule-settings.service';
 import { ProgressRepository } from '../progress/progress.repository';
 import { ProgressService } from '../progress/progress.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { TariffService } from '../tariff/tariff.service';
 import { AuditService } from '../audit/audit.service';
 import { NotificationsService } from '../collab/notifications.service';
+import { ReviewService } from '../review/review.service';
+import { UsageService } from '../usage/usage.service';
 import { DocumentProcessor } from './document.processor';
 import { ExtractionQueue } from './extraction.queue';
 import { ReviewRequestsRepository } from './review-requests.repository';
@@ -28,19 +32,23 @@ import { ShipmentsRepository, type CorrectionResult, type ExtractionRow, type Ne
 /** Citation progress events carry the passage's title cut to this length. */
 const CITATION_TITLE_CHARS = 120;
 
-const SLOT = {
-  COMMERCIAL_INVOICE: 'invoice',
-  PACKING_LIST: 'packingList',
-  BILL_OF_LADING: 'billOfLading',
-} as const;
+/** The context slot each extracted document type fills. ISF PDFs fill none: validation reads the shipment's ISF filing. */
+const SLOT = Object.fromEntries(Object.entries(CONTEXT_SLOTS).filter(([slot]) => slot !== 'isf').map(([slot, type]) => [type, slot])) as Record<string, Exclude<ContextSlot, 'isf'>>;
+
+const slotOf = (type: string) => (Object.keys(CONTEXT_SLOTS) as ContextSlot[]).find((slot) => CONTEXT_SLOTS[slot] === type)!;
 
 /** The schema a corrected document must still pass, per document type. */
-const SCHEMA = {
-  COMMERCIAL_INVOICE: CommercialInvoice,
-  PACKING_LIST: PackingList,
-  BILL_OF_LADING: BillOfLading,
-  ISF: Isf,
-} as const;
+const SCHEMA = DOCUMENT_SCHEMAS;
+
+/** How an upload of each format is stored: its extension and content type. Photos are stored as image-only PDFs. */
+const STORED: Record<DocumentFormat, (name: string) => { ext: string; contentType: string }> = {
+  PDF: () => ({ ext: 'pdf', contentType: 'application/pdf' }),
+  IMAGE: () => ({ ext: 'pdf', contentType: 'application/pdf' }),
+  SPREADSHEET: (name) =>
+    /\.xlsx$|\.xlsm$/i.test(name)
+      ? { ext: 'xlsx', contentType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
+      : { ext: 'csv', contentType: 'text/csv' },
+};
 
 /** Pointers to the values corrected by hand: where the current data differs from the model's. */
 const correctedPaths = (e: Pick<ExtractionRow, 'data' | 'modelData'>): string[] => (e.modelData ? diffPointers(e.modelData, e.data) : []);
@@ -84,6 +92,9 @@ export class ShipmentsService {
     private readonly requests: ReviewRequestsRepository,
     private readonly notifications: NotificationsService,
     private readonly audit: AuditService,
+    private readonly ruleSettings: RuleSettingsService,
+    private readonly usage: UsageService,
+    private readonly review: ReviewService,
   ) {}
 
   /** A new shipment in the organization, created by `userId`. */
@@ -154,24 +165,44 @@ export class ShipmentsService {
    */
   async addDocuments(id: string, files: { name: string; bytes: Buffer }[], wait = false) {
     await this.get(id);
-    for (const f of files) {
-      if (!f.bytes.subarray(0, 5).toString('latin1').startsWith('%PDF')) throw new BadRequestException(`${f.name} is not a PDF`);
-    }
+    const formats = files.map((f) => inputFormat(f.name, new Uint8Array(f.bytes)));
+    files.forEach((f, i) => {
+      if (!formats[i]) throw new BadRequestException(`${f.name} is not a PDF, a photo (JPEG, PNG, HEIC) or a spreadsheet (.xlsx, .csv)`);
+    });
+    // Photos are straightened, cropped and stored as an image-only PDF (read with OCR); a spreadsheet must open.
+    const prepared = await Promise.all(
+      files.map(async (f, i) => {
+        if (formats[i] === 'IMAGE') return prepareImage(new Uint8Array(f.bytes), f.name).then((img) => img.pdf, (err: Error) => Promise.reject(new BadRequestException(`${f.name}: ${err.message}`)));
+        if (formats[i] === 'SPREADSHEET') {
+          try {
+            readSpreadsheet(new Uint8Array(f.bytes), f.name);
+          } catch (err) {
+            throw new BadRequestException(`${f.name}: ${err instanceof Error ? err.message : String(err)}`);
+          }
+        }
+        return f.bytes;
+      }),
+    );
+    // Each file is at least one extraction of the plan: a hard limit refuses the whole upload (402).
+    await this.usage.assertAllowed(id, 'extraction', files.length);
     const documents: ShipmentDocument[] = [];
-    for (const f of files) {
+    for (const [i, f] of files.entries()) {
       const documentId = randomUUID();
+      const format = formats[i]!;
+      const { ext, contentType } = STORED[format](f.name);
       const doc: ShipmentDocument = {
         id: documentId,
         shipmentId: id,
         fileName: f.name,
-        storageKey: `${id}/${documentId}.pdf`,
+        storageKey: `${id}/${documentId}.${ext}`,
         sha256: createHash('sha256').update(f.bytes).digest('hex'),
         pageCount: 0,
         detectedType: 'UNKNOWN',
         typeConfidence: 0,
         status: 'QUEUED',
+        ...(format !== 'PDF' ? { format } : {}),
       };
-      await this.storage.put(doc.storageKey, f.bytes, 'application/pdf');
+      await this.storage.put(doc.storageKey, prepared[i], contentType);
       try {
         await this.repo.insertDocument(doc);
       } catch (err) {
@@ -213,6 +244,7 @@ export class ShipmentsService {
     const doc = UUID.test(documentId) ? await this.repo.findDocument(documentId) : null;
     if (!doc || doc.shipmentId !== id) throw new NotFoundException(`Document ${documentId} not found in shipment ${id}`);
     if (doc.status === 'QUEUED' || doc.status === 'EXTRACTING') throw new ConflictException('The document is already being extracted');
+    await this.usage.assertAllowed(id, 'extraction');
     // Not an ISF after all: the ISF taken from it goes now, even if the new extraction fails.
     if (type !== 'ISF') await this.repo.deleteIsfFromDocument(documentId);
     await this.repo.updateDocumentStatus(documentId, 'QUEUED');
@@ -285,6 +317,8 @@ export class ShipmentsService {
       .filter((c) => c.oldValue !== c.newValue);
     if (corrections.length === 0) return this.document(id, documentId);
     this.check(await this.repo.saveCorrections(id, documentId, userId, { before: row.data, after: applied.data, corrections }), documentId);
+    // The corrected fields leave the review queue; with supplier learning they become examples.
+    await this.review.onCorrected(userId, { documentId, documentType: row.documentType, raw: row.raw, data: applied.data, pdfLines: row.pdfLines }, corrections);
     return this.document(id, documentId);
   }
 
@@ -294,6 +328,7 @@ export class ShipmentsService {
     if (!row.modelData) throw new BadRequestException('The document has no corrections to revert');
     const corrections = diffPointers(row.data, row.modelData).map((path) => ({ path, oldValue: readPointer(row.data, path), newValue: readPointer(row.modelData, path) }));
     this.check(await this.repo.saveCorrections(id, documentId, userId, { before: row.data, after: row.modelData, corrections, revert: true }), documentId);
+    await this.review.onReverted(documentId);
     return this.document(id, documentId);
   }
 
@@ -334,6 +369,7 @@ export class ShipmentsService {
     }
     const pending = await this.repo.pendingDocuments(id);
     if (pending > 0) throw new ConflictException(`${pending} document(s) are still being extracted; validate when they are done`);
+    await this.usage.assertAllowed(id, 'validation');
     await this.repo.setStatus(id, 'VALIDATING');
 
     const validationId = randomUUID();
@@ -351,15 +387,18 @@ export class ShipmentsService {
   private async runValidation(id: string, destination: Destination, docs: ValidateShipmentDto, useAgent: boolean, run: ProgressRun<'validation'>) {
     const validationId = run.runId;
 
-    type Source = { documentId: string; data: unknown; modelData?: unknown; corrected: string[]; pdf: PdfText; ocr: boolean };
+    type Source = { documentId: string; data: unknown; modelData?: unknown; corrected: string[]; pdf: PdfText; ocr: boolean; attestation?: Attestation };
     const extracted = new Map<string, Source>();
     // ISF PDFs do not fill a slot here: the processor stores them as the shipment's ISF, read below.
     const isfPdfs = new Map<string, Source>();
+    // Documents uploaded but not usable (not normalized): their rules are skipped for input, not "not applicable".
+    const unusable = new Set<string>();
     for (const e of await this.repo.listExtractions(id)) {
+      if (!e.data) unusable.add(e.documentType);
       const slot = SLOT[e.documentType as keyof typeof SLOT];
       const ocr = e.issues.some((i) => i.startsWith('Read with OCR'));
       const pdf = { pageCount: e.document.pageCount, lines: e.pdfLines, text: '' };
-      const row: Source = { documentId: e.documentId, data: e.data, modelData: e.modelData, corrected: correctedPaths(e), pdf, ocr };
+      const row: Source = { documentId: e.documentId, data: e.data, modelData: e.modelData, corrected: correctedPaths(e), pdf, ocr, attestation: e.attestation };
       if (slot && e.data) extracted.set(slot, row);
       else if (e.documentType === 'ISF') isfPdfs.set(e.documentId, row);
     }
@@ -383,6 +422,15 @@ export class ShipmentsService {
       billOfLading: pick<BillOfLading>('billOfLading', docs.billOfLading, 'bill-of-lading'),
       isf: undefined,
     };
+    // The other documents (air waybill, certificates, arrival notice...): body first, then the latest extracted.
+    for (const slot of Object.values(SLOT)) {
+      if (slot === 'invoice' || slot === 'packingList' || slot === 'billOfLading') continue;
+      const chosen = pick(slot, docs[slot], slot.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`));
+      if (chosen) Object.assign(ctx, { [slot]: chosen });
+    }
+    // Signature and stamp seen on the paper of the documents used (rule T13).
+    const attestations = Object.fromEntries([...extracted.values()].filter((e) => e.attestation && Object.values(inputs).includes(e.documentId)).map((e) => [e.documentId, e.attestation!]));
+    if (Object.keys(attestations).length) ctx.attestations = attestations;
     // ISF: the one in the body wins, otherwise the one stored for the shipment (JSON or extracted
     // from a PDF; a PDF one is cited by its document id so its evidence gets page and bbox).
     const storedIsf = docs.isf ? null : await this.repo.findIsf(id);
@@ -394,21 +442,38 @@ export class ShipmentsService {
       ctx.isf = { id: isfPdf?.documentId ?? 'isf', data: storedIsf.data };
       inputs.isf = isfPdf?.documentId ?? 'stored';
     }
-    const documents = [ctx.invoice, ctx.packingList, ctx.billOfLading, ctx.isf].filter(Boolean).length;
+    const documents = (Object.keys(CONTEXT_SLOTS) as ContextSlot[]).filter((slot) => ctx[slot]).length;
     const rules = await startStage(run.report, 'rules', { documents });
+    // The account's rule settings, its history (earlier invoices, prices, purchase orders) and the run
+    // date; what was applied is saved with the run.
+    const { config, account, asOf, applied } = await this.ruleSettings.forValidation(ctx);
+    ctx.account = account;
+    ctx.asOf = asOf;
     // Each rule's findings go out with it (a few, cut short), so the web can show them as they are found.
     const tariff = await this.tariff.get(destination);
     const report = ({ rule, index, total, skipped, findings, found }: RuleProgress) =>
       void rules.progress({ rule, index, total, skipped, findings, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) });
-    const output = runRules(ctx, {}, { onRule: (p) => report({ ...p, total: p.total + TARIFF_RULE_COUNT }) });
-    // Tariff rules (HS codes, partner agencies, export control) run after them, in the same stage.
-    const ruleCount = output.ran.length + output.skipped.length;
-    const tariffOutput = runTariffRules(ctx, { schedule: tariff?.schedule }, { onRule: report, offset: ruleCount, total: ruleCount + TARIFF_RULE_COUNT });
+    const tariffCount = tariffRuleCount(destination, config);
+    const output = runRules(ctx, {}, { config, onRule: (p) => report({ ...p, total: p.total + tariffCount }) });
+    const notApplicable = output.notApplicable?.length ?? 0;
+    // Progress numbers the rules the engine reported (disabled ones are not); the tariff rules continue from there.
+    const ruleCount = output.ran.length + output.skipped.length + notApplicable;
+    // An optional rule whose document is there but could not be read is missing input, so the user sees it.
+    for (const ruleId of [...(output.notApplicable ?? [])]) {
+      const def = ALL_RULES.find((r) => r.definition.id === ruleId)?.definition;
+      const missing = def ? [...def.requires, ...(def.requiresAny ?? [])].filter((t) => unusable.has(t) && !(ctx[slotOf(t)] ?? false)) : [];
+      if (!missing.length) continue;
+      output.notApplicable = output.notApplicable!.filter((r) => r !== ruleId);
+      output.skipped.push({ ruleId, missing });
+    }
+    // Tariff rules (HS codes; agency and export-control notices) run after them, in the same stage.
+    const tariffOutput = runTariffRules(ctx, { schedule: tariff?.schedule }, { config, onRule: report, offset: ruleCount, total: ruleCount + tariffCount });
     output.findings.push(...tariffOutput.findings);
     output.ran.push(...tariffOutput.ran);
     output.skipped.push(...tariffOutput.skipped);
+    output.disabled.push(...tariffOutput.disabled);
     const tariffLinesReport = tariffLines(ctx, tariff?.schedule);
-    await rules.done({ ran: output.ran.length, skipped: output.skipped.length, total: output.ran.length + output.skipped.length + tariffOutput.unavailable.length, findings: output.findings.length });
+    await rules.done({ ran: output.ran.length, skipped: output.skipped.length, total: output.ran.length + output.skipped.length + notApplicable + tariffOutput.unavailable.length, findings: output.findings.length });
 
     const sources = [...extracted.values(), ...(isfPdf ? [isfPdf] : [])];
     const sourceById = new Map(sources.map((e) => [e.documentId, e]));
@@ -419,7 +484,7 @@ export class ShipmentsService {
         if (!src) continue;
         // A value corrected by hand is not what the PDF prints: say so, and cite where the model's value is.
         if (citesCorrected(ev.field, src.corrected)) ev.corrected = true;
-        if (!ev.source) ev.source = findFieldSource(src.pdf, ev.documentId, ev.field, ev.value);
+        if (!ev.source && ev.value) ev.source = findFieldSource(src.pdf, ev.documentId, ev.field, ev.value);
         const printed = ev.corrected ? readPointer(src.modelData, fieldPointer(ev.field)) : undefined;
         if (!ev.source && (typeof printed === 'string' || typeof printed === 'number')) ev.source = findFieldSource(src.pdf, ev.documentId, ev.field, String(printed));
       }
@@ -439,8 +504,9 @@ export class ShipmentsService {
     };
 
     const saved = await startStage(run.report, 'saved');
-    await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination });
+    await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination, ruleConfig: { ...applied, disabled: output.disabled } });
     await this.repo.setStatus(id, output.skipped.length > 0 ? 'NEEDS_INPUT' : 'DONE');
+    await this.usage.record(id, 'validation');
     await saved.done({ validationId, findings: output.findings.length, skipped: output.skipped.length, agent: agent.status });
     return { validationId, ...output, agent };
   }
@@ -490,11 +556,21 @@ export class ShipmentsService {
     return outcome;
   }
 
-  /** The PDF of a document, from object storage. */
-  async file(id: string, documentId: string): Promise<{ name: string; bytes: Buffer }> {
+  /** The stored file of a document, from object storage, with its content type. */
+  async file(id: string, documentId: string): Promise<{ name: string; bytes: Buffer; contentType: string }> {
     const doc = UUID.test(documentId) ? await this.repo.findDocument(documentId) : null;
     if (!doc || doc.shipmentId !== id) throw new NotFoundException(`Document ${documentId} not found in shipment ${id}`);
-    return { name: doc.fileName, bytes: await this.storage.get(doc.storageKey) };
+    return { name: doc.fileName, bytes: await this.storage.get(doc.storageKey), contentType: STORED[doc.format ?? 'PDF'](doc.storageKey).contentType };
+  }
+
+  /** The cells of a spreadsheet document, read from its stored file, and the sheets (1-based) it covers. */
+  async sheets(id: string, documentId: string) {
+    const doc = UUID.test(documentId) ? await this.repo.findDocument(documentId) : null;
+    if (!doc || doc.shipmentId !== id) throw new NotFoundException(`Document ${documentId} not found in shipment ${id}`);
+    if (doc.format !== 'SPREADSHEET') throw new BadRequestException('The document is not a spreadsheet');
+    const bytes = new Uint8Array(await this.storage.get(doc.storageKey));
+    const sheets = readSpreadsheet(bytes, doc.fileName, storedSpreadsheetFormat(bytes));
+    return { sheets, pages: doc.pages ?? sheets.map((_, i) => i + 1) };
   }
 
   /**

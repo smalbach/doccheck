@@ -1,0 +1,367 @@
+{
+  "id": "GB-005",
+  "seed": 870192998,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-1441",
+      "invoiceDate": "2026-09-14",
+      "poNumber": "TH738428",
+      "seller": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "exporter": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "shipmentDate": "2026-09-20",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hai Phong",
+          "unLocode": "VNHPH",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "London Gateway"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 139,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "2200",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.69",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "38918.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        },
+        {
+          "lineNo": 2,
+          "sku": "SK-WL-3",
+          "description": "Wool blend socks, knitted, 3-pair pack",
+          "quantity": {
+            "value": "6960",
+            "unit": "PRS"
+          },
+          "unitPrice": {
+            "amount": "2.03",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "14128.80",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6115.94"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2522.30",
+        "raw": {
+          "value": "2522.30",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2392.00",
+        "raw": {
+          "value": "2392.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "53046.80",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "810.00",
+          "currency": "CNY"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-1441",
+      "invoiceRef": "INV-2026-1441",
+      "seller": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-110",
+          "count": 110,
+          "type": "CTN",
+          "marks": "THAMESIDE/TH738428/C/NO. 1-139",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "2200",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1870.00",
+            "raw": {
+              "value": "1870.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1980.00",
+            "raw": {
+              "value": "1980.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        },
+        {
+          "range": "111-139",
+          "count": 29,
+          "type": "CTN",
+          "marks": "THAMESIDE/TH738428/C/NO. 1-139",
+          "contents": [
+            {
+              "sku": "SK-WL-3",
+              "description": "Wool socks 3-pack",
+              "quantity": {
+                "value": "6960",
+                "unit": "PRS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "522.00",
+            "raw": {
+              "value": "522.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "542.30",
+            "raw": {
+              "value": "542.30",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            58,
+            38,
+            32
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 139,
+        "netWeight": {
+          "kg": "2392.00",
+          "raw": {
+            "value": "2392.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2522.30",
+          "raw": {
+            "value": "2522.30",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "16.52"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSHPH910827",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "100110722",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Công ty Cổ phần May Đông Á",
+        "address": {
+          "lines": [
+            "Lô C2, KCN Đồng Văn II"
+          ],
+          "city": "Duy Tiên",
+          "region": "Hà Nam",
+          "country": "VN"
+        },
+        "taxId": "0700123456"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "012N",
+      "placeOfReceipt": {
+        "name": "Duy Tiên",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Hai Phong",
+        "unLocode": "VNHPH",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "London Gateway",
+        "unLocode": "GBLGP",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "PCLU2696741",
+          "seal": "PC7574998",
+          "type": "20GP",
+          "packages": 139,
+          "grossWeight": {
+            "kg": "2522.30",
+            "raw": {
+              "value": "2522.30",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "16.52"
+        }
+      ],
+      "totalPackages": 139,
+      "totalGrossWeight": {
+        "kg": "2522.30",
+        "raw": {
+          "value": "2522.30",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/TH738428/C/NO. 1-139",
+      "cargoDescription": "SAID TO CONTAIN 139 CTNS WOMEN'S PADDED JACKET AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Hai Phong",
+      "dateOfIssue": "2026-09-20",
+      "shippedOnBoardDate": "2026-09-20",
+      "references": [
+        "INV-2026-1441",
+        "TH738428"
+      ]
+    }
+  }
+}

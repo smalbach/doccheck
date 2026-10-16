@@ -1,0 +1,28 @@
+{
+  "id": "US-012",
+  "errors": [
+    {
+      "kind": "cusma_missing_element",
+      "document": "cusmaCertification",
+      "field": "goods[0].originCriterion",
+      "before": "C",
+      "after": null,
+      "expectedRuleIds": [
+        "T9"
+      ],
+      "description": "CUSMA certification without the origin criterion of the first good."
+    },
+    {
+      "kind": "awb_pieces_mismatch",
+      "document": "airWaybill",
+      "field": "pieces",
+      "before": 23,
+      "after": 28,
+      "expectedRuleIds": [
+        "T2",
+        "T12"
+      ],
+      "description": "Air waybill says 28 pieces instead of 23."
+    }
+  ]
+}

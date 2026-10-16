@@ -1,0 +1,89 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 708,
+    "outputTokens": 819
+  },
+  "output": {
+    "invoiceNumber": "INV-2026-3407",
+    "invoiceDate": null,
+    "poNumber": "NO400840",
+    "seller": {
+      "name": "Norland Precision Scales Co., Ltd.",
+      "addressLines": [
+        "88 Gaoxin Road, Building 3",
+        "Ningbo, Zhejiang, 315040"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "buyer": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "consignee": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "shipmentDate": "2026-01-14",
+    "transportMode": "SEA",
+    "placeOfShipment": {
+      "name": "Ningbo",
+      "country": "CN"
+    },
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Ningbo",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "CAD",
+    "countryOfOrigin": "CN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+        "quantity": "1,178",
+        "unit": "PCS",
+        "unitPrice": "16.77",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "19,587.36",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "CN",
+        "hsCode": "8516.71"
+      }
+    ],
+    "totalPackages": "146",
+    "grossWeight": {
+      "value": "1,226.40",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "1,387.00",
+      "unit": "KG"
+    },
+    "invoiceTotal": "19,587.36",
+    "invoiceTotalCurrency": "CAD",
+    "charges": []
+  }
+}

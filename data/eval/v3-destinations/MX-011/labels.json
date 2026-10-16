@@ -1,0 +1,17 @@
+{
+  "id": "MX-011",
+  "errors": [
+    {
+      "kind": "line_quantity_changed",
+      "document": "invoice",
+      "field": "lines[1].quantity.value",
+      "before": "35",
+      "after": "25",
+      "expectedRuleIds": [
+        "X5",
+        "X7"
+      ],
+      "description": "Line 2 quantity changed without updating the line total."
+    }
+  ]
+}

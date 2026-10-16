@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 838,
+    "outputTokens": 929
+  },
+  "output": {
+    "blNumber": "PCCLGOA7200975",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Pacific Crest Container Line (PCCL)",
+    "bookingNumber": "425150484",
+    "carrierName": "Pacific Crest Container Line (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "Norland Precision Scales Co., Ltd.",
+      "addressLines": [
+        "88 Gaoxin Road, Building 3",
+        "Ningbo, Zhejiang, 315040"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "notifyParty": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "056E",
+    "placeOfReceipt": {
+      "name": "Sassuolo",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "Genoa",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Vancouver",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "PCRU2759440",
+        "seal": "PC7334089",
+        "type": "20GP",
+        "packages": "18",
+        "grossWeight": {
+          "value": "15,570.00",
+          "unit": "KG"
+        },
+        "volumeM3": "15.55"
+      }
+    ],
+    "totalPackages": "18",
+    "totalGrossWeight": {
+      "value": "15,570.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "COASTAL/CO183787/C/NO. 1-18",
+    "cargoDescription": "SAID TO CONTAIN 18 PLTS PORCELAIN TILE 60X60",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-7065",
+      "CO183787"
+    ],
+    "placeOfIssue": "Genoa",
+    "dateOfIssue": "2026-05-29",
+    "shippedOnBoardDate": "2026-05-29"
+  }
+}

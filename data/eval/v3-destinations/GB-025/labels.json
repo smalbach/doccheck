@@ -1,0 +1,26 @@
+{
+  "id": "GB-025",
+  "errors": [
+    {
+      "kind": "second_currency",
+      "document": "invoice",
+      "field": "charges.freight.currency",
+      "after": "CNY",
+      "expectedRuleIds": [
+        "X6"
+      ],
+      "description": "Freight charge of 1506.00 CNY on an invoice in EUR."
+    },
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "GB731552098000",
+      "after": "NL642702415",
+      "expectedRuleIds": [
+        "K2"
+      ],
+      "description": "Importer number GB731552098000 replaced by NL642702415."
+    }
+  ]
+}

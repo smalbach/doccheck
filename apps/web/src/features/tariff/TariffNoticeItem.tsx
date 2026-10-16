@@ -2,7 +2,7 @@ import type { TariffNotice } from '../../api/types';
 import { useI18n } from '../../i18n/useI18n';
 import { RegulationQuote } from '../shipment/RegulationQuote';
 
-/** One P1 or E1 notice: which agency or export list, for which lines, what to prepare, and the source. */
+/** One H4 or H5 notice: which agency or export list, for which lines, what to prepare, and the source. */
 export function TariffNoticeItem({ notice }: { notice: TariffNotice }) {
   const { t } = useI18n();
   return (

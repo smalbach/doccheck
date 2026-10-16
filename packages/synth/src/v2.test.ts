@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { runRules, type ShipmentContext } from '@doccheck/rules';
+import { runRules, V1_RULE_IDS, type ShipmentContext } from '@doccheck/rules';
 import { BillOfLading, CommercialInvoice, PackingList } from '@doccheck/schemas';
 import { buildDataset, V1, V2 } from './dataset';
 import type { SyntheticShipment } from './generate';
@@ -38,14 +38,14 @@ describe('dataset v2', () => {
       expect(CommercialInvoice.safeParse(s.documents.invoice).error).toBeUndefined();
       expect(PackingList.safeParse(s.documents.packingList).error).toBeUndefined();
       expect(BillOfLading.safeParse(s.documents.billOfLading).error).toBeUndefined();
-      expect([s.id, runRules(context(s)).findings.map((f) => f.ruleId)]).toEqual([s.id, []]);
+      expect([s.id, runRules(context(s), {}, { only: V1_RULE_IDS }).findings.map((f) => f.ruleId)]).toEqual([s.id, []]);
     }
   });
 
   it('the rule engine flags exactly the rules each label expects', () => {
     for (const { shipment, labels } of v2) {
       const expected = new Set(labels.flatMap((l) => l.expectedRuleIds));
-      const got = new Set(runRules(context(shipment)).findings.map((f) => f.ruleId));
+      const got = new Set(runRules(context(shipment), {}, { only: V1_RULE_IDS }).findings.map((f) => f.ruleId));
       expect([shipment.id, [...got].sort()]).toEqual([shipment.id, [...expected].sort()]);
     }
   });

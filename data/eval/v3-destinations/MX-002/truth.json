@@ -1,0 +1,315 @@
+{
+  "id": "MX-002",
+  "seed": 1286030153,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "legacy",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/7912",
+      "invoiceDate": "2026-03-10",
+      "poNumber": "DI800536",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "buyer": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "exporter": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "shipmentDate": "2026-03-14",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hamburg",
+          "unLocode": "DEHAM",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Hamburg"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 42,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "337",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.60",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "5913.60",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        }
+      ],
+      "grossWeight": {
+        "kg": "399.00",
+        "raw": {
+          "value": "399.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "352.80",
+        "raw": {
+          "value": "352.80",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "5913.60",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/7912",
+      "invoiceRef": "CI/26/7912",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "packages": [
+        {
+          "range": "1-42",
+          "count": 42,
+          "type": "CTN",
+          "marks": "DISTRIBUIDORA/DI800536/C/NO. 1-42",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "336",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "352.80",
+            "raw": {
+              "value": "352.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "399.00",
+            "raw": {
+              "value": "399.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 42,
+        "netWeight": {
+          "kg": "352.80",
+          "raw": {
+            "value": "352.80",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "399.00",
+          "raw": {
+            "value": "399.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.37"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNHAM3016546",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "218565012",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "notifyParty": {
+        "name": "Distribuidora Pacífico Norte, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Av. Vallarta 6503, Local 12"
+          ],
+          "city": "Zapopan",
+          "region": "JAL",
+          "postalCode": "45010",
+          "country": "MX"
+        },
+        "taxId": "DPN070315K24"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "072W",
+      "placeOfReceipt": {
+        "name": "Stuttgart",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Hamburg",
+        "unLocode": "DEHAM",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Lazaro Cardenas",
+        "unLocode": "MXLZC",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Guadalajara",
+        "unLocode": "MXGDL",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "MDOU4445154",
+          "seal": "MD4112846",
+          "type": "20GP",
+          "packages": 42,
+          "grossWeight": {
+            "kg": "399.00",
+            "raw": {
+              "value": "399.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.37"
+        }
+      ],
+      "totalPackages": 42,
+      "totalGrossWeight": {
+        "kg": "399.00",
+        "raw": {
+          "value": "399.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "DISTRIBUIDORA/DI800536/C/NO. 1-42",
+      "cargoDescription": "SAID TO CONTAIN 42 CTNS ELECTRIC KETTLE 1.7 L",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Hamburg",
+      "dateOfIssue": "2026-03-15",
+      "shippedOnBoardDate": "2026-03-15",
+      "references": [
+        "CI/26/7912",
+        "DI800536"
+      ]
+    }
+  }
+}

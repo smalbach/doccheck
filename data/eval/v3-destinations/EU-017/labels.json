@@ -1,0 +1,36 @@
+{
+  "id": "EU-017",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "AGXU1918606",
+      "after": "AGXU1918604",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: AGXU1918606 -> AGXU1918604."
+    },
+    {
+      "kind": "missing_required_field",
+      "document": "invoice",
+      "field": "invoiceDate",
+      "before": "2026-04-25",
+      "after": null,
+      "expectedRuleIds": [],
+      "description": "Invoice date missing."
+    },
+    {
+      "kind": "invalid_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "DE482910375516203",
+      "after": "GB445877601000",
+      "expectedRuleIds": [
+        "E2"
+      ],
+      "description": "Importer number DE482910375516203 replaced by GB445877601000."
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "id": "GB-026",
+  "seed": 48916496,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "modern",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-7106",
+      "invoiceDate": "2026-07-24",
+      "poNumber": "PO-53830",
+      "seller": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "NL711014188"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "exporter": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "shipmentDate": "2026-07-27",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Valencia",
+          "unLocode": "ESVLC",
+          "country": "ES"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Valencia"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "EUR",
+      "packageCount": 15,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "600",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "10.36",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "2616.00",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "ES",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "12975.00",
+        "raw": {
+          "value": "12975.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "12600.00",
+        "raw": {
+          "value": "12600.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "6216.00",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "originStatement": "The exporter of the products covered by this document (Exporter Reference No ESREX816774081) declares that, except where otherwise clearly indicated, these products are of EU preferential origin."
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-7106",
+      "invoiceRef": "INV-2026-7106",
+      "seller": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-15",
+          "count": 15,
+          "type": "PLT",
+          "marks": "THAMESIDE/PO-53830/C/NO. 1-15",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "600",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "12600.00",
+            "raw": {
+              "value": "12600.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "12975.00",
+            "raw": {
+              "value": "12975.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 15,
+        "netWeight": {
+          "kg": "12600.00",
+          "raw": {
+            "value": "12600.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "12975.00",
+          "raw": {
+            "value": "12975.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "12.96"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXVLC8947072",
+      "blType": {
+        "issuer": "MBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "426656261",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Industrias Cerámicas del Levante, S.L.",
+        "address": {
+          "lines": [
+            "Camí de la Mar, 23"
+          ],
+          "city": "Vila-real",
+          "region": "Castellón",
+          "postalCode": "12540",
+          "country": "ES"
+        },
+        "taxId": "ESB12345678"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "NL711014188"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "048W",
+      "placeOfReceipt": {
+        "name": "Vila-real",
+        "country": "ES"
+      },
+      "portOfLoading": {
+        "name": "Valencia",
+        "unLocode": "ESVLC",
+        "country": "ES"
+      },
+      "portOfDischarge": {
+        "name": "London Gateway",
+        "unLocode": "GBLGP",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "AGLU6387383",
+          "seal": "AG5065589",
+          "type": "20GP",
+          "packages": 15,
+          "grossWeight": {
+            "kg": "12975.00",
+            "raw": {
+              "value": "12975.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "12.96"
+        }
+      ],
+      "totalPackages": 15,
+      "totalGrossWeight": {
+        "kg": "12975.00",
+        "raw": {
+          "value": "12975.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/PO-53830/C/NO. 1-15",
+      "cargoDescription": "SAID TO CONTAIN 15 PLTS PORCELAIN TILE 60X60",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Valencia",
+      "dateOfIssue": "2026-07-28",
+      "shippedOnBoardDate": "2026-07-28",
+      "references": [
+        "INV-2026-7106",
+        "PO-53830"
+      ]
+    }
+  }
+}
