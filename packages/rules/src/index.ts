@@ -7,3 +7,6 @@ export * from './normalize';
 export { CA_REQUIRED } from './rules/c1-ca-invoice-fields';
 export { US_REQUIRED } from './rules/u1-us-invoice-fields';
 export { iso6346CheckDigit, isValidContainerNumber } from './rules/x10-container-check-digit';
+export { awbCheckDigit, isValidAwbNumber } from './rules/t1-awb-check-digit';
+export { hazardMentions } from './rules/t10-dangerous-goods';
+export { CUSMA_ELEMENTS } from './rules/t9-cusma-elements';

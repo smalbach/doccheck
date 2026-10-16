@@ -6,7 +6,8 @@
 //
 // Uses DATABASE_URL_TEST, or DATABASE_URL with the database renamed to doccheck_test. The schema is
 // dropped and recreated, so the database name must end in "_test".
-import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
+import { sampleAirWaybill, sampleBillOfLading, sampleCertificateOfOrigin, sampleInvoice, samplePackingList } from '@doccheck/schemas';
+import { writeCsv, writeXlsx } from '@doccheck/extraction';
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';
@@ -810,7 +811,7 @@ describe('progress events', () => {
     assert.equal(events.find((e) => e.stage === 'agent').detail.reason, 'disabled');
 
     const rules = events.filter((e) => e.stage === 'rules' && e.status === 'progress');
-    assert.equal(rules.length, run.body.ran.length + run.body.skipped.length);
+    assert.equal(rules.length, run.body.ran.length + run.body.skipped.length + run.body.notApplicable.length);
     assert.deepEqual(rules.map((e) => e.detail.index), rules.map((_, i) => i + 1));
     assert.equal(rules.find((e) => e.detail.rule === 'X2').detail.findings, 1);
     assert.deepEqual(events.find((e) => e.stage === 'rules' && e.status === 'started').detail, { documents: 3 });
@@ -2208,5 +2209,97 @@ describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' 
     assert.equal(run.status, 200);
     const expected = JSON.parse(readFileSync(join(sample, 'labels.json'), 'utf8')).errors.flatMap((e) => e.expectedRuleIds).sort();
     assert.deepEqual([...new Set(run.body.findings.map((f) => f.ruleId))].sort(), expected);
+  });
+});
+
+describe('other documents and input formats', () => {
+  const invoiceRows = [
+    ['COMMERCIAL INVOICE'],
+    ['Invoice No.', 'INV-2026-0412', '', 'Date', '2026-10-01'],
+    ['Currency', 'USD', '', 'Terms of sale', 'FOB Shenzhen'],
+    ['Seller', '', '', 'Buyer'],
+    ['Acme Toys Co., Ltd.', '', '', 'Maple Retail Inc.'],
+    ['88 Industrial Rd', '', '', '100 King St W'],
+    ['Shenzhen, GD 518000', '', '', 'Toronto, ON M5H 1A1'],
+    ['China', '', '', 'Canada'],
+    [],
+    ['No.', 'SKU', 'Description', 'Origin', 'Qty', 'Unit', 'Unit price', 'Amount'],
+    ['1', 'TB-200', 'Plush teddy bear 30 cm', 'CN', '6000', 'PCS', '8.10', '48600.00'],
+    ['', '', 'TOTAL', '', '6000', '', '', '48600.00'],
+  ];
+  const packingRows = [
+    ['PACKING LIST'],
+    ['Packing list no.', 'PL-2026-0412', 'Invoice no.', 'INV-2026-0412'],
+    ['C/No.', 'Cartons', 'SKU', 'Description', 'Qty', 'Unit', 'G.W. (KG)'],
+    ['1-120', '120', 'TB-200', 'Plush teddy bear 30 cm', '5940', 'PCS', '1250'],
+    ['TOTAL', '120', '', '', '5940', '', '1250'],
+  ];
+  const upload = async (shipmentId, files) => {
+    const form = new FormData();
+    for (const [name, bytes, type] of files) form.append('files', new Blob([bytes], { type }), name);
+    const res = await send(`${base}/shipments/${shipmentId}/documents?wait=true`, { method: 'POST', body: form });
+    return { status: res.status, body: await res.json() };
+  };
+
+  it('reads an invoice workbook and a packing list CSV without a model, and cites the cell', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    const res = await upload(s.id, [
+      ['invoice.xlsx', writeXlsx([{ name: 'Invoice', rows: invoiceRows }]), 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
+      ['packing.csv', writeCsv(packingRows), 'text/csv'],
+    ]);
+    assert.equal(res.status, 202);
+    assert.deepEqual(res.body.documents.map((d) => [d.document.detectedType, d.document.format, d.document.status]), [
+      ['COMMERCIAL_INVOICE', 'SPREADSHEET', 'EXTRACTED'],
+      ['PACKING_LIST', 'SPREADSHEET', 'EXTRACTED'],
+    ]);
+    const [invoice, packing] = res.body.documents;
+    assert.equal(invoice.model, 'spreadsheet');
+    assert.equal(invoice.data.lines[0].lineTotal.amount, '48600.00');
+    const grid = await call('GET', `/shipments/${s.id}/documents/${invoice.document.id}/sheets`);
+    assert.deepEqual(grid.body.sheets[0].rows[10].slice(0, 3), ['1', 'TB-200', 'Plush teddy bear 30 cm']);
+    const file = await send(`${base}/shipments/${s.id}/documents/${invoice.document.id}/file`);
+    assert.equal(file.headers.get('content-type'), 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    const run = await call('POST', `/shipments/${s.id}/validate?agent=false`, { billOfLading: sampleBillOfLading });
+    const x7 = run.body.findings.find((f) => f.ruleId === 'X7');
+    assert.ok(x7, JSON.stringify(run.body.findings.map((f) => f.ruleId)));
+    const cited = x7.evidence.find((e) => e.documentId === packing.document.id);
+    assert.equal(cited.source.cell, 'E4');
+    assert.equal(cited.source.sheet, 'packing');
+  });
+
+  it('splits a workbook with two documents into two documents that share the file', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    const res = await upload(s.id, [['folder.xlsx', writeXlsx([{ name: 'Invoice', rows: invoiceRows }, { name: 'Packing list', rows: packingRows }]), 'application/octet-stream']]);
+    assert.equal(res.status, 202);
+    const { body: shipment } = await call('GET', `/shipments/${s.id}`);
+    assert.deepEqual(shipment.documents.map((d) => [d.detectedType, d.pages, d.status]), [
+      ['COMMERCIAL_INVOICE', [1], 'EXTRACTED'],
+      ['PACKING_LIST', [2], 'EXTRACTED'],
+    ]);
+    const [first, second] = shipment.documents;
+    assert.equal(second.sourceDocumentId, first.id);
+    assert.equal(second.storageKey, first.storageKey);
+    assert.equal(second.fileName, 'folder.xlsx (Packing list)');
+    assert.equal((await call('DELETE', `/shipments/${s.id}`)).status, 204);
+  });
+
+  it('runs the air waybill rules on an air shipment, and the ocean rules do not apply', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA', transportMode: 'AIR' });
+    const airWaybill = { ...sampleAirWaybill, awbNumber: '176-12345670', pieces: 118 };
+    const invoice = { ...sampleInvoice, transport: { mode: 'AIR' }, shipmentDate: '2026-10-05' };
+    const run = await call('POST', `/shipments/${s.id}/validate?agent=false`, { invoice, packingList: samplePackingList, airWaybill, certificateOfOrigin: sampleCertificateOfOrigin });
+    assert.equal(run.status, 200);
+    assert.deepEqual([...new Set(run.body.findings.map((f) => f.ruleId))].sort(), ['T1', 'T2']);
+    assert.ok(run.body.notApplicable.includes('X2') && run.body.notApplicable.includes('X10'));
+    assert.deepEqual(run.body.skipped, []);
+    assert.ok(run.body.ran.includes('T7') && run.body.ran.includes('T8'));
+    assert.equal((await call('GET', `/shipments/${s.id}`)).body.status, 'DONE');
+  });
+
+  it('rejects a file that is neither a PDF, a photo nor a spreadsheet', async () => {
+    const { body: s } = await call('POST', '/shipments', { destination: 'CA' });
+    const res = await upload(s.id, [['notes.docx', 'PK not really', 'application/octet-stream']]);
+    assert.equal(res.status, 400);
+    assert.match(res.body.message, /not a PDF, a photo \(JPEG, PNG, HEIC\) or a spreadsheet/);
   });
 });

@@ -46,7 +46,11 @@ export function findSource(pdf: PdfText, documentId: string, value: string, hint
     });
   });
   const line = (hint && candidates.find((l) => hint.test(l.text))) || candidates[0];
-  return line ? { documentId, page: line.page, bbox: line.bbox, rawText: line.text } : undefined;
+  if (!line) return undefined;
+  // A spreadsheet row: cite the cell that holds the value.
+  const cell = line.cells?.find((c) => forms.some((f) => norm(c.text) === f)) ?? line.cells?.find((c) => forms.some((f) => norm(c.text).includes(f)));
+  if (cell) return { documentId, page: line.page, bbox: line.bbox, rawText: cell.text, sheet: line.sheet, cell: cell.ref };
+  return { documentId, page: line.page, bbox: line.bbox, rawText: line.text };
 }
 
 /**
