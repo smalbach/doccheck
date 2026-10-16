@@ -699,10 +699,21 @@ export interface MailServerInput {
   intake: { enabled: boolean; notifySender: boolean };
 }
 
+/** Whether the mail server takes "+code" addresses (a test email to one, sent on save). */
+export interface PlusCheck {
+  status: 'checking' | 'ok' | 'rejected' | 'unconfirmed';
+  address: string;
+  checkedAt: string;
+  detail?: string;
+  /** rejected: DocCheck turned +codes off. */
+  turnedOff?: boolean;
+}
+
 export interface MailServerSettings {
   /** admin: saved from the web; env: from .env; none: nothing set. */
   source: 'admin' | 'env' | 'none';
   editable: boolean;
+  plusCheck?: PlusCheck;
   updatedAt?: string;
   updatedBy?: string;
   config:

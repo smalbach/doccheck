@@ -5,15 +5,20 @@ import { STORAGE, type ObjectStorage } from '../storage/storage';
 import { MAX_ATTACHMENT_BYTES, MAX_ATTACHMENTS, MAX_ATTACHMENTS_BYTES, TOKEN_IN_ADDRESS, TOKEN_IN_SUBJECT, addressOf } from './mail.config';
 import { MailIntakeService, intakeEnabled } from './mail-intake.service';
 import { MailRepository } from './mail.repository';
+import { PROBE_IN_ADDRESS, PlusCheckService } from './plus-check.service';
 
 /** Kinds of attachment kept from received mail: documents and pictures of them. */
 const KEPT = /^(application\/pdf|image\/(png|jpe?g|gif|webp|tiff)|text\/csv|application\/vnd\.(ms-excel|openxmlformats-officedocument\.(spreadsheetml|wordprocessingml)\.[a-z]+)|application\/msword)$/i;
 
-export type IngestResult = { status: 'stored'; messageId: string; threadId: string | null } | { status: 'duplicate' };
+/** probe: the test email of the +code check (PlusCheckService), not kept. */
+export type IngestResult = { status: 'stored'; messageId: string; threadId: string | null } | { status: 'duplicate' } | { status: 'probe' };
 
 /** Postgres text cannot hold NUL, and a mail can decode one from quoted-printable: drop them. */
 const clean = (v: string) => v.replace(/\u0000/g, '');
 const stripId = (v: string) => clean(v).trim().replace(/^<|>$/g, '').slice(0, 998);
+/** The recipients a delivery report says failed. */
+const FAILED_RECIPIENT = /^(?:Final|Original)-Recipient:[ \t]*rfc822;[ \t]*<?([^\s<>;]{3,320})>?/gim;
+const DIAGNOSTIC = /^Diagnostic-Code:[ \t]*[^;\r\n]*;[ \t]*([^\r\n]{1,300})/im;
 /** A Message-ID quoted in a delivery report's original headers (bounded: never scans unbounded input). */
 const QUOTED_ID = /^Message-ID:[ \t]*<([^>\r\n]{1,998})>/gim;
 const addresses = (a: AddressObject | AddressObject[] | undefined) =>
@@ -32,6 +37,7 @@ export class MailInbox {
   constructor(
     private readonly repo: MailRepository,
     private readonly intake: MailIntakeService,
+    private readonly plus: PlusCheckService,
     @Inject(STORAGE) private readonly storage: ObjectStorage,
   ) {}
 
@@ -40,6 +46,12 @@ export class MailInbox {
     const messageId = mail.messageId ? stripId(mail.messageId) : `generated-${randomUUID()}@doccheck`;
     if (await this.repo.hasMessageId(messageId)) return { status: 'duplicate' };
 
+    const bounce = this.isBounce(mail);
+    if (!bounce) {
+      const probe = [...addresses(mail.to), ...this.envelopeRecipients(mail)].map((a) => PROBE_IN_ADDRESS.exec(a)?.[1]).find((t) => !!t);
+      if (probe && (await this.plus.arrived(probe))) return { status: 'probe' };
+    }
+
     let threadId = await this.findThread(mail);
     const id = randomUUID();
     // One sender, written by us from the parsed address: the From text itself can list several.
@@ -47,7 +59,6 @@ export class MailInbox {
     const from = clean(sender?.address?.toLowerCase() ?? 'unknown');
     const fromText = sender?.name ? `${clean(sender.name).replace(/["<>\r\n]/g, '').slice(0, 200)} <${from}>` : from;
     const references = [...(Array.isArray(mail.references) ? mail.references : mail.references ? [mail.references] : [])].map(stripId);
-    const bounce = this.isBounce(mail);
     const check = senderCheck(mail);
     // Not an answer to a conversation: documents sent by email to a user's intake address (or from
     // their own verified address) start a conversation of their own and a shipment.
@@ -102,6 +113,7 @@ export class MailInbox {
       if (a.contentType.toLowerCase() === 'application/pdf') pdfs.push({ attachmentId, filename, storageKey: key });
     }
     if (bounce) await this.markBounced(mail);
+    if (bounce || /^(mailer-daemon|postmaster)@/i.test(from)) await this.checkPlusBounce(mail, bounce);
     if (threadId) await this.repo.touchThreadIn(threadId);
     else this.logger.log(`Received mail no thread claims, from ${from}: ${mail.subject ?? ''}`);
     if (intakeOwner && threadId) {
@@ -136,6 +148,26 @@ export class MailInbox {
   private isBounce(mail: ParsedMail) {
     const type = mail.headers.get('content-type') as { value?: string; params?: Record<string, string> } | undefined;
     return /^multipart\/report$/i.test(type?.value ?? '') && /delivery-status/i.test(type?.params?.['report-type'] ?? '');
+  }
+
+  /**
+   * A delivery report for one of our +addresses (the +code check's, or a conversation's): the mail
+   * server does not take +codes. A plain-text bounce counts only when it names the pending check's
+   * address, which nobody else knows.
+   */
+  private async checkPlusBounce(mail: ParsedMail, report: boolean) {
+    const pending = this.plus.pending();
+    // mailparser puts a message/delivery-status part in the text; some versions keep it as an attachment.
+    const status = mail.attachments.find((a) => /^message\/(global-)?delivery-status$/i.test(a.contentType));
+    const text = report ? (status ? status.content.toString('utf8') : (mail.text ?? '')).slice(0, 64 * 1024) : '';
+    const detail = DIAGNOSTIC.exec(text)?.[1]?.trim() || clean(mail.subject ?? 'delivery failed').slice(0, 300);
+    for (const [, address] of [...text.matchAll(FAILED_RECIPIENT)].slice(0, 10)) {
+      const a = address!.toLowerCase();
+      if (!this.plus.isOwnPlusAddress(a)) continue;
+      const token = PROBE_IN_ADDRESS.exec(a)?.[1] ?? TOKEN_IN_ADDRESS.exec(a)?.[1];
+      if (token && (token === pending?.token || (await this.repo.threadByToken(token)))) return this.plus.reject(a, detail);
+    }
+    if (pending && (mail.text ?? '').slice(0, 64 * 1024).toLowerCase().includes(`+${pending.token}@`)) await this.plus.reject(pending.address, detail);
   }
 
   /** The original message a delivery report returns (its headers part, first 64 KB) is marked failed. */

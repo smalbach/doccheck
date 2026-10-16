@@ -6,6 +6,7 @@ import { PG_POOL } from '../db/db.module';
 import { isDemo } from '../demo/demo-mode';
 import { ImapPoller } from './imap.poller';
 import type { MailServerDto } from './mail-settings.dto';
+import { PlusCheckService, type PlusCheck } from './plus-check.service';
 import { open, seal, type Sealed } from './secret-box';
 
 const KEY = 'mailServer';
@@ -59,7 +60,10 @@ export class MailSettingsService implements OnApplicationBootstrap {
   constructor(
     @Inject(PG_POOL) private readonly pool: Pool,
     private readonly poller: ImapPoller,
-  ) {}
+    private readonly plus: PlusCheckService,
+  ) {
+    plus.onRejected = () => this.turnOffPlus();
+  }
 
   async onApplicationBootstrap() {
     // The read-only demo keeps .env, like the other settings.
@@ -73,13 +77,17 @@ export class MailSettingsService implements OnApplicationBootstrap {
     this.poller.reconfigure();
   }
 
-  view(): { source: 'admin' | 'env' | 'none'; config: MailServerView | null; updatedAt?: string; updatedBy?: string; editable: boolean } {
+  view(): { source: 'admin' | 'env' | 'none'; config: MailServerView | null; updatedAt?: string; updatedBy?: string; editable: boolean; plusCheck?: PlusCheck } {
     const editable = !isDemo();
+    // With +codes off, only a rejection is worth showing: it says why they are off.
+    const check = this.plus.current();
+    const plusCheck = check && (process.env.MAIL_PLUS_ADDRESSING !== 'false' || check.status === 'rejected') ? { plusCheck: check } : {};
     if (this.stored) {
       const v = this.stored.value;
       return {
         source: 'admin',
         editable,
+        ...plusCheck,
         updatedAt: this.stored.updatedAt,
         ...(this.stored.updatedBy ? { updatedBy: this.stored.updatedBy } : {}),
         config: {
@@ -96,6 +104,7 @@ export class MailSettingsService implements OnApplicationBootstrap {
     return {
       source: 'env',
       editable,
+      ...plusCheck,
       config: {
         smtp,
         from: env.MAIL_FROM ?? '',
@@ -121,6 +130,7 @@ export class MailSettingsService implements OnApplicationBootstrap {
     this.apply(value);
     this.poller.reconfigure();
     this.logger.log(`Mail server saved: SMTP ${value.smtp ? value.smtp.host : 'off'}, IMAP ${value.imap ? value.imap.host : 'off'}, documents by email ${value.intake.enabled ? 'on' : 'off'}`);
+    await this.checkPlus(value);
     return this.view();
   }
 
@@ -147,7 +157,7 @@ export class MailSettingsService implements OnApplicationBootstrap {
     const password = server.password ? open(server.password) : undefined;
     try {
       if (kind === 'smtp') {
-        const transport = createTransport({ host: server.host, port: server.port, secure: server.secure, auth: server.user ? { user: server.user, pass: password ?? '' } : undefined, connectionTimeout: 10_000, greetingTimeout: 10_000 });
+        const transport = this.transportOf(value.smtp!);
         await transport.verify();
         await transport.sendMail({ from: value.from, to, subject: 'DocCheck: mail server test', text: 'This message was sent from the DocCheck settings page to check the SMTP server.' });
         return { ok: true, detail: `Sent a test email to ${to}` };
@@ -164,6 +174,42 @@ export class MailSettingsService implements OnApplicationBootstrap {
       // Server answers only: never the credentials.
       return { ok: false, detail: (err instanceof Error ? (err as { response?: string }).response || err.message : String(err)).slice(0, 300) };
     }
+  }
+
+  /**
+   * With +codes on, a test email to a +probe address of the reply mailbox (PlusCheckService): once
+   * per mailbox that passed, again after a failure. With them off, the old check is dropped.
+   */
+  private async checkPlus(value: Stored) {
+    if (!value.plusAddressing) {
+      if (this.plus.current()?.status !== 'rejected') await this.plus.clear();
+      return;
+    }
+    if (!value.smtp || this.plus.passed()) return;
+    const transport = this.transportOf(value.smtp);
+    await this.plus.start((to, token) =>
+      transport.sendMail({
+        from: value.from,
+        to,
+        subject: 'DocCheck: reply address check',
+        headers: { 'X-DocCheck-Probe': token },
+        text: 'DocCheck sent this to check that the mail server accepts +codes in addresses. It can be deleted.',
+      }),
+    ).catch((err) => this.logger.warn(`Plus addressing check failed: ${err instanceof Error ? err.message : err}`));
+  }
+
+  /** +codes off, because mail to one bounced; false when it comes from .env (only this process changes). */
+  private async turnOffPlus(): Promise<boolean> {
+    process.env.MAIL_PLUS_ADDRESSING = 'false';
+    if (!this.stored) return false;
+    this.stored.value = { ...this.stored.value, plusAddressing: false };
+    await this.pool.query(`update settings set value = jsonb_set(value, '{plusAddressing}', 'false'), updated_at = now() where key = $1`, [KEY]);
+    return true;
+  }
+
+  private transportOf(server: NonNullable<Stored['smtp']>) {
+    const password = server.password ? open(server.password) : undefined;
+    return createTransport({ host: server.host, port: server.port, secure: server.secure, auth: server.user ? { user: server.user, pass: password ?? '' } : undefined, connectionTimeout: 10_000, greetingTimeout: 10_000 });
   }
 
   /**

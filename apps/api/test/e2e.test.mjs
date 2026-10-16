@@ -11,8 +11,10 @@ import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
+import { createInterface } from 'node:readline';
 import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import pg from 'pg';
@@ -1936,6 +1938,84 @@ describe('mail server settings and documents by email', () => {
     assert.equal((await call('POST', '/admin/mail/test', { kind: 'imap' }, admin)).body.ok, false);
     assert.equal((await call('PUT', '/admin/mail', { ...base64, smtp: null, imap: { host: 'imap.example.com', port: 993, secure: true, user: 'u' } }, admin)).status, 400); // no password yet
     assert.equal((await call('DELETE', '/admin/mail', undefined, admin)).body.source, 'env');
+  });
+
+  it('checks that the mail server takes +codes, and turns them off when mail to one bounces', async () => {
+    // A tiny SMTP server: refuses "+" recipients while `refuse` is set, records the others.
+    let refuse = true;
+    const received = [];
+    const smtp = createServer((socket) => {
+      let data = false;
+      socket.write('220 test ESMTP\r\n');
+      createInterface({ input: socket }).on('line', (line) => {
+        if (data) return void (line === '.' && ((data = false), socket.write('250 queued\r\n')));
+        const rcpt = /^RCPT TO:<([^>]+)>/i.exec(line)?.[1];
+        if (/^(EHLO|HELO)/i.test(line)) socket.write('250 test\r\n');
+        else if (rcpt && refuse && rcpt.includes('+')) socket.write('550 5.1.1 <' + rcpt + '>: No such user\r\n');
+        else if (rcpt) received.push(rcpt), socket.write('250 ok\r\n');
+        else if (/^DATA/i.test(line)) (data = true), socket.write('354 go on\r\n');
+        else if (/^QUIT/i.test(line)) socket.end('221 bye\r\n');
+        else socket.write('250 ok\r\n');
+      });
+    });
+    await new Promise((r) => smtp.listen(0, '127.0.0.1', r));
+    const admin = await adminLogin();
+    const config = { ...base64, smtp: { host: '127.0.0.1', port: smtp.address().port, secure: false, user: '' }, imap: null };
+    try {
+      // The server refuses the test address while sending: +codes are turned off on the spot.
+      let saved = (await call('PUT', '/admin/mail', config, admin)).body;
+      assert.deepEqual([saved.plusCheck.status, saved.plusCheck.turnedOff, saved.config.plusAddressing], ['rejected', true, false]);
+      assert.match(saved.plusCheck.address, /^docs\+probe-[a-z0-9]{8}@doccheck\.example$/);
+      assert.match(saved.plusCheck.detail, /No such user/);
+
+      // Accepted while sending, then a delivery report for it comes back.
+      refuse = false;
+      saved = (await call('PUT', '/admin/mail', config, admin)).body;
+      assert.equal(saved.plusCheck.status, 'checking');
+      const probe = received.at(-1);
+      assert.equal(probe, saved.plusCheck.address);
+      const dsn = Buffer.from(
+        [
+          'From: Mail Delivery System <MAILER-DAEMON@mx.doccheck.example>',
+          'To: docs@doccheck.example',
+          'Subject: Undelivered Mail Returned to Sender',
+          'Message-ID: <dsn-plus@mx.doccheck.example>',
+          'MIME-Version: 1.0',
+          'Content-Type: multipart/report; report-type=delivery-status; boundary="b"',
+          '',
+          '--b',
+          'Content-Type: text/plain',
+          '',
+          'Your message could not be delivered.',
+          '--b',
+          'Content-Type: message/delivery-status',
+          '',
+          'Reporting-MTA: dns; mx.doccheck.example',
+          '',
+          `Final-Recipient: rfc822; ${probe}`,
+          'Action: failed',
+          'Status: 5.1.1',
+          'Diagnostic-Code: smtp; 550 5.1.1 Recipient address rejected: User unknown',
+          '--b--',
+          '',
+        ].join('\r\n'),
+      );
+      await inbound(dsn);
+      saved = (await call('GET', '/admin/mail', undefined, admin)).body;
+      assert.deepEqual([saved.plusCheck.status, saved.plusCheck.detail, saved.config.plusAddressing], ['rejected', '550 5.1.1 Recipient address rejected: User unknown', false]);
+
+      // The test email arrives: +codes work, and the message is not kept.
+      saved = (await call('PUT', '/admin/mail', config, admin)).body;
+      const arrived = await compose({ from: 'docs@doccheck.example', to: received.at(-1), subject: 'DocCheck: reply address check', messageId: '<probe-arrived@doccheck.example>', text: 'x' });
+      assert.equal(await inbound(arrived).then((r) => r.json()).then((b) => b.status), 'probe');
+      assert.equal((await call('GET', '/admin/mail', undefined, admin)).body.plusCheck.status, 'ok');
+      // A delivery report for an address that is not ours, or a stranger's plain bounce, changes nothing.
+      await inbound(Buffer.from(dsn.toString().replace(`Final-Recipient: rfc822; ${probe}`, 'Final-Recipient: rfc822; docs+zzzzzzzz@doccheck.example').replace('dsn-plus@', 'dsn-plus-2@')));
+      assert.equal((await call('GET', '/admin/mail', undefined, admin)).body.plusCheck.status, 'ok');
+    } finally {
+      await call('DELETE', '/admin/mail', undefined, admin);
+      smtp.close();
+    }
   });
 
   it('turns an email with PDFs to a user\'s intake address into a shipment, checked without opening the app', { skip: !hasSample && 'evaluation set not generated' }, async () => {

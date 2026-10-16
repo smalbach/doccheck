@@ -18,9 +18,12 @@ export function addressOf(value: string): string {
   return (m ? m[1] : value).trim().toLowerCase();
 }
 
+/** The mailbox replies go to, without a "+token". */
+export const replyBase = () => addressOf(process.env.MAIL_REPLY_TO || mailFrom());
+
 /** The reply-to address of a thread: the mailbox with "+token" when plus addressing is on. */
 export function replyAddress(token: string): string {
-  const base = process.env.MAIL_REPLY_TO || addressOf(mailFrom());
+  const base = replyBase();
   if (process.env.MAIL_PLUS_ADDRESSING === 'false') return base;
   const [local, domain] = addressOf(base).split('@');
   return domain ? `${local}+${token}@${domain}` : base;

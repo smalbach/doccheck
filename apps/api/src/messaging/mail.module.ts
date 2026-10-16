@@ -10,10 +10,11 @@ import { MailRepository } from './mail.repository';
 import { MailService } from './mail.service';
 import { MailTransport } from './mail-transport';
 import { OutboxWorker } from './outbox.worker';
+import { PlusCheckService } from './plus-check.service';
 
 @Module({
   imports: [ShipmentsModule],
   controllers: [MailController, MailSettingsController],
-  providers: [MailService, MailRepository, MailInbox, MailTransport, OutboxWorker, ImapPoller, MailSettingsService, MailIntakeService],
+  providers: [MailService, MailRepository, MailInbox, MailTransport, OutboxWorker, ImapPoller, MailSettingsService, MailIntakeService, PlusCheckService],
 })
 export class MailModule {}

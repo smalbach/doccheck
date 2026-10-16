@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { api } from '../../../api/client';
-import type { MailServerInput, MailServerSettings } from '../../../api/types';
+import type { MailServerInput, MailServerSettings, PlusCheck } from '../../../api/types';
 import { LoadingCard } from '../../../components/layout/LoadingCard';
 import { Banner } from '../../../components/ui/Banner';
 import { Button } from '../../../components/ui/Button';
@@ -93,6 +93,13 @@ export function MailboxSettingsCard() {
   useEffect(() => {
     api.adminMail().then(load, (e: unknown) => setError(errorMessage(e)));
   }, []);
+  // While the +code check waits for its test email, look again now and then.
+  const checking = settings?.plusCheck?.status === 'checking';
+  useEffect(() => {
+    if (!checking) return;
+    const timer = setInterval(() => api.adminMail().then((s) => setSettings((current) => (current ? { ...current, plusCheck: s.plusCheck } : s)), () => undefined), 15_000);
+    return () => clearInterval(timer);
+  }, [checking]);
   if (!settings || !draft) return <LoadingCard error={error} />;
   const editable = settings.editable;
   const c = settings.config;
@@ -217,6 +224,7 @@ export function MailboxSettingsCard() {
               <Checkbox label={t('mail.settings.plus')} checked={draft.plusAddressing} onCheckedChange={(plusAddressing) => patch({ plusAddressing })} disabled={!editable} />
             </>
           )}
+          {settings.plusCheck && <PlusCheckBanner check={settings.plusCheck} />}
         </fieldset>
 
         <fieldset className="fieldset">
@@ -248,5 +256,19 @@ export function MailboxSettingsCard() {
         )}
       </form>
     </Card>
+  );
+}
+
+/** What the +code check found: a rejection says why +codes are off and what still works. */
+function PlusCheckBanner({ check }: { check: PlusCheck }) {
+  const { t } = useI18n();
+  const vars = { address: check.address, detail: check.detail ?? '' };
+  if (check.status === 'ok') return <Banner tone="ok">{t('mail.settings.plusCheck.ok', vars)}</Banner>;
+  if (check.status === 'checking') return <Banner tone="info">{t('mail.settings.plusCheck.checking', vars)}</Banner>;
+  if (check.status === 'unconfirmed') return <Banner tone="warning">{t('mail.settings.plusCheck.unconfirmed', vars)}</Banner>;
+  return (
+    <Banner tone="warning">
+      {t('mail.settings.plusCheck.rejected', vars)} {t(check.turnedOff ? 'mail.settings.plusCheck.turnedOff' : 'mail.settings.plusCheck.turnOff')}
+    </Banner>
   );
 }

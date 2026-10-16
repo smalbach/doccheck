@@ -200,6 +200,21 @@ puerto de entrada se conserva solo si el PDF lo imprime debajo de su etiqueta, e
 - v2: recall 95.3% → **100%**, precisión 97.6% → **100%**.
 - Fuente: `docs/METRICS.md`, reportes regenerados desde caché.
 
+## Correo: cuando el servidor no acepta "+códigos", 15 oct
+
+Primera prueba real con un buzón de Hostinger: al responder una solicitud desde Gmail, el proveedor
+recibió "Address not found". DocCheck pone en Reply-To `buzon+token@dominio` para enlazar la
+respuesta con su conversación, y Hostinger rechaza esas direcciones.
+
+- El `+token` era solo un respaldo: las respuestas ya se enlazan por `In-Reply-To`/`References` y
+  por el `[DC-…]` del asunto (`apps/api/src/messaging/mail-inbox.ts`). Se desactivó sin perder nada.
+- Detección automática (`plus-check.service.ts`): al guardar el buzón se envía un correo de prueba a
+  `buzon+probe-xxxx@`. Si el SMTP lo rechaza o vuelve un rebote, DocCheck apaga los +códigos y lo
+  explica en Configuración; si llega por IMAP, confirma que funcionan.
+- Límite honesto: el rebote de una respuesta real le llega a quien respondió, no a DocCheck; por eso
+  la prueba se hace con un correo propio.
+- Prueba e2e con un servidor SMTP falso que rechaza o acepta direcciones con "+" (82/82 tests).
+
 ## Pendiente / próximos pasos
 
 - OCR de Baidu en Linux con GPU (vLLM) para no depender de un Mac.
@@ -219,3 +234,4 @@ puerto de entrada se conserva solo si el PDF lo imprime debajo de su etiqueta, e
 - 14 oct 2026: README de portafolio en la raíz y posts 6 y 7 (commit `d22482c`).
 - 14 oct 2026: buzón configurable y documentos por correo (sesión de la app).
 - 15 oct 2026: apariencia personalizable (sesión de la app).
+- 15 oct 2026: prueba de +códigos del buzón y apagado automático si el servidor los rechaza.
