@@ -4,6 +4,7 @@ import {
 } from '@doccheck/integrations';
 import type { BillOfLading } from '@doccheck/schemas';
 import type { Pool } from 'pg';
+import { AuditService } from '../audit/audit.service';
 import { PG_POOL } from '../db/db.module';
 import { open, seal, type Sealed } from '../messaging/secret-box';
 import { ShipmentsRepository } from '../shipments/shipments.repository';
@@ -44,10 +45,11 @@ export class TrackingService {
   constructor(
     @Inject(PG_POOL) private readonly pool: Pool,
     private readonly shipments: ShipmentsRepository,
+    private readonly audit: AuditService,
   ) {}
 
-  async settings(accountId: string): Promise<TrackingSettingsView> {
-    const { rows } = await this.pool.query('select * from tracking_settings where account_id = $1', [accountId]);
+  async settings(orgId: string): Promise<TrackingSettingsView> {
+    const { rows } = await this.pool.query('select * from tracking_settings where org_id = $1', [orgId]);
     const r = rows[0];
     return {
       enabled: r?.enabled ?? false,
@@ -59,7 +61,8 @@ export class TrackingService {
     };
   }
 
-  async save(accountId: string, input: TrackingSettingsInput): Promise<TrackingSettingsView> {
+  async save(orgId: string, userId: string, input: TrackingSettingsInput): Promise<TrackingSettingsView> {
+    const before = await this.settings(orgId);
     if (input.provider !== 'mock' && input.enabled) {
       if (!input.endpoint) throw new BadRequestException('Set the endpoint the provider serves container events at');
       const reason = checkUrl(input.endpoint.replace(/\{(container|bl|scac)\}/g, 'x'));
@@ -67,19 +70,22 @@ export class TrackingService {
     }
     const key = input.apiKey === undefined ? undefined : input.apiKey === null || input.apiKey === '' ? null : JSON.stringify(seal(input.apiKey));
     await this.pool.query(
-      `insert into tracking_settings (account_id, enabled, provider, endpoint, api_key, mock_scenario, updated_at)
-       values ($1, $2, $3, $4, $5, $6, now())
-       on conflict (account_id) do update set enabled = $2, provider = $3, endpoint = $4,
-         api_key = case when $7 then excluded.api_key else tracking_settings.api_key end, mock_scenario = $6, updated_at = now()`,
-      [accountId, input.enabled, input.provider, input.endpoint || null, key ?? null, input.mockScenario ?? 'consistent', key !== undefined],
+      `insert into tracking_settings (org_id, enabled, provider, endpoint, api_key, mock_scenario, updated_at, updated_by)
+       values ($1, $2, $3, $4, $5, $6, now(), $8)
+       on conflict (org_id) do update set enabled = $2, provider = $3, endpoint = $4,
+         api_key = case when $7 then excluded.api_key else tracking_settings.api_key end, mock_scenario = $6, updated_at = now(), updated_by = $8`,
+      [orgId, input.enabled, input.provider, input.endpoint || null, key ?? null, input.mockScenario ?? 'consistent', key !== undefined, userId],
     );
-    const saved = await this.settings(accountId);
+    const saved = await this.settings(orgId);
+    // Never the provider key: only whether one is saved.
+    const pick = ({ providers: _p, ...v }: TrackingSettingsView) => v;
+    this.audit.note({ orgId, action: 'tracking.settings', entity: 'tracking_settings', entityId: orgId, before: pick(before), after: pick(saved) });
     if (saved.enabled && saved.provider !== 'mock' && !saved.hasApiKey) throw new BadRequestException('Enter the provider API key');
     return saved;
   }
 
-  private async provider(accountId: string, bl: BillOfLading): Promise<TrackingProvider | null> {
-    const { rows } = await this.pool.query('select * from tracking_settings where account_id = $1 and enabled', [accountId]);
+  private async provider(orgId: string, bl: BillOfLading): Promise<TrackingProvider | null> {
+    const { rows } = await this.pool.query('select * from tracking_settings where org_id = $1 and enabled', [orgId]);
     const r = rows[0];
     if (!r) return null;
     if (r.provider === 'mock') return new MockTrackingProvider(bl, r.mock_scenario);
@@ -89,14 +95,14 @@ export class TrackingService {
   }
 
   /** Adds the tracking findings to a stored validation. Nothing when tracking is off or the validation read no BL. */
-  async afterValidation(accountId: string, shipmentId: string, validationId: string): Promise<number> {
+  async afterValidation(orgId: string, shipmentId: string, validationId: string): Promise<number> {
     const validation = await this.shipments.findValidation(shipmentId, validationId);
     const blId = validation?.inputs.billOfLading;
     if (!validation || !blId || blId === 'body') return 0;
     const ext = await this.shipments.findExtraction(shipmentId, blId);
     const bl = ext?.data as BillOfLading | undefined;
     if (!bl?.containers?.length) return 0;
-    const provider = await this.provider(accountId, bl);
+    const provider = await this.provider(orgId, bl);
     if (!provider) return 0;
     const events: ContainerEvent[] = [];
     let error: string | null = null;

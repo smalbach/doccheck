@@ -40,15 +40,15 @@ const money = (amount: string | null, currency: string | null) => (amount !== nu
 export class EntitiesRepository {
   constructor(@Inject(PG_POOL) private readonly pool: Pool) {}
 
-  async parties(userId: string, q: PartiesQuery): Promise<Paged<PartySummary>> {
-    const { items, total } = await this.findParties(userId, q, q);
+  async parties(orgId: string, q: PartiesQuery): Promise<Paged<PartySummary>> {
+    const { items, total } = await this.findParties(orgId, q, q);
     return { items, total, limit: q.limit, offset: q.offset };
   }
 
-  async party(userId: string, id: string, { destination }: EntityQuery): Promise<PartyDetail | null> {
-    const { items: [summary] } = await this.findParties(userId, { destination, id }, { limit: 1, offset: 0 });
+  async party(orgId: string, id: string, { destination }: EntityQuery): Promise<PartyDetail | null> {
+    const { items: [summary] } = await this.findParties(orgId, { destination, id }, { limit: 1, offset: 0 });
     if (!summary) return null;
-    const params = [userId, destination ?? null, id];
+    const params = [orgId, destination ?? null, id];
     const mine = `from lines x where x.product_id = pr.id and $3 in (x.seller_id, x.buyer_id)`;
     const [products, shipments, addresses, related] = await Promise.all([
       this.pool.query(
@@ -120,15 +120,15 @@ export class EntitiesRepository {
     };
   }
 
-  async products(userId: string, q: ProductsQuery): Promise<Paged<ProductSummary>> {
-    const { items, total } = await this.findProducts(userId, q, q);
+  async products(orgId: string, q: ProductsQuery): Promise<Paged<ProductSummary>> {
+    const { items, total } = await this.findProducts(orgId, q, q);
     return { items, total, limit: q.limit, offset: q.offset };
   }
 
-  async product(userId: string, id: string, { destination }: EntityQuery): Promise<ProductDetail | null> {
-    const { items: [summary] } = await this.findProducts(userId, { destination, id }, { limit: 1, offset: 0 });
+  async product(orgId: string, id: string, { destination }: EntityQuery): Promise<ProductDetail | null> {
+    const { items: [summary] } = await this.findProducts(orgId, { destination, id }, { limit: 1, offset: 0 });
     if (!summary) return null;
-    const params = [userId, destination ?? null, id];
+    const params = [orgId, destination ?? null, id];
     const its = `from lines b where b.product_id = $3 and b.seller_id = s.id`;
     const count = (col: string, key: string) =>
       this.pool.query(`${BASE} select ${col} as k, count(*)::int as n from lines where product_id = $3 and ${col} is not null group by 1 order by n desc, 1 limit 20`, params).then((r) =>
@@ -178,11 +178,11 @@ export class EntitiesRepository {
   }
 
   private async findParties(
-    userId: string,
+    orgId: string,
     f: { destination?: string; q?: string; role?: PartyRole; id?: string },
     page: { limit: number; offset: number },
   ): Promise<{ items: PartySummary[]; total: number }> {
-    const params: unknown[] = [userId, f.destination ?? null];
+    const params: unknown[] = [orgId, f.destination ?? null];
     const where: string[] = [];
     if (f.id) {
       params.push(f.id);
@@ -243,11 +243,11 @@ export class EntitiesRepository {
   }
 
   private async findProducts(
-    userId: string,
+    orgId: string,
     f: { destination?: string; q?: string; origin?: string; hs?: string; id?: string },
     page: { limit: number; offset: number },
   ): Promise<{ items: ProductSummary[]; total: number }> {
-    const params: unknown[] = [userId, f.destination ?? null];
+    const params: unknown[] = [orgId, f.destination ?? null];
     const lineWhere: string[] = [];
     const productWhere: string[] = [];
     if (f.id) {

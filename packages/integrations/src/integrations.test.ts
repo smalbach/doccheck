@@ -172,7 +172,7 @@ describe('connectors', () => {
     const mock = new MockConnector();
     const registry = new ConnectorRegistry().register(mock);
     expect(registry.list()).toEqual([{ id: 'mock', name: mock.name, formats: ['cargowise-xml', 'x12-856', 'x12-310'] }]);
-    const meta = { shipmentId: input.shipment.id, accountId: 'acct' };
+    const meta = { shipmentId: input.shipment.id, orgId: 'acct' };
     expect(await registry.get('mock')!.send(buildExport('cargowise-xml', input), meta)).toEqual({ status: 'accepted', reference: 'MOCK-000001' });
     expect(await mock.send(buildExport('x12-856', input), meta)).toEqual({ status: 'accepted', reference: 'MOCK-000002' });
     const broken = { ...buildExport('x12-310', input) };

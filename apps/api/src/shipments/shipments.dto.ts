@@ -23,6 +23,9 @@ export const ListShipmentsQuery = z.object({
   status: z.enum(['all', 'open', 'attention', 'done']).default('all'),
   destination: Destination.optional(),
   q: z.string().trim().max(200).optional(),
+  due: z.enum(['overdue', 'soon']).optional(),
+  /** A member's id, or "me". */
+  assignee: z.union([z.literal('me'), z.uuid()]).optional(),
   limit: z.coerce.number().int().min(1).max(100).default(25),
   offset: z.coerce.number().int().min(0).default(0),
 });

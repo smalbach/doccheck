@@ -91,7 +91,7 @@ export function ApiKeysTab() {
               { key: 'scopes', header: t('integrations.keys.scopes'), cell: (k) => <span className="tag-row">{k.scopes.map((s) => <Tag key={s}>{s}</Tag>)}</span> },
               { key: 'rate', header: t('integrations.keys.rateLimit'), numeric: true, secondary: true, cell: (k) => k.rateLimit },
               { key: 'used', header: t('integrations.keys.lastUsed'), secondary: true, cell: (k) => (k.lastUsedAt ? formatDateTime(k.lastUsedAt) : t('integrations.never')) },
-              { key: 'created', header: t('integrations.keys.createdAt'), secondary: true, cell: (k) => formatDateTime(k.createdAt) },
+              { key: 'created', header: t('integrations.keys.createdAt'), secondary: true, cell: (k) => (k.createdBy ? t('integrations.keys.createdByOn', { name: k.createdBy, date: formatDateTime(k.createdAt) }) : formatDateTime(k.createdAt)) },
               {
                 key: 'status',
                 header: t('integrations.keys.status'),

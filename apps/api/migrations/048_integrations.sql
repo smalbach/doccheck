@@ -2,14 +2,13 @@
 -- the events other systems hear about, webhooks and chat alerts with their delivery log, folder
 -- ingestion, and container tracking.
 --
--- Everything belongs to an "account". Today an account is a user, so account_id references users;
--- when organizations arrive, account_id becomes the organization's id: repoint these foreign keys
--- and map each user's rows to their organization (the API reads account ids through one function,
--- accountOf() in src/integrations/account.ts).
+-- Everything belongs to an organization (migration 040) and goes with it. created_by is the member
+-- who set it up, kept when they leave; a key acts in its organization with the scopes it was given,
+-- and shipments it creates are recorded as created by that member.
 
 create table api_keys (
   id uuid primary key,
-  account_id uuid not null references users (id) on delete cascade,
+  org_id uuid not null references organizations (id) on delete cascade,
   created_by uuid references users (id) on delete set null,
   name text not null,
   -- The start of the key ("dck_k3x9p2ab"), shown in lists so a key can be recognized. The key
@@ -23,7 +22,7 @@ create table api_keys (
   created_at timestamptz not null default now(),
   revoked_at timestamptz
 );
-create index api_keys_account_idx on api_keys (account_id, created_at desc);
+create index api_keys_org_idx on api_keys (org_id, created_at desc);
 
 -- A write sent again with the same Idempotency-Key answers what the first one answered. Rows with
 -- no response are in progress; all are dropped after a day.
@@ -40,18 +39,19 @@ create table api_idempotency (
 -- What happened, once per event however many API processes saw it (dedupe_key is unique).
 create table integration_events (
   id uuid primary key,
-  account_id uuid not null references users (id) on delete cascade,
+  org_id uuid not null references organizations (id) on delete cascade,
   type text not null,
   shipment_id uuid references shipments (id) on delete set null,
   dedupe_key text not null unique,
   payload jsonb not null,
   created_at timestamptz not null default now()
 );
-create index integration_events_account_idx on integration_events (account_id, created_at desc);
+create index integration_events_org_idx on integration_events (org_id, created_at desc);
 
 create table webhook_subscriptions (
   id uuid primary key,
-  account_id uuid not null references users (id) on delete cascade,
+  org_id uuid not null references organizations (id) on delete cascade,
+  created_by uuid references users (id) on delete set null,
   url text not null,
   description text,
   events text[] not null,
@@ -60,11 +60,12 @@ create table webhook_subscriptions (
   active boolean not null default true,
   created_at timestamptz not null default now()
 );
-create index webhook_subscriptions_account_idx on webhook_subscriptions (account_id);
+create index webhook_subscriptions_org_idx on webhook_subscriptions (org_id);
 
 create table chat_alerts (
   id uuid primary key,
-  account_id uuid not null references users (id) on delete cascade,
+  org_id uuid not null references organizations (id) on delete cascade,
+  created_by uuid references users (id) on delete set null,
   kind text not null check (kind in ('slack', 'teams')),
   name text not null,
   -- The incoming-webhook URL is a credential: sealed, and only its host is shown.
@@ -75,13 +76,13 @@ create table chat_alerts (
   active boolean not null default true,
   created_at timestamptz not null default now()
 );
-create index chat_alerts_account_idx on chat_alerts (account_id);
+create index chat_alerts_org_idx on chat_alerts (org_id);
 
 -- One row per event per target (webhook or chat alert), with every attempt's outcome. A redelivery
 -- is a new row pointing at the one it repeats.
 create table integration_deliveries (
   id uuid primary key,
-  account_id uuid not null references users (id) on delete cascade,
+  org_id uuid not null references organizations (id) on delete cascade,
   target_type text not null check (target_type in ('webhook', 'chat')),
   target_id uuid not null,
   event_id uuid references integration_events (id) on delete cascade,
@@ -111,7 +112,8 @@ create table integration_cursors (
 -- Folder ingestion: an SFTP server, a local folder or an S3 prefix watched for PDFs.
 create table ingestion_sources (
   id uuid primary key,
-  account_id uuid not null references users (id) on delete cascade,
+  org_id uuid not null references organizations (id) on delete cascade,
+  created_by uuid references users (id) on delete set null,
   name text not null,
   kind text not null check (kind in ('sftp', 'local', 's3')),
   -- Host, port, user, path, bucket, prefix, endpoint, region: nothing secret.
@@ -145,9 +147,10 @@ create table ingested_files (
 );
 create index ingested_files_source_idx on ingested_files (source_id, created_at desc);
 
--- Container tracking, off until the account turns it on.
+-- Container tracking, off until the organization turns it on.
 create table tracking_settings (
-  account_id uuid primary key references users (id) on delete cascade,
+  org_id uuid primary key references organizations (id) on delete cascade,
+  updated_by uuid references users (id) on delete set null,
   enabled boolean not null default false,
   provider text not null default 'mock' check (provider in ('mock', 'project44', 'vizion', 'terminal49')),
   endpoint text,

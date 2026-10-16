@@ -115,12 +115,12 @@ export class DeliveryWorker implements OnApplicationBootstrap, OnApplicationShut
   }
 
   /** Creates a delivery and sends it as soon as possible. `eventId` null for a test send. Returns its id, or null when it already existed. */
-  async create(accountId: string, targetType: TargetType, targetId: string, event: WebhookEvent, opts: { eventId?: string | null; redeliveryOf?: string } = {}): Promise<string | null> {
+  async create(orgId: string, targetType: TargetType, targetId: string, event: WebhookEvent, opts: { eventId?: string | null; redeliveryOf?: string } = {}): Promise<string | null> {
     const id = randomUUID();
     const { rowCount } = await this.pool.query(
-      `insert into integration_deliveries (id, account_id, target_type, target_id, event_id, event_type, payload, next_attempt_at, redelivery_of)
+      `insert into integration_deliveries (id, org_id, target_type, target_id, event_id, event_type, payload, next_attempt_at, redelivery_of)
        values ($1, $2, $3, $4, $5, $6, $7, now(), $8) on conflict do nothing`,
-      [id, accountId, targetType, targetId, opts.eventId ?? null, event.type, JSON.stringify(event), opts.redeliveryOf ?? null],
+      [id, orgId, targetType, targetId, opts.eventId ?? null, event.type, JSON.stringify(event), opts.redeliveryOf ?? null],
     );
     if (!rowCount) return null;
     await this.enqueue(id);

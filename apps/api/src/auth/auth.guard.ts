@@ -17,10 +17,13 @@ export class AuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest<Request & AuthedRequest>();
     const token = readSessionToken(req);
-    const user = token ? await this.auth.sessionUser(token) : null;
-    if (user && token) {
-      req.user = user;
+    const session = token ? await this.auth.sessionUser(token) : null;
+    const user = session?.user;
+    if (session && token) {
+      req.user = session.user;
       req.sessionTokenHash = hashToken(token);
+      req.sessionId = session.sessionId;
+      req.sessionOrgId = session.orgId;
     }
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC, [context.getHandler(), context.getClass()]);
     if (!isPublic && !user) throw new UnauthorizedException('Sign in to continue');

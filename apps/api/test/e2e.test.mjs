@@ -31,7 +31,7 @@ const testUrl = (() => {
   return u.toString();
 })();
 const dbName = new URL(testUrl).pathname.slice(1);
-if (!dbName.endsWith('_test')) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
+if (!/_test($|_)/.test(dbName)) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
 
 // Cached model responses replayed by the API (E2E_LLM_CACHE_DIR overrides, e.g. for another model).
 const llmCacheDir = process.env.E2E_LLM_CACHE_DIR || join(root, 'eval/cache/ollama_qwen3.8');
@@ -525,7 +525,7 @@ describe('shipments', () => {
     assert.deepEqual((await page('q=pg_')).items.map((s) => s.reference), ['PG_%']); // _ and % are literal
     assert.deepEqual((await page('status=done')).items.map((s) => s.reference), ['PG-a']);
     assert.deepEqual((await page('status=open')).total, 3);
-    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0 });
+    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0, overdue: 0, dueSoon: 0 });
   });
 
   it('edits a shipment and keeps every validation run as history', async () => {

@@ -1,5 +1,6 @@
 import type { User } from '../../api/types';
 import { ActivityIndicator } from '../../features/activity/ActivityIndicator';
+import { OrgSwitcher } from '../../features/team/OrgSwitcher';
 import { useI18n } from '../../i18n/useI18n';
 import type { AppRoute } from '../../lib/parseRoute';
 import { Tag } from '../ui/Tag';
@@ -28,6 +29,7 @@ export function Sidebar({ route, user, demo, onSignOut, onNavigate }: SidebarPro
         {/* In the mobile drawer the top bar already shows it. */}
         {!onNavigate && <ActivityIndicator />}
       </div>
+      <OrgSwitcher />
       <SidebarNav route={route} demo={demo} isAdmin={user.role === 'admin'} onNavigate={onNavigate} />
       <div className="sidebar-prefs">
         <LanguageSelect />

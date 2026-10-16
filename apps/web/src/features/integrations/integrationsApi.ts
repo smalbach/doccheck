@@ -22,6 +22,7 @@ export interface ApiKey {
   lastUsedAt: string | null;
   createdAt: string;
   revokedAt: string | null;
+  createdBy: string | null;
 }
 
 export interface LastDelivery {

@@ -12,6 +12,13 @@ export function ShipmentsTable({ shipments }: { shipments: readonly ShipmentSumm
     { key: 'status', header: t('shipments.columns.status'), cell: (s) => <StatusBadge status={s.status} /> },
     { key: 'documents', header: t('shipments.columns.documents'), cell: (s) => s.documentCount, numeric: true, secondary: true },
     { key: 'findings', header: t('shipments.columns.findings'), cell: (s) => s.findingCount ?? '—', numeric: true },
+    {
+      key: 'due',
+      header: t('team.columns.due'),
+      cell: (s) => (s.dueAt ? <span className={s.overdue ? 'error' : 'muted'}>{formatDateTime(s.dueAt)}{s.overdue ? ` · ${t('team.filters.overdue')}` : ''}</span> : '—'),
+      secondary: true,
+    },
+    { key: 'assignee', header: t('team.columns.assignee'), cell: (s) => s.assignee?.name ?? '—', secondary: true },
     { key: 'created', header: t('shipments.columns.created'), cell: (s) => <span className="muted">{formatDateTime(s.createdAt)}</span>, secondary: true },
   ];
   return <DataTable columns={columns} rows={shipments} rowKey={(s) => s.id} caption={t('shipments.caption')} />;

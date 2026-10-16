@@ -47,12 +47,12 @@ export class ExportsService {
     }
   }
 
-  async send(shipmentId: string, accountId: string, format: ExportFormat, connectorId: string) {
+  async send(shipmentId: string, orgId: string, format: ExportFormat, connectorId: string) {
     const connector = this.connectors.get(connectorId);
     if (!connector) throw new BadRequestException(`No connector "${connectorId}". Available: ${this.connectors.list().map((c) => c.id).join(', ') || 'none'}`);
     if (!connector.formats.includes(format)) throw new BadRequestException(`Connector ${connectorId} does not take ${format}`);
     const file = await this.build(shipmentId, format);
-    const result = await connector.send(file, { shipmentId, accountId });
+    const result = await connector.send(file, { shipmentId, orgId });
     return { connector: connector.id, format, ...result };
   }
 }

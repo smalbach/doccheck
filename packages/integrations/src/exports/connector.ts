@@ -32,7 +32,7 @@ export interface ShipmentConnector {
   readonly id: string;
   readonly name: string;
   readonly formats: readonly ExportFormat[];
-  send(file: ExportFile, meta: { shipmentId: string; accountId: string }): Promise<ConnectorResult>;
+  send(file: ExportFile, meta: { shipmentId: string; orgId: string }): Promise<ConnectorResult>;
 }
 
 /**
@@ -44,10 +44,10 @@ export class MockConnector implements ShipmentConnector {
   readonly id = 'mock';
   readonly name = 'Mock (keeps files in memory)';
   readonly formats: readonly ExportFormat[] = ['cargowise-xml', 'x12-856', 'x12-310'];
-  readonly received: { file: ExportFile; shipmentId: string; accountId: string; reference: string }[] = [];
+  readonly received: { file: ExportFile; shipmentId: string; orgId: string; reference: string }[] = [];
   private seq = 0;
 
-  async send(file: ExportFile, meta: { shipmentId: string; accountId: string }): Promise<ConnectorResult> {
+  async send(file: ExportFile, meta: { shipmentId: string; orgId: string }): Promise<ConnectorResult> {
     if (!this.formats.includes(file.format)) return { status: 'rejected', message: `Format ${file.format} is not taken` };
     const ok = file.format === 'cargowise-xml' ? /<UniversalShipment[\s>]/.test(file.body) : /^ISA\*/.test(file.body) && /IEA\*1\*\d{9}~\s*$/.test(file.body);
     if (!ok) return { status: 'rejected', message: 'The file is not a complete document of its format' };

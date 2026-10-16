@@ -3,6 +3,7 @@ import { checkPattern, isIngestible, referenceFor, type GroupBy } from '@docchec
 import type { Destination, ShipmentDocument } from '@doccheck/schemas';
 import { randomUUID } from 'node:crypto';
 import type { Pool } from 'pg';
+import { AuditService } from '../audit/audit.service';
 import { PG_POOL } from '../db/db.module';
 import { isDemo } from '../demo/demo-mode';
 import { open, seal, type Sealed } from '../messaging/secret-box';
@@ -13,6 +14,9 @@ const TICK_MS = 15_000;
 const MAX_PDF_BYTES = 20 * 1024 * 1024;
 /** A dropped file joins a shipment with the same reference created within this many days. */
 const REFERENCE_DAYS = 120;
+
+/** What the audit log keeps of a source: no secret. */
+const describe = (s: SourceView) => ({ name: s.name, kind: s.kind, config: s.config, groupBy: s.groupBy, pattern: s.pattern, destination: s.destination, validate: s.validate, pollSeconds: s.pollSeconds, active: s.active });
 
 export interface SourceInput {
   name: string;
@@ -52,6 +56,7 @@ export class IngestionService implements OnApplicationBootstrap, OnApplicationSh
   constructor(
     @Inject(PG_POOL) private readonly pool: Pool,
     private readonly shipments: ShipmentsService,
+    private readonly audit: AuditService,
   ) {}
 
   onApplicationBootstrap() {
@@ -78,41 +83,47 @@ export class IngestionService implements OnApplicationBootstrap, OnApplicationSh
     return { host: str('host')!, port: typeof c.port === 'number' ? c.port : undefined, username: str('username')!, path: str('path')! };
   }
 
-  async create(accountId: string, input: SourceInput): Promise<SourceView> {
+  async create(orgId: string, userId: string, input: SourceInput): Promise<SourceView> {
     this.check(input);
     if (input.kind !== 'local' && !input.secret) throw new BadRequestException(input.kind === 's3' ? 'Enter the secret access key' : 'Enter the password or private key');
     const id = randomUUID();
     await this.pool.query(
-      `insert into ingestion_sources (id, account_id, name, kind, config, secret, group_by, pattern, destination, validate, poll_seconds, active)
-       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
-      [id, accountId, input.name, input.kind, JSON.stringify(this.configOf(input.kind, input.config)), input.secret ? JSON.stringify(seal(input.secret)) : null, input.groupBy, input.pattern || null, input.destination ?? null, input.validate, input.pollSeconds, input.active],
+      `insert into ingestion_sources (id, org_id, created_by, name, kind, config, secret, group_by, pattern, destination, validate, poll_seconds, active)
+       values ($1, $2, $13, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+      [id, orgId, input.name, input.kind, JSON.stringify(this.configOf(input.kind, input.config)), input.secret ? JSON.stringify(seal(input.secret)) : null, input.groupBy, input.pattern || null, input.destination ?? null, input.validate, input.pollSeconds, input.active, userId],
     );
-    return this.get(accountId, id);
+    const created = await this.get(orgId, id);
+    this.audit.note({ orgId, action: 'ingestion_source.create', entity: 'ingestion_source', entityId: id, after: describe(created) });
+    return created;
   }
 
-  async update(accountId: string, id: string, input: SourceInput): Promise<SourceView> {
+  async update(orgId: string, id: string, input: SourceInput): Promise<SourceView> {
     this.check(input);
+    const before = await this.get(orgId, id);
     const { rowCount } = await this.pool.query(
       `update ingestion_sources set name = $3, kind = $4, config = $5, secret = coalesce($6, secret), group_by = $7, pattern = $8, destination = $9, validate = $10, poll_seconds = $11, active = $12, last_error = null
-       where id = $1 and account_id = $2`,
-      [id, accountId, input.name, input.kind, JSON.stringify(this.configOf(input.kind, input.config)), input.secret ? JSON.stringify(seal(input.secret)) : null, input.groupBy, input.pattern || null, input.destination ?? null, input.validate, input.pollSeconds, input.active],
+       where id = $1 and org_id = $2`,
+      [id, orgId, input.name, input.kind, JSON.stringify(this.configOf(input.kind, input.config)), input.secret ? JSON.stringify(seal(input.secret)) : null, input.groupBy, input.pattern || null, input.destination ?? null, input.validate, input.pollSeconds, input.active],
     );
     if (!rowCount) throw new NotFoundException(`Source ${id} not found`);
-    return this.get(accountId, id);
+    const after = await this.get(orgId, id);
+    this.audit.note({ orgId, action: 'ingestion_source.update', entity: 'ingestion_source', entityId: id, before: describe(before), after: { ...describe(after), ...(input.secret ? { secretChanged: true } : {}) } });
+    return after;
   }
 
-  async remove(accountId: string, id: string) {
-    const { rowCount } = await this.pool.query('delete from ingestion_sources where id = $1 and account_id = $2', [id, accountId]);
+  async remove(orgId: string, id: string) {
+    const { rowCount } = await this.pool.query('delete from ingestion_sources where id = $1 and org_id = $2', [id, orgId]);
     if (!rowCount) throw new NotFoundException(`Source ${id} not found`);
+    this.audit.note({ orgId, action: 'ingestion_source.delete', entity: 'ingestion_source', entityId: id });
   }
 
-  async list(accountId: string): Promise<SourceView[]> {
-    const { rows } = await this.pool.query('select id from ingestion_sources where account_id = $1 order by created_at', [accountId]);
-    return Promise.all(rows.map((r) => this.get(accountId, r.id)));
+  async list(orgId: string): Promise<SourceView[]> {
+    const { rows } = await this.pool.query('select id from ingestion_sources where org_id = $1 order by created_at', [orgId]);
+    return Promise.all(rows.map((r) => this.get(orgId, r.id)));
   }
 
-  async get(accountId: string, id: string): Promise<SourceView> {
-    const { rows } = await this.pool.query('select * from ingestion_sources where id = $1 and account_id = $2', [id, accountId]);
+  async get(orgId: string, id: string): Promise<SourceView> {
+    const { rows } = await this.pool.query('select * from ingestion_sources where id = $1 and org_id = $2', [id, orgId]);
     const r = rows[0];
     if (!r) throw new NotFoundException(`Source ${id} not found`);
     const files = await this.pool.query('select * from ingested_files where source_id = $1 order by created_at desc limit 20', [id]);
@@ -136,11 +147,11 @@ export class IngestionService implements OnApplicationBootstrap, OnApplicationSh
   }
 
   /** Lists the source with the saved (or typed) settings: how many PDFs it sees, and the references they give. */
-  async test(accountId: string, input: SourceInput & { id?: string }) {
+  async test(orgId: string, input: SourceInput & { id?: string }) {
     this.check(input);
     let secret = input.secret;
     if (!secret && input.id) {
-      const { rows } = await this.pool.query('select secret from ingestion_sources where id = $1 and account_id = $2', [input.id, accountId]);
+      const { rows } = await this.pool.query('select secret from ingestion_sources where id = $1 and org_id = $2', [input.id, orgId]);
       secret = rows[0]?.secret ? open(rows[0].secret as Sealed) : undefined;
     }
     const source = openSource(input.kind, this.configOf(input.kind, input.config), secret);
@@ -159,11 +170,11 @@ export class IngestionService implements OnApplicationBootstrap, OnApplicationSh
   }
 
   /** Polls now, whatever the schedule. */
-  async pollNow(accountId: string, id: string) {
-    const { rows } = await this.pool.query('select * from ingestion_sources where id = $1 and account_id = $2', [id, accountId]);
+  async pollNow(orgId: string, id: string) {
+    const { rows } = await this.pool.query('select * from ingestion_sources where id = $1 and org_id = $2', [id, orgId]);
     if (!rows[0]) throw new NotFoundException(`Source ${id} not found`);
     await this.poll(rows[0]);
-    return this.get(accountId, id);
+    return this.get(orgId, id);
   }
 
   tick(): Promise<void> {
@@ -220,7 +231,9 @@ export class IngestionService implements OnApplicationBootstrap, OnApplicationSh
   }
 
   private async importGroup(src: Record<string, any>, source: ReturnType<typeof openSource>, reference: string, files: { path: string; version: string; size: number }[]) {
-    const userId: string = src.account_id;
+    const orgId: string = src.org_id;
+    // Shipments made from the folder are recorded as created by the member who set it up.
+    const userId: string = src.created_by;
     const read: { f: (typeof files)[number]; bytes: Buffer }[] = [];
     for (const f of files) {
       try {
@@ -233,10 +246,10 @@ export class IngestionService implements OnApplicationBootstrap, OnApplicationSh
     }
     if (!read.length) return;
     const { rows } = await this.pool.query<{ id: string }>(
-      `select id from shipments where user_id = $1 and reference = $2 and created_at > now() - interval '${REFERENCE_DAYS} days' order by created_at desc limit 1`,
-      [userId, reference],
+      `select id from shipments where org_id = $1 and reference = $2 and created_at > now() - interval '${REFERENCE_DAYS} days' order by created_at desc limit 1`,
+      [orgId, reference],
     );
-    const shipmentId = rows[0]?.id ?? (await this.shipments.create({ reference, destination: src.destination ?? undefined }, userId)).id;
+    const shipmentId = rows[0]?.id ?? (await this.shipments.create({ reference, destination: src.destination ?? undefined }, userId, orgId)).id;
     try {
       const documents = (await this.shipments.addDocuments(shipmentId, read.map((r) => ({ name: r.f.path.split('/').at(-1)!, bytes: r.bytes })))).documents as ShipmentDocument[];
       for (const [i, r] of read.entries()) await this.record(src.id, r.f, reference, 'imported', shipmentId, documents[i]!.id, null);

@@ -2,11 +2,15 @@
 
 DocCheck se conecta con otros sistemas: una API REST pública con claves de API, webhooks firmados, alertas en Slack o Teams, carpetas que vigila (SFTP, S3 o local), exportaciones a CargoWise y X12, y seguimiento de contenedores. Todo se configura en **Integraciones** (menú lateral, grupo Conectar); la **Referencia de la API** está al lado.
 
-Los modelos siguen corriendo localmente: ninguna integración manda documentos a un servicio de IA externo. Lo que sale hacia afuera (webhooks, chat, exportaciones) lo decide la cuenta.
+Los modelos siguen corriendo localmente: ninguna integración manda documentos a un servicio de IA externo. Lo que sale hacia afuera (webhooks, chat, exportaciones) lo decide la organización.
 
-## Cuenta: hoy el usuario, mañana la organización
+## Organización
 
-Claves, webhooks, alertas, carpetas y seguimiento pertenecen a una **cuenta**. Hoy la cuenta es el usuario (`account_id` = id del usuario) y sus envíos son los del usuario. La costura es una sola función, `accountOf()` en [`apps/api/src/integrations/account.ts`](../apps/api/src/integrations/account.ts): cuando lleguen las organizaciones, devuelve el id de la organización, el guard de envíos de la API (`ApiShipmentGuard`) revisa la organización, y las claves foráneas `account_id` de la migración `019_integrations.sql` se reapuntan (lo explica su cabecera). Los envíos creados con una clave quedan a nombre de `actingUserId`, hoy la misma cuenta y después quien creó la clave.
+Claves, webhooks, alertas, carpetas y seguimiento pertenecen a una **organización** ([ORGANIZATIONS.md](ORGANIZATIONS.md)) y se borran con ella; `created_by` guarda quién los configuró y se conserva si esa persona se va. Administrarlos (página Integraciones, rutas `/integrations/...`) requiere el permiso `integrations.manage`, que tienen owner y admin; los demás roles reciben 403 y no ven la página en el menú.
+
+Una **clave de API** actúa en su organización con lo que permiten sus alcances, en los términos de la tabla de roles: `read` da `shipment.read` y `data.read`; `write` da `shipment.write`. Las rutas de `/api/v1` nombran su permiso con `@Permission()`, como las de la app, y `ApiKeyGuard` lo revisa contra la clave; después la solicitud lleva la organización de la clave (`req.org`), así que `ApiShipmentGuard` usa la misma comprobación que `ShipmentOwnerGuard` y responde 404 para envíos de otra organización. Una clave nunca actúa como cliente. Los envíos creados con una clave quedan en la organización a nombre de quien creó la clave, y el registro de auditoría los anota con ese usuario y `api-key dck_…` como actor.
+
+Los eventos solo van a los webhooks y alertas de la organización dueña del envío (la del envío al momento del evento; para respuestas de proveedor, la de la conversación). Crear o revocar claves y crear, cambiar o borrar webhooks, alertas, carpetas y el seguimiento se anota en el registro de auditoría con `AuditService.note`, sin secretos: de una clave solo el prefijo, de un webhook nunca el secreto de firma, de una alerta solo el host de la URL, de una carpeta ni contraseña ni clave, del seguimiento solo si hay clave guardada.
 
 ## API REST v1
 
@@ -25,7 +29,7 @@ Bajo `/api/v1`, solo con clave de API (`Authorization: Bearer dck_…` o `X-API-
 | POST | `/api/v1/shipments/:id/exports/:format/send` | write | Envía la exportación por un conector `{ connector }` |
 | GET | `/api/v1/openapi.json` | público | Documento OpenAPI 3.1 |
 
-- **Claves:** `dck_<8 caracteres>_<32 secretos>`. Se muestran una sola vez; se guarda su SHA-256 y el prefijo para reconocerlas. Permisos `read` y/o `write`, límite por minuto (120 por defecto), último uso (anotado como máximo una vez por minuto) y revocación definitiva.
+- **Claves:** `dck_<8 caracteres>_<32 secretos>`. Se muestran una sola vez; se guarda su SHA-256 y el prefijo para reconocerlas. Alcances `read` y/o `write`, límite por minuto (120 por defecto), último uso (anotado como máximo una vez por minuto) y revocación definitiva.
 - **Límite de solicitudes:** ventanas de un minuto por clave; con `REDIS_URL` el conteo es compartido por todos los procesos, sin Redis cada proceso cuenta el suyo. Cada respuesta lleva `RateLimit-Limit`, `RateLimit-Remaining` y `RateLimit-Reset`; un 429 lleva `Retry-After`.
 - **Idempotencia:** crear y subir aceptan `Idempotency-Key`. La primera solicitud reserva la clave; si sale bien, su respuesta se guarda 24 horas y un reintento igual la recibe de nuevo (`Idempotent-Replayed: true`) sin repetir el trabajo. La misma clave con otra solicitud da 422; mientras la primera corre, 409. Una solicitud que falla libera la clave.
 - **Errores:** siempre `{ statusCode, error, message, issues? }` (`issues` por campo en un 400).
@@ -48,7 +52,7 @@ El script crea una cuenta y una clave descartables y corre `postman collection r
 
 ## Webhooks
 
-Por cuenta: URL, descripción y eventos. DocCheck hace `POST` con JSON `{ id, type, createdAt, data }` y las cabeceras `DocCheck-Event`, `DocCheck-Delivery` y `DocCheck-Signature: t=<unix>,v1=<hex>`.
+Por organización: URL, descripción y eventos. DocCheck hace `POST` con JSON `{ id, type, createdAt, data }` y las cabeceras `DocCheck-Event`, `DocCheck-Delivery` y `DocCheck-Signature: t=<unix>,v1=<hex>`.
 
 | Evento | Cuándo | `data` |
 | --- | --- | --- |
@@ -68,7 +72,7 @@ Por cuenta: URL, descripción y eventos. DocCheck hace `POST` con JSON `{ id, ty
 
 ## Alertas de chat (Slack y Teams)
 
-URL de webhook entrante por cuenta, con sus eventos. Slack recibe Block Kit; Teams una Adaptive Card (sirve para Workflows y para los conectores antiguos). El mensaje dice qué pasó (cantidades, regla, gravedad) con un enlace al envío o a la conversación, y **no cita nada de los documentos** salvo que se active "Incluir mensajes de hallazgos, nombres de archivo y remitentes". La URL es una credencial: se guarda cifrada y solo se muestra el host. Solo se aceptan `hooks.slack.com` y los hosts de Microsoft (`*.webhook.office.com`, `*.logic.azure.com`, `*.powerplatform.com`). Las entregas usan el mismo registro y reintentos que los webhooks.
+URL de webhook entrante por organización, con sus eventos. Slack recibe Block Kit; Teams una Adaptive Card (sirve para Workflows y para los conectores antiguos). El mensaje dice qué pasó (cantidades, regla, gravedad) con un enlace al envío o a la conversación, y **no cita nada de los documentos** salvo que se active "Incluir mensajes de hallazgos, nombres de archivo y remitentes". La URL es una credencial: se guarda cifrada y solo se muestra el host. Solo se aceptan `hooks.slack.com` y los hosts de Microsoft (`*.webhook.office.com`, `*.logic.azure.com`, `*.powerplatform.com`). Las entregas usan el mismo registro y reintentos que los webhooks.
 
 ## Carpetas (ingesta)
 
@@ -77,10 +81,10 @@ Una carpeta local, un servidor SFTP o un prefijo S3 se revisa cada `poll_seconds
 - **folder:** el nombre de la carpeta donde está: `SHP-1001/factura.pdf` → `SHP-1001`.
 - **filename:** el primer grupo del patrón sobre el nombre; por defecto lo que va antes del primer `_` o espacio: `SHP-1001_factura.pdf`. Los patrones del usuario necesitan un grupo de captura y no pueden tener repeticiones anidadas.
 
-Los archivos con la misma referencia van al envío de la cuenta con esa referencia (de los últimos 120 días) o a uno nuevo, con el destino de la fuente si tiene. Se extraen como cualquier carga y, si la fuente lo pide y hay destino, se validan cuando terminan de leerse. Nada se mueve ni se borra en el origen; `ingested_files` recuerda qué se importó, se omitió (sin referencia, más de 20 MB, no es PDF) o falló.
+Los archivos con la misma referencia van al envío de la organización con esa referencia, a nombre de quien configuró la carpeta, (de los últimos 120 días) o a uno nuevo, con el destino de la fuente si tiene. Se extraen como cualquier carga y, si la fuente lo pide y hay destino, se validan cuando terminan de leerse. Nada se mueve ni se borra en el origen; `ingested_files` recuerda qué se importó, se omitió (sin referencia, más de 20 MB, no es PDF) o falló.
 
 - Contraseña, clave privada SSH o secret access key: cifradas con `SETTINGS_KEY`, nunca vuelven al navegador.
-- Carpetas locales solo dentro de `INGEST_LOCAL_ROOT` (por defecto `.data/inbox`), para que una cuenta no lea otros archivos del servidor.
+- Carpetas locales solo dentro de `INGEST_LOCAL_ROOT` (por defecto `.data/inbox`), para que nadie lea otros archivos del servidor.
 - SFTP con la misma regla de direcciones que los webhooks. La clave del servidor SSH no se verifica todavía.
 - `INGESTION_ENABLED=false` apaga la revisión periódica; "Revisar ahora" y "Probar" siguen funcionando.
 
@@ -98,7 +102,7 @@ Un **conector** (`ShipmentConnector` en `packages/integrations`) envía una expo
 
 ## Seguimiento de contenedores
 
-Apagado hasta que la cuenta lo activa. Después de cada validación busca los contenedores del BL con el proveedor y agrega a esa misma validación tres reglas deterministas, con evidencia del BL y del proveedor (`documentId: "tracking:<proveedor>"`):
+Apagado hasta que la organización lo activa. Después de cada validación busca los contenedores del BL con el proveedor y agrega a esa misma validación tres reglas deterministas, con evidencia del BL y del proveedor (`documentId: "tracking:<proveedor>"`):
 
 | Regla | Qué revisa |
 | --- | --- |
@@ -130,8 +134,9 @@ Proveedores: **simulado** (eventos armados con el propio BL: "coinciden" o "no c
 
 - `packages/integrations`: firmas, mensajes de chat, agrupación, XML de CargoWise, X12 856 y 310 (sobre, conteos, separadores), conector simulado, normalizadores de proveedores y T1–T3.
 - `packages/client`: cliente con `fetch` falso y `verifyWebhook` contra la firma del servidor.
-- `apps/api/test/integrations.test.mjs`: de punta a punta contra Postgres (su propia base, `doccheck_integrations_test`, puerto 3994): claves, permisos, límites, idempotencia, OpenAPI, webhooks firmados con reintentos y reenvío, eventos una sola vez, respuestas de proveedor, alertas de chat, exportaciones, seguimiento y carpetas.
+- `apps/api/test/integrations.test.mjs`: de punta a punta contra Postgres (su propia base, el nombre de la de pruebas con `_integrations` antes de `_test`, y el puerto `E2E_PORT + 2`): claves, permisos, límites, idempotencia, OpenAPI, webhooks firmados con reintentos y reenvío, eventos una sola vez, respuestas de proveedor, alertas de chat, exportaciones, seguimiento y carpetas.
+- `apps/api/test/orgs.test.mjs`: una clave de otra organización recibe 404 en cada ruta de `/api/v1` y en las exportaciones y el seguimiento de la app; viewer, client y analyst no administran integraciones (403); una clave crea envíos en su organización y la auditoría lo anota sin la clave.
 - `scripts/api-contract.mjs`: la colección de Postman contra un servidor.
 - `npm run a11y` revisa Integraciones (cada pestaña, con datos) y la Referencia de la API.
 
-Migración `019_integrations.sql`: `api_keys`, `api_idempotency`, `integration_events`, `webhook_subscriptions`, `chat_alerts`, `integration_deliveries`, `integration_cursors`, `ingestion_sources`, `ingested_files`, `tracking_settings`, `tracking_snapshots`.
+Migración `048_integrations.sql`: `api_keys`, `api_idempotency`, `integration_events`, `webhook_subscriptions`, `chat_alerts`, `integration_deliveries`, `integration_cursors`, `ingestion_sources`, `ingested_files`, `tracking_settings`, `tracking_snapshots`.

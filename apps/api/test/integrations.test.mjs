@@ -6,8 +6,7 @@
 //
 //   npm run build && npm run test:e2e -w @doccheck/api
 //
-// Uses DATABASE_URL_INTEGRATIONS_TEST, or DATABASE_URL with the database renamed to
-// doccheck_integrations_test (its own, so it runs beside e2e.test.mjs). The schema is dropped and recreated.
+// The schema of its database is dropped and recreated.
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
@@ -27,16 +26,18 @@ try {
 const require = createRequire(import.meta.url);
 const { verifySignature } = require(join(root, 'packages/integrations/dist/index.js'));
 
+// Beside e2e.test.mjs (DATABASE_URL_TEST, E2E_PORT) and orgs.test.mjs (E2E_PORT + 1): the test
+// database name with "_integrations" before "_test", and port E2E_PORT + 2.
 const testUrl = (() => {
-  if (process.env.DATABASE_URL_INTEGRATIONS_TEST) return process.env.DATABASE_URL_INTEGRATIONS_TEST;
-  const u = new URL(process.env.DATABASE_URL ?? 'postgres://doccheck:doccheck@localhost:5432/doccheck');
-  u.pathname = '/doccheck_integrations_test';
+  const u = new URL(process.env.DATABASE_URL_TEST ?? process.env.DATABASE_URL ?? 'postgres://doccheck:doccheck@localhost:5432/doccheck');
+  if (!process.env.DATABASE_URL_TEST) u.pathname = '/doccheck_test';
+  u.pathname = u.pathname.replace(/_test($|_)/, '_integrations_test$1');
   return u.toString();
 })();
 const dbName = new URL(testUrl).pathname.slice(1);
-if (!dbName.endsWith('_test')) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
+if (!/_integrations_test($|_)/.test(dbName)) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
 
-const port = Number(process.env.E2E_INTEGRATIONS_PORT ?? 3994);
+const port = Number(process.env.E2E_PORT ?? 3990) + 2;
 const base = `http://localhost:${port}`;
 const inbox = mkdtempSync(join(tmpdir(), 'doccheck-inbox-'));
 let api;
@@ -209,7 +210,7 @@ describe('API keys', () => {
     await until(async () => (await call('GET', '/integrations/api-keys')).body.find((k) => k.id === id).lastUsedAt);
   });
 
-  it('enforce scopes, revocation and the account boundary', async () => {
+  it('enforce scopes, revocation and the organization boundary', async () => {
     const read = await newKey(['read']);
     const write = await newKey(['write']);
     assert.equal((await v1('POST', '/shipments', read.key, { destination: 'CA' })).status, 403);
@@ -221,7 +222,7 @@ describe('API keys', () => {
     assert.equal((await v1('POST', '/shipments', write.key, { destination: 'MX' })).status, 400);
     assert.equal((await v1('POST', '/shipments', write.key, { destination: 'CA', extra: 1 })).status, 400);
 
-    // Another account's key sees neither the shipment nor its id.
+    // Another organization's key sees neither the shipment nor its id.
     const other = await newKey(['read'], {}, await signUp('Other'));
     assert.equal((await v1('GET', `/shipments/${created.body.id}`, other.key)).status, 404);
     assert.equal((await v1('GET', '/shipments', other.key)).body.total, 0);
@@ -401,7 +402,7 @@ describe('webhooks', () => {
     assert.equal(again.body.redeliveryOf, failed.id);
     await until(() => down.requests.length === 4);
     assert.equal(down.requests[3].json.id, down.requests[0].json.id);
-    // Another account cannot see or redeliver it.
+    // Another organization cannot see or redeliver it.
     assert.equal((await call('POST', `/integrations/deliveries/${failed.id}/redeliver`, undefined, { as: await signUp() })).status, 404);
     await Promise.all([flaky.close(), down.close()]);
   });
@@ -435,7 +436,7 @@ describe('webhooks', () => {
     // Every event once, however many processes heard it.
     const ids2 = hook.requests.map((r) => r.json.id);
     assert.equal(new Set(ids2).size, ids2.length);
-    const stored = await pool.query('select count(*)::int as n from integration_events where account_id = (select user_id from shipments where id = $1)', [shipment.id]);
+    const stored = await pool.query('select count(*)::int as n from integration_events where org_id = (select org_id from shipments where id = $1)', [shipment.id]);
     assert.equal(stored.rows[0].n, ids2.length);
     await call('PATCH', `/integrations/webhooks/${w.id}`, { active: false }, { as: me });
     await hook.close();
@@ -557,7 +558,7 @@ describe('folder ingestion', () => {
     await call('POST', `/integrations/ingestion/${created.id}/poll`, undefined, { as: me });
     const again = (await call('GET', '/shipments?q=SHP-77', undefined, { as: me })).body;
     assert.deepEqual([again.total, again.items[0].documentCount], [1, 3]);
-    // Not another account's to see.
+    // Not another organization's to see.
     assert.equal((await call('POST', `/integrations/ingestion/${created.id}/poll`, undefined, { as: await signUp() })).status, 404);
   });
 });

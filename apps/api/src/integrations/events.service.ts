@@ -60,9 +60,13 @@ export class IntegrationEventsService implements OnApplicationBootstrap, OnAppli
   }
 
   private async onProgress(e: ProgressEvent) {
-    if (e.ephemeral || e.stage !== 'saved' || e.status !== 'done' || !e.userId) return;
-    if (e.kind === 'extraction' && e.documentId) await this.documentExtracted(e.userId, e.shipmentId, e.documentId, e.runId);
-    if (e.kind === 'validation') await this.validationCompleted(e.userId, e.shipmentId, e.runId);
+    if (e.ephemeral || e.stage !== 'saved' || e.status !== 'done') return;
+    // Events go to the organization that owns the shipment, and only to it.
+    const { rows } = await this.pool.query<{ org_id: string | null }>('select org_id from shipments where id = $1', [e.shipmentId]);
+    const orgId = rows[0]?.org_id;
+    if (!orgId) return;
+    if (e.kind === 'extraction' && e.documentId) await this.documentExtracted(orgId, e.shipmentId, e.documentId, e.runId);
+    if (e.kind === 'validation') await this.validationCompleted(orgId, e.shipmentId, e.runId);
   }
 
   private async shipmentRef(id: string): Promise<ShipmentRef> {
@@ -70,11 +74,11 @@ export class IntegrationEventsService implements OnApplicationBootstrap, OnAppli
     return { id, reference: rows[0]?.reference ?? null, url: shipmentUrl(id) };
   }
 
-  private async documentExtracted(accountId: string, shipmentId: string, documentId: string, runId: string) {
+  private async documentExtracted(orgId: string, shipmentId: string, documentId: string, runId: string) {
     const doc = await this.shipments.findDocument(documentId);
     if (!doc) return;
     const ext = await this.shipments.findExtraction(shipmentId, documentId);
-    await this.emit(accountId, 'document.extracted', `document.extracted:${runId}`, shipmentId, {
+    await this.emit(orgId, 'document.extracted', `document.extracted:${runId}`, shipmentId, {
       shipment: await this.shipmentRef(shipmentId),
       document: { id: documentId, fileName: doc.fileName, type: doc.detectedType, normalized: !!ext?.data, pages: doc.pageCount || null },
     });
@@ -85,10 +89,10 @@ export class IntegrationEventsService implements OnApplicationBootstrap, OnAppli
    * on), then validation.completed and one finding.created / finding.resolved per finding that is
    * new since the previous run or gone from it.
    */
-  private async validationCompleted(accountId: string, shipmentId: string, validationId: string) {
-    const claim = await this.claim(accountId, 'validation.completed', `validation.completed:${validationId}`, shipmentId);
+  private async validationCompleted(orgId: string, shipmentId: string, validationId: string) {
+    const claim = await this.claim(orgId, 'validation.completed', `validation.completed:${validationId}`, shipmentId);
     if (!claim) return;
-    await this.tracking.afterValidation(accountId, shipmentId, validationId).catch((err: Error) => this.logger.warn(`Container tracking for ${shipmentId} failed: ${err.message}`));
+    await this.tracking.afterValidation(orgId, shipmentId, validationId).catch((err: Error) => this.logger.warn(`Container tracking for ${shipmentId} failed: ${err.message}`));
     const shipment = await this.shipmentRef(shipmentId);
     const [validation, findings, previous] = await Promise.all([
       this.shipments.findValidation(shipmentId, validationId),
@@ -106,10 +110,10 @@ export class IntegrationEventsService implements OnApplicationBootstrap, OnAppli
     const now = new Set(findings.map((f) => f.fingerprint));
     const ref = (f: (typeof findings)[number]) => ({ fingerprint: f.fingerprint, ruleId: f.ruleId, severity: f.severity, message: f.message });
     for (const f of findings.filter((f) => !earlier.has(f.fingerprint))) {
-      await this.emit(accountId, 'finding.created', `finding.created:${validationId}:${f.fingerprint}`, shipmentId, { shipment, validationId, finding: ref(f) });
+      await this.emit(orgId, 'finding.created', `finding.created:${validationId}:${f.fingerprint}`, shipmentId, { shipment, validationId, finding: ref(f) });
     }
     for (const f of before.filter((f) => !now.has(f.fingerprint))) {
-      await this.emit(accountId, 'finding.resolved', `finding.resolved:${validationId}:${f.fingerprint}`, shipmentId, { shipment, validationId, finding: ref(f) });
+      await this.emit(orgId, 'finding.resolved', `finding.resolved:${validationId}:${f.fingerprint}`, shipmentId, { shipment, validationId, finding: ref(f) });
     }
   }
 
@@ -118,15 +122,16 @@ export class IntegrationEventsService implements OnApplicationBootstrap, OnAppli
     try {
       await this.pool.query(`insert into integration_cursors (name, position) values ('supplier.replied', now()) on conflict do nothing`);
       const { rows } = await this.pool.query(
-        `select m.id, m.from_addr, m.received_at, m.created_at, t.id as thread_id, t.subject, t.user_id, t.shipment_id,
+        `select m.id, m.from_addr, m.received_at, m.created_at, t.id as thread_id, t.subject, coalesce(s.org_id, t.org_id) as org_id, t.shipment_id,
                 (select count(*)::int from mail_attachments a where a.message_id = m.id) as attachments
-         from mail_messages m join mail_threads t on t.id = m.thread_id
+         from mail_messages m join mail_threads t on t.id = m.thread_id left join shipments s on s.id = t.shipment_id
          where m.direction = 'in' and t.kind <> 'intake'
            and m.created_at > (select position from integration_cursors where name = 'supplier.replied')
          order by m.created_at limit 200`,
       );
       for (const r of rows) {
-        await this.emit(r.user_id, 'supplier.replied', `supplier.replied:${r.id}`, r.shipment_id, {
+        if (!r.org_id) continue;
+        await this.emit(r.org_id, 'supplier.replied', `supplier.replied:${r.id}`, r.shipment_id, {
           shipment: r.shipment_id ? await this.shipmentRef(r.shipment_id) : null,
           thread: { id: r.thread_id, subject: r.subject, url: threadUrl(r.thread_id) },
           message: { id: r.id, from: r.from_addr, receivedAt: new Date(r.received_at ?? r.created_at).toISOString(), attachments: r.attachments },
@@ -139,28 +144,28 @@ export class IntegrationEventsService implements OnApplicationBootstrap, OnAppli
   }
 
   /** Stores an event once and delivers it; nothing when another process already did. */
-  async emit<T extends EventType>(accountId: string, type: T, dedupeKey: string, shipmentId: string | null, data: EventData[T]) {
-    const claim = await this.claim(accountId, type, dedupeKey, shipmentId);
+  async emit<T extends EventType>(orgId: string, type: T, dedupeKey: string, shipmentId: string | null, data: EventData[T]) {
+    const claim = await this.claim(orgId, type, dedupeKey, shipmentId);
     if (claim) await this.complete(claim, type, data);
   }
 
-  private async claim(accountId: string, type: EventType, dedupeKey: string, shipmentId: string | null): Promise<{ id: string; accountId: string; createdAt: string } | null> {
+  private async claim(orgId: string, type: EventType, dedupeKey: string, shipmentId: string | null): Promise<{ id: string; orgId: string; createdAt: string } | null> {
     const id = randomUUID();
     const { rows } = await this.pool.query(
-      `insert into integration_events (id, account_id, type, shipment_id, dedupe_key, payload) values ($1, $2, $3, $4, $5, '{}') on conflict (dedupe_key) do nothing returning created_at`,
-      [id, accountId, type, shipmentId, dedupeKey],
+      `insert into integration_events (id, org_id, type, shipment_id, dedupe_key, payload) values ($1, $2, $3, $4, $5, '{}') on conflict (dedupe_key) do nothing returning created_at`,
+      [id, orgId, type, shipmentId, dedupeKey],
     );
-    return rows[0] ? { id, accountId, createdAt: new Date(rows[0].created_at).toISOString() } : null;
+    return rows[0] ? { id, orgId, createdAt: new Date(rows[0].created_at).toISOString() } : null;
   }
 
-  private async complete<T extends EventType>(claim: { id: string; accountId: string; createdAt: string }, type: T, data: EventData[T]) {
+  private async complete<T extends EventType>(claim: { id: string; orgId: string; createdAt: string }, type: T, data: EventData[T]) {
     const event: WebhookEvent<T> = { id: claim.id, type, createdAt: claim.createdAt, data };
     await this.pool.query('update integration_events set payload = $2 where id = $1', [claim.id, JSON.stringify(event)]);
     const targets = await this.pool.query<{ type: 'webhook' | 'chat'; id: string }>(
-      `select 'webhook' as type, id from webhook_subscriptions where account_id = $1 and active and $2 = any(events)
-       union all select 'chat', id from chat_alerts where account_id = $1 and active and $2 = any(events)`,
-      [claim.accountId, type],
+      `select 'webhook' as type, id from webhook_subscriptions where org_id = $1 and active and $2 = any(events)
+       union all select 'chat', id from chat_alerts where org_id = $1 and active and $2 = any(events)`,
+      [claim.orgId, type],
     );
-    for (const t of targets.rows) await this.deliveries.create(claim.accountId, t.type, t.id, event, { eventId: claim.id });
+    for (const t of targets.rows) await this.deliveries.create(claim.orgId, t.type, t.id, event, { eventId: claim.id });
   }
 }

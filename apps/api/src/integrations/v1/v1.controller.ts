@@ -12,7 +12,10 @@ import { ZodValidationPipe } from '../../common/zod-validation.pipe';
 import { ShipmentsRepository } from '../../shipments/shipments.repository';
 import { ShipmentsService } from '../../shipments/shipments.service';
 import type { ApiPrincipal, ApiRequest } from '../account';
-import { ApiKeyGuard, RequireScope } from '../api-key.guard';
+import { ApiKeyGuard } from '../api-key.guard';
+import { Permission } from '../../orgs/permissions';
+import { OrgsRepository } from '../../orgs/orgs.repository';
+import type { OrgRequest } from '../../orgs/org.types';
 import { ExportsService } from '../exports.service';
 import { V1ErrorsFilter } from './v1-errors.filter';
 import { IdempotencyStore, requestHash, type IdempotentResult } from '../idempotency';
@@ -25,17 +28,17 @@ const MAX_PDF_BYTES = 20 * 1024 * 1024;
 
 const principalOf = (req: ApiRequest) => req.principal as ApiPrincipal;
 
-/** Routes with a shipment :id answer 404 unless the shipment belongs to the key's account (as for one that does not exist). */
+/** Routes with a shipment :id answer 404 unless the shipment belongs to the key's organization (as for one that does not exist). */
 @Injectable()
 export class ApiShipmentGuard implements CanActivate {
-  constructor(private readonly repo: ShipmentsRepository) {}
+  constructor(private readonly orgs: OrgsRepository) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const req = context.switchToHttp().getRequest<Request & ApiRequest>();
+    const req = context.switchToHttp().getRequest<Request & ApiRequest & OrgRequest>();
     const id = req.params.id;
     if (typeof id !== 'string') return true;
-    // An account's shipments are its user's today (accountOf); with organizations, check the organization here.
-    if (!req.principal || !UUID.test(id) || !(await this.repo.isOwner(id, req.principal.accountId))) throw new NotFoundException(`Shipment ${id} not found`);
+    // The same check as ShipmentOwnerGuard, in the key's organization (a key never acts as a client).
+    if (!req.principal || !req.org || !UUID.test(id) || !(await this.orgs.canSeeShipment(id, req.org, req.principal.actingUserId ?? ''))) throw new NotFoundException(`Shipment ${id} not found`);
     return true;
   }
 }
@@ -65,29 +68,29 @@ export class V1Controller {
   ) {}
 
   @Get('shipments')
-  @RequireScope('read')
+  @Permission('data.read')
   async list(@Req() req: ApiRequest, @Query(new ZodValidationPipe(ListShipmentsQuery)) query: ListShipmentsQuery) {
-    const page = await this.shipments.list(principalOf(req).accountId, query);
+    const page = await this.shipments.list({ orgId: principalOf(req).orgId }, query);
     return { items: page.items, total: page.total, limit: page.limit, offset: page.offset };
   }
 
   @Post('shipments')
-  @RequireScope('write')
+  @Permission('shipment.write')
   async create(@Req() req: ApiRequest & Request, @Res({ passthrough: true }) res: Response, @Headers('idempotency-key') key: string | undefined, @Body(new ZodValidationPipe(CreateShipmentRequest)) dto: CreateShipmentRequest) {
     const p = principalOf(req);
-    const result = await this.idempotency.run(p.keyId, key, requestHash('POST', req.path, JSON.stringify(dto)), 201, async () => toV1Shipment(await this.shipments.create(dto, p.actingUserId)));
+    const result = await this.idempotency.run(p.keyId, key, requestHash('POST', req.path, JSON.stringify(dto)), 201, async () => toV1Shipment(await this.shipments.create(dto, p.actingUserId as string, p.orgId)));
     return reply(res, result);
   }
 
   @Get('shipments/:id')
-  @RequireScope('read')
+  @Permission('shipment.read')
   async get(@Param('id') id: string) {
     return toV1Shipment(await this.shipments.get(id));
   }
 
   /** Multipart, field "files": up to 10 PDFs of 20 MB. 202: queued for extraction. */
   @Post('shipments/:id/documents')
-  @RequireScope('write')
+  @Permission('shipment.write')
   @UseInterceptors(FilesInterceptor('files', 10, { limits: { fileSize: MAX_PDF_BYTES } }))
   async upload(@Req() req: ApiRequest & Request, @Res({ passthrough: true }) res: Response, @Param('id') id: string, @Headers('idempotency-key') key: string | undefined, @UploadedFiles() files: Express.Multer.File[] = []) {
     if (files.length === 0) throw new BadRequestException('Send at least one PDF in the "files" field');
@@ -101,7 +104,7 @@ export class V1Controller {
   }
 
   @Get('shipments/:id/documents/:documentId')
-  @RequireScope('read')
+  @Permission('shipment.read')
   async document(@Param('id') id: string, @Param('documentId') documentId: string) {
     const d = (await this.shipments.document(id, documentId)) as { document: Parameters<typeof toV1Document>[0]; documentType?: string; data?: unknown; issues?: string[]; corrected?: unknown[] };
     return {
@@ -118,7 +121,7 @@ export class V1Controller {
    * 202 at once (validation.completed follows), or with ?wait=true 200 with the validation.
    */
   @Post('shipments/:id/validate')
-  @RequireScope('write')
+  @Permission('shipment.write')
   async validate(@Res({ passthrough: true }) res: Response, @Param('id') id: string, @Query(new ZodValidationPipe(ValidateQuery)) query: ValidateQuery) {
     const agent = query.agent === undefined ? undefined : query.agent === 'true';
     if (query.wait === 'true') {
@@ -138,7 +141,7 @@ export class V1Controller {
 
   /** The latest validation with its findings and the user's decisions; 404 before the first one. */
   @Get('shipments/:id/findings')
-  @RequireScope('read')
+  @Permission('shipment.read')
   async findings(@Param('id') id: string) {
     const v = await this.shipments.latestValidation(id);
     return {
@@ -154,7 +157,7 @@ export class V1Controller {
 
   /** The export as a file download. 409 before the shipment is validated, or when it lacks a document the format needs. */
   @Get('shipments/:id/exports/:format')
-  @RequireScope('read')
+  @Permission('shipment.read')
   async export(@Param('id') id: string, @Param('format', new ZodValidationPipe(ExportFormatParam)) format: ExportFormat, @Res() res: Response) {
     const file = await this.exports.build(id, format);
     res.setHeader('content-type', `${file.contentType}; charset=utf-8`);
@@ -163,10 +166,10 @@ export class V1Controller {
   }
 
   @Post('shipments/:id/exports/:format/send')
-  @RequireScope('write')
+  @Permission('shipment.write')
   async send(@Req() req: ApiRequest, @Res({ passthrough: true }) res: Response, @Param('id') id: string, @Param('format', new ZodValidationPipe(ExportFormatParam)) format: ExportFormat, @Body(new ZodValidationPipe(SendExportRequest)) dto: SendExportRequest) {
     res.status(200);
-    return this.exports.send(id, principalOf(req).accountId, format, dto.connector);
+    return this.exports.send(id, principalOf(req).orgId, format, dto.connector);
   }
 }
 

@@ -7,8 +7,10 @@ import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { ResetPasswordDto, SetRoleDto, UpdateSettingsDto } from './admin.dto';
 import { AdminService } from './admin.service';
 import { SettingsService } from './settings.service';
+import { NoOrg } from '../orgs/permissions';
 
 /** Admin only (AdminGuard on every route, after the global AuthGuard). */
+@NoOrg()
 @Controller('admin')
 @UseGuards(AdminGuard)
 export class AdminController {

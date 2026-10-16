@@ -5,7 +5,9 @@ import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { ShipmentOwnerGuard } from '../shipments/shipment-owner.guard';
-import { accountOf } from './account';
+import type { OrgContext } from '../orgs/org.types';
+import { CurrentOrg } from '../orgs/current-org.decorator';
+import { Permission } from '../orgs/permissions';
 import { ApiKeysService } from './api-keys';
 import { DeliveryWorker } from './deliveries';
 import { ExportsService } from './exports.service';
@@ -22,9 +24,11 @@ const uuid = new ParseUUIDPipe({ version: '4' });
 
 /**
  * The Integrations page of the app (signed-in session): API keys, webhooks, chat alerts, folder
- * ingestion, container tracking, and export downloads. Everything is scoped to the account.
+ * ingestion, container tracking. Everything belongs to the active organization, and managing it needs
+ * integrations.manage (owners and admins).
  */
 @Controller('integrations')
+@Permission('integrations.manage')
 export class IntegrationsController {
   constructor(
     private readonly keys: ApiKeysService,
@@ -50,160 +54,160 @@ export class IntegrationsController {
   // API keys
 
   @Get('api-keys')
-  listKeys(@CurrentUser() user: PublicUser) {
-    return this.keys.list(accountOf(user));
+  listKeys(@CurrentOrg() org: OrgContext) {
+    return this.keys.list(org.id);
   }
 
   @Post('api-keys')
-  createKey(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CreateApiKeyDto)) dto: CreateApiKeyDto) {
-    return this.keys.create(accountOf(user), user.id, dto);
+  createKey(@CurrentOrg() org: OrgContext, @CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CreateApiKeyDto)) dto: CreateApiKeyDto) {
+    return this.keys.create(org.id, user.id, dto);
   }
 
   @Post('api-keys/:id/revoke')
   @HttpCode(200)
-  revokeKey(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    return this.keys.revoke(accountOf(user), id);
+  revokeKey(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    return this.keys.revoke(org.id, id);
   }
 
   // Webhooks
 
   @Get('webhooks')
-  listWebhooks(@CurrentUser() user: PublicUser) {
-    return this.targets.listWebhooks(accountOf(user));
+  listWebhooks(@CurrentOrg() org: OrgContext) {
+    return this.targets.listWebhooks(org.id);
   }
 
   @Post('webhooks')
-  createWebhook(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CreateWebhookDto)) dto: CreateWebhookDto) {
-    return this.targets.createWebhook(accountOf(user), dto);
+  createWebhook(@CurrentOrg() org: OrgContext, @CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CreateWebhookDto)) dto: CreateWebhookDto) {
+    return this.targets.createWebhook(org.id, user.id, dto);
   }
 
   @Patch('webhooks/:id')
-  updateWebhook(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string, @Body(new ZodValidationPipe(UpdateWebhookDto)) dto: UpdateWebhookDto) {
-    return this.targets.updateWebhook(accountOf(user), id, dto);
+  updateWebhook(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string, @Body(new ZodValidationPipe(UpdateWebhookDto)) dto: UpdateWebhookDto) {
+    return this.targets.updateWebhook(org.id, id, dto);
   }
 
   @Delete('webhooks/:id')
   @HttpCode(204)
-  async deleteWebhook(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    await this.targets.remove(accountOf(user), 'webhook', id);
+  async deleteWebhook(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    await this.targets.remove(org.id, 'webhook', id);
   }
 
   @Post('webhooks/:id/secret')
   @HttpCode(200)
-  webhookSecret(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    return this.targets.secret(accountOf(user), id);
+  webhookSecret(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    return this.targets.secret(org.id, id);
   }
 
   @Post('webhooks/:id/rotate-secret')
   @HttpCode(200)
-  rotateSecret(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    return this.targets.rotateSecret(accountOf(user), id);
+  rotateSecret(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    return this.targets.rotateSecret(org.id, id);
   }
 
   @Post('webhooks/:id/test')
   @HttpCode(200)
-  testWebhook(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    return this.targets.test(accountOf(user), 'webhook', id);
+  testWebhook(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    return this.targets.test(org.id, 'webhook', id);
   }
 
   @Get('webhooks/:id/deliveries')
-  webhookDeliveries(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    return this.targets.deliveriesOf(accountOf(user), id);
+  webhookDeliveries(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    return this.targets.deliveriesOf(org.id, id);
   }
 
   // Chat alerts
 
   @Get('chat-alerts')
-  listChat(@CurrentUser() user: PublicUser) {
-    return this.targets.listChatAlerts(accountOf(user));
+  listChat(@CurrentOrg() org: OrgContext) {
+    return this.targets.listChatAlerts(org.id);
   }
 
   @Post('chat-alerts')
-  createChat(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CreateChatAlertDto)) dto: CreateChatAlertDto) {
-    return this.targets.createChatAlert(accountOf(user), dto);
+  createChat(@CurrentOrg() org: OrgContext, @CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CreateChatAlertDto)) dto: CreateChatAlertDto) {
+    return this.targets.createChatAlert(org.id, user.id, dto);
   }
 
   @Patch('chat-alerts/:id')
-  updateChat(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string, @Body(new ZodValidationPipe(UpdateChatAlertDto)) dto: UpdateChatAlertDto) {
-    return this.targets.updateChatAlert(accountOf(user), id, dto);
+  updateChat(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string, @Body(new ZodValidationPipe(UpdateChatAlertDto)) dto: UpdateChatAlertDto) {
+    return this.targets.updateChatAlert(org.id, id, dto);
   }
 
   @Delete('chat-alerts/:id')
   @HttpCode(204)
-  async deleteChat(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    await this.targets.remove(accountOf(user), 'chat', id);
+  async deleteChat(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    await this.targets.remove(org.id, 'chat', id);
   }
 
   @Post('chat-alerts/:id/test')
   @HttpCode(200)
-  testChat(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    return this.targets.test(accountOf(user), 'chat', id);
+  testChat(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    return this.targets.test(org.id, 'chat', id);
   }
 
   @Get('chat-alerts/:id/deliveries')
-  chatDeliveries(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    return this.targets.deliveriesOf(accountOf(user), id);
+  chatDeliveries(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    return this.targets.deliveriesOf(org.id, id);
   }
 
   // Delivery log
 
   @Get('deliveries/:id')
-  delivery(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    return this.targets.delivery(accountOf(user), id);
+  delivery(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    return this.targets.delivery(org.id, id);
   }
 
   @Post('deliveries/:id/redeliver')
   @HttpCode(200)
-  redeliver(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    return this.targets.redeliver(accountOf(user), id);
+  redeliver(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    return this.targets.redeliver(org.id, id);
   }
 
   // Folder ingestion
 
   @Get('ingestion')
-  listSources(@CurrentUser() user: PublicUser) {
-    return this.ingestion.list(accountOf(user));
+  listSources(@CurrentOrg() org: OrgContext) {
+    return this.ingestion.list(org.id);
   }
 
   @Post('ingestion')
-  createSource(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(SourceDto)) dto: SourceDto) {
-    return this.ingestion.create(accountOf(user), dto);
+  createSource(@CurrentOrg() org: OrgContext, @CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(SourceDto)) dto: SourceDto) {
+    return this.ingestion.create(org.id, user.id, dto);
   }
 
   /** Lists the source with the settings in the body (the saved secret when none is typed and `id` is set). */
   @Post('ingestion/test')
   @HttpCode(200)
-  testSource(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(TestSourceDto)) dto: TestSourceDto) {
-    return this.ingestion.test(accountOf(user), dto);
+  testSource(@CurrentOrg() org: OrgContext, @Body(new ZodValidationPipe(TestSourceDto)) dto: TestSourceDto) {
+    return this.ingestion.test(org.id, dto);
   }
 
   @Put('ingestion/:id')
-  updateSource(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string, @Body(new ZodValidationPipe(SourceDto)) dto: SourceDto) {
-    return this.ingestion.update(accountOf(user), id, dto);
+  updateSource(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string, @Body(new ZodValidationPipe(SourceDto)) dto: SourceDto) {
+    return this.ingestion.update(org.id, id, dto);
   }
 
   @Delete('ingestion/:id')
   @HttpCode(204)
-  async deleteSource(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    await this.ingestion.remove(accountOf(user), id);
+  async deleteSource(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    await this.ingestion.remove(org.id, id);
   }
 
   @Post('ingestion/:id/poll')
   @HttpCode(200)
-  pollSource(@CurrentUser() user: PublicUser, @Param('id', uuid) id: string) {
-    return this.ingestion.pollNow(accountOf(user), id);
+  pollSource(@CurrentOrg() org: OrgContext, @Param('id', uuid) id: string) {
+    return this.ingestion.pollNow(org.id, id);
   }
 
   // Container tracking
 
   @Get('tracking')
-  trackingSettings(@CurrentUser() user: PublicUser) {
-    return this.tracking.settings(accountOf(user));
+  trackingSettings(@CurrentOrg() org: OrgContext) {
+    return this.tracking.settings(org.id);
   }
 
   @Put('tracking')
-  saveTracking(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(TrackingDto)) dto: TrackingDto) {
-    return this.tracking.save(accountOf(user), dto);
+  saveTracking(@CurrentOrg() org: OrgContext, @CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(TrackingDto)) dto: TrackingDto) {
+    return this.tracking.save(org.id, user.id, dto);
   }
 }
 
@@ -217,6 +221,7 @@ export class ShipmentIntegrationsController {
   ) {}
 
   @Get(':id/exports/:format')
+  @Permission('shipment.read')
   async export(@Param('id') id: string, @Param('format', new ZodValidationPipe(ExportFormatParam)) format: ExportFormat, @Res() res: Response) {
     const file = await this.exports.build(id, format);
     res.setHeader('content-type', `${file.contentType}; charset=utf-8`);
@@ -225,6 +230,7 @@ export class ShipmentIntegrationsController {
   }
 
   @Get(':id/tracking')
+  @Permission('shipment.read')
   async trackingEvents(@Param('id') id: string) {
     return (await this.tracking.latest(id)) ?? { events: [] };
   }

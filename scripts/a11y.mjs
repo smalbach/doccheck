@@ -98,6 +98,10 @@ const staticPages = [
   '/app/rules',
   '/app/results',
   '/app/account',
+  '/app/team',
+  '/app/notifications',
+  '/app/approvals',
+  '/app/audit',
   ...['keys', 'webhooks', 'chat', 'ingestion', 'tracking', 'exports'].map((tab) => `/app/integrations?tab=${tab}`),
   '/app/api-docs',
   ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system'] : []),
@@ -128,7 +132,7 @@ for (const locale of locales) {
       for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), '/']) await visit(path);
       // The sign-in forms redirect signed-in visitors: check them signed out.
       await context.clearCookies();
-      for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example']) await visit(path);
+      for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example', '/invite?token=example']) await visit(path);
     }
   }
 }

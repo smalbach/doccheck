@@ -1,31 +1,31 @@
-import type { PublicUser } from '../auth/auth.types';
+import type { OrgPermission } from '../orgs/permissions';
 
 /**
- * The account integration objects belong to (API keys, webhooks, chat alerts, ingestion sources,
- * tracking settings) and whose shipments an API key reaches.
- *
- * Today an account is a user: the account id is the user's id, and an account's shipments are the
- * user's. When organizations land, this is the one place to change: return the user's organization
- * id here, make `ownsShipment` check the organization, and repoint the account_id foreign keys of
- * migration 019 (see its header).
+ * Integration objects (API keys, webhooks, chat alerts, ingestion sources, tracking settings) belong
+ * to an organization (docs/ORGANIZATIONS.md); managing them needs `integrations.manage`. An API key
+ * acts in its organization with the permissions its scopes give, never more.
  */
-export function accountOf(user: Pick<PublicUser, 'id'>): string {
-  return user.id;
-}
-
 export type ApiScope = 'read' | 'write';
 export const API_SCOPES: readonly ApiScope[] = ['read', 'write'];
 
-/** Who is calling the public API: the account, and the key it used. */
+/** What each scope of an API key allows, in the terms of the role table (PERMISSIONS). */
+export const SCOPE_PERMISSIONS: Record<ApiScope, readonly OrgPermission[]> = {
+  read: ['shipment.read', 'data.read'],
+  write: ['shipment.write'],
+};
+
+export const permissionsOfScopes = (scopes: readonly ApiScope[]): OrgPermission[] => [...new Set(scopes.flatMap((s) => SCOPE_PERMISSIONS[s]))];
+
+/** Who is calling the public API: the organization, and the key it used. */
 export interface ApiPrincipal {
-  accountId: string;
+  orgId: string;
+  orgName: string;
   keyId: string;
+  keyPrefix: string;
   scopes: ApiScope[];
-  /**
-   * The user that owns the shipments the key creates. Equal to the account today; with
-   * organizations, the key's creator (shipments still need a user who owns them).
-   */
-  actingUserId: string;
+  permissions: OrgPermission[];
+  /** The member who made the key (null once they left): shipments the key creates are recorded as theirs. */
+  actingUserId: string | null;
 }
 
 /** Request augmented by ApiKeyGuard. */

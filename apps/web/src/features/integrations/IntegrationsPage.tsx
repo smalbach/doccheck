@@ -3,6 +3,8 @@ import { Card } from '../../components/ui/Card';
 import { PageHeader } from '../../components/ui/PageHeader';
 import { Tabs } from '../../components/ui/Tabs';
 import { useQuery } from '../../hooks/useQuery';
+import { ForbiddenPage } from '../admin/ForbiddenPage';
+import { useOrg } from '../team/useOrg';
 import { useI18n } from '../../i18n/useI18n';
 import { ApiKeysTab } from './ApiKeysTab';
 import { ChatAlertsTab } from './ChatAlertsTab';
@@ -27,6 +29,13 @@ function storedTab(initial?: string): Tab {
 
 /** API keys, webhooks, chat alerts, watched folders, container tracking and exports of the account. */
 export function IntegrationsPage({ initialTab }: { initialTab?: string }) {
+  const { org, can } = useOrg();
+  // Owners and admins only (the API checks integrations.manage on every call anyway).
+  if (org && !can('integrations.manage')) return <ForbiddenPage />;
+  return <Integrations initialTab={initialTab} />;
+}
+
+function Integrations({ initialTab }: { initialTab?: string }) {
   const { t } = useI18n();
   const [tab, setTab] = useState<Tab>(() => storedTab(initialTab));
   const { data: overview } = useQuery('integrations-overview', () => integrationsApi.overview());
