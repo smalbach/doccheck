@@ -26,6 +26,10 @@ const ProductPage = lazy(() => data().then((m) => ({ default: m.ProductPage })))
 const ContainersPage = lazy(() => data().then((m) => ({ default: m.ContainersPage })));
 const DataShipmentsPage = lazy(() => data().then((m) => ({ default: m.DataShipmentsPage })));
 const ResultsPage = lazy(() => import('../../features/results/ResultsPage').then((m) => ({ default: m.ResultsPage })));
+// The integrations pages share one chunk.
+const integrations = () => import('../../features/integrations/pages');
+const IntegrationsPage = lazy(() => integrations().then((m) => ({ default: m.IntegrationsPage })));
+const ApiDocsPage = lazy(() => integrations().then((m) => ({ default: m.ApiDocsPage })));
 const RulesPage = lazy(() => import('../../features/rules/RulesPage').then((m) => ({ default: m.RulesPage })));
 
 /** The page component of an app route. */
@@ -67,6 +71,10 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return <ResultsPage />;
     case 'account':
       return <AccountPage />;
+    case 'integrations':
+      return <IntegrationsPage key={route.tab ?? ''} initialTab={route.tab} />;
+    case 'api-docs':
+      return <ApiDocsPage />;
     case 'admin-settings':
       return (
         <AdminOnly>

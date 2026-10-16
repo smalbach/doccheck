@@ -69,6 +69,7 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 - **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a CBSA memorandum or 19 CFR passage found by hybrid search (embeddings + BM25). The model never writes the legal basis.
 - **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
 - **Talks to the supplier from the app**: the correction request is drafted from the findings in English, Spanish or French, sent over SMTP, and the reply comes back by IMAP or webhook into the same conversation, where its PDF is added to the shipment in one click ([docs/MESSAGING.md](docs/MESSAGING.md), in Spanish).
+- **Connects to other systems**: a public REST API with scoped, rate-limited API keys and idempotent writes, described by an OpenAPI 3.1 document generated from the same Zod schemas (with a Postman contract test and a TypeScript client); HMAC-signed webhooks with retries and a delivery log; Slack and Teams alerts that quote no document contents unless asked; folders it watches (SFTP, S3 or local) that become shipments; CargoWise Universal Shipment XML and X12 856/310 exports; and optional container tracking checked against the bill of lading ([docs/INTEGRATIONS.md](docs/INTEGRATIONS.md), in Spanish).
 - **Measures itself** on a generated set of 200 labeled shipments (100 per destination, 293 injected errors), field by field and rule by rule, end to end on the extracted PDFs ([docs/METRICS.md](docs/METRICS.md)). Model answers are cached in `eval/cache`, so the evaluation reruns without a model.
 - **Works like a product**: accounts, private shipments, validation history, JSON export and printable report, aggregated extracted data with companies, products and containers, admin settings changed without a restart, and a read-only demo mode that replays cached model answers.
 
@@ -170,12 +171,15 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | `packages/extraction` | PDF text with positions (pdf.js), document classification, LLM extraction with Zod-validated output (Ollama), deterministic normalization, field-level scoring |
 | `packages/regulations` | Regulation corpus: chunking, local embeddings (bge-m3 via Ollama), hybrid search (vectors + BM25) with citations |
 | `packages/agent` | Citations on findings and model decisions on ambiguous cases (same consignee written differently, BL description vs invoice goods) |
+| `packages/integrations` | Pure parts of the integrations: webhook signatures, events, Slack/Teams messages, folder grouping, CargoWise XML and X12 exports, connectors, container-tracking normalizers and checks T1-T3 |
+| `packages/client` | TypeScript client for the public API v1, with webhook signature verification and examples |
 | `packages/synth` | Synthetic shipment generator: ground-truth JSON, labeled error injection, HTML templates rendered to PDF |
 | `apps/api` | NestJS API; also serves the web app |
 | `apps/web` | Web app (Vite + React + Radix UI): shipments, PDF upload, findings with citations, PDF viewer with highlights. `src/features/<page>` holds one component per file, `src/components/ui` the Radix-based primitives, `src/lib` one helper per file |
 | `data/reference` | UN/LOCODE, ISO 3166, ISO 4217 tables (phase 2) |
 | `data/corpus` | CBSA memoranda (invoices D1-4-1, marking D11-3-1, proof of origin D11-4-2, valuation D13-4-3 and D13-4-7) and 19 CFR (141.83, 141.86, 141.89, Parts 134 and 149, Part 152 subpart E) as Markdown with URL and effective date, plus the embedding index |
 | `data/eval/v1` | Evaluation set: `truth.json` + `labels.json` per shipment (committed), PDFs (generated, git-ignored) |
+| `docs/api` | OpenAPI 3.1 document and Postman collection of the public API (`node scripts/api-contract.mjs --write-only` regenerates them; without the flag it runs the collection against a server) |
 | `scripts/smoke.mjs` | End-to-end smoke test against the built API |
 
 ## Rules implemented
@@ -271,6 +275,8 @@ After the rules run, `/validate` does a second pass:
 | GET | `/shipments/:id/findings` | Findings from the last validation |
 
 Documents passed as JSON in the body of `/validate` take precedence over extracted ones, which keeps the phase 0 flow working for tests.
+
+The public API for other systems lives under `/api/v1` with API keys (reference at `#/app/api-docs` in the app and `/api/v1/openapi.json`); it and the integration routes (`/integrations/...`) are described in [docs/INTEGRATIONS.md](docs/INTEGRATIONS.md).
 
 Finding decisions (`POST /shipments/:id/findings/review`) are described in [docs/FINDINGS.md](docs/FINDINGS.md), and the supplier mail routes (`/mail/...`) in [docs/MESSAGING.md](docs/MESSAGING.md).
 

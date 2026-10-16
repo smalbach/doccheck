@@ -1,4 +1,4 @@
-import { ActivityLogIcon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
+import { ActivityLogIcon, CodeIcon, Link2Icon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
 import type { ComponentType } from 'react';
 import type { MessageKey } from '../i18n/keys';
 import type { AppRoute } from '../lib/parseRoute';
@@ -49,6 +49,13 @@ export const NAVIGATION: NavGroup[] = [
     items: [
       { labelKey: 'nav.rules', href: '#/app/rules', icon: ReaderIcon, matches: ['rules'] },
       { labelKey: 'nav.evaluation', href: '#/app/results', icon: BarChartIcon, matches: ['results'] },
+    ],
+  },
+  {
+    labelKey: 'integrations.navGroup',
+    items: [
+      { labelKey: 'integrations.nav', href: '#/app/integrations', icon: Link2Icon, matches: ['integrations'], writes: true },
+      { labelKey: 'integrations.navDocs', href: '#/app/api-docs', icon: CodeIcon, matches: ['api-docs'] },
     ],
   },
   {
