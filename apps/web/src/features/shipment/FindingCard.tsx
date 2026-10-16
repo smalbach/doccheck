@@ -6,6 +6,7 @@ import { useI18n } from '../../i18n/useI18n';
 import { reviewStatus, ruleGuideKey } from '../../lib/findingReview';
 import type { ViewerTarget } from '../pdf/types';
 import { EvidenceItem } from './EvidenceItem';
+import { FindingCollab } from '../team/FindingCollab';
 import { FindingHistory } from './FindingHistory';
 import { FindingReviewActions } from './FindingReviewActions';
 import { RegulationQuote } from './RegulationQuote';
@@ -87,6 +88,7 @@ export function FindingCard({ finding, rule, documents, onOpen, review }: Findin
       )}
       {finding.regulation && <RegulationQuote regulation={finding.regulation} />}
       {finding.review?.note && <p className="review-note">“{finding.review.note}”</p>}
+      <FindingCollab fingerprint={finding.fingerprint} ruleId={finding.ruleId} />
       {review && finding.fingerprint && <FindingReviewActions finding={finding} busy={review.busy} onReview={review.onReview} request={review.request} />}
       <FindingHistory history={finding.history ?? []} />
     </article>
