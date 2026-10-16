@@ -84,7 +84,8 @@ export class TariffNotes {
       .flatMap((c) => this.governing(c))
       .filter((n) => !seen.has(n.ref) && seen.add(n.ref))
       .map((n) => ({ n, score: tokenize(n.text).filter((t) => terms.has(t)).length }))
-      .filter((x) => x.score > 0)
+      // One shared word ("goods", "other") is chance; two or more is a note about these goods.
+      .filter((x) => x.score >= 2)
       .sort((a, b) => b.score - a.score)
       .slice(0, limit)
       .map((x) => x.n);

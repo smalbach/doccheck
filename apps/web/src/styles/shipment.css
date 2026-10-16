@@ -178,7 +178,9 @@
 .tariff-line { border-top: 1px solid var(--line); padding-top: 10px; display: grid; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
 .tariff-line:first-child { border-top: 0; padding-top: 0; }
 .tariff-line code { font-weight: 600; }
-.tariff-suggestions h4 { margin: 4px 0; }
+.tariff-suggestions h3 { margin: 4px 0; font-size: inherit; }
+.tariff-card .tag { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }
+.tariff-card code { overflow-wrap: anywhere; }
 .tariff-suggestions ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
 .tariff-flags { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
 .tariff-notes { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 6px; }

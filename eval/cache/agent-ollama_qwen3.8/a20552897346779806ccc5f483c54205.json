@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 1020,
+    "outputTokens": 194
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "6907.21",
+        "confidence": 0.9,
+        "rationale": "The goods are glazed porcelain floor tiles, which falls under heading 6907 for ceramic flags and paving tiles, and 'porcelain' is defined in Additional U.S. Note 5 as having a water absorption coefficient not exceeding 0.5%."
+      },
+      {
+        "code": "6907.22",
+        "confidence": 0.1,
+        "rationale": "This subheading applies to tiles with a water absorption coefficient exceeding 0.5% but not exceeding 10%, which contradicts the definition of 'porcelain' in Additional U.S. Note 5 that limits absorption to 0.5% or less."
+      }
+    ]
+  }
+}

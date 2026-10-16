@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 1089,
+    "outputTokens": 554
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "8541.41",
+        "confidence": 0.95,
+        "rationale": "The goods are photovoltaic solar panels, which fall under heading 8541 for 'photosensitive semiconductor devices, including photovoltaic cells whether or not assembled in modules or made up into panels', and 8541.41 is the specific subheading for photovoltaic cells not assembled in modules or made up into panels (or the general category if specific cell type isn't distinguished in the 6-digit list provided, though typically 8541.41 covers cells not assembled, while 8541.42/43/49 cover specific types or assembled; however, without specific cell type details like 'single crystal' or 'polycrystalline', 8541.41 is the standard catch-all for PV cells in many tariff structures, or the prompt implies 8541.41 is the correct specific line for PV cells in this context). *Correction*: Looking at standard HS, 8541.41 is 'Photovoltaic cells, not assembled in modules or made up into panels'. 8541.42 is 'Photovoltaic cells, assembled in modules or made up into panels'. The description says '400 W modules', which implies they are assembled. Therefore, 8541.42 is the more accurate fit for 'modules'. Let's re-evaluate. The description says 'Photovoltaic solar panels, 400 W modules'. This explicitly states they are modules. Heading 8541 covers 'photovoltaic cells whether or not assembled in modules or made up into panels'. Subheading 8541.42 is specifically for 'Photovoltaic cells, assembled in modules or made up into panels'. Subheading 8541.41 is for 'Photovoltaic cells, not assembled in modules or made up into panels'. Since the goods are described as 'modules', 8541.42 is the correct classification."
+      },
+      {
+        "code": "8541.42",
+        "confidence": 0.98,
+        "rationale": "The goods are described as '400 W modules', which corresponds to subheading 8541.42 for 'Photovoltaic cells, assembled in modules or made up into panels' under heading 8541."
+      }
+    ]
+  }
+}

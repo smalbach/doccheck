@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 969,
+    "outputTokens": 176
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "8539.52",
+        "confidence": 0.95,
+        "rationale": "The goods are described as 'LED light bulbs', which corresponds to the subheading for 'Light-emitting diode (LED) lamps' under heading 8539, as defined by Chapter 85 Note 11."
+      },
+      {
+        "code": "8539.51",
+        "confidence": 0.1,
+        "rationale": "This subheading covers 'Light-emitting diode (LED) modules', which are distinct from the finished 'lamps' (bulbs) described in the invoice, making it an incorrect classification."
+      }
+    ]
+  }
+}

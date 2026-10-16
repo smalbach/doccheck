@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 920,
+    "outputTokens": 171
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "8516.10",
+        "confidence": 0.95,
+        "rationale": "The goods are an electric kettle, which is an electrothermic appliance for heating water, falling under heading 8516 'Electric instantaneous or storage water heaters... other electrothermic appliances' as defined in GRI 1."
+      },
+      {
+        "code": "8516.21",
+        "confidence": 0.1,
+        "rationale": "This subheading typically covers electric space heating apparatus, which does not match the description of a water-heating kettle, making it an incorrect fit despite being in the same heading."
+      }
+    ]
+  }
+}

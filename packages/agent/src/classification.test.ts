@@ -57,6 +57,7 @@ describe('classification review', () => {
     const { llm, prompts } = scripted([
       { consistent: 'yes', confidence: 0.9, rationale: 'Same goods.' }, // A1
       { fits: 'no', confidence: 0.9, rationale: "Chapter 95 Note 1(o) excludes children's bicycles (heading 8712)." },
+      { terms: 'ball bearings of steel' },
       { candidates: [{ code: '8482.10', confidence: 0.8, rationale: 'Ball bearings.' }, { code: '9999.99', confidence: 0.5, rationale: 'Made up.' }] },
     ]);
     const ext = await classificationExtension(c, lines, llm, res);

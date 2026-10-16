@@ -5,7 +5,7 @@ import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { CLASSIFICATION_PROMPT_VERSION, judgeHeading, suggestHeadings, type ClassificationResources } from './classification';
+import { CLASSIFICATION_PROMPT_VERSION, judgeHeading, suggestHeadings, suggestionCandidates, type ClassificationResources } from './classification';
 
 /**
  * Tariff classification evaluation on goods with a known HS subheading: those of the synthetic set plus
@@ -132,7 +132,9 @@ async function main() {
   const fit: (FitCase & { verdict: string; confidence: number; rationale: string; correct: boolean; effectCorrect: boolean })[] = [];
   for (const c of fitCases) {
     const candidates = await res.search.search(c.description, { limit: 8 });
-    const others = [...new Set(candidates.filter((x) => x.heading !== c.heading).map((x) => x.heading))].slice(0, 3);
+    // Same order as the review: headings a note of the declared chapter points to first.
+    const pointed = (h: string) => notes.pointingTo(c.heading.slice(0, 2), h).length > 0;
+    const others = [...new Set(candidates.filter((x) => x.heading !== c.heading).sort((a, b) => Number(pointed(b.heading)) - Number(pointed(a.heading))).map((x) => x.heading))].slice(0, 3);
     const chapters = [c.heading.slice(0, 2), ...others.map((h) => h.slice(0, 2))];
     const pointing = others.flatMap((h) => notes.pointingTo(c.heading.slice(0, 2), h));
     const shown = [...new Map([...pointing, ...notes.relevant(c.description, chapters, 3)].map((n) => [n.ref, n])).values()].slice(0, 4);
@@ -146,15 +148,15 @@ async function main() {
   }
 
   // Suggestions for lines without a code.
-  const suggest: { description: string; hs: string; inCandidates: boolean; picked: string[]; headingTop3: boolean; exactTop1: boolean; error?: string }[] = [];
+  const suggest: { description: string; hs: string; terms?: string; inCandidates: boolean; picked: string[]; headingTop3: boolean; exactTop1: boolean; error?: string }[] = [];
   for (const g of goods) {
-    const candidates = await res.search.search(g.description, { limit: 8 });
     const want = g.hs.replace(/\D/g, '');
     try {
+      const { candidates, terms } = await suggestionCandidates(llm, res.search, g.description);
       const { output } = await suggestHeadings(llm, g.description, candidates.map((c) => ({ code: formatHs(c.code), text: c.title })), notes.relevant(g.description, [...new Set(candidates.slice(0, 3).map((c) => c.chapter))], 3).map((n) => ({ ref: n.ref, text: n.text.slice(0, 400) })));
       const offered = new Set(candidates.map((c) => c.code));
       const picked = output.candidates.map((s) => s.code.replace(/\D/g, '').slice(0, 6)).filter((c) => offered.has(c));
-      suggest.push({ description: g.description, hs: g.hs, inCandidates: offered.has(want) || candidates.some((c) => c.heading === want.slice(0, 4)), picked: picked.map(formatHs), headingTop3: picked.some((p) => p.slice(0, 4) === want.slice(0, 4)), exactTop1: picked[0] === want });
+      suggest.push({ description: g.description, hs: g.hs, terms, inCandidates: offered.has(want) || candidates.some((c) => c.heading === want.slice(0, 4)), picked: picked.map(formatHs), headingTop3: picked.some((p) => p.slice(0, 4) === want.slice(0, 4)), exactTop1: picked[0] === want });
     } catch (err) {
       suggest.push({ description: g.description, hs: g.hs, inCandidates: false, picked: [], headingTop3: false, exactTop1: false, error: err instanceof Error ? err.message : String(err) });
     }
@@ -204,7 +206,7 @@ async function main() {
     '',
     '## Suggestions without the right heading',
     '',
-    ...suggest.filter((s) => !s.headingTop3).map((s) => `- "${s.description}" (${s.hs}): ${s.picked.join(', ') || 'none'}${s.error ? ` — ${s.error}` : ''}`),
+    ...suggest.filter((s) => !s.headingTop3).map((s) => `- "${s.description}" (${s.hs}), searched as "${s.terms ?? ''}": ${s.picked.join(', ') || 'none'}${s.error ? ` — ${s.error}` : ''}`),
     '',
   ].join('\n');
   const outDir = resolve(values.out!);

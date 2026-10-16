@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 1040,
+    "outputTokens": 195
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "6115.94",
+        "confidence": 0.9,
+        "rationale": "The goods are knitted socks, which falls under heading 6115, and the description specifies 'Wool blend', making 'Of wool or fine animal hair' the most specific applicable subheading among the options."
+      },
+      {
+        "code": "6115.99",
+        "confidence": 0.1,
+        "rationale": "This subheading covers 'Of other textile materials', which would only apply if the wool blend contained a dominant non-wool fiber not covered by other specific subheadings, but 'Wool blend' typically implies wool is the primary or significant component, making 6115.94 more appropriate."
+      }
+    ]
+  }
+}

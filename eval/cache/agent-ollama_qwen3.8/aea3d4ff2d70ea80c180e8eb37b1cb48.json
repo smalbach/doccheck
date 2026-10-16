@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 620,
+    "outputTokens": 169
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "8421.99",
+        "confidence": 0.9,
+        "rationale": "The item is a centrifugal pump, which falls under the heading text for 'Centrifuges... parts thereof' as a component of liquid handling machinery, and 'Other' is the only applicable subheading for parts in the provided list."
+      },
+      {
+        "code": "8421.21",
+        "confidence": 0.1,
+        "rationale": "This subheading is for 'Filtering or purifying machinery', which describes a function (filtration) not stated in the goods description of a 'water pump'."
+      }
+    ]
+  }
+}

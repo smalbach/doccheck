@@ -17,6 +17,25 @@ export interface Candidate extends Subheading {
 
 const K = 60;
 
+const UNITS = 'mm|cm|m|km|in|inch|inches|ft|g|kg|t|lb|lbs|oz|ml|cl|l|ltr|w|kw|v|kv|a|mah|hz|ghz|gb|tb|pcs|pc|pk|pack|vol|%';
+
+/**
+ * The words of a goods description that say what the goods are. Sizes, ratings and model numbers
+ * ("30 cm", "1500 W", "6204-2RS", "M12 x 60") classify nothing and drown the search: "Plush teddy
+ * bear 30 cm" otherwise ranks looms "for weaving fabrics of a width not exceeding 30 cm".
+ */
+export function goodsQuery(text: string): string {
+  const cleaned = text
+    .replace(new RegExp(`\\b\\d+([.,]\\d+)?\\s*(${UNITS})(?![a-z])`, 'gi'), ' ')
+    .replace(/\b[a-z]*\d[\w./-]*\b/gi, ' ')
+    .replace(/(^|[\s,])(x|vol)(?=[\s,]|$)/gi, '$1')
+    .replace(/\s+/g, ' ')
+    .replace(/(\s*,)+/g, ',')
+    .replace(/^[\s,]+|[\s,]+$/g, '')
+    .replace(/,(?=\S)/g, ', ');
+  return cleaned.length >= 3 ? cleaned : text;
+}
+
 /**
  * Words for keyword search: the regulation tokenizer plus a crude plural fold, because invoices say
  * "toy" and "shirt" where the schedule says "toys" and "shirts" ("glasses" -> "glass", "boxes" -> "box").
@@ -75,7 +94,8 @@ export class TariffSearch {
     return scored.sort((a, b) => b.score - a.score).slice(0, limit);
   }
 
-  async search(text: string, { limit = 5, pool = 50 }: { limit?: number; pool?: number } = {}): Promise<Candidate[]> {
+  async search(description: string, { limit = 5, pool = 50 }: { limit?: number; pool?: number } = {}): Promise<Candidate[]> {
+    const text = goodsQuery(description);
     const byKeyword = this.keyword(text, pool);
     const byVector = this.vectors ? await this.vectors.nearest(text, pool).catch(() => []) : [];
     const fused = new Map<string, Candidate>();

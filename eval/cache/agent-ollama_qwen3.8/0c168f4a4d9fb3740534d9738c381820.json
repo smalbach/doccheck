@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 919,
+    "outputTokens": 186
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "6403.99",
+        "confidence": 0.9,
+        "rationale": "The goods have leather uppers and rubber soles, fitting the heading 6403 description, and as 'dress shoes' they are not sports footwear, do not cover the ankle, and lack a protective metal toe-cap, leaving 'Other footwear — Other' as the correct residual subheading."
+      },
+      {
+        "code": "6403.91",
+        "confidence": 0.1,
+        "rationale": "This subheading applies only if the dress shoes cover the ankle, a specific structural feature not explicitly stated in the description, making it a less certain fit than the general 'Other' category."
+      }
+    ]
+  }
+}

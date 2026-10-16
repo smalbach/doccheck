@@ -27,6 +27,8 @@ Measured on synthetic shipments generated from a fixed seed (there is no public 
 | Rules on v2 PDFs | Recall / precision, end to end | 100.0% / 100.0% |
 | Agent | Same consignee written differently (40 cases): verdict / right action | 87.5% / 100.0% (0 wrong, 5 unsure) |
 | Agent | BL description vs invoice goods (40 cases): verdict / right action | 100.0% / 100.0% (0 wrong, 0 unsure) |
+| Agent | HS heading fits the goods description (82 cases): verdict / right action | 98.8% / 98.8% (1 wrong, 0 unsure) |
+| Tariff search | Right heading in the top 5 for 41 goods descriptions (hybrid) / in the model's top 3 suggestions | 80.5% / 95.1% |
 
 Details in [docs/METRICS.md](docs/METRICS.md); design and lessons in [docs/WRITEUP.md](docs/WRITEUP.md).
 <!-- metrics:end -->
@@ -65,6 +67,7 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 - **Reads the PDFs**, text layer or scans (OCR with bundled English and French models, or optionally Unlimited-OCR on Apple Silicon), and classifies each one as invoice, packing list, bill of lading or ISF filing confirmation.
 - **Extracts typed data with a local model** (Ollama, `qwen3.8`): the model fills a Zod schema with values exactly as printed, and tested code converts them to decimals, ISO dates, kilograms and ISO country codes. A required value the model fills in although the invoice leaves it blank is dropped.
 - **Runs 15 deterministic rules** (listed [below](#rules-implemented)): package counts and weights across documents, invoice arithmetic, currency, quantities per SKU, dates, terms of sale vs freight terms, ISO 6346 container check digits, ISF consistency, and the invoice fields CBSA (CI1) and CBP (19 CFR 141.86) require. Money and weights use fixed-point arithmetic, never floats.
+- **Checks tariff classification**: each HS code on the invoice and ISF is checked for length and against the destination schedule (HTSUS or Canadian Customs Tariff), the same product must keep one subheading, and the codes are mapped to the other agencies the entry may need (FDA, USDA, EPA, FCC, CPSC, NHTSA, ATF, DEA; CFIA, Health Canada, ECCC, Transport Canada, Global Affairs Canada) and to possible dual-use items. The model checks whether the description fits the declared heading, with the section and chapter notes in front of it, and suggests up to three subheadings for lines without a code; it never changes a declared code.
 - **Asks the model narrow questions only where rules cannot decide**: is a differently written consignee the same company, does the BL cargo description match the invoice goods. Each answer comes with verdict, confidence and rationale; it acts only at confidence ≥ 0.7 (`ACT_CONFIDENCE` in [`packages/agent/src/review.ts`](packages/agent/src/review.ts)) and "unsure" never dismisses a finding.
 - **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a CBSA memorandum or 19 CFR passage found by hybrid search (embeddings + BM25). The model never writes the legal basis.
 - **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
@@ -170,11 +173,13 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | `packages/extraction` | PDF text with positions (pdf.js), document classification, LLM extraction with Zod-validated output (Ollama), deterministic normalization, field-level scoring |
 | `packages/regulations` | Regulation corpus: chunking, local embeddings (bge-m3 via Ollama), hybrid search (vectors + BM25) with citations |
 | `packages/agent` | Citations on findings and model decisions on ambiguous cases (same consignee written differently, BL description vs invoice goods) |
+| `packages/tariff` | US HTSUS and Canadian Customs Tariff: HS code format and existence checks, section and chapter notes, description-to-subheading hybrid search, partner agency and export control tables, rules H1–H3, P1, E1 |
 | `packages/synth` | Synthetic shipment generator: ground-truth JSON, labeled error injection, HTML templates rendered to PDF |
 | `apps/api` | NestJS API; also serves the web app |
 | `apps/web` | Web app (Vite + React + Radix UI): shipments, PDF upload, findings with citations, PDF viewer with highlights. `src/features/<page>` holds one component per file, `src/components/ui` the Radix-based primitives, `src/lib` one helper per file |
 | `data/reference` | UN/LOCODE, ISO 3166, ISO 4217 tables (phase 2) |
 | `data/corpus` | CBSA memoranda (invoices D1-4-1, marking D11-3-1, proof of origin D11-4-2, valuation D13-4-3 and D13-4-7) and 19 CFR (141.83, 141.86, 141.89, Parts 134 and 149, Part 152 subpart E) as Markdown with URL and effective date, plus the embedding index |
+| `data/tariff` | HTSUS and Customs Tariff schedules with their section and chapter notes (`npm run tariff:fetch`), and the tariff-line embedding index (`npm run tariff:index`, git-ignored); see [data/tariff/README.md](data/tariff/README.md) |
 | `data/eval/v1` | Evaluation set: `truth.json` + `labels.json` per shipment (committed), PDFs (generated, git-ignored) |
 | `scripts/smoke.mjs` | End-to-end smoke test against the built API |
 
@@ -245,6 +250,8 @@ After the rules run, `/validate` does a second pass:
 2. **Agent decisions** with the local model, each returned with verdict, confidence and rationale:
    - X1 found different consignee names: are they the same company written differently? A confident "yes" dismisses the finding; otherwise it stays with the rationale.
    - A1 (agent rule): is the BL cargo description consistent with the invoice goods? A confident "no" adds a finding with `decidedBy: AGENT`.
+   - A2 (agent rule): does the invoice line description fit its declared HS heading? Asked only when the tariff search does not already rank that heading among its top candidates, with the chapter notes that send such goods elsewhere in the prompt. A confident "no" adds a finding that cites the note and lists the headings the search suggests.
+   - Lines without a usable HS code: the model rewrites the description in tariff wording, the search finds candidates, and the model picks up to three. Shown on the shipment page as suggestions, never as findings.
 
 `npm run eval:agent` measures both decisions on cases with a known answer built from the synthetic set. `npm run corpus:fetch` refreshes the regulations and `npm run corpus:index` re-embeds them. Model calls are logged to the `llm_calls` table.
 

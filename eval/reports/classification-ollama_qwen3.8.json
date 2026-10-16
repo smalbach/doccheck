@@ -1,0 +1,2037 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "edition": "2026 HTS Revision 21",
+  "summary": {
+    "retrieval": {
+      "cases": 41,
+      "headingAt5": 0.8048780487804879,
+      "subheadingAt5": 0.7073170731707317,
+      "mode": "hybrid"
+    },
+    "fit": {
+      "cases": 82,
+      "accuracy": 0.9878048780487805,
+      "answered": 82,
+      "accuracyWhenAnswered": 0.9878048780487805,
+      "wrong": 1,
+      "unsure": 0,
+      "effectAccuracy": 0.9878048780487805,
+      "byKind": [
+        {
+          "why": "right",
+          "cases": 41,
+          "accuracy": 0.975609756097561
+        },
+        {
+          "why": "other-section",
+          "cases": 33,
+          "accuracy": 1
+        },
+        {
+          "why": "trap",
+          "cases": 8,
+          "accuracy": 1
+        }
+      ]
+    },
+    "suggest": {
+      "cases": 41,
+      "headingTop3": 0.9512195121951219,
+      "exactTop1": 0.7804878048780488,
+      "inCandidates": 0.9512195121951219
+    }
+  },
+  "retrieval": [
+    {
+      "description": "Centrifugal water pump 0.75 kW, cast iron body",
+      "hs": "8413.70",
+      "rank": null,
+      "exact": false,
+      "top": [
+        "8418.69",
+        "8421.99",
+        "8421.21",
+        "7303.00",
+        "8421.22"
+      ]
+    },
+    {
+      "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+      "hs": "8516.71",
+      "rank": null,
+      "exact": false,
+      "top": [
+        "7323.93",
+        "7324.10",
+        "7222.19",
+        "7222.30",
+        "7221.00"
+      ]
+    },
+    {
+      "description": "Glazed porcelain floor tiles 60 x 60 cm",
+      "hs": "6907.21",
+      "rank": 2,
+      "exact": true,
+      "top": [
+        "3918.10",
+        "6907.21",
+        "6907.23",
+        "6810.19",
+        "6907.22"
+      ]
+    },
+    {
+      "description": "Extra virgin olive oil, 5 L tins",
+      "hs": "1509.20",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "1509.20",
+        "1509.30",
+        "2609.00",
+        "1509.40",
+        "8002.00"
+      ]
+    },
+    {
+      "description": "Countertop blender 600 W with glass jar",
+      "hs": "8509.40",
+      "rank": 3,
+      "exact": true,
+      "top": [
+        "7010.20",
+        "7010.90",
+        "8509.40",
+        "7010.10",
+        "7018.90"
+      ]
+    },
+    {
+      "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+      "hs": "8482.10",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "8482.80",
+        "8482.10",
+        "8482.99",
+        "8482.30",
+        "8482.91"
+      ]
+    },
+    {
+      "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+      "hs": "7318.15",
+      "rank": null,
+      "exact": false,
+      "top": [
+        "7210.30",
+        "7210.70",
+        "7226.99",
+        "7212.20",
+        "7217.20"
+      ]
+    },
+    {
+      "description": "Wool blend socks, knitted, 3-pair pack",
+      "hs": "6115.94",
+      "rank": null,
+      "exact": false,
+      "top": [
+        "6117.10",
+        "6111.90",
+        "6111.30",
+        "6111.20",
+        "6109.90"
+      ]
+    },
+    {
+      "description": "Women's padded jacket, woven polyester shell",
+      "hs": "6202.40",
+      "rank": 2,
+      "exact": true,
+      "top": [
+        "6112.20",
+        "6202.40",
+        "6202.30",
+        "6202.20",
+        "6204.33"
+      ]
+    },
+    {
+      "description": "Brass ball valves 2 inch, threaded",
+      "hs": "8481.80",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "8481.80",
+        "8481.90",
+        "8481.30",
+        "8481.20",
+        "8482.91"
+      ]
+    },
+    {
+      "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+      "hs": "0901.11",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "0901.21",
+        "0901.11",
+        "0901.22",
+        "0901.12",
+        "1801.00"
+      ]
+    },
+    {
+      "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+      "hs": "6109.10",
+      "rank": 2,
+      "exact": true,
+      "top": [
+        "6105.10",
+        "6109.10",
+        "6105.20",
+        "6109.90",
+        "6105.90"
+      ]
+    },
+    {
+      "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+      "hs": "9503.00",
+      "rank": 6,
+      "exact": false,
+      "top": [
+        "4819.10",
+        "9705.10",
+        "4812.00",
+        "7607.11",
+        "4819.20"
+      ]
+    },
+    {
+      "description": "Laptop computer, 14 inch screen, 1.4 kg",
+      "hs": "8471.30",
+      "rank": null,
+      "exact": false,
+      "top": [
+        "9010.60",
+        "9010.90",
+        "8528.59",
+        "9002.90",
+        "8524.91"
+      ]
+    },
+    {
+      "description": "Smartphone, 6.1 inch display, 128 GB",
+      "hs": "8517.13",
+      "rank": 3,
+      "exact": true,
+      "top": [
+        "8524.91",
+        "8524.11",
+        "8517.13",
+        "9033.00",
+        "8528.72"
+      ]
+    },
+    {
+      "description": "Men's dress shoes, leather uppers, rubber soles",
+      "hs": "6403.99",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "6403.19",
+        "6403.99",
+        "6403.91",
+        "6404.20",
+        "6404.11"
+      ]
+    },
+    {
+      "description": "Women's handbag with outer surface of leather",
+      "hs": "4202.21",
+      "rank": null,
+      "exact": false,
+      "top": [
+        "6403.19",
+        "6403.51",
+        "6404.20",
+        "6403.59",
+        "6405.10"
+      ]
+    },
+    {
+      "description": "Set of 5 kitchen knives, stainless steel, in wooden block",
+      "hs": "8211.10",
+      "rank": 3,
+      "exact": false,
+      "top": [
+        "7323.93",
+        "8214.10",
+        "8211.91",
+        "8215.99",
+        "7323.94"
+      ]
+    },
+    {
+      "description": "LED light bulbs E27, 9 W",
+      "hs": "8539.52",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "8539.51",
+        "8539.52",
+        "7011.10",
+        "9405.41",
+        "8541.41"
+      ]
+    },
+    {
+      "description": "Wooden dining chairs, not upholstered",
+      "hs": "9401.69",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "9401.61",
+        "9403.60",
+        "9403.40",
+        "4404.20",
+        "9401.69"
+      ]
+    },
+    {
+      "description": "Frozen shrimp, peeled and deveined",
+      "hs": "0306.17",
+      "rank": 1,
+      "exact": false,
+      "top": [
+        "0306.35",
+        "1605.29",
+        "0306.16",
+        "0306.95",
+        "1605.21"
+      ]
+    },
+    {
+      "description": "Red wine, 750 ml bottles, 13% vol",
+      "hs": "2204.21",
+      "rank": 2,
+      "exact": true,
+      "top": [
+        "2307.00",
+        "2204.21",
+        "2204.22",
+        "2206.00",
+        "2204.10"
+      ]
+    },
+    {
+      "description": "Children's bicycle, 16 inch wheels",
+      "hs": "8712.00",
+      "rank": 2,
+      "exact": true,
+      "top": [
+        "4903.00",
+        "8712.00",
+        "4013.20",
+        "4011.50",
+        "8714.94"
+      ]
+    },
+    {
+      "description": "New radial car tires 205/55R16",
+      "hs": "4011.10",
+      "rank": 1,
+      "exact": false,
+      "top": [
+        "4011.90",
+        "4011.20",
+        "4011.80",
+        "4012.11",
+        "4011.50"
+      ]
+    },
+    {
+      "description": "Cotton bath towels, terry weave",
+      "hs": "6302.60",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "6302.60",
+        "5802.10",
+        "6307.90",
+        "5802.30",
+        "6001.91"
+      ]
+    },
+    {
+      "description": "Quartz wristwatch, stainless steel case",
+      "hs": "9102.11",
+      "rank": 3,
+      "exact": true,
+      "top": [
+        "9112.20",
+        "9111.10",
+        "9102.11",
+        "7218.10",
+        "9101.11"
+      ]
+    },
+    {
+      "description": "Acoustic guitar, spruce top",
+      "hs": "9202.90",
+      "rank": 2,
+      "exact": true,
+      "top": [
+        "4403.24",
+        "9202.90",
+        "4403.23",
+        "9202.10",
+        "4407.12"
+      ]
+    },
+    {
+      "description": "Household vacuum cleaner with bag, 1200 W",
+      "hs": "8508.11",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "8508.11",
+        "8508.60",
+        "8508.70",
+        "8508.19",
+        "8509.80"
+      ]
+    },
+    {
+      "description": "Paperback novels, printed",
+      "hs": "4901.99",
+      "rank": 1,
+      "exact": false,
+      "top": [
+        "4901.10",
+        "4901.91",
+        "4821.10",
+        "4904.00",
+        "8534.00"
+      ]
+    },
+    {
+      "description": "Golf balls, 12-pack",
+      "hs": "9506.32",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "9506.32",
+        "9506.62",
+        "9506.69",
+        "9506.61",
+        "9506.31"
+      ]
+    },
+    {
+      "description": "Natural honey, 500 g jars",
+      "hs": "0409.00",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "0409.00",
+        "1702.19",
+        "1702.20",
+        "1702.50",
+        "1702.30"
+      ]
+    },
+    {
+      "description": "Grey Portland cement, 50 kg bags",
+      "hs": "2523.29",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "2523.21",
+        "2523.29",
+        "2523.10",
+        "2523.90",
+        "2523.30"
+      ]
+    },
+    {
+      "description": "Polyethylene shopping bags",
+      "hs": "3923.21",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "3923.21",
+        "4819.30",
+        "4202.19",
+        "4202.91",
+        "4202.31"
+      ]
+    },
+    {
+      "description": "Sunglasses with UV400 lenses",
+      "hs": "9004.10",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "9004.10",
+        "7014.00",
+        "9002.90",
+        "9002.11",
+        "9002.19"
+      ]
+    },
+    {
+      "description": "Ceramic coffee mugs, porcelain",
+      "hs": "6911.10",
+      "rank": 3,
+      "exact": true,
+      "top": [
+        "6914.10",
+        "6912.00",
+        "6911.90",
+        "6911.10",
+        "6906.00"
+      ]
+    },
+    {
+      "description": "Fresh apples, Gala, in cartons",
+      "hs": "0808.10",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "0808.10",
+        "0813.30",
+        "0808.40",
+        "0808.30",
+        "0803.90"
+      ]
+    },
+    {
+      "description": "Lithium-ion battery pack 36 V for e-bikes",
+      "hs": "8507.60",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "8507.60",
+        "8506.50",
+        "8536.90",
+        "2836.91",
+        "8507.10"
+      ]
+    },
+    {
+      "description": "Photovoltaic solar panels, 400 W modules",
+      "hs": "8541.43",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "8541.90",
+        "8541.42",
+        "8541.43",
+        "8541.49",
+        "8541.41"
+      ]
+    },
+    {
+      "description": "Baby bodysuits, knitted cotton",
+      "hs": "6111.20",
+      "rank": null,
+      "exact": false,
+      "top": [
+        "6114.20",
+        "6106.10",
+        "6105.10",
+        "6107.91",
+        "6114.30"
+      ]
+    },
+    {
+      "description": "Running shoes, textile uppers, rubber soles",
+      "hs": "6404.11",
+      "rank": 1,
+      "exact": true,
+      "top": [
+        "6404.11",
+        "6403.19",
+        "6403.91",
+        "6403.99",
+        "6404.20"
+      ]
+    },
+    {
+      "description": "Microwave oven, 20 L, household",
+      "hs": "8516.50",
+      "rank": 3,
+      "exact": true,
+      "top": [
+        "8514.90",
+        "8514.20",
+        "8516.60",
+        "8516.50",
+        "8417.20"
+      ]
+    }
+  ],
+  "fit": [
+    {
+      "id": "0:right",
+      "description": "Centrifugal water pump 0.75 kW, cast iron body",
+      "heading": "8413",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are a centrifugal water pump, which falls squarely under the description of heading 84.13 ('Pumps for liquids'), and no chapter note excludes them from this heading.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "0:other",
+      "description": "Centrifugal water pump 0.75 kW, cast iron body",
+      "heading": "6115",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are a centrifugal water pump (machinery), which is clearly not hosiery or apparel covered by heading 61.15; the description explicitly names a pump, which falls under Chapter 84 (e.g., heading 8413 for pumps), not Chapter 61.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "1:right",
+      "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+      "heading": "8516",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are electric kettles, which are electrothermic appliances of a kind used for domestic purposes, explicitly covered by the text of heading 85.16 ('other electrothermic appliances of a kind used for domestic purposes').",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "1:trap",
+      "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+      "heading": "7323",
+      "expected": "no",
+      "why": "trap",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "An electric kettle is a household appliance that falls under heading 85.16 (Electro-thermic appliances for household use), not heading 73.23 which covers non-electric table, kitchen, or household articles of iron or steel.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "2:right",
+      "description": "Glazed porcelain floor tiles 60 x 60 cm",
+      "heading": "6907",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are glazed porcelain floor tiles, which fall under heading 69.07 ('Ceramic flags and paving, hearth or wall tiles'), provided they are fired after shaping (Chapter 69, Note 1) and are less than 3.2 cm in thickness (Additional U.S. Note 3); the description does not indicate they are thick blocks (69.04) or plastic (39.18).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "2:other",
+      "description": "Glazed porcelain floor tiles 60 x 60 cm",
+      "heading": "8481",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are glazed porcelain floor tiles, which are ceramic products falling under heading 69.07 (Ceramic flags and paving, hearth or wall tiles), whereas heading 84.81 covers taps, cocks, and valves for pipes or tanks, which is a completely different category of goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "3:right",
+      "description": "Extra virgin olive oil, 5 L tins",
+      "heading": "1509",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are explicitly described as 'Extra virgin olive oil,' which falls under heading 15.09 ('Olive oil and its fractions'), and Chapter 15 Note 1 does not exclude olive oil from this chapter.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "3:other",
+      "description": "Extra virgin olive oil, 5 L tins",
+      "heading": "0901",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are olive oil, which is explicitly covered by heading 15.09 (\"Olive oil and its fractions\") and falls under Chapter 15 (Animal, Vegetable or Microbial Fats and Oils), whereas heading 09.01 is restricted to coffee and related products.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "4:right",
+      "description": "Countertop blender 600 W with glass jar",
+      "heading": "8509",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as a 'Countertop blender 600 W with glass jar,' which is an electromechanical domestic appliance with a self-contained electric motor, fitting the description of heading 85.09. The glass jar is a component of the appliance and does not change the classification of the whole unit, as Chapter 70 Note 1 does not exclude such integrated parts from Chapter 85.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "4:other",
+      "description": "Countertop blender 600 W with glass jar",
+      "heading": "6109",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are a countertop blender, which is an electromechanical domestic appliance, whereas heading 61.09 covers knitted or crocheted apparel such as T-shirts; the description clearly names goods that the declared heading does not cover.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "5:right",
+      "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+      "heading": "8482",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are explicitly described as 'Ball bearings', which falls directly under the heading text for 84.82 ('Ball or roller bearings, and parts thereof'). No notes provided exclude this item from the heading.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "5:trap",
+      "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+      "heading": "8483",
+      "expected": "no",
+      "why": "trap",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are explicitly identified as 'Ball bearings', which are specifically covered by heading 84.82 ('Ball or roller bearings, and parts thereof'), whereas heading 84.83 covers 'bearing housings, housed bearings and plain shaft bearings' but excludes ball bearings which have their own specific heading.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "6:right",
+      "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+      "heading": "7318",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are hex bolts of carbon steel, which are explicitly listed in the text of heading 73.18 as 'bolts... of iron or steel'. The zinc plating does not exclude them from this heading, as Chapter 72 covers flat-rolled products (raw material) rather than finished articles like bolts.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "6:other",
+      "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+      "heading": "8471",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "Hex bolts are threaded fasteners classified under heading 73.18 (Screws, bolts, nuts, etc., of iron or steel), whereas heading 84.71 covers automatic data processing machines and units thereof, which does not include simple mechanical fasteners.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "7:right",
+      "description": "Wool blend socks, knitted, 3-pair pack",
+      "heading": "6115",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'knitted' socks, which falls directly under the text of heading 61.15 ('Panty hose, tights, stockings, socks and other hosiery... knitted or crocheted'). No chapter notes exclude socks from this heading or direct them to another heading (such as 61.11 for babies, which is not indicated by the description).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "7:other",
+      "description": "Wool blend socks, knitted, 3-pair pack",
+      "heading": "8517",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are wool blend socks, which are knitted apparel accessories falling under Chapter 61 (specifically heading 61.15 or 61.17), whereas heading 85.17 covers electrical machinery and communication apparatus, which is unrelated to textile clothing.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "8:right",
+      "description": "Women's padded jacket, woven polyester shell",
+      "heading": "6202",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as a 'woven' jacket, which places them in Chapter 62 (not knitted/crocheted), and the heading 62.02 explicitly includes 'padded... jackets' for women, excluding them from heading 62.04 which covers suit-type jackets and blazers.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "8:other",
+      "description": "Women's padded jacket, woven polyester shell",
+      "heading": "6403",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are a women's padded jacket (apparel), which is explicitly excluded from Chapter 64 (Footwear) and falls under Chapter 62 (Articles of apparel, not knitted or crocheted), specifically heading 62.02 for women's padded jackets.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "9:right",
+      "description": "Brass ball valves 2 inch, threaded",
+      "heading": "8481",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are brass ball valves, which are explicitly covered by the heading text 'Taps, cocks, valves and similar appliances for pipes...'. The reference to 'ball' refers to the valve mechanism (ball valve), not the bearing balls excluded or defined in Note 7 for heading 8482.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "9:other",
+      "description": "Brass ball valves 2 inch, threaded",
+      "heading": "4202",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are brass ball valves, which are mechanical appliances for pipes, clearly falling under heading 84.81 (Taps, cocks, valves...), whereas heading 42.02 covers containers and travel goods made of leather, plastics, or textiles.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "10:right",
+      "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+      "heading": "0901",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'Green coffee beans... not roasted', which falls directly under the text of heading 09.01 ('Coffee, whether or not roasted or decaffeinated'). No chapter or section notes exclude unroasted coffee beans from this heading.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "10:other",
+      "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+      "heading": "8211",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.99,
+      "rationale": "The goods are green coffee beans, which are explicitly covered by heading 09.01 ('Coffee, whether or not roasted...'), whereas heading 82.11 covers knives and base metal parts, which is unrelated to agricultural products.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "11:right",
+      "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+      "heading": "6109",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as a men's knitted T-shirt, which falls directly under the description of heading 61.09 ('T-shirts, singlets, tank tops and similar garments, knitted or crocheted'). Chapter 61 Note 4 excludes shirts (61.05) if they have specific features like pockets below the waist or low stitch counts, but a standard T-shirt is the primary example of the garment type covered by 61.09 and is not excluded by the notes provided.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "11:trap",
+      "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+      "heading": "6205",
+      "expected": "no",
+      "why": "trap",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'knitted', which places them in Chapter 61 (Knitted or Crocheted) rather than Chapter 62 (Not Knitted or Crocheted) as defined by the chapter titles and GRI 1. Additionally, Chapter 61 Note 4 explicitly excludes 'T-shirts' from heading 6105, directing them to heading 6109, whereas the declared heading 6205 is for non-knitted shirts.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "12:right",
+      "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+      "heading": "9503",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The heading 95.03 explicitly includes \"puzzles of all kinds,\" which directly covers the described jigsaw puzzle, and no provided notes exclude it.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "12:trap",
+      "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+      "heading": "6307",
+      "expected": "no",
+      "why": "trap",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are a jigsaw puzzle, which is a toy or game, not a made-up textile article; Chapter 63 covers textile articles, whereas puzzles are typically classified under Chapter 95 (Toys, games and sports equipment), and the description explicitly states the material is cardboard, not textile.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "13:right",
+      "description": "Laptop computer, 14 inch screen, 1.4 kg",
+      "heading": "8471",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as a 'Laptop computer,' which falls under the description of 'Automatic data processing machines' in heading 84.71. The other headings listed (85.28, 85.24, 90.10) refer to components (monitors, display modules) or unrelated equipment (photographic apparatus) and do not cover the complete machine.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "13:other",
+      "description": "Laptop computer, 14 inch screen, 1.4 kg",
+      "heading": "0306",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.99,
+      "rationale": "The goods are a laptop computer, which is an electrical machine, whereas heading 03.06 covers crustaceans (aquatic invertebrates); the description clearly names goods that the heading does not cover.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "14:right",
+      "description": "Smartphone, 6.1 inch display, 128 GB",
+      "heading": "8517",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as a 'Smartphone', and heading 85.17 explicitly includes 'smartphones' in its text. Chapter 85, Note 7 defines 'flat panel display modules' as devices designed to be incorporated into articles of other headings, which excludes the finished smartphone from heading 85.24, leaving 85.17 as the correct classification.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "14:other",
+      "description": "Smartphone, 6.1 inch display, 128 GB",
+      "heading": "2204",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.99,
+      "rationale": "The goods are a smartphone, which is an electrical communication device, whereas heading 22.04 covers wine and grape must; the description clearly names goods that the declared heading does not cover.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "15:right",
+      "description": "Men's dress shoes, leather uppers, rubber soles",
+      "heading": "6403",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as having leather uppers and rubber soles, which directly matches the text of heading 64.03 ('Footwear with outer soles of rubber... and uppers of leather'). No chapter notes exclude these goods, and the alternative heading 64.04 is inapplicable because it requires textile uppers.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "15:other",
+      "description": "Men's dress shoes, leather uppers, rubber soles",
+      "heading": "8712",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'Men's dress shoes,' which are footwear, whereas heading 87.12 covers 'Bicycles and other cycles'; the description clearly names goods that the declared heading does not cover.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "16:right",
+      "description": "Women's handbag with outer surface of leather",
+      "heading": "4202",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods description 'Women's handbag with outer surface of leather' explicitly matches the heading text for 42.02, which includes 'handbags' and specifies articles 'of leather or of composition leather'. Chapter 42 Note 1 confirms the definition of leather, and no notes exclude this item.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "16:other",
+      "description": "Women's handbag with outer surface of leather",
+      "heading": "4011",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are a handbag, which is not a pneumatic tire; Chapter 40 covers rubber and articles thereof, while handbags are typically classified under Chapter 42 (Leather articles), making the declared heading 40.11 incorrect.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "17:right",
+      "description": "Set of 5 kitchen knives, stainless steel, in wooden block",
+      "heading": "8211",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are a set of 5 kitchen knives in a wooden block, which falls under heading 82.11 (knives) as the set does not contain articles of heading 82.15 (spoons, forks, etc.) required to trigger Chapter 82, Note 3 for reclassification to 82.15.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "17:other",
+      "description": "Set of 5 kitchen knives, stainless steel, in wooden block",
+      "heading": "6302",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are stainless steel kitchen knives, which are articles of base metal; Chapter 63 covers made-up textile articles, and the description contains no textile component that would qualify for heading 63.02. The correct classification is under Chapter 82 (specifically heading 82.11 for knives), as the goods are not textile articles.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "18:right",
+      "description": "LED light bulbs E27, 9 W",
+      "heading": "8539",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'LED light bulbs,' which falls under the specific subheading text for 'light-emitting diode (LED) light sources' within heading 85.39, and no chapter note excludes them.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "18:other",
+      "description": "LED light bulbs E27, 9 W",
+      "heading": "9102",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 1,
+      "rationale": "The goods are LED light bulbs, which are explicitly covered by heading 8539 ('light-emitting diode (LED) light sources') and Chapter 85 Note 11, whereas heading 9102 covers watches and clocks.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "19:right",
+      "description": "Wooden dining chairs, not upholstered",
+      "heading": "9401",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'Wooden dining chairs', which are seats designed for placing on the floor, falling squarely within the scope of heading 94.01 ('Seats... whether or not convertible into beds') and not excluded by Chapter 94 Note 2.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "19:other",
+      "description": "Wooden dining chairs, not upholstered",
+      "heading": "9202",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'Wooden dining chairs', which are furniture, whereas heading 92.02 covers 'Other string musical instruments'; the description clearly names goods that the declared heading does not cover.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "20:right",
+      "description": "Frozen shrimp, peeled and deveined",
+      "heading": "0306",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "Heading 03.06 explicitly covers crustaceans that are frozen, whether in shell or not, and the description 'Frozen shrimp, peeled and deveined' fits this definition without requiring preparation or preservation methods that would trigger Chapter 16.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "20:other",
+      "description": "Frozen shrimp, peeled and deveined",
+      "heading": "8508",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.99,
+      "rationale": "The goods are frozen shrimp, which are crustaceans, while heading 85.08 covers vacuum cleaners and parts thereof; the description clearly names goods that the declared heading does not cover.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "21:right",
+      "description": "Red wine, 750 ml bottles, 13% vol",
+      "heading": "2204",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'Red wine,' which falls squarely under the description of heading 22.04 ('Wine of fresh grapes'), and no chapter notes exclude standard wine from this heading.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "21:other",
+      "description": "Red wine, 750 ml bottles, 13% vol",
+      "heading": "4901",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are red wine, which is a beverage, not printed matter; heading 49.01 covers printed books and similar matter, while the description clearly identifies the goods as wine, which falls under Chapter 22 (specifically heading 22.04).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "22:right",
+      "description": "Children's bicycle, 16 inch wheels",
+      "heading": "8712",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "Chapter 87, Note 4 explicitly states that \"Heading 8712 includes all children's bicycles,\" which directly covers the described goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "22:trap",
+      "description": "Children's bicycle, 16 inch wheels",
+      "heading": "9503",
+      "expected": "no",
+      "why": "trap",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "Chapter 87, Note 4 explicitly states that \"Heading 8712 includes all children's bicycles,\" which excludes them from heading 9503 where only \"other children's cycles\" are classified.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "23:right",
+      "description": "New radial car tires 205/55R16",
+      "heading": "4011",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'New radial car tires', which falls directly under the heading text for 40.11 ('New pneumatic tires, of rubber'), and there are no notes provided that exclude them.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "23:other",
+      "description": "New radial car tires 205/55R16",
+      "heading": "0409",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.99,
+      "rationale": "The goods are radial car tires, which are rubber articles, whereas heading 04.09 specifically covers natural honey; the description clearly names goods that the declared heading does not cover.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "24:right",
+      "description": "Cotton bath towels, terry weave",
+      "heading": "6302",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'Cotton bath towels, terry weave,' which are made-up textile articles. Heading 63.02 explicitly covers 'toilet linen,' and bath towels are a standard item of toilet linen. While the fabric is terry weave (which might suggest Chapter 58 if it were unmade fabric), the goods are finished articles, placing them in Chapter 63. There are no notes provided that exclude made-up terry towels from Chapter 63.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "24:other",
+      "description": "Cotton bath towels, terry weave",
+      "heading": "2523",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.99,
+      "rationale": "The goods are cotton bath towels, which are textile articles, whereas heading 25.23 covers hydraulic cements; Section XI, Note 1 does not exclude textiles, but the heading text itself clearly does not cover them.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "25:right",
+      "description": "Quartz wristwatch, stainless steel case",
+      "heading": "9102",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are a wristwatch with a stainless steel case, which is a base metal; Chapter 91 Note 2 explicitly states that watches with cases of base metal fall in heading 9102, excluding them from heading 9101 which is reserved for precious metal cases.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "25:other",
+      "description": "Quartz wristwatch, stainless steel case",
+      "heading": "3923",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are described as a 'Quartz wristwatch', which is a timepiece for wearing on the person. Chapter 91, Note 1(a) explicitly excludes 'Clock or watch glasses' but does not exclude the watch itself; rather, Chapter 91, Additional U.S. Note 1(a) defines 'watches' to include timepieces of a kind for wearing on the person. Heading 91.02 specifically covers 'Wrist watches'. Heading 39.23 covers articles for conveyance or packing of plastics, which does not describe a functional wristwatch. Therefore, the watch belongs in Chapter 91, not Chapter 39.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "26:right",
+      "description": "Acoustic guitar, spruce top",
+      "heading": "9202",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are an acoustic guitar, which is a string musical instrument not produced or amplified electrically, fitting the description of heading 92.02 ('Other string musical instruments... for example, guitars') and distinct from heading 92.07 which covers electrically amplified instruments.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "26:other",
+      "description": "Acoustic guitar, spruce top",
+      "heading": "9004",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are an acoustic guitar, which is a string musical instrument explicitly covered by heading 92.02 ('Other string musical instruments (for example, guitars...)'), whereas heading 90.04 covers optical instruments like spectacles and goggles.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "27:right",
+      "description": "Household vacuum cleaner with bag, 1200 W",
+      "heading": "8508",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are explicitly described as a 'Household vacuum cleaner,' which falls directly under the text of heading 85.08 ('Vacuum cleaners'), and Chapter 85 Note 4 explicitly excludes vacuum cleaners from heading 85.09, confirming 85.08 is the correct classification.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "27:other",
+      "description": "Household vacuum cleaner with bag, 1200 W",
+      "heading": "6911",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are a vacuum cleaner, which is explicitly covered by heading 85.08 ('Vacuum cleaners; parts thereof'), whereas heading 69.11 covers ceramic household articles, not electrical machinery.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "28:right",
+      "description": "Paperback novels, printed",
+      "heading": "4901",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are 'Paperback novels, printed', which are printed books. Heading 49.01 explicitly covers 'Printed books'. Note 5 excludes publications devoted to advertising, which novels are not. Therefore, the goods fit the declared heading.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "28:other",
+      "description": "Paperback novels, printed",
+      "heading": "0808",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.99,
+      "rationale": "The goods are 'Paperback novels, printed', which are printed books falling under heading 49.01 ('Printed books...'), whereas the declared heading 08.08 covers 'Apples, pears and quinces, fresh', which is clearly unrelated to the described goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "29:right",
+      "description": "Golf balls, 12-pack",
+      "heading": "9506",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "Golf balls are articles for outdoor games, which are explicitly covered by the text of heading 95.06, and no provided notes exclude them from this classification.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "29:other",
+      "description": "Golf balls, 12-pack",
+      "heading": "8507",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The declared heading 85.07 covers electric storage batteries, whereas the goods are golf balls, which are sports equipment explicitly covered by heading 95.06 ('Articles and equipment for... other sports... or outdoor games').",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "30:right",
+      "description": "Natural honey, 500 g jars",
+      "heading": "0409",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods description 'Natural honey' directly matches the text of heading 04.09 'Natural honey', and Chapter 4 Note 5 does not exclude natural honey (it only excludes specific whey/milk products or non-living insects).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "30:other",
+      "description": "Natural honey, 500 g jars",
+      "heading": "8541",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.99,
+      "rationale": "The goods are natural honey, which is explicitly covered by heading 04.09 in Chapter 4, whereas heading 85.41 covers semiconductor devices and electrical machinery, which is unrelated to food products.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "31:right",
+      "description": "Grey Portland cement, 50 kg bags",
+      "heading": "2523",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.98,
+      "rationale": "The goods description explicitly identifies the item as 'Portland cement', which is directly named in the text of heading 25.23 ('Portland cement, aluminous cement...'), and no chapter notes exclude it.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "31:other",
+      "description": "Grey Portland cement, 50 kg bags",
+      "heading": "6111",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.99,
+      "rationale": "The goods are Portland cement, which is explicitly covered by heading 25.23, whereas heading 61.11 covers knitted or crocheted babies' garments, a category that clearly does not include construction materials.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "32:right",
+      "description": "Polyethylene shopping bags",
+      "heading": "3923",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "Heading 42.02 explicitly lists \"shopping bags\" made of sheeting of plastics, and Chapter 42 Additional U.S. Note 1 confirms that \"shopping bags\" of this heading are included, whereas Chapter 39 Note 2 does not exclude them but the specific heading 42.02 takes precedence for this specific type of container.",
+      "correct": false,
+      "effectCorrect": false
+    },
+    {
+      "id": "32:other",
+      "description": "Polyethylene shopping bags",
+      "heading": "6404",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The declared heading 64.04 covers footwear, whereas the goods are described as 'Polyethylene shopping bags,' which are articles for the conveyance or packing of goods of plastics, clearly falling under heading 39.23.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "33:right",
+      "description": "Sunglasses with UV400 lenses",
+      "heading": "9004",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "Heading 90.04 explicitly covers ",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "33:trap",
+      "description": "Sunglasses with UV400 lenses",
+      "heading": "9506",
+      "expected": "no",
+      "why": "trap",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "Sunglasses are spectacles, which are explicitly covered by heading 90.04 ('Spectacles, goggles and the like, corrective, protective or other') and are not sports equipment covered by heading 95.06.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "34:right",
+      "description": "Ceramic coffee mugs, porcelain",
+      "heading": "6911",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'porcelain' coffee mugs, which are tableware; Additional U.S. Note 5 defines 'porcelain' for the purposes of headings 6909 through 6914, and heading 69.11 specifically covers tableware of porcelain or china.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "34:other",
+      "description": "Ceramic coffee mugs, porcelain",
+      "heading": "8413",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are ceramic coffee mugs, which are tableware/household articles, not pumps; Chapter 84 Note 1(b) explicitly excludes machinery or appliances of ceramic material to Chapter 69, and the description matches the specific heading 6911 for porcelain tableware.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "35:right",
+      "description": "Fresh apples, Gala, in cartons",
+      "heading": "0808",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.98,
+      "rationale": "The goods are described as 'Fresh apples', which directly matches the heading text for 08.08 'Apples, pears and quinces, fresh'. No chapter notes exclude fresh apples from this heading.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "35:other",
+      "description": "Fresh apples, Gala, in cartons",
+      "heading": "8413",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.99,
+      "rationale": "The goods are fresh apples, which are edible fruit covered by heading 08.08, whereas heading 84.13 covers pumps for liquids and machinery, which is unrelated to the described goods.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "36:right",
+      "description": "Lithium-ion battery pack 36 V for e-bikes",
+      "heading": "8507",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as a 'Lithium-ion battery pack,' which is a rechargeable electric storage battery, falling squarely within the scope of heading 85.07 ('Electric storage batteries...'). Heading 85.06 is for primary (non-rechargeable) cells, which does not apply to lithium-ion packs, and no chapter note excludes them from 85.07.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "36:other",
+      "description": "Lithium-ion battery pack 36 V for e-bikes",
+      "heading": "8413",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are a lithium-ion battery pack, which is an electric storage battery. Heading 84.13 covers pumps for liquids, which is a completely different function and product type. The correct classification is under Heading 85.07 (Electric storage batteries).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "37:right",
+      "description": "Photovoltaic solar panels, 400 W modules",
+      "heading": "8541",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The heading 8541 explicitly includes 'photosensitive semiconductor devices, including photovoltaic cells whether or not assembled in modules or made up into panels,' which directly covers the described 400 W photovoltaic solar panels.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "37:other",
+      "description": "Photovoltaic solar panels, 400 W modules",
+      "heading": "8413",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are photovoltaic solar panels, which are explicitly covered by heading 8541 (\"photosensitive semiconductor devices... made up into panels\"), whereas heading 8413 is limited to pumps for liquids and liquid elevators.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "38:right",
+      "description": "Baby bodysuits, knitted cotton",
+      "heading": "6111",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'Baby bodysuits, knitted cotton', which falls under the specific heading 61.11 for 'Babies' garments and clothing accessories, knitted or crocheted'. Chapter 61 Note 4 excludes shirts/blouses (6105/6106) based on construction features, but bodysuits are distinct garments typically classified under 6111 for babies, and no note provided excludes them from this heading.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "38:other",
+      "description": "Baby bodysuits, knitted cotton",
+      "heading": "8413",
+      "expected": "no",
+      "why": "other-section",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are 'Baby bodysuits, knitted cotton', which are articles of apparel. Heading 84.13 covers 'Pumps for liquids', which is a mechanical appliance. The goods are clearly not pumps and belong to Chapter 61 (e.g., heading 61.11 or 61.14), not Chapter 84.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "39:right",
+      "description": "Running shoes, textile uppers, rubber soles",
+      "heading": "6404",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are described as having textile uppers and rubber soles, which directly matches the description of heading 64.04 ('Footwear with outer soles of rubber... and uppers of textile materials'). No chapter notes exclude running shoes from this heading, and the specific subheading distinctions (e.g., sports footwear) do not alter the validity of the 4-digit heading classification.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "39:trap",
+      "description": "Running shoes, textile uppers, rubber soles",
+      "heading": "9506",
+      "expected": "no",
+      "why": "trap",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The goods are described as 'Running shoes' with textile uppers and rubber soles, which falls under the specific definition of footwear in Chapter 64 (specifically heading 64.04). Chapter 95 Note 1(e) explicitly excludes 'sports clothing' and implies that standard footwear is not 'equipment' for the purposes of this chapter, directing such items to Chapter 64.",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "40:right",
+      "description": "Microwave oven, 20 L, household",
+      "heading": "8516",
+      "expected": "yes",
+      "why": "right",
+      "verdict": "yes",
+      "confidence": 0.95,
+      "rationale": "The goods are a household microwave oven, which falls under the description of 'other electrothermic appliances of a kind used for domestic purposes' in heading 85.16, as it is not an industrial furnace (85.14) or non-electric oven (84.17).",
+      "correct": true,
+      "effectCorrect": true
+    },
+    {
+      "id": "40:trap",
+      "description": "Microwave oven, 20 L, household",
+      "heading": "8419",
+      "expected": "no",
+      "why": "trap",
+      "verdict": "no",
+      "confidence": 0.95,
+      "rationale": "The declared heading 84.19 explicitly excludes machinery of a kind used for domestic purposes, and the goods description identifies the item as a 'household' microwave oven, which is an electrothermic appliance of a kind used for domestic purposes falling under heading 85.16.",
+      "correct": true,
+      "effectCorrect": true
+    }
+  ],
+  "suggest": [
+    {
+      "description": "Centrifugal water pump 0.75 kW, cast iron body",
+      "hs": "8413.70",
+      "terms": "centrifugal pump for water, with cast iron body, driven by electric motor",
+      "inCandidates": false,
+      "picked": [
+        "8421.99",
+        "8421.21"
+      ],
+      "headingTop3": false,
+      "exactTop1": false
+    },
+    {
+      "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+      "hs": "8516.71",
+      "terms": "electric appliance for heating water, of stainless steel",
+      "inCandidates": true,
+      "picked": [
+        "8516.10",
+        "8516.21"
+      ],
+      "headingTop3": true,
+      "exactTop1": false
+    },
+    {
+      "description": "Glazed porcelain floor tiles 60 x 60 cm",
+      "hs": "6907.21",
+      "terms": "glazed porcelain tiles, for flooring",
+      "inCandidates": true,
+      "picked": [
+        "6907.21",
+        "6907.22"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Extra virgin olive oil, 5 L tins",
+      "hs": "1509.20",
+      "terms": "foodstuff, consisting of olive oil, for culinary use",
+      "inCandidates": true,
+      "picked": [
+        "1509.20"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Countertop blender 600 W with glass jar",
+      "hs": "8509.40",
+      "terms": "electric domestic appliance for blending food, with glass container",
+      "inCandidates": true,
+      "picked": [
+        "8509.40",
+        "8509.80"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+      "hs": "8482.10",
+      "terms": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+      "inCandidates": true,
+      "picked": [
+        "8482.10"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Hex bolts M12 x 60, carbon steel, zinc plated",
+      "hs": "7318.15",
+      "terms": "screws and bolts of iron or steel, zinc plated, for fastening",
+      "inCandidates": true,
+      "picked": [
+        "7318.15"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Wool blend socks, knitted, 3-pair pack",
+      "hs": "6115.94",
+      "terms": "knitted hosiery of wool, for wearing on the feet",
+      "inCandidates": true,
+      "picked": [
+        "6115.94",
+        "6115.99"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Women's padded jacket, woven polyester shell",
+      "hs": "6202.40",
+      "terms": "garment, made of woven polyester, for wearing",
+      "inCandidates": true,
+      "picked": [
+        "6202.40"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Brass ball valves 2 inch, threaded",
+      "hs": "8481.80",
+      "terms": "valves of brass, for controlling the flow of fluids in piping systems",
+      "inCandidates": true,
+      "picked": [
+        "8481.80"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+      "hs": "0901.11",
+      "terms": "unroasted coffee beans, in jute bags",
+      "inCandidates": true,
+      "picked": [
+        "0901.11"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+      "hs": "6109.10",
+      "terms": "knitted garment of cotton, for wearing",
+      "inCandidates": true,
+      "picked": [
+        "6109.10"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Jigsaw puzzle 1000 pieces, cardboard, boxed",
+      "hs": "9503.00",
+      "terms": "puzzle of cardboard, for amusement",
+      "inCandidates": false,
+      "picked": [
+        "9504.90"
+      ],
+      "headingTop3": false,
+      "exactTop1": false
+    },
+    {
+      "description": "Laptop computer, 14 inch screen, 1.4 kg",
+      "hs": "8471.30",
+      "terms": "automatic data processing machine, portable, for processing data",
+      "inCandidates": true,
+      "picked": [
+        "8471.30"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Smartphone, 6.1 inch display, 128 GB",
+      "hs": "8517.13",
+      "terms": "automatic data processing machine, incorporating a display and memory, for processing data",
+      "inCandidates": true,
+      "picked": [
+        "8517.13"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Men's dress shoes, leather uppers, rubber soles",
+      "hs": "6403.99",
+      "terms": "footwear with leather uppers and rubber soles, for wearing on the foot",
+      "inCandidates": true,
+      "picked": [
+        "6403.99",
+        "6403.91"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Women's handbag with outer surface of leather",
+      "hs": "4202.21",
+      "terms": "handbag with outer surface of leather, for carrying personal items",
+      "inCandidates": true,
+      "picked": [
+        "4202.32"
+      ],
+      "headingTop3": true,
+      "exactTop1": false
+    },
+    {
+      "description": "Set of 5 kitchen knives, stainless steel, in wooden block",
+      "hs": "8211.10",
+      "terms": "hand tools, of stainless steel, for cutting food",
+      "inCandidates": true,
+      "picked": [
+        "8211.91",
+        "8215.99"
+      ],
+      "headingTop3": true,
+      "exactTop1": false
+    },
+    {
+      "description": "LED light bulbs E27, 9 W",
+      "hs": "8539.52",
+      "terms": "electric light source, for general illumination",
+      "inCandidates": true,
+      "picked": [
+        "8539.52",
+        "8539.51"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Wooden dining chairs, not upholstered",
+      "hs": "9401.69",
+      "terms": "furniture, of wood, for sitting",
+      "inCandidates": true,
+      "picked": [
+        "9401.69"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Frozen shrimp, peeled and deveined",
+      "hs": "0306.17",
+      "terms": "frozen crustaceans, prepared or preserved",
+      "inCandidates": true,
+      "picked": [
+        "0306.35",
+        "1605.21"
+      ],
+      "headingTop3": true,
+      "exactTop1": false
+    },
+    {
+      "description": "Red wine, 750 ml bottles, 13% vol",
+      "hs": "2204.21",
+      "terms": "fermented beverage of grapes, in 750 ml bottles",
+      "inCandidates": true,
+      "picked": [
+        "2204.21"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Children's bicycle, 16 inch wheels",
+      "hs": "8712.00",
+      "terms": "bicycle, for children, with 16 inch wheels",
+      "inCandidates": true,
+      "picked": [
+        "8712.00"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "New radial car tires 205/55R16",
+      "hs": "4011.10",
+      "terms": "radial pneumatic tires of rubber, for motor vehicles",
+      "inCandidates": true,
+      "picked": [
+        "4011.90",
+        "4011.20",
+        "4011.80"
+      ],
+      "headingTop3": true,
+      "exactTop1": false
+    },
+    {
+      "description": "Cotton bath towels, terry weave",
+      "hs": "6302.60",
+      "terms": "cotton textile articles, terry towelling, for bathroom use",
+      "inCandidates": true,
+      "picked": [
+        "6302.60",
+        "5802.10"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Quartz wristwatch, stainless steel case",
+      "hs": "9102.11",
+      "terms": "wristwatch, with stainless steel case, for measuring time",
+      "inCandidates": true,
+      "picked": [
+        "9102.11",
+        "9101.29"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Acoustic guitar, spruce top",
+      "hs": "9202.90",
+      "terms": "stringed musical instrument, with spruce top, for producing sound by plucking strings",
+      "inCandidates": true,
+      "picked": [
+        "9202.90"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Household vacuum cleaner with bag, 1200 W",
+      "hs": "8508.11",
+      "terms": "household appliance with electric motor, for cleaning floors and surfaces by suction",
+      "inCandidates": true,
+      "picked": [
+        "8508.11",
+        "8508.19"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Paperback novels, printed",
+      "hs": "4901.99",
+      "terms": "printed books, made of paper, for reading",
+      "inCandidates": true,
+      "picked": [
+        "4901.99"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Golf balls, 12-pack",
+      "hs": "9506.32",
+      "terms": "sports goods, for golf",
+      "inCandidates": true,
+      "picked": [
+        "9506.32"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Natural honey, 500 g jars",
+      "hs": "0409.00",
+      "terms": "natural honey, 500 g jars",
+      "inCandidates": true,
+      "picked": [
+        "0409.00"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Grey Portland cement, 50 kg bags",
+      "hs": "2523.29",
+      "terms": "Portland cement, in 50 kg bags",
+      "inCandidates": true,
+      "picked": [
+        "2523.29"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Polyethylene shopping bags",
+      "hs": "3923.21",
+      "terms": "carriers of polyethylene, for carrying goods",
+      "inCandidates": true,
+      "picked": [
+        "3923.21"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Sunglasses with UV400 lenses",
+      "hs": "9004.10",
+      "terms": "Sunglasses with UV400 lenses",
+      "inCandidates": true,
+      "picked": [
+        "9004.10"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Ceramic coffee mugs, porcelain",
+      "hs": "6911.10",
+      "terms": "tableware of porcelain, for drinking coffee",
+      "inCandidates": true,
+      "picked": [
+        "6911.10",
+        "6911.90"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Fresh apples, Gala, in cartons",
+      "hs": "0808.10",
+      "terms": "fresh fruit, of the genus Malus, for human consumption",
+      "inCandidates": true,
+      "picked": [
+        "0808.10"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Lithium-ion battery pack 36 V for e-bikes",
+      "hs": "8507.60",
+      "terms": "electric storage battery, for use in electric vehicles",
+      "inCandidates": true,
+      "picked": [
+        "8507.60"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Photovoltaic solar panels, 400 W modules",
+      "hs": "8541.43",
+      "terms": "photovoltaic cells and panels, assembled in modules or in panels, for generating electricity from sunlight",
+      "inCandidates": true,
+      "picked": [
+        "8541.41",
+        "8541.42"
+      ],
+      "headingTop3": true,
+      "exactTop1": false
+    },
+    {
+      "description": "Baby bodysuits, knitted cotton",
+      "hs": "6111.20",
+      "terms": "knitted cotton garments for babies",
+      "inCandidates": true,
+      "picked": [
+        "6111.20"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Running shoes, textile uppers, rubber soles",
+      "hs": "6404.11",
+      "terms": "footwear with textile uppers and rubber soles, for running",
+      "inCandidates": true,
+      "picked": [
+        "6404.11",
+        "6404.19"
+      ],
+      "headingTop3": true,
+      "exactTop1": true
+    },
+    {
+      "description": "Microwave oven, 20 L, household",
+      "hs": "8516.50",
+      "terms": "household electric appliance for cooking food by microwave radiation",
+      "inCandidates": true,
+      "picked": [
+        "8516.60"
+      ],
+      "headingTop3": true,
+      "exactTop1": false
+    }
+  ]
+}

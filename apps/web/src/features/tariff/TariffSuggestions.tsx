@@ -11,7 +11,7 @@ export function TariffSuggestions({ line }: { line: TariffLine }) {
   const byModel = suggestions.some((s) => s.confidence !== undefined);
   return (
     <div className="tariff-suggestions">
-      <h4 className="small">{t(byModel ? 'tariff.suggestions' : 'tariff.suggestionsSearch')}</h4>
+      <h3 className="small">{t(byModel ? 'tariff.suggestions' : 'tariff.suggestionsSearch')}</h3>
       <ol>
         {suggestions.map((s) => (
           <li key={s.code}>

@@ -9,7 +9,7 @@ import { exportControlHints } from './export-control';
 import { formatHs, hsFormat } from './hs-code';
 import { codeStatus, tariffLines } from './lines';
 import { quoteNote } from './notes';
-import { TariffSearch, terms } from './search';
+import { goodsQuery, TariffSearch, terms } from './search';
 
 const DIR = resolve(__dirname, '../../../data/tariff');
 let us: TariffData;
@@ -102,6 +102,15 @@ describe('notes', () => {
 });
 
 describe('keyword search', () => {
+  it('drops sizes, ratings and model numbers from the query', () => {
+    expect(goodsQuery('Plush teddy bear 30 cm')).toBe('Plush teddy bear');
+    expect(goodsQuery('Electric kettle 1.7 L, stainless steel, 1500 W, 120 V')).toBe('Electric kettle, stainless steel');
+    expect(goodsQuery('Hex bolts M12 x 60, carbon steel')).toBe('Hex bolts, carbon steel');
+    expect(goodsQuery('Ball bearings 6204-2RS, 20 x 47 x 14 mm')).toBe('Ball bearings');
+    expect(goodsQuery('Red wine, 750 ml bottles, 13% vol')).toBe('Red wine, bottles');
+    expect(goodsQuery('16')).toBe('16');
+  });
+
   it('folds plurals', () => {
     expect(terms('Toys, boxes and glasses')).toEqual(['toy', 'box', 'glass']);
   });

@@ -9,10 +9,10 @@ import { TariffSuggestions } from './TariffSuggestions';
 const TONE: Record<TariffCodeStatus, 'ok' | 'accent' | 'neutral'> = {
   valid: 'ok',
   subheading: 'ok',
-  heading: 'accent',
-  'national-unknown': 'accent',
-  unknown: 'accent',
-  malformed: 'accent',
+  heading: 'neutral',
+  'national-unknown': 'neutral',
+  unknown: 'neutral',
+  malformed: 'neutral',
   missing: 'neutral',
   'not-checked': 'neutral',
 };

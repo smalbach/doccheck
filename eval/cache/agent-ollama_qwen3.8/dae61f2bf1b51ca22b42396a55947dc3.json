@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 929,
+    "outputTokens": 200
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "6404.11",
+        "confidence": 0.95,
+        "rationale": "The goods have textile uppers and rubber soles, fitting the heading 6404 description, and 'running shoes' fall under 'tennis shoes... and the like' as defined in Additional U.S. Note 2, which covers athletic footwear other than specific sports footwear."
+      },
+      {
+        "code": "6404.19",
+        "confidence": 0.1,
+        "rationale": "This subheading is for 'Other' footwear with textile uppers and rubber soles, which would only apply if the shoes did not meet the definition of athletic footwear in Additional U.S. Note 2, but 'running shoes' are explicitly included in that definition."
+      }
+    ]
+  }
+}

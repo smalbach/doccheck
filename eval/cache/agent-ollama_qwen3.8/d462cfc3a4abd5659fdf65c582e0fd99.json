@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 781,
+    "outputTokens": 180
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "6911.10",
+        "confidence": 0.95,
+        "rationale": "The goods are explicitly described as 'porcelain' coffee mugs, which are tableware, and Additional U.S. Note 5 confirms that porcelain falls under heading 6911 rather than 6912."
+      },
+      {
+        "code": "6911.90",
+        "confidence": 0.1,
+        "rationale": "While this heading covers porcelain household articles, coffee mugs are specifically classified as tableware under subheading 6911.10, making the 'Other' subheading 6911.90 incorrect."
+      }
+    ]
+  }
+}
