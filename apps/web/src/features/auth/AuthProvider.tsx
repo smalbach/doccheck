@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { api } from '../../api/client';
 import { UNAUTHORIZED_EVENT } from '../../api/request';
+import { teamApi } from '../../api/teamClient';
 import type { User } from '../../api/types';
 import { AuthContext, type AuthState } from './AuthContext';
 
@@ -22,13 +23,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  const login = useCallback(async (email: string, password: string) => setUser(await api.login({ email, password })), []);
+  const login = useCallback(async (email: string, password: string) => {
+    const result = (await api.login({ email, password })) as User | { mfaRequired: true; ticket: string };
+    if ('mfaRequired' in result) return { mfaTicket: result.ticket };
+    setUser(result);
+    return {};
+  }, []);
+  const completeMfa = useCallback(async (ticket: string, code: string) => setUser(await teamApi.loginWithCode(ticket, code)), []);
   const register = useCallback(async (input: { email: string; password: string; name: string }) => setUser(await api.register(input)), []);
   const logout = useCallback(async () => {
     await api.logout().catch(() => undefined);
     setUser(null);
   }, []);
 
-  const value = useMemo<AuthState>(() => ({ user, login, register, logout, setUser }), [user, login, register, logout]);
+  const value = useMemo<AuthState>(() => ({ user, login, completeMfa, register, logout, setUser }), [user, login, completeMfa, register, logout]);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

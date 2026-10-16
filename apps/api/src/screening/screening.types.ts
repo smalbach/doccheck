@@ -1,9 +1,9 @@
-/** A match an account set aside as a false positive, with its audit trail. */
+/** A match an organization set aside as a false positive, with its audit trail. */
 export interface AllowlistItem {
   id: string;
-  userId: string;
-  /** Email of the account the entry belongs to. */
-  account: string;
+  orgId: string;
+  /** Name of the organization the entry belongs to. */
+  organization: string;
   partyName: string;
   partyKey: string;
   list: string;

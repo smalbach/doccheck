@@ -532,7 +532,7 @@ describe('shipments', () => {
     assert.deepEqual((await page('q=pg_')).items.map((s) => s.reference), ['PG_%']); // _ and % are literal
     assert.deepEqual((await page('status=done')).items.map((s) => s.reference), ['PG-a']);
     assert.deepEqual((await page('status=open')).total, 3);
-    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0 });
+    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0, overdue: 0, dueSoon: 0 });
   });
 
   it('edits a shipment and keeps every validation run as history', async () => {
@@ -1851,7 +1851,7 @@ describe('party screening', () => {
     assert.deepEqual([removed.body.removedBy !== undefined, removed.body.removedReason], [true, 'Licence was forged']);
     assert.equal((await call('GET', '/screening/allowlist', undefined, user)).body.length, 0);
     const history = (await call('GET', '/screening/allowlist?history=true', undefined, user)).body;
-    assert.deepEqual(history.map((h) => [h.reason, h.removedReason, h.account]), [['Checked the business licence: a different company', 'Licence was forged', history[0].account]]);
+    assert.deepEqual(history.map((h) => [h.reason, h.removedReason, h.organization]), [['Checked the business licence: a different company', 'Licence was forged', history[0].organization]]);
     assert.deepEqual((await validateWithSeller(user, 'Hetian Taida Apparel Co., Ltd.', s)).screening.map((f) => f.ruleId), ['S1', 'S3']);
     // Admins see every account's trail.
     const all = (await call('GET', '/screening/allowlist?all=true&history=true', undefined, await admin())).body;

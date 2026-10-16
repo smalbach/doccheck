@@ -8,6 +8,7 @@ import { Checkbox } from '../../components/ui/Checkbox';
 import { PageHeader } from '../../components/ui/PageHeader';
 import { useDemo } from '../../hooks/useDemo';
 import { useI18n } from '../../i18n/useI18n';
+import { useOrg } from '../team/useOrg';
 import { errorMessage } from '../../lib/errorMessage';
 import { AllowlistTable } from './AllowlistTable';
 import { NameCheckCard } from './NameCheckCard';
@@ -18,6 +19,9 @@ import { useAllowlist } from './useAllowlist';
 export function ScreeningPage() {
   const { t, formatNumber } = useI18n();
   const demo = useDemo();
+  const { can } = useOrg();
+  // Setting a match aside, or putting it back, is a decision about findings.
+  const readOnly = demo || !can('finding.decide');
   const [status, setStatus] = useState<ScreeningStatus>();
   const [error, setError] = useState<string>();
   const [notice, setNotice] = useState<string>();
@@ -45,7 +49,7 @@ export function ScreeningPage() {
         <ScreeningListsTable lists={status.lists} />
       </Card>
       <NameCheckCard
-        readOnly={demo}
+        readOnly={readOnly}
         onAdded={() => {
           setNotice(t('screening.allowlist.added'));
           void allowlist.reload();
@@ -60,7 +64,7 @@ export function ScreeningPage() {
           ) : (
             <AllowlistTable
               items={allowlist.items}
-              readOnly={demo}
+              readOnly={readOnly}
               onRemove={(item) => void allowlist.remove(item).then((ok) => ok && setNotice(t('screening.allowlist.removed')))}
             />
           ))}

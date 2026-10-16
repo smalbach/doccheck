@@ -7,14 +7,14 @@ import { useI18n } from '../../i18n/useI18n';
 
 export interface AllowlistTableProps {
   items: readonly AllowlistItem[];
-  /** Adds the account column (an admin looking at every account). */
-  showAccount?: boolean;
+  /** Adds the organization column (a server admin looking at every organization). */
+  showOrganization?: boolean;
   readOnly: boolean;
   onRemove: (item: AllowlistItem) => void;
 }
 
 /** Matches set aside, with who did it, when and why; removed ones show who put them back. */
-export function AllowlistTable({ items, showAccount, readOnly, onRemove }: AllowlistTableProps) {
+export function AllowlistTable({ items, showOrganization, readOnly, onRemove }: AllowlistTableProps) {
   const { t, formatDateTime } = useI18n();
   const columns: Column<AllowlistItem>[] = [
     { key: 'party', header: t('screening.allowlist.columns.party'), cell: (a) => a.partyName },
@@ -30,7 +30,7 @@ export function AllowlistTable({ items, showAccount, readOnly, onRemove }: Allow
         </>
       ),
     },
-    ...(showAccount ? [{ key: 'account', header: t('screening.allowlist.columns.account'), cell: (a: AllowlistItem) => a.account }] : []),
+    ...(showOrganization ? [{ key: 'organization', header: t('screening.allowlist.columns.organization'), cell: (a: AllowlistItem) => a.organization }] : []),
     { key: 'reason', header: t('screening.allowlist.columns.reason'), cell: (a) => a.reason },
     {
       key: 'added',

@@ -1,0 +1,38 @@
+/* Organizations and teamwork (docs/ORGANIZATIONS.md) */
+.org-switcher { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; padding: 6px 10px; margin: 4px 0 8px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: none; color: inherit; cursor: pointer; text-align: left; }
+.org-switcher:hover, .org-switcher[data-state='open'] { background: var(--bg); }
+.org-switcher-text { display: flex; flex-direction: column; min-width: 0; }
+.org-switcher-name { font-weight: 600; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.org-switcher-role { font-size: 12px; color: var(--muted); }
+.menu-label { padding: 6px 10px 2px; font-size: 12px; color: var(--muted); }
+.menu-check { display: inline-flex; width: 15px; }
+
+.role-help { margin-top: 12px; }
+.role-help summary { cursor: pointer; font-size: 13px; }
+.role-help .status-list { margin-top: 8px; }
+.retention-run { margin-top: 12px; align-items: center; }
+.retention-run p { margin: 0; }
+
+.notification-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.notification { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; padding: 10px 8px; border-bottom: 1px solid var(--line); }
+.notification:last-child { border-bottom: 0; }
+.notification-unread { background: var(--accent-soft); border-radius: var(--radius-sm); }
+.notification-text { min-width: 0; flex: 1 1 260px; }
+.notification-text p { margin: 0 0 4px; overflow-wrap: anywhere; }
+.notification-quote { margin: 4px 0; padding-left: 10px; border-left: 3px solid var(--line); font-size: 13px; overflow-wrap: anywhere; }
+.notification-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.finding-collab { display: grid; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.approval-pending { display: grid; gap: 6px; }
+.approval-pending .input { min-width: 0; flex: 1 1 200px; }
+.comments { display: grid; gap: 10px; margin-top: 8px; }
+.comment-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.comment { padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+.comment-meta { margin: 0 0 4px; }
+.comment-body { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.comment-form { display: grid; gap: 6px; }
+.comment-input { width: 100%; min-height: 60px; resize: vertical; font: inherit; }
+.audit-change { display: grid; gap: 2px; overflow-wrap: anywhere; max-width: 460px; }
+.recovery-codes ul { columns: 2; padding-left: 18px; margin: 8px 0; }
+.mfa-secret { overflow-wrap: anywhere; }
+@media (max-width: 640px) { .recovery-codes ul { columns: 1; } }

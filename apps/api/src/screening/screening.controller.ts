@@ -3,10 +3,16 @@ import { AdminGuard } from '../auth/admin.guard';
 import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
+import { CurrentOrg } from '../orgs/current-org.decorator';
+import type { OrgContext } from '../orgs/org.types';
+import { NoOrg, Permission } from '../orgs/permissions';
 import { AddAllowlistDto, AllowlistQuery, RefreshDto, RemoveAllowlistDto, SearchQuery, ThresholdsDto } from './screening.dto';
 import { ScreeningService } from './screening.service';
 
-/** Screening for every signed-in user: the lists in use, checking a name, and the account's allowlist. */
+/**
+ * Screening in the active organization: the lists in use and checking a name (data.read), and the
+ * organization's allowlist (read: data.read; set aside or put back: finding.decide).
+ */
 @Controller('screening')
 export class ScreeningController {
   constructor(private readonly screening: ScreeningService) {}
@@ -22,27 +28,30 @@ export class ScreeningController {
     return this.screening.search(query);
   }
 
-  /** ?history=true adds removed entries (the audit trail); ?all=true (admins) every account's. */
+  /** ?history=true adds removed entries (the audit trail); ?all=true (server admins) every organization's. */
   @Get('allowlist')
-  allowlist(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(AllowlistQuery)) query: AllowlistQuery) {
-    return this.screening.allowlist(user, { history: query.history === 'true', all: query.all === 'true' });
+  allowlist(@CurrentUser() user: PublicUser, @CurrentOrg() org: OrgContext, @Query(new ZodValidationPipe(AllowlistQuery)) query: AllowlistQuery) {
+    return this.screening.allowlist(user, org, { history: query.history === 'true', all: query.all === 'true' });
   }
 
-  /** Body { partyName, list, entryId, reason }: this party is not this list entry, for the user's account. */
+  /** Body { partyName, list, entryId, reason }: this party is not this list entry, for the organization. */
   @Post('allowlist')
-  add(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(AddAllowlistDto)) dto: AddAllowlistDto) {
-    return this.screening.addAllowlist(user, dto);
+  @Permission('finding.decide')
+  add(@CurrentUser() user: PublicUser, @CurrentOrg() org: OrgContext, @Body(new ZodValidationPipe(AddAllowlistDto)) dto: AddAllowlistDto) {
+    return this.screening.addAllowlist(user, org, dto);
   }
 
   /** Body { reason? }. The entry stays in the history. */
   @Delete('allowlist/:id')
-  remove(@CurrentUser() user: PublicUser, @Param('id', new ParseUUIDPipe()) id: string, @Body(new ZodValidationPipe(RemoveAllowlistDto)) dto: RemoveAllowlistDto) {
-    return this.screening.removeAllowlist(user, id, dto.reason);
+  @Permission('finding.decide')
+  remove(@CurrentUser() user: PublicUser, @CurrentOrg() org: OrgContext, @Param('id', new ParseUUIDPipe()) id: string, @Body(new ZodValidationPipe(RemoveAllowlistDto)) dto: RemoveAllowlistDto) {
+    return this.screening.removeAllowlist(user, org, id, dto.reason);
   }
 }
 
-/** Admin only: refresh the lists and set the thresholds. */
+/** Server admins only, outside any organization: the lists are global, and so are the thresholds. */
 @Controller('admin/screening')
+@NoOrg()
 @UseGuards(AdminGuard)
 export class ScreeningAdminController {
   constructor(private readonly screening: ScreeningService) {}

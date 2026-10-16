@@ -6,7 +6,9 @@ import {
   DEFAULT_THRESHOLDS, LIST_IDS, LISTS, loadScreening, partyKey, refreshLists, screenShipment, SOURCES,
   type ListVersion, type LoadedScreening, type RefreshOutcome, type ScreeningOutput, type ScreeningThresholds,
 } from '@doccheck/screening';
+import { AuditService } from '../audit/audit.service';
 import type { PublicUser } from '../auth/auth.types';
+import type { OrgContext } from '../orgs/org.types';
 import { isDemo } from '../demo/demo-mode';
 import type { AddAllowlistDto, SearchQuery, ThresholdsDto } from './screening.dto';
 import { ScreeningRepository, THRESHOLD_KEYS } from './screening.repository';
@@ -39,7 +41,10 @@ export class ScreeningService implements OnApplicationBootstrap {
   private running?: RefreshRun;
   private last?: RefreshRun;
 
-  constructor(private readonly repo: ScreeningRepository) {}
+  constructor(
+    private readonly repo: ScreeningRepository,
+    private readonly audit: AuditService,
+  ) {}
 
   onApplicationBootstrap() {
     void this.lists().then(
@@ -80,7 +85,9 @@ export class ScreeningService implements OnApplicationBootstrap {
 
   async setThresholds(dto: ThresholdsDto, user: PublicUser) {
     if (isDemo()) throw new ForbiddenException('Settings are read-only in the demo');
+    const before = await this.thresholds();
     await this.repo.saveThresholds(dto, user.id);
+    this.audit.note({ action: 'screening.thresholds', entity: 'setting', entityId: 'screening', before: { match: before.match, review: before.review }, after: dto });
     this.logger.log(`Screening thresholds set to match ${dto.match}, review ${dto.review} by ${user.email}`);
     return this.status();
   }
@@ -167,39 +174,53 @@ export class ScreeningService implements OnApplicationBootstrap {
     };
   }
 
-  /** Screens a validation's parties against the lists with the owner account's allowlist. */
+  /** Screens a validation's parties against the lists with the allowlist of the shipment's organization. */
   async screen(ctx: ShipmentContext): Promise<ScreeningOutput & { lists: number }> {
-    const [loaded, t, owner] = await Promise.all([this.lists().catch(() => undefined), this.thresholds(), this.repo.shipmentOwner(ctx.shipmentId).catch(() => undefined)]);
-    const allowlist = owner ? await this.repo.activeAllowlist(owner) : [];
+    const [loaded, t, orgId] = await Promise.all([this.lists().catch(() => undefined), this.thresholds(), this.repo.shipmentOrg(ctx.shipmentId).catch(() => undefined)]);
+    const allowlist = orgId ? await this.repo.activeAllowlist(orgId) : [];
     const out = screenShipment(ctx, loaded && loaded.index.size > 0 ? loaded.index : undefined, { thresholds: t, allowlist, versions: loaded?.versions });
     return { ...out, lists: loaded?.manifest.lists.filter((l) => l.entries > 0).length ?? 0 };
   }
 
-  allowlist(user: PublicUser, opts: { history: boolean; all: boolean }) {
-    if (opts.all && user.role !== 'admin') throw new ForbiddenException('Only admins can see every account’s allowlist');
-    return this.repo.list(opts.all ? undefined : user.id, opts.history);
+  /** The organization's allowlist; `all` (server admins, Administration › Screening) every organization's. */
+  allowlist(user: PublicUser, org: OrgContext, opts: { history: boolean; all: boolean }) {
+    if (opts.all && user.role !== 'admin') throw new ForbiddenException('Only server admins can see every organization’s allowlist');
+    return this.repo.list(opts.all ? undefined : org.id, opts.history);
   }
 
-  /** Sets aside a match for the user's account. The entry must be on a cached list. */
-  async addAllowlist(user: PublicUser, dto: AddAllowlistDto) {
+  /** Sets aside a match for the organization. The entry must be on a cached list. */
+  async addAllowlist(user: PublicUser, org: OrgContext, dto: AddAllowlistDto) {
     const { index } = await this.lists();
     const entry = index.entries.find((e) => e.list === dto.list && e.id === dto.entryId);
     if (!entry) throw new NotFoundException(`No entry ${dto.entryId} on list ${dto.list}`);
     const key = partyKey(dto.partyName);
     if (!key) throw new BadRequestException('The party name has no letters or digits');
-    const added = await this.repo.add({ userId: user.id, partyName: dto.partyName, partyKey: key, list: dto.list, entryId: dto.entryId, entryName: entry.name, reason: dto.reason, createdBy: user.id });
-    if (!added) throw new ConflictException('This match is already on your allowlist');
-    this.logger.log(`Allowlist: ${user.email} set aside "${dto.partyName}" vs ${dto.list}/${dto.entryId}`);
+    const added = await this.repo.add({ orgId: org.id, partyName: dto.partyName, partyKey: key, list: dto.list, entryId: dto.entryId, entryName: entry.name, reason: dto.reason, createdBy: user.id });
+    if (!added) throw new ConflictException('This match is already on the organization’s allowlist');
+    this.audit.note({
+      orgId: org.id,
+      action: 'screening.allowlist.add',
+      entity: 'screening_allowlist',
+      entityId: added.id,
+      after: { partyName: added.partyName, list: added.list, entryId: added.entryId, entryName: added.entryName, reason: added.reason },
+    });
     return added;
   }
 
-  /** Puts a match back: the next validation flags it again. Admins can do it for any account. */
-  async removeAllowlist(user: PublicUser, id: string, reason?: string) {
-    const item = await this.repo.find(id);
-    if (!item || (item.userId !== user.id && user.role !== 'admin')) throw new NotFoundException(`Allowlist entry ${id} not found`);
+  /** Puts a match back: the next validation flags it again. Only within the organization that set it aside. */
+  async removeAllowlist(user: PublicUser, org: OrgContext, id: string, reason?: string) {
+    const item = await this.repo.find(id, org.id);
+    if (!item) throw new NotFoundException(`Allowlist entry ${id} not found`);
     if (item.removedAt) throw new ConflictException('Already removed');
-    await this.repo.remove(id, user.id, reason || undefined);
-    this.logger.log(`Allowlist: ${user.email} removed "${item.partyName}" vs ${item.list}/${item.entryId}`);
-    return this.repo.find(id);
+    await this.repo.remove(id, org.id, user.id, reason || undefined);
+    this.audit.note({
+      orgId: org.id,
+      action: 'screening.allowlist.remove',
+      entity: 'screening_allowlist',
+      entityId: id,
+      before: { partyName: item.partyName, list: item.list, entryId: item.entryId, reason: item.reason },
+      after: { removedReason: reason || null },
+    });
+    return this.repo.find(id, org.id);
   }
 }

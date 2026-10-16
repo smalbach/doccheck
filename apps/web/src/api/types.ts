@@ -31,6 +31,10 @@ export interface ShipmentListQuery {
   status?: StatusGroup;
   destination?: Destination;
   q?: string;
+  /** overdue: past its due date and not done; soon: due in 48 hours. */
+  due?: 'overdue' | 'soon';
+  /** "me" or a member's id. */
+  assignee?: string;
   limit?: number;
   offset?: number;
 }
@@ -43,7 +47,7 @@ export interface ShipmentPage {
   offset: number;
   /** Over all of the user's shipments, whatever the filters. */
   /** findings: open ones (not accepted nor false positive); waiting: asked of the supplier. */
-  summary: { all: number; open: number; attention: number; done: number; findings: number; waiting: number };
+  summary: { all: number; open: number; attention: number; done: number; findings: number; waiting: number; overdue?: number; dueSoon?: number };
 }
 
 export interface ShipmentUpdate {
@@ -67,6 +71,10 @@ export interface ValidationSummary {
 export interface ShipmentSummary extends Omit<Shipment, 'documents'> {
   documentCount: number;
   findingCount: number | null;
+  dueAt?: string;
+  dueSource?: 'manual' | 'isf' | 'eta';
+  overdue?: boolean;
+  assignee?: { id: string; name: string };
 }
 
 export interface AgentDecision {
@@ -802,8 +810,8 @@ export interface ScreeningSearch {
 
 export interface AllowlistItem {
   id: string;
-  userId: string;
-  account: string;
+  orgId: string;
+  organization: string;
   partyName: string;
   partyKey: string;
   list: string;

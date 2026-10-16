@@ -81,7 +81,7 @@ export function ScreeningAdminPage() {
           (allowlist.items.length === 0 ? (
             <p className="muted">{t('screening.allowlist.empty')}</p>
           ) : (
-            <AllowlistTable items={allowlist.items} showAccount readOnly={!editable} onRemove={(item) => void allowlist.remove(item)} />
+            <AllowlistTable items={allowlist.items} showOrganization readOnly onRemove={(item) => void allowlist.remove(item)} />
           ))}
       </Card>
     </div>

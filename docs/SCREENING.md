@@ -42,13 +42,17 @@ Determinista: las mismas listas y la misma parte dan siempre las mismas coincide
 
 Se revisan vendedor y embarcador, comprador, consignatario, exportador, parte a notificar y, en el ISF, fabricante, ship-to y consolidador. Una misma parte impresa en varios documentos es una sola, con toda su evidencia. Hay un finding por parte y por lista (la mejor entrada), con el nombre que coincidió, la puntuación y, como pasaje citado, la lista, la entrada con su enlace, sus programas y la consecuencia de estar en ella. S3 cita la UFLPA (sección 3(a)) para EE. UU. y la partida 9897.00.00 del Customs Tariff para Canadá. Los nombres de Xinjiang que existen fuera (Aksu, Altay, Hami, Ili) solo cuentan si la parte está en China o no indica país.
 
-Los umbrales se cambian en **Administración › Listas restringidas** (o con `SCREENING_MATCH_THRESHOLD` y `SCREENING_REVIEW_THRESHOLD`); un umbral de revisión mayor que el de coincidencia se lee como el de coincidencia.
+Los umbrales se cambian en **Administración › Listas restringidas** (o con `SCREENING_MATCH_THRESHOLD` y `SCREENING_REVIEW_THRESHOLD`); un umbral de revisión mayor que el de coincidencia se lee como el de coincidencia. Son del servidor, no de cada organización, como las listas: definen qué cuenta como coincidencia con una lista de sanciones, y que un equipo pudiera subirlos para no ver coincidencias sería una forma de ocultarlas. Lo que cada organización decide son sus excepciones, una por una y con motivo.
 
 **El agente** solo ve las coincidencias S2: compara la parte con la entrada y su explicación queda en el finding; un "es la misma" con confianza ≥ 0,7 sube el finding a gravedad alta. Nunca descarta una coincidencia, y las S1 no se le preguntan: descartar una posible coincidencia con una lista de sanciones es decisión de una persona.
 
 ## Lista de excepciones (falsos positivos)
 
-Desde **Listas restringidas › Comprobar un nombre**, "No es esta parte" guarda, para la cuenta, que ese nombre de parte no es esa entrada, con un motivo obligatorio. La validación omite esa coincidencia exacta (nombre normalizado + lista + entrada) para esa cuenta; S3 se mantiene. "Restablecer" la quita con un motivo opcional. Las filas nunca se borran: la tabla es el registro de quién descartó qué, cuándo y por qué, y quién lo restableció. Los administradores ven las de todas las cuentas.
+Las excepciones son de la **organización** (ver [ORGANIZATIONS.md](ORGANIZATIONS.md)): desde **Listas restringidas › Comprobar un nombre**, "No es esta parte" guarda, para la organización activa, que ese nombre de parte no es esa entrada, con un motivo obligatorio. La validación de los envíos de esa organización omite esa coincidencia exacta (nombre normalizado + lista + entrada); S3 se mantiene, y las demás organizaciones siguen viendo la coincidencia. "Restablecer" la quita con un motivo opcional.
+
+- Ver la lista: permiso `data.read` (todos los roles salvo cliente). Descartar o restablecer: `finding.decide` (propietario, administrador, analista, revisor), porque es una decisión sobre findings. Un visor o un cliente recibe 403; un miembro de otra organización, 404.
+- Las filas nunca se borran: la tabla (`screening_allowlist`, migración 044, `org_id` con `on delete cascade`) guarda quién descartó qué, cuándo y por qué, y quién lo restableció. Cada alta y baja queda además en el registro de auditoría como `screening.allowlist.add` / `screening.allowlist.remove`, con los valores.
+- Los administradores del servidor ven las de todas las organizaciones en Administración › Listas restringidas (solo lectura).
 
 ## API
 
@@ -56,10 +60,10 @@ Desde **Listas restringidas › Comprobar un nombre**, "No es esta parte" guarda
 | --- | --- | --- |
 | GET | `/screening/lists` | Listas con versión, SHA-256, entradas, errores, estado de la actualización y umbrales |
 | GET | `/screening/search?q=&country=&city=` | Las 10 entradas más parecidas, con puntuación y resultado (`match`, `review`, `below`) |
-| GET | `/screening/allowlist?history=true&all=true` | Excepciones de la cuenta (`all`: de todas, solo administradores); `history` incluye las restablecidas |
-| POST | `/screening/allowlist` | `{ partyName, list, entryId, reason }` |
-| DELETE | `/screening/allowlist/:id` | `{ reason? }` |
-| GET | `/admin/screening` | Lo mismo que `/screening/lists` (administradores) |
+| GET | `/screening/allowlist?history=true&all=true` | Excepciones de la organización activa (`all`: de todas, solo administradores del servidor); `history` incluye las restablecidas |
+| POST | `/screening/allowlist` | `{ partyName, list, entryId, reason }` (`finding.decide`) |
+| DELETE | `/screening/allowlist/:id` | `{ reason? }` (`finding.decide`; 404 fuera de la organización) |
+| GET | `/admin/screening` | Lo mismo que `/screening/lists` (administradores del servidor, fuera de toda organización) |
 | POST | `/admin/screening/refresh` | `{ only?: string[] }`: descarga en segundo plano (202); una a la vez |
 | PUT / DELETE | `/admin/screening/thresholds` | `{ match, review }` entre 0,5 y 1; DELETE vuelve a los valores por defecto |
 

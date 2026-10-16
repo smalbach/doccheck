@@ -9,7 +9,7 @@ export const isDemo = (env: NodeJS.ProcessEnv = process.env) => env.DEMO_READONL
 
 // Accounts work as usual in the demo (sign up, sign in, profile, password, forgotten password); data
 // stays read-only.
-const ALLOWED_WRITES = [/^\/auth\/(register|login|logout|me|me\/language|password|forgot-password|reset-password)$/, /^\/demo\/samples\/[\w-]+$/, /^\/shipments\/[0-9a-f-]{36}\/validate$/i];
+const ALLOWED_WRITES = [/^\/auth\/(register|login|logout|me|me\/language|mfa|password|forgot-password|reset-password)$/, /^\/demo\/samples\/[\w-]+$/, /^\/orgs\/[0-9a-f-]{36}\/switch$/i, /^\/shipments\/[0-9a-f-]{36}\/validate$/i];
 
 export function readOnlyGuard(req: Request, res: Response, next: NextFunction) {
   if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') return next();

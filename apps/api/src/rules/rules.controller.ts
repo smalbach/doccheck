@@ -1,8 +1,10 @@
 import { Controller, Get, Query } from '@nestjs/common';
+import { NoOrg } from '../orgs/permissions';
 import { ALL_RULES, PROFILES } from '@doccheck/rules';
 import { SCREENING_RULES } from '@doccheck/screening';
 import type { Destination } from '@doccheck/schemas';
 
+@NoOrg()
 @Controller('rules')
 export class RulesController {
   @Get()

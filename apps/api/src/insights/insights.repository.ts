@@ -8,14 +8,14 @@ import type { ContainerRow, GoodsLine, InsightsSummary, Paged, ShipmentData, Tot
 const HS = `coalesce(hs6, hs4)`;
 
 /**
- * The user's shipments ($1, optionally of destination $2), the latest extracted invoice, packing list
+ * The organization's shipments ($1, optionally of destination $2), the latest extracted invoice, packing list
  * and bill of lading of each (as validation picks them), the invoice lines, and per-shipment figures,
  * read from the tables the extractions are projected to (migration 013).
  * Weights and packages come from the bill of lading first, then the packing list, then the invoice.
  */
 export const BASE = `
   with owned as (
-    select id, reference, destination, created_at from shipments where user_id = $1 and ($2::text is null or destination = $2)
+    select id, reference, destination, created_at from shipments where org_id = $1 and ($2::text is null or destination = $2)
   ), latest as (
     select distinct on (d.shipment_id, d.detected_type) d.id as document_id
     from documents d join extractions e on e.document_id = d.id join owned o on o.id = d.shipment_id
@@ -53,8 +53,8 @@ const text = (v: unknown) => (typeof v === 'string' && v ? v : undefined);
 export class InsightsRepository {
   constructor(@Inject(PG_POOL) private readonly pool: Pool) {}
 
-  async summary(userId: string, { destination }: SummaryQuery): Promise<InsightsSummary> {
-    const params = [userId, destination ?? null];
+  async summary(orgId: string, { destination }: SummaryQuery): Promise<InsightsSummary> {
+    const params = [orgId, destination ?? null];
     const { rows: [r] } = await this.pool.query(
       `${BASE}
        select
@@ -103,8 +103,8 @@ export class InsightsRepository {
   }
 
   /** Every invoice line, newest shipment first, in line order. */
-  async lines(userId: string, q: LinesQuery): Promise<Paged<GoodsLine>> {
-    const params: unknown[] = [userId, q.destination ?? null];
+  async lines(orgId: string, q: LinesQuery): Promise<Paged<GoodsLine>> {
+    const params: unknown[] = [orgId, q.destination ?? null];
     const where: string[] = [];
     if (q.q) {
       params.push(like(q.q));
@@ -161,8 +161,8 @@ export class InsightsRepository {
   }
 
   /** Key figures of each shipment with extracted documents, newest first. */
-  async shipments(userId: string, q: ShipmentDataQuery): Promise<Paged<ShipmentData>> {
-    const params: unknown[] = [userId, q.destination ?? null];
+  async shipments(orgId: string, q: ShipmentDataQuery): Promise<Paged<ShipmentData>> {
+    const params: unknown[] = [orgId, q.destination ?? null];
     let where = '';
     if (q.q) {
       params.push(like(q.q));
@@ -207,9 +207,9 @@ export class InsightsRepository {
     };
   }
 
-  /** Every container on the bills of lading of the user's shipments, newest shipment first. */
-  async containers(userId: string, q: ContainersQuery): Promise<Paged<ContainerRow>> {
-    const params: unknown[] = [userId, q.destination ?? null];
+  /** Every container on the bills of lading of the organization's shipments, newest shipment first. */
+  async containers(orgId: string, q: ContainersQuery): Promise<Paged<ContainerRow>> {
+    const params: unknown[] = [orgId, q.destination ?? null];
     let where = '';
     if (q.q) {
       params.push(like(q.q));
