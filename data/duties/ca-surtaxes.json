@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "table": "ca-surtaxes",
+    "source": "Hand-edited: surtax orders under the Customs Tariff (China Surtax Order 2024, steel safeguard and countermeasure orders)",
+    "version": "2026-10-16.1",
+    "dataDate": "2026-10-16",
+    "validThrough": "2026-10-16",
+    "note": "Only orders checked for DocCheck's goods are listed. Surtaxes are charged on the value for duty and are part of the GST base."
+  },
+  "originsReviewed": [],
+  "entries": [
+    {
+      "id": "CA-SURTAX-CN-EV",
+      "program": "China Surtax Order (2024)",
+      "description": "Electric and certain hybrid passenger vehicles from China",
+      "origins": ["CN"],
+      "hs": ["8703.80", "8703.60", "8703.70"],
+      "kind": "adValorem",
+      "percent": "100",
+      "effectiveFrom": "2024-10-01",
+      "effectiveTo": null,
+      "source": "China Surtax Order (2024), SOR/2024-187",
+      "url": "https://www.canada.ca/en/department-finance/news/2024/08/canada-implements-measures-to-protect-canadian-workers-and-businesses-from-unfair-chinese-trade-practices.html",
+      "verified": true
+    }
+  ]
+}

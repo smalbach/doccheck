@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { CollabModule } from './collab/collab.module';
 import { NotificationsModule } from './collab/notifications.module';
 import { DbModule } from './db/db.module';
+import { DutiesModule } from './duties/duties.module';
 import { InsightsModule } from './insights/insights.module';
 import { LlmModule } from './llm/llm.module';
 import { MailModule } from './messaging/mail.module';
@@ -23,7 +24,7 @@ import { UsageModule } from './usage/usage.module';
 @Module({
   imports: [
     DbModule, StorageModule, LlmModule, ProgressModule, AuditModule, NotificationsModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule,
-    OrgsModule, CollabModule, RulesModule, UsageModule, ReviewModule, ScreeningModule,
+    OrgsModule, CollabModule, RulesModule, UsageModule, ReviewModule, ScreeningModule, DutiesModule,
   ],
   controllers: [HealthController, RulesController, ResultsController],
 })

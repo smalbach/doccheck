@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "table": "adcvd-cases",
+    "source": "Hand-edited: US antidumping and countervailing duty orders (Commerce, ACE AD/CVD case reference) and Canadian SIMA measures in force (CBSA)",
+    "version": "2026-10-16.1",
+    "dataDate": "2026-10-16",
+    "validThrough": "2026-10-16",
+    "note": "Flags only: whether a case may cover the goods depends on the scope wording, not the HS code alone, and the rate on the producer. DocCheck does not compute AD/CVD or SIMA duties."
+  },
+  "cases": [
+    { "id": "US-A-570-108", "destination": "US", "caseNumber": "A-570-108", "product": "Ceramic tile", "kind": "AD", "origins": ["CN"], "hs": ["6907"], "since": "2020-06-01", "until": null, "url": "https://www.trade.gov/us-antidumping-and-countervailing-duties", "verified": true },
+    { "id": "US-C-570-109", "destination": "US", "caseNumber": "C-570-109", "product": "Ceramic tile", "kind": "CVD", "origins": ["CN"], "hs": ["6907"], "since": "2020-06-01", "until": null, "url": "https://www.trade.gov/us-antidumping-and-countervailing-duties", "verified": true },
+    { "id": "US-A-570-932", "destination": "US", "caseNumber": "A-570-932", "product": "Steel threaded rod", "kind": "AD", "origins": ["CN"], "hs": ["7318.15"], "since": "2009-04-14", "until": null, "url": "https://www.trade.gov/us-antidumping-and-countervailing-duties", "verified": true },
+    { "id": "US-A-570-909", "destination": "US", "caseNumber": "A-570-909", "product": "Certain steel nails", "kind": "AD", "origins": ["CN"], "hs": ["7317"], "since": "2008-08-01", "until": null, "url": "https://www.trade.gov/us-antidumping-and-countervailing-duties", "verified": true },
+    { "id": "US-A-570-899", "destination": "US", "caseNumber": "A-570-899", "product": "Artist canvas", "kind": "AD", "origins": ["CN"], "hs": ["5901.90"], "since": "2006-06-01", "until": null, "verified": false },
+    { "id": "CA-SIMA-FASTENERS", "destination": "CA", "caseNumber": "RR-2019-003", "product": "Certain carbon steel screws (fasteners)", "kind": "SIMA", "origins": ["CN", "TW"], "hs": ["7318.12", "7318.14", "7318.15"], "since": "2005-01-07", "until": null, "url": "https://www.cbsa-asfc.gc.ca/sima-lmsi/mif-mev/menu-eng.html", "verified": false },
+    { "id": "CA-SIMA-SEATING", "destination": "CA", "caseNumber": "NQ-2021-002", "product": "Certain upholstered domestic seating", "kind": "SIMA", "origins": ["CN", "VN"], "hs": ["9401.40", "9401.61", "9401.71"], "since": "2021-12-03", "until": null, "url": "https://www.cbsa-asfc.gc.ca/sima-lmsi/mif-mev/menu-eng.html", "verified": false }
+  ]
+}

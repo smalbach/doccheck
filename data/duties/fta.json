@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "table": "fta",
+    "source": "Hand-edited: Customs Tariff s. 24-52 and the List of Countries and Applicable Tariff Treatments (CBSA); HTSUS General Notes 3(c) and the special program indicators; CUSMA Chapter 4 and Annex 5-A",
+    "version": "2026-10-16.1",
+    "dataDate": "2026-10-16",
+    "validThrough": "2026-10-16",
+    "url": "https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/2026/html/countries-pays-eng.html",
+    "note": "The origin pre-check says whether a preference may be available and what proof it needs. Whether the goods qualify depends on the product-specific rule of origin, which DocCheck does not decide."
+  },
+  "agreements": [
+    { "id": "CUSMA", "name": "Canada-United States-Mexico Agreement (USMCA)", "CA": { "treatments": { "US": "UST", "MX": "MXT" } }, "US": { "program": "S", "origins": ["CA", "MX"] }, "certification": "cusma", "proof": "Certification of origin with the nine minimum data elements of CUSMA Annex 5-A (on the invoice or a separate document)" },
+    { "id": "CPTPP", "name": "Comprehensive and Progressive Agreement for Trans-Pacific Partnership", "CA": { "treatments": { "AU": "CPTPT", "BN": "CPTPT", "CL": "CPTPT", "JP": "CPTPT", "MY": "CPTPT", "MX": "CPTPT", "NZ": "CPTPT", "PE": "CPTPT", "SG": "CPTPT", "VN": "CPTPT" } }, "certification": "cptpp", "proof": "Certification of origin with the minimum data requirements of CPTPP Annex 3-B" },
+    { "id": "CETA", "name": "Canada-European Union Comprehensive Economic and Trade Agreement", "CA": { "treatments": { "AT": "CEUT", "BE": "CEUT", "BG": "CEUT", "HR": "CEUT", "CY": "CEUT", "CZ": "CEUT", "DK": "CEUT", "EE": "CEUT", "FI": "CEUT", "FR": "CEUT", "DE": "CEUT", "GR": "CEUT", "HU": "CEUT", "IE": "CEUT", "IT": "CEUT", "LV": "CEUT", "LT": "CEUT", "LU": "CEUT", "MT": "CEUT", "NL": "CEUT", "PL": "CEUT", "PT": "CEUT", "RO": "CEUT", "SK": "CEUT", "SI": "CEUT", "ES": "CEUT", "SE": "CEUT" } }, "certification": "origin-statement", "proof": "Origin declaration by the exporter on the invoice (CETA Annex 2), with the exporter's REX number for EU exporters" },
+    { "id": "CUKTCA", "name": "Canada-United Kingdom Trade Continuity Agreement", "CA": { "treatments": { "GB": "UKT" } }, "certification": "origin-statement", "proof": "Origin declaration by the exporter on the invoice" },
+    { "id": "CCOFTA", "name": "Canada-Colombia Free Trade Agreement", "CA": { "treatments": { "CO": "COLT" } }, "certification": "certificate", "proof": "Certificate of origin completed and signed by the exporter" },
+    { "id": "CKFTA", "name": "Canada-Korea Free Trade Agreement", "CA": { "treatments": { "KR": "KRT" } }, "certification": "origin-statement", "proof": "Origin declaration by the exporter" },
+    { "id": "CCFTA", "name": "Canada-Chile Free Trade Agreement", "CA": { "treatments": { "CL": "CT" } }, "certification": "certificate", "proof": "Certificate of origin" },
+    { "id": "CPFTA", "name": "Canada-Peru Free Trade Agreement", "CA": { "treatments": { "PE": "PT" } }, "certification": "certificate", "proof": "Certificate of origin" },
+    { "id": "CIFTA", "name": "Canada-Israel Free Trade Agreement", "CA": { "treatments": { "IL": "CIAT" } }, "certification": "origin-statement", "proof": "Origin declaration" },
+    { "id": "CUAFTA", "name": "Canada-Ukraine Free Trade Agreement", "CA": { "treatments": { "UA": "UAT" } }, "certification": "origin-statement", "proof": "Origin declaration" },
+    { "id": "US-CO-TPA", "name": "United States-Colombia Trade Promotion Agreement", "US": { "program": "CO", "origins": ["CO"] }, "certification": "certificate", "proof": "Importer's claim based on a certification or knowledge that the goods are originating (19 CFR 10.3004)" },
+    { "id": "KORUS", "name": "United States-Korea Free Trade Agreement", "US": { "program": "KR", "origins": ["KR"] }, "certification": "certificate", "proof": "Certification of origin (19 CFR 10.1004)" },
+    { "id": "US-AU", "name": "United States-Australia Free Trade Agreement", "US": { "program": "AU", "origins": ["AU"] }, "certification": "certificate", "proof": "Information supporting the claim (19 CFR 10.704)" },
+    { "id": "US-SG", "name": "United States-Singapore Free Trade Agreement", "US": { "program": "SG", "origins": ["SG"] }, "certification": "certificate", "proof": "Information supporting the claim" },
+    { "id": "US-CL", "name": "United States-Chile Free Trade Agreement", "US": { "program": "CL", "origins": ["CL"] }, "certification": "certificate", "proof": "Certification of origin (19 CFR 10.404)" },
+    { "id": "US-IL", "name": "United States-Israel Free Trade Area", "US": { "program": "IL", "origins": ["IL"] }, "certification": "certificate", "proof": "Declaration of origin" },
+    { "id": "US-PE", "name": "United States-Peru Trade Promotion Agreement", "US": { "program": "PE", "origins": ["PE"] }, "certification": "certificate", "proof": "Certification of origin" },
+    { "id": "CAFTA-DR", "name": "Dominican Republic-Central America FTA", "US": { "program": "P", "origins": ["CR", "DO", "SV", "GT", "HN", "NI"] }, "certification": "certificate", "proof": "Certification of origin" }
+  ],
+  "caTreatments": {
+    "MFN": { "name": "Most-Favoured-Nation Tariff", "code": "2" },
+    "GPT": { "name": "General Preferential Tariff", "code": "3" },
+    "UST": { "name": "United States Tariff (CUSMA)", "code": "10" },
+    "MXT": { "name": "Mexico Tariff (CUSMA)", "code": "11" },
+    "CPTPT": { "name": "CPTPP Tariff" },
+    "CEUT": { "name": "Canada-European Union Tariff" },
+    "UKT": { "name": "United Kingdom Tariff" },
+    "COLT": { "name": "Colombia Tariff" },
+    "KRT": { "name": "Korea Tariff" },
+    "CT": { "name": "Chile Tariff" },
+    "PT": { "name": "Peru Tariff" },
+    "CIAT": { "name": "Canada-Israel Agreement Tariff" },
+    "UAT": { "name": "Ukraine Tariff" },
+    "LDCT": { "name": "Least Developed Country Tariff" },
+    "GT": { "name": "General Tariff" }
+  },
+  "cusmaHints": [
+    { "chapters": ["01", "24"], "hint": "Agricultural and food goods: most rules require the goods to be wholly obtained in the region or a change of chapter; check sugar and dairy restrictions." },
+    { "chapters": ["50", "63"], "hint": "Textiles and apparel: yarn-forward rule (yarn, fabric and cut-and-sew in the region), with a 10 % de minimis by weight of non-originating fibres." },
+    { "chapters": ["72", "73"], "hint": "Iron and steel goods: usually a change of heading or subheading; steel bought by vehicle producers must be melted and poured in North America." },
+    { "chapters": ["84", "85"], "hint": "Machinery and electrical goods: usually a change of tariff subheading, or a regional value content of 50 % (net cost) or 60 % (transaction value)." },
+    { "chapters": ["87", "87"], "hint": "Vehicles and parts: regional value content of up to 75 %, labour value content and steel and aluminum purchase requirements (Appendix to Annex 4-B)." }
+  ],
+  "cusmaDefaultHint": "Check the product-specific rule of origin for the subheading in CUSMA Annex 4-B (a change of tariff classification, a regional value content or both)."
+}

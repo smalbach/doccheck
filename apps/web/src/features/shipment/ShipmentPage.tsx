@@ -10,6 +10,8 @@ import { evidencePointer } from '../../lib/findingReview';
 import { showFinding } from '../../lib/showFinding';
 import { liveValidationRun } from '../../lib/validationCaption';
 import { DocumentDataSheet } from '../document-data/DocumentDataSheet';
+import { DutiesCard } from '../duties/DutiesCard';
+import { useDuties } from '../duties/useDuties';
 import { ComposeDialog } from '../mail/ComposeDialog';
 import { ThreadsCard } from '../mail/ThreadsCard';
 import { ShipmentCollabCard } from '../team/ShipmentCollabCard';
@@ -45,6 +47,11 @@ export function ShipmentPage({ id }: { id: string }) {
   // Viewers, reviewers and clients read; the demo is read-only for everyone.
   const canWrite = !demo && can('shipment.write');
   const canDecide = !demo && can('finding.decide');
+  // The estimate is computed from the current documents: reload it when they or the destination change.
+  const dutiesVersion = `${shipment?.destination}|${latest?.id}|${[...documents.values()].map((d) => `${d.id}:${d.status}`).join(',')}`;
+  // Rate tables exist for Canada and the US only; other destinations get a note, not numbers.
+  const dutiesSupported = shipment?.destination === 'CA' || shipment?.destination === 'US';
+  const duties = useDuties(id, dutiesVersion, dutiesSupported && !extracting, demo);
 
   if (!shipment) return <LoadingCard error={error} />;
   // A past run picked in the history replaces the latest one in Findings and in the export.
@@ -63,7 +70,7 @@ export function ShipmentPage({ id }: { id: string }) {
         actions={
           <>
             {canWrite && <EditShipmentDialog shipment={shipment} extracting={extracting} onSave={update} />}
-            {validation && <ExportMenu shipment={shipment} validation={validation} />}
+            {validation && <ExportMenu shipment={shipment} validation={validation} duties={duties.view} />}
           </>
         }
       />
@@ -110,6 +117,7 @@ export function ShipmentPage({ id }: { id: string }) {
           notice={<ValidationNotice shipment={shipment} validation={validation} past={!!history.past} onShowLatest={history.showLatest} />}
         />
       </div>
+      {shipment.destination && <DutiesCard duties={duties} supported={dutiesSupported} documents={documents} demo={demo} canAnswer={demo || canWrite} onOpen={setViewer} />}
       <ShipmentCollabCard documents={shipment.documents} />
       {can('data.read') && <ThreadsCard shipmentId={id} actions={canWrite && <ComposeDialog mode="message" shipmentId={id} reference={shipment.reference ?? ''} />} />}
       <ValidationHistory

@@ -265,6 +265,9 @@ describe('organizations', () => {
       ['PUT', `/shipments/${s.id}/schedule`, { eta: '2030-01-01' }],
       ['GET', `/shipments/${s.id}/shares`],
       ['GET', `/shipments/${s.id}/events`],
+      ['GET', `/shipments/${s.id}/duties`],
+      ['PUT', `/shipments/${s.id}/duties/inputs`, { relatedParty: true }],
+      ['POST', `/shipments/${s.id}/duties/preview`, { relatedParty: true }],
       ['GET', `/review/documents/${docId}`],
       ['POST', `/review/documents/${docId}/accept`, { paths: ['/invoiceNumber'] }],
       ['DELETE', `/review/documents/${docId}/accept`],
@@ -354,6 +357,13 @@ describe('organizations', () => {
     assert.equal((await call('POST', `/shipments/${s.id}/findings/review`, { fingerprints: [fp], status: 'open' }, viewer.cookie)).status, 403);
     assert.equal((await call('POST', `/shipments/${s.id}/comments`, { targetKind: 'shipment', body: 'hi' }, viewer.cookie)).status, 403);
     assert.equal((await call('GET', '/audit', undefined, viewer.cookie)).status, 403);
+    // The duty estimate and its draft entry are read with the shipment; only writers save the answers.
+    assert.equal((await call('GET', `/shipments/${s.id}/duties`, undefined, viewer.cookie)).status, 200);
+    assert.equal((await call('PUT', `/shipments/${s.id}/duties/inputs`, { relatedParty: true }, viewer.cookie)).status, 403);
+    assert.equal((await call('POST', `/shipments/${s.id}/duties/preview`, { relatedParty: true }, viewer.cookie)).status, 200);
+    assert.equal((await call('GET', `/shipments/${s.id}/duties`, undefined, owner.cookie)).body.inputsUpdatedAt, undefined);
+    assert.equal((await call('PUT', `/shipments/${s.id}/duties/inputs`, { relatedParty: false }, owner.cookie)).status, 200);
+    assert.deepEqual((await call('GET', `/shipments/${s.id}/duties`, undefined, viewer.cookie)).body.estimate.inputs, { relatedParty: false });
     assert.equal((await call('POST', '/orgs/current/invites', { email: 'x@example.com', role: 'viewer' }, viewer.cookie)).status, 403);
     // Viewers read the review queue and usage, but neither review values nor buy a plan.
     assert.equal((await call('GET', '/review/queue', undefined, viewer.cookie)).status, 200);
@@ -450,6 +460,7 @@ describe('organizations', () => {
       assert.equal((await call('GET', path, undefined, client.cookie)).status, 403, path);
     }
     assert.equal((await call('PATCH', `/shipments/${shared.id}`, { reference: 'x' }, client.cookie)).status, 403);
+    assert.equal((await call('PUT', `/shipments/${shared.id}/duties/inputs`, { relatedParty: true }, client.cookie)).status, 403);
     assert.equal((await call('DELETE', `/shipments/${shared.id}/shares/${client.id}`, undefined, owner.cookie)).status, 200);
     assert.equal((await call('GET', `/shipments/${shared.id}`, undefined, client.cookie)).status, 404);
   });

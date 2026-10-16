@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "table": "us-fees",
+    "source": "19 CFR 24.23 (MPF, HMF) and the CBP fiscal-year fee notices",
+    "version": "2026-10-16.1",
+    "dataDate": "2026-10-16",
+    "validThrough": "2027-09-30",
+    "note": "MPF minimum and maximum change every October 1 with the CPI-U; the ad valorem rate stays 0.3464 %."
+  },
+  "mpf": [
+    { "from": "2024-10-01", "to": "2025-09-30", "percent": "0.3464", "minimum": "32.71", "maximum": "634.62", "source": "CBP notice, 89 FR 61895 (FY2025)" },
+    { "from": "2025-10-01", "to": "2026-09-30", "percent": "0.3464", "minimum": "33.58", "maximum": "651.50", "source": "CBP notice for FY2026" },
+    { "from": "2026-10-01", "to": "2027-09-30", "percent": "0.3464", "minimum": "34.58", "maximum": "670.86", "source": "CBP notice for FY2027 (Federal Register 2026-15530)" }
+  ],
+  "hmf": [
+    { "from": "1987-04-01", "to": null, "percent": "0.125", "modes": ["SEA"], "source": "19 CFR 24.24 (Harbor Maintenance Fee, commercial cargo at ports)" }
+  ],
+  "informalEntryLimit": "2500"
+}

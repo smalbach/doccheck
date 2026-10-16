@@ -9,8 +9,8 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/screening -w @doccheck/extraction -w @doccheck/synth -w @doccheck/regulations -w @doccheck/agent && npm run build -w @doccheck/api -w @doccheck/web",
-    "test": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/screening -w @doccheck/extraction -w @doccheck/regulations && npm run test --workspaces --if-present",
+    "build": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/screening -w @doccheck/duties -w @doccheck/extraction -w @doccheck/synth -w @doccheck/regulations -w @doccheck/agent && npm run build -w @doccheck/api -w @doccheck/web",
+    "test": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/screening -w @doccheck/duties -w @doccheck/extraction -w @doccheck/regulations && npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "dev": "npm run start:dev -w @doccheck/api",
     "smoke": "node scripts/smoke.mjs",
@@ -18,6 +18,7 @@
     "eval:extraction": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction && node packages/extraction/dist/eval-cli.js",
     "eval:agent": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/extraction -w @doccheck/regulations -w @doccheck/agent && node packages/agent/dist/eval-cli.js",
     "corpus:fetch": "node scripts/fetch-corpus.mjs",
+    "duties:fetch": "node scripts/fetch-duty-data.mjs --us --ca --fx",
     "corpus:index": "npm run build -w @doccheck/regulations && node packages/regulations/dist/cli.js index",
     "start": "node apps/api/dist/main.js",
     "dev:web": "npm run dev -w @doccheck/web",

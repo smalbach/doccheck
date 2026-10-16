@@ -20,6 +20,7 @@ ARG OCR=true
 WORKDIR /app
 COPY package.json package-lock.json ./
 COPY --from=build /app/packages/agent/package.json packages/agent/
+COPY --from=build /app/packages/duties/package.json packages/duties/
 COPY --from=build /app/packages/extraction/package.json packages/extraction/
 COPY --from=build /app/packages/regulations/package.json packages/regulations/
 COPY --from=build /app/packages/rules/package.json packages/rules/
@@ -47,6 +48,8 @@ COPY --from=deps /app/node_modules ./node_modules
 # Workspace packages: node_modules/@doccheck/* link here; only package.json and dist are needed.
 COPY --from=build /app/packages/agent/package.json packages/agent/
 COPY --from=build /app/packages/agent/dist packages/agent/dist
+COPY --from=build /app/packages/duties/package.json packages/duties/
+COPY --from=build /app/packages/duties/dist packages/duties/dist
 COPY --from=build /app/packages/extraction/package.json packages/extraction/
 COPY --from=build /app/packages/extraction/dist packages/extraction/dist
 COPY --from=build /app/packages/regulations/package.json packages/regulations/
@@ -64,6 +67,8 @@ COPY --from=build /app/apps/web/dist apps/web/dist
 # Regulation corpus and its embedding index (data/corpus/index/*.queries.json holds the citation
 # query vectors the demo replays). Evaluation reports feed the Results page.
 COPY data/corpus data/corpus
+# Duty, tax and exchange-rate tables read by the duty estimate (packages/duties).
+COPY data/duties data/duties
 COPY eval/reports eval/reports
 # Read-only demo: curated samples (npm run demo:build) and the model answers they replay.
 COPY data/demo data/demo
