@@ -1,5 +1,6 @@
--- Usage metering and plans. Each account (user) counts the documents it had extracted and the
--- validations it ran, per calendar month (UTC). A plan sets the monthly limits; admins edit them.
+-- Usage metering and plans. Each organization counts the documents it had extracted and the
+-- validations it ran, per calendar month (UTC). A plan sets the monthly limits; server admins edit
+-- them. The plan, and its Stripe customer, belong to the organization (its owners and admins buy it).
 -- At warn_percent of a limit the web warns (soft limit); at the limit a 'hard' plan refuses more
 -- work with 402 until the next month or an upgrade, a 'soft' plan lets it through and shows the overage.
 
@@ -21,18 +22,18 @@ insert into plans (id, name, position, extractions_per_month, validations_per_mo
   ('pro', 'Pro', 1, 1000, 2000, 80, 'soft'),
   ('business', 'Business', 2, null, null, 80, 'soft');
 
-alter table users add column plan text not null default 'free' references plans (id) on update cascade;
+alter table organizations add column plan text not null default 'free' references plans (id) on update cascade;
 -- Set by the Stripe webhook (test mode only, see docs/BILLING.md); null without billing.
-alter table users add column stripe_customer_id text unique;
-alter table users add column stripe_subscription_id text;
+alter table organizations add column stripe_customer_id text unique;
+alter table organizations add column stripe_subscription_id text;
 
 create table usage_counters (
-  user_id uuid not null references users (id) on delete cascade,
+  org_id uuid not null references organizations (id) on delete cascade,
   -- First day of the month, UTC.
   month date not null,
   kind text not null check (kind in ('extraction', 'validation')),
   count int not null default 0,
-  primary key (user_id, month, kind)
+  primary key (org_id, month, kind)
 );
 
 -- Stripe webhook events already applied: Stripe retries, and an event must count once.

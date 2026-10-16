@@ -4,6 +4,7 @@ import {
   type ExtractableType, type FieldConfidence, type PdfText, type SupplierContext, type SupplierExample, type TextLine,
 } from '@doccheck/extraction';
 import { readPointer } from '@doccheck/schemas';
+import { AuditService } from '../audit/audit.service';
 import { isDemo } from '../demo/demo-mode';
 import { ReviewRepository } from './review.repository';
 
@@ -59,7 +60,10 @@ export interface CorrectedExtraction {
 export class ReviewService implements OnApplicationBootstrap {
   private readonly logger = new Logger(ReviewService.name);
 
-  constructor(private readonly repo: ReviewRepository) {}
+  constructor(
+    private readonly repo: ReviewRepository,
+    private readonly audit: AuditService,
+  ) {}
 
   /** Documents extracted before field confidence existed are scored once, in the background. */
   onApplicationBootstrap() {
@@ -109,11 +113,12 @@ export class ReviewService implements OnApplicationBootstrap {
   /** The examples of the supplier this document comes from, if supplier learning is on and the supplier is known. */
   async supplierContext(shipmentId: string, pdf: PdfText, type: ExtractableType): Promise<SupplierContext | undefined> {
     if (!learningOn()) return undefined;
-    const userId = await this.repo.shipmentOwner(shipmentId);
-    if (!userId) return undefined;
-    const supplier = detectSupplier(pdf, await this.repo.suppliers(userId));
+    // Only the examples of the shipment's own organization.
+    const orgId = await this.repo.shipmentOrg(shipmentId);
+    if (!orgId) return undefined;
+    const supplier = detectSupplier(pdf, await this.repo.suppliers(orgId));
     if (!supplier) return undefined;
-    const examples = await this.repo.examples(userId, supplier.key, type, exampleLimit());
+    const examples = await this.repo.examples(orgId, supplier.key, type, exampleLimit());
     return examples.length ? { supplier: supplier.name, examples } : undefined;
   }
 
@@ -126,7 +131,9 @@ export class ReviewService implements OnApplicationBootstrap {
   async onCorrected(userId: string, e: CorrectedExtraction, corrections: { path: string; newValue: unknown }[]): Promise<void> {
     try {
       const scored = await this.repo.scoredPaths(e.documentId);
-      await this.repo.saveReviews(e.documentId, userId, corrections.map((c) => c.path).filter((p) => scored.has(p)), 'corrected');
+      const reviewed = corrections.map((c) => c.path).filter((p) => scored.has(p));
+      await this.repo.saveReviews(e.documentId, userId, reviewed, 'corrected');
+      if (reviewed.length) this.audit.note({ action: 'review.correct', entity: 'document', entityId: e.documentId, after: { paths: reviewed } });
       if (!learningOn() || !isExtractable(e.documentType)) return;
       const name = SUPPLIER_FIELD[e.documentType].map((p) => readPointer(e.data, p)).find((v): v is string => typeof v === 'string' && v.trim() !== '');
       if (!name || !supplierKey(name)) return;
@@ -147,17 +154,17 @@ export class ReviewService implements OnApplicationBootstrap {
 
   // The queue.
 
-  queue(userId: string, limit: number, offset: number) {
-    return this.repo.queue(userId, reviewThreshold(), limit, offset).then((q) => ({ ...q, threshold: reviewThreshold(), limit, offset }));
+  queue(orgId: string, limit: number, offset: number) {
+    return this.repo.queue(orgId, reviewThreshold(), limit, offset).then((q) => ({ ...q, threshold: reviewThreshold(), limit, offset }));
   }
 
-  summary(userId: string) {
-    return this.repo.counts(userId, reviewThreshold()).then((c) => ({ documents: c.total, fields: c.fields, threshold: reviewThreshold() }));
+  summary(orgId: string) {
+    return this.repo.counts(orgId, reviewThreshold()).then((c) => ({ documents: c.total, fields: c.fields, threshold: reviewThreshold() }));
   }
 
   /** A document to review: its fields under the threshold first, each with its check if any, and the next document. */
-  async document(userId: string, documentId: string) {
-    const doc = UUID.test(documentId) ? await this.repo.document(userId, documentId) : null;
+  async document(orgId: string, documentId: string) {
+    const doc = UUID.test(documentId) ? await this.repo.document(orgId, documentId) : null;
     if (!doc) throw new NotFoundException(`Document ${documentId} not found`);
     const threshold = reviewThreshold();
     const reviews = new Map(doc.reviews.map((r) => [r.path, r]));
@@ -170,33 +177,35 @@ export class ReviewService implements OnApplicationBootstrap {
       })
       .sort((a, b) => Number(b.low) - Number(a.low) || a.confidence - b.confidence);
     const { reviews: _, data: __, ...rest } = doc;
-    return { ...rest, threshold, fields, next: await this.repo.nextInQueue(userId, threshold, documentId) };
+    return { ...rest, threshold, fields, next: await this.repo.nextInQueue(orgId, threshold, documentId) };
   }
 
   /** Marks fields as checked and right as read. Only fields the document has a confidence for. */
-  async accept(userId: string, documentId: string, paths: string[]) {
-    const doc = UUID.test(documentId) ? await this.repo.document(userId, documentId) : null;
+  async accept(orgId: string, userId: string, documentId: string, paths: string[]) {
+    const doc = UUID.test(documentId) ? await this.repo.document(orgId, documentId) : null;
     if (!doc) throw new NotFoundException(`Document ${documentId} not found`);
     if (doc.status !== 'EXTRACTED') throw new BadRequestException('The document is not extracted');
     const known = new Set(doc.fields.map((f) => f.path));
     const unknown = paths.filter((p) => !known.has(p));
     if (unknown.length) throw new BadRequestException({ message: 'Not fields of this document', issues: unknown.map((path) => ({ path, message: 'Not a scored field' })) });
     await this.repo.saveReviews(documentId, userId, [...new Set(paths)], 'accepted');
-    return this.document(userId, documentId);
+    this.audit.note({ orgId, action: 'review.accept', entity: 'document', entityId: documentId, after: { paths: [...new Set(paths)] } });
+    return this.document(orgId, documentId);
   }
 
   /** Puts fields back in the queue (an accept made by mistake). */
-  async reopen(userId: string, documentId: string) {
-    const doc = UUID.test(documentId) ? await this.repo.document(userId, documentId) : null;
+  async reopen(orgId: string, documentId: string) {
+    const doc = UUID.test(documentId) ? await this.repo.document(orgId, documentId) : null;
     if (!doc) throw new NotFoundException(`Document ${documentId} not found`);
     await this.repo.dropReviews(documentId, 'accepted');
-    return this.document(userId, documentId);
+    this.audit.note({ orgId, action: 'review.reopen', entity: 'document', entityId: documentId });
+    return this.document(orgId, documentId);
   }
 
   // What was learned.
 
-  async suppliers(userId: string) {
-    const rows = await this.repo.listExamples(userId);
+  async suppliers(orgId: string) {
+    const rows = await this.repo.listExamples(orgId);
     const bySupplier = new Map<string, { key: string; name: string; examples: typeof rows }>();
     for (const r of rows) {
       const entry = bySupplier.get(r.supplierKey) ?? { key: r.supplierKey, name: r.supplierName, examples: [] };
@@ -206,8 +215,9 @@ export class ReviewService implements OnApplicationBootstrap {
     return { enabled: learningOn(), limit: exampleLimit(), suppliers: [...bySupplier.values()] };
   }
 
-  async forgetSupplier(userId: string, key: string) {
-    if (!(await this.repo.deleteSupplier(userId, key))) throw new NotFoundException(`No examples for ${key}`);
-    return this.suppliers(userId);
+  async forgetSupplier(orgId: string, key: string) {
+    if (!(await this.repo.deleteSupplier(orgId, key))) throw new NotFoundException(`No examples for ${key}`);
+    this.audit.note({ orgId, action: 'supplier.forget', entity: 'supplier', entityId: key });
+    return this.suppliers(orgId);
   }
 }

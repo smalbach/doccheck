@@ -3,6 +3,9 @@ import type { Request } from 'express';
 import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { Public } from '../auth/public.decorator';
+import { CurrentOrg } from '../orgs/current-org.decorator';
+import type { OrgContext } from '../orgs/org.types';
+import { Permission } from '../orgs/permissions';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { CheckoutDto } from '../usage/usage.dto';
 import { BillingService } from './billing.service';
@@ -14,6 +17,7 @@ export class BillingController {
 
   /** { enabled, plans }: whether the web shows upgrade buttons, and for which plans. */
   @Get()
+  @Permission('data.read')
   status() {
     return this.billing.status();
   }
@@ -21,15 +25,17 @@ export class BillingController {
   /** { plan } -> { url } of a Stripe Checkout page. */
   @Post('checkout')
   @HttpCode(200)
-  checkout(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CheckoutDto)) dto: CheckoutDto) {
-    return this.billing.checkout(user, dto.plan);
+  @Permission('billing.manage')
+  checkout(@CurrentOrg() org: OrgContext, @CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CheckoutDto)) dto: CheckoutDto) {
+    return this.billing.checkout(org, user, dto.plan);
   }
 
-  /** { url } of Stripe's customer portal for this account. */
+  /** { url } of Stripe's customer portal for the active organization. */
   @Post('portal')
   @HttpCode(200)
-  portal(@CurrentUser() user: PublicUser) {
-    return this.billing.portal(user);
+  @Permission('billing.manage')
+  portal(@CurrentOrg() org: OrgContext) {
+    return this.billing.portal(org);
   }
 
   /** Stripe's webhook. The raw body is kept (main.ts) so its signature can be checked. */

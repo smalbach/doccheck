@@ -25,7 +25,7 @@ export interface FieldReview {
   createdAt: string;
 }
 
-/** Fields under the threshold with no review, per document of a user's shipments, as SQL. */
+/** Fields under the threshold with no review, per document of an organization's shipments, as SQL. */
 const PENDING_SQL = `
   select f.document_id, d.shipment_id, s.reference, s.destination, d.file_name, d.detected_type, f.computed_at,
          count(*)::int as low_fields,
@@ -36,7 +36,7 @@ const PENDING_SQL = `
   join shipments s on s.id = d.shipment_id
   cross join lateral jsonb_array_elements(f.fields) e(value)
   left join field_reviews r on r.document_id = f.document_id and r.path = e.value->>'path'
-  where s.user_id = $1 and (e.value->>'confidence')::numeric < $2
+  where s.org_id = $1 and (e.value->>'confidence')::numeric < $2
   group by f.document_id, d.shipment_id, s.reference, s.destination, d.file_name, d.detected_type, f.computed_at, d.created_at`;
 
 @Injectable()
@@ -75,14 +75,14 @@ export class ReviewRepository {
   }
 
   /** Documents with fields still to check, the least sure first. */
-  async queue(userId: string, threshold: number, limit: number, offset: number): Promise<{ items: QueueItem[]; total: number; fields: number }> {
+  async queue(orgId: string, threshold: number, limit: number, offset: number): Promise<{ items: QueueItem[]; total: number; fields: number }> {
     const { rows } = await this.pool.query(
       `with q as (${PENDING_SQL} having count(*) filter (where r.path is null) > 0)
        select *, count(*) over ()::int as total, sum(pending) over ()::int as fields from q
        order by min_confidence, computed_at limit $3 offset $4`,
-      [userId, threshold, limit, offset],
+      [orgId, threshold, limit, offset],
     );
-    const counts = rows[0] ? { total: rows[0].total, fields: rows[0].fields } : await this.counts(userId, threshold);
+    const counts = rows[0] ? { total: rows[0].total, fields: rows[0].fields } : await this.counts(orgId, threshold);
     return {
       ...counts,
       items: rows.map((r) => ({
@@ -101,30 +101,30 @@ export class ReviewRepository {
   }
 
   /** How many documents and fields wait for a review. */
-  async counts(userId: string, threshold: number): Promise<{ total: number; fields: number }> {
+  async counts(orgId: string, threshold: number): Promise<{ total: number; fields: number }> {
     const { rows } = await this.pool.query(
       `with q as (${PENDING_SQL} having count(*) filter (where r.path is null) > 0)
        select count(*)::int as total, coalesce(sum(pending), 0)::int as fields from q`,
-      [userId, threshold],
+      [orgId, threshold],
     );
     return { total: rows[0]?.total ?? 0, fields: rows[0]?.fields ?? 0 };
   }
 
   /** The next document to review after `documentId` in queue order (or the first, if it is not queued). */
-  async nextInQueue(userId: string, threshold: number, documentId: string): Promise<string | null> {
-    const { items } = await this.queue(userId, threshold, 200, 0);
+  async nextInQueue(orgId: string, threshold: number, documentId: string): Promise<string | null> {
+    const { items } = await this.queue(orgId, threshold, 200, 0);
     const at = items.findIndex((i) => i.documentId === documentId);
     return (at < 0 ? items[0] : (items[at + 1] ?? items.find((i) => i.documentId !== documentId)))?.documentId ?? null;
   }
 
-  /** A document of the user's with its field confidence and reviews; null if it is not theirs or has none. */
-  async document(userId: string, documentId: string) {
+  /** A document of the organization with its field confidence and reviews; null if it is not the organization's. */
+  async document(orgId: string, documentId: string) {
     const { rows } = await this.pool.query(
       `select d.id, d.shipment_id, d.file_name, d.detected_type, d.page_count, d.status, s.reference, s.destination, f.fields, f.computed_at, e.data
        from documents d join shipments s on s.id = d.shipment_id left join field_confidence f on f.document_id = d.id
        left join extractions e on e.document_id = d.id
-       where d.id = $1 and s.user_id = $2`,
-      [documentId, userId],
+       where d.id = $1 and s.org_id = $2`,
+      [documentId, orgId],
     );
     const r = rows[0];
     if (!r) return null;
@@ -169,35 +169,37 @@ export class ReviewRepository {
 
   // Supplier learning.
 
-  async shipmentOwner(shipmentId: string): Promise<string | null> {
-    const { rows } = await this.pool.query<{ user_id: string | null }>('select user_id from shipments where id = $1', [shipmentId]);
-    return rows[0]?.user_id ?? null;
+  async shipmentOrg(shipmentId: string): Promise<string | null> {
+    const { rows } = await this.pool.query<{ org_id: string | null }>('select org_id from shipments where id = $1', [shipmentId]);
+    return rows[0]?.org_id ?? null;
   }
 
-  async suppliers(userId: string): Promise<{ key: string; name: string }[]> {
+  async suppliers(orgId: string): Promise<{ key: string; name: string }[]> {
     const { rows } = await this.pool.query<{ key: string; name: string }>(
-      'select distinct on (supplier_key) supplier_key as key, supplier_name as name from supplier_examples where user_id = $1 order by supplier_key, created_at desc',
-      [userId],
+      'select distinct on (supplier_key) supplier_key as key, supplier_name as name from supplier_examples where org_id = $1 order by supplier_key, created_at desc',
+      [orgId],
     );
     return rows;
   }
 
-  async examples(userId: string, supplierKey: string, documentType: string, limit: number): Promise<SupplierExample[]> {
+  async examples(orgId: string, supplierKey: string, documentType: string, limit: number): Promise<SupplierExample[]> {
     const { rows } = await this.pool.query(
       `select document_type, field, model_value, correct_value, line from supplier_examples
-       where user_id = $1 and supplier_key = $2 and document_type = $3 order by created_at desc limit $4`,
-      [userId, supplierKey, documentType, limit],
+       where org_id = $1 and supplier_key = $2 and document_type = $3 order by created_at desc limit $4`,
+      [orgId, supplierKey, documentType, limit],
     );
     return rows.map((r) => ({ documentType: r.document_type, field: r.field, modelValue: r.model_value, correctValue: r.correct_value, ...(r.line ? { line: r.line } : {}) }));
   }
 
+  /** Stores examples in the organization of the document's shipment (never another one). */
   async saveExamples(userId: string, supplier: { key: string; name: string }, documentId: string, examples: SupplierExample[]): Promise<void> {
     for (const e of examples) {
       await this.pool.query(
-        `insert into supplier_examples (id, user_id, supplier_key, supplier_name, document_type, field, model_value, correct_value, line, document_id)
-         values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-         on conflict (user_id, supplier_key, document_type, field) do update set
-           supplier_name = excluded.supplier_name, model_value = excluded.model_value, correct_value = excluded.correct_value,
+        `insert into supplier_examples (id, org_id, user_id, supplier_key, supplier_name, document_type, field, model_value, correct_value, line, document_id)
+         select $1, s.org_id, $2, $3, $4, $5, $6, $7, $8, $9, d.id
+         from documents d join shipments s on s.id = d.shipment_id where d.id = $10 and s.org_id is not null
+         on conflict (org_id, supplier_key, document_type, field) do update set
+           supplier_name = excluded.supplier_name, user_id = excluded.user_id, model_value = excluded.model_value, correct_value = excluded.correct_value,
            line = excluded.line, document_id = excluded.document_id, created_at = now()`,
         [randomUUID(), userId, supplier.key, supplier.name, e.documentType, e.field, e.modelValue, e.correctValue, e.line ?? null, documentId],
       );
@@ -209,11 +211,11 @@ export class ReviewRepository {
   }
 
   /** The account's learned suppliers with their examples, for the account page. */
-  async listExamples(userId: string) {
+  async listExamples(orgId: string) {
     const { rows } = await this.pool.query(
       `select supplier_key, supplier_name, document_type, field, model_value, correct_value, line, created_at from supplier_examples
-       where user_id = $1 order by supplier_name, created_at desc`,
-      [userId],
+       where org_id = $1 order by supplier_name, created_at desc`,
+      [orgId],
     );
     return rows.map((r) => ({
       supplierKey: r.supplier_key as string,
@@ -227,8 +229,8 @@ export class ReviewRepository {
     }));
   }
 
-  async deleteSupplier(userId: string, supplierKey: string): Promise<number> {
-    const res = await this.pool.query('delete from supplier_examples where user_id = $1 and supplier_key = $2', [userId, supplierKey]);
+  async deleteSupplier(orgId: string, supplierKey: string): Promise<number> {
+    const res = await this.pool.query('delete from supplier_examples where org_id = $1 and supplier_key = $2', [orgId, supplierKey]);
     return res.rowCount ?? 0;
   }
 }

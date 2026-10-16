@@ -1,13 +1,14 @@
 export type PublicRoute =
   | { name: 'landing' }
-  | { name: 'login'; next?: string }
+  | { name: 'login'; next?: string; ssoError?: string }
   | { name: 'register'; next?: string }
   | { name: 'forgot-password' }
-  | { name: 'reset-password'; token?: string };
+  | { name: 'reset-password'; token?: string }
+  | { name: 'invite'; token?: string };
 
 export type AppRoute =
   | { name: 'dashboard' }
-  | { name: 'shipments' }
+  | { name: 'shipments'; due?: 'overdue' | 'soon'; assignee?: string }
   | { name: 'new-shipment' }
   | { name: 'shipment'; id: string }
   | { name: 'samples' }
@@ -31,6 +32,10 @@ export type AppRoute =
   | { name: 'review-document'; id: string }
   | { name: 'usage'; checkout?: string }
   | { name: 'admin-plans' }
+  | { name: 'team' }
+  | { name: 'audit' }
+  | { name: 'approvals' }
+  | { name: 'notifications' }
   | { name: 'not-found' };
 
 export type Route = PublicRoute | AppRoute;
@@ -62,6 +67,10 @@ const APP_PAGES: Record<string, AppRoute> = {
   '/app/admin/system': { name: 'admin-system' },
   '/app/review': { name: 'review-queue' },
   '/app/admin/plans': { name: 'admin-plans' },
+  '/app/team': { name: 'team' },
+  '/app/audit': { name: 'audit' },
+  '/app/approvals': { name: 'approvals' },
+  '/app/notifications': { name: 'notifications' },
 };
 
 /**
@@ -76,10 +85,16 @@ export function parseRoute(hash: string): Route {
   const params = new URLSearchParams(query);
   const next = params.get('next') ?? undefined;
   if (path === '/') return { name: 'landing' };
-  if (path === '/login') return { name: 'login', next };
+  if (path === '/login') return { name: 'login', next, ...(params.get('sso_error') ? { ssoError: params.get('sso_error')! } : {}) };
+  if (path === '/invite') return { name: 'invite', token: params.get('token') ?? undefined };
   if (path === '/register') return { name: 'register', next };
   if (path === '/forgot-password') return { name: 'forgot-password' };
   if (path === '/reset-password') return { name: 'reset-password', token: params.get('token') ?? undefined };
+  // "#/app/shipments?due=overdue&assignee=me": the dashboard links here with a filter.
+  if (path === '/app/shipments' && (params.get('due') || params.get('assignee'))) {
+    const due = params.get('due');
+    return { name: 'shipments', ...(due === 'overdue' || due === 'soon' ? { due } : {}), ...(params.get('assignee') ? { assignee: params.get('assignee')! } : {}) };
+  }
   const id = SHIPMENT.exec(path)?.[1];
   if (id) return { name: 'shipment', id };
   const thread = THREAD.exec(path)?.[1];

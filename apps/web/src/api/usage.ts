@@ -37,9 +37,9 @@ export interface BillingStatus {
   plans: string[];
 }
 
-export interface AccountUsage {
+export interface OrgUsage {
   month: string;
-  accounts: { userId: string; email: string; plan: string; extraction: number; validation: number }[];
+  orgs: { orgId: string; name: string; personal: boolean; owner: string | null; plan: string; extraction: number; validation: number }[];
 }
 
 export type PlanInput = Omit<Plan, 'id' | 'position'>;
@@ -52,6 +52,6 @@ export const usageApi = {
   checkout: (plan: string) => request<{ url: string }>('/billing/checkout', jsonBody({ plan })),
   portal: () => request<{ url: string }>('/billing/portal', { method: 'POST' }),
   updatePlan: (id: string, plan: PlanInput) => request<Plan>(`/admin/plans/${encodeURIComponent(id)}`, { ...jsonBody(plan), method: 'PUT' }),
-  accounts: () => request<AccountUsage>('/admin/usage'),
-  setPlan: (userId: string, plan: string) => request<AccountUsage>(`/admin/usage/${encodeURIComponent(userId)}/plan`, { ...jsonBody({ plan }), method: 'PUT' }),
+  orgs: () => request<OrgUsage>('/admin/usage'),
+  setPlan: (orgId: string, plan: string) => request<OrgUsage>(`/admin/usage/${encodeURIComponent(orgId)}/plan`, { ...jsonBody({ plan }), method: 'PUT' }),
 };

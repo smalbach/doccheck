@@ -100,6 +100,10 @@ const staticPages = [
   '/app/rules',
   '/app/results',
   '/app/account',
+  '/app/team',
+  '/app/notifications',
+  '/app/approvals',
+  '/app/audit',
   '/app/review',
   '/app/usage',
   ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system', '/app/admin/plans'] : []),
@@ -130,7 +134,7 @@ for (const locale of locales) {
       for (const path of [...staticPages, ...(shipmentPath ? [shipmentPath] : []), ...(await entityPages()), ...(await reviewPages(shipmentPath)), '/']) await visit(path);
       // The sign-in forms redirect signed-in visitors: check them signed out.
       await context.clearCookies();
-      for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example']) await visit(path);
+      for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example', '/invite?token=example']) await visit(path);
     }
   }
 }

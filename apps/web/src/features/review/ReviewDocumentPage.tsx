@@ -17,6 +17,7 @@ import { reviewFieldLabel } from '../../lib/reviewFieldLabel';
 import { ReviewFieldList } from './ReviewFieldList';
 import { ReviewFieldPanel } from './ReviewFieldPanel';
 import { ReviewPdfPane } from './ReviewPdfPane';
+import { useOrg } from '../team/useOrg';
 
 const pending = (f: ReviewField) => f.low && !f.review;
 
@@ -33,6 +34,8 @@ function nextPending(fields: ReviewField[], from: number): number {
 export function ReviewDocumentPage({ id }: { id: string }) {
   const { t } = useI18n();
   const demo = useDemo();
+  const { can } = useOrg();
+  const editable = !demo && can('shipment.write');
   const [doc, setDoc] = useState<ReviewDocument>();
   const [error, setError] = useState<string>();
   const [selected, setSelected] = useState(0);
@@ -94,8 +97,8 @@ export function ReviewDocumentPage({ id }: { id: string }) {
     {
       next: () => select(selected + 1),
       previous: () => select(selected - 1),
-      accept: () => !demo && accept(),
-      edit: () => !demo && setEditRequest((n) => n + 1),
+      accept: () => editable && accept(),
+      edit: () => editable && setEditRequest((n) => n + 1),
       nextDocument,
     },
     !!doc,
@@ -130,7 +133,7 @@ export function ReviewDocumentPage({ id }: { id: string }) {
         <div className="review-side">
           <Card title={t('reviewQueue.fieldsTitle')}>
             {field ? (
-              <ReviewFieldPanel field={field} documentType={doc.documentType} busy={busy} editable={!demo} editRequest={editRequest} onAccept={accept} onSave={save} />
+              <ReviewFieldPanel field={field} documentType={doc.documentType} busy={busy} editable={editable} editRequest={editRequest} onAccept={accept} onSave={save} />
             ) : (
               <p className="muted">{t('reviewQueue.nothingSelected')}</p>
             )}

@@ -7,11 +7,13 @@ import { useDemo } from '../../hooks/useDemo';
 import { useQuery } from '../../hooks/useQuery';
 import { useI18n } from '../../i18n/useI18n';
 import { errorMessage } from '../../lib/errorMessage';
+import { useOrg } from '../team/useOrg';
 
 /** The supplier examples kept for this account (supplier learning), with a way to forget a supplier. */
 export function LearnedSuppliersCard() {
   const { t } = useI18n();
   const demo = useDemo();
+  const { can } = useOrg();
   const { data, error } = useQuery('suppliers', reviewApi.suppliers);
   const [shown, setShown] = useState<LearnedSuppliers>();
   const [failed, setFailed] = useState<string>();
@@ -39,7 +41,7 @@ export function LearnedSuppliersCard() {
               <div className="learned-supplier-head">
                 <strong>{s.name}</strong>
                 <span className="muted small">{t('learning.examplesCount', { count: s.examples.length })}</span>
-                {!demo && (
+                {!demo && can('shipment.write') && (
                   <Button size="sm" variant="ghost" onClick={() => void forget(s.key)}>
                     {t('learning.forget', { name: s.name })}
                   </Button>

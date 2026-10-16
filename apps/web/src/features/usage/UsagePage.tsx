@@ -12,6 +12,7 @@ import { useUsage } from '../../hooks/useUsage';
 import { useI18n } from '../../i18n/useI18n';
 import { errorMessage } from '../../lib/errorMessage';
 import { usageDate } from '../../lib/usageDate';
+import { useOrg } from '../team/useOrg';
 import { PlanList } from './PlanList';
 import { UsageMeter } from './UsageMeter';
 
@@ -19,6 +20,9 @@ import { UsageMeter } from './UsageMeter';
 export function UsagePage({ checkout }: { checkout?: string }) {
   const { t, locale } = useI18n();
   const demo = useDemo();
+  const { can } = useOrg();
+  // Buying and managing the plan is for the organization's owners and admins (billing.manage).
+  const buyer = !demo && can('billing.manage');
   const { data: usage, error } = useUsage();
   const { data: plans } = useQuery('plans', usageApi.plans);
   const { data: billing } = useQuery('billing', usageApi.billing);
@@ -44,7 +48,7 @@ export function UsagePage({ checkout }: { checkout?: string }) {
         title={t('usage.title')}
         description={t('usage.description')}
         actions={
-          billing?.enabled && paid && !demo && (
+          billing?.enabled && paid && buyer && (
             <Button onClick={() => go(usageApi.portal)} disabled={busy}>
               {t('usage.manage')}
             </Button>
@@ -66,7 +70,7 @@ export function UsagePage({ checkout }: { checkout?: string }) {
       {plans && (
         <Card title={t('usage.plansTitle')}>
           <p className="muted small">{billing?.enabled ? t('usage.billingTest') : t('usage.billingOff')}</p>
-          <PlanList plans={plans} current={usage.plan.id} billing={demo ? undefined : billing} busy={busy} onChoose={(plan) => go(() => usageApi.checkout(plan))} />
+          <PlanList plans={plans} current={usage.plan.id} billing={buyer ? billing : undefined} busy={busy} onChoose={(plan) => go(() => usageApi.checkout(plan))} />
         </Card>
       )}
       {usage.history.length > 0 && (

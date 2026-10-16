@@ -5,6 +5,7 @@ import { RegisterPage } from '../../features/auth/RegisterPage';
 import { ResetPasswordPage } from '../../features/auth/ResetPasswordPage';
 import { useAuth } from '../../features/auth/useAuth';
 import { LandingPage } from '../../features/landing/LandingPage';
+import { InvitePage } from '../../features/team/InvitePage';
 import { navigate } from '../../lib/navigate';
 import type { PublicRoute } from '../../lib/parseRoute';
 import { safeNext } from '../../lib/safeNext';
@@ -26,12 +27,14 @@ export function PublicRouteView({ route }: { route: PublicRoute }) {
     case 'landing':
       return <LandingPage />;
     case 'login':
-      return <LoginPage next={route.next} />;
+      return <LoginPage next={route.next} ssoError={route.ssoError} />;
     case 'register':
       return <RegisterPage next={route.next} />;
     case 'forgot-password':
       return <ForgotPasswordPage />;
     case 'reset-password':
       return <ResetPasswordPage token={route.token} />;
+    case 'invite':
+      return <InvitePage token={route.token} />;
   }
 }

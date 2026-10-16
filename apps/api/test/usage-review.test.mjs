@@ -3,8 +3,9 @@
 // JSON documents, webhook events are signed here with the test secret, and the review queue is fed
 // rows written straight to the database.
 //
-// Uses DATABASE_URL_USAGE_TEST, or DATABASE_URL with the database renamed to doccheck_usage_test (dropped
-// and recreated, so its name must end in "_test"). USAGE_E2E_PORT picks the port (default 3994).
+// Uses DATABASE_URL_USAGE_TEST, else DATABASE_URL_TEST (or DATABASE_URL renamed to doccheck_test) with
+// "_test" turned into "_usage_test"; it is dropped and recreated, so its name must end in "_test".
+// The port is USAGE_E2E_PORT, else E2E_PORT + 2 (the orgs suite takes E2E_PORT + 1).
 import { sampleBillOfLading, sampleInvoice, samplePackingList } from '@doccheck/schemas';
 import { spawn } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
@@ -26,14 +27,15 @@ const { formEncode, signStripePayload, stripeSetup, verifyStripeSignature } = re
 
 const testUrl = (() => {
   if (process.env.DATABASE_URL_USAGE_TEST) return process.env.DATABASE_URL_USAGE_TEST;
-  const u = new URL(process.env.DATABASE_URL ?? 'postgres://doccheck:doccheck@localhost:5432/doccheck');
-  u.pathname = '/doccheck_usage_test';
+  const u = new URL(process.env.DATABASE_URL_TEST ?? process.env.DATABASE_URL ?? 'postgres://doccheck:doccheck@localhost:5432/doccheck');
+  if (!process.env.DATABASE_URL_TEST) u.pathname = '/doccheck_test';
+  u.pathname = u.pathname.replace(/_test$/, '_usage_test');
   return u.toString();
 })();
 const dbName = new URL(testUrl).pathname.slice(1);
 if (!dbName.endsWith('_test')) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
 
-const port = Number(process.env.USAGE_E2E_PORT ?? 3994);
+const port = Number(process.env.USAGE_E2E_PORT ?? Number(process.env.E2E_PORT ?? 3990) + 2);
 const base = `http://localhost:${port}`;
 const WEBHOOK_SECRET = 'whsec_e2e_test_secret';
 const ADMIN = 'usage-admin@example.com';
@@ -113,7 +115,8 @@ const call = async (method, path, body, cookie) => {
 const signUp = async (email) => {
   const res = await call('POST', '/auth/register', { email, password: 'correct horse battery', name: 'Usage Tester' });
   assert.equal(res.status, 201, JSON.stringify(res.body));
-  return { cookie: res.cookie, id: res.body.id };
+  const orgs = await call('GET', '/orgs', undefined, res.cookie);
+  return { cookie: res.cookie, id: res.body.id, orgId: orgs.body.active.id };
 };
 const webhook = (event, secret = WEBHOOK_SECRET) => {
   const body = JSON.stringify(event);
@@ -210,16 +213,28 @@ describe('usage, plans and billing over HTTP', () => {
     const after = await call('GET', '/usage', undefined, user.cookie);
     assert.deepEqual(after.body.meters[1], { kind: 'validation', used: 2, limit: 2, remaining: 0, percent: 100, state: 'blocked' });
 
-    // Admins are counted but never refused.
+    // An organization owned by a server admin is counted but never refused.
     await validateOnce(admin.cookie);
     await validateOnce(admin.cookie);
     assert.equal((await validateOnce(admin.cookie)).status, 200);
-    assert.equal((await call('GET', '/admin/usage', undefined, admin.cookie)).body.accounts.find((a) => a.userId === admin.id).validation, 3);
+    const orgs = (await call('GET', '/admin/usage', undefined, admin.cookie)).body.orgs;
+    assert.equal(orgs.find((o) => o.orgId === admin.orgId).validation, 3);
+    assert.equal(orgs.find((o) => o.orgId === user.orgId).validation, 2);
+    assert.equal((await call('GET', '/admin/usage', undefined, user.cookie)).status, 403);
+
+    // A server admin puts an organization on a plan by hand, and it is in the audit log.
+    assert.equal((await call('PUT', `/admin/usage/${user.orgId}/plan`, { plan: 'business' }, admin.cookie)).body.orgs.find((o) => o.orgId === user.orgId).plan, 'business');
+    assert.equal((await validateOnce(user.cookie)).status, 200);
+    assert.equal((await call('PUT', `/admin/usage/${user.orgId}/plan`, { plan: 'free' }, admin.cookie)).status, 200);
+    const planRows = (await pool.query("select before, after from audit_log where action = 'org.plan' and entity_id = $1 order by id", [user.orgId])).rows;
+    assert.deepEqual(planRows.map((r) => [r.before.plan, r.after.plan]), [['free', 'business'], ['business', 'free']]);
 
     // A soft plan lets work go on past the limit and shows it.
     await call('PUT', '/admin/plans/free', { ...limits, enforcement: 'soft' }, admin.cookie);
     assert.equal((await validateOnce(user.cookie)).status, 200);
     assert.equal((await call('GET', '/usage', undefined, user.cookie)).body.meters[1].state, 'over');
+    // The counters are the organization's: a member counts in it, not in their personal one.
+    assert.equal((await call('GET', '/usage', undefined, user.cookie)).body.meters[1].used, 4);
   });
 
   it('refuses an upload that would pass the extraction limit, before storing anything', async () => {
@@ -239,7 +254,7 @@ describe('usage, plans and billing over HTTP', () => {
     assert.equal((await call('POST', '/billing/portal', undefined, user.cookie)).status, 400);
     assert.equal((await call('POST', '/billing/checkout', { plan: 'business' }, user.cookie)).status, 400);
 
-    const completed = { id: `evt_${randomUUID()}`, type: 'checkout.session.completed', livemode: false, data: { object: { client_reference_id: user.id, customer: 'cus_e2e', subscription: 'sub_e2e', metadata: { plan: 'pro', user_id: user.id } } } };
+    const completed = { id: `evt_${randomUUID()}`, type: 'checkout.session.completed', livemode: false, data: { object: { client_reference_id: user.orgId, customer: 'cus_e2e', subscription: 'sub_e2e', metadata: { plan: 'pro', org_id: user.orgId } } } };
     assert.equal((await webhook(completed, 'whsec_forged')).status, 400);
     assert.equal((await webhook({ ...completed, id: `evt_${randomUUID()}`, livemode: true })).status, 400);
     assert.equal((await call('GET', '/usage', undefined, user.cookie)).body.plan.id, 'free');

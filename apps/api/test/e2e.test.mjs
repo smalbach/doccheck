@@ -237,7 +237,14 @@ const mailsTo = (to) =>
   readdirSync(mailDir)
     .filter((f) => f.endsWith('.json'))
     .sort()
-    .map((f) => JSON.parse(readFileSync(join(mailDir, f), 'utf8')))
+    // A file still being written reads as invalid JSON: skip it, the next poll gets it whole.
+    .flatMap((f) => {
+      try {
+        return [JSON.parse(readFileSync(join(mailDir, f), 'utf8'))];
+      } catch {
+        return [];
+      }
+    })
     .filter((m) => m.to === to);
 
 /** Waits for the `count`-th email to `to` (sent after the API answered) and returns it. */
@@ -525,7 +532,7 @@ describe('shipments', () => {
     assert.deepEqual((await page('q=pg_')).items.map((s) => s.reference), ['PG_%']); // _ and % are literal
     assert.deepEqual((await page('status=done')).items.map((s) => s.reference), ['PG-a']);
     assert.deepEqual((await page('status=open')).total, 3);
-    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0 });
+    assert.deepEqual(first.summary, { all: 4, open: 3, attention: 0, done: 1, findings: 0, waiting: 0, overdue: 0, dueSoon: 0 });
   });
 
   it('edits a shipment and keeps every validation run as history', async () => {

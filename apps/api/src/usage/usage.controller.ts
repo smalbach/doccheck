@@ -1,5 +1,8 @@
 import { Body, Controller, Get, Param, ParseUUIDPipe, Put, UseGuards } from '@nestjs/common';
 import { AdminGuard } from '../auth/admin.guard';
+import { CurrentOrg } from '../orgs/current-org.decorator';
+import type { OrgContext } from '../orgs/org.types';
+import { NoOrg, Permission } from '../orgs/permissions';
 import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
@@ -10,35 +13,40 @@ import { UsageService } from './usage.service';
 export class UsageController {
   constructor(private readonly usage: UsageService) {}
 
-  /** This month's usage of the signed-in account: plan, a meter per kind (ok, warning, over, blocked), past months. */
+  /** This month's usage of the active organization: plan, a meter per kind (ok, warning, over, blocked), past months. */
   @Get('usage')
-  mine(@CurrentUser() user: PublicUser) {
-    return this.usage.usage(user.id);
+  @Permission('data.read')
+  mine(@CurrentOrg() org: OrgContext) {
+    return this.usage.usage(org.id);
   }
 
   @Get('usage/plans')
+  @Permission('data.read')
   plans() {
     return this.usage.plans();
   }
 
   /** Body: { name, extractionsPerMonth, validationsPerMonth (null: unlimited), warnPercent, enforcement: soft | hard }. */
   @Put('admin/plans/:id')
+  @NoOrg()
   @UseGuards(AdminGuard)
   updatePlan(@CurrentUser() user: PublicUser, @Param('id') id: string, @Body(new ZodValidationPipe(UpdatePlanDto)) dto: UpdatePlanDto) {
     return this.usage.updatePlan(id, dto, user.id);
   }
 
-  /** Every account's usage this month with its plan. */
+  /** Every organization's usage this month with its plan. */
   @Get('admin/usage')
+  @NoOrg()
   @UseGuards(AdminGuard)
-  accounts() {
-    return this.usage.accounts();
+  orgs() {
+    return this.usage.orgs();
   }
 
-  /** Puts an account on a plan by hand (without billing, or to override it). */
-  @Put('admin/usage/:userId/plan')
+  /** Puts an organization on a plan by hand (without billing, or to override it). */
+  @Put('admin/usage/:orgId/plan')
+  @NoOrg()
   @UseGuards(AdminGuard)
-  setPlan(@Param('userId', new ParseUUIDPipe()) userId: string, @Body(new ZodValidationPipe(SetPlanDto)) dto: SetPlanDto) {
-    return this.usage.setPlan(userId, dto.plan);
+  setPlan(@Param('orgId', new ParseUUIDPipe()) orgId: string, @Body(new ZodValidationPipe(SetPlanDto)) dto: SetPlanDto) {
+    return this.usage.setPlan(orgId, dto.plan);
   }
 }

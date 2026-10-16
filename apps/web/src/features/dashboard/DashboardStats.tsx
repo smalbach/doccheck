@@ -15,6 +15,15 @@ export function DashboardStats({ totals }: { totals: ShipmentPage['summary'] }) 
         tone={totals.attention ? 'attention' : 'neutral'}
         hint={[t('dashboard.stats.attentionHint', { count: totals.findings }), totals.waiting ? t('dashboard.stats.waitingHint', { count: totals.waiting }) : ''].filter(Boolean).join(' · ')}
       />
+      {totals.overdue !== undefined && (
+        <StatTile
+          label={t('team.dashboard.overdue')}
+          value={totals.overdue}
+          href="#/app/shipments?due=overdue"
+          tone={totals.overdue ? 'attention' : 'neutral'}
+          hint={totals.dueSoon ? t('team.dashboard.dueSoon', { count: totals.dueSoon }) : t('team.dashboard.overdueHint')}
+        />
+      )}
       <StatTile label={t('dashboard.stats.clean')} value={totals.done} href="#/app/shipments" tone="ok" hint={t('dashboard.stats.cleanHint')} />
     </div>
   );

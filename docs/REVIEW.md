@@ -16,17 +16,17 @@ Cada documento extraído recibe una confianza de 0 a 1 por campo (`packages/extr
 
 Sobre las probabilidades del modelo: Ollama 0.35 acepta `logprobs: true`, pero con salida estructurada (`format` con esquema JSON) devuelve solo la del primer token. El código mapea tokens a campos (`jsonLeafSpans`, `leafLogprobs`) y solo usa la señal cuando los tokens deletrean la respuesta entera, así que hoy casi nunca aplica. Queda lista para cuando Ollama devuelva todas.
 
-Se puntúan los campos de `REVIEW_FIELDS` (los mismos que mide la evaluación, con su ruta en la respuesta del modelo), más cada valor que el normalizador descartó. Cada entrada guarda el puntero JSON, el valor, lo impreso, la confianza, las razones y la línea del PDF donde está impreso (para resaltarla). Se guarda en `field_confidence` (migración `020_review_queue.sql`) en cada extracción; al arrancar, la API puntúa una vez los documentos extraídos antes de que esto existiera (`REVIEW_BACKFILL=false` lo desactiva).
+Se puntúan los campos de `REVIEW_FIELDS` (los mismos que mide la evaluación, con su ruta en la respuesta del modelo), más cada valor que el normalizador descartó. Cada entrada guarda el puntero JSON, el valor, lo impreso, la confianza, las razones y la línea del PDF donde está impreso (para resaltarla). Se guarda en `field_confidence` (migración `051_review_queue.sql`) en cada extracción; al arrancar, la API puntúa una vez los documentos extraídos antes de que esto existiera (`REVIEW_BACKFILL=false` lo desactiva).
 
 En los PDF con capa de texto la confianza casi siempre es 1: en la muestra CA-001 no se marcó nada. En un escaneo de `v1-scans`, 3 de 30 valores quedaron bajo el umbral, con su palabra de OCR más débil.
 
 ## La cola
 
-- **Revisión** en el menú (`#/app/review`, `GET /review/queue`): documentos con valores bajo el umbral (`REVIEW_THRESHOLD`, 0.85, editable en Administración → Configuración) que nadie revisó, los más dudosos primero.
+- **Revisión** en el menú (`#/app/review`, `GET /review/queue`): documentos de la organización activa con valores bajo el umbral (`REVIEW_THRESHOLD`, 0.85, editable en Administración → Configuración) que nadie revisó, los más dudosos primero.
 - El panel muestra cuántos documentos y valores esperan (`GET /review/summary`).
 - **Pantalla de revisión** (`#/app/review/<documentId>`, `GET /review/documents/:id`): el PDF a un lado, con la línea del valor elegido resaltada, y los valores al otro, los dudosos primero. Para cada valor: el valor actual, lo que leyó el modelo si se corrigió, la línea impresa, la confianza y por qué.
 - Teclado: J o ↓ siguiente valor, K o ↑ anterior, A aceptar, E editar, Intro guardar, Esc cancelar, N siguiente documento. Sin modificadores, para no chocar con el navegador ni el lector de pantalla; no actúan mientras se escribe en un campo.
-- **Aceptar** (`POST /review/documents/:id/accept { paths }`) marca el valor como bien leído. `DELETE` sobre la misma ruta deshace las aceptaciones.
+- **Aceptar** (`POST /review/documents/:id/accept { paths }`) marca el valor como bien leído. `DELETE` sobre la misma ruta deshace las aceptaciones. Leer la cola pide `data.read` (no la ven los clientes); aceptar, corregir y olvidar ejemplos piden `shipment.write` (propietario, administrador, analista). Aceptaciones y correcciones quedan en el registro de auditoría (`review.accept`, `review.correct`). Un documento de otra organización responde 404.
 - **Editar** usa la corrección manual de siempre (`PATCH /shipments/:id/documents/:documentId/data`): el documento debe seguir pasando su esquema, el cambio queda en el historial con quién lo hizo, y el envío vuelve a pedir validación. Un campo corregido cuenta como revisado.
 - Revertir los valores del modelo devuelve esos campos a la cola. Reextraer el documento borra sus revisiones.
 
@@ -34,8 +34,8 @@ En los PDF con capa de texto la confianza casi siempre es 1: en la muestra CA-00
 
 Interruptor en Administración → Configuración → Modelo y agente (`SUPPLIER_LEARNING`, apagado por defecto) y número de ejemplos por documento (`SUPPLIER_EXAMPLES`, 5).
 
-1. Cuando alguien corrige un valor de un documento, si el aprendizaje está activo, la corrección se guarda en `supplier_examples` para la cuenta y el proveedor del documento (vendedor de la factura o lista de empaque, embarcador del BL): el campo de la respuesta del modelo (`netWeight.value`; en un ítem, para todos: `packages[*].netWeight.value`), lo que copió el modelo, el valor correcto y la línea del PDF donde está impreso el valor correcto. Hay un ejemplo por campo: una corrección nueva reemplaza la anterior.
-2. Cuando llega otro documento, después de leerlo y clasificarlo y antes de llamar al modelo, se busca en su texto el nombre de un proveedor con ejemplos (`detectSupplier`, por nombre normalizado sin forma legal). Si aparece, sus ejemplos más recientes para ese tipo de documento se agregan al final de las instrucciones del modelo.
+1. Cuando alguien corrige un valor de un documento, si el aprendizaje está activo, la corrección se guarda en `supplier_examples` para la organización del envío y el proveedor del documento (vendedor de la factura o lista de empaque, embarcador del BL): el campo de la respuesta del modelo (`netWeight.value`; en un ítem, para todos: `packages[*].netWeight.value`), lo que copió el modelo, el valor correcto y la línea del PDF donde está impreso el valor correcto. Hay un ejemplo por campo: una corrección nueva reemplaza la anterior.
+2. Cuando llega otro documento, después de leerlo y clasificarlo y antes de llamar al modelo, se busca en su texto el nombre de un proveedor con ejemplos de la misma organización (nunca de otra) (`detectSupplier`, por nombre normalizado sin forma legal). Si aparece, sus ejemplos más recientes para ese tipo de documento se agregan al final de las instrucciones del modelo.
 3. Sin ejemplos, el prompt es exactamente el de siempre: la misma clave de caché y los mismos resultados medidos.
 
 Los ejemplos se ven, y se pueden olvidar por proveedor, en la página de Revisión (`GET /suppliers/examples`, `DELETE /suppliers/examples/:key`). Revertir las correcciones de un documento borra los ejemplos que salieron de él. Nada sale del servidor: los ejemplos van al modelo local.

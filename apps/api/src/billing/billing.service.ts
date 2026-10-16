@@ -1,6 +1,8 @@
 import { BadGatewayException, BadRequestException, Injectable, Logger, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { appUrl } from '../auth/app-url';
+import { AuditService } from '../audit/audit.service';
 import type { PublicUser } from '../auth/auth.types';
+import type { OrgContext } from '../orgs/org.types';
 import { UsageRepository } from '../usage/usage.repository';
 import { StripeApiError, stripeCall, stripeSetup, StripeSignatureError, verifyStripeSignature, type StripeConfig } from './stripe';
 
@@ -19,15 +21,23 @@ interface Subscription {
   items?: { data?: { price?: { id?: string } }[] };
 }
 
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 /** Subscription states that keep the paid plan; anything else (canceled, unpaid…) goes back to free. */
 const PAID_STATES = new Set(['active', 'trialing', 'past_due']);
 
-/** Checkout, customer portal and the webhook that sets an account's plan. Test mode only (stripe.ts). */
+/**
+ * Checkout, customer portal and the webhook that sets an organization's plan. Test mode only (stripe.ts).
+ * The Stripe customer is the organization; its owners and admins buy and manage the plan.
+ */
 @Injectable()
 export class BillingService {
   private readonly logger = new Logger(BillingService.name);
 
-  constructor(private readonly usage: UsageRepository) {
+  constructor(
+    private readonly usage: UsageRepository,
+    private readonly audit: AuditService,
+  ) {
     const setup = stripeSetup();
     if (process.env.STRIPE_SECRET_KEY && !setup.enabled) this.logger.warn(`Billing is off: ${setup.reason}`);
   }
@@ -49,28 +59,29 @@ export class BillingService {
     return `${base}/#/app/usage${query}`;
   }
 
-  private async customer(config: StripeConfig, user: PublicUser): Promise<string> {
-    const account = await this.usage.account(user.id);
-    if (!account) throw new NotFoundException('Account not found');
+  /** The organization's Stripe customer, made the first time with the buyer's email for receipts. */
+  private async customer(config: StripeConfig, org: OrgContext, user: PublicUser): Promise<string> {
+    const account = await this.usage.org(org.id);
+    if (!account) throw new NotFoundException('Organization not found');
     if (account.stripeCustomerId) return account.stripeCustomerId;
-    const created = await this.call<{ id: string }>(config, 'customers', { email: user.email, name: user.name, metadata: { user_id: user.id } });
-    await this.usage.setStripeCustomer(user.id, created.id);
+    const created = await this.call<{ id: string }>(config, 'customers', { email: user.email, name: account.name, metadata: { org_id: org.id, created_by: user.id } });
+    await this.usage.setStripeCustomer(org.id, created.id);
     return created.id;
   }
 
   /** A Stripe Checkout page for a paid plan; the webhook sets the plan once it is paid. */
-  async checkout(user: PublicUser, plan: string): Promise<{ url: string }> {
+  async checkout(org: OrgContext, user: PublicUser, plan: string): Promise<{ url: string }> {
     const config = this.config();
     const price = config.prices[plan];
     if (!price) throw new BadRequestException(`Plan ${plan} cannot be bought`);
-    const customer = await this.customer(config, user);
+    const customer = await this.customer(config, org, user);
     const session = await this.call<{ url: string }>(config, 'checkout/sessions', {
       mode: 'subscription',
       customer,
-      client_reference_id: user.id,
+      client_reference_id: org.id,
       line_items: [{ price, quantity: 1 }],
-      metadata: { user_id: user.id, plan },
-      subscription_data: { metadata: { user_id: user.id, plan } },
+      metadata: { org_id: org.id, plan },
+      subscription_data: { metadata: { org_id: org.id, plan } },
       success_url: this.returnUrl('?checkout=done'),
       cancel_url: this.returnUrl('?checkout=cancelled'),
     });
@@ -78,10 +89,10 @@ export class BillingService {
   }
 
   /** Stripe's customer portal: change or cancel the subscription, invoices, card. */
-  async portal(user: PublicUser): Promise<{ url: string }> {
+  async portal(org: OrgContext): Promise<{ url: string }> {
     const config = this.config();
-    const account = await this.usage.account(user.id);
-    if (!account?.stripeCustomerId) throw new BadRequestException('This account has no subscription to manage');
+    const account = await this.usage.org(org.id);
+    if (!account?.stripeCustomerId) throw new BadRequestException('This organization has no subscription to manage');
     const session = await this.call<{ url: string }>(config, 'billing_portal/sessions', { customer: account.stripeCustomerId, return_url: this.returnUrl('') });
     return { url: session.url };
   }
@@ -133,25 +144,32 @@ export class BillingService {
   private async apply(event: StripeEvent, config: StripeConfig): Promise<boolean> {
     const obj = event.data.object;
     if (event.type === 'checkout.session.completed') {
-      const userId = String(obj.client_reference_id ?? (obj.metadata as Record<string, string> | undefined)?.user_id ?? '');
+      const orgId = String(obj.client_reference_id ?? (obj.metadata as Record<string, string> | undefined)?.org_id ?? '');
       const plan = (obj.metadata as Record<string, string> | undefined)?.plan;
-      if (!userId || !plan || !(plan in config.prices)) return false;
-      if (typeof obj.customer === 'string') await this.usage.setStripeCustomer(userId, obj.customer);
-      await this.usage.setSubscription(userId, plan, typeof obj.subscription === 'string' ? obj.subscription : null);
-      this.logger.log(`Checkout completed: account ${userId} is now on ${plan}`);
+      if (!UUID.test(orgId) || !plan || !(plan in config.prices)) return false;
+      if (typeof obj.customer === 'string') await this.usage.setStripeCustomer(orgId, obj.customer);
+      const before = await this.usage.setSubscription(orgId, plan, typeof obj.subscription === 'string' ? obj.subscription : null);
+      if (before === null) return false;
+      this.noteChange(orgId, event, before, plan);
       return true;
     }
     if (event.type.startsWith('customer.subscription.')) {
       const sub = obj as unknown as Subscription;
-      const userId = (await this.usage.userByStripeCustomer(sub.customer)) ?? sub.metadata?.user_id;
-      if (!userId) return false;
+      const orgId = (await this.usage.orgByStripeCustomer(sub.customer)) ?? sub.metadata?.org_id;
+      if (!orgId || !UUID.test(orgId)) return false;
       const paid = event.type !== 'customer.subscription.deleted' && PAID_STATES.has(sub.status);
       const plan = paid ? (this.planOfPrice(config, sub.items?.data?.[0]?.price?.id) ?? sub.metadata?.plan) : 'free';
       if (!plan || (plan !== 'free' && !(plan in config.prices))) return false;
-      await this.usage.setSubscription(userId, plan, paid ? sub.id : null);
-      this.logger.log(`Subscription ${sub.status}: account ${userId} is now on ${plan}`);
+      const before = await this.usage.setSubscription(orgId, plan, paid ? sub.id : null);
+      if (before === null) return false;
+      this.noteChange(orgId, event, before, plan);
       return true;
     }
     return false;
+  }
+
+  private noteChange(orgId: string, event: StripeEvent, before: string, plan: string) {
+    this.logger.log(`${event.type}: organization ${orgId} is now on ${plan}`);
+    this.audit.note({ orgId, action: 'org.plan', entity: 'organization', entityId: orgId, before: { plan: before }, after: { plan, stripeEvent: event.id } });
   }
 }
