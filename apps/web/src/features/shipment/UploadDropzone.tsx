@@ -2,10 +2,11 @@ import { UploadIcon } from '@radix-ui/react-icons';
 import { useRef, useState, type DragEvent, type KeyboardEvent } from 'react';
 import { useI18n } from '../../i18n/useI18n';
 import { cx } from '../../lib/cx';
+import { UPLOAD_ACCEPT } from '../../lib/isUploadableFile';
 
 export interface UploadDropzoneProps {
   uploading: boolean;
-  /** US shipments also take the ISF filing PDF. */
+  /** US shipments also take the ISF filing PDF. Photos and spreadsheets are taken too. */
   acceptsIsf: boolean;
   onFiles: (files: File[]) => void;
 }
@@ -47,7 +48,7 @@ export function UploadDropzone({ uploading, acceptsIsf, onFiles }: UploadDropzon
       <input
         ref={input}
         type="file"
-        accept="application/pdf"
+        accept={UPLOAD_ACCEPT}
         multiple
         hidden
         onChange={(e) => {

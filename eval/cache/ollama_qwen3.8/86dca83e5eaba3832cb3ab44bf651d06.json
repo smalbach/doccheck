@@ -1,0 +1,100 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 845,
+    "outputTokens": 941
+  },
+  "output": {
+    "blNumber": "SILVSHK679667",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "870468559",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "BRIGHTSTAR TOYS MANUFACTURING CO., LTD.",
+      "addressLines": [
+        "NO. 18 LONGGANG INDUSTRIAL AVE",
+        "BUJI SUBDISTRICT",
+        "SHENZHEN GUANGDONG 518112"
+      ],
+      "city": "SHENZHEN",
+      "region": "GUANGDONG",
+      "postalCode": "518112",
+      "country": "CN",
+      "taxId": null
+    },
+    "consignee": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "HARBORLINE INDUSTRIAL SUPPLY INC.",
+      "addressLines": [
+        "1200 PORT AVE",
+        "ELIZABETH NJ 07201"
+      ],
+      "city": "ELIZABETH",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "039S",
+    "placeOfReceipt": {
+      "name": "SHENZHEN",
+      "country": "CN"
+    },
+    "portOfLoading": {
+      "name": "SHEKOU",
+      "country": "CN"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "NEWARK",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCLU2088150",
+        "seal": "PC9999832",
+        "type": "20GP",
+        "packages": "174",
+        "grossWeight": {
+          "value": "2745.72",
+          "unit": "KGS"
+        },
+        "volumeM3": "10.31"
+      }
+    ],
+    "totalPackages": "174",
+    "totalGrossWeight": {
+      "value": "2333.86",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-36707/C/NO. 1-174",
+    "cargoDescription": "SAID TO CONTAIN 174 CTNS JIGSAW PUZZLE 1000 PCS",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/7701",
+      "PO-36707"
+    ],
+    "placeOfIssue": "SHEKOU",
+    "dateOfIssue": "13-MAY-2026",
+    "shippedOnBoardDate": "13-MAY-2026"
+  }
+}

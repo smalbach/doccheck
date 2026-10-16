@@ -8,7 +8,7 @@ import { Field } from '../../components/ui/Field';
 import { useI18n } from '../../i18n/useI18n';
 import { cx } from '../../lib/cx';
 import { errorMessage } from '../../lib/errorMessage';
-import { isPdfFile } from '../../lib/isPdfFile';
+import { isUploadableFile, UPLOAD_ACCEPT } from '../../lib/isUploadableFile';
 
 export interface PortalUploadFormProps {
   token: string;
@@ -17,7 +17,7 @@ export interface PortalUploadFormProps {
   onUploaded: (view: PortalView) => void;
 }
 
-/** Corrected or draft PDFs, checked here first (type, size, count) and again by the server. */
+/** Corrected or draft documents (PDF, photos, spreadsheets), checked here first (type, size, count) and again by the server. */
 export function PortalUploadForm({ token, importer, limits, onUploaded }: PortalUploadFormProps) {
   const { t } = useI18n();
   const inputId = useId();
@@ -30,7 +30,7 @@ export function PortalUploadForm({ token, importer, limits, onUploaded }: Portal
 
   const choose = (picked: File[]) => {
     setError(undefined);
-    const notPdf = picked.find((f) => !isPdfFile(f));
+    const notPdf = picked.find((f) => !isUploadableFile(f));
     if (notPdf) return setError(t('portal.notPdf', { file: notPdf.name }));
     const big = picked.find((f) => f.size > limits.maxFileBytes);
     if (big) return setError(t('portal.tooLarge', { file: big.name, size: mb(limits.maxFileBytes) }));
@@ -66,7 +66,7 @@ export function PortalUploadForm({ token, importer, limits, onUploaded }: Portal
           id={inputId}
           className="portal-file-input visually-hidden"
           type="file"
-          accept="application/pdf,.pdf"
+          accept={UPLOAD_ACCEPT}
           multiple
           aria-describedby={`${inputId}-hint`}
           onChange={(e) => {

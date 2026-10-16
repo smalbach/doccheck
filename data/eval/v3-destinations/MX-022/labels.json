@@ -1,0 +1,27 @@
+{
+  "id": "MX-022",
+  "errors": [
+    {
+      "kind": "invoice_language_not_accepted",
+      "document": "invoice",
+      "field": "language",
+      "before": "es",
+      "after": "pt",
+      "expectedRuleIds": [
+        "M3"
+      ],
+      "description": "Invoice in \"pt\" without a Spanish translation."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "PCRU3206239",
+      "after": "PCRU3206236",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: PCRU3206239 -> PCRU3206236."
+    }
+  ]
+}

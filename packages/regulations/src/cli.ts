@@ -1,5 +1,6 @@
 import { resolve } from 'node:path';
 import { parseArgs } from 'node:util';
+import type { Authority } from './corpus';
 import { excerpt, OllamaEmbedder } from './search';
 import { buildIndexFile, loadIndexFile } from './store';
 
@@ -27,13 +28,13 @@ async function main() {
   if (command === 'search') {
     const query = rest.join(' ');
     const index = await loadIndexFile(file, embedder);
-    for (const hit of await index.search(query, { authority: values.authority as 'CBSA' | 'CBP' | undefined, limit: Number(values.limit) })) {
+    for (const hit of await index.search(query, { authority: values.authority as Authority | undefined, limit: Number(values.limit) })) {
       console.log(`\n[${hit.score.toFixed(4)} v${hit.ranks.vector ?? '-'} k${hit.ranks.keyword ?? '-'}] ${hit.chunk.title} — ${hit.chunk.section}`);
       console.log(`  ${excerpt(hit.chunk.text, query, 300)}`);
     }
     return;
   }
-  console.error('Usage: cli.js index | search <query> [--authority CBSA|CBP]');
+  console.error('Usage: cli.js index | search <query> [--authority CBSA|CBP|ANAM|UCC|HMRC]');
   process.exit(1);
 }
 

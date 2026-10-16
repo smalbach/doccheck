@@ -1,0 +1,325 @@
+{
+  "id": "MX-013",
+  "seed": 314781649,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SAI2601165",
+      "invoiceDate": "2026-05-28",
+      "poNumber": "CO699114",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-05-30",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ho Chi Minh City",
+          "unLocode": "VNSGN",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ho Chi Minh City"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "MXN",
+      "packageCount": 220,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "4400",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "20.81",
+            "currency": "MXN"
+          },
+          "lineTotal": {
+            "amount": "91564.00",
+            "currency": "MXN"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3960.00",
+        "raw": {
+          "value": "3960.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3740.00",
+        "raw": {
+          "value": "3740.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "91564.00",
+        "currency": "MXN"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en",
+      "charges": {
+        "freight": {
+          "amount": "2495.00",
+          "currency": "CNY"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-SAI2601165",
+      "invoiceRef": "SAI2601165",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-220",
+          "count": 220,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/CO699114/C/NO. 1-220",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "4400",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3740.00",
+            "raw": {
+              "value": "3740.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3960.00",
+            "raw": {
+              "value": "3960.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 220,
+        "netWeight": {
+          "kg": "3740.00",
+          "raw": {
+            "value": "3740.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3960.00",
+          "raw": {
+            "value": "3960.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "28.96"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXSGN9654333",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "862720202",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "TIDEWATER SPIRIT",
+      "voyage": "004W",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Ho Chi Minh City",
+        "unLocode": "VNSGN",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Manzanillo",
+        "unLocode": "MXZLO",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "AGLU5641507",
+          "seal": "AG7378401",
+          "type": "40HC",
+          "packages": 220,
+          "grossWeight": {
+            "kg": "3960.00",
+            "raw": {
+              "value": "3960.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "28.96"
+        }
+      ],
+      "totalPackages": 220,
+      "totalGrossWeight": {
+        "kg": "3960.00",
+        "raw": {
+          "value": "3960.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/CO699114/C/NO. 1-220",
+      "cargoDescription": "SAID TO CONTAIN 220 CTNS WOMEN'S PADDED JACKET",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ho Chi Minh City",
+      "dateOfIssue": "2026-05-30",
+      "shippedOnBoardDate": "2026-05-30",
+      "references": [
+        "SAI2601165",
+        "CO699114"
+      ]
+    }
+  }
+}

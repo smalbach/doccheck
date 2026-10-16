@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 827,
+    "outputTokens": 928
+  },
+  "output": {
+    "blNumber": "COMPNSA458037",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "557775002",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Northern Lantern DC Brampton",
+      "addressLines": [
+        "8 Steinway Blvd",
+        "Brampton, ON, L6T 4X7"
+      ],
+      "city": "Brampton",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Northern Lantern Retail Inc.",
+      "addressLines": [
+        "250 Front St W, Suite 1400",
+        "Toronto, ON, M5V 3G5"
+      ],
+      "city": "Toronto",
+      "region": "ON",
+      "postalCode": "M5V 3G5",
+      "country": "CA",
+      "taxId": "812345678RM0001"
+    },
+    "vessel": "AURORA BOREAS",
+    "voyage": "033N",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Montreal",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "Toronto",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "AGXU1727298",
+        "seal": "AG5801417",
+        "type": "20GP",
+        "packages": "156",
+        "grossWeight": {
+          "value": "3,780.40",
+          "unit": "KG"
+        },
+        "volumeM3": "9.63"
+      }
+    ],
+    "totalPackages": "156",
+    "totalGrossWeight": {
+      "value": "3,780.40",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "NORTHERN/NO397981/C/NO. 1-156",
+    "cargoDescription": "SAID TO CONTAIN 156 PKGS BALL BEARING 6204-2RS AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "INV-2026-4337",
+      "NO397981"
+    ],
+    "placeOfIssue": "Nhava Sheva",
+    "dateOfIssue": "2026-09-20",
+    "shippedOnBoardDate": "2026-09-20"
+  }
+}

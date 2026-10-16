@@ -1,0 +1,109 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 811,
+    "outputTokens": 1012
+  },
+  "output": {
+    "invoiceNumber": "SAI2601998",
+    "invoiceDate": null,
+    "poNumber": "QU969565",
+    "seller": {
+      "name": "Norland Precision Scales Co., Ltd.",
+      "addressLines": [
+        "88 Gaoxin Road, Building 3"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "buyer": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "Quincaillerie Saint-Laurent Ltée",
+      "addressLines": [
+        "1450 boul. Industriel"
+      ],
+      "city": "Laval",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "2026-08-17",
+    "transportMode": "SEA",
+    "placeOfShipment": null,
+    "portOfEntry": null,
+    "incotermCode": "FOB",
+    "incotermPlace": "Cai Mep",
+    "paymentTerms": "T/T 30 days after BL date",
+    "currency": "USD",
+    "countryOfOrigin": "VN",
+    "lines": [
+      {
+        "lineNo": "1",
+        "sku": null,
+        "description": "Women's padded jacket, woven polyester shell",
+        "quantity": "4,200",
+        "unit": "PCS",
+        "unitPrice": "20.88",
+        "unitPriceCurrency": null,
+        "lineTotal": "87,696.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6202.40"
+      },
+      {
+        "lineNo": "2",
+        "sku": null,
+        "description": "Men's T-shirt, knitted, 100% cotton, assorted sizes",
+        "quantity": "20,100",
+        "unit": "PCS",
+        "unitPrice": "2.16",
+        "unitPriceCurrency": null,
+        "lineTotal": "43,416.00",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6109.10"
+      },
+      {
+        "lineNo": "3",
+        "sku": null,
+        "description": "Wool blend socks, knitted, 3-pair pack",
+        "quantity": "3,360",
+        "unit": "PRS",
+        "unitPrice": "3.14",
+        "unitPriceCurrency": null,
+        "lineTotal": "10,550.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": "VN",
+        "hsCode": "6115.94"
+      }
+    ],
+    "totalPackages": "423",
+    "grossWeight": {
+      "value": "7,641.00",
+      "unit": "KG"
+    },
+    "netWeight": {
+      "value": "8,021.60",
+      "unit": "KG"
+    },
+    "invoiceTotal": "141,662.40",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

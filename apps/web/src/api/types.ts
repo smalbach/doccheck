@@ -21,7 +21,7 @@ export type {
   ValidationStage,
 } from '@doccheck/schemas';
 
-export type Destination = 'CA' | 'US';
+export type Destination = 'CA' | 'US' | 'MX' | 'EU' | 'GB';
 export type TransportMode = 'SEA' | 'AIR' | 'ROAD';
 
 /** Status groups the list filters on, computed by the API. */
@@ -100,6 +100,8 @@ export interface Validation {
   skipped: SkippedRule[];
   inputs: Record<string, string>;
   agent?: { status: 'done' | 'skipped' | 'failed'; citations: number; decisions: AgentDecision[]; error?: string };
+  /** The rule settings the run applied (missing on runs from before they were recorded). */
+  ruleConfig?: AppliedRuleConfig;
   findings: ValidationFinding[];
   /** Latest run only: the run before it, and its findings that are gone (resolved). */
   previous?: { id: string; createdAt: string };
@@ -147,6 +149,64 @@ export interface RuleDefinition {
   requires: DocumentType[];
   kind: string;
   severity: Finding['severity'];
+  /** Tolerances an account can change (Rules settings). */
+  params?: RuleParamSpec[];
+}
+
+export type RuleParamKey =
+  | 'grossWeightTolerance'
+  | 'shipmentDateDays'
+  | 'vgmTolerance'
+  | 'priceDeviation'
+  | 'priceScore'
+  | 'priceMinHistory'
+  | 'poQuantityTolerance'
+  | 'poPriceTolerance'
+  | 'isfLeadHours';
+
+/** percent: a fraction shown as % (0.005 = 0.5%). */
+export interface RuleParamSpec {
+  key: RuleParamKey;
+  unit: 'percent' | 'days' | 'hours' | 'count' | 'score';
+  min: number;
+  max: number;
+}
+
+/** What the organization changed from the defaults. */
+export interface RuleConfig {
+  rules?: Record<string, { enabled?: boolean; severity?: Finding['severity'] }>;
+  params?: Partial<Record<RuleParamKey, number>> & { knownScacs?: string[] };
+}
+
+export interface RuleSettings {
+  scope: 'organization';
+  config: RuleConfig;
+  updatedAt?: string;
+  updatedBy?: string;
+  defaults: Record<RuleParamKey, number> & { knownScacs: string[] };
+  bundledScacs: string[];
+  rules: (RuleDefinition & { destinations: Destination[] })[];
+}
+
+/** The settings a validation run applied, recorded with it. */
+export interface AppliedRuleConfig {
+  scope: 'default' | 'organization';
+  config: RuleConfig;
+  params: Record<RuleParamKey, number> & { knownScacs: string[] };
+  asOf: string;
+  account: { priorInvoices: number; pricePoints: number; purchaseOrder?: string; purchaseOrders: number };
+  disabled?: string[];
+}
+
+export interface PurchaseOrderSummary {
+  id: string;
+  poNumber: string;
+  sellerName?: string;
+  currency?: string;
+  orderDate?: string;
+  lines: number;
+  source?: string;
+  updatedAt: string;
 }
 
 export type Role = 'user' | 'admin';
@@ -159,7 +219,7 @@ export interface User {
   createdAt: string;
 }
 
-export type SettingKey = 'llmModel' | 'agentEnabled' | 'registrationOpen' | 'ocrEngine' | 'ocrUrl' | 'ocrLanguages' | 'ocrScale' | 'ocrPsm';
+export type SettingKey = 'llmModel' | 'agentEnabled' | 'registrationOpen' | 'ocrEngine' | 'ocrUrl' | 'ocrLanguages' | 'ocrScale' | 'ocrPsm' | 'reviewThreshold' | 'reviewSecondPass' | 'supplierLearning' | 'supplierExamples';
 
 export type OcrEngine = 'tesseract' | 'unlimited';
 
@@ -172,6 +232,10 @@ export interface SettingValues {
   ocrLanguages: string[];
   ocrScale: number;
   ocrPsm: string;
+  reviewThreshold: number;
+  reviewSecondPass: boolean;
+  supplierLearning: boolean;
+  supplierExamples: number;
 }
 
 export interface SettingView<K extends SettingKey = SettingKey> {
@@ -734,4 +798,10 @@ export interface MailServerSettings {
         imap: { host: string; port: number; secure: boolean; user: string; hasPassword: boolean; mailbox: string; pollSeconds: number } | null;
       })
     | null;
+}
+
+/** A spreadsheet document's cells (GET .../sheets), and the sheets (1-based) the document covers. */
+export interface SheetGrid {
+  sheets: { name: string; rows: string[][] }[];
+  pages: number[];
 }

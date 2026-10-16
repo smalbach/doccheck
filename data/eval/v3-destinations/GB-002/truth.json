@@ -1,0 +1,366 @@
+{
+  "id": "GB-002",
+  "seed": 1536784415,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-6544",
+      "invoiceDate": "2026-08-26",
+      "poNumber": "PO-7447",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-09-06",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "La Spezia",
+          "unLocode": "ITSPE",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "London Gateway"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "GBP",
+      "packageCount": 207,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "OO-EV-5",
+          "description": "Extra virgin olive oil, 5 L tins",
+          "quantity": {
+            "value": "796",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "22.72",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "18085.12",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "1509.20"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "320",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "9.48",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "3033.60",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "10760.70",
+        "raw": {
+          "value": "10760.70",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "10381.60",
+        "raw": {
+          "value": "10381.60",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "21118.72",
+        "currency": "GBP"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "originStatement": "The exporter of the products covered by this document (Exporter Reference No ITREX440912581) declares that, except where otherwise clearly indicated, these products are of EU preferential origin."
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-6544",
+      "invoiceRef": "INV-2026-6544",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-199",
+          "count": 199,
+          "type": "CTN",
+          "marks": "THAMESIDE/PO-7447/C/NO. 1-207",
+          "contents": [
+            {
+              "sku": "OO-EV-5",
+              "description": "EV olive oil 5 L",
+              "quantity": {
+                "value": "786",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3661.60",
+            "raw": {
+              "value": "3661.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "3840.70",
+            "raw": {
+              "value": "3840.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            35
+          ]
+        },
+        {
+          "range": "200-207",
+          "count": 8,
+          "type": "PLT",
+          "marks": "THAMESIDE/PO-7447/C/NO. 1-207",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "320",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "6720.00",
+            "raw": {
+              "value": "6720.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "6920.00",
+            "raw": {
+              "value": "6920.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 207,
+        "netWeight": {
+          "kg": "10381.60",
+          "raw": {
+            "value": "10381.60",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "10760.70",
+          "raw": {
+            "value": "10760.70",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "15.27"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPSPE508037",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "161887095",
+      "carrier": {
+        "name": "Pacific Crest Container Line",
+        "scac": "PCCL"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "082W",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "La Spezia",
+        "unLocode": "ITSPE",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "London Gateway",
+        "unLocode": "GBLGP",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "PCLU6315632",
+          "seal": "PC3453125",
+          "type": "20GP",
+          "packages": 207,
+          "grossWeight": {
+            "kg": "10760.70",
+            "raw": {
+              "value": "10760.70",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "15.27"
+        }
+      ],
+      "totalPackages": 207,
+      "totalGrossWeight": {
+        "kg": "10760.70",
+        "raw": {
+          "value": "10760.70",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/PO-7447/C/NO. 1-207",
+      "cargoDescription": "SAID TO CONTAIN 207 PKGS EV OLIVE OIL 5 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "La Spezia",
+      "dateOfIssue": "2026-09-08",
+      "shippedOnBoardDate": "2026-09-08",
+      "references": [
+        "INV-2026-6544",
+        "PO-7447"
+      ]
+    }
+  }
+}

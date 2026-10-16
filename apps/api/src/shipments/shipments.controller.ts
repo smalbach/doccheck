@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, Header, HttpCode, Param, Patch, Post, Put, Query, Res, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Put, Query, Res, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { Isf } from '@doccheck/schemas';
 import type { Response } from 'express';
 import { FilesInterceptor } from '@nestjs/platform-express';
@@ -73,14 +73,16 @@ export class ShipmentsController {
   }
 
   /**
-   * Multipart upload, field "files": one or more PDFs. Responds 202 with the queued documents;
-   * poll GET /shipments/:id/documents/:documentId, or pass ?wait=true to block until extracted.
+   * Multipart upload, field "files": one or more PDFs, photos (JPEG, PNG, HEIC: straightened, cropped
+   * and read with OCR) or spreadsheets (.xlsx, .csv: read without a model). A PDF or workbook holding
+   * several documents is split into one document per part once it is read. Responds 202 with the
+   * queued documents; poll GET /shipments/:id/documents/:documentId, or pass ?wait=true to block until extracted.
    */
   @Post(':id/documents')
   @HttpCode(202)
   @UseInterceptors(FilesInterceptor('files', 10, { limits: { fileSize: MAX_PDF_BYTES } }))
   upload(@Param('id') id: string, @UploadedFiles() files: Express.Multer.File[] = [], @Query('wait') wait?: string) {
-    if (files.length === 0) throw new BadRequestException('Send at least one PDF in the "files" field');
+    if (files.length === 0) throw new BadRequestException('Send at least one PDF, photo or spreadsheet in the "files" field');
     return this.shipments.addDocuments(id, files.map((f) => ({ name: f.originalname, bytes: f.buffer })), wait === 'true');
   }
 
@@ -134,14 +136,21 @@ export class ShipmentsController {
     return this.shipments.cancelExtraction(id, documentId);
   }
 
-  /** The uploaded PDF, for the viewer. */
+  /** The stored file, for the viewer: the PDF (a photo's image PDF), or the spreadsheet as uploaded. */
   @Get(':id/documents/:documentId/file')
   @Permission('shipment.read')
-  @Header('content-type', 'application/pdf')
   async file(@Param('id') id: string, @Param('documentId') documentId: string, @Res() res: Response) {
-    const { name, bytes } = await this.shipments.file(id, documentId);
+    const { name, bytes, contentType } = await this.shipments.file(id, documentId);
+    res.setHeader('content-type', contentType);
     res.setHeader('content-disposition', `inline; filename="${name.replace(/[^\w.-]+/g, '_')}"`);
     res.send(bytes);
+  }
+
+  /** A spreadsheet document's cells, for the viewer: { sheets: [{ name, rows }] }, and the sheets it covers. 400 for other documents. */
+  @Get(':id/documents/:documentId/sheets')
+  @Permission('shipment.read')
+  sheets(@Param('id') id: string, @Param('documentId') documentId: string) {
+    return this.shipments.sheets(id, documentId);
   }
 
   /** The Importer Security Filing (10+2) as JSON. Used by X11 on US shipments; an uploaded ISF PDF also lands here. */

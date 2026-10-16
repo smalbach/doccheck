@@ -19,7 +19,10 @@ const REQUEST_SELECT = `
     coalesce(lv.created_at > r.created_at, false) as validated_since,
     (select count(*) from findings f where f.validation_id = lv.id and (
       r.kind = 'pre_shipment' or f.fingerprint = any(r.fingerprints)
-      or exists (select 1 from jsonb_array_elements(f.evidence) ev join portal_uploads u on u.request_id = r.id where (ev->>'documentId') = any(u.document_ids::text[]))
+      or exists (
+        select 1 from jsonb_array_elements(f.evidence) ev join portal_uploads u on u.request_id = r.id
+        join documents d on d.id = any(u.document_ids) or d.source_document_id = any(u.document_ids)
+        where (ev->>'documentId') = d.id::text)
     ))::int as open,
     (select max(e.created_at) from portal_events e where e.request_id = r.id and e.kind <> 'denied') as last_activity_at
   from portal_requests r
@@ -258,9 +261,12 @@ export class PortalRepository {
     }));
   }
 
-  /** Every document the supplier uploaded through this request. */
+  /** Every document the supplier uploaded through this request, with the documents split out of a combined file. */
   async uploadedDocuments(requestId: string): Promise<Set<string>> {
-    const { rows } = await this.pool.query<{ id: string }>('select unnest(document_ids)::text as id from portal_uploads where request_id = $1', [requestId]);
+    const { rows } = await this.pool.query<{ id: string }>(
+      `select d.id::text as id from portal_uploads u join documents d on d.id = any(u.document_ids) or d.source_document_id = any(u.document_ids) where u.request_id = $1`,
+      [requestId],
+    );
     return new Set(rows.map((r) => r.id));
   }
 
@@ -290,9 +296,9 @@ export class PortalRepository {
 
   // What the supplier sees --------------------------------------------------------------------------
 
-  async latestValidation(shipmentId: string): Promise<{ id: string; createdAt: string; skipped: { ruleId: string; missing: DocumentType[] }[] } | null> {
-    const { rows } = await this.pool.query('select id, created_at, skipped from validations where shipment_id = $1 order by created_at desc limit 1', [shipmentId]);
-    return rows[0] ? { id: rows[0].id, createdAt: iso(rows[0].created_at)!, skipped: rows[0].skipped ?? [] } : null;
+  async latestValidation(shipmentId: string): Promise<{ id: string; createdAt: string; ran: string[]; skipped: { ruleId: string; missing: DocumentType[] }[] } | null> {
+    const { rows } = await this.pool.query('select id, created_at, ran, skipped from validations where shipment_id = $1 order by created_at desc limit 1', [shipmentId]);
+    return rows[0] ? { id: rows[0].id, createdAt: iso(rows[0].created_at)!, ran: rows[0].ran ?? [], skipped: rows[0].skipped ?? [] } : null;
   }
 
   /** The latest finding with each of these fingerprints in any validation of the shipment (for the ones fixed since). */

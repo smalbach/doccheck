@@ -1,0 +1,314 @@
+{
+  "id": "GB-028",
+  "seed": 1976543178,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "legacy",
+    "blTemplate": "classic",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "SAI2605424",
+      "invoiceDate": "2026-05-06",
+      "poNumber": "PE939004",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "shipmentDate": "2026-05-16",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ho Chi Minh City",
+          "unLocode": "VNSGN",
+          "country": "VN"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Ho Chi Minh City"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "EUR",
+      "packageCount": 47,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "JK-PL-02",
+          "description": "Women's padded jacket, woven polyester shell",
+          "quantity": {
+            "value": "940",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "21.96",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "20642.40",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "VN",
+          "hsCode": "6202.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "846.00",
+        "raw": {
+          "value": "846.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "799.00",
+        "raw": {
+          "value": "799.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "20642.40",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL-SAI2605424",
+      "invoiceRef": "SAI2605424",
+      "seller": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-47",
+          "count": 47,
+          "type": "CTN",
+          "marks": "PENNINE/PE939004/C/NO. 1-47",
+          "contents": [
+            {
+              "sku": "JK-PL-02",
+              "description": "Women's padded jacket",
+              "quantity": {
+                "value": "940",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "799.00",
+            "raw": {
+              "value": "799.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "846.00",
+            "raw": {
+              "value": "846.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            65,
+            45,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 47,
+        "netWeight": {
+          "kg": "799.00",
+          "raw": {
+            "value": "799.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "846.00",
+          "raw": {
+            "value": "846.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "6.19"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPSGN367311",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "161283770",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Saigon Apparel Joint Stock Company",
+        "address": {
+          "lines": [
+            "Lot B4, Tan Thuan Export Processing Zone",
+            "District 7"
+          ],
+          "city": "Ho Chi Minh City",
+          "postalCode": "700000",
+          "country": "VN"
+        },
+        "taxId": "0301234567"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "045S",
+      "placeOfReceipt": {
+        "name": "Ho Chi Minh City",
+        "country": "VN"
+      },
+      "portOfLoading": {
+        "name": "Ho Chi Minh City",
+        "unLocode": "VNSGN",
+        "country": "VN"
+      },
+      "portOfDischarge": {
+        "name": "Southampton",
+        "unLocode": "GBSOU",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "TWEU9433084",
+          "seal": "TW6919720",
+          "type": "20GP",
+          "packages": 47,
+          "grossWeight": {
+            "kg": "846.00",
+            "raw": {
+              "value": "846.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "6.19"
+        }
+      ],
+      "totalPackages": 47,
+      "totalGrossWeight": {
+        "kg": "862.92",
+        "raw": {
+          "value": "862.92",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PE939004/C/NO. 1-47",
+      "cargoDescription": "SAID TO CONTAIN 47 CTNS WOMEN'S PADDED JACKET",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ho Chi Minh City",
+      "dateOfIssue": "2026-05-18",
+      "shippedOnBoardDate": "2026-05-18",
+      "references": [
+        "SAI2605424",
+        "PE939004"
+      ]
+    }
+  }
+}

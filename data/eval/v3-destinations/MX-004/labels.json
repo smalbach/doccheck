@@ -1,0 +1,38 @@
+{
+  "id": "MX-004",
+  "errors": [
+    {
+      "kind": "invoice_language_not_accepted",
+      "document": "invoice",
+      "field": "language",
+      "before": "en",
+      "after": "zh",
+      "expectedRuleIds": [
+        "M3"
+      ],
+      "description": "Invoice in \"zh\" without a Spanish translation."
+    },
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "AGXU8740809",
+      "after": "AGXU8740801",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: AGXU8740809 -> AGXU8740801."
+    },
+    {
+      "kind": "missing_importer_number",
+      "document": "invoice",
+      "field": "buyer.taxId",
+      "before": "DPN070315K24",
+      "after": null,
+      "expectedRuleIds": [
+        "M1"
+      ],
+      "description": "Importer's RFC or EORI number missing from the invoice."
+    }
+  ]
+}

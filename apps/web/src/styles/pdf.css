@@ -6,3 +6,11 @@
 .highlight-live { transition: left 0.2s ease-out, top 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out; }
 .viewer-live { margin: 0; padding: 6px 14px; flex: none; overflow-wrap: anywhere; }
 @media (prefers-reduced-motion: reduce) { .highlight-live { transition: none; } }
+/* Spreadsheet viewer: the cited cell is outlined like a PDF highlight. */
+.sheet-grid { overflow: auto; flex: 1; padding: 0 14px 14px; }
+.sheet-grid table { border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; }
+.sheet-grid th, .sheet-grid td { border: 1px solid var(--line); padding: 3px 6px; white-space: nowrap; text-align: left; }
+.sheet-grid th { background: var(--surface); color: var(--muted); font-weight: 600; position: sticky; top: 0; }
+.sheet-grid th[scope='row'] { position: sticky; left: 0; }
+.sheet-grid .sheet-cell-cited { outline: 2px solid var(--mark-line); outline-offset: -2px; background: var(--mark); }
+.sheet-tabs { padding: 6px 14px; }

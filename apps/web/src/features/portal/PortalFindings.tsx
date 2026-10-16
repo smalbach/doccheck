@@ -34,7 +34,9 @@ export function PortalFindings({ view }: { view: PortalView }) {
           <p className="muted">{t('portal.skippedText')}</p>
           <ul className="portal-skipped">
             {view.skipped.map((s) => (
-              <li key={s.ruleId}>{t('portal.skippedItem', { rule: s.ruleId, documents: s.missing.map((d) => t(DOCUMENT_TYPE_KEY[d])).join(', ') })}</li>
+              <li key={s.ruleId}>
+                {s.reason === 'history' ? t('portal.skippedHistory', { rule: s.ruleId }) : t('portal.skippedItem', { rule: s.ruleId, documents: s.missing.map((d) => t(DOCUMENT_TYPE_KEY[d])).join(', ') })}
+              </li>
             ))}
           </ul>
         </Card>

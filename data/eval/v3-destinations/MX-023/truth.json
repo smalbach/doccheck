@@ -1,0 +1,315 @@
+{
+  "id": "MX-023",
+  "seed": 251286888,
+  "destination": "MX",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "legacy",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "KÜC2607278",
+      "invoiceDate": "2026-04-05",
+      "poNumber": "PO-94907",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "buyer": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "exporter": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "shipmentDate": "2026-04-07",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Hamburg",
+          "unLocode": "DEHAM",
+          "country": "DE"
+        }
+      },
+      "incoterm": {
+        "code": "CIF",
+        "place": "Veracruz"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 133,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "1064",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "16.00",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "17024.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "DE",
+          "hsCode": "8516.71"
+        }
+      ],
+      "grossWeight": {
+        "kg": "1263.50",
+        "raw": {
+          "value": "1263.50",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "1117.20",
+        "raw": {
+          "value": "1117.20",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "17024.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "es"
+    },
+    "packingList": {
+      "packingListNumber": "PL-KÜC2607278",
+      "invoiceRef": "KÜC2607278",
+      "seller": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "packages": [
+        {
+          "range": "1-133",
+          "count": 133,
+          "type": "CTN",
+          "marks": "COMERCIALIZADORA/PO-94907/C/NO. 1-133",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "1064",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1117.20",
+            "raw": {
+              "value": "1117.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1263.50",
+            "raw": {
+              "value": "1263.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 133,
+        "netWeight": {
+          "kg": "1117.20",
+          "raw": {
+            "value": "1117.20",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "1263.50",
+          "raw": {
+            "value": "1263.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "13.83"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXHAM3703052",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "304633259",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Küchentechnik Müller & Söhne GmbH",
+        "address": {
+          "lines": [
+            "Königstraße 48"
+          ],
+          "city": "Stuttgart",
+          "postalCode": "70173",
+          "country": "DE"
+        },
+        "taxId": "DE298765432"
+      },
+      "consignee": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "notifyParty": {
+        "name": "Comercializadora del Bajío Abarrotes, S.A. de C.V.",
+        "address": {
+          "lines": [
+            "Blvd. Bernardo Quintana 4100"
+          ],
+          "city": "Querétaro",
+          "region": "QRO",
+          "postalCode": "76090",
+          "country": "MX"
+        },
+        "taxId": "CBA990208H57"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "021W",
+      "placeOfReceipt": {
+        "name": "Stuttgart",
+        "country": "DE"
+      },
+      "portOfLoading": {
+        "name": "Hamburg",
+        "unLocode": "DEHAM",
+        "country": "DE"
+      },
+      "portOfDischarge": {
+        "name": "Veracruz",
+        "unLocode": "MXVER",
+        "country": "MX"
+      },
+      "placeOfDelivery": {
+        "name": "Queretaro",
+        "unLocode": "MXQRO",
+        "country": "MX"
+      },
+      "containers": [
+        {
+          "number": "AGLU1324340",
+          "seal": "AG8499806",
+          "type": "20GP",
+          "packages": 133,
+          "grossWeight": {
+            "kg": "1263.50",
+            "raw": {
+              "value": "1263.50",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "13.83"
+        }
+      ],
+      "totalPackages": 133,
+      "totalGrossWeight": {
+        "kg": "1263.50",
+        "raw": {
+          "value": "1263.50",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "COMERCIALIZADORA/PO-94907/C/NO. 1-133",
+      "cargoDescription": "SAID TO CONTAIN 133 CTNS ELECTRIC KETTLE 1.7 L",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Hamburg",
+      "dateOfIssue": "2026-04-09",
+      "shippedOnBoardDate": "2026-04-09",
+      "references": [
+        "KÜC2607278",
+        "PO-94907"
+      ]
+    }
+  }
+}

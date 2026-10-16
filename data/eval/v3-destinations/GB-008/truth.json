@@ -1,0 +1,368 @@
+{
+  "id": "GB-008",
+  "seed": 28181542,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/5352",
+      "invoiceDate": "2026-08-12",
+      "poNumber": "PO-1891",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-08-24",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ningbo",
+          "unLocode": "CNNGB",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ningbo"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "GBP",
+      "packageCount": 237,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "1456",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "17.48",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "25450.88",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "220",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "23.24",
+            "currency": "GBP"
+          },
+          "lineTotal": {
+            "amount": "5112.80",
+            "currency": "GBP"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "2312.00",
+        "raw": {
+          "value": "2312.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "2034.80",
+        "raw": {
+          "value": "2034.80",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "30563.68",
+        "currency": "GBP"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/5352",
+      "invoiceRef": "CI/26/5352",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "packages": [
+        {
+          "range": "1-182",
+          "count": 182,
+          "type": "CTN",
+          "marks": "THAMESIDE/PO-1891/C/NO. 1-237",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "1456",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1528.80",
+            "raw": {
+              "value": "1528.80",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1729.00",
+            "raw": {
+              "value": "1729.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "183-237",
+          "count": 55,
+          "type": "CTN",
+          "marks": "THAMESIDE/PO-1891/C/NO. 1-237",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "220",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "506.00",
+            "raw": {
+              "value": "506.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "583.00",
+            "raw": {
+              "value": "583.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 237,
+        "netWeight": {
+          "kg": "2034.80",
+          "raw": {
+            "value": "2034.80",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "2312.00",
+          "raw": {
+            "value": "2312.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "25.11"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "COMPNGB687184",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "228202674",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "GB284019376000"
+      },
+      "vessel": "NORTHERN VEGA",
+      "voyage": "012E",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Ningbo",
+        "unLocode": "CNNGB",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "TWEU9313073",
+          "seal": "TW4743796",
+          "type": "40HC",
+          "packages": 237,
+          "grossWeight": {
+            "kg": "2312.00",
+            "raw": {
+              "value": "2312.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "25.11"
+        }
+      ],
+      "totalPackages": 237,
+      "totalGrossWeight": {
+        "kg": "2312.00",
+        "raw": {
+          "value": "2312.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/PO-1891/C/NO. 1-237",
+      "cargoDescription": "SAID TO CONTAIN 237 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ningbo",
+      "dateOfIssue": "2026-08-24",
+      "shippedOnBoardDate": "2026-08-24",
+      "references": [
+        "CI/26/5352",
+        "PO-1891"
+      ]
+    }
+  }
+}

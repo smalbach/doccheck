@@ -1,0 +1,105 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 814,
+    "outputTokens": 972
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0435",
+    "invoiceDate": "06-MAR=-2026",
+    "poNumber": "PA996250",
+    "seller": {
+      "name": "MORDHAFEN ARMATUREN GMBH",
+      "addressLines": [
+        "INDUSTRIESTRASSE 3",
+        "BREMEN 28197"
+      ],
+      "city": "BREMEN",
+      "region": null,
+      "postalCode": "28197",
+      "country": "DE",
+      "taxId": "DE81234567E"
+    },
+    "buyer": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST",
+        "VERNON CA 90058"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "us",
+      "taxId": "95-4783210"
+    },
+    "consignee": {
+      "name": "PACIFIC TRAIL OUTFITTERS CORP.",
+      "addressLines": [
+        "2150 E 37TH ST",
+        "VERNON CA 90058"
+      ],
+      "city": "VERNON",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "us",
+      "taxId": "95-4783210"
+    },
+    "shipmentDate": "09-MAR-2026",
+    "transportMode": "BY SEA",
+    "placeOfShipment": {
+      "name": "BREMERHAVEN",
+      "country": "DE"
+    },
+    "portOfEntry": {
+      "name": "LOS ANGELES",
+      "country": "US"
+    },
+    "incotermCode": "FOB",
+    "incotermPlace": "BREMERHAVEN",
+    "paymentTerms": "T/T 30 DAYS AFTER BL DATE",
+    "currency": "USD",
+    "countryOfOrigin": "DE",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "50",
+        "unit": "PCS",
+        "unitPrice": "83.65",
+        "unitPriceCurrency": null,
+        "lineTotal": "4182.50",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "8413.70"
+      },
+      {
+        "lineNo": null,
+        "sku": "BV-2IN",
+        "description": "BRASS BALL VALVES 2 INCH, THREADED HS B481.80",
+        "quantity": "1980",
+        "unit": "PCS",
+        "unitPrice": "12.88",
+        "unitPriceCurrency": null,
+        "lineTotal": "25502.40",
+        "lineTotalCurrency": null,
+        "countryOfOrigin": null,
+        "hsCode": "B481.80"
+      }
+    ],
+    "totalPackages": "14",
+    "grossWeight": {
+      "value": "3731.90",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "3398.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "29684.90",
+    "invoiceTotalCurrency": "USD",
+    "charges": []
+  }
+}

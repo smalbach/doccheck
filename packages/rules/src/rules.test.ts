@@ -14,7 +14,12 @@ const clean = (): ShipmentContext =>
     billOfLading: { id: 'bl-1', data: sampleBillOfLading },
   });
 
-const ruleIds = (ctx: ShipmentContext) => runRules(ctx).findings.map((f) => f.ruleId);
+// The fixture's carrier "EXLN" is made up: known to the account, as an NVOCC's SCAC would be.
+const FIXTURE_PARAMS = { knownScacs: ['EXLN'] };
+const run = (ctx: ShipmentContext, opts?: Parameters<typeof runRules>[2]) => runRules(ctx, FIXTURE_PARAMS, opts);
+const ruleIds = (ctx: ShipmentContext) => run(ctx).findings.map((f) => f.ruleId);
+
+const NEW_SHARED = ['X13', 'X14', 'X15', 'X16', 'X17', 'X18', 'X19', 'X20', 'X21', 'X22', 'X23', 'X24'];
 
 describe('decimal helpers', () => {
   it('multiplies without float errors', () => {
@@ -37,9 +42,9 @@ describe('ISO 6346', () => {
 
 describe('rule engine', () => {
   it('finds nothing on a clean shipment', () => {
-    const out = runRules(clean());
+    const out = run(clean());
     expect(out.findings).toEqual([]);
-    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X12', 'C1', 'C2']);
+    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X12', 'C1', 'C2', ...NEW_SHARED, 'C3', 'T10', 'T11']);
   });
 
   it('reports each rule in order, skipped ones included, and survives a broken hook', () => {
@@ -47,15 +52,16 @@ describe('rule engine', () => {
     ctx.billOfLading!.data.totalPackages = 121;
     delete ctx.packingList;
     const seen: RuleProgress[] = [];
-    const out = runRules(ctx, {}, { onRule: (p) => void seen.push(p) });
+    const out = run(ctx, { onRule: (p) => void seen.push(p) });
     expect(seen.map((p) => p.index)).toEqual(seen.map((_, i) => i + 1));
     expect(seen.every((p) => p.total === seen.length)).toBe(true);
-    expect(seen.length).toBe(out.ran.length + out.skipped.length);
-    expect(seen.filter((p) => p.skipped).map((p) => p.rule)).toEqual(out.skipped.map((s) => s.ruleId));
+    expect(seen.length).toBe(out.ran.length + out.skipped.length + out.notApplicable!.length);
+    expect(seen.filter((p) => p.skipped && !p.notApplicable).map((p) => p.rule)).toEqual(out.skipped.map((s) => s.ruleId));
+    expect(seen.filter((p) => p.notApplicable).map((p) => p.rule)).toEqual(out.notApplicable);
     expect(seen.reduce((n, p) => n + p.findings, 0)).toBe(out.findings.length);
     expect(seen.flatMap((p) => p.found)).toEqual(out.findings);
     expect(seen.every((p) => p.found.length === p.findings && p.found.every((f) => f.ruleId === p.rule))).toBe(true);
-    const thrown = runRules(ctx, {}, { onRule: () => { throw new Error('boom'); } });
+    const thrown = run(ctx, { onRule: () => { throw new Error('boom'); } });
     expect(thrown.findings).toEqual(out.findings);
   });
 
@@ -80,13 +86,13 @@ describe('rule engine', () => {
   it('X5: flags a wrong line total and a wrong invoice total', () => {
     const ctx = clean();
     ctx.invoice!.data.lines[0].lineTotal.amount = '48000.00';
-    const x5 = runRules(ctx).findings.filter((f) => f.ruleId === 'X5');
+    const x5 = run(ctx).findings.filter((f) => f.ruleId === 'X5');
     expect(x5).toHaveLength(2);
   });
 
   it('X6: flags a second currency', () => {
     const ctx = clean();
-    ctx.invoice!.data.charges = { freight: { amount: '1200.00', currency: 'CNY' } };
+    ctx.invoice!.data.charges = { packing: { amount: '1200.00', currency: 'CNY' } };
     expect(ruleIds(ctx)).toEqual(['X6']);
   });
 
@@ -99,8 +105,8 @@ describe('rule engine', () => {
   it('skips cross-document rules when the BL is missing', () => {
     const ctx = clean();
     delete ctx.billOfLading;
-    const out = runRules(ctx);
-    expect(out.skipped.map((s) => s.ruleId)).toEqual(['X1', 'X2', 'X3', 'X9', 'X10', 'X12']);
+    const out = run(ctx);
+    expect(out.skipped.map((s) => s.ruleId)).toEqual(['X1', 'X2', 'X3', 'X9', 'X10', 'X12', 'X14', 'X15', 'X19', 'X20', 'X21']);
   });
 
   it('X1: ignores formatting but flags a different street', () => {
@@ -108,7 +114,7 @@ describe('rule engine', () => {
     ctx.billOfLading!.data.consignee = { ...sampleBillOfLading.consignee, name: 'MAPLE RETAIL INC', address: { ...sampleBillOfLading.consignee.address, lines: ['100 KING STREET WEST'] } };
     expect(ruleIds(ctx)).toEqual([]);
     ctx.billOfLading!.data.consignee.address.lines = ['110 King St W'];
-    const x1 = runRules(ctx).findings.filter((f) => f.ruleId === 'X1');
+    const x1 = run(ctx).findings.filter((f) => f.ruleId === 'X1');
     expect(x1).toHaveLength(1);
     expect(x1[0].evidence.map((e) => e.field)).toEqual(['consignee.address.lines[0]', 'consignee.address.lines[0]']);
   });
@@ -132,13 +138,13 @@ describe('rule engine', () => {
   it('X1: skips a BL consigned to order', () => {
     const ctx = clean();
     ctx.billOfLading!.data.consignee = { name: 'TO ORDER OF BANK OF EXAMPLE', address: { lines: [], country: 'CA' } };
-    expect(ruleIds(ctx)).toEqual([]);
+    expect(ruleIds(ctx)).not.toContain('X1');
   });
 
   it('X7: flags a packing list quantity that differs from the invoice', () => {
     const ctx = clean();
     ctx.packingList!.data.packages[0].contents[0].quantity.value = '5990';
-    const x7 = runRules(ctx).findings.filter((f) => f.ruleId === 'X7');
+    const x7 = run(ctx).findings.filter((f) => f.ruleId === 'X7');
     expect(x7).toHaveLength(1);
     expect(x7[0].message).toContain('6000 on the invoice, 5990 on the packing list');
   });
@@ -154,7 +160,7 @@ describe('rule engine', () => {
     ctx.billOfLading!.data.shippedOnBoardDate = '2026-10-09';
     expect(ruleIds(ctx)).toEqual([]);
     ctx.billOfLading!.data.shippedOnBoardDate = '2026-11-02';
-    const x9 = runRules(ctx).findings.filter((f) => f.ruleId === 'X9');
+    const x9 = run(ctx).findings.filter((f) => f.ruleId === 'X9');
     expect(x9[0].message).toContain('28 days later');
   });
 
@@ -171,7 +177,7 @@ describe('rule engine', () => {
     const ctx = clean();
     delete ctx.invoice!.data.incoterm;
     delete ctx.invoice!.data.lines[0].countryOfOrigin;
-    const c1 = runRules(ctx).findings.filter((f) => f.ruleId === 'C1');
+    const c1 = run(ctx).findings.filter((f) => f.ruleId === 'C1');
     expect(c1.map((f) => f.evidence[0].field)).toEqual(['lines[0].countryOfOrigin', 'incoterm']);
     expect(c1[0].severity).toBe('HIGH');
   });
@@ -184,15 +190,18 @@ describe('rule engine', () => {
 
   it('U1 and X11 run for the US profile', () => {
     const ctx: ShipmentContext = { ...clean(), destination: 'US' };
-    ctx.invoice!.data.portOfEntry = { name: 'Los Angeles', unLocode: 'USLAX', country: 'US' };
+    const lax = { name: 'Los Angeles', unLocode: 'USLAX', country: 'US' };
+    ctx.invoice!.data.portOfEntry = lax;
+    ctx.billOfLading!.data.portOfDischarge = lax;
+    ctx.billOfLading!.data.placeOfDelivery = lax;
     const isf = {
       seller: sampleInvoice.seller, buyer: sampleInvoice.buyer, importerOfRecordNumber: '12-345678900', consigneeNumber: '12-345678900',
       manufacturer: sampleInvoice.seller, shipToParty: sampleInvoice.buyer, countryOfOrigin: 'CN', htsCode: '950300',
       containerStuffingLocation: sampleInvoice.seller.address, consolidator: sampleInvoice.seller,
     };
     ctx.isf = { id: 'isf-1', data: isf };
-    const out = runRules(ctx);
-    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X11', 'X12', 'U1']);
+    const out = run(ctx);
+    expect(out.ran).toEqual(['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X11', 'X12', 'U1', ...NEW_SHARED, 'U2', 'U3', 'U4', 'T10', 'T11']);
     expect(out.findings).toEqual([]);
 
     ctx.isf.data = { ...isf, countryOfOrigin: 'VN', htsCode: '950490' };

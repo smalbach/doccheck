@@ -140,7 +140,7 @@ export interface PortalView {
   expiresAt: string;
   findings: PortalFinding[];
   /** Rules the latest validation could not run, with the documents they need (pre-shipment: the B/L). */
-  skipped: { ruleId: string; missing: DocumentType[] }[];
+  skipped: { ruleId: string; missing: DocumentType[]; reason?: 'history' }[];
   validatedAt?: string;
   uploads: PortalUploadView[];
   history: { kind: PortalKind; reference?: string; status: PortalStatus; createdAt: string; current: boolean }[];

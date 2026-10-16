@@ -1,0 +1,27 @@
+{
+  "id": "MX-017",
+  "errors": [
+    {
+      "kind": "container_check_digit",
+      "document": "billOfLading",
+      "field": "containers[0].number",
+      "before": "PCRU8435475",
+      "after": "PCRU8435476",
+      "expectedRuleIds": [
+        "X10"
+      ],
+      "description": "Container number mistyped: PCRU8435475 -> PCRU8435476."
+    },
+    {
+      "kind": "invoice_language_not_accepted",
+      "document": "invoice",
+      "field": "language",
+      "before": "es",
+      "after": "zh",
+      "expectedRuleIds": [
+        "M3"
+      ],
+      "description": "Invoice in \"zh\" without a Spanish translation."
+    }
+  ]
+}

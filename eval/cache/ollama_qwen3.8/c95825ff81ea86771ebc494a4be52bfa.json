@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 866,
+    "outputTokens": 838
+  },
+  "output": {
+    "blNumber": "SILVCTG878806",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Aurora Global Lines",
+    "bookingNumber": "515917022",
+    "carrierName": "Aurora Global Lines",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9872 Wallisville Rd"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": {
+      "name": "Bluebonnet Home Goods LLC",
+      "addressLines": [
+        "4200 Ambassador Caffery Pkwy"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77041",
+      "country": "US",
+      "taxId": "74-3812456"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "031W",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Houston",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU8596063",
+        "seal": "AG1850390",
+        "type": "20GP",
+        "packages": "62",
+        "grossWeight": {
+          "value": "3,769.60",
+          "unit": "KG"
+        },
+        "volumeM3": "8.84"
+      }
+    ],
+    "totalPackages": "62",
+    "totalGrossWeight": {
+      "value": "3,769.60",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "BLUEBONNET/BL640841/C/NO. 1-62",
+    "cargoDescription": "SAID TO CONTAIN 62 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CI/26/0129",
+      "BL640841"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "Feb 11, 2026",
+    "shippedOnBoardDate": "Feb 11, 2026"
+  }
+}

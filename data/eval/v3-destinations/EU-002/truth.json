@@ -1,0 +1,310 @@
+{
+  "id": "EU-002",
+  "seed": 375506200,
+  "destination": "EU",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "legacy",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/3897",
+      "invoiceDate": "2026-08-05",
+      "poNumber": "PO178977",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "buyer": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "exporter": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "shipmentDate": "2026-08-09",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Buenaventura",
+          "unLocode": "COBUN",
+          "country": "CO"
+        }
+      },
+      "incoterm": {
+        "code": "EXW",
+        "place": "Buenaventura"
+      },
+      "paymentTerms": "Net 60",
+      "currency": "EUR",
+      "packageCount": 73,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CF-GRN-60",
+          "description": "Green coffee beans, arabica, not roasted, in 60 kg jute bags",
+          "quantity": {
+            "value": "4380",
+            "unit": "KG"
+          },
+          "unitPrice": {
+            "amount": "4.28",
+            "currency": "EUR"
+          },
+          "lineTotal": {
+            "amount": "18746.40",
+            "currency": "EUR"
+          },
+          "countryOfOrigin": "CO",
+          "hsCode": "0901.11"
+        }
+      ],
+      "grossWeight": {
+        "kg": "4438.40",
+        "raw": {
+          "value": "4438.40",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "4380.00",
+        "raw": {
+          "value": "4380.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "18746.40",
+        "currency": "EUR"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/3897",
+      "invoiceRef": "CI/26/3897",
+      "seller": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "packages": [
+        {
+          "range": "1-73",
+          "count": 73,
+          "type": "BAG",
+          "marks": "POLDERHUIS/PO178977/C/NO. 1-73",
+          "contents": [
+            {
+              "sku": "CF-GRN-60",
+              "description": "Green coffee arabica",
+              "quantity": {
+                "value": "4380",
+                "unit": "KG"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "4380.00",
+            "raw": {
+              "value": "4380.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4438.40",
+            "raw": {
+              "value": "4438.40",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            95,
+            60,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 73,
+        "netWeight": {
+          "kg": "4380.00",
+          "raw": {
+            "value": "4380.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "4438.40",
+          "raw": {
+            "value": "4438.40",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "10.40"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "MRDNBUN5027994",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "751904844",
+      "carrier": {
+        "name": "Meridian Ocean Shipping",
+        "scac": "MRDN"
+      },
+      "shipper": {
+        "name": "Cafe Alto Huila Exportadores S.A.S.",
+        "address": {
+          "lines": [
+            "Carrera 5 # 12-40"
+          ],
+          "city": "Neiva",
+          "region": "Huila",
+          "country": "CO"
+        },
+        "taxId": "900123456-7"
+      },
+      "consignee": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "notifyParty": {
+        "name": "Polderhuis Retail B.V.",
+        "address": {
+          "lines": [
+            "Waalhaven Zuidzijde 21"
+          ],
+          "city": "Rotterdam",
+          "postalCode": "3089 JH",
+          "country": "NL"
+        },
+        "taxId": "NL861234905"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "028W",
+      "placeOfReceipt": {
+        "name": "Neiva",
+        "country": "CO"
+      },
+      "portOfLoading": {
+        "name": "Buenaventura",
+        "unLocode": "COBUN",
+        "country": "CO"
+      },
+      "portOfDischarge": {
+        "name": "Antwerp",
+        "unLocode": "BEANR",
+        "country": "BE"
+      },
+      "placeOfDelivery": {
+        "name": "Rotterdam",
+        "unLocode": "NLRTM",
+        "country": "NL"
+      },
+      "containers": [
+        {
+          "number": "MDOU4785597",
+          "seal": "MD7736873",
+          "type": "20GP",
+          "packages": 73,
+          "grossWeight": {
+            "kg": "4438.40",
+            "raw": {
+              "value": "4438.40",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "10.40"
+        }
+      ],
+      "totalPackages": 73,
+      "totalGrossWeight": {
+        "kg": "4438.40",
+        "raw": {
+          "value": "4438.40",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "POLDERHUIS/PO178977/C/NO. 1-73",
+      "cargoDescription": "SAID TO CONTAIN 73 BAGS GREEN COFFEE ARABICA",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Buenaventura",
+      "dateOfIssue": "2026-08-10",
+      "shippedOnBoardDate": "2026-08-10",
+      "references": [
+        "CI/26/3897",
+        "PO178977"
+      ]
+    }
+  }
+}

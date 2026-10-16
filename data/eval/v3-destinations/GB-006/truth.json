@@ -1,0 +1,309 @@
+{
+  "id": "GB-006",
+  "seed": 1925073587,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-3621",
+      "invoiceDate": "2026-03-09",
+      "poNumber": "PO-93555",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "buyer": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "exporter": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "shipmentDate": "2026-03-20",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Genoa",
+          "unLocode": "ITGOA",
+          "country": "IT"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Felixstowe"
+      },
+      "paymentTerms": "T/T 30 days after BL date",
+      "currency": "USD",
+      "packageCount": 6,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "CT-6060",
+          "description": "Glazed porcelain floor tiles 60 x 60 cm",
+          "quantity": {
+            "value": "240",
+            "unit": "M2"
+          },
+          "unitPrice": {
+            "amount": "10.34",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "2481.60",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IT",
+          "hsCode": "6907.21"
+        }
+      ],
+      "grossWeight": {
+        "kg": "5190.00",
+        "raw": {
+          "value": "5190.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "5040.00",
+        "raw": {
+          "value": "5040.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "2481.60",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Sales Director",
+      "language": "en",
+      "originStatement": "The exporter of the products covered by this document (Exporter Reference No ITREX202999749) declares that, except where otherwise clearly indicated, these products are of EU preferential origin.",
+      "charges": {
+        "freight": {
+          "amount": "3094.00",
+          "currency": "EUR"
+        }
+      }
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-3621",
+      "invoiceRef": "INV-2026-3621",
+      "seller": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "packages": [
+        {
+          "range": "1-6",
+          "count": 6,
+          "type": "PLT",
+          "marks": "PENNINE/PO-93555/C/NO. 1-6",
+          "contents": [
+            {
+              "sku": "CT-6060",
+              "description": "Porcelain tile 60x60",
+              "quantity": {
+                "value": "240",
+                "unit": "M2"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "5040.00",
+            "raw": {
+              "value": "5040.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "5190.00",
+            "raw": {
+              "value": "5190.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            120,
+            80,
+            90
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 6,
+        "netWeight": {
+          "kg": "5040.00",
+          "raw": {
+            "value": "5040.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "5190.00",
+          "raw": {
+            "value": "5190.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "5.18"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "AGLXGOA2152463",
+      "blType": {
+        "issuer": "MBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "928125649",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Ceramiche Valle Secchia S.p.A.",
+        "address": {
+          "lines": [
+            "Via Radici in Piano 112"
+          ],
+          "city": "Sassuolo",
+          "region": "MO",
+          "postalCode": "41049",
+          "country": "IT"
+        },
+        "taxId": "IT01234560362"
+      },
+      "consignee": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "notifyParty": {
+        "name": "Pennine Engineering Supplies plc",
+        "address": {
+          "lines": [
+            "Trafford Wharf Rd"
+          ],
+          "city": "Manchester",
+          "postalCode": "M17 1EX",
+          "country": "GB"
+        },
+        "taxId": "GB731552098000"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "057S",
+      "placeOfReceipt": {
+        "name": "Sassuolo",
+        "country": "IT"
+      },
+      "portOfLoading": {
+        "name": "Genoa",
+        "unLocode": "ITGOA",
+        "country": "IT"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Manchester",
+        "unLocode": "GBMNC",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "AGLU5174315",
+          "seal": "AG1540783",
+          "type": "20GP",
+          "packages": 6,
+          "grossWeight": {
+            "kg": "5190.00",
+            "raw": {
+              "value": "5190.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "5.18"
+        }
+      ],
+      "totalPackages": 5,
+      "totalGrossWeight": {
+        "kg": "5190.00",
+        "raw": {
+          "value": "5190.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "PENNINE/PO-93555/C/NO. 1-6",
+      "cargoDescription": "SAID TO CONTAIN 6 PLTS PORCELAIN TILE 60X60",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Genoa",
+      "dateOfIssue": "2026-03-23",
+      "shippedOnBoardDate": "2026-03-23",
+      "references": [
+        "INV-2026-3621",
+        "PO-93555"
+      ]
+    }
+  }
+}

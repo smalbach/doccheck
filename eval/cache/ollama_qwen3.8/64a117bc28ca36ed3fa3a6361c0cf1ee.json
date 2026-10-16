@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 860,
+    "outputTokens": 855
+  },
+  "output": {
+    "blNumber": "AGLXCTG7682091",
+    "documentTitle": "Sea Waybill",
+    "issuer": "Aurora Global Lines (AGLX)",
+    "bookingNumber": "830782273",
+    "carrierName": "Aurora Global Lines (AGLX)",
+    "scac": "AGLX",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "014E",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Cartagena",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "AGLU3429817",
+        "seal": "AG2077550",
+        "type": "20GP",
+        "packages": "85",
+        "grossWeight": {
+          "value": "5,168.00",
+          "unit": "KG"
+        },
+        "volumeM3": "12.11"
+      }
+    ],
+    "totalPackages": "83",
+    "totalGrossWeight": {
+      "value": "5,168.00",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "HARBORLINE/HA118268/C/NO. 1-85",
+    "cargoDescription": "SAID TO CONTAIN 85 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "INV-2026-0646",
+      "HA118268"
+    ],
+    "placeOfIssue": "Cartagena",
+    "dateOfIssue": "2026-07-02",
+    "shippedOnBoardDate": "2026-07-02"
+  }
+}

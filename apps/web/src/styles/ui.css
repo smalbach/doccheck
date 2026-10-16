@@ -16,7 +16,8 @@
 .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
 .banner { border-radius: var(--radius-md); padding: 8px 12px; margin: 0 0 16px; }
 .banner-error { background: var(--surface); border: 1px solid var(--critical); color: var(--critical); }
-.banner-ok { color: var(--ok); background: var(--accent-soft); }
+/* Darkened toward the text color: the plain --ok green is 4.4:1 on the soft accent in light theme. */
+.banner-ok { color: color-mix(in srgb, var(--ok) 75%, var(--text)); background: var(--accent-soft); }
 .banner-info { background: var(--accent-soft); }
 .banner-warning { background: var(--surface); border: 1px solid var(--medium); border-left-width: 4px; }
 

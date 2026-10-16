@@ -243,7 +243,8 @@ describe('supplier portal', () => {
 
     const ok = await upload(token, [['bl-corrected.pdf', Buffer.from('%PDF-1.4\n%fake\n')]], 'Corregido, gracias.');
     assert.equal(ok.status, 201);
-    assert.deepEqual(ok.body.uploads.map((u) => [u.status, u.files]), [['extracting', ['bl-corrected.pdf']]]);
+    assert.deepEqual(ok.body.uploads.map((u) => u.files), [['bl-corrected.pdf']]);
+    assert.ok(['extracting', 'validating'].includes(ok.body.uploads[0].status));
 
     // In the conversation as a received message with the file attached and in the shipment.
     const t = (await call('GET', `/mail/threads/${thread.id}`, undefined, importer)).body;
@@ -271,6 +272,13 @@ describe('supplier portal', () => {
     const kinds = new Set(detail.events.map((e) => e.kind));
     for (const k of ['link_created', 'opened', 'uploaded', 'upload_refused', 'checked']) assert.ok(kinds.has(k), k);
     assert.deepEqual(detail.events.find((e) => e.kind === 'uploaded').files, ['bl-corrected.pdf']);
+
+    // A spreadsheet goes in like any upload (no model needed to read it), kept in the conversation as a CSV.
+    const sheet = await upload(token, [['packing.csv', Buffer.from('PACKING LIST\nPackages,120\n')]]);
+    assert.equal(sheet.status, 201);
+    const csv = (await call('GET', `/mail/threads/${thread.id}`, undefined, importer)).body.items.at(-1).attachments[0];
+    assert.deepEqual([csv.filename, csv.contentType], ['packing.csv', 'text/csv']);
+    await until(async () => (await portal(token)).body.status !== 'checking');
   });
 
   it('stops a link that is replaced, revoked, expired or whose request is closed', async () => {
@@ -321,7 +329,8 @@ describe('supplier portal', () => {
     const before = (await portal(pre)).body;
     assert.deepEqual([before.kind, before.status, before.findings, before.skipped], ['pre_shipment', 'waiting', [], []]);
     // Their earlier request shows by status only.
-    assert.deepEqual(before.history.map((h) => [h.kind, h.status, h.current]), [['pre_shipment', 'waiting', true], ['correction', 'clean', false]]);
+    const correction = (await call('GET', `/supplier-portal/requests/${requestId}`, undefined, importer)).body.status;
+    assert.deepEqual(before.history.map((h) => [h.kind, h.status, h.current]), [['pre_shipment', 'waiting', true], ['correction', correction, false]]);
     assert.ok(before.history.every((h) => Object.keys(h).sort().join() === ['createdAt', 'current', 'kind', 'reference', 'status'].sort().join()));
 
     // The drafts: an invoice and a packing list that disagree on the package count.
@@ -332,11 +341,18 @@ describe('supplier portal', () => {
       return s.uploads[0]?.status === 'validated' && s;
     });
     assert.ok(after.skipped.length > 0);
-    assert.ok(after.skipped.every((s) => s.missing.length > 0));
+    assert.ok(after.skipped.every((s) => s.missing.length > 0 || s.reason === 'history'));
     assert.ok(after.skipped.some((s) => s.missing.includes('BILL_OF_LADING')));
     assert.equal(after.status, after.findings.length ? 'open' : 'clean');
 
     // The importer sees each supplier's status.
+    // Rules that compare with the organization's records are left for later on a draft, like the B/L ones.
+    assert.ok(after.skipped.some((x) => x.ruleId === 'X17' && x.reason === 'history'), JSON.stringify(after.skipped));
+    // And the draft is not the organization's history: the real shipment with the same invoice is no duplicate.
+    await call('POST', `/shipments/${shipment.id}/validate?agent=false`, undefined, importer);
+    const real = (await call('GET', `/shipments/${shipment.id}/validation`, undefined, importer)).body;
+    assert.ok(!real.findings.some((f) => f.ruleId === 'X17'), 'the draft does not make the shipment a duplicate');
+
     const list = (await call('GET', `/supplier-portal/requests?kind=pre_shipment&partyId=${partyId}`, undefined, importer)).body;
     assert.deepEqual(list.items.map((r) => [r.reference, r.status]), [['PO-77', after.status]]);
   });

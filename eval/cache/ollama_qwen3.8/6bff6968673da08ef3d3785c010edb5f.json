@@ -1,0 +1,44 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 484,
+    "outputTokens": 334
+  },
+  "output": {
+    "noticeNumber": "AN-10039",
+    "carrierName": "Pacific Crest Air Cargo",
+    "scac": "PC",
+    "mode": "AIR",
+    "transportDocumentNumber": "176-59163366",
+    "vessel": null,
+    "voyage": null,
+    "flight": "PC146",
+    "portOfLoading": null,
+    "portOfDischarge": null,
+    "estimatedArrival": "2026-02-17",
+    "consignee": {
+      "name": "Bluebonnet Home Goods DC",
+      "addressLines": [
+        "9800 Wallisville Rd"
+      ],
+      "city": "Houston",
+      "region": "TX",
+      "postalCode": "77013",
+      "country": "US",
+      "taxId": null
+    },
+    "notifyParty": null,
+    "containers": [],
+    "packages": "282",
+    "grossWeight": {
+      "value": "16963.20",
+      "unit": "KG"
+    },
+    "cargoDescription": "GREEN COFFEE ARABICA",
+    "freightTerms": "COLLECT",
+    "lastFreeDay": "2026-02-20",
+    "charges": []
+  }
+}

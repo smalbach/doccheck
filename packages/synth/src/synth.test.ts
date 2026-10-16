@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { runRules, type ShipmentContext } from '@doccheck/rules';
+import { runRules, V1_RULE_IDS, type ShipmentContext } from '@doccheck/rules';
 import { BillOfLading, CommercialInvoice, Isf, PackingList } from '@doccheck/schemas';
 import { buildDataset, V1 } from './dataset';
 import { ERROR_KINDS, injectErrors } from './errors';
@@ -50,7 +50,7 @@ describe('clean shipments', () => {
     expect(PackingList.safeParse(s.documents.packingList).error).toBeUndefined();
     expect(BillOfLading.safeParse(s.documents.billOfLading).error).toBeUndefined();
     if (s.documents.isf) expect(Isf.safeParse(s.documents.isf).error).toBeUndefined();
-    expect(runRules(context(s)).findings).toEqual([]);
+    expect(runRules(context(s), {}, { only: V1_RULE_IDS }).findings).toEqual([]);
   });
 
   it('container totals add up to the BL totals', () => {
@@ -67,14 +67,14 @@ describe('injected errors', () => {
   it('the rule engine flags exactly the rules each label expects', () => {
     for (const { shipment, labels } of dataset) {
       const expected = new Set(labels.flatMap((l) => l.expectedRuleIds));
-      const got = new Set(runRules(context(shipment)).findings.map((f) => f.ruleId));
+      const got = new Set(runRules(context(shipment), {}, { only: V1_RULE_IDS }).findings.map((f) => f.ruleId));
       expect([shipment.id, [...got].sort()]).toEqual([shipment.id, [...expected].sort()]);
     }
   });
 
   it('labels point at fields the rules cite as evidence', () => {
     for (const { shipment, labels } of dataset) {
-      const findings = runRules(context(shipment)).findings;
+      const findings = runRules(context(shipment), {}, { only: V1_RULE_IDS }).findings;
       for (const label of labels.filter((l) => l.expectedRuleIds.length > 0)) {
         const cited = findings
           .filter((f) => label.expectedRuleIds.includes(f.ruleId))
@@ -130,7 +130,7 @@ describe('ISF set (v1-isf)', () => {
     for (const { shipment, labels } of isfSet) {
       expect(Isf.safeParse(shipment.documents.isf).error).toBeUndefined();
       const expected = new Set(labels.flatMap((l) => l.expectedRuleIds));
-      const got = new Set(runRules(context(shipment)).findings.map((f) => f.ruleId));
+      const got = new Set(runRules(context(shipment), {}, { only: V1_RULE_IDS }).findings.map((f) => f.ruleId));
       expect([shipment.id, [...got].sort()]).toEqual([shipment.id, [...expected].sort()]);
     }
   });

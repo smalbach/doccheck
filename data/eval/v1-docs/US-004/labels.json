@@ -1,0 +1,27 @@
+{
+  "id": "US-004",
+  "errors": [
+    {
+      "kind": "ispm15_missing",
+      "document": "billOfLading",
+      "field": "cargoDescription",
+      "before": "certificate",
+      "after": null,
+      "expectedRuleIds": [
+        "T11"
+      ],
+      "description": "Wooden packaging declared, no ISPM 15 certificate."
+    },
+    {
+      "kind": "dg_declaration_missing",
+      "document": "invoice",
+      "field": "lines[0].description",
+      "before": "declared",
+      "after": null,
+      "expectedRuleIds": [
+        "T10"
+      ],
+      "description": "Lithium batteries on the invoice, no dangerous goods declaration."
+    }
+  ]
+}

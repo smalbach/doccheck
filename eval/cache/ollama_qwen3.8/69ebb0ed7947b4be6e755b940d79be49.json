@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 836,
+    "outputTokens": 926
+  },
+  "output": {
+    "blNumber": "KEYSNSA810912",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Meridian Ocean Shipping (MRDN)",
+    "bookingNumber": "556737491",
+    "carrierName": "Meridian Ocean Shipping (MRDN)",
+    "scac": "MRDN",
+    "shipper": {
+      "name": "Pune Precision Engineering Pvt. Ltd.",
+      "addressLines": [
+        "Plot 41, MIDC Bhosari",
+        "Pune, Maharashtra, 411026"
+      ],
+      "city": "Pune",
+      "region": "Maharashtra",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "notifyParty": {
+      "name": "Pacific Trail Outfitters Corp.",
+      "addressLines": [
+        "2150 E 37th St",
+        "Vernon, CA, 90058"
+      ],
+      "city": "Vernon",
+      "region": "CA",
+      "postalCode": "90058",
+      "country": "US",
+      "taxId": "95-4783210"
+    },
+    "vessel": "MERIDIAN STAR",
+    "voyage": "027S",
+    "placeOfReceipt": {
+      "name": "Pune",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "Nhava Sheva",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "Long Beach",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Fontana",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "MDOU1408291",
+        "seal": "MD8555081",
+        "type": "20GP",
+        "packages": "209",
+        "grossWeight": {
+          "value": "4,773.10",
+          "unit": "KG"
+        },
+        "volumeM3": "8.92"
+      }
+    ],
+    "totalPackages": "209",
+    "totalGrossWeight": {
+      "value": "4,773.10",
+      "unit": "KG"
+    },
+    "marksAndNumbers": "PACIFIC/PA779152/C/NO. 1-209",
+    "cargoDescription": "SAID TO CONTAIN 209 PKGS BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "Freight PREPAID",
+    "references": [
+      "CI/26/5807",
+      "PA779152"
+    ],
+    "placeOfIssue": "Nhava Sheva",
+    "dateOfIssue": "2026-06-29",
+    "shippedOnBoardDate": "2026-06-29"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 709,
+    "outputTokens": 904
+  },
+  "output": {
+    "invoiceNumber": "CI/26/0887",
+    "invoiceDate": "14-MAR-2026",
+    "poNumber": "PO-55859",
+    "seller": {
+      "name": "NORLAND PRECISION SCALES CO., LTD.",
+      "addressLines": [
+        "88 GAOXIN ROAD, BUILDING 3",
+        "NINGBO ZHEJIANG 315040"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "buyer": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "shipmentDate": "22-MAR-2026",
+    "transportMode": "IN BY SEA",
+    "placeOfShipment": {
+      "name": "NHAVA SHEVA",
+      "country": "IN"
+    },
+    "portOfEntry": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "incotermCode": "CIF",
+    "incotermPlace": "MONTREAL",
+    "paymentTerms": "NET 60",
+    "currency": "CAD",
+    "countryOfOrigin": "IN",
+    "lines": [
+      {
+        "lineNo": null,
+        "sku": "CP-750",
+        "description": "CENTRIFUGAL WATER PUMP 0.75 KW, CAST IRON BODY HS 8413.70",
+        "quantity": "60",
+        "unit": "PCS",
+        "unitPrice": "87.12",
+        "unitPriceCurrency": "CAD",
+        "lineTotal": "5227.20",
+        "lineTotalCurrency": "CAD",
+        "countryOfOrigin": "IN",
+        "hsCode": "8413.70"
+      }
+    ],
+    "totalPackages": "60 PKGS",
+    "grossWeight": {
+      "value": "870.00",
+      "unit": "KGS"
+    },
+    "netWeight": {
+      "value": "1140.00",
+      "unit": "KGS"
+    },
+    "invoiceTotal": "5227.20",
+    "invoiceTotalCurrency": "CAD",
+    "charges": [
+      {
+        "type": "freight",
+        "amount": "2079.00",
+        "currency": "INR"
+      }
+    ]
+  }
+}

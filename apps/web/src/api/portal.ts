@@ -48,7 +48,8 @@ export interface PortalView {
   language?: 'en' | 'es' | 'fr';
   expiresAt: string;
   findings: PortalFinding[];
-  skipped: { ruleId: string; missing: DocumentType[] }[];
+  /** `history`: a rule that compares with the importer's records, which a draft is checked without. */
+  skipped: { ruleId: string; missing: DocumentType[]; reason?: 'history' }[];
   validatedAt?: string;
   uploads: PortalUpload[];
   history: { kind: PortalKind; reference?: string; status: PortalStatus; createdAt: string; current: boolean }[];

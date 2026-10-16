@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 809,
+    "outputTokens": 973
+  },
+  "output": {
+    "blNumber": "TDWEGOA8506270",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "414853742",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "NORLAND PRECISION SCALES CO., LTD.",
+      "addressLines": [
+        "88 GAOXIN ROAD, BUILDING 3",
+        "NINGBO ZHEJIANG 315040"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "TIDEWATER SPIRIT",
+    "voyage": "058N",
+    "placeOfReceipt": {
+      "name": "SASSUOLO",
+      "country": "IT"
+    },
+    "portOfLoading": {
+      "name": "GENOA",
+      "country": "IT"
+    },
+    "portOfDischarge": {
+      "name": "HALIFAX",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU3834618",
+        "seal": "TW9863238",
+        "type": "20GP",
+        "packages": "170",
+        "grossWeight": {
+          "value": "10046.60",
+          "unit": "KGS"
+        },
+        "volumeM3": "13.72"
+      }
+    ],
+    "totalPackages": "160",
+    "totalGrossWeight": {
+      "value": "11051.26",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/QU137456/C/NO. 1-170",
+    "cargoDescription": "SAID TO CONTAIN 170 PKGS PORCELAIN TILE 60X60 AND OTHER GOODS AS PER INVOICE",
+    "freightTerms": "FREIGHT PREPAID",
+    "references": [
+      "CI/26/8361",
+      "QU137456"
+    ],
+    "placeOfIssue": "GENOA",
+    "dateOfIssue": "31-MAY-2026",
+    "shippedOnBoardDate": "31-MAY-2026"
+  }
+}

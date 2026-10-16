@@ -1,0 +1,308 @@
+{
+  "id": "GB-022",
+  "seed": 409645193,
+  "destination": "GB",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "classic",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/6020",
+      "invoiceDate": "2026-01-19",
+      "poNumber": "TH980381",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "buyer": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "IE433630209"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "exporter": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "shipmentDate": "2026-01-30",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Le Havre",
+          "unLocode": "FRLEH",
+          "country": "FR"
+        }
+      },
+      "incoterm": {
+        "code": "CFR",
+        "place": "Felixstowe"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 50,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "TB-200",
+          "description": "Plush teddy bear 30 cm, polyester filling",
+          "quantity": {
+            "value": "2500",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "8.76",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "21900.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "FR",
+          "hsCode": "9503.00"
+        }
+      ],
+      "grossWeight": {
+        "kg": "450.00",
+        "raw": {
+          "value": "450.00",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "510.00",
+        "raw": {
+          "value": "510.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "21900.00",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Export Manager",
+      "language": "en",
+      "originStatement": "The exporter of the products covered by this document (Exporter Reference No FRREX664448784) declares that, except where otherwise clearly indicated, these products are of EU preferential origin."
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/6020",
+      "invoiceRef": "CI/26/6020",
+      "seller": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "packages": [
+        {
+          "range": "1-50",
+          "count": 50,
+          "type": "CTN",
+          "marks": "THAMESIDE/TH980381/C/NO. 1-50",
+          "contents": [
+            {
+              "sku": "TB-200",
+              "description": "Plush teddy bear 30 cm",
+              "quantity": {
+                "value": "2500",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "450.00",
+            "raw": {
+              "value": "450.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "510.00",
+            "raw": {
+              "value": "510.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            60,
+            40,
+            40
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 50,
+        "netWeight": {
+          "kg": "450.00",
+          "raw": {
+            "value": "450.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "510.00",
+          "raw": {
+            "value": "510.00",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "4.80"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "KEYSLEH184491",
+      "blType": {
+        "issuer": "HBL",
+        "form": "SEAWAY"
+      },
+      "bookingNumber": "483133768",
+      "carrier": {
+        "name": "Aurora Global Lines",
+        "scac": "AGLX"
+      },
+      "shipper": {
+        "name": "Société Lyonnaise de Jouets S.A.R.L.",
+        "address": {
+          "lines": [
+            "14 rue de l'Industrie"
+          ],
+          "city": "Lyon",
+          "postalCode": "69007",
+          "country": "FR"
+        },
+        "taxId": "FR40123456789"
+      },
+      "consignee": {
+        "name": "Thameside Distribution Centre",
+        "address": {
+          "lines": [
+            "London Gateway Logistics Park, Gateway Rd"
+          ],
+          "city": "Stanford-le-Hope",
+          "postalCode": "SS17 9DY",
+          "country": "GB"
+        }
+      },
+      "notifyParty": {
+        "name": "Thameside Home & Garden Ltd",
+        "address": {
+          "lines": [
+            "Unit 4, Botany Way"
+          ],
+          "city": "Purfleet",
+          "postalCode": "RM19 1SR",
+          "country": "GB"
+        },
+        "taxId": "IE433630209"
+      },
+      "vessel": "MERIDIAN STAR",
+      "voyage": "009N",
+      "placeOfReceipt": {
+        "name": "Lyon",
+        "country": "FR"
+      },
+      "portOfLoading": {
+        "name": "Le Havre",
+        "unLocode": "FRLEH",
+        "country": "FR"
+      },
+      "portOfDischarge": {
+        "name": "Felixstowe",
+        "unLocode": "GBFXT",
+        "country": "GB"
+      },
+      "placeOfDelivery": {
+        "name": "Purfleet",
+        "unLocode": "GBPFT",
+        "country": "GB"
+      },
+      "containers": [
+        {
+          "number": "AGXU7898507",
+          "seal": "AG1698411",
+          "type": "20GP",
+          "packages": 50,
+          "grossWeight": {
+            "kg": "510.00",
+            "raw": {
+              "value": "510.00",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "4.80"
+        }
+      ],
+      "totalPackages": 50,
+      "totalGrossWeight": {
+        "kg": "510.00",
+        "raw": {
+          "value": "510.00",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "THAMESIDE/TH980381/C/NO. 1-50",
+      "cargoDescription": "SAID TO CONTAIN 50 CTNS PLUSH TEDDY BEAR 30 CM",
+      "freightTerms": "PREPAID",
+      "placeOfIssue": "Le Havre",
+      "dateOfIssue": "2026-01-30",
+      "shippedOnBoardDate": "2026-01-30",
+      "references": [
+        "CI/26/6020",
+        "TH980381"
+      ]
+    }
+  }
+}

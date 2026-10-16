@@ -1,0 +1,99 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 871,
+    "outputTokens": 983
+  },
+  "output": {
+    "blNumber": "SILVNSA695374",
+    "documentTitle": "BILL OF LADING",
+    "issuer": "TIDEWATER EXPRESS LINES (TDWE)",
+    "bookingNumber": "993492771",
+    "carrierName": "TIDEWATER EXPRESS LINES (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "PUNE PRECISION ENGINEERING PVT. LTD.",
+      "addressLines": [
+        "PLOT 41, MIDC BHOSARI",
+        "PUNE MAHARASHTRA 411026"
+      ],
+      "city": "PUNE",
+      "region": "MAHARASHTRA",
+      "postalCode": "411026",
+      "country": "IN",
+      "taxId": "27AABCP1234F1Z5"
+    },
+    "consignee": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "notifyParty": {
+      "name": "QUINCAILLERIE SAINT-LAURENT LTÉE",
+      "addressLines": [
+        "1450 BOUL. INDUSTRIEL",
+        "LAVAL QC H7S 1P6"
+      ],
+      "city": "LAVAL",
+      "region": "QC",
+      "postalCode": "H7S 1P6",
+      "country": "CA",
+      "taxId": "873456789RM0001"
+    },
+    "vessel": "NORTHERN VEGA",
+    "voyage": "012N",
+    "placeOfReceipt": {
+      "name": "PUNE",
+      "country": "IN"
+    },
+    "portOfLoading": {
+      "name": "NHAVA SHEVA",
+      "country": "IN"
+    },
+    "portOfDischarge": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "placeOfDelivery": {
+      "name": "MONTREAL",
+      "country": "CA"
+    },
+    "containers": [
+      {
+        "number": "TWEU6686730",
+        "seal": "TW5697344",
+        "type": "20GP",
+        "packages": "96",
+        "grossWeight": {
+          "value": "2697.60",
+          "unit": "KGS"
+        },
+        "volumeM3": "4.54"
+      }
+    ],
+    "totalPackages": "96",
+    "totalGrossWeight": {
+      "value": "2697.60",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "QUINCAILLERIE/QU368009/C/NO. 1-96",
+    "cargoDescription": "SAID TO CONTAIN 96 CTNS BRASS BALL VALVE 2\" REF: INV-2026-8763 / QU368009 FREIGHT COLLECT",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "INV-2026-8763",
+      "QU368009"
+    ],
+    "placeOfIssue": "NHAVA SHEVA",
+    "dateOfIssue": "09-APR-2026",
+    "shippedOnBoardDate": "09-APR-2026"
+  }
+}

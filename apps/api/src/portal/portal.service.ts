@@ -1,7 +1,8 @@
 import {
   BadRequestException, ConflictException, HttpException, HttpStatus, Inject, Injectable, Logger, NotFoundException, type OnApplicationBootstrap, type OnApplicationShutdown,
 } from '@nestjs/common';
-import type { DocumentType, Evidence } from '@doccheck/schemas';
+import type { DocumentFormat, DocumentType, Evidence } from '@doccheck/schemas';
+import { inputFormat } from '@doccheck/extraction';
 import { createHash, randomUUID } from 'node:crypto';
 import { isDemo } from '../demo/demo-mode';
 import { MAX_ATTACHMENT_BYTES, MAX_ATTACHMENTS, MAX_ATTACHMENTS_BYTES, addressOf, messageIdDomain } from '../messaging/mail.config';
@@ -23,6 +24,13 @@ const DENIED_RETENTION_DAYS = 30;
 
 /** An opening of the page goes to the audit log at most this often per link and address (the page polls while checking). */
 const AUDIT_OPEN_MS = 10 * 60_000;
+
+/**
+ * Rules that compare with the organization's records (earlier invoices, prices, purchase orders): a
+ * pre-shipment draft is checked without them (RuleSettingsService), so the supplier sees them as left
+ * for later, like the rules that need the B/L.
+ */
+const HISTORY_RULES = ['X17', 'X23', 'X24'];
 
 /** Ids the validation gives documents sent as JSON instead of an upload. */
 const SLOT_TYPES: Record<string, DocumentType> = { invoice: 'COMMERCIAL_INVOICE', 'packing-list': 'PACKING_LIST', 'bill-of-lading': 'BILL_OF_LADING', isf: 'ISF', stored: 'ISF' };
@@ -310,7 +318,10 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
       ...(r.language ? { language: r.language } : {}),
       expiresAt: link.expiresAt,
       findings,
-      skipped: r.kind === 'pre_shipment' && latest && r.uploads > 0 ? latest.skipped : [],
+      skipped:
+        r.kind === 'pre_shipment' && latest && r.uploads > 0
+          ? [...latest.skipped, ...latest.ran.filter((id) => HISTORY_RULES.includes(id)).map((ruleId) => ({ ruleId, missing: [], reason: 'history' as const }))]
+          : [],
       ...(latest && (r.kind === 'correction' || r.uploads > 0) ? { validatedAt: latest.createdAt } : {}),
       uploads,
       history: history.map((h) => ({ kind: h.kind, ...((h.reference ?? h.shipmentReference) ? { reference: h.reference ?? h.shipmentReference } : {}), status: statusOf(h), createdAt: h.createdAt, current: h.id === r.id })),
@@ -326,6 +337,8 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
   private supplierFinding(f: Record<string, unknown>, state: PortalFinding['state'], docs: Map<string, PortalDocumentMeta>, partyId: string | undefined, uploaded: Set<string>): PortalFinding {
     const evidence = (f.evidence as Evidence[]).flatMap((ev) => {
       const doc = docs.get(ev.documentId);
+      // Only this shipment's documents: never a value from another shipment of the organization.
+      if (!doc && !SLOT_TYPES[ev.documentId]) return [];
       if (doc?.sellerId && partyId && doc.sellerId !== partyId && !uploaded.has(doc.id)) return [];
       const documentType: DocumentType = doc?.type ?? SLOT_TYPES[ev.documentId] ?? 'UNKNOWN';
       return [{ documentType, field: ev.field, value: ev.value, ...(ev.source?.page ? { page: ev.source.page } : {}) }];
@@ -359,16 +372,34 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
     if (files.length === 0) throw new BadRequestException('Send at least one PDF in the "files" field');
     if (files.length > MAX_ATTACHMENTS) await refuse('too_many', `At most ${MAX_ATTACHMENTS} files at once`);
     if (files.reduce((n, f) => n + f.size, 0) > MAX_ATTACHMENTS_BYTES) await refuse('too_large', `At most ${MAX_ATTACHMENTS_BYTES / 1024 / 1024} MB at once`);
-    for (const f of files) {
+    const formats = files.map((f) => inputFormat(f.originalname, new Uint8Array(f.buffer)));
+    for (const [i, f] of files.entries()) {
       if (f.size > MAX_ATTACHMENT_BYTES) await refuse('too_large', `${cleanName(f.originalname)} is larger than ${MAX_ATTACHMENT_BYTES / 1024 / 1024} MB`);
-      // The bytes decide, not the name or the type the browser says.
-      if (!f.buffer.subarray(0, 5).toString('latin1').startsWith('%PDF')) await refuse('not_pdf', `${cleanName(f.originalname)} is not a PDF`);
+      // The bytes decide, not the name or the type the browser says: what a shipment upload takes.
+      if (!formats[i]) await refuse('not_supported', `${cleanName(f.originalname)} is not a PDF, a photo (JPEG, PNG, HEIC) or a spreadsheet (.xlsx, .csv)`);
     }
     const shipment = await this.shipments.get(r.shipmentId);
     if (!shipment.destination) throw new ConflictException('The shipment has no destination yet; ask the importer');
 
-    const messageId = r.threadId ? randomUUID() : null;
+    // Into the shipment first, like any upload: photos straightened into a PDF, spreadsheets opened,
+    // combined PDFs split when extracted, and the organization's plan limits (402) applied.
     const named = files.map((f) => ({ ...f, name: cleanName(f.originalname) }));
+    let documents;
+    try {
+      ({ documents } = await this.shipments.addDocuments(r.shipmentId, named.map((f) => ({ name: f.name, bytes: f.buffer }))));
+    } catch (err) {
+      const status = err instanceof HttpException ? err.getStatus() : 500;
+      if (status === 400 || status === 402) {
+        const detail = { reason: status === 402 ? 'usage_limit' : 'unreadable', files: named.map((f) => ({ name: f.name, size: f.size })) };
+        await this.repo.event({ id: randomUUID(), requestId: r.id, linkId: link.id, kind: 'upload_refused', ip: access.ip, userAgent: access.userAgent, detail });
+        await this.supplierAudit(access, 'portal.upload_refused', detail, true);
+      }
+      throw err;
+    }
+    const documentIds = documents.map((d) => ('document' in d ? (d as { document: { id: string } }).document.id : (d as { id: string }).id));
+
+    // Then the conversation: a received message with the files attached, as a reply by email would be.
+    const messageId = r.threadId ? randomUUID() : null;
     if (r.threadId && messageId) {
       const thread = (await this.mailRepo.findThread(r.threadId))!;
       const items = await this.mailRepo.messages(r.threadId);
@@ -392,20 +423,15 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
         receivedAt: new Date().toISOString(),
         senderCheck: 'none',
       });
-    }
-    const attachmentIds: string[] = [];
-    if (messageId) {
-      for (const f of named) {
+      for (const [i, f] of named.entries()) {
         const attachmentId = randomUUID();
         const key = `mail/${messageId}/${attachmentId}`;
-        await this.storage.put(key, f.buffer, 'application/pdf');
-        await this.mailRepo.insertAttachment({ id: attachmentId, messageId, filename: f.name, contentType: 'application/pdf', size: f.size, storageKey: key });
-        attachmentIds.push(attachmentId);
+        const contentType = attachmentType(formats[i]!, f.name, f.buffer);
+        await this.storage.put(key, f.buffer, contentType);
+        await this.mailRepo.insertAttachment({ id: attachmentId, messageId, filename: f.name, contentType, size: f.size, storageKey: key });
+        await this.mailRepo.linkAttachment(attachmentId, documentIds[i]!);
       }
     }
-    const { documents } = await this.shipments.addDocuments(r.shipmentId, named.map((f) => ({ name: f.name, bytes: f.buffer })));
-    const documentIds = documents.map((d) => ('document' in d ? (d as { document: { id: string } }).document.id : (d as { id: string }).id));
-    for (const [i, attachmentId] of attachmentIds.entries()) await this.mailRepo.linkAttachment(attachmentId, documentIds[i]!);
     await this.repo.insertUpload({ id: randomUUID(), requestId: r.id, messageId, documentIds });
     await this.repo.event({
       id: randomUUID(),
@@ -418,7 +444,7 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
     });
     await this.supplierAudit(access, 'portal.upload', { shipmentId: r.shipmentId, documentIds, messageId, files: named.map((f) => ({ name: f.name, size: f.size })) });
     if (r.threadId) await this.mailRepo.touchThreadIn(r.threadId);
-    this.logger.log(`Portal: ${files.length} PDF(s) for request ${r.id}`);
+    this.logger.log(`Portal: ${files.length} file(s) for request ${r.id}`);
     void this.kick();
     return this.view({ ...access, request: (await this.repo.request(r.id))! }, false);
   }
@@ -469,4 +495,13 @@ export class PortalService implements OnApplicationBootstrap, OnApplicationShutd
 /** A file name safe to store and show. */
 function cleanName(name: string): string {
   return (name || 'document.pdf').replace(/[\\/\u0000-\u001f]/g, '_').slice(0, 200);
+}
+
+/** The type an uploaded file is kept with as an attachment of the conversation (served as mail attachments are). */
+function attachmentType(format: DocumentFormat, name: string, bytes: Buffer): string {
+  if (format === 'PDF') return 'application/pdf';
+  if (format === 'SPREADSHEET') return /\.xls[xm]$/i.test(name) ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' : 'text/csv';
+  if (bytes[0] === 0xff && bytes[1] === 0xd8) return 'image/jpeg';
+  if (bytes[0] === 0x89 && bytes[1] === 0x50) return 'image/png';
+  return 'image/heic';
 }

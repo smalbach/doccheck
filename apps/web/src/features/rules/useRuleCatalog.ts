@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../api/client';
 import type { Destination, RuleDefinition } from '../../api/types';
+import { DESTINATIONS } from '../../constants/destinations';
 import { errorMessage } from '../../lib/errorMessage';
 
 /** Active rules per destination. */
@@ -9,8 +10,8 @@ export function useRuleCatalog() {
   const [error, setError] = useState<string>();
   useEffect(() => {
     let active = true;
-    Promise.all([api.rules('CA'), api.rules('US')]).then(
-      ([CA, US]) => active && setRules({ CA, US }),
+    Promise.all(DESTINATIONS.map((d) => api.rules(d))).then(
+      (lists) => active && setRules(Object.fromEntries(DESTINATIONS.map((d, i) => [d, lists[i]])) as Record<Destination, RuleDefinition[]>),
       (e: unknown) => active && setError(errorMessage(e)),
     );
     return () => {

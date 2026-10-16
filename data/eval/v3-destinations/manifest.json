@@ -1,0 +1,1456 @@
+{
+  "version": "v3-destinations",
+  "seed": 20261016,
+  "shipments": [
+    {
+      "id": "MX-001",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "missing_required_field"
+      ]
+    },
+    {
+      "id": "MX-002",
+      "destination": "MX",
+      "templates": [
+        "modern",
+        "legacy",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "line_quantity_changed"
+      ]
+    },
+    {
+      "id": "MX-003",
+      "destination": "MX",
+      "templates": [
+        "legacy",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "invalid_importer_number",
+        "consignee_address_mismatch",
+        "invoice_language_not_accepted"
+      ]
+    },
+    {
+      "id": "MX-004",
+      "destination": "MX",
+      "templates": [
+        "modern",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "invoice_language_not_accepted",
+        "container_check_digit",
+        "missing_importer_number"
+      ]
+    },
+    {
+      "id": "MX-005",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "MX-006",
+      "destination": "MX",
+      "templates": [
+        "legacy",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "MX-007",
+      "destination": "MX",
+      "templates": [
+        "legacy",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "package_count_mismatch",
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "MX-008",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "invalid_importer_number",
+        "package_count_mismatch"
+      ]
+    },
+    {
+      "id": "MX-009",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "second_currency",
+        "invalid_importer_number",
+        "container_check_digit"
+      ]
+    },
+    {
+      "id": "MX-010",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "MX-011",
+      "destination": "MX",
+      "templates": [
+        "modern",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "line_quantity_changed"
+      ]
+    },
+    {
+      "id": "MX-012",
+      "destination": "MX",
+      "templates": [
+        "legacy",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "MX-013",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "second_currency"
+      ]
+    },
+    {
+      "id": "MX-014",
+      "destination": "MX",
+      "templates": [
+        "modern",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "gross_weight_mismatch",
+        "line_total_typo",
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "MX-015",
+      "destination": "MX",
+      "templates": [
+        "modern",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "line_quantity_changed",
+        "invalid_importer_number"
+      ]
+    },
+    {
+      "id": "MX-016",
+      "destination": "MX",
+      "templates": [
+        "modern",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "package_count_mismatch"
+      ]
+    },
+    {
+      "id": "MX-017",
+      "destination": "MX",
+      "templates": [
+        "modern",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "container_check_digit",
+        "invoice_language_not_accepted"
+      ]
+    },
+    {
+      "id": "MX-018",
+      "destination": "MX",
+      "templates": [
+        "legacy",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "MX-019",
+      "destination": "MX",
+      "templates": [
+        "modern",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "package_count_mismatch"
+      ]
+    },
+    {
+      "id": "MX-020",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "MX-021",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "line_total_typo",
+        "gross_weight_mismatch"
+      ]
+    },
+    {
+      "id": "MX-022",
+      "destination": "MX",
+      "templates": [
+        "legacy",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "invoice_language_not_accepted",
+        "container_check_digit"
+      ]
+    },
+    {
+      "id": "MX-023",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "legacy",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "MX-024",
+      "destination": "MX",
+      "templates": [
+        "legacy",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "missing_importer_number",
+        "gross_weight_mismatch"
+      ]
+    },
+    {
+      "id": "MX-025",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "MX-026",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "MX-027",
+      "destination": "MX",
+      "templates": [
+        "legacy",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 3,
+      "containers": 1,
+      "errors": [
+        "missing_importer_number",
+        "net_exceeds_gross",
+        "package_count_mismatch"
+      ]
+    },
+    {
+      "id": "MX-028",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "MX-029",
+      "destination": "MX",
+      "templates": [
+        "legacy",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "invoice_language_not_accepted",
+        "line_quantity_changed",
+        "missing_required_field"
+      ]
+    },
+    {
+      "id": "MX-030",
+      "destination": "MX",
+      "templates": [
+        "classic",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 3,
+      "containers": 1,
+      "errors": [
+        "container_check_digit",
+        "invalid_importer_number"
+      ]
+    },
+    {
+      "id": "EU-001",
+      "destination": "EU",
+      "templates": [
+        "modern",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "net_exceeds_gross",
+        "gross_weight_mismatch",
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "EU-002",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "EU-003",
+      "destination": "EU",
+      "templates": [
+        "classic",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "EU-004",
+      "destination": "EU",
+      "templates": [
+        "classic",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "line_total_typo",
+        "net_exceeds_gross",
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "EU-005",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 3,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "EU-006",
+      "destination": "EU",
+      "templates": [
+        "modern",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "net_exceeds_gross",
+        "invalid_importer_number"
+      ]
+    },
+    {
+      "id": "EU-007",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "container_check_digit",
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "EU-008",
+      "destination": "EU",
+      "templates": [
+        "classic",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "EU-009",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "second_currency"
+      ]
+    },
+    {
+      "id": "EU-010",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "second_currency"
+      ]
+    },
+    {
+      "id": "EU-011",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "hs_code_truncated",
+        "package_count_mismatch",
+        "invalid_importer_number"
+      ]
+    },
+    {
+      "id": "EU-012",
+      "destination": "EU",
+      "templates": [
+        "modern",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "EU-013",
+      "destination": "EU",
+      "templates": [
+        "classic",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "net_exceeds_gross",
+        "container_check_digit",
+        "line_total_typo"
+      ]
+    },
+    {
+      "id": "EU-014",
+      "destination": "EU",
+      "templates": [
+        "modern",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch",
+        "net_exceeds_gross",
+        "missing_importer_number"
+      ]
+    },
+    {
+      "id": "EU-015",
+      "destination": "EU",
+      "templates": [
+        "modern",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "EU-016",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "package_count_mismatch",
+        "invalid_importer_number"
+      ]
+    },
+    {
+      "id": "EU-017",
+      "destination": "EU",
+      "templates": [
+        "classic",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 3,
+      "containers": 1,
+      "errors": [
+        "container_check_digit",
+        "missing_required_field",
+        "invalid_importer_number"
+      ]
+    },
+    {
+      "id": "EU-018",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "container_check_digit"
+      ]
+    },
+    {
+      "id": "EU-019",
+      "destination": "EU",
+      "templates": [
+        "modern",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "missing_importer_number"
+      ]
+    },
+    {
+      "id": "EU-020",
+      "destination": "EU",
+      "templates": [
+        "modern",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "EU-021",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "invalid_importer_number",
+        "missing_importer_number"
+      ]
+    },
+    {
+      "id": "EU-022",
+      "destination": "EU",
+      "templates": [
+        "classic",
+        "legacy",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "consignee_address_mismatch",
+        "line_quantity_changed"
+      ]
+    },
+    {
+      "id": "EU-023",
+      "destination": "EU",
+      "templates": [
+        "classic",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "missing_required_field",
+        "package_count_mismatch",
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "EU-024",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "second_currency"
+      ]
+    },
+    {
+      "id": "EU-025",
+      "destination": "EU",
+      "templates": [
+        "legacy",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "hs_code_truncated",
+        "package_count_mismatch",
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "EU-026",
+      "destination": "EU",
+      "templates": [
+        "modern",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "EU-027",
+      "destination": "EU",
+      "templates": [
+        "classic",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch",
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "EU-028",
+      "destination": "EU",
+      "templates": [
+        "classic",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "EU-029",
+      "destination": "EU",
+      "templates": [
+        "modern",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch",
+        "missing_required_field"
+      ]
+    },
+    {
+      "id": "EU-030",
+      "destination": "EU",
+      "templates": [
+        "modern",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "missing_importer_number",
+        "invalid_importer_number",
+        "net_exceeds_gross"
+      ]
+    },
+    {
+      "id": "GB-001",
+      "destination": "GB",
+      "templates": [
+        "legacy",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "net_exceeds_gross",
+        "line_total_typo"
+      ]
+    },
+    {
+      "id": "GB-002",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "GB-003",
+      "destination": "GB",
+      "templates": [
+        "modern",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "GB-004",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "GB-005",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "second_currency"
+      ]
+    },
+    {
+      "id": "GB-006",
+      "destination": "GB",
+      "templates": [
+        "legacy",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "package_count_mismatch",
+        "second_currency",
+        "missing_required_field"
+      ]
+    },
+    {
+      "id": "GB-007",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "consignee_address_mismatch",
+        "package_count_mismatch"
+      ]
+    },
+    {
+      "id": "GB-008",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "GB-009",
+      "destination": "GB",
+      "templates": [
+        "modern",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "missing_importer_number"
+      ]
+    },
+    {
+      "id": "GB-010",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "GB-011",
+      "destination": "GB",
+      "templates": [
+        "modern",
+        "modern",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "gross_weight_mismatch"
+      ]
+    },
+    {
+      "id": "GB-012",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "container_check_digit"
+      ]
+    },
+    {
+      "id": "GB-013",
+      "destination": "GB",
+      "templates": [
+        "modern",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "line_total_typo"
+      ]
+    },
+    {
+      "id": "GB-014",
+      "destination": "GB",
+      "templates": [
+        "modern",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "GB-015",
+      "destination": "GB",
+      "templates": [
+        "legacy",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "GB-016",
+      "destination": "GB",
+      "templates": [
+        "modern",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "GB-017",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "GB-018",
+      "destination": "GB",
+      "templates": [
+        "modern",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "GB-019",
+      "destination": "GB",
+      "templates": [
+        "modern",
+        "legacy",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "container_check_digit",
+        "line_total_typo"
+      ]
+    },
+    {
+      "id": "GB-020",
+      "destination": "GB",
+      "templates": [
+        "legacy",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "net_exceeds_gross",
+        "packing_list_quantity_mismatch"
+      ]
+    },
+    {
+      "id": "GB-021",
+      "destination": "GB",
+      "templates": [
+        "legacy",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "GB-022",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "classic",
+        "legacy"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "net_exceeds_gross",
+        "invalid_importer_number"
+      ]
+    },
+    {
+      "id": "GB-023",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "gross_weight_mismatch",
+        "consignee_address_mismatch"
+      ]
+    },
+    {
+      "id": "GB-024",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "classic",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "line_total_typo",
+        "second_currency"
+      ]
+    },
+    {
+      "id": "GB-025",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "second_currency",
+        "invalid_importer_number"
+      ]
+    },
+    {
+      "id": "GB-026",
+      "destination": "GB",
+      "templates": [
+        "modern",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "line_total_typo",
+        "invalid_importer_number"
+      ]
+    },
+    {
+      "id": "GB-027",
+      "destination": "GB",
+      "templates": [
+        "modern",
+        "classic",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "second_currency"
+      ]
+    },
+    {
+      "id": "GB-028",
+      "destination": "GB",
+      "templates": [
+        "legacy",
+        "legacy",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": [
+        "gross_weight_mismatch"
+      ]
+    },
+    {
+      "id": "GB-029",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "modern",
+        "classic"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 1,
+      "containers": 1,
+      "errors": []
+    },
+    {
+      "id": "GB-030",
+      "destination": "GB",
+      "templates": [
+        "classic",
+        "modern",
+        "modern"
+      ],
+      "blWeightUnit": "KG",
+      "bilingual": false,
+      "lines": 2,
+      "containers": 1,
+      "errors": [
+        "missing_required_field",
+        "second_currency",
+        "consignee_address_mismatch"
+      ]
+    }
+  ]
+}
