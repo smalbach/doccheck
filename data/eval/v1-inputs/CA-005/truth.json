@@ -1,0 +1,393 @@
+{
+  "id": "CA-005",
+  "seed": 1955617162,
+  "destination": "CA",
+  "render": {
+    "invoiceTemplate": "legacy",
+    "packingListTemplate": "modern",
+    "blTemplate": "legacy",
+    "blWeightUnit": "KG",
+    "bilingual": true
+  },
+  "combined": [
+    {
+      "document": "invoice",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "document": "packing-list",
+      "pages": [
+        2
+      ]
+    },
+    {
+      "document": "bill-of-lading",
+      "pages": [
+        3
+      ]
+    }
+  ],
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "INV-2026-9061",
+      "invoiceDate": "2026-02-25",
+      "poNumber": "PO-64700",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "buyer": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "exporter": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "shipmentDate": "2026-03-01",
+      "transport": {
+        "mode": "SEA",
+        "placeOfShipment": {
+          "name": "Ningbo",
+          "unLocode": "CNNGB",
+          "country": "CN"
+        }
+      },
+      "incoterm": {
+        "code": "FOB",
+        "place": "Ningbo"
+      },
+      "paymentTerms": "T/T 30% deposit, 70% against copy of BL",
+      "currency": "USD",
+      "packageCount": 395,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "EK-17",
+          "description": "Electric kettle 1.7 L, stainless steel, 1500 W, 120 V",
+          "quantity": {
+            "value": "1912",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "15.59",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "29808.08",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8516.71"
+        },
+        {
+          "lineNo": 2,
+          "sku": "BL-600",
+          "description": "Countertop blender 600 W with glass jar",
+          "quantity": {
+            "value": "624",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "24.69",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "15406.56",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "CN",
+          "hsCode": "8509.40"
+        }
+      ],
+      "grossWeight": {
+        "kg": "3924.10",
+        "raw": {
+          "value": "3924.10",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "3442.80",
+        "raw": {
+          "value": "3442.80",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "45214.64",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "fr"
+    },
+    "packingList": {
+      "packingListNumber": "PL-2026-9061",
+      "invoiceRef": "INV-2026-9061",
+      "seller": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-239",
+          "count": 239,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/PO-64700/C/NO. 1-395",
+          "contents": [
+            {
+              "sku": "EK-17",
+              "description": "Electric kettle 1.7 L",
+              "quantity": {
+                "value": "1912",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "2007.60",
+            "raw": {
+              "value": "2007.60",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "2270.50",
+            "raw": {
+              "value": "2270.50",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            45,
+            42
+          ]
+        },
+        {
+          "range": "240-395",
+          "count": 156,
+          "type": "CTN",
+          "marks": "QUINCAILLERIE/PO-64700/C/NO. 1-395",
+          "contents": [
+            {
+              "sku": "BL-600",
+              "description": "Blender 600 W",
+              "quantity": {
+                "value": "624",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1435.20",
+            "raw": {
+              "value": "1435.20",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1653.60",
+            "raw": {
+              "value": "1653.60",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            50,
+            50,
+            45
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 395,
+        "netWeight": {
+          "kg": "3442.80",
+          "raw": {
+            "value": "3442.80",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "3924.10",
+          "raw": {
+            "value": "3924.10",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "42.39"
+      }
+    },
+    "billOfLading": {
+      "blNumber": "SILVNGB953283",
+      "blType": {
+        "issuer": "HBL",
+        "form": "ORIGINAL"
+      },
+      "bookingNumber": "208130513",
+      "carrier": {
+        "name": "Tidewater Express Lines",
+        "scac": "TDWE"
+      },
+      "shipper": {
+        "name": "Ningbo Everbright Appliance Co., Ltd.",
+        "address": {
+          "lines": [
+            "366 Jiangnan Rd",
+            "Beilun District"
+          ],
+          "city": "Ningbo",
+          "region": "Zhejiang",
+          "postalCode": "315800",
+          "country": "CN"
+        }
+      },
+      "consignee": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "notifyParty": {
+        "name": "Quincaillerie Saint-Laurent Ltée",
+        "address": {
+          "lines": [
+            "1450 boul. Industriel"
+          ],
+          "city": "Laval",
+          "region": "QC",
+          "postalCode": "H7S 1P6",
+          "country": "CA"
+        },
+        "taxId": "873456789RM0001"
+      },
+      "vessel": "CAPE ALBATROSS",
+      "voyage": "064E",
+      "placeOfReceipt": {
+        "name": "Ningbo",
+        "country": "CN"
+      },
+      "portOfLoading": {
+        "name": "Ningbo",
+        "unLocode": "CNNGB",
+        "country": "CN"
+      },
+      "portOfDischarge": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "placeOfDelivery": {
+        "name": "Montreal",
+        "unLocode": "CAMTR",
+        "country": "CA"
+      },
+      "containers": [
+        {
+          "number": "TWEU9682359",
+          "seal": "TW6280247",
+          "type": "40HC",
+          "packages": 395,
+          "grossWeight": {
+            "kg": "3924.10",
+            "raw": {
+              "value": "3924.10",
+              "unit": "KG"
+            }
+          },
+          "volumeM3": "42.39"
+        }
+      ],
+      "totalPackages": 395,
+      "totalGrossWeight": {
+        "kg": "3924.10",
+        "raw": {
+          "value": "3924.10",
+          "unit": "KG"
+        }
+      },
+      "marksAndNumbers": "QUINCAILLERIE/PO-64700/C/NO. 1-395",
+      "cargoDescription": "SAID TO CONTAIN 395 CTNS ELECTRIC KETTLE 1.7 L AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "placeOfIssue": "Ningbo",
+      "dateOfIssue": "2026-03-04",
+      "shippedOnBoardDate": "2026-03-04",
+      "references": [
+        "INV-2026-9061",
+        "PO-64700"
+      ]
+    }
+  }
+}

@@ -5,7 +5,8 @@ import type { Rule, RuleResult } from '../types';
  * T13 (informational): the original bill of lading and the certificate of origin show a signature or
  * stamp. The check reads the paper, not the text (packages/extraction/src/attestation.ts), so it only
  * runs on documents that were looked at; a photo of a signed copy or an e-signature may still be fine.
- * A sea waybill needs no signed original and is not checked.
+ * A sea waybill needs no signed original and is not checked, nor is a page without a place to sign
+ * (no signature label): nothing says a signature is missing there.
  */
 export const t13SignatureStamp: Rule = {
   definition: {
@@ -18,9 +19,9 @@ export const t13SignatureStamp: Rule = {
     severity: 'INFO',
     optional: true,
   },
-  applies: (ctx) => [ctx.billOfLading, ctx.certificateOfOrigin, ctx.cusmaCertification].some((d) => d && ctx.attestations?.[d.id]),
+  applies: (ctx) => [ctx.billOfLading, ctx.certificateOfOrigin, ctx.cusmaCertification].some((d) => d && ctx.attestations?.[d.id] && ctx.attestations[d.id].signatureBlock !== false),
   run(ctx) {
-    const seen = ctx.attestations ?? {};
+    const seen = Object.fromEntries(Object.entries(ctx.attestations ?? {}).filter(([, a]) => a.signatureBlock !== false));
     const results: RuleResult[] = [];
     const evidence = (documentId: string, a: Attestation, value: string): Evidence => ({
       documentId,

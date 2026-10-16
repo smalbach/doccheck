@@ -1,0 +1,27 @@
+{
+  "id": "US-009",
+  "errors": [
+    {
+      "kind": "coo_exporter_mismatch",
+      "document": "certificateOfOrigin",
+      "field": "exporter.name",
+      "before": "Pune Precision Engineering Pvt. Ltd.",
+      "after": "Golden Bridge Trading Co., Ltd.",
+      "expectedRuleIds": [
+        "T7"
+      ],
+      "description": "Certificate of origin made out by another exporter."
+    },
+    {
+      "kind": "awb_pieces_mismatch",
+      "document": "airWaybill",
+      "field": "pieces",
+      "before": 393,
+      "after": 395,
+      "expectedRuleIds": [
+        "T2"
+      ],
+      "description": "Air waybill says 395 pieces instead of 393."
+    }
+  ]
+}

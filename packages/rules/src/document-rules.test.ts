@@ -223,6 +223,9 @@ describe('T13 signature and stamp', () => {
     expect(f.evidence[0].source).toEqual({ documentId: 'bl-1', page: 1, bbox: [300, 700, 560, 760], rawText: 'Signature block' });
     ctx.billOfLading!.data.blType = { issuer: 'HBL', form: 'SEAWAY' };
     expect(ids(ctx)).not.toContain('T13');
+    ctx.billOfLading!.data.blType = { issuer: 'HBL', form: 'ORIGINAL' };
+    ctx.attestations = { 'bl-1': { signature: false, stamp: false, signatureBlock: false } };
+    expect(runRules(ctx).notApplicable).toContain('T13');
   });
   it('asks for both signature and stamp on a chamber certificate', () => {
     const ctx = sea();

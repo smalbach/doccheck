@@ -11,7 +11,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { runRules } from '@doccheck/rules';
-import { buildDataset, EXTRA_ERROR_KINDS, injectErrors, Rng } from '@doccheck/synth';
+import { buildDataset, buildDocsDataset, docsContext, EXTRA_ERROR_KINDS, injectErrors, Rng } from '@doccheck/synth';
 
 const { values } = parseArgs({ options: { model: { type: 'string', default: 'ollama_qwen3.8' }, reports: { type: 'string', default: 'eval/reports' } } });
 const pct = (x) => (x === null || x === undefined ? '—' : `${(x * 100).toFixed(1)}%`);
@@ -23,6 +23,8 @@ const scans = await readJson(join(values.reports, `extraction-${values.model}-v1
 const isfSet = await readJson(join(values.reports, `extraction-${values.model}-v1-isf.json`));
 const v2 = await readJson(join(values.reports, `extraction-${values.model}-v2.json`));
 const scansUnlimited = await readJson(join(values.reports, `extraction-${values.model}-v1-scans-unlimited.json`));
+const docsSet = await readJson(join(values.reports, `extraction-${values.model}-v1-docs.json`));
+const inputs = await readJson(join(values.reports, `inputs-${values.model}.json`));
 
 // Every report records the model build it ran with; numbers from different builds should not be mixed.
 const builds = [
@@ -31,6 +33,8 @@ const builds = [
   ['extraction v1-isf', isfSet],
   ['extraction v2', v2],
   ['extraction v1-scans (Unlimited-OCR)', scansUnlimited],
+  ['extraction v1-docs', docsSet],
+  ['inputs v1-inputs', inputs],
   ['agent', agent],
 ]
   .filter(([, r]) => r)
@@ -104,6 +108,24 @@ const extraKinds = EXTRA_ERROR_KINDS.map((kind) => {
   return { ...row, ...pr(row) };
 });
 
+// Rules T1-T13 on the ground truth of set v1-docs: each shipment's labels against what the engine raises.
+const docsTruth = buildDocsDataset(buildDataset());
+const docsRules = new Map();
+for (const { shipment, labels } of docsTruth) {
+  const got = new Set(runRules(docsContext(shipment)).findings.map((f) => f.ruleId));
+  const expected = new Set(labels.flatMap((l) => l.expectedRuleIds));
+  for (const r of new Set([...got, ...expected])) {
+    const row = docsRules.get(r) ?? { tp: 0, fp: 0, fn: 0 };
+    if (got.has(r) && expected.has(r)) row.tp++;
+    else if (got.has(r)) row.fp++;
+    else row.fn++;
+    docsRules.set(r, row);
+  }
+}
+const docsTruthRules = [...docsRules].sort(([a], [b]) => ruleOrder(a, b));
+const docsTruthTotal = pr(sum(docsTruthRules));
+const docsLabels = docsTruth.reduce((n, e) => n + e.labels.length, 0);
+
 const totalOf = (table) => pr(table.reduce((a, r) => ({ tp: a.tp + r.tp, fp: a.fp + r.fp, fn: a.fn + r.fn }), { tp: 0, fp: 0, fn: 0 }));
 const extRules = extraction?.rules.table ?? [];
 const extTotal = totalOf(extRules);
@@ -127,6 +149,12 @@ const headline = [
   isfX11 ? `| X11 on extracted ISF PDFs | Recall / precision, end to end | ${pct(isfX11.recall)} / ${pct(isfX11.precision)} |` : null,
   v2 ? `| Extraction, unseen formats (v2) | Field accuracy, ${v2.documents} PDFs (${v2.validDocuments ?? '?'} complete enough for the rules) | ${pct(v2.overall.accuracy)} |` : null,
   v2 ? `| Rules on v2 PDFs | Recall / precision, end to end | ${pct(totalOf(v2.rules.table).recall)} / ${pct(totalOf(v2.rules.table).precision)} |` : null,
+  `| Rules T1-T13 on ground truth (v1-docs) | Recall / precision on ${docsLabels} injected errors in ${docsTruth.length} shipments | ${pct(docsTruthTotal.recall)} / ${pct(docsTruthTotal.precision)} |`,
+  docsSet ? `| Extraction, other documents (v1-docs) | Field accuracy, ${docsSet.documents} PDFs (${docsSet.validDocuments} complete enough for the rules) · classification | ${pct(docsSet.overall.accuracy)} · ${pct(docsSet.classificationAccuracy)} |` : null,
+  docsSet ? `| Rules on v1-docs PDFs | Recall / precision, end to end | ${pct(totalOf(docsSet.rules.table).recall)} / ${pct(totalOf(docsSet.rules.table).precision)} |` : null,
+  inputs ? `| Spreadsheets (.xlsx invoice, .csv packing list) | Field accuracy, ${inputs.spreadsheets.invoice.documents * 2} sheets, read without a model (${inputs.spreadsheets.headersMappedByModel} headers mapped by it) | ${pct(inputs.spreadsheets.overall.accuracy)} |` : null,
+  inputs?.photos ? `| Invoice photos (JPEG, deskew + OCR) | Field accuracy, ${inputs.photos.documents} photos (${inputs.photos.valid} complete enough for the rules) | ${pct(inputs.photos.accuracy)} |` : null,
+  inputs ? `| Combined PDFs | Documents split with the right type and pages, ${inputs.combined.documents} documents in ${inputs.combined.files} PDFs | ${pct(inputs.combined.documentAccuracy)} |` : null,
   agentRow('party') ? `| Agent | Same consignee written differently (${agentRow('party').cases} cases): verdict / right action | ${pct(agentRow('party').accuracy)} / ${pct(agentRow('party').effectAccuracy)} (${agentRow('party').wrong} wrong, ${agentRow('party').unsure} unsure) |` : null,
   agentRow('description') ? `| Agent | BL description vs invoice goods (${agentRow('description').cases} cases): verdict / right action | ${pct(agentRow('description').accuracy)} / ${pct(agentRow('description').effectAccuracy)} (${agentRow('description').wrong} wrong, ${agentRow('description').unsure} unsure) |` : null,
 ].filter(Boolean);
@@ -248,6 +276,50 @@ const md = [
         '| Document | Field | Accuracy | Wrong | Missing | Spurious |',
         '| --- | --- | --- | --- | --- | --- |',
         ...v2.byField.filter((f) => f.accuracy < 1).slice(0, 10).map((f) => `| ${f.type} | \`${f.field}\` | ${pct(f.accuracy)} | ${f.wrong} | ${f.missing} | ${f.spurious} |`),
+        '',
+      ]
+    : []),
+  '## Other documents (set v1-docs)',
+  '',
+  `${docsTruth.length} v1 shipments with the other documents a shipment carries: air waybills instead of bills of lading, chamber certificates of origin, CUSMA certifications, arrival notices, ISPM 15 heat-treatment certificates and dangerous goods declarations (\`npm run synth -- --docs\`); ${docsLabels} injected errors, each labelled with the T rule that must flag it.`,
+  '',
+  '| Rule | Recall (truth) | Precision (truth) | Recall (extracted) | Precision (extracted) |',
+  '| --- | --- | --- | --- | --- |',
+  ...docsTruthRules.map(([id, r]) => {
+    const t = pr(r);
+    const e = docsSet?.rules.table.find((x) => x.rule === id);
+    return `| ${id} | ${pct(t.recall)} | ${pct(t.precision)} | ${pct(e?.recall)} | ${pct(e?.precision)} |`;
+  }),
+  '',
+  ...(docsSet
+    ? [
+        `Model build ${docsSet.modelVersion ?? 'unknown'} · prompt \`${docsSet.promptVersion}\` · ${docsSet.documents} PDFs · ${docsSet.failedDocuments} failed · classification ${pct(docsSet.classificationAccuracy)}`,
+        '',
+        '| Document | Accuracy | Fields | Valid documents |',
+        '| --- | --- | --- | --- |',
+        ...docsSet.byType.map((t) => `| ${t.type} | ${pct(t.accuracy)} | ${t.total} | ${t.validDocuments}/${t.documents} |`),
+        '',
+        'Weakest fields:',
+        '',
+        '| Document | Field | Accuracy | Wrong | Missing | Spurious |',
+        '| --- | --- | --- | --- | --- | --- |',
+        ...docsSet.byField.filter((f) => f.accuracy < 1).slice(0, 10).map((f) => `| ${f.type} | \`${f.field}\` | ${pct(f.accuracy)} | ${f.wrong} | ${f.missing} | ${f.spurious} |`),
+        '',
+      ]
+    : []),
+  ...(inputs
+    ? [
+        '## Input formats (set v1-inputs)',
+        '',
+        `${inputs.shipments} clean v1 shipments (\`npm run synth -- --inputs\`): the invoice as an .xlsx (half with headers the vocabulary does not know, mapped by the model from the header texts alone) and the packing list as a .csv, the invoice as a phone photo, and the invoice, packing list and BL in one PDF. The shipments are clean, so every finding on what was read is a false positive. Report \`eval/reports/inputs-${values.model}.md\`.`,
+        '',
+        '| Input | Documents | Field accuracy | Valid documents | Findings on clean shipments |',
+        '| --- | --- | --- | --- | --- |',
+        `| Invoice .xlsx | ${inputs.spreadsheets.invoice.documents} | ${pct(inputs.spreadsheets.invoice.accuracy)} | ${inputs.spreadsheets.invoice.valid} | ${inputs.spreadsheets.findingsOnCleanShipments} (with the .csv packing list) |`,
+        `| Packing list .csv | ${inputs.spreadsheets.packingList.documents} | ${pct(inputs.spreadsheets.packingList.accuracy)} | ${inputs.spreadsheets.packingList.valid} | |`,
+        ...(inputs.photos ? [`| Invoice photo | ${inputs.photos.documents} | ${pct(inputs.photos.accuracy)} | ${inputs.photos.valid} | ${inputs.photos.findings} |`] : []),
+        '',
+        `Combined PDFs: ${inputs.combined.exact} of ${inputs.combined.documents} documents split with the right type and pages; ${inputs.combined.pagesRight} of ${inputs.combined.pages} pages in the right document.${inputs.photos ? ` Photo deskew: mean error ${inputs.photos.meanAngleError.toFixed(2)}° from the rotation drawn.` : ''}`,
         '',
       ]
     : []),

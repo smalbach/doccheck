@@ -1,6 +1,6 @@
 # DocCheck
 
-**Catch freight document errors before customs does.** DocCheck reads the commercial invoice, packing list, bill of lading and, for US ocean freight, the ISF 10+2 filing, then cross-checks them against each other and against CBSA (Canada) and CBP (US) requirements. A local model copies the values as printed, plain tested code normalizes them, and fifteen deterministic rules do the checking. The model comes back only for the narrow cases a rule cannot settle alone. Every finding links to the exact line in the PDF it comes from and to the regulation passage behind it, and the supplier can be asked for corrected documents without leaving the app. The models run locally: no document goes to an outside AI service.
+**Catch freight document errors before customs does.** DocCheck reads the commercial invoice, packing list, bill of lading and, for US ocean freight, the ISF 10+2 filing, as well as air waybills, certificates of origin (CUSMA included), arrival notices, ISPM 15 wood packaging certificates and dangerous goods declarations, from PDFs, phone photos or spreadsheets, then cross-checks them against each other and against CBSA (Canada) and CBP (US) requirements. A local model copies the values as printed, plain tested code normalizes them, and twenty-eight deterministic rules do the checking. The model comes back only for the narrow cases a rule cannot settle alone. Every finding links to the exact line in the PDF it comes from and to the regulation passage behind it, and the supplier can be asked for corrected documents without leaving the app. The models run locally: no document goes to an outside AI service.
 
 <p align="center">
   <img src="docs/screenshots/flow.webp" width="900" alt="Opening a sample shipment, validating it, and clicking a finding's evidence: the invoice PDF opens with the cited line highlighted">
@@ -25,6 +25,7 @@ Measured on synthetic shipments generated from a fixed seed (there is no public 
 | X11 on extracted ISF PDFs | Recall / precision, end to end | 100.0% / 100.0% |
 | Extraction, unseen formats (v2) | Field accuracy, 180 PDFs (177 complete enough for the rules) | 98.8% |
 | Rules on v2 PDFs | Recall / precision, end to end | 100.0% / 100.0% |
+| Rules T1-T13 on ground truth (v1-docs) | Recall / precision on 49 injected errors in 40 shipments | 100.0% / 100.0% |
 | Agent | Same consignee written differently (40 cases): verdict / right action | 87.5% / 100.0% (0 wrong, 5 unsure) |
 | Agent | BL description vs invoice goods (40 cases): verdict / right action | 100.0% / 100.0% (0 wrong, 0 unsure) |
 
@@ -64,7 +65,9 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 
 - **Reads the PDFs**, text layer or scans (OCR with bundled English and French models, or optionally Unlimited-OCR on Apple Silicon), and classifies each one as invoice, packing list, bill of lading or ISF filing confirmation.
 - **Extracts typed data with a local model** (Ollama, `qwen3.8`): the model fills a Zod schema with values exactly as printed, and tested code converts them to decimals, ISO dates, kilograms and ISO country codes. A required value the model fills in although the invoice leaves it blank is dropped.
-- **Runs 15 deterministic rules** (listed [below](#rules-implemented)): package counts and weights across documents, invoice arithmetic, currency, quantities per SKU, dates, terms of sale vs freight terms, ISO 6346 container check digits, ISF consistency, and the invoice fields CBSA (CI1) and CBP (19 CFR 141.86) require. Money and weights use fixed-point arithmetic, never floats.
+- **Reads the other papers of a shipment**: air waybills (master or house), chamber certificates of origin and CUSMA certifications, arrival notices, ISPM 15 heat-treatment or fumigation certificates and dangerous goods declarations, with the same "values as printed, code normalizes" contract; a value the model fills in although the paper leaves it blank (a CUSMA origin criterion, a packing group, a computed chargeable weight) is dropped.
+- **Takes what suppliers actually send**: one PDF with the whole folder is split by page into its documents (each keeps the page numbers of the upload for citations); invoices and packing lists as .xlsx or .csv are read without a model (the model only maps a column header the vocabulary does not know, from the header text alone) and findings open the sheet at the cited cell; phone photos (JPEG, PNG, HEIC) are straightened, cropped and read with OCR, with the cited line boxed on the photo.
+- **Runs 28 deterministic rules** (listed [below](#rules-implemented)): package counts and weights across documents, invoice arithmetic, currency, quantities per SKU, dates, terms of sale vs freight terms, ISO 6346 container check digits, ISF consistency, the invoice fields CBSA (CI1) and CBP (19 CFR 141.86) require, and the T rules on the other documents: air waybill check digit, pieces and weights (the ocean rules run on the AWB for air freight), certificate of origin parties and goods, the nine CUSMA data elements, dangerous goods without a declaration, wood packaging without ISPM 15 evidence, the arrival notice against the BL or AWB, and an informational check that the original BL and the certificate of origin are signed or stamped (a layout check on the rendered page). Money and weights use fixed-point arithmetic, never floats.
 - **Asks the model narrow questions only where rules cannot decide**: is a differently written consignee the same company, does the BL cargo description match the invoice goods. Each answer comes with verdict, confidence and rationale; it acts only at confidence ≥ 0.7 (`ACT_CONFIDENCE` in [`packages/agent/src/review.ts`](packages/agent/src/review.ts)) and "unsure" never dismisses a finding.
 - **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a CBSA memorandum or 19 CFR passage found by hybrid search (embeddings + BM25). The model never writes the legal basis.
 - **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
@@ -86,7 +89,7 @@ flowchart LR
       direction LR
       Parse["pdf.js text + positions<br/>OCR for scans"] --> Classify[Classify] --> LLM["LLM: values as printed<br/>(Zod-validated)"] --> Normalize[Normalize in code]
     end
-    Normalize --> Rules["15 deterministic rules<br/>+ CA / US profiles"]
+    Normalize --> Rules["28 deterministic rules<br/>+ CA / US profiles"]
     Rules --> Agent["Agent: narrow questions<br/>(verdict, confidence, rationale)"]
     Agent --> Cite["Regulation search<br/>embeddings + BM25"]
     Mail["Supplier mail<br/>outbox, inbound, attachments"] --> Upload
@@ -197,6 +200,21 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | C1 | Invoice has the fields CBSA requires (CI1 fields 1–17: vendor, consignee, origin, terms of sale, currency, packages, description, quantity, price, total, weights) | CA | per field |
 | C2 | Invoice is in English or French | CA | Medium |
 | U1 | Invoice has the information 19 CFR 141.86(a) requires (port of entry, time of sale, parties, description, quantity, price, currency, origin) | US | per field |
+| T1 | Air waybill number has a valid IATA check digit (serial mod 7); a house waybill's master number too | CA, US | Medium |
+| T2 | Air waybill pieces match the invoice and packing list (X2 for air) | CA, US | High |
+| T3 | Air waybill gross weight matches the packing list and invoice; chargeable weight not below gross | CA, US | Medium |
+| T4 | Consignee matches between invoice and air waybill (X1 on the AWB) | CA, US | Medium |
+| T5 | Invoice shipment date within 7 days of the flight (X9 on the AWB) | CA, US | Low |
+| T6 | Terms of sale agree with the AWB freight terms (X12 on the AWB) | CA, US | Low |
+| T7 | Certificate of origin (chamber or CUSMA) exporter, consignee or importer, and producer, are the invoice's parties | CA, US | Medium |
+| T8 | Certificate of origin covers every invoice HS subheading and gives the same origin | CA, US | Medium / High |
+| T9 | CUSMA certification has the nine minimum data elements (Annex 5-A), blanket period at most 12 months | CA, US | per element |
+| T10 | Goods described as dangerous (UN number, "lithium-ion", HS heading) travel with a dangerous goods declaration that lists every UN number | CA, US | High |
+| T11 | Wood packaging the documents declare ("WOODEN PALLETS") comes with ISPM 15 evidence; a no-wood declaration does not contradict them | CA, US | Medium |
+| T12 | Arrival notice agrees with the BL or AWB: number, containers, packages, weight, consignee | CA, US | Medium |
+| T13 | Original BL and certificate of origin show a signature or stamp (informational) | CA, US | Info |
+
+T rules only run when the shipment has their documents; otherwise they are listed as not applicable, not as missing input. On an air shipment (an air waybill and no bill of lading) the ocean rules (X1-X3, X9, X10, X12, X11) do not apply and T1-T6 take their place.
 
 Completeness rules report one finding per missing field, citing the CI1 field or the 141.86 paragraph. Regulation excerpts are attached by the agent in phase 4.
 
@@ -210,6 +228,8 @@ Each injected error has a label with the document, field path, before/after valu
 
 `npm run synth -- --set v2` builds a second, smaller set (60 shipments, 16 clean) to check that extraction holds up on formats the prompt was never tuned on: two new layouts per document (a European letterhead with "48.600,00", "1 140,50 kg" and "14.03.2026", and a numbered-box form), line tables of 6 to 40 rows that run onto a second page, and parties with accented, non-English names (French, German, Spanish, Vietnamese, Portuguese, Turkish). The v1 layouts stay in the mix as a control group. Set v1 does not change: a test checks every `truth.json` against the published files.
 
+`npm run synth -- --docs` builds set v1-docs: 40 v1 shipments (their clean versions) with the other documents: air waybills in place of the bill of lading for about 40% of them, chamber certificates of origin, CUSMA certifications (for goods made in Mexico), arrival notices, heat-treatment certificates where the goods ride on wooden pallets or crates, and dangerous goods declarations where a line contains lithium batteries. Certificates carry a drawn signature and a coloured stamp. 49 errors are injected (AWB check digit, pieces and weight, certificate exporter and HS code, a missing CUSMA element, a missing dangerous goods declaration or ISPM 15 certificate, an arrival notice that disagrees, an unsigned certificate), each labelled with its T rule. `npm run synth -- --inputs` builds set v1-inputs: 20 clean shipments with the invoice as an .xlsx (half with headers the vocabulary does not know) and the packing list as a .csv, the invoice as a phone photo, and invoice, packing list and BL in one PDF. `node packages/extraction/dist/inputs-eval-cli.js` scores those formats. Neither set changes v1.
+
 PDF rendering uses Playwright's Chromium, or the local Chrome when that build is not installed (`npx playwright install chromium`).
 
 ## Extraction (phase 2)
@@ -217,7 +237,7 @@ PDF rendering uses Playwright's Chromium, or the local Chrome when that build is
 Extraction runs on a local model through [Ollama](https://ollama.com); nothing leaves the machine. Start Ollama, pull a model and point `LLM_MODEL` at it (default `qwen3.8`).
 
 1. `pdf-text.ts` reads the PDF text layer with pdf.js and keeps each line's page and bounding box. Cells are padded to their column so tables stay aligned for the model. Pages without a text layer (scans) are rendered and read with OCR (tesseract.js with bundled English and French models, no system install), and come back in the same shape, so citations and highlighting work on scans too.
-2. `classify.ts` detects invoice, packing list, bill of lading or ISF filing confirmation from the title and vocabulary.
+2. `classify.ts` detects invoice, packing list, bill of lading, ISF filing confirmation, air waybill, certificate of origin, CUSMA certification, arrival notice, wood packaging certificate or dangerous goods declaration from the title and vocabulary. `split.ts` classifies each page of an upload on its own and starts a new document where a page is titled as another type or its own page marker restarts at 1; `spreadsheet.ts` and `spreadsheet-extract.ts` read .xlsx and .csv without a model; `image.ts` turns photos into image-only PDFs; `attestation.ts` looks for a signature and a stamp on the rendered page.
 3. The model fills a "raw" Zod schema with values **as printed** (`"1,140.00"`, `"14-MAR-2026"`, `"2,513 LB"`). Its output is validated against the schema, with one retry on mismatch.
 4. `normalize.ts` turns printed values into canonical types in plain, tested code: decimals, ISO dates, pounds to kilograms, country names to ISO codes, units.
 5. Findings cite page and bbox: `findSource` locates each evidence value in the PDF lines.
@@ -259,13 +279,14 @@ After the rules run, `/validate` does a second pass:
 | GET | `/insights/shipments` | Per shipment: invoice, parties, incoterm, value, packages, weights, B/L, vessel, ports and containers (`?q=` also finds a container or B/L number) |
 | GET | `/results` | Summary of the evaluation reports in `eval/reports`, for the web app's results page |
 | PUT / GET / DELETE | `/shipments/:id/isf` | The shipment's ISF (10+2) as JSON, used by X11 on US shipments. GET says where it came from (`source`: `upload`, `sample` or `pdf` with `documentId`) |
-| POST | `/shipments/:id/documents` | Upload PDFs (multipart field `files`): invoice, packing list, bill of lading or ISF filing confirmation (stored as the shipment's ISF). Returns 202 with the documents `QUEUED`; `?wait=true` waits for extraction |
+| POST | `/shipments/:id/documents` | Upload documents (multipart field `files`): PDFs (any of the document types; an ISF filing confirmation is stored as the shipment's ISF), photos (JPEG, PNG, HEIC: stored as an image-only PDF after deskew and crop) or spreadsheets (.xlsx, .csv). A file that holds several documents becomes one document per part (`pages`, `sourceDocumentId`) once it is read. Returns 202 with the documents `QUEUED`; `?wait=true` waits for extraction |
+| GET | `/shipments/:id/documents/:documentId/sheets` | A spreadsheet document's cells `{ sheets: [{ name, rows }], pages }`, for the viewer |
 | POST | `/shipments/:id/documents/:documentId/reextract` | Extract again as a given type `{ type }` (including `ISF`) when classification got it wrong. Values corrected by hand and their history are dropped |
 | GET | `/shipments/:id/documents/:documentId` | Document status (`QUEUED`, `EXTRACTING`, `EXTRACTED`, `FAILED`) and, once extracted, values as printed, normalized document (with corrections), issues and `corrected` (paths corrected by hand, with the model's value) |
 | PATCH | `/shipments/:id/documents/:documentId/data` | Correct extracted values by hand: `{ changes: [{ path: "/lines/0/quantity/value", value: "120" }] }` (JSON pointers; `null` removes an optional field). The whole document must still pass its schema (400 with `issues`, nothing saved); 409 while extracting. Each change is recorded, an ISF read from this PDF follows, and the shipment goes back to `RECEIVED` until validated again. Findings mark evidence on a corrected value with `corrected: true` |
 | GET | `/shipments/:id/documents/:documentId/corrections` | History of the corrections, oldest first: path, old and new value, `edit` or `revert`, who and when |
 | POST | `/shipments/:id/documents/:documentId/data/revert` | Put back the values the model read (recorded in the history as `revert`) |
-| POST | `/shipments/:id/validate` | Run the rules on the extracted documents (409 while any is still extracting), or on normalized JSON documents in the body `{ invoice?, packingList?, billOfLading?, isf? }`; then citations and agent review (`?agent=false` skips the model) |
+| POST | `/shipments/:id/validate` | Run the rules on the extracted documents (409 while any is still extracting), or on normalized JSON documents in the body `{ invoice?, packingList?, billOfLading?, isf?, airWaybill?, certificateOfOrigin?, cusmaCertification?, arrivalNotice?, woodPackaging?, dangerousGoods? }`; the response lists `notApplicable` rules too; then citations and agent review (`?agent=false` skips the model) |
 | GET | `/shipments/:id/validation` | The last validation run with its findings and the destination it ran against |
 | GET | `/shipments/:id/validations` | Every validation run, newest first, with findings counted by severity; `/validations/:validationId` is one run with its findings |
 | GET | `/shipments/:id/findings` | Findings from the last validation |

@@ -1,0 +1,519 @@
+{
+  "id": "CA-010",
+  "seed": 1820070877,
+  "destination": "CA",
+  "mode": "AIR",
+  "render": {
+    "invoiceTemplate": "classic",
+    "packingListTemplate": "modern",
+    "blTemplate": "modern",
+    "blWeightUnit": "KG",
+    "bilingual": false
+  },
+  "attestations": {
+    "certificateOfOrigin": {
+      "signature": true,
+      "stamp": true
+    }
+  },
+  "documents": {
+    "invoice": {
+      "invoiceNumber": "CI/26/8087",
+      "invoiceDate": "2026-04-24",
+      "poNumber": "PO-75067",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "buyer": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "shipmentDate": "2026-05-02",
+      "transport": {
+        "mode": "AIR"
+      },
+      "incoterm": {
+        "code": "FCA",
+        "place": "Mundra"
+      },
+      "paymentTerms": "L/C at sight",
+      "currency": "USD",
+      "packageCount": 283,
+      "lines": [
+        {
+          "lineNo": 1,
+          "sku": "BV-2IN",
+          "description": "Brass ball valves 2 inch, threaded",
+          "quantity": {
+            "value": "2960",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "14.64",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "43334.40",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8481.80"
+        },
+        {
+          "lineNo": 2,
+          "sku": "CP-750",
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "quantity": {
+            "value": "52",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "77.63",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "4036.76",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8413.70"
+        },
+        {
+          "lineNo": 3,
+          "sku": "BB-6204",
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "quantity": {
+            "value": "16600",
+            "unit": "PCS"
+          },
+          "unitPrice": {
+            "amount": "1.27",
+            "currency": "USD"
+          },
+          "lineTotal": {
+            "amount": "21082.00",
+            "currency": "USD"
+          },
+          "countryOfOrigin": "IN",
+          "hsCode": "8482.10"
+        }
+      ],
+      "grossWeight": {
+        "kg": "7047.50",
+        "raw": {
+          "value": "7047.50",
+          "unit": "KG"
+        }
+      },
+      "netWeight": {
+        "kg": "6576.00",
+        "raw": {
+          "value": "6576.00",
+          "unit": "KG"
+        }
+      },
+      "invoiceTotal": {
+        "amount": "68453.16",
+        "currency": "USD"
+      },
+      "responsiblePerson": "Shipping Supervisor",
+      "language": "en"
+    },
+    "packingList": {
+      "packingListNumber": "PL/26/8087",
+      "invoiceRef": "CI/26/8087",
+      "seller": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": [
+        {
+          "range": "1-148",
+          "count": 148,
+          "type": "CTN",
+          "marks": "PRAIRIE/PO-75067/C/NO. 1-283",
+          "contents": [
+            {
+              "sku": "BV-2IN",
+              "description": "Brass ball valve 2\"",
+              "quantity": {
+                "value": "2960",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "3996.00",
+            "raw": {
+              "value": "3996.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "4158.80",
+            "raw": {
+              "value": "4158.80",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            45,
+            35,
+            30
+          ]
+        },
+        {
+          "range": "149-200",
+          "count": 52,
+          "type": "CRT",
+          "marks": "PRAIRIE/PO-75067/C/NO. 1-283",
+          "contents": [
+            {
+              "sku": "CP-750",
+              "description": "Centrifugal pump 0.75 kW",
+              "quantity": {
+                "value": "52",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "754.00",
+            "raw": {
+              "value": "754.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "988.00",
+            "raw": {
+              "value": "988.00",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            55,
+            40,
+            40
+          ]
+        },
+        {
+          "range": "201-283",
+          "count": 83,
+          "type": "CTN",
+          "marks": "PRAIRIE/PO-75067/C/NO. 1-283",
+          "contents": [
+            {
+              "sku": "BB-6204",
+              "description": "Ball bearing 6204-2RS",
+              "quantity": {
+                "value": "16600",
+                "unit": "PCS"
+              }
+            }
+          ],
+          "netWeight": {
+            "kg": "1826.00",
+            "raw": {
+              "value": "1826.00",
+              "unit": "KG"
+            }
+          },
+          "grossWeight": {
+            "kg": "1900.70",
+            "raw": {
+              "value": "1900.70",
+              "unit": "KG"
+            }
+          },
+          "dimensionsCm": [
+            40,
+            30,
+            25
+          ]
+        }
+      ],
+      "totals": {
+        "packageCount": 283,
+        "netWeight": {
+          "kg": "6576.00",
+          "raw": {
+            "value": "6576.00",
+            "unit": "KG"
+          }
+        },
+        "grossWeight": {
+          "kg": "7047.50",
+          "raw": {
+            "value": "7047.50",
+            "unit": "KG"
+          }
+        },
+        "volumeM3": "14.06"
+      }
+    },
+    "airWaybill": {
+      "awbNumber": "160-37993303",
+      "issuer": "MAWB",
+      "carrier": {
+        "name": "Meridian Airfreight",
+        "iataPrefix": "160"
+      },
+      "shipper": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "notifyParty": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "airportOfDeparture": {
+        "name": "Mumbai",
+        "iata": "BOM"
+      },
+      "airportOfDestination": {
+        "name": "Montreal Trudeau",
+        "iata": "YUL"
+      },
+      "flights": [
+        {
+          "flight": "MF871",
+          "date": "2026-05-03"
+        }
+      ],
+      "pieces": 283,
+      "grossWeight": {
+        "kg": "7047.50",
+        "raw": {
+          "value": "7047.50",
+          "unit": "KG"
+        }
+      },
+      "chargeableWeight": {
+        "kg": "7047.50",
+        "raw": {
+          "value": "7047.50",
+          "unit": "KG"
+        }
+      },
+      "volumeM3": "14.06",
+      "natureOfGoods": "WOODEN CRATES BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "references": [
+        "CI/26/8087"
+      ],
+      "placeOfExecution": "Mumbai",
+      "executedOn": "2026-05-02"
+    },
+    "certificateOfOrigin": {
+      "certificateNumber": "CO-IN-573280",
+      "issuer": "Federation of Indian Export Organisations",
+      "exporter": {
+        "name": "Golden Bridge Trading Co., Ltd.",
+        "address": {
+          "lines": [
+            "55 Harbour Rd"
+          ],
+          "city": "Hong Kong",
+          "country": "HK"
+        }
+      },
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "countryOfOrigin": "IN",
+      "transport": "By air",
+      "goods": [
+        {
+          "itemNo": 1,
+          "description": "Brass ball valves 2 inch, threaded",
+          "hsCode": "8481.80"
+        },
+        {
+          "itemNo": 2,
+          "description": "Centrifugal water pump 0.75 kW, cast iron body",
+          "hsCode": "8413.70"
+        },
+        {
+          "itemNo": 3,
+          "description": "Ball bearings 6204-2RS, 20 x 47 x 14 mm",
+          "hsCode": "8482.10"
+        }
+      ],
+      "invoiceRefs": [
+        "CI/26/8087"
+      ],
+      "placeOfIssue": "Pune",
+      "dateOfIssue": "2026-04-25"
+    },
+    "arrivalNotice": {
+      "noticeNumber": "AN-75266",
+      "carrier": {
+        "name": "Meridian Airfreight"
+      },
+      "mode": "AIR",
+      "transportDocumentNumber": "160-37993303",
+      "flight": "MF871",
+      "estimatedArrival": "2026-05-04",
+      "consignee": {
+        "name": "Prairie Roasters Co-operative",
+        "address": {
+          "lines": [
+            "77 Commerce Dr"
+          ],
+          "city": "Winnipeg",
+          "region": "MB",
+          "postalCode": "R3P 1A2",
+          "country": "CA"
+        },
+        "taxId": "856789012RM0001"
+      },
+      "packages": 284,
+      "grossWeight": {
+        "kg": "7047.50",
+        "raw": {
+          "value": "7047.50",
+          "unit": "KG"
+        }
+      },
+      "cargoDescription": "WOODEN CRATES BRASS BALL VALVE 2\" AND OTHER GOODS AS PER INVOICE",
+      "freightTerms": "COLLECT",
+      "lastFreeDay": "2026-05-07"
+    },
+    "woodPackaging": {
+      "certificateNumber": "HT-58463",
+      "kind": "HEAT_TREATMENT",
+      "treatment": "HT",
+      "ispmMark": {
+        "country": "IN",
+        "registration": "8548",
+        "treatment": "HT"
+      },
+      "treatmentDate": "2026-04-12",
+      "issuer": "Accredited treatment provider",
+      "exporter": {
+        "name": "Pune Precision Engineering Pvt. Ltd.",
+        "address": {
+          "lines": [
+            "Plot 41, MIDC Bhosari"
+          ],
+          "city": "Pune",
+          "region": "Maharashtra",
+          "postalCode": "411026",
+          "country": "IN"
+        },
+        "taxId": "27AABCP1234F1Z5"
+      },
+      "packagingDescription": "Wooden crates",
+      "invoiceRef": "CI/26/8087"
+    }
+  }
+}

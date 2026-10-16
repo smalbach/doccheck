@@ -1,0 +1,16 @@
+{
+  "id": "US-003",
+  "errors": [
+    {
+      "kind": "awb_pieces_mismatch",
+      "document": "airWaybill",
+      "field": "pieces",
+      "before": 218,
+      "after": 223,
+      "expectedRuleIds": [
+        "T2"
+      ],
+      "description": "Air waybill says 223 pieces instead of 218."
+    }
+  ]
+}

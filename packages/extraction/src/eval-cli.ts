@@ -1,5 +1,6 @@
 import { runRules, type ShipmentContext } from '@doccheck/rules';
-import type { BillOfLading, CommercialInvoice, Destination, Isf, PackingList } from '@doccheck/schemas';
+import type { Attestation, BillOfLading, CommercialInvoice, Destination, Isf, PackingList } from '@doccheck/schemas';
+import { detectAttestation } from './attestation';
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { basename, join, resolve } from 'node:path';
@@ -20,19 +21,33 @@ import { scoreDocument, tally, type FieldScore } from './score';
  * PDF in the folder (the invoice in v1-isf) comes from truth.json.
  */
 
-const DOCS: { file: string; type: ExtractableType; key: 'invoice' | 'packingList' | 'billOfLading' | 'isf'; template: string }[] = [
+type DocKey = 'invoice' | 'packingList' | 'billOfLading' | 'isf' | 'airWaybill' | 'certificateOfOrigin' | 'cusmaCertification' | 'arrivalNotice' | 'woodPackaging' | 'dangerousGoods';
+
+const DOCS: { file: string; type: ExtractableType; key: DocKey; template: string }[] = [
   { file: 'invoice.pdf', type: 'COMMERCIAL_INVOICE', key: 'invoice', template: 'invoiceTemplate' },
   { file: 'packing-list.pdf', type: 'PACKING_LIST', key: 'packingList', template: 'packingListTemplate' },
   { file: 'bill-of-lading.pdf', type: 'BILL_OF_LADING', key: 'billOfLading', template: 'blTemplate' },
   { file: 'isf.pdf', type: 'ISF', key: 'isf', template: 'isfTemplate' },
+  // Set v1-docs (npm run synth -- --docs): one layout each.
+  { file: 'air-waybill.pdf', type: 'AIR_WAYBILL', key: 'airWaybill', template: '' },
+  { file: 'certificate-of-origin.pdf', type: 'CERTIFICATE_OF_ORIGIN', key: 'certificateOfOrigin', template: '' },
+  { file: 'cusma-certification.pdf', type: 'CUSMA_CERTIFICATION', key: 'cusmaCertification', template: '' },
+  { file: 'arrival-notice.pdf', type: 'ARRIVAL_NOTICE', key: 'arrivalNotice', template: '' },
+  { file: 'wood-packaging.pdf', type: 'WOOD_PACKAGING_CERTIFICATE', key: 'woodPackaging', template: '' },
+  { file: 'dangerous-goods.pdf', type: 'DANGEROUS_GOODS_DECLARATION', key: 'dangerousGoods', template: '' },
 ];
+
+/** Documents whose paper is checked for a signature and a stamp (rule T13), as the API does. */
+const ATTESTED = new Set<DocKey>(['certificateOfOrigin', 'cusmaCertification']);
 
 
 interface Truth {
   id: string;
   destination: Destination;
   render: Record<string, string | boolean>;
-  documents: { invoice: CommercialInvoice; packingList: PackingList; billOfLading: BillOfLading; isf?: Isf };
+  documents: { invoice: CommercialInvoice; packingList: PackingList; billOfLading: BillOfLading; isf?: Isf } & Partial<Record<DocKey, unknown>>;
+  /** v1-docs: whether each certificate is signed and stamped on paper. */
+  attestations?: Partial<Record<DocKey, Attestation>>;
 }
 
 interface DocResult {
@@ -97,9 +112,10 @@ async function main() {
       const labels = JSON.parse(await readFile(join(dir, 'labels.json'), 'utf8')) as { errors: { expectedRuleIds: string[] }[] };
       const extracted: Partial<Truth['documents']> = {};
       const present = DOCS.filter((d) => existsSync(join(dir, d.file)));
+      const attestations: Partial<Record<DocKey, Attestation>> = {};
 
       for (const d of present) {
-        const result: DocResult = { shipment: id, type: d.type, template: String(truth.render[d.template]), detectedType: '', valid: false, scores: [], issues: [], cached: false };
+        const result: DocResult = { shipment: id, type: d.type, template: d.template ? String(truth.render[d.template]) : 'classic', detectedType: '', valid: false, scores: [], issues: [], cached: false };
         try {
           const pdf = await readFile(join(dir, d.file));
           const out = await extractDocument(pdf, llm);
@@ -113,6 +129,7 @@ async function main() {
           result.valid = out.documentType === d.type && !!out.data;
           result.scores = scoreDocument(d.type, truth.documents[d.key], out.documentType === d.type ? (out.data ?? out.partial ?? null) : null);
           if (out.documentType === d.type && out.data) (extracted as Record<string, unknown>)[d.key] = out.data;
+          if (ATTESTED.has(d.key)) attestations[d.key] = await detectAttestation(pdf, out.pdf);
         } catch (err) {
           result.error = err instanceof Error ? err.message : String(err);
           result.scores = scoreDocument(d.type, truth.documents[d.key], null);
@@ -120,24 +137,24 @@ async function main() {
         docResults.push(result);
       }
 
-      const ctx = (docs: Partial<Truth['documents']>): ShipmentContext => ({
-        shipmentId: id,
-        destination: truth.destination,
-        invoice: docs.invoice && { id: 'invoice', data: docs.invoice },
-        packingList: docs.packingList && { id: 'packingList', data: docs.packingList },
-        billOfLading: docs.billOfLading && { id: 'billOfLading', data: docs.billOfLading },
-        isf: docs.isf && { id: 'isf', data: docs.isf },
-      });
+      // Each document is cited by its key; the paper's signature and stamp go with the certificates.
+      const ctx = (docs: Partial<Truth['documents']>, seen: Partial<Record<DocKey, Attestation>>): ShipmentContext => {
+        const c: ShipmentContext = { shipmentId: id, destination: truth.destination };
+        for (const d of DOCS) if (docs[d.key]) Object.assign(c, { [d.key]: { id: d.key, data: docs[d.key] } });
+        const kept = Object.fromEntries(Object.entries(seen).filter(([k]) => docs[k as DocKey]));
+        if (Object.keys(kept).length) c.attestations = kept;
+        return c;
+      };
       // Paper documents with no PDF in this set come from the truth, so the rules see a whole shipment.
       // The ISF only counts when its PDF is in the set, so v1 reports stay comparable (X11 is not run there).
-      const fromTruth = Object.fromEntries(DOCS.filter((d) => d.key !== 'isf' && !present.includes(d)).map((d) => [d.key, truth.documents[d.key]]));
+      const fromTruth = Object.fromEntries(DOCS.filter((d) => d.key !== 'isf' && !present.includes(d) && truth.documents[d.key]).map((d) => [d.key, truth.documents[d.key]]));
       const truthDocs = present.some((d) => d.key === 'isf') ? truth.documents : { ...truth.documents, isf: undefined };
-      const ruleIds = (docs: Partial<Truth['documents']>) => [...new Set(runRules(ctx(docs)).findings.map((f) => f.ruleId))].sort();
+      const ruleIds = (docs: Partial<Truth['documents']>, seen: Partial<Record<DocKey, Attestation>>) => [...new Set(runRules(ctx(docs, seen)).findings.map((f) => f.ruleId))].sort();
       shipmentResults.push({
         id,
         expectedRules: [...new Set(labels.errors.flatMap((e) => e.expectedRuleIds))].sort(),
-        rulesOnTruth: ruleIds(truthDocs),
-        rulesOnExtracted: Object.keys(extracted).length === present.length ? ruleIds({ ...fromTruth, ...extracted }) : null,
+        rulesOnTruth: ruleIds(truthDocs, truth.attestations ?? {}),
+        rulesOnExtracted: Object.keys(extracted).length === present.length ? ruleIds({ ...fromTruth, ...extracted }, attestations) : null,
       });
       done++;
       if (done % 5 === 0 || done === ids.length) console.log(`  ${done}/${ids.length} shipments (${Math.round((Date.now() - started) / 1000)} s)`);

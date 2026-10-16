@@ -1,6 +1,7 @@
 import { Inject, Injectable, Logger, type OnApplicationBootstrap, type OnApplicationShutdown } from '@nestjs/common';
 import { randomBytes, randomUUID } from 'node:crypto';
 import type { Pool } from 'pg';
+import { inputFormat } from '@doccheck/extraction';
 import { appUrl } from '../auth/app-url';
 import { PG_POOL } from '../db/db.module';
 import { isDemo } from '../demo/demo-mode';
@@ -109,8 +110,8 @@ export class MailIntakeService implements OnApplicationBootstrap, OnApplicationS
     const shipmentId = named ?? (await this.shipments.create({ reference }, input.userId)).id;
     await this.pool.query('update mail_threads set shipment_id = $2 where id = $1', [input.threadId, shipmentId]);
     const files = await Promise.all(input.pdfs.map(async (p) => ({ ...p, bytes: await this.storage.get(p.storageKey) })));
-    const usable = files.filter((f) => f.bytes.subarray(0, 5).toString('latin1').startsWith('%PDF'));
-    if (usable.length === 0) return insert('skipped', { shipmentId, created: !named, error: 'The attachments are not readable PDFs' });
+    const usable = files.filter((f) => inputFormat(f.filename, new Uint8Array(f.bytes)));
+    if (usable.length === 0) return insert('skipped', { shipmentId, created: !named, error: 'The attachments are not readable PDFs, photos or spreadsheets' });
     const { documents } = await this.shipments.addDocuments(shipmentId, usable.map((f) => ({ name: f.filename, bytes: f.bytes })));
     for (const [i, d] of documents.entries()) {
       const documentId = 'document' in d ? (d as { document: { id: string } }).document.id : (d as { id: string }).id;

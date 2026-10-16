@@ -1,0 +1,27 @@
+{
+  "id": "CA-006",
+  "errors": [
+    {
+      "kind": "ispm15_missing",
+      "document": "billOfLading",
+      "field": "cargoDescription",
+      "before": "certificate",
+      "after": null,
+      "expectedRuleIds": [
+        "T11"
+      ],
+      "description": "Wooden packaging declared, no ISPM 15 certificate."
+    },
+    {
+      "kind": "arrival_notice_mismatch",
+      "document": "arrivalNotice",
+      "field": "packages",
+      "before": 50,
+      "after": 51,
+      "expectedRuleIds": [
+        "T12"
+      ],
+      "description": "Arrival notice says 51 packages instead of 50."
+    }
+  ]
+}

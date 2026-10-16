@@ -15,7 +15,8 @@ export function DocumentDetail({ doc, onShowData }: DocumentDetailProps) {
   if (doc.status !== 'EXTRACTED') return <>{t('shipment.extracting')}</>;
   return (
     <>
-      {t(DOCUMENT_TYPE_KEY[doc.detectedType])} · {t('shipment.pages', { count: doc.pageCount })} ·{' '}
+      {t(DOCUMENT_TYPE_KEY[doc.detectedType])} · {doc.format && doc.format !== 'PDF' ? `${t(`documentFormats.${doc.format}`)} · ` : ''}
+      {t('shipment.pages', { count: doc.pageCount })} ·{' '}
       <Button variant="link" size="sm" onClick={() => onShowData(doc)} aria-label={`${t('shipment.extractedData')} · ${doc.fileName}`}>
         {t('shipment.extractedData')}
       </Button>

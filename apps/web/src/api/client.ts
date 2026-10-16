@@ -54,6 +54,7 @@ import type {
   ProgressEstimates,
   ShipmentData,
   ShipmentDataQuery,
+  SheetGrid,
 } from './types';
 
 const shipmentPath = (id: string) => `/shipments/${encodeURIComponent(id)}`;
@@ -91,6 +92,7 @@ export const api = {
   correctData: (id: string, documentId: string, changes: DataChange[]) => request<DocumentDetail>(`${documentPath(id, documentId)}/data`, { ...jsonBody({ changes }), method: 'PATCH' }),
   revertData: (id: string, documentId: string) => request<DocumentDetail>(`${documentPath(id, documentId)}/data/revert`, { method: 'POST' }),
   fileUrl: (id: string, documentId: string) => `${documentPath(id, documentId)}/file`,
+  sheets: (id: string, documentId: string) => request<SheetGrid>(`${documentPath(id, documentId)}/sheets`),
   cancelExtraction: (id: string, documentId: string) => request<DocumentDetail>(`${documentPath(id, documentId)}/cancel`, { method: 'POST' }),
 
   validate: (id: string, agent: boolean) => request<{ validationId: string }>(`${shipmentPath(id)}/validate${agent ? '' : '?agent=false'}`, { method: 'POST' }),

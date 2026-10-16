@@ -1,0 +1,27 @@
+{
+  "id": "CA-009",
+  "errors": [
+    {
+      "kind": "cusma_missing_element",
+      "document": "cusmaCertification",
+      "field": "goods[0].originCriterion",
+      "before": "B",
+      "after": null,
+      "expectedRuleIds": [
+        "T9"
+      ],
+      "description": "CUSMA certification without the origin criterion of the first good."
+    },
+    {
+      "kind": "awb_weight_mismatch",
+      "document": "airWaybill",
+      "field": "grossWeight.kg",
+      "before": "13315.20",
+      "after": "11983.68",
+      "expectedRuleIds": [
+        "T3"
+      ],
+      "description": "Air waybill gross weight differs from the packing list."
+    }
+  ]
+}

@@ -13,7 +13,16 @@ PDF ──► pdf-text (pdf.js) ──► classify ──► LLM: raw schema, va
 | `pdf-text.ts` | Text lines with page and bbox; cells padded to their column so tables stay aligned |
 | `ocr.ts` | For pages without a text layer: render with pdf.js + @napi-rs/canvas at 288 dpi, tesseract.js (PSM 6, English + French models from npm), words back in PDF points |
 | `ocr-eval-cli.ts` | Text recall: share of truth values found in the text read from each PDF, without a model (`npm run eval:ocr`) |
-| `classify.ts` | Invoice / packing list / bill of lading from title and vocabulary |
+| `classify.ts` | Document type from title and vocabulary: invoice, packing list, bill of lading, ISF, air waybill, certificate of origin, CUSMA certification, arrival notice, wood packaging certificate, dangerous goods declaration |
+| `split.ts` | One upload holding several documents: page-by-page classification, boundaries where a page is titled as another type or its page marker restarts; parts keep the upload's page numbers |
+| `raw-schemas-documents.ts`, `normalize-documents.ts` | Raw schemas and normalizers of the other documents (AWB numbers, IATA airports, PP/CC, UN numbers, classes, packing groups, ISPM marks, CUSMA criteria) |
+| `printed-documents.ts` | Values the model fills in although the paper leaves them blank, dropped (CUSMA elements, an unstated origin, a packing group, a computed chargeable weight) |
+| `spreadsheet.ts`, `zip.ts` | .xlsx (a minimal ZIP + XML reader and writer, no dependency) and .csv read into a grid; the grid laid out as text with each row's cells, so citations name the cell |
+| `spreadsheet-extract.ts` | Header row by vocabulary, column mapping (the model only for headers the vocabulary does not know, sent without any value), labelled cells, party blocks, totals row -> the raw invoice or packing list |
+| `image.ts` | Photos (JPEG, PNG, HEIC): EXIF orientation, deskew by projection profile, crop to the paper, image-only PDF for the OCR path |
+| `attestation.ts` | Signature and stamp on the rendered page: ink near a signature label that is neither text nor a table rule; a compact patch of saturated colour |
+| `inputs.ts` | Upload formats and the reading of a stored file (PDF or spreadsheet), its parts and the extraction of one part |
+| `inputs-eval-cli.ts` | Scores spreadsheets, photos and combined PDFs on set v1-inputs |
 | `raw-schemas.ts` | What the model returns: strings as printed, `null` when not printed |
 | `llm.ts` | Ollama client with JSON-schema output, schema validation + one retry, on-disk cache |
 | `normalize.ts` | Printed text to canonical values (decimals, dates, lb to kg, countries, units) |
