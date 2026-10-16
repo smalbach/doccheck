@@ -1,6 +1,7 @@
 import { BadRequestException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { randomBytes, randomUUID } from 'node:crypto';
 import type { Pool } from 'pg';
+import { AuditService } from '../audit/audit.service';
 import { PG_POOL } from '../db/db.module';
 import { FindingReviewsRepository } from '../shipments/reviews.repository';
 import { ShipmentsRepository } from '../shipments/shipments.repository';
@@ -26,6 +27,12 @@ const newToken = () => {
 const newMessageId = () => `${randomUUID()}@${messageIdDomain()}`;
 const dueDate = () => new Date(Date.now() + followUpDays() * 86_400_000).toISOString();
 
+/** Who acts: the member, and the organization whose conversations they work in. */
+export interface MailActor {
+  userId: string;
+  orgId: string;
+}
+
 @Injectable()
 export class MailService {
   constructor(
@@ -38,13 +45,15 @@ export class MailService {
     private readonly reviews: FindingReviewsRepository,
     private readonly intake: MailIntakeService,
     @Inject(STORAGE) private readonly storage: ObjectStorage,
+    private readonly audit: AuditService,
   ) {}
 
   /** Starts a conversation, or a request for corrected documents, and queues its first message. */
-  async createThread(userId: string, dto: NewThreadDto, admin = false): Promise<ThreadDetail> {
-    if (dto.shipmentId) await this.ownShipment(userId, dto.shipmentId);
+  async createThread(actor: MailActor, dto: NewThreadDto, admin = false): Promise<ThreadDetail> {
+    const { userId, orgId } = actor;
+    if (dto.shipmentId) await this.ownShipment(orgId, dto.shipmentId);
     const partyId = dto.partyId ?? (dto.shipmentId ? await this.sellerOf(dto.shipmentId) : undefined);
-    if (dto.partyId) await this.ownParty(userId, dto.partyId);
+    if (dto.partyId) await this.ownParty(orgId, dto.partyId);
     let findings: { fingerprint: string; ruleId: string }[] = [];
     if (dto.fingerprints.length) {
       const latest = await this.shipmentsRepo.latestFindings(dto.shipmentId!);
@@ -58,7 +67,7 @@ export class MailService {
     await this.repo.transaction(async (db) => {
       await this.reserve(db, userId, admin);
       await this.repo.insertThread(
-        { id: threadId, userId, shipmentId: dto.shipmentId, partyId, token, kind: dto.kind, subject: dto.subject, status: 'awaiting', language: dto.language, fingerprints: findings.map((f) => f.fingerprint), dueAt: dueDate() },
+        { id: threadId, userId, orgId, shipmentId: dto.shipmentId, partyId, token, kind: dto.kind, subject: dto.subject, status: 'awaiting', language: dto.language, fingerprints: findings.map((f) => f.fingerprint), dueAt: dueDate() },
         db,
       );
       await this.repo.insertMessage(
@@ -66,15 +75,16 @@ export class MailService {
         db,
       );
     });
-    await this.repo.saveContacts(userId, partyId, [...dto.to, ...dto.cc]);
+    await this.repo.saveContacts(orgId, userId, partyId, [...dto.to, ...dto.cc]);
     if (findings.length) await this.reviews.save(dto.shipmentId!, userId, findings, 'waiting_supplier', `→ ${dto.to.join(', ')}`);
     void this.outbox.kick();
-    return this.thread(userId, threadId);
+    return this.thread(actor, threadId);
   }
 
   /** Answers in a thread: to whoever wrote last unless `to` says otherwise, threaded by headers. */
-  async reply(userId: string, threadId: string, dto: ReplyDto, admin = false): Promise<ThreadDetail> {
-    const thread = await this.ownThread(userId, threadId);
+  async reply(actor: MailActor, threadId: string, dto: ReplyDto, admin = false): Promise<ThreadDetail> {
+    const { userId } = actor;
+    const thread = await this.ownThread(actor.orgId, threadId);
     const messages = await this.repo.messages(threadId);
     const last = messages.at(-1);
     const lastIn = [...messages].reverse().find((m) => m.direction === 'in');
@@ -112,50 +122,52 @@ export class MailService {
     });
     await this.repo.markRead(threadId);
     void this.outbox.kick();
-    return this.thread(userId, threadId);
+    return this.thread(actor, threadId);
   }
 
-  async thread(userId: string, threadId: string): Promise<ThreadDetail> {
-    const thread = await this.ownThread(userId, threadId);
+  async thread(actor: MailActor, threadId: string): Promise<ThreadDetail> {
+    const thread = await this.ownThread(actor.orgId, threadId);
     const fresh = (await this.repo.findThread(threadId))!;
     const items = await this.repo.messages(threadId);
     const intakes = thread.kind === 'intake' ? await this.intake.forThread(threadId) : undefined;
     return { ...fresh.summary, ...(thread.language ? { language: thread.language } : {}), replyTo: replyAddress(thread.token), fingerprints: thread.fingerprints, items, ...(intakes ? { intakes } : {}) };
   }
 
-  list(userId: string, q: ThreadsQuery) {
-    return this.repo.listThreads(userId, q).then((r) => ({ ...r, limit: q.limit, offset: q.offset }));
+  list(actor: MailActor, q: ThreadsQuery) {
+    return this.repo.listThreads(actor.orgId, q).then((r) => ({ ...r, limit: q.limit, offset: q.offset }));
   }
 
-  async markRead(userId: string, threadId: string) {
-    await this.ownThread(userId, threadId);
+  async markRead(actor: MailActor, threadId: string) {
+    await this.ownThread(actor.orgId, threadId);
     await this.repo.markRead(threadId);
-    return this.thread(userId, threadId);
+    return this.thread(actor, threadId);
   }
 
-  async setStatus(userId: string, threadId: string, status: 'awaiting' | 'closed') {
-    await this.ownThread(userId, threadId);
+  async setStatus(actor: MailActor, threadId: string, status: 'awaiting' | 'closed') {
+    const thread = await this.ownThread(actor.orgId, threadId);
     await this.repo.setStatus(threadId, status);
-    return this.thread(userId, threadId);
+    this.audit.note({ action: 'mail.status', entity: 'mail_thread', entityId: threadId, before: { status: thread.status }, after: { status } });
+    return this.thread(actor, threadId);
   }
 
-  async retry(userId: string, messageId: string, admin = false) {
+  async retry(actor: MailActor, messageId: string, admin = false) {
+    const { userId } = actor;
     const message = await this.repo.messageById(messageId);
-    if (!message || message.threadUserId !== userId) throw new NotFoundException('Message not found');
+    if (!message || message.threadOrgId !== actor.orgId) throw new NotFoundException('Message not found');
     if (message.status !== 'failed') throw new BadRequestException('Only a failed message can be sent again');
     // Sending again counts like sending: the limits apply.
     await this.repo.transaction((db) => this.reserve(db, userId, admin));
     if (!(await this.repo.requeue(messageId))) throw new BadRequestException('Only a failed message can be sent again');
     void this.outbox.kick();
-    return this.thread(userId, message.threadId!);
+    return this.thread(actor, message.threadId!);
   }
 
-  summary(userId: string, admin: boolean) {
-    return this.repo.summary(userId, admin);
+  summary(actor: MailActor, admin: boolean) {
+    return this.repo.summary(actor.orgId, admin);
   }
 
-  contacts(userId: string, partyId?: string, shipmentId?: string) {
-    return this.repo.contacts(userId, partyId, shipmentId);
+  contacts(actor: MailActor, partyId?: string, shipmentId?: string) {
+    return this.repo.contacts(actor.orgId, partyId, shipmentId);
   }
 
   /** Everyone learns whether mail is really delivered; admins also see the queue and the mailboxes. */
@@ -175,17 +187,17 @@ export class MailService {
     };
   }
 
-  /** A received attachment's bytes, for its owner (or an admin, while unassigned). */
-  async attachmentFile(userId: string, admin: boolean, attachmentId: string) {
+  /** A received attachment's bytes, for the conversation's organization (or an admin, while unassigned). */
+  async attachmentFile(actor: MailActor, admin: boolean, attachmentId: string) {
     const a = await this.repo.attachment(attachmentId);
-    if (!a || !(a.userId === userId || (admin && !a.threadId))) throw new NotFoundException('Attachment not found');
+    if (!a || !(a.orgId === actor.orgId || (admin && !a.threadId))) throw new NotFoundException('Attachment not found');
     return { name: a.filename, contentType: a.contentType, bytes: await this.storage.get(a.storageKey) };
   }
 
   /** Adds a received PDF, photo or spreadsheet to the thread's shipment as a document, which extracts as any upload. */
-  async importAttachment(userId: string, attachmentId: string) {
+  async importAttachment(actor: MailActor, attachmentId: string) {
     const a = await this.repo.attachment(attachmentId);
-    if (!a || a.userId !== userId) throw new NotFoundException('Attachment not found');
+    if (!a || a.orgId !== actor.orgId) throw new NotFoundException('Attachment not found');
     if (a.documentId) throw new BadRequestException('This attachment is already in the shipment');
     const thread = (await this.repo.findThread(a.threadId!))!;
     if (!thread.shipmentId) throw new BadRequestException('The conversation is not about a shipment');
@@ -212,20 +224,20 @@ export class MailService {
     return { threadId };
   }
 
-  private async ownThread(userId: string, threadId: string) {
+  private async ownThread(orgId: string, threadId: string) {
     const thread = await this.repo.findThread(threadId);
-    if (!thread || thread.userId !== userId) throw new NotFoundException('Conversation not found');
+    if (!thread || thread.orgId !== orgId) throw new NotFoundException('Conversation not found');
     return thread;
   }
 
-  private async ownShipment(userId: string, shipmentId: string) {
-    const { rows } = await this.pool.query('select user_id from shipments where id = $1', [shipmentId]);
-    if (!rows[0] || rows[0].user_id !== userId) throw new NotFoundException(`Shipment ${shipmentId} not found`);
+  private async ownShipment(orgId: string, shipmentId: string) {
+    const { rows } = await this.pool.query('select org_id from shipments where id = $1', [shipmentId]);
+    if (!rows[0] || rows[0].org_id !== orgId) throw new NotFoundException(`Shipment ${shipmentId} not found`);
   }
 
-  private async ownParty(userId: string, partyId: string) {
-    const { rows } = await this.pool.query('select user_id from parties where id = $1', [partyId]);
-    if (!rows[0] || rows[0].user_id !== userId) throw new NotFoundException('Company not found');
+  private async ownParty(orgId: string, partyId: string) {
+    const { rows } = await this.pool.query('select org_id from parties where id = $1', [partyId]);
+    if (!rows[0] || rows[0].org_id !== orgId) throw new NotFoundException('Company not found');
   }
 
   /** The seller on the shipment's current invoice: who a correction request usually goes to. */

@@ -9,7 +9,9 @@ export function parseNotification(payload: string): ProgressEvent | { id: number
     return null;
   }
   const event = ProgressEventSchema.safeParse(value);
-  if (event.success) return event.data as ProgressEvent;
+  // The schema leaves out orgId, which the organization-wide stream filters on: kept as sent.
+  const orgId = (value as { orgId?: unknown } | null)?.orgId;
+  if (event.success) return { ...event.data, ...(typeof orgId === 'string' ? { orgId } : {}) } as ProgressEvent;
   const id = (value as { id?: unknown } | null)?.id;
   return typeof id === 'number' && Number.isInteger(id) && id > 0 ? { id } : null;
 }

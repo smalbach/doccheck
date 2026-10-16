@@ -5,6 +5,9 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import type { PublicUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
+import { CurrentOrg } from '../orgs/current-org.decorator';
+import type { OrgContext } from '../orgs/org.types';
+import { Permission } from '../orgs/permissions';
 import { AlertsRepository } from './alerts.repository';
 import { ShipmentOwnerGuard } from './shipment-owner.guard';
 import { CorrectDataDto, CreateShipmentDto, ListShipmentsQuery, ReextractDto, ReviewFindingsDto, UpdateShipmentDto, ValidateShipmentDto } from './shipments.dto';
@@ -14,9 +17,14 @@ const MAX_PDF_BYTES = 20 * 1024 * 1024;
 /** Alerts listed on the dashboard; the counts cover them all. */
 const MAX_ALERTS = 20;
 
-/** Every route with :id is limited to the signed-in user's shipments (ShipmentOwnerGuard). */
+/**
+ * Every route with :id is limited to the active organization's shipments, and for a client to those
+ * shared with them (ShipmentOwnerGuard). Reading needs shipment.read, changing shipment.write
+ * (permissions.ts), deciding about findings finding.decide.
+ */
 @Controller('shipments')
 @UseGuards(ShipmentOwnerGuard)
+@Permission('shipment.write')
 export class ShipmentsController {
   constructor(
     private readonly shipments: ShipmentsService,
@@ -24,20 +32,26 @@ export class ShipmentsController {
   ) {}
 
   @Post()
-  create(@CurrentUser() user: PublicUser, @Body(new ZodValidationPipe(CreateShipmentDto)) dto: CreateShipmentDto) {
-    return this.shipments.create(dto, user.id);
+  create(@CurrentUser() user: PublicUser, @CurrentOrg() org: OrgContext, @Body(new ZodValidationPipe(CreateShipmentDto)) dto: CreateShipmentDto) {
+    return this.shipments.create(dto, user.id, org.id);
   }
 
-  /** ?status=all|open|attention|done&destination=CA|US&q=text&limit=25&offset=0 → { items, total, limit, offset, summary } */
+  /**
+   * ?status=all|open|attention|done&destination=CA|US&q=text&due=overdue|soon&assignee=me|<userId>&limit=25&offset=0
+   * → { items, total, limit, offset, summary }. A client sees only the shipments shared with them.
+   */
   @Get()
-  list(@CurrentUser() user: PublicUser, @Query(new ZodValidationPipe(ListShipmentsQuery)) query: ListShipmentsQuery) {
-    return this.shipments.list(user.id, query);
+  @Permission('shipment.read')
+  list(@CurrentUser() user: PublicUser, @CurrentOrg() org: OrgContext, @Query(new ZodValidationPipe(ListShipmentsQuery)) query: ListShipmentsQuery) {
+    const assignee = query.assignee === 'me' ? user.id : query.assignee;
+    return this.shipments.list({ orgId: org.id, ...(org.role === 'client' ? { sharedWith: user.id } : {}) }, { ...query, assignee });
   }
 
-  /** What needs the user's attention across their shipments → { items (newest first), counts per kind, total }. Declared before :id. */
+  /** What needs attention across the organization's shipments → { items (newest first), counts per kind, total }. Declared before :id. */
   @Get('alerts')
-  listAlerts(@CurrentUser() user: PublicUser) {
-    return this.alerts.list(user.id, MAX_ALERTS);
+  @Permission('data.read')
+  listAlerts(@CurrentOrg() org: OrgContext) {
+    return this.alerts.list(org.id, MAX_ALERTS);
   }
 
   /** { reference?, destination?, transportMode? }; a reference of null or "" clears it. */
@@ -53,6 +67,7 @@ export class ShipmentsController {
   }
 
   @Get(':id')
+  @Permission('shipment.read')
   get(@Param('id') id: string) {
     return this.shipments.get(id);
   }
@@ -72,6 +87,7 @@ export class ShipmentsController {
   }
 
   @Get(':id/documents/:documentId')
+  @Permission('shipment.read')
   document(@Param('id') id: string, @Param('documentId') documentId: string) {
     return this.shipments.document(id, documentId);
   }
@@ -95,6 +111,7 @@ export class ShipmentsController {
 
   /** History of the values corrected by hand, oldest first. Re-extracting the document clears it. */
   @Get(':id/documents/:documentId/corrections')
+  @Permission('shipment.read')
   corrections(@Param('id') id: string, @Param('documentId') documentId: string) {
     return this.shipments.corrections(id, documentId);
   }
@@ -121,6 +138,7 @@ export class ShipmentsController {
 
   /** The stored file, for the viewer: the PDF (a photo's image PDF), or the spreadsheet as uploaded. */
   @Get(':id/documents/:documentId/file')
+  @Permission('shipment.read')
   async file(@Param('id') id: string, @Param('documentId') documentId: string, @Res() res: Response) {
     const { name, bytes, contentType } = await this.shipments.file(id, documentId);
     res.setHeader('content-type', contentType);
@@ -130,6 +148,7 @@ export class ShipmentsController {
 
   /** A spreadsheet document's cells, for the viewer: { sheets: [{ name, rows }] }, and the sheets it covers. 400 for other documents. */
   @Get(':id/documents/:documentId/sheets')
+  @Permission('shipment.read')
   sheets(@Param('id') id: string, @Param('documentId') documentId: string) {
     return this.shipments.sheets(id, documentId);
   }
@@ -141,6 +160,7 @@ export class ShipmentsController {
   }
 
   @Get(':id/isf')
+  @Permission('shipment.read')
   isf(@Param('id') id: string) {
     return this.shipments.isf(id);
   }
@@ -152,16 +172,19 @@ export class ShipmentsController {
   }
 
   @Get(':id/validations')
+  @Permission('shipment.read')
   validations(@Param('id') id: string) {
     return this.shipments.validations(id);
   }
 
   @Get(':id/validations/:validationId')
+  @Permission('shipment.read')
   pastValidation(@Param('id') id: string, @Param('validationId') validationId: string) {
     return this.shipments.validation(id, validationId);
   }
 
   @Get(':id/validation')
+  @Permission('shipment.read')
   validation(@Param('id') id: string) {
     return this.shipments.latestValidation(id);
   }
@@ -181,6 +204,7 @@ export class ShipmentsController {
   }
 
   @Get(':id/findings')
+  @Permission('shipment.read')
   findings(@Param('id') id: string) {
     return this.shipments.findings(id);
   }
@@ -190,6 +214,7 @@ export class ShipmentsController {
    * false_positive (the last two need a note). Responds with the latest run, as GET :id/validation.
    */
   @Post(':id/findings/review')
+  @Permission('finding.decide')
   @HttpCode(200)
   review(@CurrentUser() user: PublicUser, @Param('id') id: string, @Body(new ZodValidationPipe(ReviewFindingsDto)) dto: ReviewFindingsDto) {
     return this.shipments.reviewFindings(id, user.id, dto);

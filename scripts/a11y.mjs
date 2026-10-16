@@ -114,6 +114,10 @@ const staticPages = [
   '/app/rules',
   '/app/results',
   '/app/account',
+  '/app/team',
+  '/app/notifications',
+  '/app/approvals',
+  '/app/audit',
   ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system'] : []),
 ];
 const locales = values.quick ? ['en'] : ['en', 'es', 'fr'];
@@ -148,7 +152,7 @@ for (const locale of locales) {
       } else problems.push(`${round}: could not upload a spreadsheet`);
       // The sign-in forms redirect signed-in visitors: check them signed out.
       await context.clearCookies();
-      for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example']) await visit(path);
+      for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password?token=example', '/invite?token=example']) await visit(path);
     }
   }
 }

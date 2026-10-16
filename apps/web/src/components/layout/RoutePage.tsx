@@ -26,6 +26,12 @@ const ProductPage = lazy(() => data().then((m) => ({ default: m.ProductPage })))
 const ContainersPage = lazy(() => data().then((m) => ({ default: m.ContainersPage })));
 const DataShipmentsPage = lazy(() => data().then((m) => ({ default: m.DataShipmentsPage })));
 const ResultsPage = lazy(() => import('../../features/results/ResultsPage').then((m) => ({ default: m.ResultsPage })));
+// Team pages share one chunk.
+const team = () => import('../../features/team/pages');
+const TeamPage = lazy(() => team().then((m) => ({ default: m.TeamPage })));
+const AuditPage = lazy(() => team().then((m) => ({ default: m.AuditPage })));
+const ApprovalsPage = lazy(() => team().then((m) => ({ default: m.ApprovalsPage })));
+const NotificationsPage = lazy(() => team().then((m) => ({ default: m.NotificationsPage })));
 const RulesPage = lazy(() => import('../../features/rules/RulesPage').then((m) => ({ default: m.RulesPage })));
 
 /** The page component of an app route. */
@@ -34,7 +40,7 @@ export function RoutePage({ route }: { route: AppRoute }) {
     case 'dashboard':
       return <DashboardPage />;
     case 'shipments':
-      return <ShipmentsPage />;
+      return <ShipmentsPage due={route.due} assignee={route.assignee} />;
     case 'new-shipment':
       return <NewShipmentPage />;
     case 'shipment':
@@ -85,6 +91,14 @@ export function RoutePage({ route }: { route: AppRoute }) {
           <SystemPage />
         </AdminOnly>
       );
+    case 'team':
+      return <TeamPage />;
+    case 'audit':
+      return <AuditPage />;
+    case 'approvals':
+      return <ApprovalsPage />;
+    case 'notifications':
+      return <NotificationsPage />;
     case 'not-found':
       return <NotFoundPage />;
   }

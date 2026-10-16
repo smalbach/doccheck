@@ -78,7 +78,7 @@ select * from invoice_lines where user_id = $1 and computed_total <> line_total;
 
 ## Documentos que no son un PDF por documento
 
-Migración `020_document_sources.sql`:
+Migración `042_document_sources.sql`:
 
 - **`documents.format`**: `PDF`, `SPREADSHEET` (.xlsx o .csv, guardado tal cual) o `IMAGE` (foto guardada como PDF de una página, enderezada y recortada).
 - **`documents.pages`** y **`documents.source_document_id`**: un PDF (o libro de Excel) con varios documentos se divide al leerlo; cada parte es un documento que comparte el archivo (`storage_key`), con las páginas (u hojas) que cubre numeradas como en el archivo, y apunta a la subida de la que salió. La primera parte conserva el id de la subida.

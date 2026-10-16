@@ -98,16 +98,19 @@ export class MailIntakeService implements OnApplicationBootstrap, OnApplicationS
     const id = randomUUID();
     const insert = (status: IntakeStatus, extra: { shipmentId?: string; created?: boolean; documents?: number; error?: string } = {}) =>
       this.pool.query(
-        'insert into mail_intakes (id, thread_id, message_id, user_id, shipment_id, status, created_shipment, documents, error) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+        `insert into mail_intakes (id, thread_id, message_id, user_id, shipment_id, status, created_shipment, documents, error, org_id)
+         values ($1, $2, $3, $4, $5, $6, $7, $8, $9, (select org_id from mail_threads where id = $2))`,
         [id, input.threadId, input.messageId, input.userId, extra.shipmentId ?? null, status, extra.created ?? false, extra.documents ?? 0, extra.error ?? null],
       );
     const { rows: [recent] } = await this.pool.query(`select count(*)::int as n from mail_intakes where user_id = $1 and created_at > now() - interval '1 hour'`, [input.userId]);
     if (recent.n >= INTAKES_PER_HOUR) return insert('skipped', { error: `More than ${INTAKES_PER_HOUR} emails with documents in an hour: kept as mail only` });
     if (input.pdfs.length === 0) return insert('skipped', { error: 'No PDF attached' });
 
-    const named = await this.shipmentNamedIn(input.userId, input.subject);
+    // The organization the user worked in last (the intake thread took it when it was stored).
+    const { rows: [thread] } = await this.pool.query<{ org_id: string }>('select org_id from mail_threads where id = $1', [input.threadId]);
+    const named = await this.shipmentNamedIn(thread!.org_id, input.subject);
     const reference = cleanSubject(input.subject) || `Email ${new Date().toISOString().slice(0, 10)}`;
-    const shipmentId = named ?? (await this.shipments.create({ reference }, input.userId)).id;
+    const shipmentId = named ?? (await this.shipments.create({ reference }, input.userId, thread!.org_id)).id;
     await this.pool.query('update mail_threads set shipment_id = $2 where id = $1', [input.threadId, shipmentId]);
     const files = await Promise.all(input.pdfs.map(async (p) => ({ ...p, bytes: await this.storage.get(p.storageKey) })));
     const usable = files.filter((f) => inputFormat(f.filename, new Uint8Array(f.bytes)));
@@ -241,13 +244,13 @@ export class MailIntakeService implements OnApplicationBootstrap, OnApplicationS
     void this.outbox.kick();
   }
 
-  /** The user's shipment whose reference the subject names (the most recent one). */
-  private async shipmentNamedIn(userId: string, subject: string): Promise<string | null> {
+  /** The organization's shipment whose reference the subject names (the most recent one). */
+  private async shipmentNamedIn(orgId: string, subject: string): Promise<string | null> {
     const { rows } = await this.pool.query(
-      `select id from shipments where user_id = $1 and length(reference) >= 3 and position(lower(reference) in lower($2)) > 0
+      `select id from shipments where org_id = $1 and length(reference) >= 3 and position(lower(reference) in lower($2)) > 0
          and created_at > now() - interval '120 days'
        order by length(reference) desc, created_at desc limit 1`,
-      [userId, subject],
+      [orgId, subject],
     );
     return rows[0]?.id ?? null;
   }
