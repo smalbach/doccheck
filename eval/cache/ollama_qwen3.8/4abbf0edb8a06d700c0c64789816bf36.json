@@ -1,0 +1,86 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 948,
+    "outputTokens": 741
+  },
+  "output": {
+    "packingListNumber": "PL-QIN2605408",
+    "invoiceRef": "QIN2605408",
+    "seller": {
+      "name": "NORLAND PRECISION SCALES CO., LTD.",
+      "addressLines": [
+        "88 GAOXIN ROAD, BUILDING 3",
+        "NINGBO ZHEJIANG 315040"
+      ],
+      "city": "NINGBO",
+      "region": "ZHEJIANG",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "NORTHERN LANTERN DC BRAMPTON",
+      "addressLines": [
+        "8 STEINWAY BLVD",
+        "BRAMPTON ON L6T 4X7"
+      ],
+      "city": "BRAMPTON",
+      "region": "ON",
+      "postalCode": "L6T 4X7",
+      "country": "CA",
+      "taxId": null
+    },
+    "marks": "NORTHERN/PO-55662/C/NO. 1-50",
+    "packages": [
+      {
+        "range": "1-44",
+        "count": "44 CTN",
+        "packageType": "CTN",
+        "sku": null,
+        "description": "BALL BEARING 6204-2RS",
+        "quantity": "8800 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "1007.60",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "968.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "45-50",
+        "count": "6 PLT",
+        "packageType": "PLT",
+        "sku": null,
+        "description": "HEX BOLT M12X60",
+        "quantity": "3000 KG",
+        "unit": "KG",
+        "netWeight": {
+          "value": "3132.00",
+          "unit": "KGS"
+        },
+        "grossWeight": {
+          "value": "3000.00",
+          "unit": "KGS"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "50",
+    "totalNetWeight": {
+      "value": "4139.60",
+      "unit": "KGS"
+    },
+    "totalGrossWeight": {
+      "value": "3968.00",
+      "unit": "KGS"
+    },
+    "totalVolumeM3": "5.64"
+  }
+}

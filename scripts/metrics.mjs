@@ -2,6 +2,7 @@
 //   eval/reports/extraction-<model>.json   (npm run eval:extraction)
 //   eval/reports/extraction-<model>-v1-scans.json, -v1-isf.json   (same, with --data data/eval/v1-scans or v1-isf)
 //   eval/reports/agent-<model>.json        (npm run eval:agent)
+//   eval/reports/supplier-learning-<model>-<set>.json   (packages/extraction/dist/supplier-eval-cli.js, docs/REVIEW.md)
 // plus the rule engine on the ground-truth documents of data/eval/v1, and on error kinds that v1 does
 // not inject (applied one at a time to the clean v1 shipments). Run `npm run build` first.
 //
@@ -23,6 +24,8 @@ const scans = await readJson(join(values.reports, `extraction-${values.model}-v1
 const isfSet = await readJson(join(values.reports, `extraction-${values.model}-v1-isf.json`));
 const v2 = await readJson(join(values.reports, `extraction-${values.model}-v2.json`));
 const scansUnlimited = await readJson(join(values.reports, `extraction-${values.model}-v1-scans-unlimited.json`));
+const supplierSets = (await Promise.all(['supplier-quirk', 'v1', 'v2'].map((set) => readJson(join(values.reports, `supplier-learning-${values.model}-${set}.json`))))).filter(Boolean);
+const quirk = supplierSets.find((r) => r.set === 'supplier-quirk');
 
 // Every report records the model build it ran with; numbers from different builds should not be mixed.
 const builds = [
@@ -127,6 +130,7 @@ const headline = [
   isfX11 ? `| X11 on extracted ISF PDFs | Recall / precision, end to end | ${pct(isfX11.recall)} / ${pct(isfX11.precision)} |` : null,
   v2 ? `| Extraction, unseen formats (v2) | Field accuracy, ${v2.documents} PDFs (${v2.validDocuments ?? '?'} complete enough for the rules) | ${pct(v2.overall.accuracy)} |` : null,
   v2 ? `| Rules on v2 PDFs | Recall / precision, end to end | ${pct(totalOf(v2.rules.table).recall)} / ${pct(totalOf(v2.rules.table).precision)} |` : null,
+  quirk ? `| Supplier learning | Supplier printing net and gross swapped (${quirk.documents} PDFs): weight fields without / with its corrected examples | ${pct(quirk.weightFields.baseline.accuracy)} / ${pct(quirk.weightFields.learning.accuracy)} |` : null,
   agentRow('party') ? `| Agent | Same consignee written differently (${agentRow('party').cases} cases): verdict / right action | ${pct(agentRow('party').accuracy)} / ${pct(agentRow('party').effectAccuracy)} (${agentRow('party').wrong} wrong, ${agentRow('party').unsure} unsure) |` : null,
   agentRow('description') ? `| Agent | BL description vs invoice goods (${agentRow('description').cases} cases): verdict / right action | ${pct(agentRow('description').accuracy)} / ${pct(agentRow('description').effectAccuracy)} (${agentRow('description').wrong} wrong, ${agentRow('description').unsure} unsure) |` : null,
 ].filter(Boolean);
@@ -260,6 +264,21 @@ const md = [
         '| Decision | Cases | Verdict accuracy | When answered | Wrong | Unsure | Right action |',
         '| --- | --- | --- | --- | --- | --- | --- |',
         ...agent.summary.map((s) => `| ${s.kind === 'party' ? 'Same consignee? (X1)' : 'BL description consistent? (A1)'} | ${s.cases} | ${pct(s.accuracy)} | ${pct(s.accuracyWhenAnswered)} | ${s.wrong} | ${s.unsure} | ${pct(s.effectAccuracy)} |`),
+        '',
+      ]
+    : []),
+  ...(supplierSets.length
+    ? [
+        '## Supplier learning',
+        '',
+        'Shipments arrive in order; a reviewer corrects every value the extraction showed wrong (from the truth), each correction becomes an example for that supplier, and the supplier\'s next documents are extracted with up to 5 of its latest examples in the prompt (docs/REVIEW.md). Baseline: the same documents with no examples. `supplier-quirk` is one supplier that prints the net and gross weights under each other\'s label (scripts/supplier-quirk-set.mjs).',
+        '',
+        '| Set | Documents | Given examples | All fields: baseline → learning | Those documents | Weight fields |',
+        '| --- | --- | --- | --- | --- | --- |',
+        ...supplierSets.map(
+          (r) =>
+            `| ${r.set} | ${r.documents} | ${r.documentsWithExamples} | ${pct(r.overall.baseline.accuracy)} → ${pct(r.overall.learning.accuracy)} (${r.overall.baseline.correct} → ${r.overall.learning.correct} correct) | ${pct(r.withExamples.baseline.accuracy)} → ${pct(r.withExamples.learning.accuracy)} | ${pct(r.weightFields.baseline.accuracy)} → ${pct(r.weightFields.learning.accuracy)} |`,
+        ),
         '',
       ]
     : []),

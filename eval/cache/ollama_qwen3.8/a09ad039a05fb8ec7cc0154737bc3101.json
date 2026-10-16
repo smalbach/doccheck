@@ -1,0 +1,95 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 898,
+    "outputTokens": 881
+  },
+  "output": {
+    "blNumber": "PCCLCTG2088010",
+    "documentTitle": "SEA WAYBILL",
+    "issuer": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "bookingNumber": "118474353",
+    "carrierName": "PACIFIC CREST CONTAINER LINE (PCCL)",
+    "scac": "PCCL",
+    "shipper": {
+      "name": "CAFE ALTO HUILA EXPORTADORES S.A.S.",
+      "addressLines": [
+        "CARRERA 5 # 12-40"
+      ],
+      "city": "NEIVA",
+      "region": "HUILA",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "notifyParty": {
+      "name": "LAKESHORE COFFEE IMPORTERS LLC",
+      "addressLines": [
+        "640 W LAKE ST"
+      ],
+      "city": "CHICAGO",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "vessel": "PACIFIC CREST HARMONY",
+    "voyage": "072N",
+    "placeOfReceipt": {
+      "name": "NEIVA",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "CARTAGENA",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "NEW YORK",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "CHICAGO",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "PCRU8326324",
+        "seal": "PC3735023",
+        "type": "40GP",
+        "packages": "179",
+        "grossWeight": {
+          "value": "10883.20",
+          "unit": "KGS"
+        },
+        "volumeM3": "25.51"
+      }
+    ],
+    "totalPackages": "179",
+    "totalGrossWeight": {
+      "value": "11100.86",
+      "unit": "KGS"
+    },
+    "marksAndNumbers": "LAKESHORE/LA203868/C/NO. 1-179",
+    "cargoDescription": "SAID TO CONTAIN 179 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "FREIGHT COLLECT",
+    "references": [
+      "CI/26/1999 / LA203868"
+    ],
+    "placeOfIssue": "CARTAGENA",
+    "dateOfIssue": "15-JUL-2026",
+    "shippedOnBoardDate": "15-JUL-2026"
+  }
+}

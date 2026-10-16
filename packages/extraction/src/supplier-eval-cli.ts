@@ -47,6 +47,19 @@ interface DocRun {
   learned: number;
 }
 
+/** A long run outlives a restart of Ollama: wait and try again while it is not reachable. */
+async function retrying<T>(fn: () => Promise<T>, attempts = 20): Promise<T> {
+  for (let i = 1; ; i++) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (i >= attempts || !/not reachable/.test(err instanceof Error ? err.message : String(err))) throw err;
+      console.warn(`Ollama not reachable, retrying in 30 s (${i}/${attempts})`);
+      await new Promise((r) => setTimeout(r, 30_000));
+    }
+  }
+}
+
 const pct = (x: number) => `${(x * 100).toFixed(1)}%`;
 const supplierOf = (truth: Truth, key: (typeof DOCS)[number]['key']) =>
   key === 'billOfLading' ? truth.documents.billOfLading.shipper.name : (truth.documents[key] as CommercialInvoice | PackingList).seller?.name ?? '';
@@ -83,14 +96,14 @@ async function main() {
       if (!existsSync(join(dir, d.file))) continue;
       const bytes = new Uint8Array(await readFile(join(dir, d.file)));
       const expected = truth.documents[d.key];
-      const baseline = await extractDocument(bytes, llm);
+      const baseline = await retrying(() => extractDocument(bytes, llm));
       const baselineScores = scoreDocument(d.type, expected, baseline.documentType === d.type ? (baseline.data ?? baseline.partial ?? null) : null);
 
       // The supplier is recognized in the text, as in the app, among the suppliers with examples.
       const known = [...store.entries()].map(([key, s]) => ({ key, name: s.name }));
       const supplier = detectSupplier(baseline.pdf, known);
       const examples = supplier ? store.get(supplier.key)!.examples.filter((e) => e.documentType === d.type).slice(0, limit) : [];
-      const learning = examples.length ? await extractDocument(bytes, llm, undefined, { supplier: { supplier: supplier!.name, examples } }) : baseline;
+      const learning = examples.length ? await retrying(() => extractDocument(bytes, llm, undefined, { supplier: { supplier: supplier!.name, examples } })) : baseline;
       const learningScores = examples.length ? scoreDocument(d.type, expected, learning.documentType === d.type ? (learning.data ?? learning.partial ?? null) : null) : baselineScores;
 
       // The reviewer corrects what the app showed (the learning run) and the corrections are kept.

@@ -1,0 +1,68 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 891,
+    "outputTokens": 597
+  },
+  "output": {
+    "packingListNumber": "PL/26/5859",
+    "invoiceRef": "CI/26/5859",
+    "seller": {
+      "name": "Norland Precision Scales Co., Ltd.",
+      "addressLines": [
+        "88 Gaoxin Road, Building 3",
+        "Ningbo, Zhejiang, 315040"
+      ],
+      "city": "Ningbo",
+      "region": "Zhejiang",
+      "postalCode": "315040",
+      "country": "CN",
+      "taxId": "91330200MA2H7K4X1Q"
+    },
+    "consignee": {
+      "name": "Coastal Mountain Hardware Ltd.",
+      "addressLines": [
+        "3900 North Fraser Way",
+        "Burnaby, BC, V5J 5H6"
+      ],
+      "city": "Burnaby",
+      "region": "BC",
+      "postalCode": "V5J 5H6",
+      "country": "CA",
+      "taxId": "845678901RM0001"
+    },
+    "marks": "COASTAL/PO-5313/C/NO. 1-205",
+    "packages": [
+      {
+        "range": "1-205",
+        "count": "205 CTN",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M",
+        "description": "Men's cotton T-shirt",
+        "quantity": "20,500 PCS",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "4,059.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "3,895.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": "60 × 40 × 35"
+      }
+    ],
+    "totalPackages": "205",
+    "totalNetWeight": {
+      "value": "4,059.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "3,895.00",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "17.22"
+  }
+}

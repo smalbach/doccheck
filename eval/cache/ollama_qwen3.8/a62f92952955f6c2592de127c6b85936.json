@@ -1,0 +1,665 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 2927,
+    "outputTokens": 5798
+  },
+  "output": {
+    "packingListNumber": "PL-2026-5049",
+    "invoiceRef": "INV-2026-5049",
+    "seller": {
+      "name": "Saigon Apparel Joint Stock Company",
+      "addressLines": [
+        "Lot B4, Tan Thuan Export Processing Zone",
+        "District 7",
+        "700000 Ho Chi Minh City",
+        "VN"
+      ],
+      "city": "Ho Chi Minh City",
+      "region": "District 7",
+      "postalCode": "700000",
+      "country": "VN",
+      "taxId": "0301234567"
+    },
+    "consignee": {
+      "name": "Lakeshore Coffee Importers LLC",
+      "addressLines": [
+        "640 W Lake St",
+        "60661 Chicago IL",
+        "US"
+      ],
+      "city": "Chicago",
+      "region": "IL",
+      "postalCode": "60661",
+      "country": "US",
+      "taxId": "36-4128765"
+    },
+    "marks": "LAKESHORE/PO-34595/C/NO. 1-248",
+    "packages": [
+      {
+        "range": "1-9",
+        "count": "9",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-BL-XL",
+        "description": "Wool socks 3-pack colour blue, size XL",
+        "quantity": "2,160",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "162.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "168.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "10-17",
+        "count": "8",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-WH-XXL",
+        "description": "Wool socks 3-pack colour white, size XXL",
+        "quantity": "1,920",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "144.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "149.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "18-21",
+        "count": "4",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-BK-L",
+        "description": "Wool socks 3-pack colour black, size L",
+        "quantity": "960",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "72.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "74.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "22-24",
+        "count": "3",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-BE-XS",
+        "description": "Wool socks 3-pack colour beige, size XS",
+        "quantity": "720",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "54.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "56.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "25-45",
+        "count": "21",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-NV-L",
+        "description": "Wool socks 3-pack colour navy, size L",
+        "quantity": "5,040",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "378.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "392.70",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "46-48",
+        "count": "3",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-YL-S",
+        "description": "Wool socks 3-pack colour yellow, size S",
+        "quantity": "720",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "54.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "56.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "49-56",
+        "count": "8",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-PK-XL",
+        "description": "Wool socks 3-pack colour pink, size XL",
+        "quantity": "1,920",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "144.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "149.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "57-69",
+        "count": "13",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-RD-S",
+        "description": "Wool socks 3-pack colour red, size S",
+        "quantity": "3,120",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "234.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "243.10",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "70-88",
+        "count": "19",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-BK-M",
+        "description": "Wool socks 3-pack colour black, size M",
+        "quantity": "4,560",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "342.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "355.30",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "89-90",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-GY-L",
+        "description": "Wool socks 3-pack colour grey, size L",
+        "quantity": "480",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "36.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "37.40",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "91-100",
+        "count": "10",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-PK-XXL",
+        "description": "Wool socks 3-pack colour pink, size XXL",
+        "quantity": "2,400",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "180.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "187.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "101-117",
+        "count": "17",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-NV-XL",
+        "description": "Wool socks 3-pack colour navy, size XL",
+        "quantity": "4,080",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "306.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "317.90",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "118-125",
+        "count": "8",
+        "packageType": "CTN",
+        "sku": "SK-WL-3-GN-XL",
+        "description": "Wool socks 3-pack colour green, size XL",
+        "quantity": "1,920",
+        "unit": "PRS",
+        "netWeight": {
+          "value": "144.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "149.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "126-126",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-NV-XXL",
+        "description": "Men's cotton T-shirt colour navy, size XXL",
+        "quantity": "100",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "127-127",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-BK-XS",
+        "description": "Men's cotton T-shirt colour black, size XS",
+        "quantity": "100",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "128-129",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-BE-M",
+        "description": "Men's cotton T-shirt colour beige, size M",
+        "quantity": "200",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "39.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "130-130",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-YL-L",
+        "description": "Men's cotton T-shirt colour yellow, size L",
+        "quantity": "100",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "131-132",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-GY-XXL",
+        "description": "Men's cotton T-shirt colour grey, size XXL",
+        "quantity": "200",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "39.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "133-133",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-BL-XS",
+        "description": "Men's cotton T-shirt colour blue, size XS",
+        "quantity": "100",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "134-135",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-RD-S",
+        "description": "Men's cotton T-shirt colour red, size S",
+        "quantity": "200",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "39.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "136-136",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-BE-S",
+        "description": "Men's cotton T-shirt colour beige, size S",
+        "quantity": "100",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "137-137",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-BK-S",
+        "description": "Men's cotton T-shirt colour black, size S",
+        "quantity": "100",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "138-138",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-GN-XL",
+        "description": "Men's cotton T-shirt colour green, size XL",
+        "quantity": "100",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "139-139",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-GN-XS",
+        "description": "Men's cotton T-shirt colour green, size XS",
+        "quantity": "100",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "140-141",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-RD-L",
+        "description": "Men's cotton T-shirt colour red, size L",
+        "quantity": "200",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "39.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "142-142",
+        "count": "1",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-YL-XL",
+        "description": "Men's cotton T-shirt colour yellow, size XL",
+        "quantity": "100",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "19.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "19.80",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "143-144",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-GN-M",
+        "description": "Men's cotton T-shirt colour green, size M",
+        "quantity": "200",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "39.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "145-146",
+        "count": "2",
+        "packageType": "CTN",
+        "sku": "TS-CTN-M-WH-XS",
+        "description": "Men's cotton T-shirt colour white, size XS",
+        "quantity": "200",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "38.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "39.60",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "147-166",
+        "count": "20",
+        "packageType": "CTN",
+        "sku": "JK-PL-02-PK-XS",
+        "description": "Women's padded jacket colour pink, size XS",
+        "quantity": "400",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "340.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "360.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "167-178",
+        "count": "12",
+        "packageType": "CTN",
+        "sku": "JK-PL-02-BL-L",
+        "description": "Women's padded jacket colour blue, size L",
+        "quantity": "240",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "204.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "216.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "179-181",
+        "count": "3",
+        "packageType": "CTN",
+        "sku": "JK-PL-02-RD-XL",
+        "description": "Women's padded jacket colour red, size XL",
+        "quantity": "60",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "51.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "54.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "182-204",
+        "count": "23",
+        "packageType": "CTN",
+        "sku": "JK-PL-02-BL-XL",
+        "description": "Women's padded jacket colour blue, size XL",
+        "quantity": "460",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "391.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "414.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "205-230",
+        "count": "26",
+        "packageType": "CTN",
+        "sku": "JK-PL-02-GY-S",
+        "description": "Women's padded jacket colour grey, size S",
+        "quantity": "520",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "442.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "468.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      },
+      {
+        "range": "231-248",
+        "count": "18",
+        "packageType": "CTN",
+        "sku": "JK-PL-02-BE-L",
+        "description": "Women's padded jacket colour beige, size L",
+        "quantity": "360",
+        "unit": "PCS",
+        "netWeight": {
+          "value": "306.00",
+          "unit": "KG"
+        },
+        "grossWeight": {
+          "value": "324.00",
+          "unit": "KG"
+        },
+        "dimensionsCm": null
+      }
+    ],
+    "totalPackages": "248",
+    "totalNetWeight": {
+      "value": "4,383.00",
+      "unit": "KG"
+    },
+    "totalGrossWeight": {
+      "value": "4,589.30",
+      "unit": "KG"
+    },
+    "totalVolumeM3": "24.01"
+  }
+}

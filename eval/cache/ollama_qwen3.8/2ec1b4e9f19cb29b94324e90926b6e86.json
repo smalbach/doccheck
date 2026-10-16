@@ -1,0 +1,96 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "extract-v3",
+  "usage": {
+    "inputTokens": 860,
+    "outputTokens": 851
+  },
+  "output": {
+    "blNumber": "TDWEBUN3954376",
+    "documentTitle": "Bill of Lading",
+    "issuer": "Tidewater Express Lines (TDWE)",
+    "bookingNumber": "105971751",
+    "carrierName": "Tidewater Express Lines (TDWE)",
+    "scac": "TDWE",
+    "shipper": {
+      "name": "Cafe Alto Huila Exportadores S.A.S.",
+      "addressLines": [
+        "Carrera 5 # 12-40"
+      ],
+      "city": "Neiva",
+      "region": "Huila",
+      "postalCode": null,
+      "country": "CO",
+      "taxId": "900123456-7"
+    },
+    "consignee": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "notifyParty": {
+      "name": "Harborline Industrial Supply Inc.",
+      "addressLines": [
+        "1200 Port Ave"
+      ],
+      "city": "Elizabeth",
+      "region": "NJ",
+      "postalCode": "07201",
+      "country": "US",
+      "taxId": "22-4519873"
+    },
+    "vessel": "CAPE ALBATROSS",
+    "voyage": "090N",
+    "placeOfReceipt": {
+      "name": "Neiva",
+      "country": "CO"
+    },
+    "portOfLoading": {
+      "name": "Buenaventura",
+      "country": "CO"
+    },
+    "portOfDischarge": {
+      "name": "New York",
+      "country": "US"
+    },
+    "placeOfDelivery": {
+      "name": "Newark",
+      "country": "US"
+    },
+    "containers": [
+      {
+        "number": "TWEU2796175",
+        "seal": "TW4657517",
+        "type": "40HC",
+        "packages": "171",
+        "grossWeight": {
+          "value": "22,921",
+          "unit": "LB"
+        },
+        "volumeM3": "24.37"
+      }
+    ],
+    "totalPackages": "171",
+    "totalGrossWeight": {
+      "value": "22,921",
+      "unit": "LB"
+    },
+    "marksAndNumbers": "HARBORLINE/PO-27051/C/NO. 1-171",
+    "cargoDescription": "SAID TO CONTAIN 171 BAGS GREEN COFFEE ARABICA",
+    "freightTerms": "Freight COLLECT",
+    "references": [
+      "CAF2602708",
+      "PO-27051"
+    ],
+    "placeOfIssue": "Buenaventura",
+    "dateOfIssue": "2026-06-16",
+    "shippedOnBoardDate": "2026-06-16"
+  }
+}
