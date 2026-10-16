@@ -22,6 +22,10 @@ const QUERIES: Record<string, { CBSA: string | null; CBP: string | null }> = {
   X11: { CBSA: null, CBP: 'importer security filing data elements' },
   C2: { CBSA: 'invoice in English or French translation', CBP: null },
   A1: { CBSA: 'detailed description of the goods', CBP: 'detailed description of the merchandise' },
+  // Rules added after v1. X22 is about the same invoice charges as X12, so it cites the same passages.
+  X22: { CBSA: 'Field 9: Conditions of sale and terms of payment terms and conditions agreed upon by the vendor and the purchaser', CBP: 'all charges upon the merchandise itemized by name and amount including freight' },
+  U2: { CBSA: null, CBP: 'importer security filing data elements' },
+  U3: { CBSA: null, CBP: 'no later than 24 hours before the cargo is laden aboard the vessel at the foreign port' },
 };
 
 export function citationQuery(finding: Finding, destination: Destination): string | null {
@@ -56,7 +60,7 @@ export function citationQuery(finding: Finding, destination: Destination): strin
 export const INVOICE_REQUIREMENTS = { CBSA: ['cbsa-d1-4-1'], CBP: ['cfr-19-141-86'] } as const;
 
 export function citationScope(finding: Finding, destination: Destination): string[] {
-  if (finding.ruleId === 'X11') return ['cfr-19-149'];
+  if (finding.ruleId === 'X11' || finding.ruleId === 'U2' || finding.ruleId === 'U3') return ['cfr-19-149'];
   return [...INVOICE_REQUIREMENTS[PROFILES[destination].authority]];
 }
 

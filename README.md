@@ -1,6 +1,6 @@
 # DocCheck
 
-**Catch freight document errors before customs does.** DocCheck reads the commercial invoice, packing list, bill of lading and, for US ocean freight, the ISF 10+2 filing, then cross-checks them against each other and against CBSA (Canada) and CBP (US) requirements. A local model copies the values as printed, plain tested code normalizes them, and fifteen deterministic rules do the checking. The model comes back only for the narrow cases a rule cannot settle alone. Every finding links to the exact line in the PDF it comes from and to the regulation passage behind it, and the supplier can be asked for corrected documents without leaving the app. The models run locally: no document goes to an outside AI service.
+**Catch freight document errors before customs does.** DocCheck reads the commercial invoice, packing list, bill of lading and, for US ocean freight, the ISF 10+2 filing, then cross-checks them against each other and against CBSA (Canada) and CBP (US) requirements. A local model copies the values as printed, plain tested code normalizes them, and thirty-one deterministic rules do the checking, with the tolerances each account sets. The model comes back only for the narrow cases a rule cannot settle alone. Every finding links to the exact line in the PDF it comes from and to the regulation passage behind it, and the supplier can be asked for corrected documents without leaving the app. The models run locally: no document goes to an outside AI service.
 
 <p align="center">
   <img src="docs/screenshots/flow.webp" width="900" alt="Opening a sample shipment, validating it, and clicking a finding's evidence: the invoice PDF opens with the cited line highlighted">
@@ -64,7 +64,8 @@ Also available: [samples page](docs/screenshots/samples.webp), [companies](docs/
 
 - **Reads the PDFs**, text layer or scans (OCR with bundled English and French models, or optionally Unlimited-OCR on Apple Silicon), and classifies each one as invoice, packing list, bill of lading or ISF filing confirmation.
 - **Extracts typed data with a local model** (Ollama, `qwen3.8`): the model fills a Zod schema with values exactly as printed, and tested code converts them to decimals, ISO dates, kilograms and ISO country codes. A required value the model fills in although the invoice leaves it blank is dropped.
-- **Runs 15 deterministic rules** (listed [below](#rules-implemented)): package counts and weights across documents, invoice arithmetic, currency, quantities per SKU, dates, terms of sale vs freight terms, ISO 6346 container check digits, ISF consistency, and the invoice fields CBSA (CI1) and CBP (19 CFR 141.86) require. Money and weights use fixed-point arithmetic, never floats.
+- **Runs 31 deterministic rules** (listed [below](#rules-implemented)): package counts and weights across documents, invoice arithmetic, currency, quantities and units per SKU, dates, terms of sale vs freight terms and invoice charges, ISO 6346 container check digits, UN/LOCODEs and port coherence, vessel IMO and carrier SCAC, container capacity and VGM, BL type, ISF 10+2 completeness and the 24-hour filing deadline, importer numbers (Canadian BN/RM, US EIN), duplicate invoices, unit prices against the account's own price history, the three-way match against imported purchase orders, and the invoice fields CBSA (CI1) and CBP (19 CFR 141.86) require. Money and weights use fixed-point arithmetic, never floats.
+- **Lets each account tune the rules**: turn a rule off, change its severity, edit tolerances (weight %, days, price deviation, PO tolerances, ISF lead time) and add the carrier SCACs it works with, from the Rule settings page. Each validation run records the settings, tolerances, run date and account history it used, so its findings stay explainable and the run can be replayed.
 - **Asks the model narrow questions only where rules cannot decide**: is a differently written consignee the same company, does the BL cargo description match the invoice goods. Each answer comes with verdict, confidence and rationale; it acts only at confidence ≥ 0.7 (`ACT_CONFIDENCE` in [`packages/agent/src/review.ts`](packages/agent/src/review.ts)) and "unsure" never dismisses a finding.
 - **Cites its sources**: every finding points to the page and line of the PDF (opened with the line highlighted), and to a CBSA memorandum or 19 CFR passage found by hybrid search (embeddings + BM25). The model never writes the legal basis.
 - **Follows each finding to a decision**: open, waiting for the supplier, accepted risk or false positive (the last two need a reason), with history; a misread value is corrected from the evidence, and the next validation marks new findings and resolved ones ([docs/FINDINGS.md](docs/FINDINGS.md), in Spanish).
@@ -86,7 +87,7 @@ flowchart LR
       direction LR
       Parse["pdf.js text + positions<br/>OCR for scans"] --> Classify[Classify] --> LLM["LLM: values as printed<br/>(Zod-validated)"] --> Normalize[Normalize in code]
     end
-    Normalize --> Rules["15 deterministic rules<br/>+ CA / US profiles"]
+    Normalize --> Rules["31 deterministic rules<br/>+ CA / US profiles<br/>+ account settings"]
     Rules --> Agent["Agent: narrow questions<br/>(verdict, confidence, rationale)"]
     Agent --> Cite["Regulation search<br/>embeddings + BM25"]
     Mail["Supplier mail<br/>outbox, inbound, attachments"] --> Upload
@@ -197,8 +198,28 @@ Without Docker: any local Postgres and Redis work, and `scripts/dev-s3.sh` start
 | C1 | Invoice has the fields CBSA requires (CI1 fields 1–17: vendor, consignee, origin, terms of sale, currency, packages, description, quantity, price, total, weights) | CA | per field |
 | C2 | Invoice is in English or French | CA | Medium |
 | U1 | Invoice has the information 19 CFR 141.86(a) requires (port of entry, time of sale, parties, description, quantity, price, currency, origin) | US | per field |
+| X13 | UN/LOCODEs on invoice, BL and ISF are in the UNECE code list, in the country the document gives | CA, US | Medium |
+| X14 | Ports agree: invoice place of shipment = BL port of loading, US port of entry = BL discharge or delivery, ISF ports = BL ports | CA, US | Medium |
+| X15 | Vessel IMO number passes its check digit, a vessel has a voyage, carrier SCAC is valid and known (bundled ocean lines + the account's own) | CA, US | Low (IMO, SCAC format: Medium) |
+| X16 | Dates are possible: invoice and on-board date not after the run date, on-board not after ETA, ISF not filed after arrival | CA, US | Medium |
+| X17 | Invoice number from this seller not already used in another shipment of the account | CA, US | High |
+| X18 | Units of measure agree per SKU between invoice and packing list, converting exactly (dozens/pieces, kg/lb, m/ft); units that do not convert are reported | CA, US | Medium (quantity mismatch: High) |
+| X19 | Cargo fits the declared containers: volume and payload per container (20GP, 40GP, 40HC, 45HC, reefers), packing list volume against total capacity | CA, US | Medium (overweight: High) |
+| X20 | Container VGM = BL cargo weight + tare, within 5% (configurable); a VGM below the cargo weight is always reported | CA, US | Medium |
+| X21 | BL type agrees with the consignee: to order means an original BL, number of originals stated and a notify party; a sea waybill has no originals | CA, US | Medium |
+| X22 | Invoice charges agree with the Incoterm 2020: no ocean freight on EXW/FCA/FAS/FOB, no insurance on CFR/CPT, insurance with itemized freight on CIF/CIP | CA, US | Medium |
+| X23 | Unit price not far below the account's own price history for the product (median / MAD, at least 5 past purchases; 30% and robust z 3.5, configurable); the finding lists the series | CA, US | Medium |
+| X24 | Three-way match against the imported purchase order: PO number on file, every line ordered, quantity (5%) and price (2%) within tolerance, packed not above ordered | CA, US | Medium |
+| C3 | Importer Business Number is a 15-character BN with an RM (import/export) account and a valid check digit | CA | Medium |
+| U2 | ISF has the 10 importer elements of 19 CFR 149.3(a) with usable values, is filed against this BL and SCAC, and the carrier's +2 are not reported missing | US | High |
+| U3 | ISF filed at least 24 hours before loading (19 CFR 149.2(b); USD 5,000 liquidated damages per violation) | US | High |
+| U4 | ISF importer of record and consignee numbers are an EIN (with suffix), CBP-assigned number or SSN, with an EIN prefix the IRS assigns | US | Medium |
 
 Completeness rules report one finding per missing field, citing the CI1 field or the 141.86 paragraph. Regulation excerpts are attached by the agent in phase 4.
+
+Rules X13–X24, C3 and U2–U4 read reference data bundled with `packages/rules` (no lookup at run time): the UNECE UN/LOCODE list (`node scripts/fetch-unlocode.mjs` refreshes `packages/rules/src/data/unlocode.json`), the SCACs of the main ocean carriers, container capacities, payloads and tares, and unit conversions. X17, X23 and X24 also compare with what the account already has: its other invoices, the prices it paid before and the purchase orders it imported (CSV or JSON, on the Rule settings page). Checks against "today" use the run date passed to the engine, never the clock, so a run gives the same result when replayed. Fields these rules read that extraction does not fill yet (vessel IMO, ETA, number of originals, VGM, ISF filing time and identifiers) come from the documents sent as JSON or corrected by hand; until then the checks that need them are skipped, not reported.
+
+**Rule settings.** Per account (stored per scope, so organizations can be added): each rule on or off, a severity that replaces the rule's own, and tolerances, each within bounds the rule declares. Only what differs from the defaults is stored; with nothing stored the engine behaves exactly as without settings. Each validation run stores in `validations.rule_config` the settings it applied, every tolerance in effect, the run date and how much account history it compared with.
 
 Money and weights are decimal strings and use fixed-point arithmetic — never JavaScript floats.
 
@@ -207,6 +228,8 @@ Money and weights are decimal strings and use fixed-point arithmetic — never J
 `npm run synth` builds 200 shipments from a fixed seed: 100 to Canada, 100 to the US (with ISF), 25 clean per country and 75 with 1–3 injected errors. Every shipment has an invoice, packing list and bill of lading rendered to PDF from one of three templates per document (classic, modern, legacy), with English/French invoices for Quebec buyers and BL weights in pounds for part of the US set.
 
 Each injected error has a label with the document, field path, before/after values and the rules expected to flag it for that destination. 274 of the 293 injected errors are covered by a rule; the rest are fields the destination does not require (for example terms of sale on a US invoice) or an error hidden by another one. A test checks that the engine flags exactly the expected rules on all 200 shipments and nothing on the clean versions; `npm run eval:extraction` measures recall and precision per rule on the extracted documents.
+
+Sets v1 and v2 were labeled for the first 15 rules (X1–X12, C1, C2, U1), so their evaluations run those rules only (`V1_RULE_IDS`). The later rules are measured on set **v1-rules** (`packages/synth/src/rules-set.ts`): each clean v1 shipment completed with what those rules read (vessel IMO, ETA, VGM and tare, number of originals, ISF filing time and identifiers, Business Numbers with a valid check digit) and an account history (six past prices per product, earlier invoices, the purchase order), then 18 error kinds injected one at a time. The test checks that the completed clean shipments raise nothing under all 31 rules and that each injection raises exactly its labeled rules, citing the altered field; the numbers are in [docs/METRICS.md](docs/METRICS.md).
 
 `npm run synth -- --set v2` builds a second, smaller set (60 shipments, 16 clean) to check that extraction holds up on formats the prompt was never tuned on: two new layouts per document (a European letterhead with "48.600,00", "1 140,50 kg" and "14.03.2026", and a numbered-box form), line tables of 6 to 40 rows that run onto a second page, and parties with accented, non-English names (French, German, Spanish, Vietnamese, Portuguese, Turkish). The v1 layouts stay in the mix as a control group. Set v1 does not change: a test checks every `truth.json` against the published files.
 
@@ -249,6 +272,8 @@ After the rules run, `/validate` does a second pass:
 | GET | `/admin/models`, `/admin/system` | Admin: installed Ollama models with their measured accuracy; what the server runs with |
 | GET / PATCH | `/admin/users`, `/admin/users/:id` | Admin: accounts and `{ role }` (nobody changes their own; the last admin stays) |
 | GET | `/rules?destination=CA` | Active rules for a destination |
+| GET / PUT / DELETE | `/rules/settings` | The account's rule settings with the rule catalog, defaults and bundled SCACs; PUT `{ rules?: { X2: { enabled?, severity? } }, params?: { grossWeightTolerance?, …, knownScacs? } }` validates (unknown rules and out-of-bounds tolerances are refused) and stores only what differs from the defaults; DELETE goes back to the defaults |
+| GET / POST / DELETE | `/purchase-orders`, `/purchase-orders/:id` | The account's purchase orders for X24. POST a CSV or JSON file (multipart field `file`) or JSON `[{ poNumber, currency?, lines: [{ sku?, description?, quantity, unit?, unitPrice? }] }]`; the same PO number replaces the earlier order |
 | POST | `/shipments` | Create a shipment: `{ reference?, destination: "CA" \| "US", transportMode? }` |
 | GET | `/shipments` | The user's shipments, a page at a time: `?status=all\|open\|attention\|done&destination=CA\|US&q=text&limit=25&offset=0` → `{ items, total, limit, offset, summary }` (`summary` counts every shipment per status group) |
 | GET | `/shipments/:id` | Shipment and status |

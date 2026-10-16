@@ -8,3 +8,4 @@ export * from './render';
 export * from './render-v2';
 export * from './pdf';
 export * from './isf';
+export * from './rules-set';

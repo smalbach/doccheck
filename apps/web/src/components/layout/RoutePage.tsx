@@ -27,6 +27,7 @@ const ContainersPage = lazy(() => data().then((m) => ({ default: m.ContainersPag
 const DataShipmentsPage = lazy(() => data().then((m) => ({ default: m.DataShipmentsPage })));
 const ResultsPage = lazy(() => import('../../features/results/ResultsPage').then((m) => ({ default: m.ResultsPage })));
 const RulesPage = lazy(() => import('../../features/rules/RulesPage').then((m) => ({ default: m.RulesPage })));
+const RuleSettingsPage = lazy(() => import('../../features/rules/RuleSettingsPage').then((m) => ({ default: m.RuleSettingsPage })));
 
 /** The page component of an app route. */
 export function RoutePage({ route }: { route: AppRoute }) {
@@ -63,6 +64,8 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return <DataShipmentsPage />;
     case 'rules':
       return <RulesPage />;
+    case 'rule-settings':
+      return <RuleSettingsPage />;
     case 'results':
       return <ResultsPage />;
     case 'account':

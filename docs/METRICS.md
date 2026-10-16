@@ -47,6 +47,31 @@ Ground truth only (no extraction, no model). Error kinds that dataset v1 does no
 | `onboard_date_shift` | X9 | 200 | 199 | 1 | 0 | 99.5% | 100.0% |
 | `freight_terms_flipped` | X12 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
 
+## Rules added after v1 (set v1-rules)
+
+Ground truth only. The v1 shipments predate rules X13–X24, C3 and U2–U4: they lack what those rules read (vessel IMO, VGM, ISF filing time) and carry made-up Business Numbers and SCACs. Set v1-rules completes each of the 200 clean shipments with realistic values and an account history (past prices, earlier invoices, the purchase order), then injects one error kind at a time. A hit is every labeled rule citing the altered field. Completed clean shipments raising a finding: 0.
+
+| Error kind | Rules | Injected | Caught | Missed | Other findings | Recall (truth) | Precision (truth) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `locode_typo` | X13, X14 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `port_mismatch` | X14 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `vessel_imo_typo` | X15 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `scac_unknown` | X15 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `invoice_future_date` | X16 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `onboard_after_eta` | X16 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `duplicate_invoice` | X17 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `uom_mismatch` | X18 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `container_over_capacity` | X19 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `vgm_mismatch` | X20 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `bl_originals` | X21 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `incoterm_charges` | X22 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `price_undervalued` | X23 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `po_mismatch` | X24 | 200 | 200 | 0 | 0 | 100.0% | 100.0% |
+| `bn_check_digit` | C3 | 100 | 100 | 0 | 0 | 100.0% | 100.0% |
+| `isf_element_missing` | U2 | 100 | 100 | 0 | 0 | 100.0% | 100.0% |
+| `isf_late` | U3 | 100 | 100 | 0 | 0 | 100.0% | 100.0% |
+| `importer_number_format` | U4 | 100 | 100 | 0 | 0 | 100.0% | 100.0% |
+
 ## Extraction
 
 Model build aaee06c39dcf · prompt `extract-v3` · 200 shipments · 600 PDFs · 0 failed

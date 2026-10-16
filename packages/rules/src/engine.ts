@@ -1,13 +1,15 @@
 import type { DocumentType, Finding } from '@doccheck/schemas';
 import { PROFILES } from './profiles';
 import { ALL_RULES } from './registry';
-import { DEFAULT_PARAMS, type RuleParams, type ShipmentContext } from './types';
+import { DEFAULT_PARAMS, type RuleConfig, type RuleParams, type ShipmentContext } from './types';
 
 export interface EngineOutput {
   findings: Finding[];
   ran: string[];
   /** Rules that could not run because a required document is missing. */
   skipped: { ruleId: string; missing: DocumentType[] }[];
+  /** Rules of the profile the account turned off (RuleConfig). */
+  disabled: string[];
 }
 
 const present = (ctx: ShipmentContext): Set<DocumentType> => {
@@ -33,14 +35,23 @@ export interface RuleProgress {
 export interface RunOptions {
   /** Called after each rule, in order. Errors it throws are ignored. */
   onRule?: (progress: RuleProgress) => void;
+  /** The account's changes to the defaults: rules off, severities, tolerances (over `params`). */
+  config?: RuleConfig;
+  /** Run only these rules (still filtered by the profile), e.g. the rules an evaluation set is labeled for. */
+  only?: readonly string[];
 }
 
-export function runRules(ctx: ShipmentContext, params: Partial<RuleParams> = {}, { onRule }: RunOptions = {}): EngineOutput {
+export function runRules(ctx: ShipmentContext, params: Partial<RuleParams> = {}, { onRule, config, only }: RunOptions = {}): EngineOutput {
   const profile = PROFILES[ctx.destination];
-  const p = { ...DEFAULT_PARAMS, ...params };
+  const p = { ...DEFAULT_PARAMS, ...params, ...config?.params };
   const have = present(ctx);
-  const output: EngineOutput = { findings: [], ran: [], skipped: [] };
-  const rules = ALL_RULES.filter(({ definition: def }) => profile.rules.includes(def.id) && (def.appliesTo === 'ALL' || def.appliesTo.includes(ctx.destination)));
+  const output: EngineOutput = { findings: [], ran: [], skipped: [], disabled: [] };
+  const applicable = ALL_RULES.filter(
+    ({ definition: def }) => profile.rules.includes(def.id) && (def.appliesTo === 'ALL' || def.appliesTo.includes(ctx.destination)) && (!only || only.includes(def.id)),
+  );
+  const off = (id: string) => config?.rules?.[id]?.enabled === false;
+  output.disabled = applicable.filter((r) => off(r.definition.id)).map((r) => r.definition.id);
+  const rules = applicable.filter((r) => !off(r.definition.id));
   const notify = (progress: RuleProgress) => {
     try {
       onRule?.(progress);
@@ -64,7 +75,7 @@ export function runRules(ctx: ShipmentContext, params: Partial<RuleParams> = {},
         id: `${ctx.shipmentId}:${def.id}:${i}`,
         shipmentId: ctx.shipmentId,
         ruleId: def.id,
-        severity: r.severity ?? def.severity,
+        severity: config?.rules?.[def.id]?.severity ?? r.severity ?? def.severity,
         decidedBy: 'RULE',
         message: r.message,
         evidence: r.evidence,

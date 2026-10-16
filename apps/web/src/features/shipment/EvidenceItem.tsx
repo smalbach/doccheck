@@ -17,7 +17,14 @@ export interface EvidenceItemProps {
 export function EvidenceItem({ evidence, doc, onOpen, onCorrect }: EvidenceItemProps) {
   const { t } = useI18n();
   const { source } = evidence;
-  const docLabel = doc ? t(DOCUMENT_TYPE_KEY[doc.detectedType]) : evidence.documentId;
+  // Rules that compare with the account's history cite its purchase orders ("po:<id>") and documents of other shipments.
+  const docLabel = doc
+    ? t(DOCUMENT_TYPE_KEY[doc.detectedType])
+    : evidence.documentId.startsWith('po:')
+      ? t('shipment.findings.purchaseOrder')
+      : /^[0-9a-f-]{36}$/i.test(evidence.documentId)
+        ? t('shipment.findings.otherShipment')
+        : evidence.documentId;
   return (
     <li>
       <span className="muted">{docLabel}</span> <code>{evidence.field}</code>

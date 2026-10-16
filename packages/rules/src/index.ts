@@ -7,3 +7,6 @@ export * from './normalize';
 export { CA_REQUIRED } from './rules/c1-ca-invoice-fields';
 export { US_REQUIRED } from './rules/u1-us-invoice-fields';
 export { iso6346CheckDigit, isValidContainerNumber } from './rules/x10-container-check-digit';
+export * from './reference';
+export * from './rule-config';
+export { productKey, median, mad } from './rules/x23-price-history';

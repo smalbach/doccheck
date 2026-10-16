@@ -22,6 +22,7 @@ export type AppRoute =
   | { name: 'containers' }
   | { name: 'data-shipments' }
   | { name: 'rules' }
+  | { name: 'rule-settings' }
   | { name: 'results' }
   | { name: 'account' }
   | { name: 'admin-settings' }
@@ -47,6 +48,7 @@ const APP_PAGES: Record<string, AppRoute> = {
   '/app/containers': { name: 'containers' },
   '/app/data/shipments': { name: 'data-shipments' },
   '/app/rules': { name: 'rules' },
+  '/app/rules/settings': { name: 'rule-settings' },
   '/app/results': { name: 'results' },
   // Links from before the app moved under /app.
   '/results': { name: 'results' },
