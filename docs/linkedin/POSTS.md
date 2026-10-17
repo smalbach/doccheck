@@ -467,3 +467,43 @@ path a cloud provider would use, with the same validation and the same cache.
 [Your take: when you'd use a cloud model and when a local one.]
 
 #AIEngineering #Logistics #DataPrivacy #SoftwareEngineering
+
+## 10. De una web a una app que se instala
+
+Captura sugerida: `docs/screenshots/shipment-findings-light.webp` (o la landing publicada).
+
+**ES**
+
+DocCheck ahora se descarga e instala en Windows, macOS y Linux.
+
+La app de escritorio trae todo lo que antes había que montar: su propia base de datos Postgres y el
+servidor, guardados en la carpeta del usuario. Lo único aparte es Ollama, para que los modelos sigan
+corriendo en el mismo computador.
+
+Cada instalador lo construye su propio pipeline de GitHub Actions, en un runner de cada sistema, y se
+adjunta a la release del tag. La página de descargas enlaza siempre a la última.
+
+Lo que costó: el empaquetador dejaba fuera las dependencias del servidor sin avisar. El instalador
+salía, pero la app no arrancaba.
+
+[Tu opinión: qué cambia para un usuario entre "abre esta URL" e "instala esta app".]
+
+#SoftwareEngineering #Electron #DevOps #Logistics
+
+**EN**
+
+DocCheck can now be downloaded and installed on Windows, macOS and Linux.
+
+The desktop app brings everything that used to need setting up: its own Postgres database and the
+server, kept in the user's folder. The only extra is Ollama, so the models still run on the same
+computer.
+
+Each installer is built by its own GitHub Actions pipeline, on a runner of each OS, and attached to
+the tag's release. The download page always links to the latest one.
+
+The catch: the packager silently left the server's dependencies out. The installer built fine; the
+app didn't start.
+
+[Your take: what changes for a user between "open this URL" and "install this app".]
+
+#SoftwareEngineering #Electron #DevOps #Logistics

@@ -266,6 +266,24 @@ Todas fusionadas en `main` (último merge `a602285`), migraciones 040 a 051.
 - Pendiente: medir la precisión de extracción con modelos externos (`npm run eval:extraction` con
   `LLM_PROVIDER`), que no se hizo para no enviar datos ni gastar sin tu decisión.
 
+## App de escritorio y página de descargas, 17 oct
+
+- App de escritorio (`apps/desktop`, Electron 44): trae su propio Postgres (embedded-postgres 18) en la
+  carpeta de datos del usuario y arranca la API con el Node de Electron; solo hace falta Ollama.
+  Probada en macOS: 52 migraciones aplicadas al primer arranque y la API respondiendo `/health`.
+- Instalador de macOS (.dmg, Apple Silicon) generado en local: 268 MB. Primer intento fallido:
+  electron-builder deja fuera `node_modules` de `extraResources` aunque el filtro lo incluya; se
+  resolvió copiándolos en un hook `afterPack` (`apps/desktop/build/after-pack.cjs`).
+- Pipeline `.github/workflows/release.yml`: un job por sistema (windows-latest, macos-latest,
+  ubuntu-latest) que adjunta `.exe`, `.dmg`, `.AppImage` y `.deb` a la release del tag `v*`. Windows y
+  Linux aún no se han construido (corren en el primer tag).
+- Landing (`apps/landing`, publicada por `.github/workflows/pages.yml` en GitHub Pages): recorrido con
+  las capturas nuevas, todas las funciones agrupadas como el menú de la app, y descargas que apuntan a
+  `releases/latest/download/<archivo>`, con el pipeline de cada sistema. Detecta el sistema del
+  visitante; inglés y español; claro y oscuro.
+- Capturas regeneradas con `scripts/screenshots.mjs`, que ahora incluye aranceles, cola de revisión,
+  analítica, screening, integraciones y API.
+
 ## Pendiente / próximos pasos
 
 - OCR de Baidu en Linux con GPU (vLLM) para no depender de un Mac.
@@ -288,3 +306,4 @@ Todas fusionadas en `main` (último merge `a602285`), migraciones 040 a 051.
 - 15 oct 2026: prueba de +códigos del buzón y apagado automático si el servidor los rechaza.
 - 17 oct 2026: funcionalidades del mercado en 11 sesiones paralelas, fusionadas en main (`a602285`).
 - 17 oct 2026: proveedores de IA configurables (LLM, embeddings, OCR) con "solo local" y claves cifradas.
+- 17 oct 2026: app de escritorio (Windows, macOS, Linux), pipeline de releases y landing de descargas.

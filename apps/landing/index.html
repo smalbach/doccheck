@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DocCheck — catch freight document errors before customs does</title>
+<meta name="description" content="DocCheck reads invoices, packing lists, bills of lading, ISF filings and six other shipping documents, cross-checks them with 53 deterministic rules, estimates duties, screens every party and cites the regulation behind every finding. Local models; desktop app for Windows, macOS and Linux.">
+<meta property="og:title" content="DocCheck">
+<meta property="og:description" content="Catch freight document errors before customs does. Desktop app for Windows, macOS and Linux.">
+<meta property="og:image" content="screenshots/shipment-findings-light.webp">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  :root {
+    --bg: #f6f7f6;
+    --surface: #ffffff;
+    --surface-2: #eef3f2;
+    --text: #12201e;
+    --muted: #4f605d;
+    --line: #d8e1df;
+    --brand: #0f766e;
+    --brand-strong: #0b5c56;
+    --brand-soft: #d7ece9;
+    --accent: #a14a06;
+    --accent-soft: #fdf0d5;
+    --on-brand: #ffffff;
+    --hero-glow: rgb(15 118 110 / 14%);
+    --shadow: 0 1px 2px rgb(16 40 36 / 6%), 0 18px 40px -18px rgb(16 40 36 / 22%);
+    --radius: 14px;
+    --max: 1180px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1211; --surface: #111b1a; --surface-2: #162321; --text: #e4edeb; --muted: #9db0ac; --line: #253533;
+      --brand: #2bb3a5; --brand-strong: #62cbbf; --brand-soft: #123331; --accent: #fbbf24; --accent-soft: #33280c;
+      --on-brand: #03201c; --hero-glow: rgb(43 179 165 / 16%);
+      --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 20px 44px -20px rgb(0 0 0 / 70%);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1211; --surface: #111b1a; --surface-2: #162321; --text: #e4edeb; --muted: #9db0ac; --line: #253533;
+    --brand: #2bb3a5; --brand-strong: #62cbbf; --brand-soft: #123331; --accent: #fbbf24; --accent-soft: #33280c;
+    --on-brand: #03201c; --hero-glow: rgb(43 179 165 / 16%);
+    --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 20px 44px -20px rgb(0 0 0 / 70%);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden;
+    font: 16px/1.6 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  /* Screenshots keep their own proportions: width follows the column, height follows the width. */
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--brand); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; border-radius: 8px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 32px; } }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 12px; border-radius: 8px; z-index: 10; }
+  .skip:focus { left: 8px; }
+  svg.i { width: 20px; height: 20px; flex: none; }
+
+  /* Header */
+  header.top {
+    position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  }
+  .top .wrap { display: flex; align-items: center; gap: 16px; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
+  .brand img { width: 28px; height: 28px; }
+  nav.links { display: none; gap: 22px; margin-left: 20px; }
+  nav.links a { color: var(--muted); text-decoration: none; font-size: 15px; }
+  nav.links a:hover { color: var(--text); }
+  @media (min-width: 900px) { nav.links { display: flex; } }
+  .top .actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .chip {
+    font: inherit; font-size: 14px; color: var(--muted); background: transparent; border: 1px solid var(--line);
+    border-radius: 999px; padding: 5px 11px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; min-height: 34px;
+  }
+  .chip:hover { color: var(--text); border-color: var(--muted); }
+  .chip svg { width: 16px; height: 16px; }
+  .chip.get { display: none; background: var(--brand); border-color: var(--brand); color: var(--on-brand); font-weight: 600; }
+  @media (min-width: 560px) { .chip.get { display: inline-flex; } }
+  @media (max-width: 420px) { .chip .gh-label { display: none; } }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font: inherit; font-weight: 600; font-size: 16px; text-decoration: none; cursor: pointer;
+    padding: 12px 20px; border-radius: 12px; border: 1px solid transparent; min-height: 48px;
+    transition: background-color .12s ease, border-color .12s ease;
+  }
+  .btn-primary { background: var(--brand); color: var(--on-brand); }
+  .btn-primary:hover { background: var(--brand-strong); }
+  .btn-ghost { background: var(--surface); color: var(--text); border-color: var(--line); }
+  .btn-ghost:hover { border-color: var(--muted); }
+
+  /* Hero */
+  .hero { position: relative; padding: 56px 0 0; }
+  .hero::before {
+    content: ""; position: absolute; inset: -60px 0 auto; height: 620px; z-index: -1; pointer-events: none;
+    background: radial-gradient(60% 60% at 70% 20%, var(--hero-glow), transparent 70%);
+  }
+  @media (min-width: 960px) { .hero { padding-top: 84px; } }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .02em;
+    color: var(--brand-strong); background: var(--brand-soft); border-radius: 999px; padding: 5px 12px;
+  }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brand); }
+  h1 { font-size: clamp(36px, 6.4vw, 68px); line-height: 1.03; letter-spacing: -0.035em; margin: 20px 0 18px; max-width: 16ch; text-wrap: balance; }
+  h1 em { font-style: normal; color: var(--brand); }
+  .lede { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 64ch; margin: 0 0 30px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .cta .meta { width: 100%; font-size: 14px; color: var(--muted); margin: 4px 0 0; }
+  .cta .meta a { color: var(--muted); }
+
+  .frame { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); margin: 0; }
+  .frame .bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; border-bottom: 1px solid var(--line); background: var(--surface-2); }
+  .frame .bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  .frame .bar span { margin-left: 10px; font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hero .frame { margin-top: 48px; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 40px; }
+  @media (min-width: 900px) { .stats { grid-template-columns: repeat(5, 1fr); } }
+  .stat { background: var(--surface); padding: 20px; }
+  .stat:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  @media (min-width: 900px) { .stat:last-child:nth-child(odd) { grid-column: auto; } }
+  .stat b { display: block; font-size: clamp(26px, 3.6vw, 36px); letter-spacing: -0.03em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--muted); font-size: 14px; }
+
+  /* Sections */
+  section.block { padding: 96px 0 0; scroll-margin-top: 40px; }
+  .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 0 0 10px; }
+  h2 { font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.025em; line-height: 1.1; margin: 0 0 14px; max-width: 24ch; text-wrap: balance; }
+  .section-lede { color: var(--muted); font-size: 18px; max-width: 66ch; margin: 0 0 36px; }
+  h3 { letter-spacing: -0.01em; }
+
+  .steps { display: grid; gap: 16px; counter-reset: step; }
+  @media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px;
+    background: var(--brand-soft); color: var(--brand-strong); font-weight: 700; margin-bottom: 16px;
+  }
+  .step h3 { margin: 0 0 6px; font-size: 19px; }
+  .step p { margin: 0; color: var(--muted); }
+
+  /* Product tour */
+  .tour { display: grid; gap: 20px; align-items: start; }
+  @media (min-width: 980px) { .tour { grid-template-columns: 320px minmax(0, 1fr); gap: 32px; } }
+  .tabs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 2px 16px 6px; }
+  .tabs::-webkit-scrollbar { display: none; }
+  @media (min-width: 980px) { .tabs { flex-direction: column; overflow: visible; margin: 0; padding: 0; } }
+  .tab {
+    font: inherit; text-align: left; cursor: pointer; color: var(--text); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; flex: none; display: flex; gap: 12px; align-items: flex-start;
+  }
+  .tab svg { color: var(--muted); margin-top: 2px; }
+  .tab b { display: block; font-size: 15px; white-space: nowrap; }
+  .tab small { display: none; color: var(--muted); font-size: 14px; line-height: 1.45; margin-top: 2px; }
+  @media (min-width: 980px) { .tab { padding: 14px 16px; } .tab b { white-space: normal; } .tab small { display: block; } }
+  .tab[aria-selected="true"] { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand); }
+  .tab[aria-selected="true"] svg { color: var(--brand); }
+  .tab:hover:not([aria-selected="true"]) { border-color: var(--muted); }
+  .panel[hidden] { display: none; }
+  @media (min-width: 980px) { .tour > div:last-child { position: sticky; top: 84px; } }
+  .tour-caption { color: var(--muted); font-size: 15px; margin: 14px 0 0; }
+  @media (min-width: 980px) { .tour-caption { display: none; } }
+
+  /* Capability map */
+  .map { display: grid; gap: 16px; }
+  @media (min-width: 720px) { .map { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1080px) { .map { grid-template-columns: repeat(3, 1fr); } }
+  .area { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 22px 18px; }
+  .area header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .area header span { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--brand-soft); color: var(--brand-strong); flex: none; }
+  .area h3 { margin: 0; font-size: 18px; }
+  .area ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .area li { color: var(--muted); font-size: 15px; padding-left: 18px; position: relative; line-height: 1.5; }
+  .area li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 6px; height: 6px; border-radius: 2px; background: var(--brand); opacity: .7; }
+  .area li b { color: var(--text); font-weight: 600; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; }
+  .split { display: grid; gap: 32px; margin-top: 32px; }
+  @media (min-width: 900px) { .split { grid-template-columns: 1fr 1fr; gap: 48px; } }
+  .split h3 { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 14px; }
+  .dest { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .dest div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; }
+  .dest b { display: block; }
+  .dest span { color: var(--muted); font-size: 14px; }
+
+  /* Privacy with the phone */
+  .phone-row { display: grid; gap: 40px; align-items: center; }
+  @media (min-width: 900px) { .phone-row { grid-template-columns: minmax(0, 1fr) 320px; gap: 64px; } }
+  .phone { width: min(300px, 80vw); margin: 0 auto; border: 10px solid #1d2826; border-radius: 40px; overflow: hidden; box-shadow: var(--shadow); background: #1d2826; }
+  .phone img { border-radius: 30px; width: 100%; aspect-ratio: 1170 / 2100; object-fit: cover; object-position: top; }
+
+  .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .checks li { display: flex; gap: 12px; align-items: flex-start; }
+  .checks svg { color: var(--brand); margin-top: 3px; }
+
+  /* Downloads */
+  .downloads { display: grid; gap: 16px; }
+  @media (min-width: 640px) and (max-width: 999px) { .downloads { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .downloads { grid-template-columns: repeat(3, 1fr); } }
+  .dl { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 14px; position: relative; }
+  .dl.current { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand), var(--shadow); }
+  .dl .badge-you { position: absolute; top: -11px; left: 20px; background: var(--brand); color: var(--on-brand); font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; display: none; }
+  .dl.current .badge-you { display: block; }
+  .dl header { display: flex; align-items: center; gap: 12px; }
+  .dl header svg { width: 34px; height: 34px; flex: none; }
+  .dl h3 { margin: 0; font-size: 21px; }
+  .dl .sub { color: var(--muted); font-size: 14px; margin: 0; }
+  .dl .files { display: grid; gap: 8px; }
+  .dl .files .btn { width: 100%; justify-content: space-between; text-align: left; }
+  .dl .files .btn > span { display: inline-flex; align-items: center; gap: 10px; }
+  .dl .files .btn small { font-weight: 500; opacity: .8; font-size: 13px; }
+  .dl .note { font-size: 14px; color: var(--muted); margin: 0; }
+  .dl .pipe { margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--line); font-size: 14px; }
+  .dl .pipe a { color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+  .dl .pipe a:hover { color: var(--text); }
+  .dl .pipe svg { width: 16px; height: 16px; }
+  .release-line { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin: 0 0 28px; color: var(--muted); font-size: 15px; }
+  .release-line img { height: 20px; width: auto; }
+  .callout {
+    margin-top: 20px; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    border-radius: var(--radius); padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout svg { color: var(--accent); margin-top: 2px; }
+  .callout p { margin: 0; }
+  code { font: 14px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; overflow-wrap: anywhere; }
+
+  footer.bottom { margin-top: 104px; border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
+  footer.bottom .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+  footer.bottom a { color: var(--muted); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.540 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+  <symbol id="i-windows" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.5 10.5 4.4v7.1H3V5.5Zm0 13 7.5 1.1v-7H3v5.9Zm8.4 1.2L21 21v-8.4h-9.6v7.1Zm0-15.4v7.2H21V3l-9.6 1.3Z"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1ZM13.9 5c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.1.1 2.3-.6 3-1.5Z"/></symbol>
+  <symbol id="i-linux" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c-2.2 0-3.4 1.8-3.4 4.3 0 1.4.3 2.3-.3 3.4-.7 1.2-2.6 3.3-2.9 5.5-.2 1.3.2 2.2.6 2.7-.5.3-1.6.6-1.7 1.4-.1.9 1.2 1.2 2.4 1.6 1.2.4 2 1.1 3 1.1.9 0 1.5-.6 2.3-.6.9 0 1.5.6 2.4.6 1 0 1.8-.7 3-1.1 1.2-.4 2.5-.7 2.4-1.6-.1-.8-1.2-1.1-1.7-1.4.4-.5.8-1.4.6-2.7-.3-2.2-2.2-4.3-2.9-5.5-.6-1.1-.3-2-.3-3.4C15.4 3.8 14.2 2 12 2Zm-1.6 4.1c.4 0 .7.5.7 1.1 0 .3-.1.6-.2.8l-.5-.2c.1-.1.1-.4.1-.6 0-.4-.2-.6-.3-.6-.2 0-.3.3-.3.6v.3l-.5-.1v-.3c0-.6.4-1 1-1Zm3.1 0c.6 0 1 .5 1 1.1v.3l-.5.1v-.3c0-.3-.2-.6-.4-.6s-.4.3-.4.6c0 .2 0 .4.1.5l-.5.2c-.1-.2-.2-.4-.2-.7 0-.7.4-1.2.9-1.2Zm-1.5 2.1c.8 0 1.8.6 2.1.9.2.2.1.5-.2.6-.6.4-1.3.9-1.9.9s-1.3-.5-1.9-.9c-.3-.2-.4-.4-.2-.6.3-.3 1.3-.9 2.1-.9Z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></symbol>
+  <symbol id="i-pipe" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 3v12m0 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm12-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 0c0 5-6 4-12 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8h.01M11 12h1v5h1M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Zm0 0v5h5M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm-1 1 9 7 9-7"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Zm3-13.5c-.5-.9-1.6-1.5-3-1.5-1.9 0-3 1-3 2.3 0 3.2 6 1.7 6 4.9 0 1.3-1.2 2.3-3 2.3-1.4 0-2.6-.6-3.1-1.6M12 5.5V7m0 10v1.5"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 20V10m6 10V4m6 16v-7m6 7H2"/></symbol>
+  <symbol id="i-table" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 5h18v14H3zM3 10h18M3 15h18M9 5v14"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 2v6m6-6v6M6 8h12v4a6 6 0 0 1-12 0V8Zm6 10v4"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m7-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 7V5a2 2 0 0 1 2-2h2m10 0h2a2 2 0 0 1 2 2v2m0 10v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="icon.svg" alt="" width="28" height="28">DocCheck</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#how" data-i18n="nav.how">How it works</a>
+      <a href="#tour" data-i18n="nav.tour">Tour</a>
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+    </nav>
+    <div class="actions">
+      <button class="chip" id="lang" type="button" aria-label="Español">ES</button>
+      <button class="chip" id="theme" type="button" aria-label="Toggle dark mode"><svg><use href="#i-moon"/></svg></button>
+      <a class="chip" href="https://github.com/smalbach/doccheck" aria-label="DocCheck on GitHub"><svg><use href="#i-github"/></svg><span class="gh-label">GitHub</span></a>
+      <a class="chip get" href="#download" data-i18n="nav.download">Download</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">Desktop app · Windows, macOS, Linux</span></span>
+      <h1 data-i18n-html="h1">Catch freight document errors <em>before customs does.</em></h1>
+      <p class="lede" data-i18n="lede">DocCheck reads every paper of a shipment — invoice, packing list, bill of lading, ISF, air waybill, certificates — cross-checks them against each other and against the destination's customs rules, and links each finding to the exact line in the PDF and the regulation behind it. Then it helps you get corrected documents from the supplier.</p>
+      <div class="cta">
+        <a class="btn btn-primary" id="hero-download" href="#download"><svg class="i"><use href="#i-download"/></svg><span data-i18n="cta.download">Download</span></a>
+        <a class="btn btn-ghost" href="https://github.com/smalbach/doccheck"><svg class="i"><use href="#i-github"/></svg><span data-i18n="cta.source">View the source</span></a>
+        <p class="meta"><span id="hero-version" data-i18n="cta.meta">Free and open source (MIT).</span> <a href="#download" data-i18n="cta.other">Other platforms</a></p>
+      </div>
+      <figure class="frame">
+        <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>DocCheck — Sample CA-001</span></div>
+        <picture>
+          <source srcset="screenshots/shipment-findings-dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="screenshots/shipment-findings-light.webp" width="2880" height="1800" alt="A shipment in DocCheck: its documents on the left and the findings on the right, each with the fields involved, the fix to make and the CBSA passage behind it" fetchpriority="high">
+        </picture>
+      </figure>
+      <div class="stats" role="list">
+        <div class="stat" role="listitem"><b>99.8%</b><span data-i18n="stat.fields">field accuracy, 600 PDFs</span></div>
+        <div class="stat" role="listitem"><b>100%</b><span data-i18n="stat.recall">of injected errors caught, end to end</span></div>
+        <div class="stat" role="listitem"><b>53</b><span data-i18n="stat.rules">deterministic rules</span></div>
+        <div class="stat" role="listitem"><b>10</b><span data-i18n="stat.docs">document types</span></div>
+        <div class="stat" role="listitem"><b>5</b><span data-i18n="stat.dest">customs authorities</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="wrap">
+      <p class="kicker" data-i18n="how.kicker">How it works</p>
+      <h2 data-i18n="how.title">A model reads. Plain code checks.</h2>
+      <p class="section-lede" data-i18n="how.lede">A local model only copies the values as printed. Tested code normalizes them and deterministic rules decide, with the tolerances your organization sets, so every finding can be explained and replayed. The model comes back only for the narrow cases a rule cannot settle alone.</p>
+      <div class="steps">
+        <div class="step"><h3 data-i18n="how.1.t">Drop in the documents</h3><p data-i18n="how.1.d">PDFs, scans, phone photos or spreadsheets, by upload, email or a watched folder. A combined PDF is split into its documents and each one is classified.</p></div>
+        <div class="step"><h3 data-i18n="how.2.t">53 rules cross-check them</h3><p data-i18n="how.2.d">Counts and weights across documents, invoice arithmetic, Incoterms, container check digits, ISF 10+2, HS codes, denied parties and the fields each customs authority requires.</p></div>
+        <div class="step"><h3 data-i18n="how.3.t">Fix it before arrival</h3><p data-i18n="how.3.d">Each finding opens the PDF on the cited line. Ask the supplier for corrections from the app; their reply and corrected PDF come back into the shipment.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="tour">
+    <div class="wrap">
+      <p class="kicker" data-i18n="tour.kicker">Product tour</p>
+      <h2 data-i18n="tour.title">From the first upload to a clean entry.</h2>
+      <p class="section-lede" data-i18n="tour.lede">Screens from the current version of the app.</p>
+      <div class="tour">
+        <div class="tabs" role="tablist" aria-label="Product tour">
+          <button class="tab" type="button" role="tab" id="t-findings" aria-controls="p-findings" aria-selected="true"><svg class="i"><use href="#i-alert"/></svg><span><b data-i18n="tour.findings.t">Findings with evidence</b><small data-i18n="tour.findings.d">Each one names the fields, the tolerance, what to do and the regulation passage behind it.</small></span></button>
+          <button class="tab" type="button" role="tab" id="t-pdf" aria-controls="p-pdf" aria-selected="false" tabindex="-1"><svg class="i"><use href="#i-doc"/></svg><span><b data-i18n="tour.pdf.t">The cited line, highlighted</b><small data-i18n="tour.pdf.d">The PDF opens on the right page with the value outlined; a misread value is corrected from there.</small></span></button>
+          <button class="tab" type="button" role="tab" id="t-request" aria-controls="p-request" aria-selected="false" tabindex="-1"><svg class="i"><use href="#i-mail"/></svg><span><b data-i18n="tour.request.t">Corrections from the supplier</b><small data-i18n="tour.request.d">The request is drafted from the findings in English, Spanish or French, with a no-account upload link.</small></span></button>
+          <button class="tab" type="button" role="tab" id="t-duties" aria-controls="p-duties" aria-selected="false" tabindex="-1"><svg class="i"><use href="#i-coin"/></svg><span><b data-i18n="tour.duties.t">Duties and landed cost</b><small data-i18n="tour.duties.d">Value for duty, rates, surtaxes and taxes per line, exchange rates, and a draft CBSA CAD or CBP 7501.</small></span></button>
+          <button class="tab" type="button" role="tab" id="t-analytics" aria-controls="p-analytics" aria-selected="false" tabindex="-1"><svg class="i"><use href="#i-chart"/></svg><span><b data-i18n="tour.analytics.t">Cost avoided</b><small data-i18n="tour.analytics.d">The AMPS and ISF penalties and hold costs your corrections avoided, with every assumption on the page.</small></span></button>
+          <button class="tab" type="button" role="tab" id="t-data" aria-controls="p-data" aria-selected="false" tabindex="-1"><svg class="i"><use href="#i-table"/></svg><span><b data-i18n="tour.data.t">Your data, across shipments</b><small data-i18n="tour.data.d">Every invoice line with HS code and origin; companies, products, prices and containers.</small></span></button>
+        </div>
+        <div>
+          <figure class="panel frame" role="tabpanel" id="p-findings" aria-labelledby="t-findings">
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img src="screenshots/shipment-findings-light.webp" width="2880" height="1800" fetchpriority="low" alt="Findings on a shipment: gross weight differs between packing list and bill of lading, an invalid container check digit, each with the CBSA memorandum it relies on">
+          </figure>
+          <figure class="panel frame" role="tabpanel" id="p-pdf" aria-labelledby="t-pdf" hidden>
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img src="screenshots/shipment-pdf-viewer.webp" width="2880" height="1800" fetchpriority="low" alt="The packing list PDF open beside the shipment with the cited line highlighted">
+          </figure>
+          <figure class="panel frame" role="tabpanel" id="p-request" aria-labelledby="t-request" hidden>
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img src="screenshots/request-compose.webp" width="2880" height="1800" fetchpriority="low" alt="The correction request dialog with the findings to include, the language and the drafted message">
+          </figure>
+          <figure class="panel frame" role="tabpanel" id="p-duties" aria-labelledby="t-duties" hidden>
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img src="screenshots/shipment-duties.webp" width="2880" height="1800" fetchpriority="low" alt="Duties and landed cost of a shipment to Canada: value for duty, duty, GST and landed cost per line">
+          </figure>
+          <figure class="panel frame" role="tabpanel" id="p-analytics" aria-labelledby="t-analytics" hidden>
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img src="screenshots/analytics-cost.webp" width="2880" height="1800" fetchpriority="low" alt="Cost avoided page: penalties still exposed, and the CBSA AMPS and CBP ISF assumptions per destination">
+          </figure>
+          <figure class="panel frame" role="tabpanel" id="p-data" aria-labelledby="t-data" hidden>
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img src="screenshots/extracted-data-goods.webp" width="2880" height="1800" fetchpriority="low" alt="Every invoice line across shipments with description, HS code, origin and value">
+          </figure>
+          <p class="tour-caption" id="tour-caption" aria-hidden="true"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="features">
+    <div class="wrap">
+      <p class="kicker" data-i18n="feat.kicker">Everything in the app</p>
+      <h2 data-i18n="feat.title">One place for the whole shipment folder.</h2>
+      <p class="section-lede" data-i18n="feat.lede">What each part of the app does today, grouped the way its menu is.</p>
+      <div class="map">
+        <article class="area">
+          <header><span><svg class="i"><use href="#i-scan"/></svg></span><h3 data-i18n="a.read.t">Reading documents</h3></header>
+          <ul>
+            <li data-i18n-html="a.read.1"><b>Any format:</b> text PDFs, scans (OCR), phone photos straightened and cropped, .xlsx and .csv read without a model.</li>
+            <li data-i18n-html="a.read.2"><b>Combined PDFs</b> split by page into their documents, each one classified.</li>
+            <li data-i18n-html="a.read.3"><b>Review queue:</b> unsure values beside the PDF, checked from the keyboard.</li>
+            <li data-i18n-html="a.read.4"><b>Supplier learning:</b> your corrections become examples for that supplier's next documents.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <header><span><svg class="i"><use href="#i-alert"/></svg></span><h3 data-i18n="a.rules.t">Rules and compliance</h3></header>
+          <ul>
+            <li data-i18n-html="a.rules.1"><b>53 rules</b> across documents, each one tunable per organization: on or off, severity, tolerances, carriers.</li>
+            <li data-i18n-html="a.rules.2"><b>Tariff checks:</b> HS codes against HTSUS and the Canadian Customs Tariff, partner agencies (FDA, USDA, CFIA…) and dual-use flags.</li>
+            <li data-i18n-html="a.rules.3"><b>Party screening</b> against OFAC, BIS, SEMA, UN, EU and UFLPA lists, with an allowlist and forced-labour risk flags.</li>
+            <li data-i18n-html="a.rules.4"><b>Citations:</b> every finding links to the CBSA, CBP, RGCE, EU or HMRC passage, found by hybrid search.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <header><span><svg class="i"><use href="#i-mail"/></svg></span><h3 data-i18n="a.mail.t">Suppliers and inbox</h3></header>
+          <ul>
+            <li data-i18n-html="a.mail.1"><b>Correction requests</b> drafted from the findings in three languages and sent over your SMTP.</li>
+            <li data-i18n-html="a.mail.2"><b>An inbox</b> for every conversation: unread, awaiting reply, overdue, not sent.</li>
+            <li data-i18n-html="a.mail.3"><b>Supplier portal:</b> a signed link to upload corrected PDFs, no account needed.</li>
+            <li data-i18n-html="a.mail.4"><b>Pre-shipment checks:</b> suppliers test draft invoices and packing lists before shipping.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <header><span><svg class="i"><use href="#i-coin"/></svg></span><h3 data-i18n="a.duties.t">Duties and landed cost</h3></header>
+          <ul>
+            <li data-i18n-html="a.duties.1"><b>Customs value</b> from the invoice and its Incoterm, under US and Canadian rules.</li>
+            <li data-i18n-html="a.duties.2"><b>Dated rate tables:</b> Section 301 / 232, Canadian surtaxes, MPF, HMF, GST and HST.</li>
+            <li data-i18n-html="a.duties.3"><b>Free trade:</b> CUSMA data elements, possible savings, AD/CVD and SIMA cases flagged.</li>
+            <li data-i18n-html="a.duties.4"><b>Draft CBP 7501 or CBSA CAD</b>, prefilled and never transmitted.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <header><span><svg class="i"><use href="#i-chart"/></svg></span><h3 data-i18n="a.analytics.t">Analytics</h3></header>
+          <ul>
+            <li data-i18n-html="a.analytics.1"><b>KPIs:</b> clean on first validation, findings per shipment, error rate by rule, supplier, origin and route.</li>
+            <li data-i18n-html="a.analytics.2"><b>Supplier scorecard</b> with its formula on the page, and <b>price benchmarks</b> per product and HS-6.</li>
+            <li data-i18n-html="a.analytics.3"><b>Ask your data</b> in plain language: SQL written locally, checked and run read-only.</li>
+            <li data-i18n-html="a.analytics.4"><b>Regulation watch:</b> changed passages, the rules that cite them and the open shipments they affect.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <header><span><svg class="i"><use href="#i-plug"/></svg></span><h3 data-i18n="a.int.t">Integrations</h3></header>
+          <ul>
+            <li data-i18n-html="a.int.1"><b>REST API</b> with scoped, rate-limited keys and an OpenAPI 3.1 reference.</li>
+            <li data-i18n-html="a.int.2"><b>Signed webhooks</b>, and Slack or Teams alerts.</li>
+            <li data-i18n-html="a.int.3"><b>Watched folders</b> (SFTP, S3, local) and documents by email become shipments.</li>
+            <li data-i18n-html="a.int.4"><b>Exports:</b> CargoWise XML, X12 856/310; container tracking checked against the BL.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <header><span><svg class="i"><use href="#i-users"/></svg></span><h3 data-i18n="a.team.t">Teams</h3></header>
+          <ul>
+            <li data-i18n-html="a.team.1"><b>Organizations and roles:</b> owner, admin, analyst, reviewer, viewer and read-only clients.</li>
+            <li data-i18n-html="a.team.2"><b>Assignments, comments</b> with @mentions, due dates and two-step approval of accepted risks.</li>
+            <li data-i18n-html="a.team.3"><b>Hash-chained audit log</b> and records retention (CBSA 6 years, CBP 5).</li>
+            <li data-i18n-html="a.team.4"><b>Two-factor sign-in</b>, single sign-on (OpenID Connect) and usage plans.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <header><span><svg class="i"><use href="#i-table"/></svg></span><h3 data-i18n="a.data.t">Extracted data</h3></header>
+          <ul>
+            <li data-i18n-html="a.data.1"><b>Summary</b> of values, weights and origins across shipments.</li>
+            <li data-i18n-html="a.data.2"><b>Companies</b> as one record however each document spells them.</li>
+            <li data-i18n-html="a.data.3"><b>Products</b> with their price per purchase, seller and currency.</li>
+            <li data-i18n-html="a.data.4"><b>Containers</b> with seal, carrier, vessel and route.</li>
+          </ul>
+        </article>
+        <article class="area">
+          <header><span><svg class="i"><use href="#i-shield"/></svg></span><h3 data-i18n="a.ai.t">Models you control</h3></header>
+          <ul>
+            <li data-i18n-html="a.ai.1"><b>Local by default:</b> Ollama for extraction, the agent and embeddings; Tesseract or Unlimited-OCR for scans.</li>
+            <li data-i18n-html="a.ai.2"><b>Optional providers:</b> OpenAI, Azure OpenAI, Anthropic or Gemini, set by an admin with encrypted keys.</li>
+            <li data-i18n-html="a.ai.3"><b>Measured:</b> an evaluation page with field accuracy and per-rule recall and precision.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="coverage">
+    <div class="wrap">
+      <p class="kicker" data-i18n="cov.kicker">Coverage</p>
+      <h2 data-i18n="cov.title">The papers of a shipment, the rules of five authorities.</h2>
+      <div class="split">
+        <div>
+          <h3 data-i18n="cov.docs">Documents it reads</h3>
+          <div class="tags">
+            <span class="tag" data-i18n="doc.ci">Commercial invoice</span>
+            <span class="tag" data-i18n="doc.pl">Packing list</span>
+            <span class="tag" data-i18n="doc.bl">Bill of lading</span>
+            <span class="tag" data-i18n="doc.isf">ISF 10+2</span>
+            <span class="tag" data-i18n="doc.awb">Air waybill</span>
+            <span class="tag" data-i18n="doc.co">Certificate of origin</span>
+            <span class="tag" data-i18n="doc.cusma">CUSMA certification</span>
+            <span class="tag" data-i18n="doc.an">Arrival notice</span>
+            <span class="tag" data-i18n="doc.ispm">ISPM 15 certificate</span>
+            <span class="tag" data-i18n="doc.dg">Dangerous goods declaration</span>
+          </div>
+        </div>
+        <div>
+          <h3 data-i18n="cov.dest">Destinations</h3>
+          <div class="dest">
+            <div><b>CBSA</b><span data-i18n="dest.ca">Canada</span></div>
+            <div><b>CBP</b><span data-i18n="dest.us">United States</span></div>
+            <div><b>ANAM</b><span data-i18n="dest.mx">Mexico</span></div>
+            <div><b>UCC</b><span data-i18n="dest.eu">European Union</span></div>
+            <div><b>HMRC</b><span data-i18n="dest.uk">United Kingdom</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="privacy">
+    <div class="wrap phone-row">
+      <div>
+        <p class="kicker" data-i18n="priv.kicker">Privacy</p>
+        <h2 data-i18n="priv.title">Your documents stay on your computer.</h2>
+        <p class="section-lede" data-i18n="priv.lede">The desktop app brings its own database and server. Nothing to configure, and nothing sent out unless you choose to.</p>
+        <ul class="checks">
+          <li><svg class="i"><use href="#i-check"/></svg><span data-i18n="priv.1">A built-in Postgres database and server, kept in your user folder.</span></li>
+          <li><svg class="i"><use href="#i-check"/></svg><span data-i18n="priv.2">Local models through Ollama: no document goes to an outside AI service.</span></li>
+          <li><svg class="i"><use href="#i-check"/></svg><span data-i18n="priv.3">Rules and normalization are plain, tested code, never a model.</span></li>
+          <li><svg class="i"><use href="#i-check"/></svg><span data-i18n="priv.4">On a phone too: the web app installs as a PWA and turns camera photos into one straightened PDF.</span></li>
+          <li><svg class="i"><use href="#i-check"/></svg><span data-i18n="priv.5">Open source under the MIT license: read every line it runs.</span></li>
+        </ul>
+      </div>
+      <div class="phone"><img src="screenshots/mobile-shipment.webp" width="1170" height="2532" loading="lazy" alt="A shipment's findings on a phone"></div>
+    </div>
+  </section>
+
+  <section class="block" id="download">
+    <div class="wrap">
+      <p class="kicker" data-i18n="dl.kicker">Download</p>
+      <h2 data-i18n="dl.title">Get DocCheck for your computer.</h2>
+      <p class="section-lede" data-i18n="dl.lede">Each installer is built by its own GitHub Actions pipeline from the tagged source and attached to the GitHub release.</p>
+      <p class="release-line">
+        <span id="release-info" data-i18n="dl.latest">Latest release on GitHub</span>
+        <a href="https://github.com/smalbach/doccheck/actions/workflows/release.yml"><img src="https://github.com/smalbach/doccheck/actions/workflows/release.yml/badge.svg" alt="Release pipeline status" height="20" onerror="this.parentElement.hidden = true"></a>
+        <a href="https://github.com/smalbach/doccheck/releases" data-i18n="dl.all">All releases</a>
+      </p>
+      <div class="downloads">
+        <article class="dl" data-os="windows">
+          <span class="badge-you" data-i18n="dl.you">Your system</span>
+          <header><svg><use href="#i-windows"/></svg><div><h3>Windows</h3><p class="sub" data-i18n="dl.win.req">Windows 10 or 11, 64-bit</p></div></header>
+          <div class="files">
+            <a class="btn btn-primary" data-asset="DocCheck-windows-setup.exe" href="https://github.com/smalbach/doccheck/releases/latest/download/DocCheck-windows-setup.exe"><span><svg class="i"><use href="#i-download"/></svg><span><span data-i18n="dl.installer">Installer</span> (.exe)</span></span><small data-size></small></a>
+          </div>
+          <p class="note" data-i18n="dl.win.note">SmartScreen may warn about an unsigned app: choose More info, then Run anyway.</p>
+          <div class="pipe"><a href="https://github.com/smalbach/doccheck/actions/workflows/release.yml"><svg><use href="#i-pipe"/></svg><span><span data-i18n="dl.pipe">Build pipeline</span>: windows-latest</span></a></div>
+        </article>
+        <article class="dl" data-os="mac">
+          <span class="badge-you" data-i18n="dl.you">Your system</span>
+          <header><svg><use href="#i-apple"/></svg><div><h3>macOS</h3><p class="sub" data-i18n="dl.mac.req">macOS 12 or later, Apple Silicon</p></div></header>
+          <div class="files">
+            <a class="btn btn-primary" data-asset="DocCheck-mac-arm64.dmg" href="https://github.com/smalbach/doccheck/releases/latest/download/DocCheck-mac-arm64.dmg"><span><svg class="i"><use href="#i-download"/></svg><span><span data-i18n="dl.disk">Disk image</span> (.dmg)</span></span><small data-size></small></a>
+          </div>
+          <p class="note" data-i18n-html="dl.mac.note">Not notarized yet: the first time, right-click DocCheck in Applications and choose <b>Open</b>.</p>
+          <div class="pipe"><a href="https://github.com/smalbach/doccheck/actions/workflows/release.yml"><svg><use href="#i-pipe"/></svg><span><span data-i18n="dl.pipe">Build pipeline</span>: macos-latest</span></a></div>
+        </article>
+        <article class="dl" data-os="linux">
+          <span class="badge-you" data-i18n="dl.you">Your system</span>
+          <header><svg><use href="#i-linux"/></svg><div><h3>Linux</h3><p class="sub" data-i18n="dl.linux.req">x86-64 · Ubuntu 20.04 or later</p></div></header>
+          <div class="files">
+            <a class="btn btn-primary" data-asset="DocCheck-linux.AppImage" href="https://github.com/smalbach/doccheck/releases/latest/download/DocCheck-linux.AppImage"><span><svg class="i"><use href="#i-download"/></svg>AppImage</span><small data-size></small></a>
+            <a class="btn btn-ghost" data-asset="DocCheck-linux.deb" href="https://github.com/smalbach/doccheck/releases/latest/download/DocCheck-linux.deb"><span><svg class="i"><use href="#i-download"/></svg>Debian / Ubuntu (.deb)</span><small data-size></small></a>
+          </div>
+          <p class="note" data-i18n-html="dl.linux.note">AppImage: <code>chmod +x DocCheck-linux.AppImage</code>, then run it.</p>
+          <div class="pipe"><a href="https://github.com/smalbach/doccheck/actions/workflows/release.yml"><svg><use href="#i-pipe"/></svg><span><span data-i18n="dl.pipe">Build pipeline</span>: ubuntu-latest</span></a></div>
+        </article>
+      </div>
+      <div class="callout">
+        <svg class="i"><use href="#i-info"/></svg>
+        <p data-i18n-html="dl.ollama">To read documents, install <a href="https://ollama.com/download">Ollama</a> and pull the models once: <code>ollama pull qwen3.8</code> and <code>ollama pull bge-m3</code>. The database and the server come inside the app.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bottom">
+  <div class="wrap">
+    <span>© 2026 Snheidert Smalbach · <a href="https://github.com/smalbach/doccheck/blob/main/LICENSE">MIT</a></span>
+    <span data-i18n="footer.disclaimer">A portfolio project. Not customs advice; it files nothing with any customs authority.</span>
+    <a href="https://github.com/smalbach/doccheck">github.com/smalbach/doccheck</a>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const REPO = 'smalbach/doccheck';
+  const ES = {
+    'skip': 'Ir al contenido',
+    'nav.how': 'Cómo funciona', 'nav.tour': 'Recorrido', 'nav.features': 'Funciones', 'nav.privacy': 'Privacidad', 'nav.download': 'Descargar',
+    'eyebrow': 'App de escritorio · Windows, macOS, Linux',
+    'h1': 'Detecta errores en documentos de carga <em>antes que la aduana.</em>',
+    'lede': 'DocCheck lee cada papel de un embarque (factura, lista de empaque, conocimiento de embarque, ISF, guía aérea, certificados), los cruza entre sí y contra las reglas de la aduana de destino, y enlaza cada hallazgo con la línea exacta del PDF y la norma que lo respalda. Luego te ayuda a conseguir los documentos corregidos del proveedor.',
+    'cta.download': 'Descargar', 'cta.source': 'Ver el código', 'cta.meta': 'Gratis y de código abierto (MIT).', 'cta.other': 'Otras plataformas',
+    'stat.fields': 'precisión por campo, 600 PDFs', 'stat.recall': 'de los errores inyectados detectados', 'stat.rules': 'reglas deterministas', 'stat.docs': 'tipos de documento', 'stat.dest': 'autoridades aduaneras',
+    'how.kicker': 'Cómo funciona', 'how.title': 'Un modelo lee. Código simple verifica.',
+    'how.lede': 'Un modelo local solo copia los valores tal como están impresos. Código probado los normaliza y reglas deterministas deciden, con las tolerancias de tu organización, así cada hallazgo se puede explicar y repetir. El modelo vuelve solo para los casos puntuales que una regla no puede resolver sola.',
+    'how.1.t': 'Sube los documentos', 'how.1.d': 'PDFs, escaneos, fotos del celular u hojas de cálculo, por carga, correo o una carpeta vigilada. Un PDF combinado se separa en sus documentos y cada uno se clasifica.',
+    'how.2.t': '53 reglas los cruzan', 'how.2.d': 'Bultos y pesos entre documentos, aritmética de la factura, Incoterms, dígitos de control de contenedores, ISF 10+2, códigos HS, partes restringidas y los campos que exige cada aduana.',
+    'how.3.t': 'Corrígelo antes de la llegada', 'how.3.d': 'Cada hallazgo abre el PDF en la línea citada. Pide correcciones al proveedor desde la app; su respuesta y el PDF corregido vuelven al embarque.',
+    'tour.kicker': 'Recorrido', 'tour.title': 'De la primera carga a una entrada limpia.', 'tour.lede': 'Pantallas de la versión actual de la app.',
+    'tour.findings.t': 'Hallazgos con evidencia', 'tour.findings.d': 'Cada uno indica los campos, la tolerancia, qué hacer y el pasaje de la norma que lo respalda.',
+    'tour.pdf.t': 'La línea citada, resaltada', 'tour.pdf.d': 'El PDF se abre en la página correcta con el valor marcado; un valor mal leído se corrige desde ahí.',
+    'tour.request.t': 'Correcciones del proveedor', 'tour.request.d': 'La solicitud se redacta desde los hallazgos en inglés, español o francés, con un enlace de carga sin cuenta.',
+    'tour.duties.t': 'Aranceles y costo de importación', 'tour.duties.d': 'Valor en aduana, tasas, recargos e impuestos por línea, tipos de cambio y un borrador de CBSA CAD o CBP 7501.',
+    'tour.analytics.t': 'Costo evitado', 'tour.analytics.d': 'Las multas AMPS e ISF y los costos de retención que tus correcciones evitaron, con cada supuesto a la vista.',
+    'tour.data.t': 'Tus datos, entre embarques', 'tour.data.d': 'Cada línea de factura con código HS y origen; empresas, productos, precios y contenedores.',
+    'feat.kicker': 'Todo en la app', 'feat.title': 'Un solo lugar para todo el expediente.', 'feat.lede': 'Lo que hace hoy cada parte de la app, agrupado como su menú.',
+    'a.read.t': 'Lectura de documentos',
+    'a.read.1': '<b>Cualquier formato:</b> PDFs con texto, escaneos (OCR), fotos del celular enderezadas y recortadas, .xlsx y .csv leídos sin modelo.',
+    'a.read.2': '<b>PDFs combinados</b> separados por página en sus documentos, cada uno clasificado.',
+    'a.read.3': '<b>Cola de revisión:</b> los valores dudosos junto al PDF, revisados desde el teclado.',
+    'a.read.4': '<b>Aprende de cada proveedor:</b> tus correcciones se vuelven ejemplos para sus próximos documentos.',
+    'a.rules.t': 'Reglas y cumplimiento',
+    'a.rules.1': '<b>53 reglas</b> entre documentos, ajustables por organización: activas o no, severidad, tolerancias, navieras.',
+    'a.rules.2': '<b>Clasificación arancelaria:</b> códigos HS contra HTSUS y el Arancel de Canadá, agencias asociadas (FDA, USDA, CFIA…) y doble uso.',
+    'a.rules.3': '<b>Screening de partes</b> contra listas OFAC, BIS, SEMA, ONU, UE y UFLPA, con lista de excepciones y alertas de trabajo forzoso.',
+    'a.rules.4': '<b>Citas:</b> cada hallazgo enlaza el pasaje de CBSA, CBP, RGCE, UE o HMRC, encontrado por búsqueda híbrida.',
+    'a.mail.t': 'Proveedores y bandeja',
+    'a.mail.1': '<b>Solicitudes de corrección</b> redactadas desde los hallazgos en tres idiomas y enviadas por tu SMTP.',
+    'a.mail.2': '<b>Una bandeja</b> para cada conversación: sin leer, esperando respuesta, vencidas, no enviadas.',
+    'a.mail.3': '<b>Portal del proveedor:</b> un enlace firmado para subir PDFs corregidos, sin cuenta.',
+    'a.mail.4': '<b>Revisión previa al envío:</b> el proveedor prueba borradores de factura y lista de empaque antes de embarcar.',
+    'a.duties.t': 'Aranceles y costo de importación',
+    'a.duties.1': '<b>Valor en aduana</b> desde la factura y su Incoterm, con las reglas de EE. UU. y Canadá.',
+    'a.duties.2': '<b>Tablas con fecha:</b> Sección 301 / 232, recargos canadienses, MPF, HMF, GST y HST.',
+    'a.duties.3': '<b>Tratados:</b> elementos del T-MEC/CUSMA, ahorro posible, casos AD/CVD y SIMA señalados.',
+    'a.duties.4': '<b>Borrador de CBP 7501 o CBSA CAD</b>, prellenado y nunca transmitido.',
+    'a.analytics.t': 'Analítica',
+    'a.analytics.1': '<b>KPIs:</b> limpios en la primera validación, hallazgos por embarque, tasa de error por regla, proveedor, origen y ruta.',
+    'a.analytics.2': '<b>Calificación de proveedores</b> con su fórmula a la vista, y <b>referencias de precio</b> por producto y HS-6.',
+    'a.analytics.3': '<b>Pregunta a tus datos</b> en lenguaje natural: SQL escrito localmente, verificado y ejecutado en solo lectura.',
+    'a.analytics.4': '<b>Vigilancia normativa:</b> pasajes que cambiaron, las reglas que los citan y los embarques abiertos afectados.',
+    'a.int.t': 'Integraciones',
+    'a.int.1': '<b>API REST</b> con claves con alcance y límite de uso, y referencia OpenAPI 3.1.',
+    'a.int.2': '<b>Webhooks firmados</b> y alertas en Slack o Teams.',
+    'a.int.3': '<b>Carpetas vigiladas</b> (SFTP, S3, local) y documentos por correo que se vuelven embarques.',
+    'a.int.4': '<b>Exportaciones:</b> CargoWise XML, X12 856/310; rastreo de contenedores contra el BL.',
+    'a.team.t': 'Equipos',
+    'a.team.1': '<b>Organizaciones y roles:</b> dueño, admin, analista, revisor, lector y clientes de solo lectura.',
+    'a.team.2': '<b>Asignaciones, comentarios</b> con @menciones, fechas límite y aprobación en dos pasos de riesgos aceptados.',
+    'a.team.3': '<b>Bitácora de auditoría encadenada</b> y retención de registros (CBSA 6 años, CBP 5).',
+    'a.team.4': '<b>Doble factor</b>, inicio de sesión único (OpenID Connect) y planes de uso.',
+    'a.data.t': 'Datos extraídos',
+    'a.data.1': '<b>Resumen</b> de valores, pesos y orígenes entre embarques.',
+    'a.data.2': '<b>Empresas</b> como un solo registro, sin importar cómo las escriba cada documento.',
+    'a.data.3': '<b>Productos</b> con su precio por compra, vendedor y moneda.',
+    'a.data.4': '<b>Contenedores</b> con sello, naviera, buque y ruta.',
+    'a.ai.t': 'Modelos bajo tu control',
+    'a.ai.1': '<b>Locales por defecto:</b> Ollama para extracción, agente y embeddings; Tesseract o Unlimited-OCR para escaneos.',
+    'a.ai.2': '<b>Proveedores opcionales:</b> OpenAI, Azure OpenAI, Anthropic o Gemini, configurados por un admin con claves cifradas.',
+    'a.ai.3': '<b>Medido:</b> una página de evaluación con precisión por campo y recall y precisión por regla.',
+    'cov.kicker': 'Cobertura', 'cov.title': 'Los papeles de un embarque, las reglas de cinco autoridades.', 'cov.docs': 'Documentos que lee', 'cov.dest': 'Destinos',
+    'doc.ci': 'Factura comercial', 'doc.pl': 'Lista de empaque', 'doc.bl': 'Conocimiento de embarque', 'doc.isf': 'ISF 10+2', 'doc.awb': 'Guía aérea',
+    'doc.co': 'Certificado de origen', 'doc.cusma': 'Certificación T-MEC/CUSMA', 'doc.an': 'Aviso de llegada', 'doc.ispm': 'Certificado NIMF 15', 'doc.dg': 'Declaración de mercancías peligrosas',
+    'dest.ca': 'Canadá', 'dest.us': 'Estados Unidos', 'dest.mx': 'México', 'dest.eu': 'Unión Europea', 'dest.uk': 'Reino Unido',
+    'priv.kicker': 'Privacidad', 'priv.title': 'Tus documentos se quedan en tu computador.',
+    'priv.lede': 'La app de escritorio trae su propia base de datos y servidor. Nada que configurar, y nada sale salvo que tú lo decidas.',
+    'priv.1': 'Base de datos Postgres y servidor incluidos, guardados en tu carpeta de usuario.',
+    'priv.2': 'Modelos locales con Ollama: ningún documento va a un servicio de IA externo.',
+    'priv.3': 'Las reglas y la normalización son código probado, nunca un modelo.',
+    'priv.4': 'También en el celular: la web se instala como PWA y convierte fotos de la cámara en un solo PDF enderezado.',
+    'priv.5': 'Código abierto con licencia MIT: puedes leer cada línea que ejecuta.',
+    'dl.kicker': 'Descargar', 'dl.title': 'Instala DocCheck en tu computador.',
+    'dl.lede': 'Cada instalador lo construye su propio pipeline de GitHub Actions desde el código etiquetado y se adjunta a la release de GitHub.',
+    'dl.latest': 'Última release en GitHub', 'dl.all': 'Todas las releases', 'dl.you': 'Tu sistema', 'dl.pipe': 'Pipeline de build',
+    'dl.installer': 'Instalador', 'dl.disk': 'Imagen de disco',
+    'dl.win.req': 'Windows 10 u 11, 64 bits', 'dl.win.note': 'SmartScreen puede advertir que la app no está firmada: elige Más información y luego Ejecutar de todas formas.',
+    'dl.mac.req': 'macOS 12 o posterior, Apple Silicon', 'dl.mac.note': 'Aún no está notarizada: la primera vez, haz clic derecho en DocCheck en Aplicaciones y elige <b>Abrir</b>.',
+    'dl.linux.req': 'x86-64 · Ubuntu 20.04 o posterior', 'dl.linux.note': 'AppImage: <code>chmod +x DocCheck-linux.AppImage</code> y luego ejecútalo.',
+    'dl.ollama': 'Para leer documentos, instala <a href="https://ollama.com/download">Ollama</a> y descarga los modelos una vez: <code>ollama pull qwen3.8</code> y <code>ollama pull bge-m3</code>. La base de datos y el servidor vienen dentro de la app.',
+    'footer.disclaimer': 'Proyecto de portafolio. No es asesoría aduanera; no presenta nada ante ninguna aduana.',
+  };
+  const store = {
+    get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
+    set: (k, v) => { try { localStorage.setItem(k, v); } catch {} },
+  };
+
+  // Language: English is in the markup; Spanish swaps the strings in place.
+  const EN = {};
+  document.querySelectorAll('[data-i18n]').forEach((el) => { EN[el.dataset.i18n] = el.textContent; });
+  document.querySelectorAll('[data-i18n-html]').forEach((el) => { EN[el.dataset.i18nHtml] = el.innerHTML; });
+  let lang = store.get('lang') || ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en');
+  let dict = EN;
+  const langButton = document.getElementById('lang');
+  function applyLang() {
+    dict = lang === 'es' ? { ...EN, ...ES } : EN;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = dict[el.dataset.i18n]; });
+    document.querySelectorAll('[data-i18n-html]').forEach((el) => { el.innerHTML = dict[el.dataset.i18nHtml]; });
+    langButton.textContent = lang === 'es' ? 'EN' : 'ES';
+    langButton.setAttribute('aria-label', lang === 'es' ? 'English' : 'Español');
+    renderHero();
+    renderRelease();
+    renderCaption();
+  }
+  langButton.addEventListener('click', () => { lang = lang === 'es' ? 'en' : 'es'; store.set('lang', lang); applyLang(); });
+
+  // Theme: follows the system unless the visitor picks one; the hero screenshot follows the theme.
+  const root = document.documentElement;
+  const savedTheme = store.get('theme');
+  if (savedTheme) root.dataset.theme = savedTheme;
+  const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches);
+  const syncPictures = () => document.querySelectorAll('picture source[media]').forEach((s) => { s.media = isDark() ? 'all' : 'not all'; });
+  if (savedTheme) syncPictures();
+  document.getElementById('theme').addEventListener('click', () => {
+    root.dataset.theme = isDark() ? 'light' : 'dark';
+    store.set('theme', root.dataset.theme);
+    syncPictures();
+  });
+
+  // Product tour tabs; arrow keys move between them. On narrow screens the description shows under the image.
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  let current = tabs[0];
+  function renderCaption() {
+    const key = current.querySelector('small').dataset.i18n;
+    document.getElementById('tour-caption').textContent = dict[key];
+  }
+  function select(tab) {
+    current = tab;
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    renderCaption();
+  }
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => select(tab));
+    tab.addEventListener('keydown', (e) => {
+      const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      if (!step) return;
+      e.preventDefault();
+      const next = tabs[(i + step + tabs.length) % tabs.length];
+      select(next);
+      next.focus();
+      next.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    });
+  });
+
+  // The visitor's platform gets the primary button in the hero.
+  const ua = navigator.userAgent;
+  const platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+  const mobile = /Android|iPhone|iPad/.test(ua) || (/Mac/.test(platform) && navigator.maxTouchPoints > 1);
+  const os = mobile ? null : /win/i.test(platform) ? 'windows' : /mac/i.test(platform) ? 'mac' : /linux/i.test(platform) ? 'linux' : null;
+  const card = os && document.querySelector(`.dl[data-os="${os}"]`);
+  if (card) card.classList.add('current');
+  const NAMES = { windows: 'Windows', mac: 'macOS', linux: 'Linux' };
+  function renderHero() {
+    const button = document.getElementById('hero-download');
+    const label = button.querySelector('span');
+    if (!card) { label.textContent = lang === 'es' ? 'Descargar' : 'Download'; return; }
+    button.href = card.querySelector('[data-asset]').href;
+    label.textContent = (lang === 'es' ? 'Descargar para ' : 'Download for ') + NAMES[os];
+  }
+
+  // Version, date and file sizes from the latest GitHub release; the links work without it.
+  let release;
+  function renderRelease() {
+    const info = document.getElementById('release-info');
+    if (!release) return;
+    if (release === 'none') {
+      info.textContent = lang === 'es' ? 'La primera release se está preparando.' : 'The first release is on its way.';
+      return;
+    }
+    const date = new Date(release.published_at).toLocaleDateString(lang, { year: 'numeric', month: 'short', day: 'numeric' });
+    info.textContent = `${release.tag_name} · ${date}`;
+    document.getElementById('hero-version').textContent = lang === 'es' ? `Versión ${release.tag_name}, gratis y de código abierto (MIT).` : `Version ${release.tag_name}, free and open source (MIT).`;
+    document.querySelectorAll('[data-asset]').forEach((a) => {
+      const asset = release.assets.find((x) => x.name === a.dataset.asset);
+      if (asset) a.querySelector('[data-size]').textContent = `${Math.round(asset.size / 1048576)} MB`;
+    });
+  }
+  fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { accept: 'application/vnd.github+json' } })
+    .then((r) => (r.status === 404 ? 'none' : r.ok ? r.json() : null))
+    .then((data) => { if (data) { release = data; renderRelease(); } })
+    .catch(() => {});
+
+  applyLang();
+})();
+</script>
+</body>
+</html>

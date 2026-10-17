@@ -1,0 +1,77 @@
+{
+  "name": "doccheck-desktop",
+  "productName": "DocCheck",
+  "version": "0.1.0",
+  "description": "Catch freight document errors before customs does. DocCheck for Windows, macOS and Linux.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "main.mjs",
+  "author": {
+    "name": "Snheidert Smalbach",
+    "email": "smalbach24@gmail.com"
+  },
+  "homepage": "https://github.com/smalbach/doccheck",
+  "scripts": {
+    "stage": "node scripts/stage-server.mjs",
+    "start": "electron .",
+    "dist": "npm run stage && electron-builder --publish never",
+    "dist:dir": "npm run stage && electron-builder --dir --publish never"
+  },
+  "dependencies": {
+    "embedded-postgres": "18.4.0-beta.17"
+  },
+  "devDependencies": {
+    "electron": "44.9.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.smalbach.doccheck",
+    "productName": "DocCheck",
+    "asar": false,
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.mjs",
+      "splash.html",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "server",
+        "to": "server"
+      }
+    ],
+    "publish": null,
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.business",
+      "identity": null,
+      "artifactName": "DocCheck-mac-${arch}.${ext}"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "DocCheck-windows-setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Office",
+      "maintainer": "Snheidert Smalbach <smalbach24@gmail.com>",
+      "artifactName": "DocCheck-linux.${ext}"
+    },
+    "afterPack": "build/after-pack.cjs"
+  }
+}

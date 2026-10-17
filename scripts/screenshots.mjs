@@ -238,6 +238,21 @@ try {
         await p.locator('.dialog input[inputmode="email"]').first().fill('exports@supplier.example.com');
         await p.waitForTimeout(400);
       });
+      await shoot(page, `/app/s/${featured.id}`, 'shipment-duties', async (p) => {
+        const duties = p.locator('.duties').first();
+        if (await duties.count()) {
+          await duties.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 80));
+          await p.waitForTimeout(400);
+        }
+      });
+      await shoot(page, '/app/review', 'review-queue');
+      await shoot(page, '/app/analytics', 'analytics-kpis');
+      await shoot(page, '/app/analytics/suppliers', 'analytics-suppliers');
+      await shoot(page, '/app/analytics/cost', 'analytics-cost');
+      await shoot(page, '/app/analytics/regulations', 'analytics-regulations');
+      await shoot(page, '/app/screening', 'screening');
+      await shoot(page, '/app/integrations', 'integrations');
+      await shoot(page, '/app/api-docs', 'api-docs');
       await shoot(page, '/app/rules', 'rules');
       await shoot(page, '/app/results', 'evaluation-results');
       await shoot(page, '/app/samples', 'samples');

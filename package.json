@@ -6,7 +6,8 @@
   "license": "MIT",
   "workspaces": [
     "packages/*",
-    "apps/*"
+    "apps/api",
+    "apps/web"
   ],
   "scripts": {
     "build": "npm run build -w @doccheck/schemas -w @doccheck/rules -w @doccheck/screening -w @doccheck/duties -w @doccheck/integrations -w @doccheck/extraction -w @doccheck/synth -w @doccheck/regulations -w @doccheck/tariff -w @doccheck/agent && npm run build -w @doccheck/api -w @doccheck/web",
