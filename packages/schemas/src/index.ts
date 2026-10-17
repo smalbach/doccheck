@@ -15,3 +15,4 @@ export * from './dangerous-goods';
 export * from './attestation';
 export * from './fixtures-documents';
 export * from './document-schemas';
+export * from './ai-policy';

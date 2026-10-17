@@ -1,3 +1,4 @@
+import { OCR_ENGINES, type OcrEngine } from '@doccheck/extraction';
 import { createRequire } from 'node:module';
 import { z } from 'zod';
 
@@ -15,9 +16,11 @@ export const OCR_LANGUAGES = ['eng', 'fra', 'spa', 'deu'].filter((code) => {
 /** Tesseract page segmentation modes worth offering: automatic, one column, one block (default), sparse text. */
 export const OCR_PSM_VALUES = ['3', '4', '6', '11'] as const;
 
-/** OCR engines: Tesseract in-process, or Baidu Unlimited-OCR served by scripts/ocr-server.py (Apple Silicon). */
-export const OCR_ENGINES = ['tesseract', 'unlimited'] as const;
-export type OcrEngine = (typeof OCR_ENGINES)[number];
+/**
+ * OCR engines: Tesseract in-process, Baidu Unlimited-OCR served by scripts/ocr-server.py (Apple
+ * Silicon), or a cloud service whose key is set with the AI providers (needs "local only" off).
+ */
+export { OCR_ENGINES, type OcrEngine } from '@doccheck/extraction';
 
 export interface SettingDefinition<T> {
   /** Environment variable the packages read; the effective value is written there. */
@@ -62,7 +65,7 @@ export const SETTINGS = {
     defaultValue: 'tesseract',
     schema: z.enum(OCR_ENGINES),
     toEnv: (v) => v,
-    fromEnv: (raw) => (raw === 'unlimited' ? 'unlimited' : 'tesseract'),
+    fromEnv: (raw) => ((OCR_ENGINES as readonly string[]).includes(raw) ? (raw as OcrEngine) : 'tesseract'),
   }),
   ocrUrl: define<string>({
     env: 'OCR_URL',

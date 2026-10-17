@@ -1,5 +1,5 @@
 import { LlmClient, llmFromEnv } from '@doccheck/extraction';
-import { OllamaEmbedder } from '@doccheck/regulations';
+import { embedderFromEnv, indexName } from '@doccheck/regulations';
 import { findTariffDir, formatHs, headingRef, loadTariffData, MemoryVectors, TariffSearch, vectorIndexFile } from '@doccheck/tariff';
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
@@ -104,9 +104,9 @@ async function main() {
   const base = llmFromEnv();
   const llm = new LlmClient(base.provider, process.env.LLM_CACHE_DIR || join('eval/cache', `agent-${base.provider.id.replace(/[^\w.-]+/g, '_')}`), (process.env.LLM_CACHE_MODE as 'readwrite' | 'replay') || 'readwrite');
   const { schedule, notes } = await loadTariffData(dir, 'US');
-  const model = process.env.EMBED_MODEL || 'bge-m3';
-  const indexFile = vectorIndexFile(dir, 'US', model);
-  const vectors = existsSync(indexFile) ? await MemoryVectors.load(indexFile, new OllamaEmbedder(model, process.env.OLLAMA_BASE_URL || undefined)) : undefined;
+  const embedder = embedderFromEnv();
+  const indexFile = vectorIndexFile(dir, 'US', indexName(embedder.id));
+  const vectors = existsSync(indexFile) ? await MemoryVectors.load(indexFile, embedder) : undefined;
   const res: ClassificationResources = { schedule, notes, search: new TariffSearch(schedule, vectors) };
   const goods = await buildGoods(resolve(values.data!));
   const fitCases = buildFitCases(goods);

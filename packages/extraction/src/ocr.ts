@@ -3,6 +3,7 @@ import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import type { Worker } from 'tesseract.js';
+import { ocrCloudImage, type PageImage } from './ocr-cloud';
 
 /** A recognized word, in PDF points with the origin at the top-left of the page. */
 export interface OcrWord {
@@ -68,13 +69,32 @@ export async function terminateOcr(): Promise<void> {
  * OCR engine: tesseract (default, in-process, runs anywhere) or unlimited (Baidu Unlimited-OCR on
  * Apple Silicon, served by scripts/ocr-server.py at OCR_URL). On the 120 synthetic scans, unlimited
  * finds 96.8% of the printed truth values against 86.6% for tesseract (94.2% vs 69.3% at 110 dpi).
+ * The cloud engines (google-vision, aws-textract, azure-di) send the page image to that service and
+ * need "local only" off (AI_LOCAL_ONLY=false); see ocr-cloud.ts.
  */
-export type OcrEngine = 'tesseract' | 'unlimited';
-export const ocrEngine = (env: NodeJS.ProcessEnv = process.env): OcrEngine => (env.OCR_ENGINE === 'unlimited' ? 'unlimited' : 'tesseract');
+export const OCR_ENGINES = ['tesseract', 'unlimited', 'google-vision', 'aws-textract', 'azure-di'] as const;
+export type OcrEngine = (typeof OCR_ENGINES)[number];
+export const CLOUD_OCR_ENGINES: readonly OcrEngine[] = ['google-vision', 'aws-textract', 'azure-di'];
+export const ocrEngine = (env: NodeJS.ProcessEnv = process.env): OcrEngine => (OCR_ENGINES as readonly string[]).includes(env.OCR_ENGINE ?? '') ? (env.OCR_ENGINE as OcrEngine) : 'tesseract';
 
 /** Renders a PDF page and recognizes its text with the configured engine. */
 export async function ocrPage(page: RenderablePage): Promise<{ words: OcrWord[]; confidence?: number }> {
-  return ocrEngine() === 'unlimited' ? ocrPageUnlimited(page) : ocrPageTesseract(page);
+  const engine = ocrEngine();
+  if (engine === 'unlimited') return ocrPageUnlimited(page);
+  if (engine === 'tesseract') return ocrPageTesseract(page);
+  return { words: await ocrCloudImage(engine, await renderPage(page, CLOUD_SCALE)) };
+}
+
+/** Scale pages are rendered at for the cloud engines: 216 dpi, well inside their size limits. */
+const CLOUD_SCALE = 3;
+
+async function renderPage(page: RenderablePage, scale: number): Promise<PageImage> {
+  const { createCanvas } = await import('@napi-rs/canvas');
+  const points = page.getViewport({ scale: 1 });
+  const viewport = page.getViewport({ scale });
+  const canvas = createCanvas(Math.ceil(viewport.width), Math.ceil(viewport.height));
+  await page.render({ canvas, viewport }).promise;
+  return { png: await canvas.encode('png'), widthPx: canvas.width, heightPx: canvas.height, widthPt: points.width, heightPt: points.height };
 }
 
 const unescapeHtml = (s: string) =>

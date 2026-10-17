@@ -424,3 +424,46 @@ from "user" to "organization", and the other ten had to adapt before going in. I
 [Your take: what you learned from coordinating agents in parallel.]
 
 #AIEngineering #Logistics #CustomsCompliance #SoftwareEngineering
+
+## 9. Local por defecto, abierto si lo decides
+
+Captura sugerida: la pestaña Administración → Configuración → Proveedores de IA (no hay captura aún;
+tomarla de la app).
+
+**ES**
+
+DocCheck leía documentos solo con modelos locales. Ahora el administrador puede elegir el proveedor
+para cada tarea, sin tocar código:
+
+• extracción: Ollama, cualquier API compatible con OpenAI, Azure OpenAI, Claude o Gemini
+• embeddings para las citas regulatorias: local o por API
+• OCR: Tesseract, Google Vision, Amazon Textract o Azure Document Intelligence
+
+Lo que no cambió: "Solo local" viene encendido. Mientras lo esté, nada sale de la máquina o de la red
+privada, y las claves se guardan cifradas y nunca se devuelven.
+
+La prueba: Ollama expuesto como API compatible con OpenAI extrajo una factura en 60 s por el mismo
+camino que usaría un proveedor en la nube, con la misma validación y la misma caché.
+
+[Tu opinión: cuándo usarías un modelo en la nube y cuándo uno local.]
+
+#AIEngineering #Logistics #DataPrivacy #SoftwareEngineering
+
+**EN**
+
+DocCheck used to read documents with local models only. Now an admin picks the provider for each job,
+without touching code:
+
+• extraction: Ollama, any OpenAI-compatible API, Azure OpenAI, Claude or Gemini
+• embeddings for regulation citations: local or through an API
+• OCR: Tesseract, Google Vision, Amazon Textract or Azure Document Intelligence
+
+What didn't change: "Local only" is on by default. While it is, nothing leaves the machine or the
+private network, and keys are stored encrypted and never sent back.
+
+The check: Ollama, exposed as an OpenAI-compatible API, extracted an invoice in 60 s through the same
+path a cloud provider would use, with the same validation and the same cache.
+
+[Your take: when you'd use a cloud model and when a local one.]
+
+#AIEngineering #Logistics #DataPrivacy #SoftwareEngineering

@@ -1,6 +1,6 @@
 import { Global, Inject, Injectable, Logger, Module, type OnApplicationShutdown } from '@nestjs/common';
-import { LlmClient, OllamaProvider, terminateOcr, type CacheMode } from '@doccheck/extraction';
-import { CachedEmbedder, loadIndexFile, OllamaEmbedder, type RegulationIndex } from '@doccheck/regulations';
+import { LlmClient, llmProviderFromEnv, OllamaProvider, terminateOcr, type CacheMode } from '@doccheck/extraction';
+import { CachedEmbedder, embedderFromEnv, indexName, loadIndexFile, type Embedder, type RegulationIndex } from '@doccheck/regulations';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { Pool } from 'pg';
@@ -15,10 +15,33 @@ export const LLM_PROVIDER = Symbol('LLM_PROVIDER');
 
 const repoRoot = () => [process.cwd(), resolve(__dirname, '../../../..')].find((d) => existsSync(resolve(d, 'eval'))) ?? process.cwd();
 
-/** The model, from LLM_MODEL at start; an admin can replace it later (never in the read-only demo). */
+/**
+ * The model from the environment at start (LLM_PROVIDER, default Ollama with LLM_MODEL); an admin
+ * can replace it later (never in the read-only demo). A provider that cannot be built (missing key,
+ * an outside service while "local only" is on) falls back to Ollama.
+ */
+export function providerFromEnvOrOllama(logger?: Logger) {
+  try {
+    return llmProviderFromEnv(process.env);
+  } catch (err) {
+    logger?.error(`${err instanceof Error ? err.message : String(err)}; using Ollama`);
+    return new OllamaProvider(process.env.LLM_MODEL || undefined, process.env.OLLAMA_BASE_URL || undefined);
+  }
+}
+
+/** The embedding model from the environment (EMBED_PROVIDER, default Ollama bge-m3), or null when it cannot be used. */
+export function embedderFromEnvOrNull(logger?: Logger): Embedder | null {
+  try {
+    return embedderFromEnv(process.env);
+  } catch (err) {
+    logger?.error(`Embeddings off: ${err instanceof Error ? err.message : String(err)}`);
+    return null;
+  }
+}
+
 const modelProvider = {
   provide: LLM_PROVIDER,
-  useFactory: () => new SwitchableProvider(new OllamaProvider(process.env.LLM_MODEL || undefined, process.env.OLLAMA_BASE_URL || undefined)),
+  useFactory: () => new SwitchableProvider(providerFromEnvOrOllama(new Logger('LlmModule'))),
 };
 
 /** The local model client, with every call logged to llm_calls. */
@@ -42,7 +65,9 @@ const llmProvider = {
   },
 };
 
-/** Regulation index, loaded on first use from data/corpus/index/<EMBED_MODEL>.json. */
+export const corpusDir = () => [process.env.CORPUS_DIR, resolve(process.cwd(), 'data/corpus'), resolve(__dirname, '../../../../data/corpus')].find((d): d is string => !!d && existsSync(d));
+
+/** Regulation index, loaded on first use from data/corpus/index/<embedder>.json (indexName). */
 @Injectable()
 export class RegulationsService {
   private readonly logger = new Logger(RegulationsService.name);
@@ -53,17 +78,29 @@ export class RegulationsService {
     return this.index;
   }
 
-  private async load(): Promise<RegulationIndex | null> {
-    const model = process.env.EMBED_MODEL || 'bge-m3';
+  /** The embedding model changed (or its index was rebuilt): load again on next use. */
+  reset(): void {
+    this.index = undefined;
+  }
+
+  /** Where the index of the current embedding model is (or would be). */
+  indexFile(embedder: Embedder): string | undefined {
     const dirs = [process.env.CORPUS_DIR, resolve(process.cwd(), 'data/corpus'), resolve(__dirname, '../../../../data/corpus')].filter((d): d is string => !!d);
-    const file = dirs.map((d) => resolve(d, 'index', `${model}.json`)).find((f) => existsSync(f));
-    if (!file) {
-      this.logger.warn(`No regulation index for ${model}; run npm run corpus:index. Findings will have no citations.`);
+    const files = dirs.map((d) => resolve(d, 'index', `${indexName(embedder.id)}.json`));
+    return files.find((f) => existsSync(f)) ?? (corpusDir() ? resolve(corpusDir()!, 'index', `${indexName(embedder.id)}.json`) : undefined);
+  }
+
+  private async load(): Promise<RegulationIndex | null> {
+    const inner = embedderFromEnvOrNull(this.logger);
+    if (!inner) return null;
+    const file = this.indexFile(inner);
+    if (!file || !existsSync(file)) {
+      this.logger.warn(`No regulation index for ${inner.id}; run npm run corpus:index or rebuild it from the admin settings. Findings will have no citations.`);
       return null;
     }
     // Citation queries are a fixed set; their vectors are kept next to the index so the demo needs
     // no embedding model. A query missing there is searched by keywords only.
-    const embedder = new CachedEmbedder(new OllamaEmbedder(model, process.env.OLLAMA_BASE_URL || undefined), file.replace(/\.json$/, '.queries.json'), isDemo() ? 'replay' : 'readwrite');
+    const embedder = new CachedEmbedder(inner, file.replace(/\.json$/, '.queries.json'), isDemo() ? 'replay' : 'readwrite');
     const index = await loadIndexFile(file, embedder);
     this.logger.log(`Loaded ${index.chunks.length} regulation chunks from ${file}`);
     return index;

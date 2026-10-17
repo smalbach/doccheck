@@ -379,12 +379,3 @@ export async function replayAsStream(
     from = to;
   }
 }
-
-/**
- * Local models only, through Ollama. LLM_MODEL (default qwen3.8), OLLAMA_BASE_URL,
- * LLM_CACHE_DIR, LLM_CACHE_MODE=off|readwrite|replay.
- */
-export function llmFromEnv(env: NodeJS.ProcessEnv = process.env): LlmClient {
-  const provider = new OllamaProvider(env.LLM_MODEL || undefined, env.OLLAMA_BASE_URL || undefined);
-  return new LlmClient(provider, env.LLM_CACHE_DIR || undefined, (env.LLM_CACHE_MODE as CacheMode) || undefined);
-}

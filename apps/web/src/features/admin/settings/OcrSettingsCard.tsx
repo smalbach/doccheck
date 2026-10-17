@@ -1,8 +1,9 @@
 import { useState } from "react";
-import type {
-  AdminSettings,
-  SettingValues,
-  SettingView,
+import {
+  CLOUD_OCR_ENGINES,
+  type AdminSettings,
+  type SettingValues,
+  type SettingView,
 } from "../../../api/types";
 import { Banner } from "../../../components/ui/Banner";
 import { Button } from "../../../components/ui/Button";
@@ -58,7 +59,9 @@ export function OcrSettingsCard({
     ocrPsm: psm.value,
   });
   const tesseract = draft.ocrEngine === "tesseract";
-  const badUrl = !URL_PATTERN.test(draft.ocrUrl.trim());
+  const cloud = CLOUD_OCR_ENGINES.includes(draft.ocrEngine as never);
+  const unlimited = draft.ocrEngine === "unlimited";
+  const badUrl = unlimited && !URL_PATTERN.test(draft.ocrUrl.trim());
   const languageName = (code: string) => {
     const key = `admin.ocr.languageNames.${code}` as MessageKey;
     return t(key) === key ? code : t(key);
@@ -113,10 +116,12 @@ export function OcrSettingsCard({
           {t(
             tesseract
               ? "admin.ocr.engineHint.tesseract"
-              : "admin.ocr.engineHint.unlimited",
+              : cloud
+                ? "admin.ocr.engineHint.cloud"
+                : "admin.ocr.engineHint.unlimited",
           )}
         </p>
-        {!tesseract && (
+        {unlimited && (
           <>
             <div className="setting-row">
               <Field label={t("admin.ocr.url")}>
@@ -238,7 +243,7 @@ export function OcrSettingsCard({
             <Button
               variant="primary"
               disabled={
-                busy || !changed || noLanguage || (!tesseract && badUrl)
+                busy || !changed || (tesseract && noLanguage) || badUrl
               }
               onClick={() => onSave({ ...draft, ocrUrl: draft.ocrUrl.trim() })}
             >

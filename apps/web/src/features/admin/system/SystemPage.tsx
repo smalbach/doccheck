@@ -29,10 +29,10 @@ export function SystemPage() {
             {s.model.build && <span className="muted"> · {t('admin.status.build', { build: s.model.build })}</span>}
           </StatusItem>
           <StatusItem label={t('admin.status.embeddings')} tone={s.embeddings.chunks === null ? 'error' : undefined}>
-            {s.embeddings.chunks === null ? t('admin.status.noIndex', { model: s.embeddings.model }) : t('admin.status.chunks', { model: s.embeddings.model, count: s.embeddings.chunks })}
+            {s.embeddings.chunks === null ? t('admin.status.noIndex', { model: s.embeddings.model ?? '—' }) : t('admin.status.chunks', { model: s.embeddings.model ?? '—', count: s.embeddings.chunks })}
           </StatusItem>
           <StatusItem label={t('admin.status.ocr')}>
-            {s.ocr.engine === 'unlimited' ? t('admin.ocr.engines.unlimited') : t('admin.status.ocrValue', { languages: s.ocr.languages.map(language).join(', '), scale: s.ocr.scale, psm: s.ocr.psm })}
+            {s.ocr.engine !== 'tesseract' ? t(`admin.ocr.engines.${s.ocr.engine}`) : t('admin.status.ocrValue', { languages: s.ocr.languages.map(language).join(', '), scale: s.ocr.scale, psm: s.ocr.psm })}
           </StatusItem>
           <StatusItem label={t('admin.status.agent')}>{s.agentEnabled ? t('admin.status.on') : t('admin.status.off')}</StatusItem>
           <StatusItem label={t('admin.status.queue')}>{t(`admin.status.queues.${s.queue}`)}</StatusItem>

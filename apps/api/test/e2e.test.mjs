@@ -404,7 +404,7 @@ describe('admin', () => {
     const url = (await call('PUT', '/admin/settings', { ocrUrl: 'http://127.0.0.1:9/' }, admin)).body; // tesseract stays: the URL is not checked
     assert.deepEqual([url.settings.find((x) => x.key === 'ocrUrl').value, url.ocrServer], ['http://127.0.0.1:9/', undefined]);
     assert.equal(process.env.OCR_ENGINE ?? 'tesseract', 'tesseract');
-    assert.deepEqual(url.options.ocrEngines, ['tesseract', 'unlimited']);
+    assert.deepEqual(url.options.ocrEngines, ['tesseract', 'unlimited', 'google-vision', 'aws-textract', 'azure-di']);
     assert.equal((await call('DELETE', '/admin/settings/ocrUrl', undefined, admin)).status, 200);
     for (const key of ['ocrScale', 'ocrPsm', 'agentEnabled']) assert.equal((await call('DELETE', `/admin/settings/${key}`, undefined, admin)).status, 200);
     const reset = (await call('GET', '/admin/settings', undefined, admin)).body.settings;

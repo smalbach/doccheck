@@ -1,12 +1,13 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import type { ClassificationResources } from '@doccheck/agent';
-import { OllamaEmbedder } from '@doccheck/regulations';
+import { indexName } from '@doccheck/regulations';
 import type { Destination } from '@doccheck/schemas';
 import { findTariffDir, loadTariffData, MemoryVectors, TariffSearch, vectorIndexFile, type VectorSource } from '@doccheck/tariff';
 import { existsSync } from 'node:fs';
 import type { Pool } from 'pg';
 import { PG_POOL } from '../db/db.module';
 import { isDemo } from '../demo/demo-mode';
+import { embedderFromEnvOrNull } from '../llm/llm.module';
 import { PgVectors } from './pg-vectors';
 
 /**
@@ -21,6 +22,11 @@ export class TariffService {
   private readonly loaded = new Map<Destination, Promise<ClassificationResources | null>>();
 
   constructor(@Inject(PG_POOL) private readonly pool: Pool) {}
+
+  /** The embedding model changed (or an index was rebuilt): load again on next use. */
+  reset(): void {
+    this.loaded.clear();
+  }
 
   get(destination: Destination): Promise<ClassificationResources | null> {
     let res = this.loaded.get(destination);
@@ -50,11 +56,12 @@ export class TariffService {
   }
 
   private async vectors(dir: string, destination: Destination, edition: string): Promise<VectorSource | undefined> {
-    const model = process.env.EMBED_MODEL || 'bge-m3';
-    const file = vectorIndexFile(dir, destination, model);
     // The read-only demo has no embedding model: it searches by keywords.
-    if (isDemo() || !existsSync(file)) return undefined;
-    const embedder = new OllamaEmbedder(model, process.env.OLLAMA_BASE_URL || undefined);
+    if (isDemo()) return undefined;
+    const embedder = embedderFromEnvOrNull(this.logger);
+    if (!embedder) return undefined;
+    const file = vectorIndexFile(dir, destination, indexName(embedder.id));
+    if (!existsSync(file)) return undefined;
     const memory = await MemoryVectors.load(file, embedder);
     if (!(await PgVectors.available(this.pool).catch(() => false))) return memory;
     const pg = new PgVectors(this.pool, destination, embedder);

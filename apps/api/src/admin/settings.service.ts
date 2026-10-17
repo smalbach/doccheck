@@ -1,7 +1,7 @@
 import { BadRequestException, ForbiddenException, Inject, Injectable, Logger, ServiceUnavailableException, type OnApplicationBootstrap } from '@nestjs/common';
-import { OllamaProvider, terminateOcr } from '@doccheck/extraction';
+import { CLOUD_OCR_ENGINES, cloudOcrProblem, terminateOcr } from '@doccheck/extraction';
 import { isDemo } from '../demo/demo-mode';
-import { LLM_PROVIDER } from '../llm/llm.module';
+import { LLM_PROVIDER, providerFromEnvOrOllama } from '../llm/llm.module';
 import type { SwitchableProvider } from '../llm/switchable-provider';
 import { listOllamaModels } from './ollama-models';
 import { isSettingKey, OCR_ENGINES, OCR_LANGUAGES, OCR_PSM_VALUES, SETTING_KEYS, SETTINGS, type SettingDefinition, type SettingKey } from './settings.definitions';
@@ -93,6 +93,10 @@ export class SettingsService implements OnApplicationBootstrap {
     if (entries.some(([k]) => k === 'ocrEngine' || k === 'ocrUrl') && next('ocrEngine') === 'unlimited' && !(await ocrServerReachable(next('ocrUrl')))) {
       throw new ServiceUnavailableException(`The Unlimited-OCR server at ${next('ocrUrl')} does not answer (start it with npm run ocr:server)`);
     }
+    // A cloud engine needs its key (AI providers) and outside services allowed.
+    const engine = entries.find(([k]) => k === 'ocrEngine')?.[1] as string | undefined;
+    const cloudProblem = engine && (CLOUD_OCR_ENGINES as readonly string[]).includes(engine) ? cloudOcrProblem(engine) : undefined;
+    if (cloudProblem) throw new BadRequestException(cloudProblem);
     await this.repo.save(entries, userId);
     for (const [key, value] of entries) await this.apply(key, value);
     this.logger.log(`Settings changed: ${entries.map(([k, v]) => `${k}=${JSON.stringify(v)}`).join(', ')}`);
@@ -126,7 +130,7 @@ export class SettingsService implements OnApplicationBootstrap {
   private async apply(key: SettingKey, value: unknown) {
     const def = SETTINGS[key] as SettingDefinition<unknown>;
     process.env[def.env] = def.toEnv(value);
-    if (key === 'llmModel') this.provider.replace(new OllamaProvider(value as string, process.env.OLLAMA_BASE_URL || undefined));
+    if (key === 'llmModel') this.provider.replace(providerFromEnvOrOllama(this.logger));
     // The OCR worker keeps its languages and page mode: a new one starts on the next scan.
     if (key === 'ocrLanguages' || key === 'ocrPsm') await terminateOcr();
   }

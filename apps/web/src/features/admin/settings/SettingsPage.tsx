@@ -7,13 +7,14 @@ import { useI18n } from '../../../i18n/useI18n';
 import { settingOf } from '../../../lib/settingOf';
 import { AccountsSettingCard } from './AccountsSettingCard';
 import { AgentSettingCard } from './AgentSettingCard';
+import { AiProvidersCard } from './AiProvidersCard';
 import { LearningSettingsCard } from './LearningSettingsCard';
 import { ModelSettingCard } from './ModelSettingCard';
 import { MailboxSettingsCard } from './MailboxSettingsCard';
 import { OcrSettingsCard } from './OcrSettingsCard';
 import { useAdminSettings } from './useAdminSettings';
 
-type SettingsTab = 'model' | 'accounts' | 'ocr' | 'mail';
+type SettingsTab = 'model' | 'ai' | 'accounts' | 'ocr' | 'mail';
 
 export function SettingsPage() {
   const { t } = useI18n();
@@ -73,6 +74,7 @@ export function SettingsPage() {
               </>
             ),
           },
+          { value: 'ai', label: t('admin.settingsTabs.ai'), content: <AiProvidersCard /> },
           {
             value: 'accounts',
             label: t('admin.settingsTabs.accounts'),

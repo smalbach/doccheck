@@ -273,7 +273,64 @@ export interface User {
 
 export type SettingKey = 'llmModel' | 'agentEnabled' | 'registrationOpen' | 'ocrEngine' | 'ocrUrl' | 'ocrLanguages' | 'ocrScale' | 'ocrPsm' | 'reviewThreshold' | 'reviewSecondPass' | 'supplierLearning' | 'supplierExamples';
 
-export type OcrEngine = 'tesseract' | 'unlimited';
+export type OcrEngine = 'tesseract' | 'unlimited' | CloudOcrEngine;
+/** OCR services that receive the page image; their keys are set with the AI providers. */
+export type CloudOcrEngine = 'google-vision' | 'aws-textract' | 'azure-di';
+export const CLOUD_OCR_ENGINES: readonly CloudOcrEngine[] = ['google-vision', 'aws-textract', 'azure-di'];
+
+export type LlmProviderKind = 'ollama' | 'openai' | 'azure-openai' | 'anthropic' | 'gemini';
+export type EmbedProviderKind = 'ollama' | 'openai' | 'azure-openai' | 'gemini';
+
+/** Credentials as entered: an empty or missing key keeps the saved one. */
+export interface AiCredentialsInput {
+  openai: { baseUrl: string; apiKey?: string } | null;
+  azureOpenai: { endpoint: string; apiVersion: string; apiKey?: string } | null;
+  anthropic: { apiKey?: string } | null;
+  gemini: { apiKey?: string } | null;
+  googleVision: { apiKey?: string } | null;
+  awsTextract: { region: string; accessKeyId: string; secretAccessKey?: string } | null;
+  azureDi: { endpoint: string; apiKey?: string } | null;
+}
+export type AiCredentialName = keyof AiCredentialsInput;
+
+export interface AiProvidersInput {
+  localOnly: boolean;
+  llm: { provider: LlmProviderKind; model: string | null };
+  embeddings: { provider: EmbedProviderKind; model: string | null; dimensions: number | null };
+  credentials: AiCredentialsInput;
+}
+
+/** Credentials as the server shows them: every field but the key, which is only "set". */
+export type AiCredentialsView = {
+  [K in AiCredentialName]: (Omit<NonNullable<AiCredentialsInput[K]>, 'apiKey' | 'secretAccessKey'> & { hasKey: boolean }) | null;
+};
+
+export interface AiReindexJob {
+  running: boolean;
+  embedder: string;
+  step: string;
+  done: number;
+  total: number;
+  startedAt: string;
+  finishedAt?: string;
+  error?: string;
+}
+
+export interface AiProvidersSettings {
+  /** admin: saved from the web; env: from .env. */
+  source: 'admin' | 'env';
+  editable: boolean;
+  updatedAt?: string;
+  updatedBy?: string;
+  config: Omit<AiProvidersInput, 'credentials'> & { credentials: AiCredentialsView };
+  /** What runs now: provider ids such as "ollama:qwen3.8", and the OCR engine. */
+  active: { llm: string; embeddings: string | null; ocr: OcrEngine };
+  /** Whether the indexes of the current embedding model exist. */
+  indexes: { embedder: string | null; regulations: boolean; tariff: Record<'US' | 'CA', boolean> };
+  reindex?: AiReindexJob;
+}
+
+export type AiTestTarget = 'llm' | 'embeddings' | CloudOcrEngine;
 
 export interface SettingValues {
   llmModel: string;
@@ -336,7 +393,8 @@ export interface SystemStatus {
   demo: boolean;
   ollama: { url: string; reachable: boolean; models: number };
   model: { provider: string; build: string | null };
-  embeddings: { model: string; chunks: number | null };
+  embeddings: { model: string | null; chunks: number | null };
+  localOnly: boolean;
   queue: 'bullmq' | 'in-process';
   storage: 's3' | 'disk';
   cache: { dir: string | null; mode: string };

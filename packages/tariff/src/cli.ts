@@ -1,4 +1,4 @@
-import { OllamaEmbedder } from '@doccheck/regulations';
+import { embedderFromEnv, indexName } from '@doccheck/regulations';
 import type { Destination } from '@doccheck/schemas';
 import { existsSync } from 'node:fs';
 import { parseArgs } from 'node:util';
@@ -11,14 +11,14 @@ import { MemoryVectors, TariffSearch } from './search';
  *   node dist/cli.js index [--schedule us|ca]       embed every tariff line (8 and 10 digits) into data/tariff/index/<schedule>-<model>.json
  *   node dist/cli.js search "plush teddy bears" --schedule us
  *   node dist/cli.js check 9503.00.00.90 --schedule ca
- * EMBED_MODEL (default bge-m3), OLLAMA_BASE_URL, TARIFF_DIR.
+ * EMBED_PROVIDER, EMBED_MODEL (default bge-m3), OLLAMA_BASE_URL (see embedderFromEnv), TARIFF_DIR.
  */
 async function main() {
   const { values, positionals } = parseArgs({ allowPositionals: true, options: { schedule: { type: 'string' }, limit: { type: 'string', default: '5' } } });
   const dir = findTariffDir();
   if (!dir) throw new Error('No tariff data: run npm run tariff:fetch');
-  const model = process.env.EMBED_MODEL || 'bge-m3';
-  const embedder = new OllamaEmbedder(model, process.env.OLLAMA_BASE_URL || undefined);
+  const embedder = embedderFromEnv();
+  const model = indexName(embedder.id);
   const schedules = (values.schedule ? [values.schedule.toUpperCase()] : ['US', 'CA']) as Destination[];
   const [command, ...rest] = positionals;
 

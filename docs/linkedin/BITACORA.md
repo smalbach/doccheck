@@ -244,6 +244,28 @@ Todas fusionadas en `main` (último merge `a602285`), migraciones 040 a 051.
   generan hallazgos de las reglas nuevas; certificaciones SOC 2/ISO y transmisión real a CBSA/CBP fuera
   de alcance.
 
+## Proveedores de IA configurables, 17 oct
+
+- Antes: Ollama y Tesseract fijos en el código; la pantalla de admin creaba el proveedor a mano.
+- Ahora, desde Administración → Configuración → Proveedores de IA (detalle en `docs/AI-PROVIDERS.md`):
+  - Modelo de documentos: Ollama, cualquier API compatible con OpenAI (OpenAI, Groq, OpenRouter,
+    vLLM, LM Studio), Azure OpenAI, Anthropic o Gemini.
+  - Embeddings: Ollama, compatible con OpenAI, Azure OpenAI o Gemini; índices por modelo y
+    reconstrucción desde la pantalla.
+  - OCR: Tesseract, Unlimited-OCR, Google Cloud Vision, Amazon Textract o Azure Document Intelligence.
+- Interruptor "Solo local" encendido por defecto: solo pasan servidores en la máquina o en la red
+  privada. Las claves se guardan cifradas (AES-256-GCM) y la API nunca las devuelve.
+- Decisión: la salida de todos los proveedores pasa por la misma validación Zod, caché y traza de
+  `LlmClient`, así que la evaluación y el registro de llamadas no cambian con el proveedor.
+- Prueba real: Ollama expuesto como API compatible con OpenAI respondió la prueba de conexión en
+  13.2 s y extrajo una factura de muestra (CA-001) en 60.7 s (702 tokens de entrada, 1718 de salida,
+  registrado en `llm_calls` como `openai:qwen3.8`).
+- Tests: 26 unitarios nuevos contra servidores falsos (OpenAI, Anthropic, Gemini, Vision, Textract,
+  Azure DI); la firma SigV4 coincide con el caso `post-vanilla` de la suite oficial de AWS; 8 e2e de
+  la configuración (`apps/api/test/ai-providers.test.mjs`).
+- Pendiente: medir la precisión de extracción con modelos externos (`npm run eval:extraction` con
+  `LLM_PROVIDER`), que no se hizo para no enviar datos ni gastar sin tu decisión.
+
 ## Pendiente / próximos pasos
 
 - OCR de Baidu en Linux con GPU (vLLM) para no depender de un Mac.
@@ -265,3 +287,4 @@ Todas fusionadas en `main` (último merge `a602285`), migraciones 040 a 051.
 - 15 oct 2026: apariencia personalizable (sesión de la app).
 - 15 oct 2026: prueba de +códigos del buzón y apagado automático si el servidor los rechaza.
 - 17 oct 2026: funcionalidades del mercado en 11 sesiones paralelas, fusionadas en main (`a602285`).
+- 17 oct 2026: proveedores de IA configurables (LLM, embeddings, OCR) con "solo local" y claves cifradas.

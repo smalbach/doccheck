@@ -1,3 +1,4 @@
+import { aiProvidersFr } from './ai.fr';
 import { analyticsFr } from './analytics.fr';
 import { extraFr } from './extra-fr';
 import { captureFr } from './capture-fr';
@@ -6,6 +7,7 @@ import type { Messages } from './en';
 export const fr: Messages = {
   ...extraFr,
   analytics: analyticsFr,
+  aiProviders: aiProvidersFr,
   common: { loading: 'Chargement…', cancel: 'Annuler', save: 'Enregistrer', saving: 'Enregistrement…', close: 'Fermer', none: '—' },
   app: {
     tagline: 'Documents de transport vérifiés avant d’arriver en douane',
@@ -1226,7 +1228,7 @@ export const fr: Messages = {
   admin: {
     section: 'Administration',
     settings: 'Paramètres',
-    settingsTabs: { label: 'Sections des paramètres', model: 'Modèle et agent', accounts: 'Comptes', ocr: 'OCR', mail: 'Courriel' },
+    settingsTabs: { label: 'Sections des paramètres', model: 'Modèle et agent', accounts: 'Comptes', ocr: 'OCR', mail: 'Courriel', ai: 'Fournisseurs d’IA' },
     users: 'Utilisateurs',
     system: 'Système',
     forbiddenTitle: 'Réservé aux administrateurs',
@@ -1265,8 +1267,9 @@ export const fr: Messages = {
       title: 'OCR des PDF numérisés',
       text: 'Les pages sans couche de texte sont lues avec le moteur OCR choisi ci-dessous. Les valeurs par défaut ont été choisies en mesurant 120 numérisations synthétiques (npm run eval:ocr).',
       engine: 'Moteur',
-      engines: { tesseract: 'Tesseract (intégré)', unlimited: 'Unlimited-OCR (serveur Apple Silicon)' },
+      engines: { tesseract: 'Tesseract (intégré)', unlimited: 'Unlimited-OCR (serveur Apple Silicon)', 'google-vision': 'Google Cloud Vision', 'aws-textract': 'Amazon Textract', 'azure-di': 'Azure Document Intelligence' },
       engineHint: {
+        cloud: 'Envoie l’image de chaque page numérisée à ce service infonuagique. Demande sa clé dans l’onglet Fournisseurs d’IA et Local uniquement désactivé.',
         tesseract: 'Tourne dans l’API sur n’importe quelle machine. Les langues, l’échelle et la mise en page ci-dessous s’y appliquent.',
         unlimited: 'Unlimited-OCR de Baidu sur MLX, servi par scripts/ocr-server.py (npm run ocr:server). Texte retrouvé sur les 120 scans synthétiques : 96,8 % contre 86,6 % pour Tesseract.',
       },

@@ -1,7 +1,9 @@
 import { BadRequestException, ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { ocrEngine } from '@doccheck/extraction';
+import { localOnly } from '@doccheck/schemas';
 import type { Role } from '../auth/auth.types';
 import { isDemo } from '../demo/demo-mode';
-import { LLM_PROVIDER, RegulationsService } from '../llm/llm.module';
+import { embedderFromEnvOrNull, LLM_PROVIDER, RegulationsService } from '../llm/llm.module';
 import type { SwitchableProvider } from '../llm/switchable-provider';
 import { AdminRepository } from './admin.repository';
 import { modelAccuracy } from './model-accuracy';
@@ -36,11 +38,12 @@ export class AdminService {
       demo: isDemo(),
       ollama: { url: process.env.OLLAMA_BASE_URL || 'http://localhost:11434', reachable: installed !== null, models: installed?.length ?? 0 },
       model: { provider: this.provider.id, build: build ?? null },
-      embeddings: { model: process.env.EMBED_MODEL || 'bge-m3', chunks: index?.chunks.length ?? null },
+      embeddings: { model: embedderFromEnvOrNull()?.id.replace(/^ollama:/, '') ?? null, chunks: index?.chunks.length ?? null },
+      localOnly: localOnly(),
       queue: process.env.REDIS_URL ? 'bullmq' : 'in-process',
       storage: process.env.S3_ENDPOINT ? 's3' : 'disk',
       cache: { dir: process.env.LLM_CACHE_DIR || null, mode: process.env.LLM_CACHE_MODE || (process.env.LLM_CACHE_DIR ? 'readwrite' : 'off') },
-      ocr: { engine: process.env.OCR_ENGINE === 'unlimited' ? 'unlimited' : 'tesseract', languages: (process.env.OCR_LANGS ?? 'eng+fra').split('+'), scale: Number(process.env.OCR_SCALE ?? 4), psm: process.env.OCR_PSM ?? '6' },
+      ocr: { engine: ocrEngine(), languages: (process.env.OCR_LANGS ?? 'eng+fra').split('+'), scale: Number(process.env.OCR_SCALE ?? 4), psm: process.env.OCR_PSM ?? '6' },
       agentEnabled: process.env.AGENT_ENABLED !== 'false',
       counts,
     };

@@ -61,6 +61,10 @@ import type {
   AllowlistItem,
   ScreeningSearch,
   ScreeningStatus,
+  AiProvidersInput,
+  AiProvidersSettings,
+  AiReindexJob,
+  AiTestTarget,
 } from './types';
 
 const shipmentPath = (id: string) => `/shipments/${encodeURIComponent(id)}`;
@@ -173,6 +177,11 @@ export const api = {
   updateSettings: (values: Partial<SettingValues>) => request<AdminSettings>('/admin/settings', jsonBody(values, 'PUT')),
   resetSetting: (key: SettingKey) => request<AdminSettings>(`/admin/settings/${key}`, { method: 'DELETE' }),
   adminModels: () => request<AdminModels>('/admin/models'),
+  adminAi: () => request<AiProvidersSettings>('/admin/ai'),
+  saveAdminAi: (config: AiProvidersInput) => request<AiProvidersSettings>('/admin/ai', jsonBody(config, 'PUT')),
+  resetAdminAi: () => request<AiProvidersSettings>('/admin/ai', { method: 'DELETE' }),
+  testAdminAi: (target: AiTestTarget, config?: AiProvidersInput) => request<{ ok: boolean; detail: string }>('/admin/ai/test', jsonBody({ target, ...(config ? { config } : {}) })),
+  reindexAdminAi: () => request<AiReindexJob>('/admin/ai/reindex', jsonBody({})),
   adminSystem: () => request<SystemStatus>('/admin/system'),
   adminUsers: () => request<UserSummary[]>('/admin/users'),
   screeningLists: () => request<ScreeningStatus>('/screening/lists'),

@@ -13,7 +13,7 @@
  * eval/cache/qa_<model>/, so a rerun needs no model (--replay fails on a cache miss).
  * Writes eval/reports/qa-<model>.json.
  */
-import { LlmClient, OllamaProvider } from '@doccheck/extraction';
+import { LlmClient, llmProviderFromEnv } from '@doccheck/extraction';
 import { randomUUID } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -103,8 +103,7 @@ async function main() {
   await buildFixture(pool, accounts.a, evalDir, order);
   await buildFixture(pool, accounts.b, evalDir, theirs);
 
-  const model = process.env.LLM_MODEL || 'qwen3.8';
-  const provider = new OllamaProvider(model, process.env.OLLAMA_BASE_URL || undefined);
+  const provider = llmProviderFromEnv();
   const llm = new LlmClient(provider, join(root, 'eval/cache', `qa_${provider.id.replace(/[^a-z0-9.-]/gi, '_')}`), values.replay ? 'replay' : 'readwrite');
   const runner = new QaRunner(pool);
   const questions = (JSON.parse(await readFile(join(root, 'eval/qa/questions.json'), 'utf8')) as Question[]).slice(0, values.limit ? Number(values.limit) : undefined);

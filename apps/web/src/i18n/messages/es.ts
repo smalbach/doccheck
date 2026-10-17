@@ -1,3 +1,4 @@
+import { aiProvidersEs } from './ai.es';
 import { analyticsEs } from './analytics.es';
 import { extraEs } from './extra-es';
 import { captureEs } from './capture-es';
@@ -6,6 +7,7 @@ import type { Messages } from './en';
 export const es: Messages = {
   ...extraEs,
   analytics: analyticsEs,
+  aiProviders: aiProvidersEs,
   common: { loading: 'Cargando…', cancel: 'Cancelar', save: 'Guardar', saving: 'Guardando…', close: 'Cerrar', none: '—' },
   app: {
     tagline: 'Documentos de carga revisados antes de llegar a la aduana',
@@ -1226,7 +1228,7 @@ export const es: Messages = {
   admin: {
     section: 'Administración',
     settings: 'Configuración',
-    settingsTabs: { label: 'Secciones de configuración', model: 'Modelo y agente', accounts: 'Cuentas', ocr: 'OCR', mail: 'Correo' },
+    settingsTabs: { label: 'Secciones de configuración', model: 'Modelo y agente', accounts: 'Cuentas', ocr: 'OCR', mail: 'Correo', ai: 'Proveedores de IA' },
     users: 'Usuarios',
     system: 'Sistema',
     forbiddenTitle: 'Solo administradores',
@@ -1265,8 +1267,9 @@ export const es: Messages = {
       title: 'OCR para PDF escaneados',
       text: 'Las páginas sin capa de texto se leen con el motor OCR elegido abajo. Los valores por defecto se eligieron midiendo 120 escaneos sintéticos (npm run eval:ocr).',
       engine: 'Motor',
-      engines: { tesseract: 'Tesseract (integrado)', unlimited: 'Unlimited-OCR (servidor en Apple Silicon)' },
+      engines: { tesseract: 'Tesseract (integrado)', unlimited: 'Unlimited-OCR (servidor en Apple Silicon)', 'google-vision': 'Google Cloud Vision', 'aws-textract': 'Amazon Textract', 'azure-di': 'Azure Document Intelligence' },
       engineHint: {
+        cloud: 'Envía la imagen de cada página escaneada a este servicio en la nube. Requiere su clave en la pestaña Proveedores de IA y Solo local apagado.',
         tesseract: 'Corre dentro de la API en cualquier máquina. Los idiomas, la escala y el diseño de abajo se aplican a él.',
         unlimited: 'Unlimited-OCR de Baidu sobre MLX, servido por scripts/ocr-server.py (npm run ocr:server). Texto recuperado en los 120 escaneos sintéticos: 96,8 % frente a 86,6 % de Tesseract.',
       },

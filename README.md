@@ -1,6 +1,6 @@
 # DocCheck
 
-**Catch freight document errors before customs does.** DocCheck reads the commercial invoice, packing list, bill of lading and, for US ocean freight, the ISF 10+2 filing, as well as air waybills, certificates of origin (CUSMA included), arrival notices, ISPM 15 wood packaging certificates and dangerous goods declarations, from PDFs, phone photos or spreadsheets, then cross-checks them against each other and against the requirements of the destination: CBSA (Canada), CBP (US), ANAM (Mexico), the Union Customs Code (EU) or HMRC (UK). A local model copies the values as printed, plain tested code normalizes them, and 53 deterministic rules do the checking, with the tolerances each organization sets. The model comes back only for the narrow cases a rule cannot settle alone. Every finding links to the exact line in the PDF it comes from and to the regulation passage behind it, and the supplier can be asked for corrected documents without leaving the app. The models run locally: no document goes to an outside AI service.
+**Catch freight document errors before customs does.** DocCheck reads the commercial invoice, packing list, bill of lading and, for US ocean freight, the ISF 10+2 filing, as well as air waybills, certificates of origin (CUSMA included), arrival notices, ISPM 15 wood packaging certificates and dangerous goods declarations, from PDFs, phone photos or spreadsheets, then cross-checks them against each other and against the requirements of the destination: CBSA (Canada), CBP (US), ANAM (Mexico), the Union Customs Code (EU) or HMRC (UK). A local model copies the values as printed, plain tested code normalizes them, and 53 deterministic rules do the checking, with the tolerances each organization sets. The model comes back only for the narrow cases a rule cannot settle alone. Every finding links to the exact line in the PDF it comes from and to the regulation passage behind it, and the supplier can be asked for corrected documents without leaving the app. The models run locally by default: no document goes to an outside AI service unless an admin turns off "local only" and picks one (OpenAI-compatible, Azure OpenAI, Anthropic, Gemini, Google Vision, Textract or Azure Document Intelligence; see [docs/AI-PROVIDERS.md](docs/AI-PROVIDERS.md)).
 
 <p align="center">
   <img src="docs/screenshots/flow.webp" width="900" alt="Opening a sample shipment, validating it, and clicking a finding's evidence: the invoice PDF opens with the cited line highlighted">
@@ -133,7 +133,7 @@ flowchart LR
 | Language | TypeScript end to end, npm workspaces monorepo |
 | API | NestJS, Zod, BullMQ (Redis), Postgres with pgvector, S3-compatible storage (MinIO / SeaweedFS), nodemailer, ImapFlow and mailparser for supplier mail |
 | Documents | pdf.js (text with positions), tesseract.js (OCR), optional Unlimited-OCR server on Apple Silicon, Playwright (renders the synthetic PDFs) |
-| Models | Ollama, run locally: `qwen3.8` for extraction and agent decisions, `bge-m3` for embeddings |
+| Models | Ollama, run locally: `qwen3.8` for extraction and agent decisions, `bge-m3` for embeddings; optionally any OpenAI-compatible API, Azure OpenAI, Anthropic or Gemini, and Google Vision, Textract or Azure Document Intelligence for OCR ([docs/AI-PROVIDERS.md](docs/AI-PROVIDERS.md)) |
 | Web | React, Vite, Radix UI, pdf.js viewer with highlights; English, Spanish, French |
 | Quality | Unit tests for every rule and normalizer, API end-to-end tests, axe-core accessibility audit in CI, evaluation set with recall and precision per rule |
 | Deploy | Docker Compose (app, Postgres, Redis, MinIO; Ollama on the host for the GPU) |
@@ -319,7 +319,7 @@ PDF rendering uses Playwright's Chromium, or the local Chrome when that build is
 
 ## Extraction (phase 2)
 
-Extraction runs on a local model through [Ollama](https://ollama.com); nothing leaves the machine. Start Ollama, pull a model and point `LLM_MODEL` at it (default `qwen3.8`).
+Extraction runs on a local model through [Ollama](https://ollama.com) by default; nothing leaves the machine. Start Ollama, pull a model and point `LLM_MODEL` at it (default `qwen3.8`). Another provider can be set with `LLM_PROVIDER` or from the settings page ([docs/AI-PROVIDERS.md](docs/AI-PROVIDERS.md)).
 
 1. `pdf-text.ts` reads the PDF text layer with pdf.js and keeps each line's page and bounding box. Cells are padded to their column so tables stay aligned for the model. Pages without a text layer (scans) are rendered and read with OCR (tesseract.js with bundled English and French models, no system install), and come back in the same shape, so citations and highlighting work on scans too.
 2. `classify.ts` detects invoice, packing list, bill of lading, ISF filing confirmation, air waybill, certificate of origin, CUSMA certification, arrival notice, wood packaging certificate or dangerous goods declaration from the title and vocabulary. `split.ts` classifies each page of an upload on its own and starts a new document where a page is titled as another type or its own page marker restarts at 1; `spreadsheet.ts` and `spreadsheet-extract.ts` read .xlsx and .csv without a model; `image.ts` turns photos into image-only PDFs; `attestation.ts` looks for a signature and a stamp on the rendered page.
@@ -354,6 +354,7 @@ After the rules run, `/validate` does a second pass:
 | GET / PUT | `/admin/settings` | Admin: model and OCR settings with where each value comes from; PUT `{ llmModel?, agentEnabled?, ocrLanguages?, ocrScale?, ocrPsm? }` validates all, saves and applies without a restart |
 | DELETE | `/admin/settings/:key` | Admin: back to the `.env` value |
 | GET | `/admin/models`, `/admin/system` | Admin: installed Ollama models with their measured accuracy; what the server runs with |
+| GET / PUT / DELETE | `/admin/ai` | Admin: model, embedding and OCR providers with their keys sealed (never sent back), local-only switch; POST `/admin/ai/test` tries one, POST `/admin/ai/reindex` rebuilds the indexes ([docs/AI-PROVIDERS.md](docs/AI-PROVIDERS.md)) |
 | GET / PATCH | `/admin/users`, `/admin/users/:id` | Admin: accounts and `{ role }` (nobody changes their own; the last admin stays) |
 | GET | `/rules?destination=CA` | Active rules for a destination |
 | GET / PUT / DELETE | `/rules/settings` | The organization's rule settings (PUT and DELETE need `org.settings`) with the rule catalog, defaults and bundled SCACs; PUT `{ rules?: { X2: { enabled?, severity? } }, params?: { grossWeightTolerance?, …, knownScacs? } }` validates (unknown rules and out-of-bounds tolerances are refused) and stores only what differs from the defaults; DELETE goes back to the defaults |

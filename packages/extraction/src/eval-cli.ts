@@ -6,7 +6,8 @@ import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { basename, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { extractDocument, PROMPT_VERSION, type ExtractableType } from './extract';
-import { LlmClient, llmFromEnv, type Usage } from './llm';
+import { LlmClient, type Usage } from './llm';
+import { llmFromEnv } from './llm-providers';
 import { ocrEngine, terminateOcr } from './ocr';
 import { scoreDocument, tally, type FieldScore } from './score';
 

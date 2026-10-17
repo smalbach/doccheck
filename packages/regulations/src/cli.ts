@@ -1,22 +1,22 @@
 import { resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import type { Authority } from './corpus';
-import { excerpt, OllamaEmbedder } from './search';
+import { embedderFromEnv, indexName } from './embedders';
+import { excerpt } from './search';
 import { buildIndexFile, loadIndexFile } from './store';
 
 /**
  *   node dist/cli.js index                        embed data/corpus into data/corpus/index/<model>.json
  *   node dist/cli.js search "country of origin" --authority CBSA
- * EMBED_MODEL (default bge-m3), OLLAMA_BASE_URL.
+ * EMBED_PROVIDER (default ollama), EMBED_MODEL (default bge-m3), OLLAMA_BASE_URL; see embedderFromEnv.
  */
 async function main() {
   const { values, positionals } = parseArgs({
     allowPositionals: true,
     options: { corpus: { type: 'string', default: 'data/corpus' }, authority: { type: 'string' }, limit: { type: 'string', default: '3' } },
   });
-  const model = process.env.EMBED_MODEL || 'bge-m3';
-  const embedder = new OllamaEmbedder(model, process.env.OLLAMA_BASE_URL || undefined);
-  const file = resolve(values.corpus!, 'index', `${model}.json`);
+  const embedder = embedderFromEnv();
+  const file = resolve(values.corpus!, 'index', `${indexName(embedder.id)}.json`);
   const [command, ...rest] = positionals;
 
   if (command === 'index') {

@@ -1,3 +1,4 @@
+import { aiProvidersEn } from './ai.en';
 import { analyticsEn } from './analytics.en';
 import { captureEn } from './capture';
 import { extraEn } from './extra-en';
@@ -8,6 +9,7 @@ import { extraEn } from './extra-en';
  */
 export const en = {
   analytics: analyticsEn,
+  aiProviders: aiProvidersEn,
   ...extraEn,
   common: {
     loading: 'Loading…',
@@ -1245,7 +1247,7 @@ export const en = {
   admin: {
     section: 'Administration',
     settings: 'Settings',
-    settingsTabs: { label: 'Settings sections', model: 'Model and agent', accounts: 'Accounts', ocr: 'OCR', mail: 'Mail' },
+    settingsTabs: { label: 'Settings sections', model: 'Model and agent', accounts: 'Accounts', ocr: 'OCR', mail: 'Mail', ai: 'AI providers' },
     users: 'Users',
     system: 'System',
     forbiddenTitle: 'Admins only',
@@ -1284,8 +1286,9 @@ export const en = {
       title: 'OCR for scanned PDFs',
       text: 'Pages without a text layer are read with the OCR engine below. The defaults were chosen by measuring 120 synthetic scans (npm run eval:ocr).',
       engine: 'Engine',
-      engines: { tesseract: 'Tesseract (built in)', unlimited: 'Unlimited-OCR (Apple Silicon server)' },
+      engines: { tesseract: 'Tesseract (built in)', unlimited: 'Unlimited-OCR (Apple Silicon server)', 'google-vision': 'Google Cloud Vision', 'aws-textract': 'Amazon Textract', 'azure-di': 'Azure Document Intelligence' },
       engineHint: {
+        cloud: 'Sends each scanned page image to this cloud service. Needs its key in the AI providers tab and local only off.',
         tesseract: 'Runs inside the API on any machine. Languages, scale and layout below apply to it.',
         unlimited: 'Baidu Unlimited-OCR on MLX, served by scripts/ocr-server.py (npm run ocr:server). Text recall on the 120 synthetic scans: 96.8% against 86.6% for Tesseract.',
       },
