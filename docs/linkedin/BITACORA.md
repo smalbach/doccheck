@@ -215,6 +215,35 @@ respuesta con su conversación, y Hostinger rechaza esas direcciones.
   la prueba se hace con un correo propio.
 - Prueba e2e con un servidor SMTP falso que rechaza o acepta direcciones con "+" (82/82 tests).
 
+## Funcionalidades del mercado: 11 sesiones en paralelo, 16-17 oct
+
+Comparativa con productos del mercado (IDP logístico, plataformas de forwarding, compliance y
+clasificación) y luego 11 sesiones de Claude Code, cada una en su worktree y rama, una por bloque.
+Todas fusionadas en `main` (último merge `a602285`), migraciones 040 a 051.
+
+- Organizaciones, roles, comentarios, aprobación en dos pasos, auditoría encadenada por hash,
+  retención (CBSA 6 años, CBP 5), TOTP y SSO OpenID Connect (`docs/ORGANIZATIONS.md`).
+- Reglas: de 15 a 53 (X13-X24, C3, U2-U4, T1-T13, M/E/K), configurables por organización; tres vías
+  contra órdenes de compra; precio contra el historial propio (`README.md`, tabla de reglas).
+- Destinos nuevos: México, UE y Reino Unido, con su corpus regulatorio.
+- Documentos nuevos (AWB, certificados de origen, CUSMA, aviso de llegada, ISPM 15, mercancías
+  peligrosas), Excel/CSV, fotos y PDF combinados.
+- Screening de partes restringidas (OFAC, BIS, Canadá, ONU, UE) y UFLPA; clasificación HS con
+  agencias (PGA/OGD); aranceles, landed cost y borrador 7501/CAD sin transmitir.
+- Portal del proveedor sin cuenta y revisión previa al embarque; API pública v1 con webhooks,
+  exportaciones CargoWise/X12; analítica, scorecard de proveedores y preguntas en lenguaje natural.
+- Cola de revisión humana, aprendizaje por proveedor, PWA con cámara y planes de uso (Stripe solo en
+  modo test).
+- Verificación final de `main`: build, tests unitarios, e2e de la API 176/176 y auditoría a11y sin
+  violaciones.
+- Lecciones de la integración: la rama de organizaciones cambió el modelo de datos, así que cada
+  sesión adaptó su rama antes del merge; suites de test y servidores compartiendo Redis, puertos y
+  base de datos se pisaban entre sí (cola de extracción robada, puertos repetidos), y las reglas nuevas
+  sobre datos sintéticos viejos (SCAC inventados) obligaron a acotar los tests a las reglas de cada set.
+- Pendiente: la Ley Aduanera de México no entró al corpus (sitio inaccesible); las muestras v1 aún
+  generan hallazgos de las reglas nuevas; certificaciones SOC 2/ISO y transmisión real a CBSA/CBP fuera
+  de alcance.
+
 ## Pendiente / próximos pasos
 
 - OCR de Baidu en Linux con GPU (vLLM) para no depender de un Mac.
@@ -235,3 +264,4 @@ respuesta con su conversación, y Hostinger rechaza esas direcciones.
 - 14 oct 2026: buzón configurable y documentos por correo (sesión de la app).
 - 15 oct 2026: apariencia personalizable (sesión de la app).
 - 15 oct 2026: prueba de +códigos del buzón y apagado automático si el servidor los rechaza.
+- 17 oct 2026: funcionalidades del mercado en 11 sesiones paralelas, fusionadas en main (`a602285`).

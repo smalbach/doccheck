@@ -375,3 +375,52 @@ document was uploaded again. A shipment is ready when its last validation has no
 [Your take: why accepting a risk with a written reason beats ignoring an alert.]
 
 #ProductDesign #Logistics #CustomsCompliance #AIEngineering
+
+## 8. Once agentes, una rama cada uno, un main que pasa todo
+
+Captura sugerida: `docs/screenshots/dashboard-light.webp` (regenerar con `node scripts/screenshots.mjs`).
+
+**ES**
+
+Comparé DocCheck con lo que ofrecen los productos de cumplimiento aduanero y automatización de
+documentos de carga, y le pedí a 11 agentes de IA que construyeran lo que faltaba, cada uno en su
+propia rama.
+
+Lo que entró:
+• organizaciones, roles, auditoría y SSO
+• de 15 a 53 reglas, configurables
+• México, UE y Reino Unido como destinos
+• AWB, certificados de origen, Excel y fotos
+• screening de partes restringidas y clasificación arancelaria
+• aranceles y costo puesto en destino
+• portal del proveedor, API pública y analítica
+
+Lo difícil no fue escribir el código, fue juntarlo: una rama cambió el modelo de datos de "usuario" a
+"organización" y las otras diez tuvieron que adaptarse antes de entrar. Al final, main pasa 176 de 176
+pruebas de la API y la auditoría de accesibilidad sin violaciones.
+
+[Tu opinión: qué aprendiste de coordinar agentes en paralelo.]
+
+#AIEngineering #Logistics #CustomsCompliance #SoftwareEngineering
+
+**EN**
+
+I compared DocCheck with what customs compliance and freight document automation products offer, and
+had 11 AI agents build what was missing, each on its own branch.
+
+What landed:
+• organizations, roles, audit log and SSO
+• from 15 to 53 rules, configurable
+• Mexico, the EU and the UK as destinations
+• air waybills, certificates of origin, spreadsheets and photos
+• denied party screening and tariff classification
+• duties and landed cost
+• a supplier portal, a public API and analytics
+
+The hard part wasn't writing the code, it was putting it together: one branch moved the data model
+from "user" to "organization", and the other ten had to adapt before going in. In the end, main passes
+176 of 176 API tests and the accessibility audit with no violations.
+
+[Your take: what you learned from coordinating agents in parallel.]
+
+#AIEngineering #Logistics #CustomsCompliance #SoftwareEngineering
