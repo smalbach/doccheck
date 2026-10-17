@@ -109,6 +109,25 @@ export class PortalRepository {
     })();
   }
 
+  /**
+   * Reads in one consistent snapshot (REPEATABLE READ, read only): `work` gets a repository bound to
+   * that transaction, so rows written by the check meanwhile are seen all together or not at all.
+   */
+  async snapshot<T>(work: (db: PortalRepository) => Promise<T>): Promise<T> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('begin isolation level repeatable read read only');
+      const out = await work(new PortalRepository(client as unknown as Pool));
+      await client.query('commit');
+      return out;
+    } catch (err) {
+      await client.query('rollback').catch(() => undefined);
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
+
   // Requests ----------------------------------------------------------------------------------------
 
   async insertRequest(r: NewPortalRequest, db: PoolClient | Pool = this.pool): Promise<void> {
