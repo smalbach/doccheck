@@ -2166,8 +2166,13 @@ describe('mail server settings and documents by email', () => {
       const shipment = (await call('GET', `/shipments/${intake.shipmentId}`, undefined, user)).body;
       assert.deepEqual([shipment.reference, shipment.destination, shipment.status], ['PO-7781 documents', 'CA', 'DONE']);
       assert.ok(thread.items[0].attachments.every((a) => a.documentId));
-      // The sender is the user: a summary goes back to them in the same conversation.
-      const summary = thread.items.find((m) => m.direction === 'out');
+      // The sender is the user: a summary goes back to them in the same conversation, once the
+      // intake is validated (it is written after the status, so wait for it like the reply below).
+      let summary;
+      for (let i = 0; i < 300 && !summary; i++) {
+        summary = (await call('GET', `/mail/threads/${threads[0].id}`, undefined, user)).body.items.find((m) => m.direction === 'out');
+        if (!summary) await new Promise((r) => setTimeout(r, 200));
+      }
       assert.deepEqual(summary?.to, [me.email]);
       assert.match(summary.text, /PO-7781 documents was read and checked/);
       const alerts = (await call('GET', '/shipments/alerts', undefined, user)).body;
