@@ -1,4 +1,6 @@
+import { FileIcon } from '@radix-ui/react-icons';
 import type { MailMessage } from '../../api/types';
+import { Avatar } from '../../components/ui/Avatar';
 import { Button } from '../../components/ui/Button';
 import { Tag } from '../../components/ui/Tag';
 import { useI18n } from '../../i18n/useI18n';
@@ -13,17 +15,42 @@ export interface MessageItemProps {
   onRetry: (id: string) => void;
   onAdded: (file: string) => void;
   onError: (message: string) => void;
+  /** Collapsed, only who, when and the first words show; a click opens it. */
+  expanded: boolean;
+  onToggle: () => void;
 }
 
 /** One email of a conversation: who, when, its delivery state, the text and the attachments. */
-export function MessageItem({ message: m, shipmentId, readOnly, onRetry, onAdded, onError }: MessageItemProps) {
+export function MessageItem({ message: m, shipmentId, readOnly, onRetry, onAdded, onError, expanded, onToggle }: MessageItemProps) {
   const { t, formatDateTime } = useI18n();
   const out = m.direction === 'out';
   const at = m.sentAt ?? m.receivedAt ?? m.createdAt;
+  const who = out ? (m.userName ?? t('mail.you')) : m.from;
+  const text = m.text.split(LINK_PLACEHOLDER).join(t('portal.linkInText'));
+  const label = `${who} · ${formatDateTime(at)}`;
+  if (!expanded) {
+    return (
+      <article className={cx('mail-message is-collapsed', out ? 'mail-out' : 'mail-in', !out && !m.readAt && 'mail-unread')} aria-label={label}>
+        <button type="button" className="mail-message-toggle" aria-expanded={false} onClick={onToggle}>
+          <Avatar name={out ? (m.userName ?? '') : ''} email={out ? undefined : m.from} />
+          <strong className="mail-message-who">{who}</strong>
+          <span className="mail-message-snippet">{text.replace(/\s+/g, ' ').trim() || t('mail.noText')}</span>
+          {m.status === 'failed' && <Tag>{t('mail.messageStatus.failed')}</Tag>}
+          {m.attachments.length > 0 && <FileIcon aria-label={t('mail.attachments')} />}
+          <time className="muted small" dateTime={at}>
+            {formatDateTime(at)}
+          </time>
+        </button>
+      </article>
+    );
+  }
   return (
-    <article className={cx('mail-message', out ? 'mail-out' : 'mail-in', !out && !m.readAt && 'mail-unread')} aria-label={`${out ? (m.userName ?? t('mail.you')) : m.from} · ${formatDateTime(at)}`}>
+    <article className={cx('mail-message', out ? 'mail-out' : 'mail-in', !out && !m.readAt && 'mail-unread')} aria-label={label}>
       <header className="mail-message-head">
-        <strong>{out ? (m.userName ?? t('mail.you')) : m.from}</strong>
+        <Avatar name={out ? (m.userName ?? '') : ''} email={out ? undefined : m.from} />
+        <button type="button" className="mail-message-toggle-head" aria-expanded onClick={onToggle}>
+          <strong>{who}</strong>
+        </button>
         <Tag tone={m.status === 'failed' ? 'neutral' : out ? 'ok' : 'accent'}>{t(`mail.messageStatus.${m.status}`)}</Tag>
         {m.viaPortal && <Tag>{t('portal.viaPortal')}</Tag>}
         {m.senderUnverified && (
@@ -55,7 +82,7 @@ export function MessageItem({ message: m, shipmentId, readOnly, onRetry, onAdded
       )}
       {m.transport === 'log' && <p className="muted small mail-dev-note">{t('mail.captured')}</p>}
       {/* The portal link is put in only when the email is sent: here it is a marker. */}
-      {m.text && <div className="mail-body">{m.text.split(LINK_PLACEHOLDER).join(t('portal.linkInText'))}</div>}
+      {m.text && <div className="mail-body">{text}</div>}
       <AttachmentList attachments={m.attachments} shipmentId={shipmentId} readOnly={readOnly} onAdded={onAdded} onError={onError} />
     </article>
   );

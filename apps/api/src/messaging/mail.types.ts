@@ -54,6 +54,12 @@ export interface ThreadSummary {
   failed: boolean;
   /** Someone in the conversation besides us: the first recipient, or the sender of the latest reply. */
   counterpart?: string;
+  /** The start of the latest message's text, for the list. */
+  snippet?: string;
+  /** Who wrote the latest message: the other side (in) or us (out). */
+  lastDirection?: 'in' | 'out';
+  /** Some message of the thread carries files. */
+  hasAttachments: boolean;
   lastMessageAt: string;
   createdAt: string;
   messages: number;

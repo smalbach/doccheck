@@ -71,7 +71,11 @@ const SUMMARY_COLUMNS = `t.*, s.reference as shipment_reference, p.name as party
   exists (select 1 from mail_messages f where f.thread_id = t.id and f.status = 'failed') as failed,
   (select count(*)::int from mail_messages m where m.thread_id = t.id) as message_count,
   (select case when m.direction = 'in' then m.from_addr else m.to_addrs[1] end from mail_messages m
-    where m.thread_id = t.id order by m.created_at desc limit 1) as counterpart`;
+    where m.thread_id = t.id order by m.created_at desc limit 1) as counterpart,
+  (select left(btrim(regexp_replace(m.text_body, '\\s+', ' ', 'g')), 160) from mail_messages m
+    where m.thread_id = t.id order by m.created_at desc limit 1) as snippet,
+  (select m.direction from mail_messages m where m.thread_id = t.id order by m.created_at desc limit 1) as last_direction,
+  exists (select 1 from mail_attachments a join mail_messages m on m.id = a.message_id where m.thread_id = t.id) as has_attachments`;
 
 const iso = (v: unknown) => (v ? new Date(v as string).toISOString() : undefined);
 
@@ -89,6 +93,9 @@ const toSummary = (r: Record<string, unknown>): ThreadSummary => ({
   ...(r.due_at ? { dueAt: iso(r.due_at) } : {}),
   failed: r.failed as boolean,
   ...(r.counterpart ? { counterpart: r.counterpart as string } : {}),
+  ...(r.snippet ? { snippet: r.snippet as string } : {}),
+  ...(r.last_direction ? { lastDirection: r.last_direction as 'in' | 'out' } : {}),
+  hasAttachments: r.has_attachments as boolean,
   lastMessageAt: iso(r.last_message_at)!,
   createdAt: iso(r.created_at)!,
   messages: r.message_count as number,

@@ -154,15 +154,6 @@
 .sidebar-badge { margin-left: auto; min-width: 20px; padding: 0 6px; border-radius: 999px; background: var(--accent); color: var(--accent-contrast); font-size: 11px; font-weight: 700; line-height: 18px; text-align: center; }
 .thread-unread { font-weight: 700; }
 .thread-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
-.mail-thread { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
-.mail-message { border: var(--panel-border); box-shadow: var(--panel-shadow); border-radius: var(--radius); padding: 12px 14px; background: var(--surface); }
-.mail-message.mail-in { border-left: 3px solid var(--accent); }
-.mail-message.mail-unread { box-shadow: 0 0 0 1px var(--accent) inset; }
-.mail-message-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.mail-message-head time { margin-left: auto; }
-.mail-recipients { margin: 2px 0 8px; overflow-wrap: anywhere; }
-.mail-body { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; line-height: 1.5; }
-.mail-error { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 6px 0; padding: 6px 8px; border-radius: var(--radius-sm); background: var(--bg); border-left: 3px solid var(--critical); }
 .attachment-list { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .attachment-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; overflow-wrap: anywhere; }
 .attachment-inline + .attachment-inline { margin-left: 10px; }

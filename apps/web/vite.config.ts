@@ -11,6 +11,6 @@ export default defineConfig({
     // Keep the browser's Host header: the API refuses state-changing requests whose Origin is another host.
     // The progress streams (/events, /shipments/:id/events) are server-sent events: the proxy pipes
     // them through as they come (the API sends no compression and X-Accel-Buffering: no).
-    proxy: Object.fromEntries(['/auth', '/admin', '/shipments', '/events', '/demo', '/rules', '/health', '/results', '/insights', '/mail', '/orgs', '/audit', '/approvals', '/notifications', '/integrations', '/api'].map((p) => [p, { target: api, changeOrigin: false }])),
+    proxy: Object.fromEntries(['/auth', '/admin', '/shipments', '/events', '/demo', '/rules', '/health', '/results', '/insights', '/mail', '/orgs', '/audit', '/approvals', '/notifications', '/integrations', '/supplier-portal', '/api'].map((p) => [p, { target: api, changeOrigin: false }])),
   },
 });

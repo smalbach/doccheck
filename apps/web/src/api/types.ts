@@ -747,6 +747,12 @@ export interface ThreadSummary {
   dueAt?: string;
   failed: boolean;
   counterpart?: string;
+  /** The start of the latest message's text, for the list. */
+  snippet?: string;
+  /** Who wrote the latest message: the other side (in) or us (out). */
+  lastDirection?: 'in' | 'out';
+  /** Some message of the thread carries files. */
+  hasAttachments: boolean;
   lastMessageAt: string;
   createdAt: string;
   messages: number;
