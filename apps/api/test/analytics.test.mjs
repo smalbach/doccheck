@@ -6,7 +6,7 @@
 //   npm run build && npm run test:e2e -w @doccheck/api
 //
 // Uses DATABASE_URL_ANALYTICS_TEST, else the database of DATABASE_URL_TEST (or doccheck_test) with
-// _test replaced by _analytics_test, on port E2E_PORT + 3 (+1 is the orgs suite, +2 the usage and review one).
+// _test replaced by _analytics_test, on port E2E_PORT + 4 (+1 is the orgs suite, +2 the usage and review one, +3 integrations, +7 the portal).
 // Each account below is its own personal organization.
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
@@ -34,7 +34,7 @@ const testUrl = (() => {
 const dbName = new URL(testUrl).pathname.slice(1);
 if (!dbName.endsWith('_test')) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
 
-const port = Number(process.env.E2E_ANALYTICS_PORT ?? Number(process.env.E2E_PORT ?? 3990) + 3);
+const port = Number(process.env.E2E_ANALYTICS_PORT ?? Number(process.env.E2E_PORT ?? 3990) + 4);
 const base = `http://localhost:${port}`;
 const require = createRequire(import.meta.url);
 const { buildFixture } = require(join(root, 'apps/api/dist/insights/qa/fixture.js'));

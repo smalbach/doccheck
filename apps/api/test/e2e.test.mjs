@@ -2273,7 +2273,8 @@ describe('ISF PDF upload', { skip: !isfSample && 'no ISF PDF with a cached model
 // (cached) and a copy of it renamed CA-999 with its PDFs swapped (the invoice file holds the bill of
 // lading...), so the demo never finds CA-999's extraction in the cache.
 describe('read-only demo', { skip: !hasSample && 'evaluation set not generated' }, () => {
-  const demoPort = port + 1;
+  // Not +1 to +7: the other suites (orgs, usage, integrations, analytics, portal) run beside this one.
+  const demoPort = port + 9;
   const demoBase = `http://localhost:${demoPort}`;
   let demo;
   before(async () => {
