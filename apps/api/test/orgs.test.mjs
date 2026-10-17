@@ -240,6 +240,54 @@ describe('organizations', () => {
     assert.ok(body.active.permissions.includes('org.delete'));
   });
 
+  it('keeps analytics, cost assumptions and Data Q&A rows inside the organization, and away from clients', async () => {
+    const a = await signUp('Analytics owner');
+    const b = await signUp('Analytics outsider');
+    const viewer = await signUp('Analytics viewer');
+    const client = await signUp('Analytics client');
+    const { s } = await shipmentWithFinding(a.cookie);
+    const get = (path, as) => call('GET', path, undefined, as.cookie);
+    const findings = (await get(`/shipments/${s.id}/validation`, a)).body.findings.length;
+    const kpis = (await get('/analytics/kpis', a)).body;
+    assert.ok(findings > 0);
+    assert.deepEqual([kpis.totals.shipments, kpis.totals.firstPassFindings], [1, findings]);
+    const qa = (sql, as) => call('POST', '/analytics/qa/run', { sql }, as.cookie);
+    assert.deepEqual((await qa('select reference from shipments', a)).body.rows, [[s.reference]]);
+
+    // Another organization sees none of it: numbers, rows, assumptions.
+    const theirs = (await get('/analytics/kpis', b)).body;
+    assert.deepEqual([theirs.totals.shipments, theirs.byRule.length, theirs.bySupplier.length], [0, 0, 0]);
+    assert.deepEqual((await get('/analytics/suppliers', b)).body, []);
+    assert.deepEqual((await get('/analytics/prices', b)).body, []);
+    assert.deepEqual((await get('/analytics/cost', b)).body.items, []);
+    assert.doesNotMatch((await get('/analytics/kpis.csv', b)).body ?? '', /X2/);
+    for (const view of ['shipments', 'invoices', 'invoice_lines', 'bills_of_lading', 'containers', 'findings', 'parties', 'products', 'mail_requests']) {
+      assert.deepEqual((await qa(`select count(*) from ${view}`, b)).body.rows, [['0']], view);
+    }
+    // Neither the guard nor the setting lets a query pick another organization.
+    const aOrg = (await get('/orgs', a)).body.active.id;
+    assert.equal((await qa(`select set_config('doccheck.qa_org', '${aOrg}', true), * from shipments`, b)).body.code, 'sql_rejected');
+    assert.equal((await qa(`select * from shipments where org_id = '${aOrg}'`, b)).body.rows?.length ?? 0, 0);
+
+    // Assumptions are the organization's; a viewer reads them, only owners and admins change them.
+    const report = (await get('/analytics/cost', a)).body;
+    const edited = { ...report.assumptions, delay: { ...report.assumptions.delay, days: 5 } };
+    assert.equal((await call('PUT', '/analytics/cost/assumptions', { assumptions: edited }, a.cookie)).status, 204);
+    await join_(a, viewer, 'viewer');
+    assert.equal((await get('/analytics/cost', viewer)).body.assumptions.delay.days, 5);
+    assert.equal((await get('/analytics/kpis', viewer)).body.totals.shipments, 1);
+    assert.equal((await call('PUT', '/analytics/cost/assumptions', { assumptions: report.assumptions }, viewer.cookie)).status, 403);
+    assert.equal((await get('/analytics/cost', b)).body.assumptions.delay.days, report.assumptions.delay.days);
+
+    // A client of the organization sees no analytics at all.
+    await join_(a, client, 'client');
+    for (const path of ['/analytics/kpis', '/analytics/kpis.csv', '/analytics/suppliers', '/analytics/cost', '/analytics/prices', '/analytics/regulations', '/analytics/regulations/unread']) {
+      assert.equal((await get(path, client)).status, 403, path);
+    }
+    assert.equal((await qa('select count(*) from shipments', client)).status, 403);
+    assert.equal((await call('POST', '/analytics/qa', { question: 'How many shipments?' }, client.cookie)).status, 403);
+  });
+
   it('never lets a member of one organization read or change another organization’s data', async () => {
     const a = await signUp('Alice');
     const b = await signUp('Bob');

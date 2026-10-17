@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AdminModule } from './admin/admin.module';
 import { AuditModule } from './audit/audit.module';
 import { AuthModule } from './auth/auth.module';
+import { AnalyticsModule } from './insights/analytics.module';
 import { CollabModule } from './collab/collab.module';
 import { NotificationsModule } from './collab/notifications.module';
 import { DbModule } from './db/db.module';
@@ -25,7 +26,7 @@ import { UsageModule } from './usage/usage.module';
 @Module({
   imports: [
     DbModule, StorageModule, LlmModule, ProgressModule, AuditModule, NotificationsModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule,
-    OrgsModule, CollabModule, RulesModule, UsageModule, ReviewModule, ScreeningModule, DutiesModule, IntegrationsModule,
+    OrgsModule, CollabModule, RulesModule, UsageModule, ReviewModule, ScreeningModule, DutiesModule, IntegrationsModule, AnalyticsModule,
   ],
   controllers: [HealthController, RulesController, ResultsController],
 })

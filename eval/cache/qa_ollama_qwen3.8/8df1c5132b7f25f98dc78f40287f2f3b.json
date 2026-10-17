@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1213,
+    "outputTokens": 76
+  },
+  "output": {
+    "sql": "SELECT DISTINCT s.reference, s.destination, s.status FROM shipments s JOIN isf i ON s.id = i.shipment_id WHERE i.country_of_origin = 'VN'",
+    "explanation": "Returns the reference, destination, and status of all shipments that have an ISF document with Vietnam as the country of origin."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1210,
+    "outputTokens": 68
+  },
+  "output": {
+    "sql": "SELECT currency, SUM(invoice_total) AS total_value FROM invoices GROUP BY currency ORDER BY total_value DESC",
+    "explanation": "The query calculates the total invoiced value for each currency by summing the invoice_total column from the invoices table and grouping the results by currency."
+  }
+}

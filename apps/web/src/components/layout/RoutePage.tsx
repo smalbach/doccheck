@@ -27,6 +27,15 @@ const ProductsPage = lazy(() => data().then((m) => ({ default: m.ProductsPage })
 const ProductPage = lazy(() => data().then((m) => ({ default: m.ProductPage })));
 const ContainersPage = lazy(() => data().then((m) => ({ default: m.ContainersPage })));
 const DataShipmentsPage = lazy(() => data().then((m) => ({ default: m.DataShipmentsPage })));
+// The analytics pages share one chunk.
+const analytics = () => import('../../features/analytics/pages');
+const KpisPage = lazy(() => analytics().then((m) => ({ default: m.KpisPage })));
+const SuppliersPage = lazy(() => analytics().then((m) => ({ default: m.SuppliersPage })));
+const SupplierPage = lazy(() => analytics().then((m) => ({ default: m.SupplierPage })));
+const CostPage = lazy(() => analytics().then((m) => ({ default: m.CostPage })));
+const PricesPage = lazy(() => analytics().then((m) => ({ default: m.PricesPage })));
+const AskPage = lazy(() => analytics().then((m) => ({ default: m.AskPage })));
+const RegulationsPage = lazy(() => analytics().then((m) => ({ default: m.RegulationsPage })));
 const ResultsPage = lazy(() => import('../../features/results/ResultsPage').then((m) => ({ default: m.ResultsPage })));
 // Review queue, usage and plans share one chunk.
 const more = () => import('../../features/review/pages');
@@ -80,6 +89,20 @@ export function RoutePage({ route }: { route: AppRoute }) {
       return <ContainersPage />;
     case 'data-shipments':
       return <DataShipmentsPage />;
+    case 'analytics-kpis':
+      return <KpisPage />;
+    case 'analytics-suppliers':
+      return <SuppliersPage />;
+    case 'analytics-supplier':
+      return <SupplierPage key={route.id} id={route.id} />;
+    case 'analytics-cost':
+      return <CostPage />;
+    case 'analytics-prices':
+      return <PricesPage />;
+    case 'analytics-ask':
+      return <AskPage />;
+    case 'analytics-regulations':
+      return <RegulationsPage />;
     case 'rules':
       return <RulesPage />;
     case 'rule-settings':

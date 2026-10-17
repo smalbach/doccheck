@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1215,
+    "outputTokens": 103
+  },
+  "output": {
+    "sql": "SELECT DISTINCT s.reference, s.destination, s.status FROM shipments s JOIN invoice_lines il ON s.id = il.shipment_id JOIN findings f ON s.id = f.shipment_id WHERE il.country_of_origin = 'VN' AND il.hs2 = '61' ORDER BY s.reference",
+    "explanation": "Returns the reference, destination, and status of shipments containing goods from Vietnam in HS chapter 61 that have at least one finding."
+  }
+}

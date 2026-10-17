@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1210,
+    "outputTokens": 69
+  },
+  "output": {
+    "sql": "SELECT s.reference, s.destination, s.status FROM shipments s WHERE NOT EXISTS (SELECT 1 FROM findings f WHERE f.shipment_id = s.id)",
+    "explanation": "Returns the reference, destination, and status of all shipments that have no associated findings in the findings view."
+  }
+}

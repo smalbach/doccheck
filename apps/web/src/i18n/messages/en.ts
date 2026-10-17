@@ -1,3 +1,4 @@
+import { analyticsEn } from './analytics.en';
 import { captureEn } from './capture';
 import { extraEn } from './extra-en';
 /**
@@ -6,6 +7,7 @@ import { extraEn } from './extra-en';
  * Content that comes from the API (rule titles, finding messages, regulation excerpts) stays in English.
  */
 export const en = {
+  analytics: analyticsEn,
   ...extraEn,
   common: {
     loading: 'Loading…',

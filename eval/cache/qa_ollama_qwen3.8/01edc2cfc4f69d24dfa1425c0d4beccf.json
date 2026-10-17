@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1215,
+    "outputTokens": 74
+  },
+  "output": {
+    "sql": "SELECT carrier_name, COUNT(*) AS bl_count FROM bills_of_lading GROUP BY carrier_name ORDER BY bl_count DESC, carrier_name ASC",
+    "explanation": "Lists each carrier name found in the bills of lading along with the count of bills of lading issued by that carrier, sorted by frequency."
+  }
+}

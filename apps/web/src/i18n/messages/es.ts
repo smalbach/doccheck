@@ -1,9 +1,11 @@
+import { analyticsEs } from './analytics.es';
 import { extraEs } from './extra-es';
 import { captureEs } from './capture-es';
 import type { Messages } from './en';
 
 export const es: Messages = {
   ...extraEs,
+  analytics: analyticsEs,
   common: { loading: 'Cargando…', cancel: 'Cancelar', save: 'Guardar', saving: 'Guardando…', close: 'Cerrar', none: '—' },
   app: {
     tagline: 'Documentos de carga revisados antes de llegar a la aduana',

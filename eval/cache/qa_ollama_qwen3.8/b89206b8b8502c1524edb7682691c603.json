@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1215,
+    "outputTokens": 59
+  },
+  "output": {
+    "sql": "SELECT round(avg(unit_price), 2) AS avg_unit_price FROM invoice_lines WHERE hs2 = '95'",
+    "explanation": "Calculates the average unit price of all invoice lines belonging to HS chapter 95."
+  }
+}

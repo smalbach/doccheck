@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1212,
+    "outputTokens": 47
+  },
+  "output": {
+    "sql": "SELECT reference, invoice_total FROM invoices ORDER BY invoice_total DESC LIMIT 1",
+    "explanation": "Returns the shipment reference and the highest invoice total from the invoices view."
+  }
+}

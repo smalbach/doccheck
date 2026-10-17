@@ -1,9 +1,11 @@
+import { analyticsFr } from './analytics.fr';
 import { extraFr } from './extra-fr';
 import { captureFr } from './capture-fr';
 import type { Messages } from './en';
 
 export const fr: Messages = {
   ...extraFr,
+  analytics: analyticsFr,
   common: { loading: 'Chargement…', cancel: 'Annuler', save: 'Enregistrer', saving: 'Enregistrement…', close: 'Fermer', none: '—' },
   app: {
     tagline: 'Documents de transport vérifiés avant d’arriver en douane',

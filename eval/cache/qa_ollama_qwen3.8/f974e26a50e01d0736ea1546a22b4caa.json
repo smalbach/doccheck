@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1219,
+    "outputTokens": 75
+  },
+  "output": {
+    "sql": "SELECT SUM(b.gross_kg) AS total_gross_weight_kg FROM bills_of_lading b JOIN shipments s ON b.shipment_id = s.id WHERE s.destination = 'CA'",
+    "explanation": "Calculates the sum of gross weights from bills of lading for all shipments destined for Canada."
+  }
+}
