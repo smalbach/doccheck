@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 708,
+    "outputTokens": 200
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "0306.35",
+        "confidence": 0.95,
+        "rationale": "The goods are frozen shrimp, which falls under heading 0306 for crustaceans whether in shell or not, live, fresh, chilled, frozen, etc., and subheading 0306.35 specifically covers shrimps and prawns."
+      },
+      {
+        "code": "1605.21",
+        "confidence": 0.1,
+        "rationale": "This heading covers prepared or preserved crustaceans, but the description 'frozen, peeled and deveined' typically indicates a simple preservation method (freezing) rather than preparation (cooking, adding ingredients), making 0306 the primary classification under GRI 1."
+      }
+    ]
+  }
+}

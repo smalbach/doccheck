@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 764,
+    "outputTokens": 200
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "6302.60",
+        "confidence": 0.95,
+        "rationale": "The goods are described as 'bath towels,' which are made-up articles of toilet linen, and 'terry weave' of cotton, fitting the specific description 'Toilet linen and kitchen linen, of terry toweling or similar terry fabrics, of cotton' under GRI 1."
+      },
+      {
+        "code": "5802.10",
+        "confidence": 0.1,
+        "rationale": "This heading covers 'Terry toweling... fabrics' (i.e., the material itself), whereas the invoice describes 'bath towels' (made-up articles), which are excluded from Chapter 58 by the nature of being finished goods rather than fabric."
+      }
+    ]
+  }
+}

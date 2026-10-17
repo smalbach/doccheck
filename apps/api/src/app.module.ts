@@ -21,12 +21,13 @@ import { OrgsModule } from './orgs/orgs.module';
 import { RulesModule } from './rules/rules.module';
 import { ShipmentsModule } from './shipments/shipments.module';
 import { StorageModule } from './storage/storage';
+import { TariffModule } from './tariff/tariff.module';
 import { UsageModule } from './usage/usage.module';
 
 @Module({
   imports: [
     DbModule, StorageModule, LlmModule, ProgressModule, AuditModule, NotificationsModule, AuthModule, ShipmentsModule, AdminModule, InsightsModule, MailModule,
-    OrgsModule, CollabModule, RulesModule, UsageModule, ReviewModule, ScreeningModule, DutiesModule, IntegrationsModule, AnalyticsModule,
+    OrgsModule, CollabModule, RulesModule, UsageModule, ReviewModule, ScreeningModule, DutiesModule, IntegrationsModule, AnalyticsModule, TariffModule,
   ],
   controllers: [HealthController, RulesController, ResultsController],
 })

@@ -4,6 +4,7 @@ import { excerpt } from '@doccheck/regulations';
 import { PROFILES, type Authority, type ShipmentContext } from '@doccheck/rules';
 import { clip, findingPreview, report, startStage, type AgentAnswer, type Finding, type Party, type ProgressCallback, type ValidationDetail } from '@doccheck/schemas';
 import { z } from 'zod';
+import type { AskFn } from './classification';
 import { INVOICE_REQUIREMENTS } from './cite';
 
 /** Bump when a prompt changes so cached decisions are not reused. */
@@ -71,6 +72,16 @@ export interface AgentDecision {
   effect: 'kept' | 'dismissed' | 'added' | 'none';
 }
 
+/**
+ * More questions asked in the same agent stage, after the built-in ones (tariff classification).
+ * `count` is known before the stage starts; `run` asks through the same helper, so each question
+ * is reported and recorded like the others, and returns the findings it adds.
+ */
+export interface AgentExtension {
+  count: number;
+  run(ask: AskFn): Promise<Finding[]>;
+}
+
 export interface ReviewResult {
   findings: Finding[];
   decisions: AgentDecision[];
@@ -116,11 +127,11 @@ const answerOf = (verdict: AgentAnswer['verdict'], confidence: number, rationale
  *  - A1: the model checks the BL cargo description against the invoice goods.
  * Every decision is returned, including the ones that change nothing, so a reviewer can audit them.
  */
-export async function reviewFindings(ctx: ShipmentContext, findings: Finding[], llm: LlmClient, index?: RegulationIndex, onProgress?: AgentProgress): Promise<ReviewResult> {
-  const total = countAgentQuestions(ctx, findings);
+export async function reviewFindings(ctx: ShipmentContext, findings: Finding[], llm: LlmClient, index?: RegulationIndex, onProgress?: AgentProgress, extensions: AgentExtension[] = []): Promise<ReviewResult> {
+  const total = countAgentQuestions(ctx, findings) + extensions.reduce((n, e) => n + e.count, 0);
   const stage = await startStage(onProgress, 'agent', { model: llm.provider.id, total });
   try {
-    const result = await review(ctx, findings, llm, index, { onProgress, total });
+    const result = await review(ctx, findings, llm, index, { onProgress, total }, extensions);
     await stage.done({ decisions: result.decisions.length, total });
     return result;
   } catch (err) {
@@ -129,7 +140,7 @@ export async function reviewFindings(ctx: ShipmentContext, findings: Finding[], 
   }
 }
 
-async function review(ctx: ShipmentContext, findings: Finding[], llm: LlmClient, index: RegulationIndex | undefined, progress: { onProgress?: AgentProgress; total: number }): Promise<ReviewResult> {
+async function review(ctx: ShipmentContext, findings: Finding[], llm: LlmClient, index: RegulationIndex | undefined, progress: { onProgress?: AgentProgress; total: number }, extensions: AgentExtension[] = []): Promise<ReviewResult> {
   const decisions: AgentDecision[] = [];
   const out: Finding[] = [];
   const authority = PROFILES[ctx.destination].authority;
@@ -137,7 +148,7 @@ async function review(ctx: ShipmentContext, findings: Finding[], llm: LlmClient,
    * Reports a question as asked (about `findingId`, if any), runs it, then reports the decision it led to;
    * `addedOf` gives the finding the decision added, for its preview.
    */
-  const ask = async <T>(ruleId: string, question: string, findingId: string | undefined, run: () => Promise<T>, decide: (result: T) => AgentDecision, addedOf?: (result: T) => Finding | undefined): Promise<T> => {
+  const ask: AskFn = async <T>(ruleId: string, question: string, findingId: string | undefined, run: () => Promise<T>, decide: (result: T) => AgentDecision, addedOf?: (result: T) => Finding | undefined): Promise<T> => {
     const at = { index: decisions.length + 1, total: progress.total, ruleId, question, ...(findingId ? { findingId } : {}) };
     await report(progress.onProgress, { stage: 'agent', status: 'progress', detail: at });
     const result = await run();
@@ -200,5 +211,6 @@ async function review(ctx: ShipmentContext, findings: Finding[], llm: LlmClient,
     );
     if (output.consistent === 'no' && output.confidence >= ACT_CONFIDENCE) out.push(mismatch(output.rationale));
   }
+  for (const extension of extensions) out.push(...(await extension.run(ask)));
   return { findings: out, decisions };
 }

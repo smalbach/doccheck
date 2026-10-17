@@ -14,6 +14,7 @@ import { DutiesCard } from '../duties/DutiesCard';
 import { useDuties } from '../duties/useDuties';
 import { ComposeDialog } from '../mail/ComposeDialog';
 import { ThreadsCard } from '../mail/ThreadsCard';
+import { TariffCard } from '../tariff/TariffCard';
 import { ShipmentCollabCard } from '../team/ShipmentCollabCard';
 import { ShipmentCollabContext } from '../team/ShipmentCollabContext';
 import { useOrg } from '../team/useOrg';
@@ -117,6 +118,7 @@ export function ShipmentPage({ id }: { id: string }) {
           notice={<ValidationNotice shipment={shipment} validation={validation} past={!!history.past} onShowLatest={history.showLatest} />}
         />
       </div>
+      <TariffCard validation={validation} />
       {shipment.destination && <DutiesCard duties={duties} supported={dutiesSupported} documents={documents} demo={demo} canAnswer={demo || canWrite} onOpen={setViewer} />}
       <ShipmentCollabCard documents={shipment.documents} />
       {can('data.read') && <ThreadsCard shipmentId={id} actions={canWrite && <ComposeDialog mode="message" shipmentId={id} reference={shipment.reference ?? ''} />} />}

@@ -1819,7 +1819,9 @@ describe('party screening', () => {
     assert.match(uflpa.sha256, /^[0-9a-f]{64}$/);
     assert.deepEqual([body.thresholds.match, body.thresholds.review, body.thresholds.source], [0.92, 0.82, 'default']);
     const rules = (await call('GET', '/rules?destination=CA')).body.map((r) => r.id);
-    assert.deepEqual(rules.slice(-3), ['S1', 'S2', 'S3']);
+    // After the document rules (the tariff rules follow them, in the order they run).
+    assert.deepEqual(rules.filter((id) => /^S\d$/.test(id)), ['S1', 'S2', 'S3']);
+    assert.ok(rules.indexOf('S1') > rules.indexOf('X1'));
   });
 
   it('flags a listed seller (S1) and its Xinjiang link (S3), citing the list entry', async () => {

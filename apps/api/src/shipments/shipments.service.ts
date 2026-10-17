@@ -1,12 +1,13 @@
 import { BadRequestException, ConflictException, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { createHash, randomUUID } from 'node:crypto';
-import { attachRegulations, reviewFindings, reviewScreeningMatches, type AgentDecision } from '@doccheck/agent';
+import { attachRegulations, classificationExtension, reviewFindings, reviewScreeningMatches, type AgentDecision } from '@doccheck/agent';
 import { findFieldSource, inputFormat, prepareImage, readSpreadsheet, storedSpreadsheetFormat, type ExtractableType, type LlmClient, type PdfText } from '@doccheck/extraction';
-import { runRules, type EngineOutput, type ShipmentContext } from '@doccheck/rules';
+import { runRules, type EngineOutput, type RuleProgress, type ShipmentContext } from '@doccheck/rules';
 import { SCREENING_RULES, type ScreeningQuestion } from '@doccheck/screening';
+import { runTariffRules, tariffLines, tariffRuleCount, type TariffLineReport } from '@doccheck/tariff';
 import {
   applyPointerChanges, CANCELLED_ERROR, clip, DOCUMENT_SCHEMAS, diffPointers, fieldPointer, findingPreview, FINDING_PREVIEWS_PER_RULE, readPointer, startStage, toPointer,
-  type Attestation, type BillOfLading, type CommercialInvoice, type Destination, type DocumentFormat, type Isf, type PackingList, type PointerChange, type Shipment, type ShipmentDocument,
+  type Attestation, type BillOfLading, type CommercialInvoice, type Destination, type DocumentFormat, type Finding, type Isf, type PackingList, type PointerChange, type Shipment, type ShipmentDocument,
 } from '@doccheck/schemas';
 import { ALL_RULES, CONTEXT_SLOTS, type ContextSlot } from '@doccheck/rules';
 import { isDemo } from '../demo/demo-mode';
@@ -17,6 +18,7 @@ import { ProgressRepository } from '../progress/progress.repository';
 import { ProgressService } from '../progress/progress.service';
 import { ScreeningService } from '../screening/screening.service';
 import { STORAGE, type ObjectStorage } from '../storage/storage';
+import { TariffService } from '../tariff/tariff.service';
 import { AuditService } from '../audit/audit.service';
 import { NotificationsService } from '../collab/notifications.service';
 import { ReviewService } from '../review/review.service';
@@ -64,6 +66,8 @@ export interface AgentOutcome {
   citations: number;
   decisions: AgentDecision[];
   error?: string;
+  /** Per invoice line: declared HS code, whether it exists, agency flags, the model's view and suggestions. */
+  tariff?: { schedule?: string; url?: string; unavailable: string[]; notices: Finding[]; lines: TariffLineReport[] };
 }
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -86,6 +90,7 @@ export class ShipmentsService {
     private readonly progressRepo: ProgressRepository,
     private readonly processor: DocumentProcessor,
     private readonly reviews: FindingReviewsRepository,
+    private readonly tariff: TariffService,
     private readonly requests: ReviewRequestsRepository,
     private readonly notifications: NotificationsService,
     private readonly audit: AuditService,
@@ -448,14 +453,19 @@ export class ShipmentsService {
     ctx.account = account;
     ctx.asOf = asOf;
     // Each rule's findings go out with it (a few, cut short), so the web can show them as they are found.
-    // Screening rules (S1-S3) run after the document rules and count in the same total.
+    // Order and numbering in the rules stage: the engine's rules, then screening (S1-S3), then the tariff
+    // rules for the destination; every progress event carries the total of all three.
+    const tariff = await this.tariff.get(destination);
     const extra = SCREENING_RULES.length;
+    const tariffCount = tariffRuleCount(destination, config);
+    const report = ({ rule, index, total, skipped, findings, found }: RuleProgress) =>
+      void rules.progress({ rule, index, total, skipped, findings, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) });
     let engineTotal = 0;
     const output = runRules(ctx, {}, {
       config,
-      onRule: ({ rule, index, total, skipped, findings, found }) => {
-        engineTotal = total;
-        void rules.progress({ rule, index, total: total + extra, skipped, findings, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) });
+      onRule: (p) => {
+        engineTotal = p.total;
+        report({ ...p, total: p.total + extra + tariffCount });
       },
     });
     // Screening (S1-S3) after the document rules, numbered after the last rule the engine reported.
@@ -464,7 +474,7 @@ export class ShipmentsService {
       const found = screened.findings.filter((f) => f.ruleId === def.id);
       output.ran.push(def.id);
       output.findings.push(...found);
-      await rules.progress({ rule: def.id, index: engineTotal + i + 1, total: engineTotal + extra, skipped: false, findings: found.length, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) });
+      await rules.progress({ rule: def.id, index: engineTotal + i + 1, total: engineTotal + extra + tariffCount, skipped: false, findings: found.length, ...(found.length > 0 ? { found: found.slice(0, FINDING_PREVIEWS_PER_RULE).map(findingPreview) } : {}) });
     }
     const notApplicable = output.notApplicable?.length ?? 0;
     // An optional rule whose document is there but could not be read is missing input, so the user sees it.
@@ -475,7 +485,14 @@ export class ShipmentsService {
       output.notApplicable = output.notApplicable!.filter((r) => r !== ruleId);
       output.skipped.push({ ruleId, missing });
     }
-    await rules.done({ ran: output.ran.length, skipped: output.skipped.length, total: output.ran.length + output.skipped.length + notApplicable, findings: output.findings.length });
+    // Tariff rules (HS codes; agency and export-control notices) run after them, in the same stage.
+    const tariffOutput = runTariffRules(ctx, { schedule: tariff?.schedule }, { config, onRule: report, offset: engineTotal + extra, total: engineTotal + extra + tariffCount });
+    output.findings.push(...tariffOutput.findings);
+    output.ran.push(...tariffOutput.ran);
+    output.skipped.push(...tariffOutput.skipped);
+    output.disabled.push(...tariffOutput.disabled);
+    const tariffLinesReport = tariffLines(ctx, tariff?.schedule);
+    await rules.done({ ran: output.ran.length, skipped: output.skipped.length, total: output.ran.length + output.skipped.length + notApplicable + tariffOutput.unavailable.length, findings: output.findings.length });
 
     const sources = [...extracted.values(), ...(isfPdf ? [isfPdf] : [])];
     const sourceById = new Map(sources.map((e) => [e.documentId, e]));
@@ -497,7 +514,13 @@ export class ShipmentsService {
       }
     }
 
-    const agent = await this.runAgent(ctx, output, useAgent, run, screened.questions);
+    const agent = await this.runAgent(ctx, output, useAgent, run, screened.questions, tariffLinesReport);
+    agent.tariff = {
+      ...(tariff ? { schedule: `${tariff.schedule.file.title}, ${tariff.schedule.file.edition}`, url: tariff.schedule.file.url } : {}),
+      unavailable: tariffOutput.unavailable,
+      notices: tariffOutput.notices,
+      lines: tariffLinesReport,
+    };
 
     const saved = await startStage(run.report, 'saved');
     await this.repo.saveValidation({ id: validationId, shipmentId: id, ran: output.ran, skipped: output.skipped, inputs, findings: output.findings, agent, destination, ruleConfig: { ...applied, disabled: output.disabled } });
@@ -511,7 +534,7 @@ export class ShipmentsService {
    * Second pass: regulation citations, then the local model on ambiguous cases. Best effort: if the
    * model or the index is unavailable the rule findings are returned as they are, and the outcome says why.
    */
-  private async runAgent(ctx: ShipmentContext, output: EngineOutput, enabled: boolean, run: ProgressRun<'validation'>, screening: ScreeningQuestion[] = []): Promise<AgentOutcome> {
+  private async runAgent(ctx: ShipmentContext, output: EngineOutput, enabled: boolean, run: ProgressRun<'validation'>, screening: ScreeningQuestion[] = [], lines: TariffLineReport[] = []): Promise<AgentOutcome> {
     const outcome: AgentOutcome = { status: 'skipped', citations: 0, decisions: [] };
     const citations = await startStage(run.report, 'citations', { findings: output.findings.length });
     let citing = true;
@@ -529,8 +552,12 @@ export class ShipmentsService {
         await run.emit({ stage: 'agent', status: 'skipped', detail: { reason: 'disabled' } });
         return outcome;
       }
+      // Tariff classification questions join the agent stage. Not in the read-only demo: its cached
+      // answers predate them, and a missing answer would fail the whole stage.
+      const tariff = isDemo() ? null : await this.tariff.get(ctx.destination);
+      const extensions = tariff && ctx.invoice ? [await classificationExtension(ctx, lines, this.llm, tariff)] : [];
       // The agent stage reports itself (started, one progress event per question asked and answered, done or failed).
-      const review = await reviewFindings(ctx, output.findings, this.llm, index ?? undefined, run.report);
+      const review = await reviewFindings(ctx, output.findings, this.llm, index ?? undefined, run.report, extensions);
       output.findings = review.findings;
       outcome.decisions = review.decisions;
       // Borderline screening matches (S2) only: the model compares, never clears one.

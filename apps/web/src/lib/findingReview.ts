@@ -18,7 +18,7 @@ export type FindingFilter = 'open' | 'waiting' | 'closed' | 'all';
 export const matchesFilter = (f: ValidationFinding, filter: FindingFilter) =>
   filter === 'all' || (filter === 'waiting' ? reviewStatus(f) === 'waiting_supplier' : (filter === 'closed') === isClosed(f));
 
-const GUIDED = new Set(['C1', 'C2', 'U1', 'X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X11', 'X12', 'A1']);
+const GUIDED = new Set(['C1', 'C2', 'U1', 'X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', 'X8', 'X9', 'X10', 'X11', 'X12', 'A1', 'H1', 'H2', 'H3', 'H4', 'H5', 'A2']);
 
 /** The translated one-line problem or what-to-do of a rule, when there is one. */
 export function ruleGuideKey(ruleId: string, part: 'problem' | 'action'): MessageKey | undefined {

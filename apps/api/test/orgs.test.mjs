@@ -449,6 +449,25 @@ describe('organizations', () => {
     assert.equal((await call('GET', `/shipments/${team.id}`, undefined, analyst.cookie)).status, 404);
   });
 
+  it('keeps the tariff report of a validation inside its organization, readable but not rerun by a viewer', async () => {
+    const owner = await signUp('Tariff Owner');
+    await call('POST', '/orgs', { name: 'Tariff Co' }, owner.cookie);
+    const { s } = await shipmentWithFinding(owner.cookie);
+    const viewer = await signUp('Tariff Viewer');
+    const outsider = await signUp('Tariff Outsider');
+    await join_(owner, viewer, 'viewer');
+    // The sample invoice declares a teddy bear under 9503.00: one line in the report, with Health Canada's toy rules.
+    const tariff = (await call('GET', `/shipments/${s.id}/validation`, undefined, viewer.cookie)).body.agent.tariff;
+    assert.equal(tariff.lines[0].code, '950300');
+    assert.deepEqual(tariff.lines[0].agencies.map((a) => a.id), ['CA-HC-TOYS']);
+    assert.equal((await call('GET', `/shipments/${s.id}/validation`, undefined, outsider.cookie)).status, 404);
+    assert.equal((await call('POST', `/shipments/${s.id}/validate?agent=false`, { invoice: sampleInvoice }, viewer.cookie)).status, 403);
+    assert.equal((await call('POST', `/shipments/${s.id}/validate?agent=false`, { invoice: sampleInvoice }, outsider.cookie)).status, 404);
+    // The tariff rules are in the catalog for everyone; the schedules are global, not per organization.
+    const rules = (await call('GET', '/rules?destination=CA', undefined, outsider.cookie)).body.map((r) => r.id);
+    for (const id of ['H1', 'H2', 'H3', 'H4', 'H5', 'A2']) assert.ok(rules.includes(id), id);
+  });
+
   it('checks each role’s permissions in one place', async () => {
     const owner = await signUp('Boss');
     await call('POST', '/orgs', { name: 'Roles Co' }, owner.cookie);

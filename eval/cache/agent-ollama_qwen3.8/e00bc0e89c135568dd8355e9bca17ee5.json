@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 911,
+    "outputTokens": 187
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "9102.11",
+        "confidence": 0.9,
+        "rationale": "The goods are a wristwatch with a stainless steel case (base metal), which falls under heading 9102 (watches other than those of 9101), and subheading 9102.11 covers electrically operated wristwatches with mechanical display, which is the standard classification for quartz watches unless specified otherwise."
+      },
+      {
+        "code": "9101.29",
+        "confidence": 0.1,
+        "rationale": "This subheading is for watches with cases of precious metal or metal clad with precious metal, which contradicts the description of a stainless steel case."
+      }
+    ]
+  }
+}

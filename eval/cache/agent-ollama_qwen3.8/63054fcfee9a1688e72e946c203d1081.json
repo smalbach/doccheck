@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 542,
+    "outputTokens": 214
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "8508.11",
+        "confidence": 0.95,
+        "rationale": "The goods are explicitly described as a 'Household vacuum cleaner' with a '1200 W' motor, which fits the heading 8508 description and the subheading criteria of power not exceeding 1,500 W and having a dust bag."
+      },
+      {
+        "code": "8508.19",
+        "confidence": 0.1,
+        "rationale": "This subheading covers vacuum cleaners with self-contained electric motors that do not meet the specific power and capacity limits of 8508.11, but since the 1200 W power falls within the 8508.11 limit, this is a less specific and therefore incorrect classification under GRI 3(a)."
+      }
+    ]
+  }
+}

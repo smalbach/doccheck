@@ -1,0 +1,28 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 557,
+    "outputTokens": 194
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "4011.90",
+        "confidence": 0.95,
+        "rationale": "The goods are described as 'New radial car tires', which fits the heading for new pneumatic tires of rubber, and since 'car' tires are not specifically listed in the preceding subheadings for buses/trucks, construction vehicles, bicycles, or motorcycles, they fall under 'Other'."
+      },
+      {
+        "code": "4011.20",
+        "confidence": 0.05,
+        "rationale": "This subheading is for tires used on buses or trucks, which contradicts the description 'car tires'."
+      },
+      {
+        "code": "4011.80",
+        "confidence": 0.05,
+        "rationale": "This subheading is for tires used on construction, mining, or industrial handling vehicles, which contradicts the description 'car tires'."
+      }
+    ]
+  }
+}

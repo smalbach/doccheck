@@ -1,0 +1,23 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "tariff-v1",
+  "usage": {
+    "inputTokens": 1108,
+    "outputTokens": 186
+  },
+  "output": {
+    "candidates": [
+      {
+        "code": "8509.40",
+        "confidence": 0.95,
+        "rationale": "The item is a domestic electromechanical appliance with a self-contained motor used for mixing/processing food, which falls under the specific description of 'Food grinders, processors and mixers' in heading 8509.40."
+      },
+      {
+        "code": "8509.80",
+        "confidence": 0.1,
+        "rationale": "This subheading covers 'Other appliances' under heading 8509, but it is less specific than 8509.40 which explicitly lists mixers, making it a secondary possibility only if the specific function were ambiguous."
+      }
+    ]
+  }
+}

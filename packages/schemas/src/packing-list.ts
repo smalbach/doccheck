@@ -8,7 +8,7 @@ export const PackageGroup = z.object({
   count: z.number().int().positive(),
   type: PackageType,
   marks: z.string().optional(),
-  contents: z.array(z.object({ sku: z.string().optional(), description: z.string(), quantity: Quantity })),
+  contents: z.array(z.object({ sku: z.string().optional(), description: z.string(), quantity: Quantity, hsCode: z.string().optional() })), // hsCode: when the packing list prints one (rule H3)
   netWeight: Weight.optional(), // per group
   grossWeight: Weight.optional(),
   dimensionsCm: z.tuple([z.number(), z.number(), z.number()]).optional(),
