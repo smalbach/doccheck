@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1209,
+    "outputTokens": 64
+  },
+  "output": {
+    "sql": "SELECT rule_id, count(*) AS open_findings FROM findings WHERE status = 'open' GROUP BY rule_id ORDER BY open_findings DESC, rule_id",
+    "explanation": "Counts the number of open findings for each rule and orders them by frequency."
+  }
+}

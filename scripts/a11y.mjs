@@ -52,11 +52,12 @@ page.on('pageerror', (err) => problems.push(`page error: ${err.message}`));
 /** A fresh throwaway account with one sample shipment, so the shipment page has content. Returns that page's path. */
 const admin = process.env.A11Y_ADMIN_EMAIL && process.env.A11Y_ADMIN_PASSWORD ? { email: process.env.A11Y_ADMIN_EMAIL, password: process.env.A11Y_ADMIN_PASSWORD } : undefined;
 
-/** A company's and a product's page, once the sample's documents are extracted (none if they are not yet). */
+/** A company's, a product's and a supplier's scorecard page, once the sample's documents are extracted (none if they are not yet). */
 async function entityPages() {
   const first = async (path) => (await (await page.request.get(`${base}${path}?limit=1`)).json()).items?.[0]?.id;
   const [company, product] = await Promise.all([first('/insights/parties'), first('/insights/products')]);
-  return [...(company ? [`/app/companies/${company}`] : []), ...(product ? [`/app/products/${product}`] : [])];
+  const supplier = (await (await page.request.get(`${base}/analytics/suppliers`)).json().catch(() => []))[0]?.partyId;
+  return [...(company ? [`/app/companies/${company}`] : []), ...(product ? [`/app/products/${product}`] : []), ...(supplier ? [`/app/analytics/suppliers/${supplier}`] : [])];
 }
 
 /** The review screen of the sample's first extracted document (none if it is not extracted within 20 s). */
@@ -84,6 +85,12 @@ async function signUpWithSample() {
     });
     if (!res.ok()) throw new Error(`Sign-up failed: ${res.status()} ${await res.text()}`);
   }
+  // Something in each Integrations list, so the lists are audited too (nothing is sent: no test deliveries).
+  await Promise.all([
+    page.request.post(`${base}/integrations/api-keys`, { data: { name: 'Accessibility', scopes: ['read'] } }),
+    page.request.post(`${base}/integrations/webhooks`, { data: { url: 'https://example.com/doccheck', events: ['validation.completed'] } }),
+    page.request.post(`${base}/integrations/chat-alerts`, { data: { kind: 'slack', name: '#customs', url: 'https://hooks.slack.com/services/T000/B000/x', events: ['finding.created'] } }),
+  ]).catch(() => undefined);
   const samples = await (await page.request.get(`${base}/demo/samples`)).json();
   if (!samples.length) return undefined;
   const shipment = await (await page.request.post(`${base}/demo/samples/${samples[0].id}`)).json();
@@ -138,6 +145,12 @@ const staticPages = [
   '/app/products',
   '/app/containers',
   '/app/data/shipments',
+  '/app/analytics',
+  '/app/analytics/suppliers',
+  '/app/analytics/cost',
+  '/app/analytics/prices',
+  '/app/analytics/ask',
+  '/app/analytics/regulations',
   '/app/rules',
   '/app/rules/settings',
   '/app/results',
@@ -149,6 +162,8 @@ const staticPages = [
   '/app/audit',
   '/app/review',
   '/app/usage',
+  ...['keys', 'webhooks', 'chat', 'ingestion', 'tracking', 'exports'].map((tab) => `/app/integrations?tab=${tab}`),
+  '/app/api-docs',
   ...(admin ? ['/app/admin/settings', '/app/admin/users', '/app/admin/system', '/app/admin/plans', '/app/admin/screening'] : []),
 ];
 const locales = values.quick ? ['en'] : ['en', 'es', 'fr'];

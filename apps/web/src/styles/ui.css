@@ -34,7 +34,7 @@
 /* Form controls */
 .field { display: flex; flex-direction: column; gap: 4px; }
 .field-grow { flex: 1; min-width: 180px; }
-.field-label { font-size: 12px; color: var(--muted); }
+.field-label { font-size: 12px; color: var(--muted); overflow-wrap: anywhere; }
 .input { border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-sm); padding: 6px 8px; width: 100%; }
 .select-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 8px; min-width: 170px; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-sm); padding: 6px 8px; cursor: pointer; }
 .select-trigger[data-placeholder] { color: var(--muted); }

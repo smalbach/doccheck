@@ -1,0 +1,36 @@
+/* Duties and landed cost card, draft entry summary */
+.duties .card-head { flex-wrap: wrap; gap: 8px; }
+.duty-totals { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px 16px; margin: 12px 0; }
+.duty-totals dt { font-size: 12px; color: var(--muted); }
+.duty-totals dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.duty-total-strong dd { font-size: 18px; }
+.duty-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; align-items: start; }
+.duty-section { margin-top: 16px; }
+.duty-section h3 { font-size: 15px; margin: 0 0 8px; }
+.duty-section h4 { font-size: 13px; margin: 12px 0 4px; }
+.duty-list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; overflow-wrap: anywhere; }
+.duty-tables { margin: 8px 0 0; padding-left: 18px; overflow-wrap: anywhere; }
+.duty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; margin-bottom: 12px; }
+.duty-fieldset { border: 1px solid var(--line); border-radius: var(--radius-md); padding: 10px 12px; margin: 0 0 12px; min-width: 0; }
+.duty-fieldset legend { font-size: 13px; font-weight: 600; padding: 0 4px; }
+.duty-money { border: 0; padding: 0; margin: 0; min-width: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: end; }
+.duty-money legend { font-size: 13px; margin-bottom: 4px; padding: 0; }
+.duty-money .input { flex: 1 1 100px; min-width: 0; }
+.duty-money .duty-currency { flex: 0 0 64px; text-transform: uppercase; }
+.duty-checks { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.duty-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.duty-questions [aria-invalid='true'] { border-color: var(--high); }
+.entry-draft { position: relative; }
+.entry-watermark { position: absolute; top: 4px; right: 12px; margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--high); border: 2px solid var(--high); border-radius: var(--radius-sm); padding: 2px 6px; transform: rotate(4deg); }
+.entry-header { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px 16px; margin: 0 0 12px; }
+.entry-header dt { font-size: 12px; color: var(--muted); }
+.entry-header dd { margin: 0; overflow-wrap: anywhere; }
+.entry-table td { vertical-align: top; }
+
+@media print {
+  .duty-questions { display: none; }
+  body.printing-entry #root, body.printing-entry .sheet-overlay { display: none !important; }
+  body.printing-entry .sheet { position: static; width: auto; max-width: none; height: auto; box-shadow: none; overflow: visible; transform: none; animation: none; }
+  body.printing-entry .sheet .btn { display: none !important; }
+  body.printing-entry .table-wrap { overflow: visible; }
+}

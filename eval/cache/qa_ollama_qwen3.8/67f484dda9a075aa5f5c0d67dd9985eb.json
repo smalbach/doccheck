@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1754,
+    "outputTokens": 41
+  },
+  "output": {
+    "sql": "SELECT count(*) AS us_shipment_count FROM shipments WHERE destination = 'US'",
+    "explanation": "Counts the total number of shipments with a destination of 'US'."
+  }
+}

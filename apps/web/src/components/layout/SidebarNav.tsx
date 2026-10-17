@@ -5,6 +5,7 @@ import { useOrg } from '../../features/team/useOrg';
 import { useI18n } from '../../i18n/useI18n';
 import type { AppRoute } from '../../lib/parseRoute';
 import { useMailSummary } from '../../hooks/useMailSummary';
+import { useRegulationsUnread } from '../../hooks/useRegulationsUnread';
 import { SidebarLink } from './SidebarLink';
 
 export interface SidebarNavProps {
@@ -19,6 +20,7 @@ export function SidebarNav({ route, demo, isAdmin, onNavigate }: SidebarNavProps
   const { org, can } = useOrg();
   const mail = useMailSummary(!demo && can('data.read'));
   const unread = useNotificationCount(!!org);
+  const regulations = useRegulationsUnread(!demo && can('data.read'));
   // Until the organization is known, show only what every role has.
   const allowed = (href: string, permission?: string) => {
     const needed = permission ?? NAV_PERMISSIONS[href];
@@ -42,7 +44,7 @@ export function SidebarNav({ route, demo, isAdmin, onNavigate }: SidebarNavProps
                 item={item}
                 active={item.matches.includes(route.name)}
                 onNavigate={onNavigate}
-                count={item.badge === 'mail' ? mail?.unread : item.href === '#/app/notifications' ? unread : undefined}
+                count={item.badge === 'mail' ? mail?.unread : item.badge === 'regulations' ? regulations : item.href === '#/app/notifications' ? unread : undefined}
               />
             ))}
           </div>

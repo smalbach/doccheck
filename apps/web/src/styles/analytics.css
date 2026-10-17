@@ -1,0 +1,68 @@
+/* Analytics pages (features/analytics). Charts use the theme tokens, so light and dark need no extra rules. */
+.analytics-filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 12px; margin-bottom: 16px; }
+.analytics-filters .field { min-width: 0; }
+.analytics-filters .input[type='date'] { width: 160px; max-width: 100%; }
+.analytics-filters-actions { margin-left: auto; display: flex; gap: 8px; }
+.analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 8px 24px; align-items: start; }
+
+.analytics-chart { width: 100%; height: auto; display: block; overflow: visible; }
+.analytics-chart-grid { stroke: var(--line); stroke-dasharray: 3 3; }
+.analytics-chart-axis { fill: var(--muted); font-size: 11px; }
+.analytics-chart-mark { fill: var(--accent); }
+.analytics-chart-hit { fill: transparent; }
+.analytics-chart-bar:hover .analytics-chart-mark { opacity: 0.8; }
+.analytics-chart-bar:hover .analytics-chart-hit { fill: var(--accent-soft); opacity: 0.5; }
+
+.rate-cell { display: inline-flex; align-items: center; gap: 8px; min-width: 120px; }
+.rate-bar { flex: 1 1 64px; max-width: 120px; height: 6px; border-radius: 3px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; }
+.rate-bar-fill { display: block; height: 100%; background: var(--accent); border-radius: 0 3px 3px 0; }
+.rate-value { font-variant-numeric: tabular-nums; min-width: 3.5em; text-align: right; }
+.score-cell { display: inline-flex; align-items: center; gap: 8px; }
+.score-cell .rate-cell { min-width: 64px; }
+.score-cell .rate-bar { flex-basis: 56px; }
+.score-cell .rate-value { display: none; }
+.score-number { font-weight: 700; font-variant-numeric: tabular-nums; min-width: 2em; }
+.score-formula { margin-top: 16px; }
+.score-formula code { white-space: normal; overflow-wrap: anywhere; }
+.score-formula ul { margin: 0 0 8px; padding-left: 20px; }
+
+.price-strip-band { fill: var(--accent-soft); stroke: var(--accent); stroke-opacity: 0.4; }
+.price-strip-median { stroke: var(--accent); stroke-width: 2; }
+.price-strip-fence { stroke: var(--muted); stroke-dasharray: 4 3; }
+.price-strip-dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.price-strip-outlier { fill: var(--high); stroke: var(--surface); stroke-width: 2; }
+.chart-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 8px 0 0; padding: 0; font-size: 12px; color: var(--muted); }
+.chart-legend li { display: inline-flex; align-items: center; gap: 6px; }
+.legend-swatch { display: inline-block; width: 12px; height: 12px; }
+.legend-dot { border-radius: 50%; background: var(--accent); width: 9px; height: 9px; }
+.legend-diamond { background: var(--high); transform: rotate(45deg) scale(0.75); }
+.legend-band { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 2px; }
+.legend-fence { border-left: 2px dashed var(--muted); width: 2px; }
+
+.cost-form { display: flex; flex-direction: column; gap: 16px; }
+.cost-penalty { border-top: 1px solid var(--line); padding-top: 8px; }
+.cost-penalty-label { margin: 0 0 6px; font-size: 13px; }
+.cost-money-input { display: inline-flex; align-items: center; gap: 6px; }
+.cost-facts { margin-top: 12px; }
+.cost-facts dd { margin: 0; }
+
+.ask-form { display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap; }
+.ask-form .field { flex: 1 1 280px; }
+.ask-examples { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 10px 0; }
+.ask-examples .btn { white-space: normal; text-align: left; }
+.ask-sql { font-family: var(--mono); font-size: 13px; }
+
+.regulation-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.regulation-diff { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px; }
+.regulation-diff figure { margin: 0; }
+.regulation-text { display: block; padding: 8px 10px; border-radius: var(--radius-sm); text-decoration: none; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; }
+del.regulation-text { background: var(--bg); border-left: 3px solid var(--critical); }
+ins.regulation-text { background: var(--accent-soft); border-left: 3px solid var(--accent); }
+.plain-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+
+@media (max-width: 600px) {
+  .rate-bar { display: none; }
+  .rate-cell { min-width: 0; }
+  .score-cell .rate-cell { display: none; }
+  .analytics-filters-actions { margin-left: 0; }
+}

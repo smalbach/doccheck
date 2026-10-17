@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1216,
+    "outputTokens": 86
+  },
+  "output": {
+    "sql": "SELECT bl.port_of_loading, COUNT(*) AS shipment_count FROM bills_of_lading bl JOIN shipments s ON bl.shipment_id = s.id GROUP BY bl.port_of_loading ORDER BY shipment_count DESC, bl.port_of_loading",
+    "explanation": "Returns the ports of loading for all shipments, along with the count of shipments departing from each port, sorted by frequency."
+  }
+}

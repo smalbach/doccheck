@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1209,
+    "outputTokens": 79
+  },
+  "output": {
+    "sql": "SELECT DISTINCT s.reference, s.destination, s.status FROM shipments s JOIN findings f ON s.id = f.shipment_id WHERE f.rule_id = 'X2' ORDER BY s.reference",
+    "explanation": "Returns the reference, destination, and status of all shipments that have a finding for rule X2 (package count mismatch)."
+  }
+}

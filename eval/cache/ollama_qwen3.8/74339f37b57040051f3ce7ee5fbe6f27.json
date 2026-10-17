@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v1",
+  "usage": {
+    "inputTokens": 1217,
+    "outputTokens": 226
+  },
+  "output": {
+    "sql": "WITH weight_findings AS (\n    SELECT \n        f.shipment_id,\n        f.rule_id,\n        f.severity,\n        f.status\n    FROM findings f\n    WHERE f.rule_id IN ('X3', 'X4')\n),\nshipment_sellers AS (\n    SELECT DISTINCT\n        s.id AS shipment_id,\n        s.reference,\n        i.seller_id,\n        i.seller_name\n    FROM shipments s\n    JOIN invoices i ON s.id = i.shipment_id\n)\nSELECT \n    ss.seller_name,\n    COUNT(wf.shipment_id) AS weight_findings_count\nFROM weight_findings wf\nJOIN shipment_sellers ss ON wf.shipment_id = ss.shipment_id\nGROUP BY ss.seller_name\nORDER BY weight_findings_count DESC, ss.seller_name ASC",
+    "explanation": "Returns the suppliers with the highest number of weight-related findings (rules X3 and X4) across all shipments, ordered by count descending."
+  }
+}

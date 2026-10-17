@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1208,
+    "outputTokens": 33
+  },
+  "output": {
+    "sql": "SELECT count(*) AS total_containers FROM containers",
+    "explanation": "Counts the total number of container records in the containers view."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1213,
+    "outputTokens": 55
+  },
+  "output": {
+    "sql": "SELECT count(*) AS shipment_count FROM shipments WHERE validated_at >= current_date - interval '30 days'",
+    "explanation": "Counts the number of shipments that have been validated within the last 30 days."
+  }
+}

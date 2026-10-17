@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1208,
+    "outputTokens": 109
+  },
+  "output": {
+    "sql": "SELECT DISTINCT s.reference, s.destination, s.status FROM shipments s JOIN findings f ON s.id = f.shipment_id WHERE f.rule_id IN ('X3', 'X4') AND date_trunc('month', f.validated_at) = date_trunc('month', current_date) ORDER BY s.reference",
+    "explanation": "Returns the reference, destination, and status of shipments that had weight-related findings (rules X3 or X4) in the current month."
+  }
+}

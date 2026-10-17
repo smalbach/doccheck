@@ -34,7 +34,7 @@ const testUrl = (() => {
   return u.toString();
 })();
 const dbName = new URL(testUrl).pathname.slice(1);
-if (!dbName.endsWith('_test')) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
+if (!/_test($|_)/.test(dbName)) throw new Error(`Refusing to reset "${dbName}": the test database name must end in _test`);
 
 // Cached model responses replayed by the API (E2E_LLM_CACHE_DIR overrides, e.g. for another model).
 const llmCacheDir = process.env.E2E_LLM_CACHE_DIR || join(root, 'eval/cache/ollama_qwen3.8');
@@ -2168,8 +2168,13 @@ describe('mail server settings and documents by email', () => {
       const shipment = (await call('GET', `/shipments/${intake.shipmentId}`, undefined, user)).body;
       assert.deepEqual([shipment.reference, shipment.destination, shipment.status], ['PO-7781 documents', 'CA', 'DONE']);
       assert.ok(thread.items[0].attachments.every((a) => a.documentId));
-      // The sender is the user: a summary goes back to them in the same conversation.
-      const summary = thread.items.find((m) => m.direction === 'out');
+      // The sender is the user: a summary goes back to them in the same conversation, once the
+      // intake is validated (it is written after the status, so wait for it like the reply below).
+      let summary;
+      for (let i = 0; i < 300 && !summary; i++) {
+        summary = (await call('GET', `/mail/threads/${threads[0].id}`, undefined, user)).body.items.find((m) => m.direction === 'out');
+        if (!summary) await new Promise((r) => setTimeout(r, 200));
+      }
       assert.deepEqual(summary?.to, [me.email]);
       assert.match(summary.text, /PO-7781 documents was read and checked/);
       const alerts = (await call('GET', '/shipments/alerts', undefined, user)).body;

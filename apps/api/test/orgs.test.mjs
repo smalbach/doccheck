@@ -41,9 +41,10 @@ const withDb = (name) => {
   return u.toString();
 };
 const baseName = new URL(baseUrl).pathname.slice(1);
-if (!baseName.endsWith('_test')) throw new Error(`Refusing to reset "${baseName}": the test database name must end in _test`);
-const testUrl = withDb(baseName.replace(/_test$/, '_orgs_test'));
-const migrationUrl = withDb(baseName.replace(/_test$/, '_orgs_migration_test'));
+// A test database name ends in _test or has _test_ in it (doccheck_test_api); the schema is dropped.
+if (!/_test($|_)/.test(baseName)) throw new Error(`Refusing to reset "${baseName}": the test database name must end in _test`);
+const testUrl = withDb(baseName.replace(/_test($|_)/, '_orgs_test$1'));
+const migrationUrl = withDb(baseName.replace(/_test($|_)/, '_orgs_migration_test$1'));
 
 const port = Number(process.env.E2E_PORT ?? 3990) + 1;
 const base = `http://localhost:${port}`;
@@ -239,6 +240,54 @@ describe('organizations', () => {
     assert.ok(body.active.permissions.includes('org.delete'));
   });
 
+  it('keeps analytics, cost assumptions and Data Q&A rows inside the organization, and away from clients', async () => {
+    const a = await signUp('Analytics owner');
+    const b = await signUp('Analytics outsider');
+    const viewer = await signUp('Analytics viewer');
+    const client = await signUp('Analytics client');
+    const { s } = await shipmentWithFinding(a.cookie);
+    const get = (path, as) => call('GET', path, undefined, as.cookie);
+    const findings = (await get(`/shipments/${s.id}/validation`, a)).body.findings.length;
+    const kpis = (await get('/analytics/kpis', a)).body;
+    assert.ok(findings > 0);
+    assert.deepEqual([kpis.totals.shipments, kpis.totals.firstPassFindings], [1, findings]);
+    const qa = (sql, as) => call('POST', '/analytics/qa/run', { sql }, as.cookie);
+    assert.deepEqual((await qa('select reference from shipments', a)).body.rows, [[s.reference]]);
+
+    // Another organization sees none of it: numbers, rows, assumptions.
+    const theirs = (await get('/analytics/kpis', b)).body;
+    assert.deepEqual([theirs.totals.shipments, theirs.byRule.length, theirs.bySupplier.length], [0, 0, 0]);
+    assert.deepEqual((await get('/analytics/suppliers', b)).body, []);
+    assert.deepEqual((await get('/analytics/prices', b)).body, []);
+    assert.deepEqual((await get('/analytics/cost', b)).body.items, []);
+    assert.doesNotMatch((await get('/analytics/kpis.csv', b)).body ?? '', /X2/);
+    for (const view of ['shipments', 'invoices', 'invoice_lines', 'bills_of_lading', 'containers', 'findings', 'parties', 'products', 'mail_requests']) {
+      assert.deepEqual((await qa(`select count(*) from ${view}`, b)).body.rows, [['0']], view);
+    }
+    // Neither the guard nor the setting lets a query pick another organization.
+    const aOrg = (await get('/orgs', a)).body.active.id;
+    assert.equal((await qa(`select set_config('doccheck.qa_org', '${aOrg}', true), * from shipments`, b)).body.code, 'sql_rejected');
+    assert.equal((await qa(`select * from shipments where org_id = '${aOrg}'`, b)).body.rows?.length ?? 0, 0);
+
+    // Assumptions are the organization's; a viewer reads them, only owners and admins change them.
+    const report = (await get('/analytics/cost', a)).body;
+    const edited = { ...report.assumptions, delay: { ...report.assumptions.delay, days: 5 } };
+    assert.equal((await call('PUT', '/analytics/cost/assumptions', { assumptions: edited }, a.cookie)).status, 204);
+    await join_(a, viewer, 'viewer');
+    assert.equal((await get('/analytics/cost', viewer)).body.assumptions.delay.days, 5);
+    assert.equal((await get('/analytics/kpis', viewer)).body.totals.shipments, 1);
+    assert.equal((await call('PUT', '/analytics/cost/assumptions', { assumptions: report.assumptions }, viewer.cookie)).status, 403);
+    assert.equal((await get('/analytics/cost', b)).body.assumptions.delay.days, report.assumptions.delay.days);
+
+    // A client of the organization sees no analytics at all.
+    await join_(a, client, 'client');
+    for (const path of ['/analytics/kpis', '/analytics/kpis.csv', '/analytics/suppliers', '/analytics/cost', '/analytics/prices', '/analytics/regulations', '/analytics/regulations/unread']) {
+      assert.equal((await get(path, client)).status, 403, path);
+    }
+    assert.equal((await qa('select count(*) from shipments', client)).status, 403);
+    assert.equal((await call('POST', '/analytics/qa', { question: 'How many shipments?' }, client.cookie)).status, 403);
+  });
+
   it('never lets a member of one organization read or change another organization’s data', async () => {
     const a = await signUp('Alice');
     const b = await signUp('Bob');
@@ -265,9 +314,14 @@ describe('organizations', () => {
       ['PUT', `/shipments/${s.id}/schedule`, { eta: '2030-01-01' }],
       ['GET', `/shipments/${s.id}/shares`],
       ['GET', `/shipments/${s.id}/events`],
+      ['GET', `/shipments/${s.id}/duties`],
+      ['PUT', `/shipments/${s.id}/duties/inputs`, { relatedParty: true }],
+      ['POST', `/shipments/${s.id}/duties/preview`, { relatedParty: true }],
       ['GET', `/review/documents/${docId}`],
       ['POST', `/review/documents/${docId}/accept`, { paths: ['/invoiceNumber'] }],
       ['DELETE', `/review/documents/${docId}/accept`],
+      ['GET', `/shipments/${s.id}/exports/cargowise-xml`],
+      ['GET', `/shipments/${s.id}/tracking`],
     ];
     for (const [method, path, body] of routes) assert.equal((await call(method, path, body, b.cookie)).status, 404, `${method} ${path}`);
     assert.equal((await call('GET', '/shipments', undefined, b.cookie)).body.total, 0);
@@ -302,6 +356,63 @@ describe('organizations', () => {
     assert.equal((await call('GET', '/shipments?destination=EU', undefined, b.cookie)).body.total, 0);
     assert.equal((await call('PATCH', `/shipments/${eu.id}`, { destination: 'GB' }, b.cookie)).status, 404);
     assert.equal((await call('GET', `/shipments/${eu.id}`, undefined, a.cookie)).body.destination, 'EU');
+    // The public API: a key of B's organization reaches none of A's shipments.
+    const bKey = (await call('POST', '/integrations/api-keys', { name: 'B', scopes: ['read', 'write'] }, b.cookie)).body.key;
+    const v1 = (method, path, body) =>
+      fetch(`${base}/api/v1${path}`, { method, headers: { authorization: `Bearer ${bKey}`, ...(body ? { 'content-type': 'application/json' } : {}) }, body: body && JSON.stringify(body) }).then((res) => res.status);
+    for (const [method, path, body] of [
+      ['GET', `/shipments/${s.id}`],
+      ['GET', `/shipments/${s.id}/findings`],
+      ['GET', `/shipments/${s.id}/documents/${docId}`],
+      ['POST', `/shipments/${s.id}/validate`],
+      ['GET', `/shipments/${s.id}/exports/x12-856`],
+      ['POST', `/shipments/${s.id}/exports/x12-856/send`, { connector: 'mock' }],
+    ]) assert.equal(await v1(method, path, body), 404, `api/v1 ${method} ${path}`);
+    assert.equal((await (await fetch(`${base}/api/v1/shipments`, { headers: { authorization: `Bearer ${bKey}` } })).json()).total, 0);
+  });
+
+  it('lets only owners and admins manage integrations, and makes API keys act in their organization', async () => {
+    const owner = await signUp('Integrator');
+    await call('POST', '/orgs', { name: 'Keys Inc' }, owner.cookie);
+    const created = await call('POST', '/integrations/api-keys', { name: 'ERP', scopes: ['read', 'write'] }, owner.cookie);
+    assert.equal(created.status, 201);
+    assert.equal(created.body.createdBy, 'Integrator');
+    const admin = await signUp('Admin');
+    const viewer = await signUp('Viewer');
+    const client = await signUp('Client');
+    const analyst = await signUp('Analyst2');
+    await join_(owner, admin, 'admin');
+    await join_(owner, viewer, 'viewer');
+    await join_(owner, client, 'client');
+    await join_(owner, analyst, 'analyst');
+    for (const who of [viewer, client, analyst]) {
+      for (const [method, path, body] of [
+        ['GET', '/integrations/api-keys'],
+        ['POST', '/integrations/api-keys', { name: 'x', scopes: ['read'] }],
+        ['POST', `/integrations/api-keys/${created.body.id}/revoke`],
+        ['GET', '/integrations/webhooks'],
+        ['POST', '/integrations/webhooks', { url: 'https://example.com/hook', events: ['finding.created'] }],
+        ['GET', '/integrations/chat-alerts'],
+        ['GET', '/integrations/ingestion'],
+        ['PUT', '/integrations/tracking', { enabled: true, provider: 'mock' }],
+      ]) assert.equal((await call(method, path, body, who.cookie)).status, 403, `${who.name} ${method} ${path}`);
+    }
+    assert.equal((await call('GET', '/integrations/api-keys', undefined, admin.cookie)).body.length, 1);
+
+    // A shipment made with the key belongs to the organization, recorded as created by the key's maker.
+    const res = await fetch(`${base}/api/v1/shipments`, { method: 'POST', headers: { authorization: `Bearer ${created.body.key}`, 'content-type': 'application/json' }, body: JSON.stringify({ reference: 'BY-KEY', destination: 'CA' }) });
+    assert.equal(res.status, 201);
+    const viaKey = await res.json();
+    assert.equal((await call('GET', `/shipments/${viaKey.id}`, undefined, viewer.cookie)).body.reference, 'BY-KEY');
+    const row = (await pool.query('select s.user_id, o.name from shipments s join organizations o on o.id = s.org_id where s.id = $1', [viaKey.id])).rows[0];
+    assert.deepEqual([row.user_id, row.name], [owner.id, 'Keys Inc']);
+
+    // Key changes are in the audit log, without the key.
+    await call('POST', `/integrations/api-keys/${created.body.id}/revoke`, undefined, admin.cookie);
+    const log = (await pool.query(`select action, user_email as actor_email, after::text as after from audit_log where action like 'api_key.%' or (action = 'shipment.create' and entity_id = $1) order by id`, [viaKey.id])).rows;
+    assert.deepEqual(log.filter((l) => l.action.startsWith('api_key.')).map((l) => l.action).slice(-2), ['api_key.create', 'api_key.revoke']);
+    assert.ok(log.every((l) => !l.after?.includes(created.body.key)));
+    assert.match(log.find((l) => l.action === 'shipment.create').actor_email, /^api-key dck_/);
   });
 
   it('invites members by email, shares the organization’s shipments and keeps personal ones apart', async () => {
@@ -373,6 +484,13 @@ describe('organizations', () => {
     assert.equal((await call('POST', `/shipments/${s.id}/findings/review`, { fingerprints: [fp], status: 'open' }, viewer.cookie)).status, 403);
     assert.equal((await call('POST', `/shipments/${s.id}/comments`, { targetKind: 'shipment', body: 'hi' }, viewer.cookie)).status, 403);
     assert.equal((await call('GET', '/audit', undefined, viewer.cookie)).status, 403);
+    // The duty estimate and its draft entry are read with the shipment; only writers save the answers.
+    assert.equal((await call('GET', `/shipments/${s.id}/duties`, undefined, viewer.cookie)).status, 200);
+    assert.equal((await call('PUT', `/shipments/${s.id}/duties/inputs`, { relatedParty: true }, viewer.cookie)).status, 403);
+    assert.equal((await call('POST', `/shipments/${s.id}/duties/preview`, { relatedParty: true }, viewer.cookie)).status, 200);
+    assert.equal((await call('GET', `/shipments/${s.id}/duties`, undefined, owner.cookie)).body.inputsUpdatedAt, undefined);
+    assert.equal((await call('PUT', `/shipments/${s.id}/duties/inputs`, { relatedParty: false }, owner.cookie)).status, 200);
+    assert.deepEqual((await call('GET', `/shipments/${s.id}/duties`, undefined, viewer.cookie)).body.estimate.inputs, { relatedParty: false });
     assert.equal((await call('POST', '/orgs/current/invites', { email: 'x@example.com', role: 'viewer' }, viewer.cookie)).status, 403);
     // Viewers read the review queue and usage, but neither review values nor buy a plan.
     assert.equal((await call('GET', '/review/queue', undefined, viewer.cookie)).status, 200);
@@ -469,6 +587,7 @@ describe('organizations', () => {
       assert.equal((await call('GET', path, undefined, client.cookie)).status, 403, path);
     }
     assert.equal((await call('PATCH', `/shipments/${shared.id}`, { reference: 'x' }, client.cookie)).status, 403);
+    assert.equal((await call('PUT', `/shipments/${shared.id}/duties/inputs`, { relatedParty: true }, client.cookie)).status, 403);
     assert.equal((await call('DELETE', `/shipments/${shared.id}/shares/${client.id}`, undefined, owner.cookie)).status, 200);
     assert.equal((await call('GET', `/shipments/${shared.id}`, undefined, client.cookie)).status, 404);
   });

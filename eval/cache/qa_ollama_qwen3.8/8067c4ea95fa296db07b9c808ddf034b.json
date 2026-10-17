@@ -1,0 +1,13 @@
+{
+  "provider": "ollama:qwen3.8",
+  "modelVersion": "aaee06c39dcf",
+  "promptVersion": "qa-sql-v2",
+  "usage": {
+    "inputTokens": 1207,
+    "outputTokens": 115
+  },
+  "output": {
+    "sql": "WITH supplier_counts AS (\n    SELECT \n        i.seller_name,\n        COUNT(DISTINCT s.id) AS shipment_count\n    FROM invoices i\n    JOIN shipments s ON i.shipment_id = s.id\n    GROUP BY i.seller_name\n)\nSELECT \n    seller_name,\n    shipment_count\nFROM supplier_counts\nORDER BY shipment_count DESC, seller_name ASC\nLIMIT 1",
+    "explanation": "Returns the supplier with the highest number of distinct shipments, ordered by shipment count descending."
+  }
+}

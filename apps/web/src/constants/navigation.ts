@@ -1,4 +1,4 @@
-import { MixerHorizontalIcon, MagnifyingGlassIcon, LockClosedIcon, ActivityLogIcon, CheckboxIcon, MixIcon, TokensIcon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon } from '@radix-ui/react-icons';
+import { MixerHorizontalIcon, MagnifyingGlassIcon, LockClosedIcon, ActivityLogIcon, CheckboxIcon, MixIcon, TokensIcon, EnvelopeClosedIcon, ArchiveIcon, BarChartIcon, ContainerIcon, CubeIcon, DashboardIcon, GearIcon, IdCardIcon, LayersIcon, ListBulletIcon, PersonIcon, PieChartIcon, PlusIcon, ReaderIcon, TableIcon, CodeIcon, Link2Icon, BellIcon, ChatBubbleIcon, RocketIcon, StarIcon } from '@radix-ui/react-icons';
 import type { ComponentType } from 'react';
 import type { MessageKey } from '../i18n/keys';
 import type { AppRoute } from '../lib/parseRoute';
@@ -11,8 +11,8 @@ export interface NavItem {
   matches: AppRoute['name'][];
   /** Hidden in the read-only demo. */
   writes?: boolean;
-  /** Shows the count of unread replies. */
-  badge?: 'mail';
+  /** Shows the count of unread replies, or of regulation changes not seen yet. */
+  badge?: 'mail' | 'regulations';
 }
 
 export interface NavGroup {
@@ -47,12 +47,30 @@ export const NAVIGATION: NavGroup[] = [
     ],
   },
   {
+    labelKey: 'analytics.nav.group',
+    items: [
+      { labelKey: 'analytics.nav.kpis', href: '#/app/analytics', icon: RocketIcon, matches: ['analytics-kpis'] },
+      { labelKey: 'analytics.nav.suppliers', href: '#/app/analytics/suppliers', icon: StarIcon, matches: ['analytics-suppliers', 'analytics-supplier'] },
+      { labelKey: 'analytics.nav.cost', href: '#/app/analytics/cost', icon: TokensIcon, matches: ['analytics-cost'] },
+      { labelKey: 'analytics.nav.prices', href: '#/app/analytics/prices', icon: MixIcon, matches: ['analytics-prices'] },
+      { labelKey: 'analytics.nav.ask', href: '#/app/analytics/ask', icon: ChatBubbleIcon, matches: ['analytics-ask'] },
+      { labelKey: 'analytics.nav.regulations', href: '#/app/analytics/regulations', icon: BellIcon, matches: ['analytics-regulations'], badge: 'regulations' },
+    ],
+  },
+  {
     labelKey: 'nav.reference',
     items: [
       { labelKey: 'nav.rules', href: '#/app/rules', icon: ReaderIcon, matches: ['rules'] },
       { labelKey: 'nav.ruleSettings', href: '#/app/rules/settings', icon: MixerHorizontalIcon, matches: ['rule-settings'], writes: true },
       { labelKey: 'nav.evaluation', href: '#/app/results', icon: BarChartIcon, matches: ['results'] },
       { labelKey: 'screening.nav', href: '#/app/screening', icon: MagnifyingGlassIcon, matches: ['screening'] },
+    ],
+  },
+  {
+    labelKey: 'integrations.navGroup',
+    items: [
+      { labelKey: 'integrations.nav', href: '#/app/integrations', icon: Link2Icon, matches: ['integrations'], writes: true },
+      { labelKey: 'integrations.navDocs', href: '#/app/api-docs', icon: CodeIcon, matches: ['api-docs'] },
     ],
   },
   {

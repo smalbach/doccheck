@@ -32,6 +32,8 @@ export const PERMISSIONS = {
   'audit.read': ['owner', 'admin'],
   /** Buy or change the organization's plan (Stripe Checkout and customer portal). */
   'billing.manage': ['owner', 'admin'],
+  /** API keys, webhooks, chat alerts, watched folders and container tracking (docs/INTEGRATIONS.md). */
+  'integrations.manage': ['owner', 'admin'],
   'org.delete': ['owner'],
 } as const satisfies Record<string, readonly OrgRole[]>;
 export type OrgPermission = keyof typeof PERMISSIONS;

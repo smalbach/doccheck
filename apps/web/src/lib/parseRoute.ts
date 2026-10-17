@@ -23,10 +23,19 @@ export type AppRoute =
   | { name: 'product'; id: string }
   | { name: 'containers' }
   | { name: 'data-shipments' }
+  | { name: 'analytics-kpis' }
+  | { name: 'analytics-suppliers' }
+  | { name: 'analytics-supplier'; id: string }
+  | { name: 'analytics-cost' }
+  | { name: 'analytics-prices' }
+  | { name: 'analytics-ask' }
+  | { name: 'analytics-regulations' }
   | { name: 'rules' }
   | { name: 'rule-settings' }
   | { name: 'results' }
   | { name: 'account' }
+  | { name: 'integrations'; tab?: string }
+  | { name: 'api-docs' }
   | { name: 'admin-settings' }
   | { name: 'admin-users' }
   | { name: 'admin-system' }
@@ -48,6 +57,7 @@ const SHIPMENT = /^\/(?:app\/)?s\/([0-9a-f-]{36})$/i;
 const THREAD = /^\/app\/inbox\/([0-9a-f-]{36})$/i;
 const COMPANY = /^\/app\/companies\/([0-9a-f-]{36})$/i;
 const PRODUCT = /^\/app\/products\/([0-9a-f-]{36})$/i;
+const SUPPLIER = /^\/app\/analytics\/suppliers\/([0-9a-f-]{36})$/i;
 const REVIEW = /^\/app\/review\/([0-9a-f-]{36})$/i;
 
 const APP_PAGES: Record<string, AppRoute> = {
@@ -60,12 +70,19 @@ const APP_PAGES: Record<string, AppRoute> = {
   '/app/products': { name: 'products' },
   '/app/containers': { name: 'containers' },
   '/app/data/shipments': { name: 'data-shipments' },
+  '/app/analytics': { name: 'analytics-kpis' },
+  '/app/analytics/suppliers': { name: 'analytics-suppliers' },
+  '/app/analytics/cost': { name: 'analytics-cost' },
+  '/app/analytics/prices': { name: 'analytics-prices' },
+  '/app/analytics/ask': { name: 'analytics-ask' },
+  '/app/analytics/regulations': { name: 'analytics-regulations' },
   '/app/rules': { name: 'rules' },
   '/app/rules/settings': { name: 'rule-settings' },
   '/app/results': { name: 'results' },
   // Links from before the app moved under /app.
   '/results': { name: 'results' },
   '/app/account': { name: 'account' },
+  '/app/api-docs': { name: 'api-docs' },
   '/app/admin': { name: 'admin-settings' },
   '/app/admin/settings': { name: 'admin-settings' },
   '/app/admin/users': { name: 'admin-users' },
@@ -113,6 +130,8 @@ export function parseRoute(hash: string): Route {
   if (company) return { name: 'company', id: company };
   const product = PRODUCT.exec(path)?.[1];
   if (product) return { name: 'product', id: product };
+  const supplier = SUPPLIER.exec(path)?.[1];
+  if (supplier) return { name: 'analytics-supplier', id: supplier };
   const review = REVIEW.exec(path)?.[1];
   if (review) return { name: 'review-document', id: review };
   // "#/app/usage?checkout=done": back from Stripe Checkout.
@@ -122,5 +141,7 @@ export function parseRoute(hash: string): Route {
     const opt = (k: string) => params.get(k) || undefined;
     return { name: 'goods', q: opt('q'), origin: opt('origin'), hs: opt('hs') };
   }
+  // "#/app/integrations?tab=webhooks" opens that tab.
+  if (path === '/app/integrations') return { name: 'integrations', tab: params.get('tab') || undefined };
   return APP_PAGES[path] ?? { name: 'not-found' };
 }

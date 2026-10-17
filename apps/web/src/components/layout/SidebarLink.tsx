@@ -6,7 +6,7 @@ export interface SidebarLinkProps {
   item: NavItem;
   active: boolean;
   onNavigate?: () => void;
-  /** A count next to the label (unread replies). */
+  /** A count next to the label (unread replies, regulation changes not seen). */
   count?: number;
 }
 
@@ -18,7 +18,7 @@ export function SidebarLink({ item, active, onNavigate, count }: SidebarLinkProp
       <Icon aria-hidden />
       <span>{t(item.labelKey)}</span>
       {!!count && (
-        <span className="sidebar-badge" aria-label={t('mail.unread', { count })}>
+        <span className="sidebar-badge" aria-label={item.badge === 'regulations' ? t('analytics.regulations.unread', { count }) : t('mail.unread', { count })}>
           {count}
         </span>
       )}
