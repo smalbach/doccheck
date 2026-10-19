@@ -20,8 +20,10 @@ ARG OCR=true
 WORKDIR /app
 COPY package.json package-lock.json ./
 COPY --from=build /app/packages/agent/package.json packages/agent/
+COPY --from=build /app/packages/client/package.json packages/client/
 COPY --from=build /app/packages/duties/package.json packages/duties/
 COPY --from=build /app/packages/extraction/package.json packages/extraction/
+COPY --from=build /app/packages/integrations/package.json packages/integrations/
 COPY --from=build /app/packages/regulations/package.json packages/regulations/
 COPY --from=build /app/packages/rules/package.json packages/rules/
 COPY --from=build /app/packages/schemas/package.json packages/schemas/
@@ -53,6 +55,8 @@ COPY --from=build /app/packages/duties/package.json packages/duties/
 COPY --from=build /app/packages/duties/dist packages/duties/dist
 COPY --from=build /app/packages/extraction/package.json packages/extraction/
 COPY --from=build /app/packages/extraction/dist packages/extraction/dist
+COPY --from=build /app/packages/integrations/package.json packages/integrations/
+COPY --from=build /app/packages/integrations/dist packages/integrations/dist
 COPY --from=build /app/packages/regulations/package.json packages/regulations/
 COPY --from=build /app/packages/regulations/dist packages/regulations/dist
 COPY --from=build /app/packages/rules/package.json packages/rules/
