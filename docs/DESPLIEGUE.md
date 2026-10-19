@@ -214,6 +214,7 @@ Qué cambia en modo demo:
 | `scripts/docker-entrypoint.sh` | Si el contenedor arranca como root (volúmenes de Fly y Render se montan como root), le da `STORAGE_DIR` al usuario `node` y baja a ese usuario antes de arrancar la API |
 | `fly.toml` | Fly.io (recomendado): VM `shared-cpu-1x` de 512 MB que se apaga sin visitas, volumen de 1 GB en `/data`, chequeo de `/health`, HTTPS forzado, variables de la demo |
 | `render.yaml` | Alternativa en Render (Blueprint): instancia `starter` con disco de 1 GB |
+| `railway.json` | Alternativa en Railway: build con el `Dockerfile`, chequeo de `/health`, reinicio si falla y suspensión sin visitas. Las variables, Postgres y el volumen se configuran en el proyecto de Railway (ver "Alternativa: Railway") |
 | `docker-compose.demo.yml` | La demo en local tal como corre en producción (mismos argumentos y variables), con un Postgres local en lugar de Neon |
 
 ### Requisitos
@@ -333,6 +334,45 @@ En Neon también sirve restaurar la rama a un punto anterior (Branches → Resto
 ### Alternativa: Render
 
 `render.yaml` describe el mismo servicio. En Render: New → Blueprint → elegir el repositorio; pide `DATABASE_URL` (Neon) y `ADMIN_EMAILS`. Render pasa las variables (`OCR`, `REQUIRE_DEMO_SAMPLES`) también como argumentos del build. El disco persistente exige instancia de pago (`starter`); en el plan gratuito los PDFs de las muestras cargadas se pierden en cada reinicio. `TRUST_PROXY=1` está pensado para un solo proxy delante; en Render no se ha verificado cuántos saltos agrega su borde.
+
+### Alternativa: Railway
+
+`railway.json` fija cómo se construye y se vigila el servicio: imagen del `Dockerfile`, chequeo de `GET /health` (hasta 120 s, para que alcancen las migraciones del primer arranque), reinicio si se cae (5 intentos) y `sleepApplication`, que lo suspende sin tráfico y lo despierta con la primera visita (unos segundos). Lo demás no cabe en ese archivo y se configura en el proyecto:
+
+1. **Proyecto.** En Railway: New Project → Deploy from GitHub repo → este repositorio. Railway lee `railway.json` de la raíz. Si despliega antes de tener las variables, el primer intento falla en el chequeo; se corrige con los pasos siguientes y Redeploy.
+2. **Postgres.** En el mismo proyecto: New → Database → PostgreSQL. La app no necesita pgvector ni extensiones. En el servicio de la app, `DATABASE_URL=${{Postgres.DATABASE_URL}}` (referencia a la base del proyecto, por la red privada). También sirve Neon como en Fly: pegar su cadena con `?sslmode=verify-full`.
+3. **Volumen.** En el servicio de la app: clic derecho → Attach Volume, montado en `/data` (1 GB alcanza). Railway lo monta como root; `scripts/docker-entrypoint.sh` le da `STORAGE_DIR` al usuario `node`. Sin volumen, los PDFs de las muestras cargadas se pierden en cada despliegue o reinicio.
+4. **Variables** (pestaña Variables del servicio de la app):
+
+   | Variable | Valor |
+   | --- | --- |
+   | `DATABASE_URL` | `${{Postgres.DATABASE_URL}}` |
+   | `DEMO_READONLY` | `true` |
+   | `OCR` | `false` (argumento del build: imagen ~65 MB más chica) |
+   | `REQUIRE_DEMO_SAMPLES` | `true` (argumento del build: falla si `data/demo` está vacío) |
+   | `TRUST_PROXY` | `1` |
+   | `LLM_MODEL` | `qwen3.8` |
+   | `EMBED_MODEL` | `bge-m3` |
+   | `AGENT_ENABLED` | `true` |
+   | `REGISTRATION_OPEN` | `true` |
+   | `SIGNUP_LIMIT_PER_HOUR` | `5` |
+   | `STORAGE_DIR` | `/data/uploads` |
+   | `SETTINGS_KEY` | 32 bytes en base64 (`openssl rand -base64 32`); sin ella la clave se crea dentro del contenedor y se pierde al redesplegar |
+   | `ADMIN_EMAILS` | tu correo (opcional) |
+
+   Railway pasa las variables del servicio al build de Docker como argumentos cuando el `Dockerfile` los declara (`ARG OCR`, `ARG REQUIRE_DEMO_SAMPLES`). `PORT` lo pone Railway y la API lo lee; no hace falta definirlo.
+5. **Dominio.** Settings → Networking → Generate Domain (`https://<nombre>.up.railway.app`), o uno propio con su CNAME.
+6. **Una sola réplica.** El volumen y el límite de registros por hora son por instancia: dejar 1 réplica.
+
+Verificar:
+
+```bash
+curl -s https://<nombre>.up.railway.app/health
+```
+
+Debe responder `"status":"ok"` y `"demo":true`. Cada push a la rama conectada redespliega; se puede apagar en Settings si se prefiere desplegar a mano (`railway up` con la CLI). Reiniciar la base: el mismo `psql "$DATABASE_URL" -c "drop schema public cascade; create schema public;"` con la URL pública de la base (pestaña Connect del servicio Postgres), y luego Restart de la app.
+
+Costo: Railway cobra por uso (CPU, memoria, volumen y la base) sobre la cuota mínima de su plan Hobby; con la app suspendida sin visitas y ~200 MB residentes debería quedar cerca de esa cuota. Verificar los precios vigentes al contratar. Como en Render, no se ha verificado cuántos saltos de proxy agrega el borde de Railway: si los registros de visitantes distintos chocan con el límite por hora o la cookie no sale `Secure`, revisar `TRUST_PROXY`. Esta configuración no se ha desplegado todavía.
 
 ## 5. Correo ("¿Olvidaste tu contraseña?")
 
