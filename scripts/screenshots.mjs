@@ -5,9 +5,9 @@
  * Signs up a throwaway account, loads a few sample shipments with known errors (CA and US), waits
  * for their documents to be extracted, validates them (rules only, no agent: fast and repeatable),
  * then captures every main page at 1440x900 (device scale 2) in English, light theme; two pages in
- * dark theme; one shipment page at phone size (390x844). Finally it records the flow "open a
- * sample -> validate -> open a finding's cited value in the PDF" as an animated WebP, and deletes
- * the account.
+ * dark theme; the landing page's hero (hero-light/dark) in a narrower window; one shipment page
+ * at phone size (390x844). Finally it records the flow "open a sample -> validate -> open a
+ * finding's cited value in the PDF" as an animated WebP, and deletes the account.
  *
  *   npm run build && npm start            # or any running API + web, with the samples in data/eval
  *   node scripts/screenshots.mjs [--url http://localhost:3000] [--out docs/screenshots] [--keep-png] [--inbound-secret <MAIL_INBOUND_SECRET>]
@@ -36,6 +36,7 @@ const { values } = parseArgs({
     out: { type: 'string', default: 'docs/screenshots' },
     'keep-png': { type: 'boolean', default: false },
     'inbound-secret': { type: 'string', default: process.env.MAIL_INBOUND_SECRET ?? '' },
+    only: { type: 'string', default: '' },
   },
 });
 const base = values.url.replace(/\/$/, '');
@@ -191,7 +192,11 @@ async function save(page, name) {
   console.log(`✓ ${name}`);
 }
 
+/** --only hero-light,hero-dark: capture just those (the setup still runs). */
+const only = new Set(values.only.split(',').filter(Boolean));
+
 async function shoot(page, path, name, before) {
+  if (only.size && !only.has(name)) return;
   await page.goto(`${base}/?shot=${name}#${path}`);
   await settle(page);
   if (before) await before(page);
@@ -209,6 +214,14 @@ try {
   const guest = await newPage({ signedIn: false });
   await shoot(guest, '/', 'landing');
   await guest.context().close();
+
+  // The landing page's hero: the same shipment in a narrower window (1152x720 at 2.5x, still 2880x1800),
+  // so the interface reads at the size the landing shows it instead of a shrunken 1440 layout.
+  for (const theme of ['light', 'dark']) {
+    const page = await newPage({ theme, width: 1152, height: 720, scale: 2.5 });
+    await shoot(page, `/app/s/${featured.id}`, `hero-${theme}`);
+    await page.context().close();
+  }
 
   for (const theme of ['light', 'dark']) {
     const page = await newPage({ theme });
@@ -268,7 +281,7 @@ try {
   });
   await phone.context().close();
 
-  if (animate) await recordFlow();
+  if (animate && !only.size) await recordFlow();
   else console.log('img2webp not found: animation skipped.');
 } finally {
   await deleteAccount();
