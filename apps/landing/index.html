@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>
+  // Served by a DocCheck server (the hosted demo), which adds <meta name="doccheck-app">: the app lives
+  // at that path, so links into it (/#/app, /#/portal?t=… in emails) are sent there before anything renders.
+  (() => { const app = document.querySelector('meta[name="doccheck-app"]')?.content; if (app && location.pathname === '/' && location.hash.startsWith('#/')) location.replace(app + location.hash); })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DocCheck — catch freight document errors before customs does</title>
 <meta name="description" content="DocCheck reads invoices, packing lists, bills of lading, ISF filings and six other shipping documents, cross-checks them with 53 deterministic rules, estimates duties, screens every party and cites the regulation behind every finding. Local models; desktop app for Windows, macOS and Linux.">
@@ -12,6 +17,7 @@
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
+  [hidden] { display: none !important; }
   :root {
     --bg: #f6f7f6;
     --surface: #ffffff;
@@ -252,6 +258,7 @@
   <symbol id="i-windows" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.5 10.5 4.4v7.1H3V5.5Zm0 13 7.5 1.1v-7H3v5.9Zm8.4 1.2L21 21v-8.4h-9.6v7.1Zm0-15.4v7.2H21V3l-9.6 1.3Z"/></symbol>
   <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1ZM13.9 5c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.1.1 2.3-.6 3-1.5Z"/></symbol>
   <symbol id="i-linux" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c-2.2 0-3.4 1.8-3.4 4.3 0 1.4.3 2.3-.3 3.4-.7 1.2-2.6 3.3-2.9 5.5-.2 1.3.2 2.2.6 2.7-.5.3-1.6.6-1.7 1.4-.1.9 1.2 1.2 2.4 1.6 1.2.4 2 1.1 3 1.1.9 0 1.5-.6 2.3-.6.9 0 1.5.6 2.4.6 1 0 1.8-.7 3-1.1 1.2-.4 2.5-.7 2.4-1.6-.1-.8-1.2-1.1-1.7-1.4.4-.5.8-1.4.6-2.7-.3-2.2-2.2-4.3-2.9-5.5-.6-1.1-.3-2-.3-3.4C15.4 3.8 14.2 2 12 2Zm-1.6 4.1c.4 0 .7.5.7 1.1 0 .3-.1.6-.2.8l-.5-.2c.1-.1.1-.4.1-.6 0-.4-.2-.6-.3-.6-.2 0-.3.3-.3.6v.3l-.5-.1v-.3c0-.6.4-1 1-1Zm3.1 0c.6 0 1 .5 1 1.1v.3l-.5.1v-.3c0-.3-.2-.6-.4-.6s-.4.3-.4.6c0 .2 0 .4.1.5l-.5.2c-.1-.2-.2-.4-.2-.7 0-.7.4-1.2.9-1.2Zm-1.5 2.1c.8 0 1.8.6 2.1.9.2.2.1.5-.2.6-.6.4-1.3.9-1.9.9s-1.3-.5-1.9-.9c-.3-.2-.4-.4-.2-.6.3-.3 1.3-.9 2.1-.9Z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 4.5v15l12-7.5-12-7.5Z"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></symbol>
   <symbol id="i-pipe" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 3v12m0 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm12-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 0c0 5-6 4-12 6"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
@@ -282,7 +289,8 @@
       <button class="chip" id="lang" type="button" aria-label="Español">ES</button>
       <button class="chip" id="theme" type="button" aria-label="Toggle dark mode"><svg><use href="#i-moon"/></svg></button>
       <a class="chip" href="https://github.com/smalbach/doccheck" aria-label="DocCheck on GitHub"><svg><use href="#i-github"/></svg><span class="gh-label">GitHub</span></a>
-      <a class="chip get" href="#download" data-i18n="nav.download">Download</a>
+      <a class="chip get" id="nav-demo" href="index.html#/app/samples" data-i18n="nav.demo" hidden>Try the demo</a>
+      <a class="chip get" id="nav-download" href="#download" data-i18n="nav.download">Download</a>
     </div>
   </div>
 </header>
@@ -294,6 +302,7 @@
       <h1 data-i18n-html="h1">Catch freight document errors <em>before customs does.</em></h1>
       <p class="lede" data-i18n="lede">DocCheck reads every paper of a shipment — invoice, packing list, bill of lading, ISF, air waybill, certificates — cross-checks them against each other and against the destination's customs rules, and links each finding to the exact line in the PDF and the regulation behind it. Then it helps you get corrected documents from the supplier.</p>
       <div class="cta">
+        <a class="btn btn-primary" id="hero-demo" href="index.html#/app/samples" hidden><svg class="i"><use href="#i-play"/></svg><span data-i18n="cta.demo">Try the demo</span></a>
         <a class="btn btn-primary" id="hero-download" href="#download"><svg class="i"><use href="#i-download"/></svg><span data-i18n="cta.download">Download</span></a>
         <a class="btn btn-ghost" href="https://github.com/smalbach/doccheck"><svg class="i"><use href="#i-github"/></svg><span data-i18n="cta.source">View the source</span></a>
         <p class="meta"><span id="hero-version" data-i18n="cta.meta">Free and open source (MIT).</span> <a href="#download" data-i18n="cta.other">Other platforms</a></p>
@@ -574,13 +583,15 @@
 <script>
 (() => {
   const REPO = 'smalbach/doccheck';
+  // Set by a DocCheck server hosting this page (the online demo): the path of the app.
+  const app = document.querySelector('meta[name="doccheck-app"]')?.content;
   const ES = {
     'skip': 'Ir al contenido',
-    'nav.how': 'Cómo funciona', 'nav.tour': 'Recorrido', 'nav.features': 'Funciones', 'nav.privacy': 'Privacidad', 'nav.download': 'Descargar',
+    'nav.how': 'Cómo funciona', 'nav.tour': 'Recorrido', 'nav.features': 'Funciones', 'nav.privacy': 'Privacidad', 'nav.download': 'Descargar', 'nav.demo': 'Probar la demo',
     'eyebrow': 'App de escritorio · Windows, macOS, Linux',
     'h1': 'Detecta errores en documentos de carga <em>antes que la aduana.</em>',
     'lede': 'DocCheck lee cada papel de un embarque (factura, lista de empaque, conocimiento de embarque, ISF, guía aérea, certificados), los cruza entre sí y contra las reglas de la aduana de destino, y enlaza cada hallazgo con la línea exacta del PDF y la norma que lo respalda. Luego te ayuda a conseguir los documentos corregidos del proveedor.',
-    'cta.download': 'Descargar', 'cta.source': 'Ver el código', 'cta.meta': 'Gratis y de código abierto (MIT).', 'cta.other': 'Otras plataformas',
+    'cta.download': 'Descargar', 'cta.demo': 'Probar la demo', 'cta.demo.meta': 'Demo de solo lectura con envíos de muestra: crea una cuenta y valida uno.', 'cta.source': 'Ver el código', 'cta.meta': 'Gratis y de código abierto (MIT).', 'cta.other': 'Otras plataformas',
     'stat.fields': 'precisión por campo, 600 PDFs', 'stat.recall': 'de los errores inyectados detectados', 'stat.rules': 'reglas deterministas', 'stat.docs': 'tipos de documento', 'stat.dest': 'autoridades aduaneras',
     'how.kicker': 'Cómo funciona', 'how.title': 'Un modelo lee. Código simple verifica.',
     'how.lede': 'Un modelo local solo copia los valores tal como están impresos. Código probado los normaliza y reglas deterministas deciden, con las tolerancias de tu organización, así cada hallazgo se puede explicar y repetir. El modelo vuelve solo para los casos puntuales que una regla no puede resolver sola.',
@@ -755,7 +766,7 @@
     }
     const date = new Date(release.published_at).toLocaleDateString(lang, { year: 'numeric', month: 'short', day: 'numeric' });
     info.textContent = `${release.tag_name} · ${date}`;
-    document.getElementById('hero-version').textContent = lang === 'es' ? `Versión ${release.tag_name}, gratis y de código abierto (MIT).` : `Version ${release.tag_name}, free and open source (MIT).`;
+    if (!app) document.getElementById('hero-version').textContent = lang === 'es' ? `Versión ${release.tag_name}, gratis y de código abierto (MIT).` : `Version ${release.tag_name}, free and open source (MIT).`;
     document.querySelectorAll('[data-asset]').forEach((a) => {
       const asset = release.assets.find((x) => x.name === a.dataset.asset);
       if (asset) a.querySelector('[data-size]').textContent = `${Math.round(asset.size / 1048576)} MB`;
@@ -765,6 +776,20 @@
     .then((r) => (r.status === 404 ? 'none' : r.ok ? r.json() : null))
     .then((data) => { if (data) { release = data; renderRelease(); } })
     .catch(() => {});
+
+  // On the hosted demo the app is one click away: "Try the demo" leads, the download follows.
+  if (app) {
+    for (const id of ['hero-demo', 'nav-demo']) {
+      const link = document.getElementById(id);
+      link.href = `${app}#/app/samples`;
+      link.hidden = false;
+    }
+    document.getElementById('hero-download').classList.replace('btn-primary', 'btn-ghost');
+    document.getElementById('nav-download').hidden = true;
+    const meta = document.getElementById('hero-version');
+    meta.dataset.i18n = 'cta.demo.meta';
+    EN['cta.demo.meta'] = 'Read-only demo with sample shipments: create an account and validate one.';
+  }
 
   applyLang();
 })();

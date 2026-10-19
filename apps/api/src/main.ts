@@ -9,6 +9,7 @@ import { AppModule } from './app.module';
 import { sameOriginGuard } from './auth/same-origin';
 import { isDemo, readOnlyGuard } from './demo/demo-mode';
 import { loadEnv } from './env';
+import { serveLanding } from './landing';
 import { inboundSecretGuard } from './messaging/mail.controller';
 import { trustProxySetting } from './trust-proxy';
 
@@ -30,6 +31,8 @@ async function bootstrap() {
     app.use(readOnlyGuard);
     Logger.log('Read-only demo: uploads, edits and deletes are disabled; the model runs from its cache', 'Bootstrap');
   }
+  // The product page (apps/landing) at / on the hosted demo, or with SERVE_LANDING=true.
+  serveLanding(app);
   // The built web app (npm run build -w @doccheck/web) is served from the same origin.
   const web = resolve(__dirname, '../../web/dist');
   // index.html is revalidated on every load so a new build is picked up; hashed assets cache normally.

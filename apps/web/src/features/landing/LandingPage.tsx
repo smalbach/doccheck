@@ -10,6 +10,12 @@ import { LandingSteps } from './LandingSteps';
 
 export function LandingPage() {
   const signedIn = !!useAuth().user;
+  // At /index.html the app sits behind the product page served at / (apps/api/src/landing.ts, the
+  // hosted demo): that page is the home, so the logo and signing out lead there.
+  if (window.location.pathname === '/index.html') {
+    window.location.replace('/');
+    return null;
+  }
   return (
     <div className="public-page">
       <SkipLink />

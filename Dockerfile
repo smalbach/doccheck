@@ -71,6 +71,9 @@ COPY --from=build /app/apps/api/package.json apps/api/
 COPY --from=build /app/apps/api/dist apps/api/dist
 COPY --from=build /app/apps/api/migrations apps/api/migrations
 COPY --from=build /app/apps/web/dist apps/web/dist
+# Product page shown at / by the read-only demo (apps/api/src/landing.ts), with its screenshots.
+COPY apps/landing apps/landing
+COPY docs/screenshots apps/landing/screenshots
 # Regulation corpus and its embedding index (data/corpus/index/*.queries.json holds the citation
 # query vectors the demo replays). Evaluation reports feed the Results page.
 COPY data/corpus data/corpus

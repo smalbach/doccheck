@@ -370,7 +370,9 @@ Verificar:
 curl -s https://<nombre>.up.railway.app/health
 ```
 
-Debe responder `"status":"ok"` y `"demo":true`. Cada push a la rama conectada redespliega; se puede apagar en Settings si se prefiere desplegar a mano (`railway up` con la CLI). Reiniciar la base: el mismo `psql "$DATABASE_URL" -c "drop schema public cascade; create schema public;"` con la URL pública de la base (pestaña Connect del servicio Postgres), y luego Restart de la app.
+Debe responder `"status":"ok"` y `"demo":true`. En `/` se ve la página del producto (`apps/landing`, la misma de GitHub Pages) con el botón "Probar la demo", y la app queda en `/index.html`; los enlaces viejos a `/#/…` (correos, la PWA instalada) se redirigen solos. `SERVE_LANDING=false` vuelve a mostrar la app en `/`. Redis no hace falta: la demo ignora `REDIS_URL` (no copiar las variables del `.env` local, que apuntan a `localhost`).
+
+Cada push a la rama conectada redespliega; se puede apagar en Settings si se prefiere desplegar a mano (`railway up` con la CLI). Reiniciar la base: el mismo `psql "$DATABASE_URL" -c "drop schema public cascade; create schema public;"` con la URL pública de la base (pestaña Connect del servicio Postgres), y luego Restart de la app.
 
 Costo: Railway cobra por uso (CPU, memoria, volumen y la base) sobre la cuota mínima de su plan Hobby; con la app suspendida sin visitas y ~200 MB residentes debería quedar cerca de esa cuota. Verificar los precios vigentes al contratar. Como en Render, no se ha verificado cuántos saltos de proxy agrega el borde de Railway: si los registros de visitantes distintos chocan con el límite por hora o la cookie no sale `Secure`, revisar `TRUST_PROXY`. Esta configuración no se ha desplegado todavía.
 
