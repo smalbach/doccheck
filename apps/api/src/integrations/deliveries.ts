@@ -7,6 +7,7 @@ import { PG_POOL } from '../db/db.module';
 import { isDemo } from '../demo/demo-mode';
 import { open, type Sealed } from '../messaging/secret-box';
 import { safeRequest } from './safe-fetch';
+import { redisUrl } from '../redis-url';
 
 const QUEUE = 'integration-deliveries';
 /** Attempts per delivery, and the delay before the second one (doubled each time): 30 s, 1, 2, 4, 8, 16 min. */
@@ -90,7 +91,7 @@ export class DeliveryWorker implements OnApplicationBootstrap, OnApplicationShut
 
   async onApplicationBootstrap() {
     if (isDemo()) return;
-    const url = process.env.REDIS_URL;
+    const url = redisUrl();
     if (url) {
       const connection = redisConnection(url);
       this.queue = new Queue(QUEUE, { connection, prefix: 'doccheck' });

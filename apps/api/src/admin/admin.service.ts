@@ -8,6 +8,7 @@ import type { SwitchableProvider } from '../llm/switchable-provider';
 import { AdminRepository } from './admin.repository';
 import { modelAccuracy } from './model-accuracy';
 import { listOllamaModels } from './ollama-models';
+import { redisUrl } from '../redis-url';
 
 @Injectable()
 export class AdminService {
@@ -40,7 +41,7 @@ export class AdminService {
       model: { provider: this.provider.id, build: build ?? null },
       embeddings: { model: embedderFromEnvOrNull()?.id.replace(/^ollama:/, '') ?? null, chunks: index?.chunks.length ?? null },
       localOnly: localOnly(),
-      queue: process.env.REDIS_URL ? 'bullmq' : 'in-process',
+      queue: redisUrl() ? 'bullmq' : 'in-process',
       storage: process.env.S3_ENDPOINT ? 's3' : 'disk',
       cache: { dir: process.env.LLM_CACHE_DIR || null, mode: process.env.LLM_CACHE_MODE || (process.env.LLM_CACHE_DIR ? 'readwrite' : 'off') },
       ocr: { engine: ocrEngine(), languages: (process.env.OCR_LANGS ?? 'eng+fra').split('+'), scale: Number(process.env.OCR_SCALE ?? 4), psm: process.env.OCR_PSM ?? '6' },

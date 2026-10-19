@@ -1,5 +1,6 @@
 import { Injectable, Logger, type OnApplicationShutdown } from '@nestjs/common';
 import Redis from 'ioredis';
+import { redisUrl } from '../redis-url';
 
 export interface RateDecision {
   allowed: boolean;
@@ -23,7 +24,7 @@ export class RateLimiter implements OnApplicationShutdown {
   private readonly local = new Map<string, { window: number; count: number }>();
 
   constructor() {
-    const url = process.env.REDIS_URL;
+    const url = redisUrl();
     if (url) {
       this.redis = new Redis(url, { lazyConnect: false, maxRetriesPerRequest: 1, enableOfflineQueue: false });
       this.redis.on('error', (err) => this.logger.debug(`Redis: ${err.message}`));

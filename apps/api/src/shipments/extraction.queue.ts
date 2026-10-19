@@ -4,6 +4,7 @@ import type { ExtractableType } from '@doccheck/extraction';
 import { randomUUID } from 'node:crypto';
 import { ProgressService } from '../progress/progress.service';
 import { DocumentProcessor, ExtractionCancelledError, type ProcessOptions } from './document.processor';
+import { redisUrl } from '../redis-url';
 
 const QUEUE = 'extraction';
 
@@ -48,9 +49,9 @@ export class ExtractionQueue implements OnModuleInit, OnApplicationBootstrap, On
   }
 
   async onModuleInit() {
-    const url = process.env.REDIS_URL;
+    const url = redisUrl();
     if (!url) {
-      this.logger.warn('REDIS_URL is not set: extracting documents in-process, without a queue');
+      this.logger.warn('No Redis (REDIS_URL not set, off, or the read-only demo): extracting documents in-process, without a queue');
       return;
     }
     const connection = redisConnection(url);
