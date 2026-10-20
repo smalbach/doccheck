@@ -308,3 +308,4 @@ Todas fusionadas en `main` (último merge `a602285`), migraciones 040 a 051.
 - 17 oct 2026: proveedores de IA configurables (LLM, embeddings, OCR) con "solo local" y claves cifradas.
 - 17 oct 2026: app de escritorio (Windows, macOS, Linux), pipeline de releases y landing de descargas.
 - 19 oct 2026: animación 3D del hero (Three.js) con el flujo real verificado en el código: canales → recepción → cola → lectura/OCR → separación → clasificación por palabras clave → LLM → normalización → embarque → 53 reglas, screening, arancel, citas, agente → webhooks / solicitud al proveedor → portal → revalidación. Diagrama isométrico estilo draw.io con conectores animados; el subtítulo narra un embarque (`apps/landing/flow.js`).
+- 20 oct 2026: la landing deja de ofrecer descargas; solo enlaza al repositorio y se presenta como código abierto y autoalojado.
