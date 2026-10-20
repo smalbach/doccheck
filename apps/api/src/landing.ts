@@ -26,7 +26,7 @@ export function serveLanding(app: NestExpressApplication) {
     return;
   }
   const html = readFileSync(page, 'utf8').replace('<head>', `<head>\n<meta name="doccheck-app" content="${APP_PATH}">`);
-  const files: Record<string, string> = { '/icon.svg': resolve(dir, 'icon.svg'), '/apple-touch-icon.png': resolve(dir, 'apple-touch-icon.png') };
+  const files: Record<string, string> = { '/icon.svg': resolve(dir, 'icon.svg'), '/apple-touch-icon.png': resolve(dir, 'apple-touch-icon.png'), '/flow.js': resolve(dir, 'flow.js') };
   app.use((req: Request, res: Response, next: NextFunction) => {
     if (req.method !== 'GET' && req.method !== 'HEAD') return next();
     if (req.path === '/') {

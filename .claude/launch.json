@@ -43,6 +43,18 @@
       "env": {
         "API_URL": "http://localhost:4310"
       }
+    },
+    {
+      "name": "landing",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "vite",
+        "apps/landing",
+        "--port",
+        "4320",
+        "--strictPort"
+      ],
+      "port": 4320
     }
   ]
 }
