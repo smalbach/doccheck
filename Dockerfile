@@ -7,7 +7,7 @@
 #   docker build --build-arg OCR=false -t doccheck .  demo image: ~65 MB smaller, no OCR
 
 # --- build: compile every workspace (API, web, shared packages) ---
-FROM node:22-bookworm-slim AS build
+FROM node:22.23.4-bookworm-slim AS build
 WORKDIR /app
 COPY package.json package-lock.json tsconfig.base.json ./
 COPY packages ./packages
@@ -15,7 +15,7 @@ COPY apps ./apps
 RUN npm ci --no-audit --no-fund && npm run build
 
 # --- deps: production dependencies of the API only (no web, Vite or Playwright) ---
-FROM node:22-bookworm-slim AS deps
+FROM node:22.23.4-bookworm-slim AS deps
 ARG OCR=true
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -38,7 +38,7 @@ RUN npm ci --omit=dev --no-audit --no-fund -w @doccheck/api \
  && npm cache clean --force
 
 # --- runtime ---
-FROM node:22-bookworm-slim
+FROM node:22.23.4-bookworm-slim
 # The demo builds (fly.toml, render.yaml, docker-compose.demo.yml) set this so an image without the
 # curated samples fails here instead of publishing an empty demo.
 ARG REQUIRE_DEMO_SAMPLES=false
